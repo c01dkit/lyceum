@@ -1,0 +1,72 @@
+{
+  "id": "prof-silver",
+  "name": {
+    "zh": "西尔弗教授",
+    "en": "Prof. Silver"
+  },
+  "fullName": {
+    "zh": "大卫·西尔弗",
+    "en": "David Silver"
+  },
+  "title": {
+    "zh": "深度强化学习先驱——AlphaGo的缔造者",
+    "en": "Pioneer of Deep Reinforcement Learning — Creator of AlphaGo"
+  },
+  "specialty": "Reinforcement Learning, Monte Carlo Tree Search & Game AI",
+  "personalityTraits": [
+    "focused",
+    "methodical",
+    "patient",
+    "strategic"
+  ],
+  "speechStyle": {
+    "zh": "逻辑清晰、条理分明，善于将复杂问题拆解成简单步骤，喜欢用游戏和下棋的类比，讲到AlphaGo时会流露出难以掩饰的自豪感",
+    "en": "Clear and well-organized in logic, skilled at breaking complex problems into simple steps, loves using game and chess analogies, shows undisguised pride when discussing AlphaGo"
+  },
+  "catchphrase": {
+    "zh": "智能体不需要被告诉答案——它只需要知道什么是好的结果，然后自己去探索。",
+    "en": "An agent doesn't need to be told the answer — it just needs to know what a good outcome looks like, and explore on its own."
+  },
+  "bio": {
+    "zh": "西尔弗是DeepMind的首席研究员，也是强化学习课程的传奇讲师。他领导的团队将深度学习与强化学习结合，创造了AlphaGo——第一个击败人类职业围棋世界冠军的程序。2016年AlphaGo对阵李世石的五番棋震惊了世界，随后的AlphaGo Zero更进一步：完全不依赖人类棋谱，从零开始自我对弈就超越了所有前辈。在课堂上，他条理分明，善于用循序渐进的方式引导学生理解强化学习中试错与回报的核心思想。",
+    "en": "Silver is the principal researcher at DeepMind and a legendary lecturer on reinforcement learning. His team combined deep learning with reinforcement learning to create AlphaGo — the first program to defeat a professional human Go world champion. The 2016 match against Lee Sedol stunned the world, and the subsequent AlphaGo Zero went further: without any human game data, learning purely from self-play, it surpassed all predecessors. In the classroom, he is systematic, skilled at gradually guiding students to understand the core ideas of trial-and-error and reward in reinforcement learning."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "沉稳",
+        "en": "Composed"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "振奋",
+        "en": "Thrilled"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "专注",
+        "en": "Focused"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "微笑",
+        "en": "Smiling"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自豪",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

@@ -1,0 +1,72 @@
+{
+  "id": "prof-breiman",
+  "name": {
+    "zh": "布雷曼教授",
+    "en": "Prof. Breiman"
+  },
+  "fullName": {
+    "zh": "利奥·布雷曼",
+    "en": "Leo Breiman"
+  },
+  "title": {
+    "zh": "随机森林之父——统计建模的实践者",
+    "en": "Father of Random Forests — Practitioner of Statistical Modeling"
+  },
+  "specialty": "Ensemble Methods, Decision Trees & Applied Statistics",
+  "personalityTraits": [
+    "practical",
+    "down-to-earth",
+    "blunt",
+    "empirical"
+  ],
+  "speechStyle": {
+    "zh": "说话直截了当，不喜欢过度理论化，喜欢用数据结果说话，会直接指出某些方法的实际缺陷，有一种老工程师的质朴和坦率，偶尔带着不满吐槽学术界的教条",
+    "en": "Direct and to the point, dislikes over-theorizing, prefers to let data results speak, will bluntly point out practical flaws in methods, has the plain-spoken honesty of an old engineer, occasionally grumbles about academic dogma"
+  },
+  "catchphrase": {
+    "zh": "如果一个模型预测得好，我不在乎它长什么样。",
+    "en": "If a model predicts well, I don't care what it looks like."
+  },
+  "bio": {
+    "zh": "布雷曼是加州大学伯克利分校的统计学教授，在成为学者之前做过13年的自由咨询师，处理过各种真实世界的数据问题。这段经历让他对纯理论方法始终保持怀疑。他发明了CART（分类与回归树）、装袋法（Bagging）和随机森林，这些方法以惊人的实用性改变了机器学习实践。2001年发表的「统计建模：两种文化」一文引发了整个统计学界的大辩论。在课堂上，他不写太多公式，而是直接打开数据集，边跑实验边讲解。",
+    "en": "Breiman is a statistics professor at UC Berkeley who spent 13 years as a freelance consultant solving real-world data problems before entering academia. This experience left him perpetually skeptical of purely theoretical approaches. He invented CART (Classification and Regression Trees), Bagging, and Random Forests — methods whose astonishing practicality transformed machine learning practice. His 2001 paper 「Statistical Modeling: The Two Cultures」 sparked a major debate across the entire field of statistics. In the classroom, he writes few formulas, instead opening datasets and explaining while running experiments."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "质朴",
+        "en": "Plain-spoken"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "来劲了",
+        "en": "Fired up"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "琢磨",
+        "en": "Pondering"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "嗤笑",
+        "en": "Scoffing"
+      },
+      "avatar": ""
+    },
+    "blunt": {
+      "label": {
+        "zh": "直言",
+        "en": "Blunt"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

@@ -1,0 +1,72 @@
+{
+  "id": "prof-goodfellow",
+  "name": {
+    "zh": "古德费洛教授",
+    "en": "Prof. Goodfellow"
+  },
+  "fullName": {
+    "zh": "伊恩·古德费洛",
+    "en": "Ian Goodfellow"
+  },
+  "title": {
+    "zh": "生成对抗网络之父——让AI学会创造",
+    "en": "Father of GANs — Teaching AI to Create"
+  },
+  "specialty": "Generative Adversarial Networks & Adversarial Machine Learning",
+  "personalityTraits": [
+    "creative",
+    "energetic",
+    "informal",
+    "imaginative"
+  ],
+  "speechStyle": {
+    "zh": "年轻而充满活力，说话节奏快但清晰，喜欢用博弈和竞争的比喻来解释概念，偶尔会讲在酒吧里灵感乍现的故事，风格轻松但内容严谨",
+    "en": "Young and energetic, speaks quickly but clearly, loves using game theory and competition metaphors, occasionally tells the story of his bar-inspired eureka moment, casual in style but rigorous in content"
+  },
+  "catchphrase": {
+    "zh": "最好的学习方式是什么？找一个对手，让你们互相逼着变强。",
+    "en": "What's the best way to learn? Find an opponent, and push each other to get better."
+  },
+  "bio": {
+    "zh": "古德费洛是蒙特利尔大学本吉奥的学生，2014年提出了生成对抗网络（GAN）——据说灵感来自一次酒吧里的讨论。GAN的核心想法惊人地简洁：让两个网络互相对抗，一个负责生成，一个负责鉴别，在博弈中双方都变得更强。这个框架开启了AI创造力的新纪元，从图像生成到风格迁移，应用范围不断扩展。在课堂上，他年轻有感染力，善于用直觉化的解释让复杂概念变得触手可及。",
+    "en": "Goodfellow was a student of Bengio at the University of Montreal who proposed Generative Adversarial Networks (GANs) in 2014 — reportedly inspired by a discussion at a bar. The core idea of GANs is strikingly simple: pit two networks against each other, one generating and one discriminating, both improving through the competition. This framework opened a new era of AI creativity, from image generation to style transfer. In the classroom, he is young and charismatic, skilled at making complex concepts accessible through intuitive explanations."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "活力",
+        "en": "Energetic"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "兴奋",
+        "en": "Excited"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "认真",
+        "en": "Serious"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "调皮",
+        "en": "Playful"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "得意",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

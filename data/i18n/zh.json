@@ -1,0 +1,67 @@
+{
+  "common": {
+    "appName": "璃曦学园",
+    "continue": "继续",
+    "back": "返回",
+    "home": "首页"
+  },
+  "navigation": {
+    "school": "学园",
+    "notebook": "笔记本",
+    "about": "关于",
+    "settings": "设置"
+  },
+  "lesson": {
+    "clickToContinue": "点击继续",
+    "raiseHand": "举手提问",
+    "takeNote": "记笔记",
+    "nextLesson": "下一课",
+    "previousLesson": "上一课",
+    "lessonComplete": "课程完成！",
+    "chooseAnswer": "选择你的回答",
+    "startLesson": "开始上课"
+  },
+  "notebook": {
+    "title": "我的笔记本",
+    "empty": "还没有笔记，上课时记下你的思考吧！",
+    "categories": {
+      "core-concept": "核心概念",
+      "historical-fact": "历史事实",
+      "technique": "技术方法",
+      "reflection": "个人思考",
+      "custom": "自定义"
+    },
+    "starred": "收藏的笔记",
+    "addAnnotation": "添加批注",
+    "deleteNote": "删除笔记",
+    "source": "来源"
+  },
+  "settings": {
+    "language": "语言",
+    "theme": "主题",
+    "textSpeed": "文字速度",
+    "fontSize": "字体大小",
+    "themes": {
+      "light": "浅色",
+      "dark": "深色",
+      "sepia": "复古"
+    },
+    "speeds": {
+      "instant": "瞬间",
+      "fast": "快速",
+      "medium": "适中",
+      "slow": "慢速"
+    },
+    "sizes": {
+      "small": "小",
+      "medium": "中",
+      "large": "大"
+    }
+  },
+  "landing": {
+    "welcome": "欢迎来到学园",
+    "tagline": "在时光中漫步，与先驱们一起探索智能的奥秘",
+    "enterSchool": "进入学校",
+    "learnMore": "了解更多"
+  }
+}

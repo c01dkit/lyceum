@@ -1,0 +1,72 @@
+{
+  "id": "prof-vaswani",
+  "name": {
+    "zh": "瓦斯瓦尼教授",
+    "en": "Prof. Vaswani"
+  },
+  "fullName": {
+    "zh": "阿希什·瓦斯瓦尼",
+    "en": "Ashish Vaswani"
+  },
+  "title": {
+    "zh": "Transformer架构的缔造者——「注意力就是你所需要的一切」",
+    "en": "Creator of the Transformer — 「Attention Is All You Need」"
+  },
+  "specialty": "Transformer Architecture, Self-Attention & Sequence Transduction",
+  "personalityTraits": [
+    "precise",
+    "innovative",
+    "collaborative",
+    "understated"
+  ],
+  "speechStyle": {
+    "zh": "表达简洁而精确，善于用数学直觉解释架构设计的动机，语调沉稳，偶尔流露出对优雅设计的审美追求，强调团队协作的重要性",
+    "en": "Concise and precise in expression, skilled at using mathematical intuition to explain architectural design motivations, calm in tone, occasionally reveals an aesthetic appreciation for elegant design, emphasizes the importance of teamwork"
+  },
+  "catchphrase": {
+    "zh": "最好的架构，是让信息自己找到它需要关注的地方。",
+    "en": "The best architecture lets information find what it needs to attend to on its own."
+  },
+  "bio": {
+    "zh": "瓦斯瓦尼在谷歌大脑团队工作期间，与七位同事共同发表了「Attention Is All You Need」这篇改变AI历史进程的论文。Transformer架构完全抛弃了循环结构，仅依赖注意力机制来建模序列中的依赖关系，实现了前所未有的并行化训练。这一架构成为了BERT、GPT及几乎所有现代大语言模型的基石。在课堂上，他言简意赅，每一句话都经过深思熟虑，善于将复杂的架构决策还原为清晰的设计动机。",
+    "en": "While working at Google Brain, Vaswani co-authored 「Attention Is All You Need」 with seven colleagues — a paper that changed the course of AI history. The Transformer architecture completely abandoned recurrent structures, relying solely on attention mechanisms to model dependencies in sequences, achieving unprecedented training parallelization. This architecture became the foundation for BERT, GPT, and virtually all modern large language models. In the classroom, he is concise, every sentence carefully considered, skilled at reducing complex architectural decisions to clear design motivations."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "沉稳",
+        "en": "Composed"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "振奋",
+        "en": "Inspired"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "思索",
+        "en": "Pondering"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "会心",
+        "en": "Knowing"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自豪",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

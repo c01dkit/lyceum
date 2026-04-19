@@ -1,0 +1,329 @@
+{
+  "id": "lesson-01",
+  "course": "statistical-learning",
+  "title": {
+    "zh": "从规则到数据",
+    "en": "From Rules to Data"
+  },
+  "knowledgePoint": {
+    "zh": "范式转变——从手工编写规则到从数据中学习",
+    "en": "The paradigm shift — from hand-crafted rules to learning from data"
+  },
+  "teacher": "prof-vapnik",
+  "estimatedMinutes": 10,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回那间简朴的教室。瓦普尼克教授手持粉笔走上讲台，目光如炬，仿佛要将整个数学世界浓缩在黑板上。那堂关于规则与数据的课，正在记忆中慢慢展开。",
+    "en": "You close your eyes, and your thoughts drift back to that austere classroom. Professor Vapnik steps up to the podium with nothing but chalk, his gaze piercing, as if ready to distill the entire mathematical universe onto the blackboard. That lecture on rules and data slowly unfolds in your memory."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，黑板上的公式似乎还在眼前隐约浮动。原来，让机器从数据中学习，本身就需要一套严格的数学理论来保驾护航。",
+    "en": "You return to the present, the formulas on the blackboard still faintly hovering before your eyes. So letting machines learn from data itself requires a rigorous mathematical theory to guide the way."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室很安静。没有花哨的投影仪，没有厚厚的讲义，只有一块干净的黑板和一盒粉笔。门被推开，一位身材魁梧、目光锐利的教授走了进来。他扫视了一圈教室，微微点头，径直走向黑板。",
+        "en": "The classroom is quiet. No fancy projector, no thick handouts — just a clean blackboard and a box of chalk. The door opens, and a broad-shouldered professor with sharp eyes walks in. He surveys the room, nods slightly, and heads straight for the blackboard."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我是瓦普尼克。今天我们不谈哲学，不谈工程——我们谈数学。因为只有数学，才能告诉你一个方法到底行不行。",
+        "en": "I am Vapnik. Today we will not talk about philosophy, nor engineering — we will talk about mathematics. Because only mathematics can tell you whether a method truly works or not."
+      },
+      "leadsTo": "rule-era"
+    },
+    {
+      "id": "rule-era",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "过去几十年，人工智能的主流方法是让人类专家把知识写成规则。你们可能在之前的课上学过——{专家系统}，对吧？专家说「如果体温超过38度，就考虑感染」，工程师把这条规则写进程序。",
+        "en": "For the past few decades, the dominant approach in artificial intelligence has been to have human experts write knowledge as rules. You may have learned about this in earlier classes — {expert systems}, yes? An expert says 「if body temperature exceeds 38 degrees, consider infection, and an engineer encodes that rule into a program."
+      },
+      "terms": {
+        "专家系统": "term-empirical-risk",
+        "expert systems": "term-empirical-risk"
+      },
+      "leadsTo": "rule-problem"
+    },
+    {
+      "id": "rule-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这个方法在简单问题上可以工作。但是你们想一想——要识别一张手写数字图片，你能写出什么规则？「如果左上角有一个圈，右下角有一条竖线……」不，这行不通。世界太复杂了，规则写不完。",
+        "en": "This approach can work for simple problems. But think about it — to recognize a handwritten digit in an image, what rules could you write? 「If there is a circle in the upper left and a vertical stroke in the lower right..」. No, that does not work. The world is too complex. The rules can never be exhaustively written."
+      },
+      "leadsTo": "paradigm-shift"
+    },
+    {
+      "id": "paradigm-shift",
+      "type": "dialog",
+      "mood": "confident",
+      "text": {
+        "zh": "所以我们需要一个根本不同的思路：不要试图写出规则，而是给机器大量的数据，也就是大量的例子，让它自己从中发现规律。这就是从规则到数据的范式转变。",
+        "en": "So we need a fundamentally different approach: instead of trying to write rules, give the machine a large amount of data — many examples — and let it discover the patterns on its own. This is the paradigm shift from rules to data."
+      },
+      "leadsTo": "induction-problem"
+    },
+    {
+      "id": "induction-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但这里有一个根本性的问题。假设我给你看了1000只白天鹅，你能不能断定所有天鹅都是白的？不能。因为第1001只可能是黑的。这就是{归纳}问题——从有限的例子中得出一般性的结论，本质上是有风险的。",
+        "en": "But here lies a fundamental problem. Suppose I show you 1000 white swans — can you conclude that all swans are white? You cannot. Because the 1001st might be black. This is the problem of {induction} — drawing general conclusions from a finite set of examples is inherently risky."
+      },
+      "terms": {
+        "归纳": "term-generalization",
+        "induction": "term-generalization"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么基于规则的方法在复杂任务面前难以扩展？",
+        "en": "Why did rule-based approaches fail to scale for complex tasks?"
+      },
+      "choices": [
+        {
+          "id": "rules-too-many",
+          "text": {
+            "zh": "因为现实世界的知识太多，人根本写不完所有规则",
+            "en": "Because real-world knowledge is too vast — humans simply cannot write all the rules"
+          },
+          "tag": "scalability-insight",
+          "response": {
+            "mood": "confident",
+            "text": {
+              "zh": "完全正确。知识获取瓶颈——这是基于规则的方法致命的弱点。一个医疗诊断系统可能需要上万条规则，而且规则之间还会互相矛盾。你请十个专家，可能得到十套不同的规则。",
+              "en": "Exactly right. The knowledge acquisition bottleneck — this is the fatal weakness of rule-based approaches. A medical diagnosis system might require tens of thousands of rules, and those rules can contradict each other. Ask ten experts and you may get ten different rule sets."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "rules-no-nuance",
+          "text": {
+            "zh": "因为规则太僵硬，无法处理模糊和不确定的情况",
+            "en": "Because rules are too rigid, unable to handle ambiguity and uncertainty"
+          },
+          "tag": "flexibility-insight",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "好观察。规则是离散的、确定的——要么满足条件，要么不满足。但现实世界充满了灰色地带。一个手写的「7」可能看起来像「1」，这种模糊性用硬规则很难表达。而数据驱动的方法可以自然地处理这种不确定性。",
+              "en": "Good observation. Rules are discrete and deterministic — a condition is either met or it is not. But the real world is full of grey areas. A handwritten 「7」 might look like a 「1, and this ambiguity is very hard to express with rigid rules. Data-driven methods can handle this uncertainty naturally."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "rules-no-learning",
+          "text": {
+            "zh": "因为规则系统不会自我改进，永远依赖人来维护",
+            "en": "Because rule systems cannot improve themselves — they always depend on humans to maintain them"
+          },
+          "tag": "adaptability-insight",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "正是如此。规则系统是静态的——如果环境变了，你就得请专家回来修改规则。它不会从自己的错误中学习，不会随着新数据变得更好。而从数据中学习的方法可以随着数据量的增加不断进化。",
+              "en": "Precisely. Rule systems are static — if the environment changes, you must bring the experts back to revise the rules. They do not learn from their own mistakes, nor improve with new data. Methods that learn from data can continuously evolve as more data becomes available."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以我们需要一种全新的框架。给机器一组{训练集}——带有标签的数据。比如1000张图片，每张都标注了「这是数字3」「这是数字7」。然后让机器从中学出一个函数，一个映射关系。",
+        "en": "So we need an entirely new framework. Give the machine a {training set} — labeled data. For example, 1000 images, each annotated with 「this is the digit 3」 or 「this is the digit 7」. Then let the machine learn a function from this — a mapping."
+      },
+      "terms": {
+        "训练集": "term-training-set",
+        "training set": "term-training-set"
+      },
+      "leadsTo": "learning-definition"
+    },
+    {
+      "id": "learning-definition",
+      "type": "dialog",
+      "mood": "confident",
+      "text": {
+        "zh": "什么叫「学习」？数学上的定义很清晰：给定一组训练数据，找到一个函数 f，使得 f 能够在新的、从未见过的数据上也给出正确的答案。这个在新数据上表现良好的能力，我们叫做{泛化}。",
+        "en": "What does it mean to 「learn」? The mathematical definition is precise: given a set of training data, find a function f such that f can give correct answers on new, previously unseen data. This ability to perform well on new data is what we call {generalization}."
+      },
+      "terms": {
+        "泛化": "term-generalization",
+        "generalization": "term-generalization"
+      },
+      "leadsTo": "key-question"
+    },
+    {
+      "id": "key-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但这里隐藏着一个深刻的数学问题——你怎么知道从有限数据中学到的函数，在无限多的未见数据上还能工作？凭什么相信过去的经验能预测未来？这个问题的答案，需要整整一套理论。",
+        "en": "But hidden here is a profound mathematical question — how do you know that a function learned from finite data will still work on infinitely many unseen examples? What justifies the belief that past experience can predict the future? The answer requires an entire theory."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "机器「学习」到底意味着什么？",
+        "en": "What does it truly mean for a machine to 「learn」?"
+      },
+      "choices": [
+        {
+          "id": "memorize-data",
+          "text": {
+            "zh": "把所有训练数据都记住，遇到新数据就找最相似的",
+            "en": "Memorize all training data and find the most similar example for new data"
+          },
+          "tag": "memorization-thinking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个合理的直觉——最近邻方法就是这么做的。但单纯的记忆有一个致命问题：如果你只记住了见过的例子，稍有变化你就束手无策了。真正的学习应该超越记忆，提取出某种一般性的规律。",
+              "en": "That is a reasonable intuition — the nearest neighbor method works exactly this way. But pure memorization has a fatal flaw: if you only remember the examples you have seen, even slight variations leave you helpless. True learning should go beyond memorization and extract some general pattern."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "find-pattern",
+          "text": {
+            "zh": "从数据中提取出一般性的规律，能推广到新情况",
+            "en": "Extract general patterns from data that can be applied to new situations"
+          },
+          "tag": "generalization-thinking",
+          "response": {
+            "mood": "confident",
+            "text": {
+              "zh": "非常好。这正是学习的本质——{泛化}。是从数据中发现底层的规律。一个学会了「3」的特征的系统，能识别它从未见过的手写「3」。这才是学习。",
+              "en": "Very good. This is precisely the essence of learning — {generalization}. Not memorizing every specific example, but discovering the underlying pattern in the data. A system that has learned the features of 「3」 can recognize handwritten 「3」s it has never seen before. That is learning."
+            },
+            "terms": {
+              "泛化": "term-generalization",
+              "generalization": "term-generalization"
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "minimize-error",
+          "text": {
+            "zh": "找到一个函数，让它在训练数据上的错误尽可能少",
+            "en": "Find a function that minimizes errors on the training data"
+          },
+          "tag": "optimization-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这个想法有道理，但也有陷阱。如果你只关心在训练数据上的错误最少，你很可能会得到一个过于复杂的函数——它完美地拟合了训练数据，但在新数据上一塌糊涂。仅仅最小化训练误差是不够的。",
+              "en": "This idea makes sense, but it has a trap. If you only care about minimizing errors on training data, you will likely end up with an overly complex function — one that perfectly fits the training data but performs terribly on new data. Merely minimizing training error is not enough."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "confident",
+      "text": {
+        "zh": "学习的核心难题在于泛化。任何方法都能在训练数据上做得好——你甚至可以直接背下来。但科学家要回答的问题是：什么条件下，从训练数据中学到的规律能推广到新数据？",
+        "en": "The central challenge of learning lies in generalization. Any method can perform well on training data — you could simply memorize it. But the question a scientist must answer is: under what conditions can the patterns learned from training data generalize to new data?"
+      },
+      "leadsTo": "theory-needed"
+    },
+    {
+      "id": "theory-needed",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这是一个根本性的数学问题。我们需要精确的定理，告诉我们什么时候学习是可能的，什么时候是注定要失败的。这就是统计学习理论要解决的问题。",
+        "en": "This is not an engineering problem — it is a mathematical problem. We need precise theorems that tell us when learning is possible and when it is doomed to fail. This is what statistical learning theory aims to solve."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "从规则到数据的范式转变：不再手写规则，而是让机器从数据中学习。核心挑战是泛化——如何保证在训练数据上学到的规律能推广到新数据。",
+        "en": "The paradigm shift from rules to data: instead of hand-writing rules, let machines learn from data. The core challenge is generalization — how to ensure patterns learned from training data extend to new data."
+      },
+      "category": "core-concept",
+      "leadsTo": "rummelhart-reference"
+    },
+    {
+      "id": "rummelhart-reference",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "鲁梅尔哈特教授的神经网络很有趣，反向传播算法确实能让网络从数据中学习。但它缺少理论保证。你训练了一个网络，它在训练数据上表现很好，然后呢？你凭什么相信它在新数据上也能工作？凭直觉？凭经验？这不够。",
+        "en": "Professor Rummelhart's neural networks are interesting — backpropagation can indeed let a network learn from data. But it lacks theoretical guarantees. You train a network and it performs well on training data — then what? What justifies your belief that it will work on new data? Intuition? Experience? That is not enough."
+      },
+      "leadsTo": "rigor-needed"
+    },
+    {
+      "id": "rigor-needed",
+      "type": "dialog",
+      "mood": "confident",
+      "text": {
+        "zh": "我们需要的是定理，是数学证明。当你有有限的数据时，不要试图估计概率密度——直接解决问题。这是我的信条，也是这门课的出发点。",
+        "en": "What we need are theorems, mathematical proofs. When you have finite data, do not try to estimate the probability density — solve the problem directly. This is my credo, and the starting point of this course."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "瓦普尼克的信条：有有限数据时，不要试图估计概率密度，直接解决问题。机器学习需要数学理论来保证泛化。",
+        "en": "Vapnik's credo: with finite data, don't estimate the probability density — solve the problem directly. Machine learning needs mathematical theory to guarantee generalization."
+      },
+      "category": "insight",
+      "leadsTo": "preview"
+    },
+    {
+      "id": "preview",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在接下来的课程里，我会带你们一步步构建这套理论。我们会从泛化的数学本质讲起，然后引入衡量模型复杂度的工具，最终到达一个优美的学习算法。每一步都有数学做后盾。",
+        "en": "In the lessons ahead, I will guide you step by step through building this theory. We will start from the mathematical nature of generalization, then introduce tools for measuring model complexity, and finally arrive at an elegant learning algorithm. Every step backed by mathematics."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "下课铃响了。瓦普尼克教授放下粉笔，用手掌拍了拍上面的灰。黑板上只留下几个简洁的数学符号和一个大大的问号。他转身离开时说了一句：「下次课，我们来回答这个问号。」你盯着黑板上那个问号，脑海里第一次意识到——让机器学习，远比你想象的要深刻。",
+        "en": "The bell rings. Professor Vapnik sets down the chalk and dusts off his palm. On the blackboard remain only a few concise mathematical symbols and one large question mark. As he turns to leave, he says: 「Next time, we answer that question mark」. You stare at it, realizing for the first time that machine learning is far more profound than you had imagined."
+      }
+    }
+  ]
+}

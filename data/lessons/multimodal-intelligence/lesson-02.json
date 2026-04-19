@@ -1,0 +1,300 @@
+{
+  "id": "lesson-02",
+  "course": "multimodal-intelligence",
+  "title": {
+    "zh": "视觉与语言的桥梁",
+    "en": "Bridging Vision and Language"
+  },
+  "knowledgePoint": {
+    "zh": "CLIP与对比学习——如何在共享空间中连接图像和文字",
+    "en": "CLIP and contrastive learning — connecting images and text in a shared space"
+  },
+  "teacher": "prof-li",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你闭上眼，那间金色光线弥漫的教室再次浮现。全息投影中的两个光球，一个标着「图像」，一个标着「文字」，在空气中缓缓靠近，最终融合在一起，发出柔和的光芒。李飞飞教授的声音在记忆中清晰地回响：「我们需要一座桥梁。」",
+    "en": "You close your eyes, and that classroom bathed in golden light reappears. Two luminous spheres in the holographic projection — one labeled 「Image」, the other 「Text」 — slowly drift toward each other in the air, finally merging with a soft glow. Prof. Li's voice echoes clearly in your memory: 「We need a bridge」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。「配对」这个简单的概念仍在脑海中闪烁——互联网上数以亿计的图片和文字描述，竟然是连接视觉与语言的关键钥匙。有时候，最深刻的洞见就藏在最朴素的想法里。",
+    "en": "You return to the present. The simple concept of 「pairing」 still flickers in your mind — billions of images and text descriptions on the internet turned out to be the key to bridging vision and language. Sometimes the most profound insights hide in the most straightforward ideas."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "你再次走进那间开阔的教室。今天的全息投影显示着两组画面：左边是各种各样的图片，有猫、飞机、日落、显微镜下的细胞；右边是对应的文字描述，比如「一只橘猫趴在窗台上」「一架飞机穿过云层」。图片和文字之间，用细细的金色光线相连。李飞飞教授已经站在投影前，眼中带着兴奋的光芒。",
+        "en": "You enter the open classroom once again. Today's holographic projection displays two sets of content: on the left, various images — cats, airplanes, sunsets, cells under a microscope; on the right, corresponding text descriptions — 「an orange cat lounging on a windowsill」, 「an airplane breaking through clouds」. Thin golden lines connect the images and text. Prof. Li is already standing before the projection, her eyes sparkling with excitement."
+      },
+      "leadsTo": "recap"
+    },
+    {
+      "id": "recap",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们聊到了一个核心问题：纯文本的AI缺少感官经验的支撑。今天，我要给你们展示一个优雅的解决方案——人们是怎样开始在视觉和语言之间架起桥梁的。",
+        "en": "Last lesson we discussed a core problem: text-only AI lacks the grounding of sensory experience. Today, I want to show you an elegant solution — how people began building a bridge between vision and language."
+      },
+      "leadsTo": "old-approach"
+    },
+    {
+      "id": "old-approach",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "在很长一段时间里，计算机视觉和自然语言处理是两个独立的领域。视觉那边训练自己的模型，比如用ImageNet分类图片；语言那边也训练自己的模型，比如用大量文本学习词向量。两边各做各的，互不相通。这就好像视觉和语言说的是两种完全不同的语言，没有翻译官。",
+        "en": "For a long time, computer vision and natural language processing were two separate fields. Vision trained its own models — like classifying images with ImageNet; language trained its own models — like learning word vectors from massive text. Each side worked independently, with no communication. It was as if vision and language spoke two entirely different languages, with no translator between them."
+      },
+      "leadsTo": "bridge-needed"
+    },
+    {
+      "id": "bridge-needed",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但人类的大脑可不是这样工作的。当你看到一只猫，你脑海中同时浮现的是「猫」这个词、猫叫的声音、猫毛的触感。你的大脑把不同模态的信息存储在一个统一的概念空间里。问题是——我们怎么让机器也做到这一点？",
+        "en": "But the human brain doesn't work this way. When you see a cat, simultaneously the word 「cat, the sound of meowing, and the texture of fur all come to mind. Your brain stores information from different modalities in a unified conceptual space. The question is — how do we get machines to do the same?"
+      },
+      "leadsTo": "clip-intro"
+    },
+    {
+      "id": "clip-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "2021年，OpenAI发布了一个叫做{CLIP}的模型。CLIP的全称是「对比语言-图像预训练」。它的核心想法惊人地简单：从互联网上收集四亿对图文配对数据，每张图片都对应一段文字描述，然后训练一个模型，让它学会把匹配的图片和文字放在一起，把不匹配的推开。",
+        "en": "In 2021, OpenAI released a model called {CLIP}. CLIP stands for 「Contrastive Language-Image Pre-training」. Its core idea is strikingly simple: collect 400 million image-text pairs from the internet — each image paired with a text description — then train a model to place matching images and text close together, and push non-matching ones apart."
+      },
+      "terms": {
+        "CLIP": "term-clip"
+      },
+      "leadsTo": "contrastive-explain"
+    },
+    {
+      "id": "contrastive-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（全息投影中出现一个动画）让我用一个比喻来解释。想象一个巨大的展览馆，左边是图片画廊，右边是文字书架。{对比学习}做的事情是：把一张猫的图片和「一只猫在阳光下打盹」这段描述拉到展览馆的同一个位置；同时把这张猫图片和「一辆红色跑车」推到展览馆的两端。配对的越近越好，不配对的越远越好。",
+        "en": "(An animation appears in the holographic projection) Let me explain with a metaphor. Imagine a vast exhibition hall — an image gallery on the left, a text bookshelf on the right. What {contrastive learning} does is this: pull a cat photo and the description 「a cat napping in the sunlight」 to the same spot in the hall; at the same time, push that cat photo and 「a red sports car」 to opposite ends. The closer the matching pairs, the better; the farther the non-matching pairs, the better."
+      },
+      "terms": {
+        "对比学习": "term-contrastive-learning",
+        "contrastive learning": "term-contrastive-learning"
+      },
+      "leadsTo": "shared-space"
+    },
+    {
+      "id": "shared-space",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "训练完成后，CLIP就拥有了一个共享的表示空间——在这个空间里，图片和文字共享同一套坐标系。一只猫的图片和「cat」这个词，在这个空间里的位置非常接近。一架飞机的图片和「airplane」这个词也是如此。图像和语言，终于说上了同一种「语言」。",
+        "en": "After training, CLIP possesses a shared representation space — in this space, images and text share the same coordinate system. A photo of a cat and the word 「cat」 are located very close together in this space. A photo of an airplane and the word 「airplane」 likewise. Images and language finally speak the same 「language」."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "CLIP用互联网上的图文配对数据来学习。你觉得这种学习方式和传统的ImageNet分类训练相比，最大的优势是什么？",
+        "en": "CLIP learns from image-text pairs found on the internet. What do you think is the biggest advantage of this learning approach compared to traditional ImageNet classification training?"
+      },
+      "choices": [
+        {
+          "id": "scale-advantage",
+          "text": {
+            "zh": "规模——互联网上有数十亿的图文配对，远超人工标注的数据集",
+            "en": "Scale — there are billions of image-text pairs on the internet, far exceeding manually labeled datasets"
+          },
+          "tag": "data-scale",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "数据规模确实是一个巨大的优势。ImageNet有1400万张图片，已经很了不起了，但CLIP用了4亿对，而互联网上还有更多。更关键的是，这些数据不需要人工标注，网页上的图片天然就带着周围的文字描述。这意味着数据的获取成本大大降低了。",
+              "en": "Data scale is indeed a huge advantage. ImageNet's 14 million images were impressive, but CLIP used 400 million pairs — and the internet has far more. More critically, this data doesn't need manual labeling — images on web pages naturally come with surrounding text descriptions. This means the cost of data acquisition drops dramatically."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "flexibility-advantage",
+          "text": {
+            "zh": "灵活性——不局限于预设的类别，可以用任何文字描述来检索图片",
+            "en": "Flexibility — not limited to preset categories, can use any text description to retrieve images"
+          },
+          "tag": "open-ended",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "太好了，你抓住了最革命性的一点！ImageNet训练的模型只能识别1000个预设类别——猫、狗、汽车……如果你问它「一个穿红色外套的人在雪地里骑自行车」，它完全不知道怎么回答。但CLIP可以处理任意的文字描述，因为它学会的是图像和语言之间的通用映射关系。这种开放性是前所未有的。",
+              "en": "Wonderful — you've caught the most revolutionary point! A model trained on ImageNet can only recognize 1,000 preset categories — cat, dog, car... If you ask it about 「a person in a red coat riding a bicycle in the snow, it has no idea what to do. But CLIP can handle any text description, because what it has learned is a universal mapping between images and language. This openness is unprecedented."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "generalization-advantage",
+          "text": {
+            "zh": "泛化能力——自然语言监督比固定标签包含更丰富的语义信息",
+            "en": "Generalization — natural language supervision contains richer semantic information than fixed labels"
+          },
+          "tag": "semantic-depth",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这是一个非常深刻的见解。当ImageNet告诉模型「这是一只猫」时，模型只学到了一个分类标签。但当互联网上的配对数据告诉模型「一只橘色的猫懒洋洋地趴在阳光照射的窗台上」时，模型学到的是颜色、姿态、环境、光线、情绪……一个标签变成了一个丰富的语义世界。这就是自然语言监督的力量。",
+              "en": "That's a remarkably deep insight. When ImageNet tells a model 「this is a cat」, the model learns only a classification label. But when internet paired data tells the model 「an orange cat lounging lazily on a sunlit windowsill, the model learns color, posture, environment, lighting, mood... A single label becomes a rich semantic world. This is the power of natural language supervision."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "CLIP带来的最惊人的能力之一就是{零样本分类}。传统的图像分类器需要见过大量某个类别的标注样本才能识别它。但CLIP可以识别它从未在训练数据中明确标注过的类别——只要你用文字描述告诉它在找什么。",
+        "en": "One of the most astonishing capabilities CLIP brought is {zero-shot classification}. Traditional image classifiers need to see many labeled samples of a category to recognize it. But CLIP can identify categories it has never seen explicitly labeled in training data — as long as you tell it what to look for through text description."
+      },
+      "terms": {
+        "零样本分类": "term-zero-shot-classification",
+        "zero-shot classification": "term-zero-shot-classification"
+      },
+      "leadsTo": "zero-shot-explain"
+    },
+    {
+      "id": "zero-shot-explain",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（全息投影中出现演示画面）比如说，我给CLIP一张从未见过的稀有鸟类图片，然后用文字问它：「这是一只朱鹮吗？」CLIP会把这张图片和「朱鹮」这段文字分别映射到共享空间中，然后计算它们的距离。如果距离很近，答案就是「是」。整个过程不需要任何朱鹮的训练样本！",
+        "en": "(A demonstration appears in the holographic projection) For example, I give CLIP a photo of a rare bird it has never seen, then ask in text: 「Is this a crested ibis?」 CLIP maps both the image and the text 「crested ibis」 into the shared space, then calculates their distance. If they're close, the answer is 「yes」. The entire process requires zero training samples of crested ibises!"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "CLIP通过对比学习将图像和文字映射到同一个共享空间：匹配的配对靠近，不匹配的推远。它使用互联网上的4亿图文配对进行训练，不需要人工标注。最惊人的能力是零样本分类——用文字描述即可检索或识别从未见过的图像类别。",
+        "en": "CLIP uses contrastive learning to map images and text into a shared space: matching pairs are pulled close, non-matching pairs are pushed apart. Trained on 400 million image-text pairs from the internet, requiring no manual labeling. Its most stunning capability is zero-shot classification — using text descriptions to retrieve or identify image categories never seen during training."
+      },
+      "category": "core-concept",
+      "leadsTo": "clip-impact"
+    },
+    {
+      "id": "clip-impact",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "CLIP的影响是深远的。它不仅自己是一个强大的模型，更重要的是，它证明了一个原理：视觉和语言可以在同一个表示空间中对齐。这为后来的多模态大模型奠定了基础。",
+        "en": "CLIP's impact was profound. It was not only a powerful model itself, but more importantly, it proved a principle: vision and language can be aligned in the same representation space. This laid the foundation for the multimodal large models that followed."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "CLIP通过对比学习将图像和文字对齐到共享空间。但这种方法有局限性吗？你能想到什么它可能做不好的事情？",
+        "en": "CLIP aligns images and text in a shared space through contrastive learning. But does this approach have limitations? Can you think of something it might not do well?"
+      },
+      "choices": [
+        {
+          "id": "spatial-limit",
+          "text": {
+            "zh": "它可能不擅长理解空间关系，比如「猫在桌子上面」和「猫在桌子下面」",
+            "en": "It might not be good at understanding spatial relations — like 「cat on the table」 vs. 「cat under the table」"
+          },
+          "tag": "spatial-awareness",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常敏锐！CLIP确实在空间关系理解上表现很差。「一只猫坐在箱子上面」和「一只猫坐在箱子里面」——这两句话在CLIP的共享空间中距离非常近，因为它们包含几乎相同的关键词。CLIP更擅长识别「是什么」，但对「在哪里」和「什么关系」缺乏精细的区分能力。这正是我们后面要讨论的空间智能的问题。",
+              "en": "Very sharp! CLIP indeed performs poorly at understanding spatial relationships. 「A cat sitting on top of a box」 and 「a cat sitting inside a box」 — these two sentences end up very close in CLIP's shared space, because they contain nearly identical keywords. CLIP excels at identifying 「what」, but lacks fine discrimination for 「where」 and 「what relationship」. This is precisely the spatial intelligence problem we'll discuss later."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "counting-limit",
+          "text": {
+            "zh": "它可能不会数数，比如分辨「三只猫」和「五只猫」",
+            "en": "It probably can't count — like distinguishing 「three cats」 from 「five cats」"
+          },
+          "tag": "quantitative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说对了。CLIP在数量理解上确实很弱。这是因为对比学习关注的是整体语义相似性，而不是精确的数量信息。「草地上有三只羊」和「草地上有六只羊」在语义空间中几乎重叠——因为关键的语义成分「草地」和「羊」是一样的。这提醒我们，对齐图像和文字只是第一步，真正的视觉理解需要更精细的能力。",
+              "en": "You're right. CLIP is indeed weak at understanding quantities. This is because contrastive learning focuses on overall semantic similarity, not precise numerical information. 「Three sheep on a meadow」 and 「six sheep on a meadow」 nearly overlap in the semantic space — because the key semantic components 「meadow」 and 「sheep」 are the same. This reminds us that aligning images and text is only the first step; true visual understanding requires more refined capabilities."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "generation-limit",
+          "text": {
+            "zh": "它只能做匹配和检索，不能生成新的图像或文字",
+            "en": "It can only match and retrieve, not generate new images or text"
+          },
+          "tag": "generative-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "好观察。CLIP本身是一个判别模型——它能判断一张图片和一段文字是否匹配，但不能自己生成图片或撰写描述。这就像一个精通鉴赏的艺术评论家，能准确判断一幅画的风格和主题，却无法自己拿起画笔。不过，CLIP的共享空间后来被用作其他生成模型的基础，比如DALL-E就利用了CLIP的能力来引导图像生成。",
+              "en": "Good observation. CLIP itself is a discriminative model — it can judge whether an image and text match, but cannot generate images or compose descriptions on its own. It's like a connoisseur art critic who can accurately assess a painting's style and subject, but cannot pick up a brush themselves. However, CLIP's shared space was later used as a foundation for other generative models — DALL-E, for instance, leverages CLIP's capabilities to guide image generation."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "CLIP的局限性告诉我们一个重要的道理：连接视觉和语言只是多模态智能的第一步。对齐到同一个空间是必要的，但远远不够。我们还需要更深层的融合——让模型能够真正理解图像中的细节、关系和上下文。",
+        "en": "CLIP's limitations teach us an important lesson: connecting vision and language is only the first step of multimodal intelligence. Alignment in a shared space is necessary, but far from sufficient. We still need deeper fusion — enabling models to truly understand details, relationships, and context within images."
+      },
+      "leadsTo": "bridge-metaphor"
+    },
+    {
+      "id": "bridge-metaphor",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（走到窗前，指向外面）你们看到窗外那座桥了吗？CLIP就像那座桥的桥墩，它证明了视觉和语言之间可以建立连接。但桥墩只是基础。要让信息真正自由地在两岸流动，我们需要在桥墩上建起完整的桥面。这正是下节课的主题：那些能同时「看见」和「说话」的大模型。",
+        "en": "(Walks to the window, pointing outside) See that bridge outside the window? CLIP is like the bridge's pillars — it proved that a connection between vision and language is possible. But pillars are just the foundation. To allow information to truly flow freely between both shores, we need to build a complete bridge deck on top of those pillars. That's exactly the topic of our next lesson — those large models that can both 「see」 and 「speak」."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "对比学习的核心思想：拉近匹配的图文对，推远不匹配的配对，从而建立共享表示空间。CLIP的局限：不擅长空间关系、数量理解、图像生成。连接视觉和语言只是第一步，真正的多模态理解需要更深层的融合能力。",
+        "en": "Core idea of contrastive learning: pull matching image-text pairs close, push non-matching pairs apart, building a shared representation space. CLIP's limitations: poor at spatial relations, quantity understanding, image generation. Connecting vision and language is only step one — true multimodal understanding requires deeper fusion capabilities."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "李飞飞教授轻轻拍了拍全息投影装置，画面中的图文配对像萤火虫一样在空气中漂浮了一会儿，然后缓缓消散。她走出教室前转过身来：「下次课，我们要见到一些能同时理解图像和语言的大模型。它们的能力会让你惊叹——但它们的局限也同样值得深思。」金色的阳光在她身后铺展开来，你凝视着那片光芒，思考着图像与文字之间那座尚未建完的桥。",
+        "en": "Prof. Li gently taps the holographic projector, and the image-text pairs float in the air like fireflies for a moment before slowly fading. She turns before leaving the classroom: 「Next time, we'll meet some large models that can understand both images and language simultaneously. Their capabilities will amaze you — but their limitations are equally worthy of deep thought」. Golden sunlight spreads behind her, and you gaze at that glow, contemplating the still-unfinished bridge between images and text."
+      }
+    }
+  ]
+}

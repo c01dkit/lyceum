@@ -1,0 +1,293 @@
+{
+  "id": "lesson-02",
+  "course": "expert-systems",
+  "title": {
+    "zh": "DENDRAL的故事",
+    "en": "The DENDRAL Story"
+  },
+  "knowledgePoint": {
+    "zh": "DENDRAL如何通过编码化学家的规则来识别分子结构——知识型AI的诞生",
+    "en": "How DENDRAL identified molecular structures by encoding a chemist's rules — the birth of knowledge-based AI"
+  },
+  "teacher": "prof-feigenbaum",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你再次坐在那间弥漫着纸墨气息的教室里。费根鲍姆教授把一张质谱图投影在了屏幕上——密密麻麻的峰值曲线，像一座座参差不齐的山脉。",
+    "en": "You find yourself once more in that classroom heavy with the scent of paper and ink. Professor Feigenbaum projects a mass spectrum onto the screen — dense peaks and valleys, like a jagged mountain range."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。DENDRAL——这个名字已经刻进了你的记忆。它让你第一次看到，知识可以被编码，专业判断可以被系统化。",
+    "en": "You return to the present. DENDRAL — the name is now etched into your memory. It showed you for the first time that knowledge can be encoded and expert judgment can be systematized."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "费根鲍姆教授今天特意带了一台幻灯机。他小心翼翼地放上一张透明胶片，上面是一张复杂的质谱图——黑色墨线在坐标纸上起起伏伏。他调好焦距，回过头来面对你们，眼中带着一种讲述亲身经历时才有的兴奋。",
+        "en": "Professor Feigenbaum has brought a slide projector today. He carefully places a transparency — a complex mass spectrum, black ink lines rising and falling across graph paper. He adjusts the focus, turns to face you, and there's an excitement in his eyes that only comes from telling a story you lived through yourself."
+      },
+      "leadsTo": "story-begin"
+    },
+    {
+      "id": "story-begin",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "1965年，我和诺贝尔奖得主约书亚·莱德伯格开始了一个合作项目。莱德伯格是分子生物学家，他每天面对的问题是：给你一份未知化合物的{质谱分析}数据，你能推断出它的分子结构吗？",
+        "en": "In 1965, I began a collaboration with Nobel laureate Joshua Lederberg. Lederberg was a molecular biologist, and the problem he faced daily was this: given {mass spectrometry} data from an unknown compound, can you determine its molecular structure?"
+      },
+      "terms": {
+        "质谱分析": "term-mass-spectrometry",
+        "mass spectrometry": "term-mass-spectrometry"
+      },
+      "leadsTo": "the-problem"
+    },
+    {
+      "id": "the-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指向屏幕上的质谱图）看看这张图。质谱仪把一个分子打碎成碎片，然后测量每个碎片的质量。这些峰值就是不同碎片的信号。问题在于——从这些碎片推断出原始分子的结构，可能性是天文数字。",
+        "en": "(Points at the spectrum on screen) Look at this. A mass spectrometer smashes a molecule into fragments and measures each fragment's mass. These peaks are signals from different fragments. The problem is — deducing the original molecular structure from these fragments involves an astronomical number of possibilities."
+      },
+      "leadsTo": "brute-force"
+    },
+    {
+      "id": "brute-force",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "最笨的办法当然是穷举：列出所有可能的分子结构，一个一个检验哪个和质谱数据吻合。但一个中等大小的有机分子，可能的结构排列就有几百万种。{组合爆炸}又出现了——就像上节课说的，通用搜索在这里走不通。",
+        "en": "The brute-force approach would be to enumerate every possible molecular structure and check which one matches the spectrum data. But a medium-sized organic molecule can have millions of possible structural arrangements. {Combinatorial explosion} rears its head again — as we discussed last lesson, general search simply doesn't work here."
+      },
+      "terms": {
+        "组合爆炸": "term-combinatorial-explosion",
+        "Combinatorial explosion": "term-combinatorial-explosion"
+      },
+      "leadsTo": "chemist-approach"
+    },
+    {
+      "id": "chemist-approach",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但一个经验丰富的化学家看到这张图，几分钟之内就能给出一个很好的判断。他是怎么做到的？他在脑子里有几百条经验法则：「如果在质量88处有一个强峰，那很可能有一个酯基。」「如果这个模式出现，那说明有一个苯环。」这些规则把搜索空间从几百万缩小到了几十。",
+        "en": "But an experienced chemist can look at this spectrum and give a solid judgment within minutes. How? They carry hundreds of rules of thumb in their head: 「If there's a strong peak at mass 88, there's likely an ester group」. 「If this pattern appears, it indicates a benzene ring」. These rules shrink the search space from millions down to dozens."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "如果要让计算机也能做到化学家做的事，你觉得应该怎么入手？",
+        "en": "If we wanted a computer to do what the chemist does, how do you think we should approach it?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "让计算机自己从数据中学习规律",
+            "en": "Let the computer learn patterns from data on its own"
+          },
+          "tag": "learning-approach",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个有远见的想法，但在目前的技术条件下很难实现。我们没有足够的标注数据，计算能力也远远不够。更重要的是，化学家已经花了几十年总结出了这些规则——为什么不直接利用他们的智慧呢？也许将来有一天机器可以自己学，但现在，我们有一条更直接的路。",
+              "en": "That's a visionary idea, but it's very hard to achieve with current technology. We lack sufficient labeled data, and computing power is nowhere near enough. More importantly, chemists have spent decades distilling these rules — why not directly leverage their wisdom? Perhaps someday machines will learn on their own, but right now, we have a more direct path."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "把化学家的经验法则直接编写成程序",
+            "en": "Encode the chemist's rules of thumb directly into a program"
+          },
+          "tag": "knowledge-encoding",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（眼睛发亮）这正是我们做的！与其让机器从零开始摸索，不如直接把专家已经掌握的知识灌进去。我们去找了最好的化学家，一条一条地把他们的经验法则记录下来，编码成计算机能理解的规则。这就是{DENDRAL}的核心思路。",
+              "en": "(Eyes lighting up) That's exactly what we did! Rather than having the machine fumble from scratch, we directly poured in the knowledge experts already possessed. We went to the best chemists, recorded their rules of thumb one by one, and encoded them into rules a computer could understand. That is the core idea behind {DENDRAL}."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "给计算机更强的推理能力和更多计算时间",
+            "en": "Give the computer stronger reasoning ability and more computing time"
+          },
+          "tag": "power-approach",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "更强的推理和更多的时间可以帮忙，但解决不了根本问题。面对组合爆炸，即使速度提高一万倍，盲目搜索也跑不过知识引导的搜索。关键不在于搜索得更快，而在于知道该往哪个方向搜索。我们选了另一条路——把专家的知识直接教给机器。",
+              "en": "Stronger reasoning and more time can help, but they don't solve the fundamental problem. Against combinatorial explosion, even a ten-thousandfold speedup in blind search can't beat knowledge-guided search. The key isn't searching faster — it's knowing which direction to search. We chose a different path: teaching the machine the expert's knowledge directly."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们的方法分三步走。第一步，从化学家那里收集经验法则。第二步，用「如果……那么……」的规则形式把这些知识编码起来。第三步，用这些规则来生成候选结构，然后逐一检验。我们管这叫「生成-检验」方法。",
+        "en": "Our approach had three steps. First, collect rules of thumb from chemists. Second, encode this knowledge in 「if... then..」. rule form. Third, use these rules to generate candidate structures, then test each one. We called this the 「generate-and-test」 method."
+      },
+      "leadsTo": "dendral-detail"
+    },
+    {
+      "id": "dendral-detail",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "{DENDRAL}的工作流程是这样的：先用化学家的规则大幅削减可能的分子结构范围，这属于生成阶段。然后对剩下的候选结构，模拟它们在质谱仪里会产生什么样的碎片模式，这是检验阶段。最终选出和实际质谱数据最吻合的那个结构。",
+        "en": "{DENDRAL}'s workflow went like this: first, use the chemist's rules to drastically prune the range of possible molecular structures — that's the generation phase. Then, for the remaining candidates, simulate what fragmentation pattern each would produce in a mass spectrometer — that's the testing phase. Finally, select the structure that best matches the actual spectrum data."
+      },
+      "terms": {
+        "DENDRAL": "term-dendral"
+      },
+      "leadsTo": "dendral-result"
+    },
+    {
+      "id": "dendral-result",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "结果令人振奋。在某些类别的化合物上，{DENDRAL}的表现和经验丰富的化学家一样好，甚至偶尔更好——因为它不会遗漏规则，不会疲倦，不会受偏见影响。这是第一次，一个计算机程序在一个真正的科学领域里展现了专家级的能力。",
+        "en": "The results were exhilarating. For certain classes of compounds, {DENDRAL} performed as well as experienced chemists, occasionally even better — because it never forgot a rule, never got tired, never fell prey to bias. For the first time, a computer program demonstrated expert-level competence in a real scientific domain."
+      },
+      "terms": {
+        "DENDRAL": "term-dendral"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "DENDRAL和之前那些靠穷举搜索的程序，最根本的区别是什么？",
+        "en": "What is the most fundamental difference between DENDRAL and earlier programs that relied on exhaustive search?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "DENDRAL拥有化学领域的专业知识",
+            "en": "DENDRAL possessed specialized knowledge of the chemistry domain"
+          },
+          "tag": "knowledge-focus",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "一针见血。DENDRAL之所以能在化学家的水平上工作，是因为它内部装载了化学家的知识。它的力量来源于{知识库}，而非算法的复杂性。这一点改变了整个AI研究的方向。",
+              "en": "Spot on. The reason DENDRAL could work at a chemist's level is that it was loaded with a chemist's knowledge. Its power came from its {knowledge base}, not from algorithmic complexity. This insight changed the direction of AI research."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "DENDRAL的算法更高效",
+            "en": "DENDRAL had more efficient algorithms"
+          },
+          "tag": "algorithm-focus",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "算法确实经过了优化，但这不是最关键的。如果我们把DENDRAL的规则库清空，只留下算法框架，它的表现会和一个普通的穷举程序差不多。真正让它与众不同的，是那些来自化学家的专业知识——它的{知识库}。没有知识的算法就像没有弹药的枪。",
+              "en": "The algorithms were indeed optimized, but that wasn't the key factor. If we emptied DENDRAL's rule base and left only the algorithmic framework, its performance would be comparable to an ordinary brute-force program. What truly set it apart was the domain expertise from chemists — its {knowledge base}. An algorithm without knowledge is like a gun without ammunition."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "DENDRAL能解释自己的推理过程",
+            "en": "DENDRAL could explain its reasoning process"
+          },
+          "tag": "explanation-focus",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "解释能力确实是DENDRAL的一个优点——因为它的推理基于明确的规则，所以可以追溯每一步判断的依据。但更根本的区别在于它为什么能做出这些判断：因为它拥有化学家的领域知识，存储在它的{知识库}中。解释能力是结果，知识才是原因。",
+              "en": "The ability to explain is indeed one of DENDRAL's strengths — since its reasoning is based on explicit rules, every step of judgment can be traced. But the more fundamental difference is why it could make those judgments in the first place: because it possessed the chemist's domain knowledge, stored in its {knowledge base}. Explainability is the effect; knowledge is the cause."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "DENDRAL项目让我确信了一件事：AI研究的未来在于知识，在于把{领域专家}脑子里的智慧系统化地提取出来、编码进去。我开始把这个过程叫做{知识工程}。",
+        "en": "The DENDRAL project convinced me of one thing: the future of AI research lies in knowledge — in systematically extracting and encoding the wisdom from {domain experts}' minds. I started calling this process {knowledge engineering}."
+      },
+      "terms": {
+        "领域专家": "term-domain-expert",
+        "domain experts": "term-domain-expert",
+        "知识工程": "term-knowledge-engineering",
+        "knowledge engineering": "term-knowledge-engineering"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "DENDRAL的突破：通过把化学家的经验法则编码为规则，让计算机在分子结构鉴定任务中达到了专家级水平。核心方法是「生成-检验」——用知识缩小搜索范围，再逐一验证候选答案。",
+        "en": "DENDRAL's breakthrough: by encoding chemists' rules of thumb into rules, a computer achieved expert-level performance in molecular structure identification. The core method was 「generate-and-test」 — use knowledge to narrow the search space, then verify candidates one by one."
+      },
+      "category": "core-concept",
+      "leadsTo": "reflection"
+    },
+    {
+      "id": "reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但DENDRAL也让我意识到了一个问题。我们花了好几年时间才把那些化学规则整理清楚。化学家们知道答案，可当你问他们「你是怎么判断的」时，他们经常说不清楚。从专家脑子里提取知识，也就是所谓的{知识获取}，比我最初想象的要困难得多。",
+        "en": "But DENDRAL also made me realize something. It took us years to organize those chemistry rules. The chemists knew the answers, yet when you asked them 「How do you know?, they often couldn't articulate it clearly. {Knowledge acquisition} — extracting knowledge from experts' minds — was far harder than I initially imagined."
+      },
+      "terms": {
+        "知识获取": "term-knowledge-acquisition",
+        "Knowledge acquisition": "term-knowledge-acquisition"
+      },
+      "leadsTo": "preview"
+    },
+    {
+      "id": "preview",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "不过先别急着担心。下节课，我们来仔细看看专家系统内部的结构——知识是怎么存储的，推理又是怎么运行的。我会给你们展示规则和推理引擎是如何配合工作的。",
+        "en": "But don't worry about that just yet. Next lesson, we'll take a close look at the internal architecture of expert systems — how knowledge is stored and how reasoning operates. I'll show you how rules and the inference engine work together."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "费根鲍姆教授关掉了幻灯机，但那张质谱图的影像似乎还留在你的视网膜上。你想象着一位化学家对着这张图，一条一条地说出自己的判断规则，而旁边的工程师飞快地记录着。知识从一个人的大脑流向了一台机器——这个画面让你既兴奋又好奇。",
+        "en": "Professor Feigenbaum switches off the projector, but the image of the spectrum seems to linger on your retina. You imagine a chemist studying that chart, articulating judgment rules one by one, while an engineer beside them scribbles furiously. Knowledge flowing from a human brain into a machine — the image fills you with both excitement and curiosity."
+      }
+    }
+  ]
+}

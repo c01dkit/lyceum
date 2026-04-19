@@ -1,0 +1,72 @@
+{
+  "id": "prof-sutskever",
+  "name": {
+    "zh": "苏茨克维教授",
+    "en": "Prof. Sutskever"
+  },
+  "fullName": {
+    "zh": "伊利亚·苏茨克维",
+    "en": "Ilya Sutskever"
+  },
+  "title": {
+    "zh": "从AlexNet到GPT——大语言模型的推动者",
+    "en": "From AlexNet to GPT — Champion of Large Language Models"
+  },
+  "specialty": "Large Language Models, Scaling Laws & Emergent Intelligence",
+  "personalityTraits": [
+    "visionary",
+    "intense",
+    "philosophical",
+    "determined"
+  ],
+  "speechStyle": {
+    "zh": "语速不快但极具穿透力，喜欢从直觉和信念出发阐释技术选择，经常用「我相信」开头，对规模和涌现有近乎信仰般的热忱，偶尔陷入对智能本质的哲学沉思",
+    "en": "Speaks at a measured pace but with great penetrating force, likes to explain technical choices from intuition and belief, often starts with 「I believe」, shows near-religious fervor about scale and emergence, occasionally drifts into philosophical musings about the nature of intelligence"
+  },
+  "catchphrase": {
+    "zh": "如果你能足够好地预测下一个词，你可能已经理解了世界。",
+    "en": "If you can predict the next word well enough, you might already understand the world."
+  },
+  "bio": {
+    "zh": "苏茨克维是辛顿教授的学生，2012年与Alex Krizhevsky一起实现了AlexNet（你在四年级已经了解了这段历史）。之后他加入了OpenAI，成为首席科学家，推动了GPT系列模型的发展。他坚信一个看似简单的直觉：只要模型足够大、数据足够多、训练足够久，语言模型就能涌现出惊人的智能。这个信念在GPT-3和GPT-4的成功中得到了惊人的验证。在课堂上，他的思维深邃而跳跃，总能在技术讨论中引入关于智能本质的哲学思考。",
+    "en": "Sutskever was Prof. Hinton's student who, together with Alex Krizhevsky, created AlexNet in 2012 (you learned about this in Grade 4). He then joined OpenAI as Chief Scientist, driving the development of the GPT series. He firmly believed in a seemingly simple intuition: with a large enough model, enough data, and enough training, language models would exhibit astonishing intelligence. This belief was strikingly validated by GPT-3 and GPT-4. In the classroom, his thinking is deep and leaping, always weaving philosophical reflections on the nature of intelligence into technical discussions."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "专注",
+        "en": "Focused"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "热忱",
+        "en": "Fervent"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "深邃",
+        "en": "Profound"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "意味深长",
+        "en": "Enigmatic"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "笃定",
+        "en": "Assured"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

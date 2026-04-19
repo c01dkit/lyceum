@@ -1,0 +1,311 @@
+{
+  "id": "lesson-01",
+  "course": "ai-agents-future",
+  "title": {
+    "zh": "从工具到伙伴",
+    "en": "From Tools to Partners"
+  },
+  "knowledgePoint": {
+    "zh": "AI交互方式的演进——从被动工具到主动智能体",
+    "en": "The evolution of AI interaction — from passive tools to active agents"
+  },
+  "teacher": "prof-ng",
+  "estimatedMinutes": 14,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你想起那间开阔的教室，窗外是一望无际的地平线，金色的光线透过巨大的落地窗洒进来。吴恩达教授站在全息投影前，双手插在口袋里，用一种让人觉得什么都能学会的语气开始了第一堂课……",
+    "en": "You recall that open classroom, the vast horizon beyond the windows, golden light pouring through the floor-to-ceiling glass. Professor Ng stood before the holographic projection, hands in his pockets, beginning the first lesson in that tone that made you feel anything was learnable..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中浮现出那张演进图：从输入-输出的工具，到理解上下文的助手，再到能够自主行动的伙伴。三个工程阶段——提示、上下文、协作系统，标记着人与AI关系的根本转变。",
+    "en": "You close your notebook, picturing that evolution diagram: from input-output tools, to context-aware assistants, to partners capable of autonomous action. Three engineering phases — prompt, context, harness — marking a fundamental shift in the human-AI relationship."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室跟你之前见过的任何一间都不同。没有传统的黑板和投影仪——取而代之的是一片开阔的空间，几面巨大的落地窗外是广袤的地平线，金色的光线从远处洒进来。空气中漂浮着淡淡的全息粒子，像是随时准备被召唤成任何形状。一个穿着简洁polo衫的人走了进来，步伐轻快，脸上带着一种工程师特有的务实微笑。",
+        "en": "The classroom is unlike any you've seen before. No traditional blackboards or projectors — instead, an open space with massive floor-to-ceiling windows overlooking a vast horizon, golden light streaming in from the distance. Faint holographic particles drift through the air, as if ready to be summoned into any shape at a moment's notice. A man in a simple polo shirt walks in with a brisk step, wearing the pragmatic smile of an engineer."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "大家好，我是吴恩达。在我们开始之前，我想先问你们一个问题：你们最近一次使用AI是什么时候？不管是搜索引擎、语音助手，还是ChatGPT——想一想那次体验是什么样的。（停顿了一下）大概率是这样的：你输入了一个问题，AI给了你一个回答。对吗？",
+        "en": "Hi everyone, I'm Andrew Ng. Before we start, let me ask you a question: when was the last time you used AI? Whether it was a search engine, a voice assistant, or ChatGPT — think about what that experience was like. (Pauses) Most likely it went like this: you typed a question, and AI gave you an answer. Right?"
+      },
+      "leadsTo": "tool-paradigm"
+    },
+    {
+      "id": "tool-paradigm",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个模式，即人类提问、AI回答，已经主导了AI交互几十年。从最早的专家系统到今天的大语言模型，核心范式始终如一：用户发起请求，系统被动响应。AI是一个工具，一个非常聪明的工具，但本质上还是一个等着你来用的工具。",
+        "en": "This pattern — human asks, AI answers — has dominated AI interaction for decades. From the earliest expert systems to today's large language models, the core paradigm has been: user initiates a request, system responds passively. AI is a tool, a very smart tool, but fundamentally still a tool waiting for you to use it."
+      },
+      "leadsTo": "shift-begins"
+    },
+    {
+      "id": "shift-begins",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但是从2023年左右开始，一些有意思的事情发生了。我们开始意识到：AI的价值不只是回答问题——它可以帮你完成任务。区别在哪里？回答问题是一个回合的事情；完成任务可能需要十个步骤、调用三个工具、中间做两次判断。这个转变听起来很小，但它改变了一切。",
+        "en": "But starting around 2023, something interesting happened. We began to realize: AI's value isn't just answering questions — it can help you complete tasks. What's the difference? Answering a question is a single-turn affair; completing a task might require ten steps, calling three tools, making two judgment calls along the way. This shift sounds small, but it changes everything."
+      },
+      "leadsTo": "prompt-eng-intro"
+    },
+    {
+      "id": "prompt-eng-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我带你们走一遍这个演进过程。第一个阶段，大约2022到2023年，我们叫它{提示工程}。当GPT-3和GPT-4这样的大语言模型出现后，人们发现：你怎么问问题，直接决定了你能得到什么样的回答。同一个模型，换一种提问方式，输出质量可能天差地别。",
+        "en": "Let me walk you through this evolution. The first phase, roughly 2022 to 2023, we call it {prompt engineering}. When large language models like GPT-3 and GPT-4 appeared, people discovered: how you ask the question directly determines what kind of answer you get. Same model, different prompt, and the output quality could differ dramatically."
+      },
+      "terms": {
+        "提示工程": "term-prompt-engineering",
+        "prompt engineering": "term-prompt-engineering"
+      },
+      "leadsTo": "prompt-eng-detail"
+    },
+    {
+      "id": "prompt-eng-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "提示工程的核心是：选择正确的措辞。你得学会怎么跟AI「说话」——给它角色设定、要求它一步步思考、提供几个示例。这很有效，但也有一个问题：所有的智慧都压缩在那一段提示词里。你只能控制输入的那几句话，其他全靠AI自己发挥。",
+        "en": "The core of prompt engineering is: choosing the right words. You learn how to 「talk」 to AI — give it a role, ask it to think step by step, provide a few examples. This is effective, but there's a problem: all the intelligence is compressed into that one prompt. You can only control those few sentences of input, and everything else depends on the AI's own performance."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得提示工程最大的局限性是什么？",
+        "en": "What do you think is the biggest limitation of prompt engineering?"
+      },
+      "choices": [
+        {
+          "id": "fragile",
+          "text": {
+            "zh": "太脆弱——换一个词可能就得到完全不同的结果",
+            "en": "Too fragile — changing one word might produce a completely different result"
+          },
+          "tag": "observant",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说到了一个真实的痛点。提示工程确实很脆弱——有时候加一个逗号，删一个形容词，输出就完全变了。这说明我们对模型的控制是非常表面的。我们在调整的是「怎么说」，但还没有真正影响到「AI知道什么」和「AI能做什么」。这正是推动下一阶段演进的原因。",
+              "en": "You've hit on a real pain point. Prompt engineering is indeed fragile — sometimes adding a comma or removing an adjective completely changes the output. This tells us our control over the model is very superficial. We're adjusting 「how to say it」 but haven't truly influenced 「what AI knows」 and 「what AI can do」. This is exactly what drove the evolution to the next phase."
+            }
+          },
+          "leadsTo": "context-eng-intro"
+        },
+        {
+          "id": "one-shot",
+          "text": {
+            "zh": "只有一次机会——没有多轮协作和动态调整的空间",
+            "en": "Only one shot — no room for multi-turn collaboration and dynamic adjustment"
+          },
+          "tag": "systematic",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的洞察。提示工程本质上是一个「单次投递」的过程——你把所有信息塞进一个提示词，然后祈祷AI给出好的结果。没有反馈循环，没有中间检查点，没有纠错机制。真正的协作需要来回对话、逐步推进。这个局限性直接指向了我们后面要讲的智能体架构。",
+              "en": "Excellent insight. Prompt engineering is essentially a 「single-shot delivery」 process — you stuff all information into one prompt and hope the AI produces good results. No feedback loop, no intermediate checkpoints, no error correction. Real collaboration requires back-and-forth dialogue and incremental progress. This limitation points directly to the agent architecture we'll discuss later."
+            }
+          },
+          "leadsTo": "context-eng-intro"
+        },
+        {
+          "id": "no-knowledge",
+          "text": {
+            "zh": "AI不了解你的具体情况——提示词里装不下你的全部背景",
+            "en": "AI doesn't understand your specific situation — a prompt can't carry all your context"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说得好！这是我最关注的问题之一。一段提示词的容量是有限的，但你的问题往往需要大量的背景信息——你的代码仓库、你的文档、你的偏好、你之前做过的决定。如何把正确的信息在正确的时机提供给AI？这个问题催生了下一个阶段。",
+              "en": "Well said! This is one of the issues I care about most. A prompt has limited capacity, but your problem often requires extensive background — your codebase, your documents, your preferences, your past decisions. How do you provide the right information at the right time to AI? This question gave birth to the next phase."
+            }
+          },
+          "leadsTo": "context-eng-intro"
+        }
+      ]
+    },
+    {
+      "id": "context-eng-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以到了2024到2025年，我们进入了第二个阶段：{上下文工程}。上下文工程的核心思路是：与其费心措辞，不如设计好信息架构。你要考虑的是：AI需要看到哪些信息？这些信息应该以什么格式呈现？哪些信息在当前任务中是关键的？",
+        "en": "So by 2024 to 2025, we entered the second phase: {context engineering}. The core idea of context engineering is: instead of agonizing over wording, design the information architecture. What you consider is: what information does AI need to see? In what format should it be presented? Which pieces are critical for the current task?"
+      },
+      "terms": {
+        "上下文工程": "term-context-engineering",
+        "context engineering": "term-context-engineering"
+      },
+      "leadsTo": "context-eng-detail"
+    },
+    {
+      "id": "context-eng-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "举个具体例子。假设你想让AI帮你写一段代码。在提示工程阶段，你会说：「请用Python写一个排序算法」。在上下文工程阶段，你会提供：项目的系统提示词、现有的代码结构、编码规范文档、相关的API定义、之前的对话记录。AI看到的不再是一句话，而是一整个工作环境。",
+        "en": "Let me give a concrete example. Say you want AI to help write some code. In the prompt engineering phase, you'd say: 「Please write a sorting algorithm in Python」. In the context engineering phase, you'd provide: the project's system prompt, existing code structure, coding standards documentation, relevant API definitions, previous conversation history. The AI sees not just a sentence, but an entire working environment."
+      },
+      "leadsTo": "harness-eng-intro"
+    },
+    {
+      "id": "harness-eng-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "然后，大约2025到2026年，我们开始进入第三个阶段：{协作系统工程}。我更喜欢叫它harness engineering——设计人与AI之间的协作系统。（全息投影浮现出一张架构图）这个阶段的核心问题变了：不再是「怎么跟AI对话」，而是「怎么设计一个系统，让人和AI各自发挥所长」。",
+        "en": "Then, around 2025 to 2026, we began entering the third phase: {harness engineering}. I prefer calling it harness engineering — designing the collaboration system between humans and AI. (A holographic architecture diagram materializes) The core question shifts here: it's no longer 「how to talk to AI」 but 「how to design a system where humans and AI each play to their strengths」."
+      },
+      "terms": {
+        "协作系统工程": "term-harness-engineering",
+        "harness engineering": "term-harness-engineering"
+      },
+      "leadsTo": "harness-eng-detail"
+    },
+    {
+      "id": "harness-eng-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在协作系统工程的视角下，AI不是一个你发指令的对象——它是工作流中的一个参与者。你设计的是：AI在哪些环节自主行动？哪些环节需要人类审核？出错了怎么回退？多个AI之间怎么协调？这是一个系统设计的问题，跟之前写提示词完全是两码事。",
+        "en": "From the harness engineering perspective, AI isn't something you give commands to — it's a participant in the workflow. What you design is: at which steps does AI act autonomously? Which steps require human review? How do you roll back on errors? How do multiple AIs coordinate? This is a systems design problem, entirely different from writing prompts."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "从提示工程到上下文工程再到协作系统工程，你认为人类在这个演进中的角色发生了什么变化？",
+        "en": "From prompt engineering to context engineering to harness engineering, how do you think the human role has changed across this evolution?"
+      },
+      "choices": [
+        {
+          "id": "operator-to-architect",
+          "text": {
+            "zh": "从操作员变成了架构师——从写指令变成了设计系统",
+            "en": "From operator to architect — from writing instructions to designing systems"
+          },
+          "tag": "structural",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我想要传达的核心观点。操作员关心的是「这个按钮怎么按」，架构师关心的是「整个系统怎么运转」。当你开始思考AI应该在什么时候介入、什么时候退出、什么信息该看什么信息不该看——你就已经在做架构设计了。AI越强大，这种架构能力就越重要。",
+              "en": "This is exactly the core point I want to convey. An operator cares about 「how to press this button」; an architect cares about 「how the entire system works」. When you start thinking about when AI should intervene, when it should step back, what information it should see and what it shouldn't — you're already doing architecture design. The more powerful AI becomes, the more important this architectural ability gets."
+            }
+          },
+          "leadsTo": "trajectory-summary"
+        },
+        {
+          "id": "less-control",
+          "text": {
+            "zh": "人类在交出越来越多的控制权——这让人有点不安",
+            "en": "Humans are handing over more and more control — which is somewhat unsettling"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你的不安是合理的，而且很重要。确实，AI从被动响应走向主动行动，意味着人类的直接控制在某些环节减少了。但我的看法是：好的协作系统设计恰恰是为了解决这个问题。你是在更高的层面行使控制——通过设计规则、边界和审核机制。关键在于：让AI有足够的自主性去高效工作，同时保持人类在关键决策上的最终权力。",
+              "en": "Your unease is valid and important. Indeed, AI moving from passive response to active action means human direct control decreases at certain points. But here's my view: good harness design is precisely about solving this problem. You're not giving up control — you're exercising control at a higher level through designing rules, boundaries, and review mechanisms. The key is: give AI enough autonomy to work efficiently while maintaining human authority over critical decisions."
+            }
+          },
+          "leadsTo": "trajectory-summary"
+        },
+        {
+          "id": "teaching-ai",
+          "text": {
+            "zh": "从「学习使用AI」变成了「教AI如何工作」——角色反转了",
+            "en": "From 「learning to use AI」 to 「teaching AI how to work」 — the roles have reversed"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）这个说法很精彩。在提示工程阶段，我们确实在「学AI的语言」，摸索哪些词管用，哪些格式有效。但到了协作系统工程阶段，重点就变成了「教AI我们的工作方式」，把我们的流程、标准、判断逻辑都嵌入到系统里。你说得对，这是一种角色反转。而且我认为，最好的状态是双向教学：AI在学我们的工作方式，我们也在从AI的反馈中学习，不断优化流程。",
+              "en": "(Laughs) That's a brilliant way to put it. In the prompt engineering phase, we were indeed 「learning AI's language」 — which words work, which formats are effective. But in the harness engineering phase, we're 「teaching AI our way of working」 — embedding our processes, standards, and judgment logic into the system. You're right, it is a role reversal. And I think the best state is bidirectional teaching: AI learns our workflow, and we learn from AI's feedback to optimize our processes."
+            }
+          },
+          "leadsTo": "trajectory-summary"
+        }
+      ]
+    },
+    {
+      "id": "trajectory-summary",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把这个演进轨迹总结一下。（全息投影上出现一条时间线）从「使用AI」到「与AI协作」，我们经历了三个工程阶段。每一步，人类和AI之间的关系都更深了一层。工具只需要一个好的使用手册；伙伴需要的是共同的工作语言和互相的信任。",
+        "en": "Let me summarize this trajectory. (A timeline appears on the holographic display) From 「using AI」 to 「working with AI, we've gone through three engineering phases. At each step, the relationship between humans and AI deepens. A tool only needs a good user manual; a partner requires a shared working language and mutual trust."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI交互方式的三阶段演进：(1) 提示工程（~2022-2023）：选择正确的措辞，核心是「怎么问」；(2) 上下文工程（~2024-2025）：设计信息架构，核心是「AI该看到什么」；(3) 协作系统工程（~2025-2026）：设计人机协作系统，核心是「怎么分工」。人类角色从操作员演变为架构师。",
+        "en": "Three-phase evolution of AI interaction: (1) Prompt engineering (~2022-2023): choosing the right words, core question is 「how to ask」; (2) Context engineering (~2024-2025): designing information architecture, core question is 「what should AI see」; (3) Harness engineering (~2025-2026): designing human-AI collaboration systems, core question is 「how to divide work」. Human role evolves from operator to architect."
+      },
+      "category": "core-concept",
+      "leadsTo": "looking-forward"
+    },
+    {
+      "id": "looking-forward",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这个演进还没有结束。我们现在正处在一个临界点上——AI已经不再是那个只会回答问题的聊天机器人了。它可以写代码、调用API、搜索网页、分析数据。它开始具备「行动」的能力。而当一个AI可以行动的时候，它就有了成为智能体的潜力。",
+        "en": "This evolution isn't over. We're at a tipping point right now — AI is no longer just that chatbot that answers questions. It can write code, call APIs, search the web, analyze data. It's developing the capacity to 「act」. And when an AI can act, it has the potential to become an agent."
+      },
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（走到窗前，看着远方的地平线）下节课，我们会深入AI智能体的内部架构。它是怎么规划的？怎么使用工具的？怎么记住之前做过的事情的？这些问题的答案，会让你们理解为什么AI正在从工具变成伙伴。AI最大的价值，与其说在于它有多聪明，不如说在于你能用它做什么。记住这句话，在这门课的每一节里，我们都会回到这个核心观点。",
+        "en": "(Walks to the window, looking out at the distant horizon) Next lesson, we'll dive into the internal architecture of AI agents — how does it plan? How does it use tools? How does it remember what it's done before? The answers to these questions will help you understand why AI is transforming from tool to partner. The greatest value of AI lies not in how smart it is, but in what you can do with it. Remember that — in every lesson of this course, we'll return to this core idea."
+      },
+      "leadsTo": "closing-note"
+    },
+    {
+      "id": "closing-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "吴恩达教授的核心观点：AI最大的价值不在于它有多聪明，而在于你能用它做什么。当AI从「回答问题」发展到「完成任务」再到「自主行动」，它就有了从工具变成伙伴的潜力。关键转变：AI获得了行动能力——写代码、调用API、搜索、分析。",
+        "en": "Prof. Ng's core thesis: AI's greatest value lies not in how smart it is, but in what you can do with it. When AI evolves from 「answering questions」 to 「completing tasks」 to 「acting autonomously, it gains the potential to transform from tool to partner. Key shift: AI gains the ability to act — writing code, calling APIs, searching, analyzing."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "吴恩达教授站在窗前的剪影映着金色的光线，全息投影上的三阶段时间线缓缓旋转。你低头看看笔记，又抬头看看窗外那片广袤的地平线——它让你想到AI的未来，同样辽阔，同样充满未知。第一节课结束了，但那句话留在了你的脑子里：重要的是你能用它做什么。",
+        "en": "Professor Ng's silhouette stands at the window framed by golden light, the three-phase timeline on the holographic display slowly rotating. You look down at your notes, then up at the vast horizon beyond the window — it reminds you of AI's future, equally vast, equally full of unknowns. The first lesson ends, but that sentence stays in your mind: what matters isn't how smart AI is, but what you can do with it."
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "ai-agents-future",
+  "name": {
+    "zh": "AI智能体与未来展望",
+    "en": "AI Agents and the Future"
+  },
+  "description": {
+    "zh": "AI正在从被动的问答工具进化为主动的协作伙伴。吴恩达教授将带你追踪人机协作范式的快速演进——从提示工程到上下文工程再到驾驭工程，理解AI智能体如何规划、使用工具、记忆和反思，思考缩放假说的争议，以及通往通用人工智能的道路上那些仍然开放的根本问题。",
+    "en": "AI is evolving from a passive Q&A tool into an active collaborative partner. Prof. Ng will guide you through the rapid evolution of human-AI collaboration — from prompt engineering to context engineering to harness engineering, understanding how AI agents plan, use tools, remember and reflect, debating the scaling hypothesis, and contemplating the fundamental open questions on the road to artificial general intelligence."
+  },
+  "grade": "grade-5",
+  "teacher": "prof-ng",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-agent-architecture",
+      "description": {
+        "zh": "理解AI智能体的核心架构：规划、工具使用、记忆、反思",
+        "en": "Understand core AI agent architecture: planning, tool use, memory, reflection"
+      }
+    },
+    {
+      "id": "obj-engineering-evolution",
+      "description": {
+        "zh": "掌握从提示工程到上下文工程再到驾驭工程的演进逻辑",
+        "en": "Master the evolution logic from prompt engineering to context engineering to harness engineering"
+      }
+    },
+    {
+      "id": "obj-scaling-debate",
+      "description": {
+        "zh": "理解缩放假说的论点和反论点",
+        "en": "Understand the arguments for and against the scaling hypothesis"
+      }
+    },
+    {
+      "id": "obj-agi-questions",
+      "description": {
+        "zh": "思考通向AGI道路上的开放问题和人类的责任",
+        "en": "Contemplate open questions on the road to AGI and humanity's responsibility"
+      }
+    }
+  ]
+}

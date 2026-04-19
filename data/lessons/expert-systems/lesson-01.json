@@ -1,0 +1,281 @@
+{
+  "id": "lesson-01",
+  "course": "expert-systems",
+  "title": {
+    "zh": "知识就是力量",
+    "en": "Knowledge Is Power"
+  },
+  "knowledgePoint": {
+    "zh": "从通用推理到领域专业知识的转变——专家系统的核心洞察",
+    "en": "The shift from general reasoning to domain-specific expertise — the core insight of expert systems"
+  },
+  "teacher": "prof-feigenbaum",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，荧光灯的白色光线再次笼罩了你。空气中弥漫着纸张和油墨的气息——费根鲍姆教授怀里抱着那厚厚的文件夹，正推开教室的门。",
+    "en": "You close your eyes, and the white fluorescent light washes over you once more. The air smells of paper and ink — Professor Feigenbaum is pushing open the classroom door, arms full of thick folders."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。「知识就是力量」——这句话在你脑海中回荡，但它的含义已经和你之前理解的完全不同了。",
+    "en": "You return to the present. 「Knowledge is power」 — the phrase echoes in your mind, but its meaning has become something entirely different from what you understood before."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室弥漫着七十年代特有的气息——钢制文件柜靠墙排列，荧光灯管发出低沉的嗡嗡声。门被推开了，一位精力充沛的中年教授走了进来，怀里抱着好几个厚实的文件夹，最上面那个贴着「化学分析数据」的标签。",
+        "en": "The classroom carries the unmistakable atmosphere of the 1970s — steel filing cabinets line the walls, fluorescent tubes hum overhead. The door swings open and an energetic middle-aged professor strides in, arms loaded with thick folders. The top one bears a label reading 「Chemical Analysis Data」."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（把文件夹重重放在讲台上）早上好！我是费根鲍姆。在我们开始之前，我想问你们一个问题——人工智能，在你们心目中，应该是什么样子的？",
+        "en": "(Drops the folders on the desk with a thud) Good morning! I'm Feigenbaum. Before we begin, let me ask you a question — what does artificial intelligence look like in your mind?"
+      },
+      "leadsTo": "gps-intro"
+    },
+    {
+      "id": "gps-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "过去二十年，很多人追求的是一种「通用问题求解器」。这个想法很诱人：造一台机器，给它基本的逻辑推理规则，它就能解决任何问题。下棋、证明定理、翻译语言——统统交给同一套系统。",
+        "en": "For the past two decades, many have pursued a 「General Problem Solver」. The idea is seductive: build a machine, give it basic logical reasoning rules, and it can solve any problem. Chess, theorem proving, language translation — all handled by the same system."
+      },
+      "leadsTo": "gps-failure"
+    },
+    {
+      "id": "gps-failure",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但现实给了我们一记重击。这些通用系统在玩具问题上表现漂亮，比如八皇后问题、汉诺塔，可一旦面对真实世界的问题，它们就束手无策了。你知道为什么吗？因为真实世界的问题空间太大了，会产生{组合爆炸}。通用推理规则在这样的空间里，就像拿着一张世界地图去找你家的钥匙。",
+        "en": "But reality dealt us a harsh blow. These general-purpose systems performed beautifully on toy problems — the eight queens puzzle, the Tower of Hanoi — yet the moment they faced real-world problems, they were helpless. Do you know why? Because real-world problem spaces are enormous, leading to {combinatorial explosion}. General reasoning rules in such a space are like using a world map to find your house keys."
+      },
+      "terms": {
+        "组合爆炸": "term-combinatorial-explosion",
+        "combinatorial explosion": "term-combinatorial-explosion"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "在你看来，通用人工智能方法最大的困难是什么？",
+        "en": "In your view, what is the biggest difficulty with the general-purpose AI approach?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "计算能力不够——机器太慢了",
+            "en": "Not enough computing power — machines are too slow"
+          },
+          "tag": "hardware-view",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "计算能力当然是一个因素。但即便我们把计算速度提高一千倍，面对组合爆炸，穷举所有可能性仍然不现实。问题的根源不在速度，而在方向——我们搜索的空间本身就太大了。",
+              "en": "Computing power is certainly a factor. But even if we increased speed a thousandfold, exhaustive enumeration is still impractical against combinatorial explosion. The root problem isn't speed — it's direction. The search space itself is simply too vast."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "缺少关于具体领域的知识",
+            "en": "Lacking knowledge about specific domains"
+          },
+          "tag": "knowledge-view",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（拍了一下桌子）说得好！这正是关键所在。一个经验丰富的化学家看到一张质谱图，能在几秒钟内缩小范围，因为他有几十年积累的领域知识。通用推理系统缺的就是这个——对特定领域的深入了解。",
+              "en": "(Slaps the desk) Well said! That's exactly the key. An experienced chemist can look at a mass spectrum and narrow down the possibilities in seconds, because they have decades of accumulated domain knowledge. That's precisely what general reasoning systems lack — deep understanding of a specific domain."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "逻辑推理本身存在局限性",
+            "en": "Logical reasoning itself has inherent limitations"
+          },
+          "tag": "logic-view",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个深刻的观察。纯粹的逻辑推理确实有局限——真实世界充满了不确定性、例外和灰色地带。但我认为更根本的问题在于：光有推理引擎却没有知识可推理，就像有一台发动机却没有燃料。",
+              "en": "That's a profound observation. Pure logical reasoning does have limitations — the real world is full of uncertainty, exceptions, and gray areas. But I believe the more fundamental issue is this: having a reasoning engine with no knowledge to reason over is like having an engine but no fuel."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "让我告诉你我在斯坦福观察到的一件事。我认识很多出色的{领域专家}——化学家、医生、工程师。他们解决问题的方式和通用推理系统完全不同。",
+        "en": "Let me tell you something I've observed at Stanford. I know many brilliant {domain experts} — chemists, doctors, engineers. The way they solve problems is completely different from general reasoning systems."
+      },
+      "terms": {
+        "领域专家": "term-domain-expert",
+        "domain experts": "term-domain-expert"
+      },
+      "leadsTo": "expert-observe"
+    },
+    {
+      "id": "expert-observe",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "一个优秀的化学家看到{质谱分析}数据时，不会穷举所有可能的分子结构。他会立刻说：「根据这里的峰值模式，这很可能是一个含苯环的化合物。」他用的是多年积累的经验和直觉，用的是{启发式搜索}——用知识大幅缩减搜索空间。",
+        "en": "When a skilled chemist looks at {mass spectrometry} data, they don't enumerate every possible molecular structure. They'll immediately say: 「Based on this peak pattern, this is likely a compound with a benzene ring」. They're using years of accumulated experience and intuition — {heuristic search} — using knowledge to drastically prune the search space."
+      },
+      "terms": {
+        "质谱分析": "term-mass-spectrometry",
+        "mass spectrometry": "term-mass-spectrometry",
+        "启发式搜索": "term-heuristic-search",
+        "heuristic search": "term-heuristic-search"
+      },
+      "leadsTo": "knowledge-power"
+    },
+    {
+      "id": "knowledge-power",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是我这几年一直在说的——在人工智能研究中，知识就是力量。一个系统的能力不取决于它的推理算法有多精巧，而取决于它拥有多少关于特定领域的知识。",
+        "en": "This is what I've been saying for years — in artificial intelligence research, knowledge is power. A system's capability doesn't depend on how sophisticated its reasoning algorithm is, but on how much knowledge it possesses about a specific domain."
+      },
+      "leadsTo": "expert-system-intro"
+    },
+    {
+      "id": "expert-system-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "所以，我们的思路就变了：与其造一台什么都懂一点的通用机器，不如造一台在某个特定领域内拥有专家级知识的系统。我们管这种系统叫做——{专家系统}。",
+        "en": "So our approach changed: instead of building a general machine that knows a little about everything, let's build a system that possesses expert-level knowledge within a specific domain. We call such a system an {expert system}."
+      },
+      "terms": {
+        "专家系统": "term-expert-system",
+        "expert system": "term-expert-system"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "你觉得人类专家和教科书最大的区别在哪里？",
+        "en": "What do you think is the biggest difference between a human expert and a textbook?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "专家知道哪些知识最重要，教科书什么都讲",
+            "en": "Experts know which knowledge matters most; textbooks cover everything equally"
+          },
+          "tag": "prioritization",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "没错！专家有一种了不起的能力——他们知道在什么情况下该关注什么信息。教科书给你一千条规则，专家知道此刻只有三条是重要的。这种判断力，正是我们想要捕捉并编码的东西。",
+              "en": "Exactly! Experts have a remarkable ability — they know what information to focus on in a given situation. A textbook gives you a thousand rules; an expert knows that right now, only three of them matter. That kind of judgment is precisely what we want to capture and encode."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "专家有实践经验，知道理论的边界在哪里",
+            "en": "Experts have practical experience and know where theory breaks down"
+          },
+          "tag": "experience-view",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得好。专家的知识不仅来自课本，还来自多年的实践。他们知道教科书里没有写的东西——哪些方法在实际操作中行不通，哪些特殊情况需要特殊处理。这些实践中积累的经验法则，才是真正的宝藏。",
+              "en": "Well put. An expert's knowledge comes from years of practice, not just textbooks. They know things textbooks don't mention — which methods don't work in practice, which special cases need special handling. These rules of thumb accumulated through practice are the real treasure."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "专家能解释自己的推理过程",
+            "en": "Experts can explain their reasoning process"
+          },
+          "tag": "explanation-view",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "有意思。你提到了一个重要的方面——解释能力。一个好的专家不仅能给出答案，还能告诉你为什么。不过，我得说，很多专家其实并不擅长解释自己的推理过程。他们的很多判断是直觉性的，连自己都说不清。这本身就是一个巨大的挑战。",
+              "en": "Interesting. You've touched on something important — the ability to explain. A good expert can give you an answer and tell you why. But I should say, many experts are actually not very good at explaining their own reasoning. Much of their judgment is intuitive — they can't fully articulate it themselves. That in itself is an enormous challenge."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "人类专家和教科书之间的区别，恰恰揭示了我们面临的核心问题：如何把专家脑子里那些宝贵的、往往难以言说的知识，提取出来，编码成机器能理解的形式？这就是{知识工程}要解决的问题。",
+        "en": "The difference between a human expert and a textbook reveals the core problem we face: how do we extract the precious, often hard-to-articulate knowledge from an expert's mind and encode it in a form machines can understand? That is the problem {knowledge engineering} aims to solve."
+      },
+      "terms": {
+        "知识工程": "term-knowledge-engineering",
+        "knowledge engineering": "term-knowledge-engineering"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "专家系统的核心洞察：AI的能力不在于推理算法的精巧，而在于领域知识的丰富。从「通用问题求解」到「领域专家模拟」的转变，是AI发展的一个关键转折点。",
+        "en": "The core insight of expert systems: AI capability depends not on sophisticated reasoning algorithms, but on rich domain knowledge. The shift from 「general problem solving」 to 「domain expert simulation」 was a pivotal turning point in AI development."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview"
+    },
+    {
+      "id": "preview",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "知识就是力量，但前提是你得把它从专家的脑袋里取出来。（拍了拍桌上的文件夹）下一节课，我会给你们讲一个真实的故事，关于我们是怎样第一次成功地把化学家的知识装进了一台计算机。那个项目叫做DENDRAL。",
+        "en": "Knowledge is power — but first you have to get it out of the expert's head. (Pats the folders on the desk) Next lesson, I'll tell you a real story — about how we first succeeded in putting a chemist's knowledge into a computer. That project was called DENDRAL."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "费根鲍姆教授收起文件夹，但留下了桌上的一张质谱图。你低头看着那些密密麻麻的峰值曲线，试图想象一位化学家会如何解读它们。一个新的问题正在你脑海中成形：如果知识如此重要，我们该怎么把它从人脑中提取出来？",
+        "en": "Professor Feigenbaum gathers his folders but leaves a mass spectrum printout on the desk. You look down at the dense pattern of peaks and valleys, trying to imagine how a chemist would read them. A new question is taking shape in your mind: if knowledge is so important, how do we extract it from the human brain?"
+      }
+    }
+  ]
+}

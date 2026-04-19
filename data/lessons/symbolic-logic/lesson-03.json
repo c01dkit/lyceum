@@ -1,0 +1,373 @@
+{
+  "id": "lesson-03",
+  "course": "symbolic-logic",
+  "title": {
+    "zh": "知识表示的世界",
+    "en": "The World of Knowledge Representation"
+  },
+  "knowledgePoint": {
+    "zh": "知识表示——如何将人类知识编码为机器可处理的形式",
+    "en": "Knowledge representation — how to encode human knowledge into machine-processable forms"
+  },
+  "teacher": "prof-mccarthy",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "一张铺满圆圈和箭头的巨大纸张在眼前展开。你想起那天麦卡锡教授用几本书压住纸角、退后一步审视自己杰作时得意的神情——那堂关于知识表示的课，像一张语义网络般在脑中重新连通。",
+    "en": "An enormous sheet covered in circles and arrows unfurls before your mind's eye. You recall the satisfied look on Professor McCarthy's face as he stepped back to admire his creation, the corners pinned down with books — that lesson on knowledge representation reconnects in your mind like a semantic network coming online."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，思绪中还残留着那些节点与边的脉络。知识的海洋无边无际——这或许正是它迷人之处。",
+    "en": "You drift back to the present, traces of nodes and edges still lingering in your thoughts. The ocean of knowledge stretches without end — and perhaps that is precisely what makes it so fascinating."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "麦卡锡教授今天带了一张巨大的纸，上面画满了圆圈和箭头，像一张蜘蛛网。他把纸铺在讲台上，用几本书压住四角，然后退后一步，满意地看着自己的杰作。",
+        "en": "Professor McCarthy arrives today carrying an enormous sheet of paper covered in circles and arrows, like a spider's web. He spreads it across the lectern, weighing down the corners with books, then steps back to admire his masterpiece with satisfaction."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我们已经会写符号了，也有了LISP这个利器。但现在面临一个更大的挑战——怎么把一整个世界的知识组织起来？",
+        "en": "We can write symbols now, and we have LISP as our weapon. But now we face an even bigger challenge — how do we organize an entire world of knowledge?"
+      },
+      "leadsTo": "the-challenge"
+    },
+    {
+      "id": "the-challenge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "简单的 is_a(cat, animal) 够用吗？如果我要表示「所有鸟都会飞」，「约翰的妈妈住在纽约」，「如果下雨了而且你没带伞，你会淋湿」——这些复杂的知识怎么编码？",
+        "en": "Is a simple is_a(cat, animal) enough? What if I need to represent 「all birds can fly」, 「John's mother lives in New York」, 「if it rains and you don't have an umbrella, you'll get wet」 — how do we encode such complex knowledge?"
+      },
+      "leadsTo": "predicate-logic"
+    },
+    {
+      "id": "predicate-logic",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一种方法：{谓词逻辑}。我们用量词来扩展简单的逻辑，比如「所有」和「存在」。我们用∀表示「对于所有」，∃表示「存在一个」。这样我们就能写出像∀x (bird(x) → can_fly(x))这样的表达式：「对于所有的x，如果x是鸟，那么x能飞」。",
+        "en": "The first approach: {predicate logic}. We extend simple logic with quantifiers — 「for all」 and 「there exists」. ∀ means 「for all」, ∃ means 「there exists」. This lets us write expressions like ∀x (bird(x) → can_fly(x)) — 「for all x, if x is a bird, then x can fly」."
+      },
+      "terms": {
+        "谓词逻辑": "term-predicate-logic",
+        "predicate logic": "term-predicate-logic"
+      },
+      "leadsTo": "bird-example"
+    },
+    {
+      "id": "bird-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "∀x (bird(x) → can_fly(x))，即「所有鸟都会飞」。逻辑上很完美，对吧？简洁、精确、机器能直接处理。但是……",
+        "en": "∀x (bird(x) → can_fly(x)) — 「all birds can fly」. Logically perfect, right? Concise, precise, directly processable by machines. But..."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "「所有鸟都会飞」——这个说法是真的吗？",
+        "en": "「All birds can fly」 — is this statement actually true?"
+      },
+      "choices": [
+        {
+          "id": "yes-true",
+          "text": {
+            "zh": "是的，鸟类的定义就是会飞的动物",
+            "en": "Yes, birds are defined as animals that fly"
+          },
+          "tag": "definitional-thinking",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "嗯……这正是逻辑和现实世界的冲突。定义上说鸟会飞，但现实世界比定义复杂得多。当你用纯逻辑来表示世界时，你很容易陷入这种陷阱——你以为你精确地描述了世界，但其实遗漏了无数例外。",
+              "en": "Hmm... this is exactly where logic and the real world collide. By definition birds fly, but the real world is far more complex than definitions. When you use pure logic to represent the world, it's easy to fall into this trap — thinking you've precisely described reality while missing countless exceptions."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "no-penguins",
+          "text": {
+            "zh": "不对！企鹅是鸟，但企鹅不会飞",
+            "en": "No! Penguins are birds, but penguins can't fly"
+          },
+          "tag": "exception-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "哈！企鹅！还有鸵鸟、鸸鹋、几维鸟……你一下子就发现了逻辑表示的致命弱点。现实世界充满了例外。「大多数鸟会飞」——这个「大多数」在经典逻辑里根本没法表达。这就是我们接下来要面对的核心难题。",
+              "en": "Ha! Penguins! And ostriches, emus, kiwis... You've immediately spotted the fatal weakness of logical representation. The real world is full of exceptions. 「Most birds can fly」 — this 「most」 simply cannot be expressed in classical logic. This is the core challenge we're about to confront."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "depends",
+          "text": {
+            "zh": "看情况——大部分鸟会飞，但有例外",
+            "en": "It depends — most birds fly, but there are exceptions"
+          },
+          "tag": "nuanced-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常精确的回答。「看情况」——现实世界就是这样的，充满了灰色地带。但逻辑只有黑和白：真或假。我们怎么用一个非黑即白的系统来描述一个灰色的世界？这是知识表示领域最根本的张力。",
+              "en": "A very precise answer. 「It depends」 — that's exactly how the real world works, full of gray areas. But logic only has black and white: true or false. How do we use a black-and-white system to describe a gray world? This is the most fundamental tension in knowledge representation."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是著名的{框架问题}。当世界发生变化时，我们怎么表示哪些东西变了，哪些没变？更重要的是，怎么处理规则的例外？如果「所有鸟都会飞」要加上「除了企鹅、鸵鸟、受伤的鸟、幼鸟……」，那例外列表会无穷无尽。",
+        "en": "This is the famous {frame problem} — when the world changes, how do we represent what has changed and what hasn't? More importantly, how do we handle exceptions to rules? If 「all birds can fly」 needs to add 「except penguins, ostriches, injured birds, baby birds..」. — the exception list would be endless."
+      },
+      "terms": {
+        "框架问题": "term-frame-problem",
+        "frame problem": "term-frame-problem"
+      },
+      "leadsTo": "semantic-networks"
+    },
+    {
+      "id": "semantic-networks",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "所以我们需要更灵活的方法。来看第二种：{语义网络}——把知识表示成一张图！（指向他带来的那张大纸）看，就像这样。",
+        "en": "So we need more flexible methods. Here's the second approach: {semantic networks} — represent knowledge as a graph! (pointing to the large sheet he brought) Look, just like this."
+      },
+      "terms": {
+        "语义网络": "term-semantic-network",
+        "semantic networks": "term-semantic-network"
+      },
+      "leadsTo": "network-example"
+    },
+    {
+      "id": "network-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "节点是概念，边是关系。猫 --是一种--> 动物 --是一种--> 生物。猫 --有--> 毛。狗 --是一种--> 动物。看到了吗？知识变成了一张网。你可以沿着网络的边，从一个概念走到另一个概念。这比一条条孤立的规则要直观得多。",
+        "en": "Nodes are concepts, edges are relationships. Cat --is_a--> Animal --is_a--> Living_thing. Cat --has--> Fur. Dog --is_a--> Animal. See? Knowledge becomes a web. You can follow the edges from one concept to another. This is far more intuitive than isolated rules."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "知识表示三大方法：谓词逻辑（精确但脆弱）、语义网络（图结构，直观）、框架（结构化模板）。",
+        "en": "Three approaches to knowledge representation: predicate logic (precise but brittle), semantic networks (graph structure, intuitive), frames (structured templates)."
+      },
+      "category": "core-concept",
+      "leadsTo": "frames-intro"
+    },
+    {
+      "id": "frames-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有第三种方法——框架。这是明斯基提出的。把知识组织成结构化的模板：一个「鸟」框架有很多槽位：can_fly=true，has_wings=true，has_feathers=true。",
+        "en": "There's also a third approach — frames. This was proposed by Minsky. Knowledge is organized into structured templates: a 「Bird」 frame has many slots: can_fly=true, has_wings=true, has_feathers=true."
+      },
+      "leadsTo": "penguin-frame"
+    },
+    {
+      "id": "penguin-frame",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "那企鹅怎么办？简单！「企鹅」框架继承自「鸟」框架，但把can_fly改成false。继承加上重载、覆写，这不就是后来面向对象编程的思路吗？AI的想法总是跑在工程实现前面。",
+        "en": "What about penguins? Simple! A 「Penguin」 frame inherits from the 「Bird」 frame but overrides can_fly to false. Inheritance plus overriding — isn't this exactly the idea behind object-oriented programming? AI ideas always run ahead of engineering implementation."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得哪种知识表示方式对人类来说最直观？",
+        "en": "Which knowledge representation approach do you think is most intuitive for humans?"
+      },
+      "choices": [
+        {
+          "id": "logic-choice",
+          "text": {
+            "zh": "谓词逻辑——严谨精确，像数学一样",
+            "en": "Predicate logic — rigorous and precise, like mathematics"
+          },
+          "tag": "logic-preference",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "逻辑的力量在于它的精确性。每一步推理都有据可查，每一个结论都可以验证。对于数学家和哲学家来说，这确实是最自然的思维方式。但你有没有注意到——普通人在日常生活中很少用严格逻辑来思考？",
+              "en": "Logic's power lies in its precision. Every step of reasoning can be traced, every conclusion verified. For mathematicians and philosophers, this is indeed the most natural way of thinking. But have you noticed — ordinary people rarely think in strict logic during everyday life?"
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "network-choice",
+          "text": {
+            "zh": "语义网络，像思维导图，看得见摸得着",
+            "en": "Semantic networks — like mind maps, visual and tangible"
+          },
+          "tag": "visual-preference",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "人类是视觉动物！我们天生擅长理解图形和关系。语义网络的美在于——你一眼就能看到概念之间的联系。有趣的是，今天的互联网搜索引擎用的「知识图谱」，本质上就是巨大的语义网络。",
+              "en": "Humans are visual creatures! We're naturally good at understanding graphics and relationships. The beauty of semantic networks is that you can see the connections between concepts at a glance. Interestingly, today's search engine 「knowledge graphs」 are essentially massive semantic networks."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "frames-choice",
+          "text": {
+            "zh": "框架——就像表格一样，结构清晰好组织",
+            "en": "Frames — like forms or spreadsheets, structured and organized"
+          },
+          "tag": "structure-preference",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "框架确实最接近人类组织知识的日常方式。我们脑子里对「鸟」「车」「房子」这些概念，就像有一个个模板。听到「鸟」，你自动想到翅膀、羽毛、会飞。这就是一个框架被激活了。心理学家说，人类认知确实是这样运作的。",
+              "en": "Frames do come closest to how humans organize knowledge in daily life. Our mental concepts of 「bird」, 「car」, 「house」 are like templates. Hear 「bird」 and you automatically think of wings, feathers, flying — that's a frame being activated. Psychologists say human cognition does work this way."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "每种方法都有长处。逻辑精确，网络直观，框架模块化。真正的AI系统往往把它们结合起来使用。但它们有一个共同的深层问题……",
+        "en": "Each approach has its strengths. Logic is precise, networks are intuitive, frames are modular. Real AI systems often combine them. But they share one deep, common problem..."
+      },
+      "leadsTo": "deep-problem"
+    },
+    {
+      "id": "deep-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "所有这些方法，都需要人来手动编写知识。每一条规则、每一个节点、每一个框架，都是人一个字一个字敲进去的。世界上有多少知识？谁来写？写得完吗？",
+        "en": "All of these approaches require humans to manually encode the knowledge. Every rule, every node, every frame — typed in by a person, character by character. How much knowledge exists in the world? Who will write it all? Can it ever be finished?"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么手动编码知识可能是一个根本性的局限？",
+        "en": "Why might manually encoding knowledge be a fundamental limitation?"
+      },
+      "choices": [
+        {
+          "id": "too-slow",
+          "text": {
+            "zh": "太慢了——人类知识的增长速度远远超过编码速度",
+            "en": "Too slow — human knowledge grows far faster than it can be encoded"
+          },
+          "tag": "scalability-concern",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "一针见血。有个叫CYC的项目，试图手动编码所有常识——从1984年开始，干了三十多年，几百人参与，编了几百万条规则……还是远远不够。知识的海洋没有尽头，而人手总是有限的。",
+              "en": "Right on target. There's a project called CYC that tried to manually encode all common sense — started in 1984, worked for over thirty years, hundreds of people involved, millions of rules encoded... still far from enough. The ocean of knowledge has no end, but human hands are always limited."
+            }
+          },
+          "leadsTo": "after-q3"
+        },
+        {
+          "id": "human-bias",
+          "text": {
+            "zh": "人会带入偏见——每个编码者的理解都不同",
+            "en": "Humans bring bias — every encoder understands things differently"
+          },
+          "tag": "bias-concern",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "深刻！两个专家可能对同一个概念有不同的理解。「什么算鸟？」「情报算不算知识？」这些看似简单的问题，一旦要精确定义，就会引发无穷的争论。知识不是客观存在等你抄写的——它在定义的过程中就被塑造了。",
+              "en": "Profound! Two experts might understand the same concept differently. 「What counts as a bird?」 「Does intelligence count as knowledge?」 These seemingly simple questions, once you try to define them precisely, trigger endless debate. Knowledge isn't an objective thing waiting to be copied — it's shaped in the very process of being defined."
+            }
+          },
+          "leadsTo": "after-q3"
+        },
+        {
+          "id": "cant-capture-all",
+          "text": {
+            "zh": "有些知识根本无法用规则表达，比如直觉、经验",
+            "en": "Some knowledge simply can't be expressed as rules — like intuition, experience"
+          },
+          "tag": "tacit-knowledge-concern",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你触及了一个哲学家们争论了几百年的问题！波兰尼说过：「我们知道的比我们能说出来的多得多。」你怎么骑自行车？你怎么认出一张脸？这些知识就在你脑子里，但你写不出规则来。这叫「隐性知识」，而符号系统恰恰无法捕捉它。",
+              "en": "You've touched on a question philosophers have debated for centuries! Polanyi said: 「We know more than we can tell」. How do you ride a bicycle? How do you recognize a face? This knowledge is in your head, but you can't write rules for it. This is called 「tacit knowledge」 — and symbolic systems simply cannot capture it."
+            }
+          },
+          "leadsTo": "after-q3"
+        }
+      ]
+    },
+    {
+      "id": "after-q3",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是{知识获取瓶颈}，所有符号AI方法的致命弱点。你的系统只有你喂给它的那些知识，不多也不少。而现实世界的知识是无穷无尽的。",
+        "en": "This is the {knowledge acquisition bottleneck} — the Achilles' heel of all symbolic AI approaches. Your system only knows what you've fed it, no more, no less. And the real world's knowledge is boundless."
+      },
+      "terms": {
+        "知识获取瓶颈": "term-knowledge-bottleneck",
+        "knowledge acquisition bottleneck": "term-knowledge-bottleneck"
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "知识获取瓶颈：所有符号AI方法都依赖人工编码知识，这无法扩展到现实世界的复杂度。这是符号主义AI最根本的局限。",
+        "en": "The knowledge acquisition bottleneck: all symbolic AI approaches depend on manual knowledge encoding, which cannot scale to real-world complexity. This is the most fundamental limitation of symbolic AI."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "麦卡锡教授站在那张巨大的知识图前，表情既骄傲又困扰。这张图展示了人类知识的冰山一角，而冰山本身隐没在看不见的深处。他喃喃道：「也许……我们需要的是让机器自己去搜索答案。」他若有所思地走了出去。",
+        "en": "Professor McCarthy stands before his enormous knowledge diagram, his expression both proud and troubled. The diagram shows the tip of the iceberg of human knowledge, while the iceberg itself lies hidden in invisible depths. He murmurs: 「Perhaps... what we need isn't more encoders, but to let machines search for answers themselves」. He walks out, lost in thought."
+      }
+    }
+  ]
+}

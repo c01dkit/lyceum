@@ -1,0 +1,393 @@
+{
+  "id": "lesson-01",
+  "course": "neural-revival",
+  "title": {
+    "zh": "寒冬之后",
+    "en": "After the Winter"
+  },
+  "knowledgePoint": {
+    "zh": "明斯基批判之后神经网络研究的状态——为什么少数研究者坚持了下来",
+    "en": "The state of neural network research after Minsky's critique — why a few researchers persisted"
+  },
+  "teacher": "prof-rumelhart",
+  "estimatedMinutes": 10,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间明亮的教室。鲁梅尔哈特教授抱着一摞透明胶片走进来，脸上带着温暖的微笑。他把胶片放在投影仪旁边，目光扫过每个人——那种目光让你觉得，他真的相信你们能理解接下来的一切。",
+    "en": "You close your eyes, and your thoughts drift back to that bright classroom. Prof. Rumelhart walks in with a stack of transparencies, a warm smile on his face. He sets them beside the projector and looks at each of you — a gaze that makes you feel he truly believes you can understand everything that follows."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那个问题仍在脑海中回响——如果感知机有局限，为什么还有人不愿放弃？也许答案就藏在那些「额外的层」里。",
+    "en": "You return to the present. That question still echoes in your mind — if perceptrons have limitations, why did some refuse to give up? Perhaps the answer lies hidden in those 「extra layers」."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这间教室比你之前见过的都要明亮。窗外的阳光洒进来，白板上干干净净，没有任何公式的痕迹。门推开了，一位中年教授走了进来——他穿着一件格子衬衫，抱着一大摞透明胶片，脸上挂着真诚的微笑。他把胶片放在投影仪旁边，环视了一圈教室。",
+        "en": "This classroom is brighter than any you've seen before. Sunlight streams through the windows, and the whiteboard is spotless — not a single formula in sight. The door opens, and a middle-aged professor walks in. He's wearing a plaid shirt, carrying a large stack of transparencies, with a genuine smile on his face. He sets the slides beside the projector and looks around the room."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "早上好！我是鲁梅尔哈特，来自加州大学圣地亚哥分校。你们可能听说过明斯基教授对{感知机}的分析——他证明了单层感知机无法解决某些看似简单的问题。那本书在1969年出版后，整个神经网络领域几乎被冻结了。",
+        "en": "Good morning! I'm Rumelhart, from UC San Diego. You may have heard about Prof. Minsky's analysis of the {perceptron} — he proved that single-layer perceptrons cannot solve certain seemingly simple problems. After that book was published in 1969, the entire neural network field was essentially frozen."
+      },
+      "terms": {
+        "感知机": "term-perceptron",
+        "perceptron": "term-perceptron"
+      },
+      "leadsTo": "winter-context"
+    },
+    {
+      "id": "winter-context",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "当时的情况是这样的——研究经费大幅缩减，学术期刊不再接收相关论文，研究生导师会告诫学生远离这个方向。如果你在1975年告诉同事你在研究神经网络，他们会觉得你在浪费时间。这段时期后来被称为「AI的冬天」。",
+        "en": "Here's what the situation looked like — research funding was drastically cut, academic journals stopped accepting related papers, and advisors warned graduate students to stay away from this direction. If you told your colleagues in 1975 that you were working on neural networks, they'd think you were wasting your time. This period later came to be known as the 「AI winter」."
+      },
+      "leadsTo": "what-minsky-proved"
+    },
+    {
+      "id": "what-minsky-proved",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我公正地说——明斯基教授的证明是正确的。一个单层{感知机}确实无法学会XOR这样的基本逻辑运算。它只能画出一条直线来分类，而有些问题需要更复杂的边界。这一点没有争议。",
+        "en": "Let me be fair — Prof. Minsky's proof was correct. A single-layer {perceptron} truly cannot learn basic logical operations like XOR. It can only draw a straight line for classification, and some problems require more complex boundaries. There's no disputing that."
+      },
+      "terms": {
+        "感知机": "term-perceptron",
+        "perceptron": "term-perceptron"
+      },
+      "leadsTo": "but-the-leap"
+    },
+    {
+      "id": "but-the-leap",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但他的书里有一句话，很多人忽略了。明斯基承认，多层网络也许能克服这些限制——只是他认为没有人知道该如何训练它们。大多数人只记住了「感知机不行」，却忘了这个重要的附加条件。",
+        "en": "But there was a line in his book that many people overlooked. Minsky acknowledged that multi-layer networks might overcome these limitations — he just believed nobody knew how to train them. Most people only remembered 「perceptrons don't work, but forgot this crucial qualifier."
+      },
+      "leadsTo": "few-persisted"
+    },
+    {
+      "id": "few-persisted",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "然而，有一小群人不愿意放弃。我们这群人，包括辛顿、麦克莱兰、我自己，还有其他几位，看到了一个别人忽视的可能性：如果我们能找到训练{多层感知机}的方法呢？问题的关键或许从来都在于“如何训练”，而不在于“能不能用”。",
+        "en": "Yet a small group of us refused to give up. Our group — Hinton, McClelland, myself, and a few others — we saw a possibility that others had overlooked: what if we could find a way to train {multi-layer perceptrons}? What if the problem had always been 「how to train」 rather than 「whether they work」?"
+      },
+      "terms": {
+        "多层感知机": "term-multi-layer-perceptron",
+        "multi-layer perceptrons": "term-multi-layer-perceptron"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "明斯基证明了单层感知机有局限。你觉得他的分析有什么地方是不完整的？",
+        "en": "Minsky proved that single-layer perceptrons have limitations. What do you think was incomplete about his analysis?"
+      },
+      "choices": [
+        {
+          "id": "correct-but-narrow",
+          "text": {
+            "zh": "他的证明是对的，但只针对单层网络——他没有证明多层也不行",
+            "en": "His proof was correct, but only for single-layer networks — he didn't prove multi-layer ones couldn't work"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "正是如此。明斯基的数学是无懈可击的，但他的结论被过度推广了。证明一个特定结构有局限，和证明整个方向没有前途，完全是两回事。科学史上这样的误读并不罕见。",
+              "en": "Exactly right. Minsky's mathematics was impeccable, but his conclusion was overgeneralized. Proving that a specific structure has limitations is entirely different from proving the whole direction is hopeless. Such misreadings are not uncommon in the history of science."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "training-problem",
+          "text": {
+            "zh": "他指出了问题，但没有给多层网络一个公平的机会——因为训练方法还不存在",
+            "en": "He identified the problem but didn't give multi-layer networks a fair chance — because training methods didn't exist yet"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的观察很敏锐。缺少工具并不意味着方向错误。就好比在没有望远镜的时代，我们不能因为看不见遥远的星星就否认它们的存在。明斯基展示了单层网络的天花板，但多层网络的可能性仍然是开放的。",
+              "en": "A very sharp observation. Lacking tools doesn't mean the direction is wrong. It's like in the era before telescopes — we couldn't deny the existence of distant stars just because we couldn't see them. Minsky showed the ceiling of single-layer networks, but the possibilities for multi-layer networks remained open."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "minsky-wrong",
+          "text": {
+            "zh": "也许明斯基的证明本身就有问题？",
+            "en": "Maybe Minsky's proof itself had issues?"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "其实明斯基的数学证明是完全正确的——单层感知机确实无法解决非线性可分问题。我们需要尊重这个结论。但关键在于，他证明的是一个特定架构的局限，而许多人把它当成了整个领域的终结宣判。问题在于解读，而非证明本身。",
+              "en": "Actually, Minsky's mathematical proof was entirely correct — single-layer perceptrons truly cannot solve nonlinearly separable problems. We must respect that conclusion. But the key point is that he proved limitations of a specific architecture, while many people treated it as a death sentence for the entire field. The problem lay in the interpretation, not the proof itself."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "人们经常把「这条路有障碍」理解为「这个方向是死路」。但做研究，有时候你得有一点固执——不是盲目的固执，是基于直觉和理性的坚持。",
+        "en": "People often interpret 「there's an obstacle on this path」 as 「this whole direction is a dead end」. But in research, sometimes you need a bit of stubbornness — not blind stubbornness, but persistence grounded in intuition and reason."
+      },
+      "leadsTo": "pdp-group"
+    },
+    {
+      "id": "pdp-group",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "1981年，我和麦克莱兰在圣地亚哥成立了PDP研究小组——PDP代表「并行分布式处理」。我们相信一件事：大脑不像传统计算机那样一步一步串行处理信息。大脑有数十亿个神经元同时运作，信息以分布式的方式存储在连接中。如果我们想理解智能，就需要用类似的方式来建模。",
+        "en": "In 1981, McClelland and I formed the PDP research group in San Diego — PDP stands for 「Parallel Distributed Processing」. We believed in one thing: the brain doesn't process information step by step like a traditional computer. The brain has billions of neurons operating simultaneously, with information stored distributively across connections. If we want to understand intelligence, we need to model it in a similar way."
+      },
+      "leadsTo": "connectionism-intro"
+    },
+    {
+      "id": "connectionism-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这种思路有一个名字——{联结主义}。联结主义认为，智能不来自于符号规则的操作，而来自于大量简单处理单元之间连接的模式。每个单元本身很简单，但当你把成千上万个单元连接在一起，复杂的行为就涌现出来了。就像一只蚂蚁很简单，但一个蚁群能做出惊人的事情。",
+        "en": "This approach has a name — {connectionism}. Connectionism holds that intelligence doesn't come from manipulating symbolic rules, but from patterns of connections between many simple processing units. Each unit is simple on its own, but when you connect thousands of them together, complex behavior emerges. Just like a single ant is simple, but an ant colony can accomplish astonishing things."
+      },
+      "terms": {
+        "联结主义": "term-connectionism",
+        "connectionism": "term-connectionism"
+      },
+      "leadsTo": "the-challenge"
+    },
+    {
+      "id": "the-challenge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但我们面临一个根本性的挑战。我们知道多层网络在理论上应该更强大——增加{隐藏层}可以让网络学会更复杂的模式。问题是：如何调整网络内部那些看不见的{权重}？输出层的误差很容易衡量，但隐藏层呢？一个隐藏层里的神经元到底应该对最终的错误负多少责任？",
+        "en": "But we faced a fundamental challenge. We knew multi-layer networks should be more powerful in theory — adding {hidden layers} allows networks to learn more complex patterns. The question was: how do you adjust those invisible {weights} inside the network? The error at the output layer is easy to measure, but what about the hidden layers? How much responsibility should a neuron in a hidden layer bear for the final error?"
+      },
+      "terms": {
+        "隐藏层": "term-hidden-layer",
+        "权重": "term-weight",
+        "hidden layers": "term-hidden-layer",
+        "weights": "term-weight"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "明明大多数人已经放弃了神经网络，为什么还有人愿意继续研究？你觉得是什么驱动了他们？",
+        "en": "Most people had already given up on neural networks. Why would anyone keep researching them? What do you think drove these researchers?"
+      },
+      "choices": [
+        {
+          "id": "brain-inspiration",
+          "text": {
+            "zh": "大脑确实是这样工作的——生物学的启示太有说服力了",
+            "en": "The brain actually works this way — the biological inspiration was too compelling to ignore"
+          },
+          "tag": "bio-inspired",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你说到点子上了。大脑是我们唯一确认能产生智能的系统。它不依赖符号规则，它依赖神经元之间的连接和并行计算。如果我们忽视这条线索，也许才是真正的浪费。大自然已经给了我们一个可行方案的证明——活生生的证明。",
+              "en": "You've hit the nail on the head. The brain is the only system we know for certain can produce intelligence. It doesn't rely on symbolic rules — it relies on connections between neurons and parallel computation. Ignoring this clue might be the real waste. Nature has already given us proof that a working solution exists — living proof."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "incomplete-story",
+          "text": {
+            "zh": "因为明斯基只证明了单层不行，没有人证明多层也不行",
+            "en": "Because Minsky only proved single-layer doesn't work — nobody proved multi-layer can't work either"
+          },
+          "tag": "logical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是非常精确的逻辑推理。在科学中，「尚未证明可行」和「已经证明不可行」之间有巨大的区别。我们知道单层有上限，但多层网络的上限在哪里？没有人能回答。这个未知空间本身就是探索的理由。",
+              "en": "That's very precise logical reasoning. In science, there's an enormous difference between 「not yet proven feasible」 and 「proven infeasible」. We knew single-layer had a ceiling, but where was the ceiling for multi-layer networks? Nobody could answer. That unknown space itself was reason enough to explore."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "pure-stubbornness",
+          "text": {
+            "zh": "也许只是不甘心——投入了这么多年，不想承认走错了路",
+            "en": "Maybe just stubbornness — having invested so many years, they didn't want to admit they were wrong"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了一下）我不否认，这里面确实有一些个人执念的成分。但科学史上的很多突破都来自于那些「不合群」的人。关键是，我们的执念有依据——大脑就在那里运行着，每天都在证明这种架构能够产生智能。我们只是还没找到正确的训练方法。",
+              "en": "(Laughs) I won't deny there was some personal stubbornness involved. But many breakthroughs in the history of science came from those who 「didn't fit in」. The key is that our stubbornness had grounds — the brain is right there, proving every day that this architecture can produce intelligence. We just hadn't found the right training method yet."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管动机是什么，结果是这样的：到了1980年代初，我们的小圈子开始取得进展。我们意识到，训练多层网络的关键可能藏在微积分里。具体来说，藏在链式法则里。",
+        "en": "Whatever the motivation, here's what happened: by the early 1980s, our small circle started making progress. We realized that the key to training multi-layer networks might be hiding in calculus — specifically, in the chain rule."
+      },
+      "leadsTo": "preview-backprop"
+    },
+    {
+      "id": "preview-backprop",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "1986年，我们发表了一篇论文，提出了一种叫做{反向传播}的算法。简单来说，它的思想是：从输出层的误差开始，沿着网络的连接一路往回传递，让每一层都知道自己该调整多少。让我们从误差开始，倒着走一遍。这就是下节课的主题。",
+        "en": "In 1986, we published a paper proposing an algorithm called {backpropagation}. In simple terms, the idea is: start from the error at the output layer and propagate it backward through the network's connections, so every layer knows how much to adjust. Let's start from the error and work our way backward — that's the topic of our next lesson."
+      },
+      "terms": {
+        "反向传播": "term-backpropagation",
+        "backpropagation": "term-backpropagation"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "明斯基证明了单层感知机的局限性，但多层网络的潜力从未被否定。PDP研究小组坚持联结主义路线，最终在1986年提出反向传播算法，打破了神经网络研究的僵局。",
+        "en": "Minsky proved the limitations of single-layer perceptrons, but the potential of multi-layer networks was never disproven. The PDP research group persisted with the connectionist approach and in 1986 proposed the backpropagation algorithm, breaking the deadlock in neural network research."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我想让你们记住一件事：科学中最危险的是正确结论被过度解读。明斯基的数学是对的，但「神经网络已死」的推论是错的。有时候，一个领域的寒冬并不意味着方向错了——只意味着我们还缺一把钥匙。",
+        "en": "I want you to remember one thing from today: the most dangerous thing in science isn't a wrong conclusion — it's a correct conclusion being over-interpreted. Minsky's mathematics was right, but the inference that 「neural networks are dead」 was wrong. Sometimes, a winter in a field doesn't mean the direction was wrong — it only means we were still missing a key."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "假设你是1975年的研究者，想要研究多层神经网络。你面临的最大困难是什么？",
+        "en": "Suppose you're a researcher in 1975 who wants to study multi-layer neural networks. What would be your biggest challenge?"
+      },
+      "choices": [
+        {
+          "id": "no-funding",
+          "text": {
+            "zh": "没有经费和学术支持——没人愿意资助一个「已经被否定」的方向",
+            "en": "No funding or academic support — nobody would fund a direction that's been 「disproven」"
+          },
+          "tag": "institutional",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是现实中最残酷的障碍。你可以有最好的想法，但如果没有经费、没有期刊愿意发表你的论文、没有学生愿意跟着你——你很难坚持下去。学术界的共识有时候也是一种无形的牢笼。",
+              "en": "This is the cruelest obstacle in reality. You can have the best ideas, but if there's no funding, no journals willing to publish your papers, no students willing to work with you — it's incredibly hard to persist. Academic consensus can sometimes be an invisible cage."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "no-training-method",
+          "text": {
+            "zh": "不知道如何训练隐藏层——没有算法能把误差信号传递到内部",
+            "en": "Not knowing how to train hidden layers — no algorithm could propagate error signals inward"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是核心的技术挑战。输出层的误差我们能直接计算，但隐藏层的神经元呢？它们的「正确答案」是什么？没有人知道。我们需要一种方法来把误差分摊回每一个连接。这正是反向传播要解决的问题。下节课我们就来攻克它。",
+              "en": "That's precisely the core technical challenge. We could directly compute the error at the output layer, but what about the neurons in hidden layers? What's their 「correct answer」? Nobody knew. We needed a method to distribute the error back to every connection — that's exactly the problem backpropagation solves. We'll tackle it next lesson."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "no-compute",
+          "text": {
+            "zh": "计算能力不足——就算有算法，当时的计算机也跑不动",
+            "en": "Insufficient computing power — even with an algorithm, the computers of the time couldn't handle it"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "计算能力确实是一个限制因素。我们现在用的网络仍然很小——几十个、最多几百个神经元。但有趣的是，即使在这个规模上，反向传播也已经能展示出令人兴奋的结果。也许有一天计算能力不再是瓶颈，那时候这些网络能做到什么，我现在还不敢想象。",
+              "en": "Computing power is indeed a limiting factor. The networks we use now are still very small — dozens, at most a few hundred neurons. But interestingly, even at this scale, backpropagation already shows exciting results. Perhaps one day computing power will no longer be the bottleneck, and what these networks could achieve then — I dare not even imagine."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下次课，我会带你们走进反向传播的核心。我们会从一个简单的网络开始，一步一步地追踪误差信号如何从输出层流回到输入层。你会发现，这个算法的美妙之处在于它的简洁——一切的关键，只是微积分的链式法则。",
+        "en": "Next class, I'll walk you through the heart of backpropagation. We'll start with a simple network and trace step by step how the error signal flows from the output layer back to the input layer. You'll find that the beauty of this algorithm lies in its simplicity — the key to everything is just the chain rule from calculus."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "科学中最危险的是正确结论被过度解读。明斯基的单层感知机局限证明是对的，但不意味着多层也不行。训练多层网络的关键难题是：如何把输出误差分配给隐藏层的神经元？",
+        "en": "The most dangerous thing in science isn't a wrong conclusion but a correct one being over-interpreted. Minsky's proof of single-layer perceptron limitations was right, but it didn't mean multi-layer networks couldn't work. The key challenge for training multi-layer networks: how to assign output errors to neurons in hidden layers."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "鲁梅尔哈特教授拿起那摞透明胶片，朝你们点了点头。走到门口时他转过身，又补了一句：「别忘了，寒冬之后总会有春天——但只有那些在冬天里坚持播种的人，才能最先看到花开。」门轻轻关上，阳光仍然洒满教室。",
+        "en": "Prof. Rumelhart picks up his stack of transparencies and nods at you. At the door, he turns back and adds: 「Remember — spring always follows winter, but only those who keep planting seeds through the winter get to see the first flowers bloom」. The door closes gently, and sunlight still fills the room."
+      }
+    }
+  ]
+}

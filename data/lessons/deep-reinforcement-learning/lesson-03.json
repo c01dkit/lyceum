@@ -1,0 +1,377 @@
+{
+  "id": "lesson-03",
+  "course": "deep-reinforcement-learning",
+  "title": {
+    "zh": "深度Q网络",
+    "en": "Deep Q-Networks"
+  },
+  "knowledgePoint": {
+    "zh": "DQN——将深度学习与强化学习结合的突破",
+    "en": "DQN — the breakthrough combining deep learning with reinforcement learning"
+  },
+  "teacher": "prof-silver",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你闭上眼，回忆起那天的课堂。屏幕上播放着一段不可思议的录像：一个AI在Atari游戏中找到了人类玩家都没想到的策略——把球打到砖墙后面，让它自动弹跳清除。西尔弗教授站在那段录像前，眼中带着一种发现新大陆般的兴奋。",
+    "en": "You close your eyes, recalling that day's lesson. The screen played an incredible recording: an AI in an Atari game found a strategy no human player had thought of — sending the ball behind the brick wall to let it bounce and clear automatically. Prof. Silver stood before that footage, eyes lit with the excitement of discovering a new continent."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。两个关键词仍在脑海中闪烁——经验回放、目标网络。一个让学习稳定，一个让目标稳定。你开始理解，有时候最重要的突破不在于算法本身，而在于让算法真正运行起来的工程智慧。",
+    "en": "You return to the present. Two key terms still flash in your mind — experience replay, target network. One stabilizes learning, the other stabilizes the target. You begin to understand that sometimes the most important breakthroughs lie not in the algorithm itself, but in the engineering wisdom that makes it actually work."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的课堂氛围有些不同。屏幕上并排播放着四个Atari游戏的画面——打砖块、乒乓球、太空侵略者、弹球。每个游戏里都有一个看不见的「玩家」在操控，动作精准得令人惊讶。西尔弗教授走进来时，脚步比平时快了一些，脸上带着一种掩饰不住的兴奋。",
+        "en": "Today's classroom atmosphere is different. Four Atari games play side by side on screen — Breakout, Pong, Space Invaders, Pinball. In each, an invisible 「player」 is controlling the game with startling precision. Prof. Silver walks in a bit faster than usual, wearing an excitement he can't quite hide."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指向屏幕上的四个游戏）大家看到这些了吗？同一个算法，同一套参数，没有任何针对特定游戏的调整——在49种Atari游戏上都达到了超越人类玩家的水平。2013年我们发表这篇论文的时候，整个AI社区都震动了。今天我要告诉你们，它是怎么做到的。",
+        "en": "(Pointing to the four games on screen) See all this? The same algorithm, the same set of parameters, no game-specific adjustments — achieving superhuman performance across 49 Atari games. When we published this paper in 2013, the entire AI community was shaken. Today I'll tell you how it works."
+      },
+      "leadsTo": "pre-dqn-challenge"
+    },
+    {
+      "id": "pre-dqn-challenge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们讲了Q函数——它能告诉智能体在每个状态下选择哪个动作最好。但问题是，Atari游戏的输入是210×160的彩色像素。一帧画面有超过十万个像素，每个像素有256种颜色。直接为每种可能的画面存储一个Q值？数学上就是天方夜谭。",
+        "en": "Last lesson we covered the Q-function — it tells the agent which action is best in each state. But the problem is, Atari game input is 210×160 color pixels. A single frame has over a hundred thousand pixels, each with 256 possible colors. Store a Q-value for every possible screen? Mathematically absurd."
+      },
+      "leadsTo": "dqn-idea"
+    },
+    {
+      "id": "dqn-idea",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们的想法是：用一个深度神经网络来近似Q函数。我们把最近四帧游戏画面作为输入，通过卷积神经网络提取视觉特征，最后输出每个可能动作的Q值。网络学会的是一个映射：从「我看到了什么」到「每个动作值多少分」。这就是{深度Q网络}——DQN。",
+        "en": "Our idea: use a deep neural network to approximate the Q-function. We feed the last four game frames as input, extract visual features through a convolutional neural network, and output Q-values for every possible action. What the network learns is a mapping: from 「what I see」 to 「how many points each action is worth」. This is the {Deep Q-Network} — DQN."
+      },
+      "terms": {
+        "深度Q网络": "term-dqn",
+        "Deep Q-Network": "term-dqn"
+      },
+      "leadsTo": "naive-problem"
+    },
+    {
+      "id": "naive-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但如果只是简单地把神经网络塞进Q学习里，你会遇到一个灾难性的问题——训练根本不稳定。网络会剧烈震荡，学到的策略忽好忽坏，最终崩溃。为什么？因为强化学习的训练数据有两个致命特性。",
+        "en": "But if you simply stuff a neural network into Q-learning, you'll hit a catastrophic problem — training is completely unstable. The network oscillates wildly, learned strategies fluctuate between good and terrible, and eventually everything collapses. Why? Because reinforcement learning training data has two fatal properties."
+      },
+      "leadsTo": "problem-correlation"
+    },
+    {
+      "id": "problem-correlation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一个问题：数据之间的强相关性。想想看，智能体在游戏中连续经历的画面几乎一模一样。前一帧球在左边，后一帧球还在左边，只是移动了几个像素。如果你用这些高度相似的连续数据来训练网络，就像复习考试只看一道题的不同变体，结果你会过拟合到这道题上，反而忘掉其他所有内容。",
+        "en": "First problem: strong correlation between data points. Think about it — consecutive frames the agent experiences are nearly identical: the ball was on the left in one frame, still on the left in the next, moved just a few pixels. If you train the network on these highly similar consecutive data points, it's like studying for an exam by only reviewing variations of one problem — you'll overfit to that problem and forget everything else."
+      },
+      "leadsTo": "problem-moving-target"
+    },
+    {
+      "id": "problem-moving-target",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二个问题：训练目标在不断变化。在监督学习中，标签是固定的，一张猫的照片永远标注为「猫」。但在Q学习中，训练目标本身也是网络的预测值，因为贝尔曼方程说「当前Q值应该等于即时奖励加上下一个状态的最大Q值」。你在用自己的预测来训练自己。这就像一个人踩着自己的鞋带试图往上跳，目标在你脚下不停移动。",
+        "en": "Second problem: the training target keeps moving. In supervised learning, labels are fixed — a photo of a cat is always labeled 「cat」. But in Q-learning, the training target is itself a prediction from the network — because the Bellman equation says 「current Q-value should equal immediate reward plus maximum Q-value of the next state」. You're training yourself with your own predictions. It's like trying to jump up while stepping on your own shoelaces — the target keeps shifting under your feet."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "面对数据相关性和移动目标这两个问题，你会怎么解决？",
+        "en": "Facing these two problems — data correlation and moving targets — how would you solve them?"
+      },
+      "choices": [
+        {
+          "id": "shuffle-data",
+          "text": {
+            "zh": "打乱数据的顺序——不要用连续的帧来训练，而是随机抽取",
+            "en": "Shuffle the data order — don't train on consecutive frames, but sample randomly"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的直觉和我们当时的想法完全一致。这正是DQN的第一个关键创新——{经验回放}。智能体把每一步的经历（状态、动作、奖励、下一个状态）存进一个大型记忆库。训练的时候，从记忆库中随机抽取一批经历来更新网络。这样，连续的经历被打散了，就像洗牌一样，数据之间的相关性被大幅削弱。",
+              "en": "Your intuition matches exactly what we were thinking. This is DQN's first key innovation — {experience replay}. The agent stores each step's experience (state, action, reward, next state) in a large memory buffer. During training, it randomly samples a batch from this buffer to update the network. This way, consecutive experiences are shuffled apart, like shuffling a deck of cards, drastically reducing data correlation."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "freeze-target",
+          "text": {
+            "zh": "冻结训练目标——让目标在一段时间内保持不变，然后再更新",
+            "en": "Freeze the training target — keep the target fixed for a period, then update it"
+          },
+          "tag": "strategic",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你想到了我们的第二个关键创新，{目标网络}。我们维护两个神经网络：一个「在线网络」不断学习更新，一个「目标网络」保持固定。训练目标由目标网络来计算，它的参数每隔几千步才会更新一次。这样一来，训练目标在短期内是稳定的，网络便不必再追逐一个不断移动的影子。",
+              "en": "You've arrived at our second key innovation — the {target network}. We maintain two neural networks: an 「online network」 that continuously learns and updates, and a 「target network」 that stays fixed. Training targets are computed using the target network — its parameters are updated only every few thousand steps. This way, the training target is stable in the short term, and the network is no longer chasing a constantly moving shadow."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "slow-learning",
+          "text": {
+            "zh": "降低学习速率——让网络更慢、更稳定地学习",
+            "en": "Lower the learning rate — let the network learn more slowly and stably"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "降低学习速率确实能缓解一些不稳定性，但它不能从根本上解决问题。即使你学得很慢，如果训练数据高度相关、训练目标不断变化，最终还是会出问题。我们发现真正需要的是两个结构性的改变：第一个是{经验回放}，把经历存进记忆库然后随机抽取；第二个是{目标网络}，用一个暂时冻结的网络来计算训练目标。这两个技巧才是让DQN真正稳定下来的关键。",
+              "en": "Lowering the learning rate does alleviate some instability, but it doesn't solve the root problem. Even learning slowly, if training data is highly correlated and training targets keep shifting, things will still break down. What we found is that two structural changes were needed: first, {experience replay} — storing experiences in a buffer and sampling randomly; second, a {target network} — using a temporarily frozen network to compute training targets. These two techniques are what truly stabilized DQN."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把DQN的完整流程讲一遍。智能体在游戏中行动，把每一步的经历存进{经验回放}记忆库。训练的时候，从记忆库中随机取一批经历，用{目标网络}计算贝尔曼方程的目标值，然后用这个目标来更新在线网络。每隔一段时间，把在线网络的参数复制给目标网络。就这么简单——但效果是革命性的。",
+        "en": "Let me walk through DQN's complete process. The agent acts in the game and stores each step's experience in the {experience replay} buffer. During training, it randomly samples a batch from the buffer, computes the Bellman equation target using the {target network}, and uses that target to update the online network. Periodically, the online network's parameters are copied to the target network. That's it — simple, but the effect is revolutionary."
+      },
+      "terms": {
+        "经验回放": "term-experience-replay",
+        "目标网络": "term-target-network",
+        "experience replay": "term-experience-replay",
+        "target network": "term-target-network"
+      },
+      "leadsTo": "atari-results"
+    },
+    {
+      "id": "atari-results",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（切换到结果对比图）看这个对比。在49种Atari游戏中，DQN在29种游戏上超过了专业人类玩家的水平。记住——这是同一个算法、同一组超参数，没有针对任何一款游戏做过特殊调整。它看到的只是原始像素和分数。它自己学会了打砖块、自己学会了玩乒乓、自己学会了闪避外星人。",
+        "en": "(Switches to comparison chart) Look at this. Across 49 Atari games, DQN surpassed professional human players in 29 of them. Remember — this is the same algorithm, the same hyperparameters, with no special tuning for any game. It sees only raw pixels and scores. It taught itself Breakout, taught itself Pong, taught itself to dodge aliens."
+      },
+      "leadsTo": "breakout-moment"
+    },
+    {
+      "id": "breakout-moment",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "（播放Breakout的录像）但最让我们惊讶的是这个。你们看这段打砖块的录像。注意看，它在做什么？它先在一侧打出一个通道，把球送到砖墙的上方。然后球在顶部自动弹跳，一次性消除了大量砖块。这个策略连很多人类玩家都想不到，但DQN自己发现了它。没有人编程让它这么做。它只是在追求更高的分数。",
+        "en": "(Plays Breakout recording) But what astonished us most was this. Watch this Breakout footage. See what it's doing? It first carves a tunnel on one side, sending the ball above the brick wall. Then the ball bounces automatically along the top, clearing massive numbers of bricks at once. This strategy isn't something many human players would think of — but DQN discovered it on its own. Nobody programmed it to do this. It was just pursuing a higher score."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "DQN在打砖块中自己发现了「打通道」的策略。你觉得这说明了什么？",
+        "en": "DQN discovered the 「tunnel」 strategy in Breakout on its own. What do you think this tells us?"
+      },
+      "choices": [
+        {
+          "id": "emergent-strategy",
+          "text": {
+            "zh": "复杂的策略可以从简单的目标（最大化分数）中自然涌现",
+            "en": "Complex strategies can emerge naturally from simple objectives (maximizing score)"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是让我最兴奋的一点。我们没有教它任何策略，我们只定义了一个目标函数——分数。然后它通过数百万次的试错，自己发现了最优的行为方式。这让我相信一件事：只要目标函数设计得好，智能体可以发现我们人类都没想到的解决方案。这个思想在后来的AlphaGo项目中得到了更壮观的验证。",
+              "en": "This is what excites me most. We didn't teach it any strategy; we only defined an objective function — the score. Then through millions of trials and errors, it discovered the optimal behavior on its own. This convinced me of something: as long as the objective function is well-designed, an agent can discover solutions that even we humans haven't thought of. This idea was later validated even more spectacularly in the AlphaGo project."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "value-function-power",
+          "text": {
+            "zh": "Q函数学到了长期价值——它理解了「现在不得分但以后得更多分」的概念",
+            "en": "The Q-function learned long-term value — it understood the concept of 「score less now to score much more later」"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说得很准确。这正是折扣因子和价值函数的威力。「打通道」策略在短期内会减少得分——因为球在通道里弹来弹去时不会碰到很多砖块。但Q函数评估的是长期总收益，它「看到」了球进入顶部区域后带来的大量得分。这种对长期价值的理解，正是价值函数最了不起的地方。",
+              "en": "Very precise. This is the power of the discount factor and value function. The 「tunnel」 strategy reduces short-term scoring — the ball bouncing through the tunnel doesn't hit many bricks. But the Q-function evaluates long-term total return; it 「sees」 the massive scoring when the ball reaches the top area. This understanding of long-term value is the most remarkable thing about value functions."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "superhuman-possibility",
+          "text": {
+            "zh": "AI有可能在很多领域发现人类忽略的方法——因为它没有人类的思维定式",
+            "en": "AI might discover methods humans have overlooked in many domains — because it doesn't have human thinking biases"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个意义深远的观察。人类棋手学习打砖块时，会受到直觉的引导，比如「应该去接球」或者「应该打掉最近的砖块」。但DQN没有这些先入为主的偏见。它的探索不带任何预设，纯粹由数据驱动。有时候，放弃人类的直觉反而能发现更好的策略。这个原则后来在围棋中体现得更加淋漓尽致，不过那是后面的故事了。",
+              "en": "That's a far-reaching observation. When human players learn Breakout, intuition guides them — 「catch the ball」, 「hit the nearest brick」. But DQN has no such preconceptions. Its exploration is unbiased, purely data-driven. Sometimes, abandoning human intuition actually leads to better strategies. This principle was demonstrated even more dramatically in Go later — but that's a story for another lesson."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "DQN的发表是深度强化学习的分水岭。它证明了一件事：深度神经网络可以作为价值函数的通用近似器，在高维感知输入上学习决策。这不只是一个游戏上的进步——它开启了一个全新的研究方向。",
+        "en": "DQN's publication was a watershed moment for deep reinforcement learning. It proved something: deep neural networks can serve as universal approximators for value functions, learning decision-making from high-dimensional perceptual inputs. This wasn't just an advance in gaming — it opened an entirely new research direction."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "DQN的两大关键创新：一是经验回放，它将经历存入记忆库并随机采样，以此打破数据相关性；二是目标网络，它用冻结的网络计算训练目标，从而稳定学习过程。DQN用同一算法、同一参数在49种Atari游戏上达到超人水平，甚至自发发现了人类未曾想到的策略，比如打砖块游戏里的「打通道」策略。",
+        "en": "DQN's two key innovations: (1) Experience replay — store experiences and sample randomly, breaking data correlation; (2) Target network — use a frozen network for training targets, stabilizing learning. DQN achieved superhuman performance across 49 Atari games with one algorithm and one set of parameters, spontaneously discovering strategies humans hadn't conceived (like the 「tunnel」 strategy in Breakout)."
+      },
+      "category": "core-concept",
+      "leadsTo": "limitations"
+    },
+    {
+      "id": "limitations",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "当然，DQN并不完美。它处理的是离散动作，比如向左、向右、开火，只有几种选择。但如果动作是连续的呢？比如控制一个机器人手臂，你需要指定每个关节精确的旋转角度。你没法枚举所有可能的动作然后选Q值最大的那个，因为可能的动作有无穷多个。",
+        "en": "Of course, DQN isn't perfect. It handles discrete actions — left, right, fire, just a few choices. But what if actions are continuous? Like controlling a robotic arm — you need to specify each joint's precise rotation angle. You can't enumerate all possible actions and pick the one with the highest Q-value — because there are infinitely many possible actions."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "DQN通过选择Q值最高的动作来决策——但这要求你能枚举所有动作。当动作空间是连续的（比如旋转角度可以是0到360度之间的任何值），你觉得该怎么办？",
+        "en": "DQN makes decisions by picking the action with the highest Q-value — but this requires enumerating all actions. When the action space is continuous (say, rotation angle can be any value from 0 to 360 degrees), what do you think should be done?"
+      },
+      "choices": [
+        {
+          "id": "discretize",
+          "text": {
+            "zh": "把连续的动作空间离散化，比如每5度一个选项",
+            "en": "Discretize the continuous action space — say, one option every 5 degrees"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个简单直接的方法，在某些场景下确实可行。但它有两个问题：精度受限（5度的间隔可能太粗），而且维度爆炸——如果一个机器人有6个关节，每个关节离散化为72个选项，总的动作组合就是72的6次方，超过一千亿种。我们需要一种更优雅的方法来处理连续动作。",
+              "en": "That's a simple, direct approach, and it does work in some scenarios. But it has two problems: limited precision (5-degree intervals might be too coarse) and dimension explosion — if a robot has 6 joints, each discretized into 72 options, the total action combinations are 72 to the 6th power, over a hundred billion. We need a more elegant way to handle continuous actions."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "output-action",
+          "text": {
+            "zh": "让网络直接输出动作值——是输出「该做什么」",
+            "en": "Have the network directly output the action — instead of Q-values, output 「what to do」"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个思路打开了一扇全新的大门。你描述的正是「策略网络」的概念——网络直接输出应该执行的动作，而不是评估每个动作的价值。这种方法叫做「策略梯度」。它完全避开了枚举动作的问题，因为网络直接告诉你该做什么。这正是我们下节课的主题。",
+              "en": "This idea opens an entirely new door. What you've described is the concept of a 「policy network」 — the network directly outputs the action to take, rather than evaluating each action's value. This approach is called 「policy gradient」. It completely sidesteps the action enumeration problem, because the network directly tells you what to do. That's exactly the topic of our next lesson."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "optimize-q",
+          "text": {
+            "zh": "用优化算法在Q函数上搜索——找到使Q值最大的动作",
+            "en": "Use optimization to search over the Q-function — find the action that maximizes Q"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "理论上可行，但在实践中代价很高。每做一次决策，你都需要运行一个优化过程来搜索最优动作，这既缓慢又可能陷入局部最优。有一个更好的方法：让一个网络直接学习输出最优动作。这就是策略梯度方法的核心思想：用一个「策略网络」代替「搜索最大Q值」的过程。下节课我们会详细讲。",
+              "en": "Theoretically feasible, but expensive in practice. Every time you make a decision, you'd need to run an optimization process to search for the optimal action — that's slow and prone to local optima. There's a better way: have a network directly learn to output the optimal action. This is the core idea of policy gradient methods — replacing 「search for maximum Q」 with a 「policy network」. We'll cover this in detail next lesson."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "DQN打开了深度强化学习的大门，但它只是第一步。连续动作、更复杂的环境、更长的决策链——这些都需要新的方法。下节课，我们会学习一种完全不同的思路：直接优化策略，而不是学习价值函数。",
+        "en": "DQN opened the door to deep reinforcement learning, but it was just the first step. Continuous actions, more complex environments, longer decision chains — all require new methods. Next lesson, we'll learn an entirely different approach: directly optimizing the policy instead of learning the value function."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "DQN是深度强化学习的分水岭——2013年发表，用同一个算法在49种Atari游戏中超越人类。核心创新：经验回放（打破数据相关性）+ 目标网络（稳定训练目标）。重要启示：复杂策略可以从简单目标中涌现。局限：只适用于离散动作空间，无法直接处理连续动作。下一步：策略梯度方法。",
+        "en": "DQN was deep RL's watershed — published 2013, one algorithm surpassed humans in 49 Atari games. Core innovations: experience replay (breaks data correlation) + target network (stabilizes training target). Key insight: complex strategies can emerge from simple objectives. Limitation: only works for discrete action spaces, can't directly handle continuous actions. Next: policy gradient methods."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "回顾一下——DQN之前，没有人认为深度学习和强化学习能这样结合。很多人觉得神经网络太不稳定、太难训练，不适合做价值近似。但经验回放和目标网络这两个简洁的想法解决了稳定性问题。有时候，突破不在于提出一个全新的理论，而在于找到让已有理论真正运行起来的方法。",
+        "en": "Looking back — before DQN, nobody believed deep learning and reinforcement learning could be combined this way. Many thought neural networks were too unstable, too hard to train for value approximation. But the two elegant ideas of experience replay and target network solved the stability problem. Sometimes, breakthroughs aren't about proposing entirely new theories, but about finding ways to make existing theories actually work."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "西尔弗教授按下遥控器，四个Atari游戏的画面同时暂停。每个画面的角落都显示着一个远超人类平均水平的分数。他转身在白板上写下两个词：Experience Replay、Target Network。然后他划了一条线，线的另一端写下了一个问号。「DQN学会了打游戏，」他说，「但游戏只是开始。真正的目标比这大得多。」他走出教室时，你注意到他的步伐比来时更快了——好像急着赶去做什么更重要的事情。屏幕上的分数静静闪烁着，像是在等待下一局游戏的开始。",
+        "en": "Prof. Silver presses the remote, and all four Atari games pause simultaneously. Each screen's corner displays a score far exceeding the human average. He turns and writes two phrases on the whiteboard: Experience Replay, Target Network. Then he draws a line, and at the other end writes a question mark. 「DQN learned to play games」, he says, 「but games are just the beginning. The real goal is much bigger」. As he walks out, you notice his pace is quicker than when he arrived — as if hurrying to something more important. The scores on screen flicker quietly, as if waiting for the next game to begin."
+      }
+    }
+  ]
+}

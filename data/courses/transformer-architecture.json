@@ -1,0 +1,52 @@
+{
+  "id": "transformer-architecture",
+  "name": {
+    "zh": "Transformer架构",
+    "en": "The Transformer Architecture"
+  },
+  "description": {
+    "zh": "一篇名为「Attention Is All You Need」的论文改写了AI的底层逻辑。瓦斯瓦尼教授将带你理解自注意力机制如何让信息自己找到它需要关注的地方，多头注意力如何同时捕捉多种关系，以及为什么Transformer能够完全取代循环网络——并成为现代AI几乎所有重大突破的基石。",
+    "en": "A paper titled 「Attention Is All You Need」 rewrote the fundamental logic of AI. Prof. Vaswani will help you understand how self-attention lets information find what it needs to attend to, how multi-head attention captures multiple relationships simultaneously, and why the Transformer could completely replace recurrent networks — becoming the foundation for virtually every major breakthrough in modern AI."
+  },
+  "grade": "grade-5",
+  "teacher": "prof-vaswani",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-self-attention",
+      "description": {
+        "zh": "理解自注意力机制的Query-Key-Value框架及其计算过程",
+        "en": "Understand the Query-Key-Value framework of self-attention and its computation"
+      }
+    },
+    {
+      "id": "obj-multi-head",
+      "description": {
+        "zh": "掌握多头注意力和位置编码的原理与必要性",
+        "en": "Master the principles and necessity of multi-head attention and positional encoding"
+      }
+    },
+    {
+      "id": "obj-transformer-arch",
+      "description": {
+        "zh": "理解完整的Transformer编码器-解码器架构",
+        "en": "Understand the complete Transformer encoder-decoder architecture"
+      }
+    },
+    {
+      "id": "obj-why-scale",
+      "description": {
+        "zh": "理解Transformer相比循环网络的并行优势及其可扩展性",
+        "en": "Understand Transformer's parallelization advantage over recurrent networks and its scalability"
+      }
+    }
+  ]
+}

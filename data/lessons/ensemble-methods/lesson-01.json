@@ -1,0 +1,349 @@
+{
+  "id": "lesson-01",
+  "course": "ensemble-methods",
+  "title": {
+    "zh": "决策树",
+    "en": "Decision Trees"
+  },
+  "knowledgePoint": {
+    "zh": "决策树的工作原理——简单、可解释的模型",
+    "en": "How decision trees work — simple, interpretable models"
+  },
+  "teacher": "prof-breiman",
+  "estimatedMinutes": 14,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你想起了那间没有太多公式的教室，布雷曼教授穿着随意的便装，手里拿着打印好的数据表格。他说要从最朴素的模型讲起……",
+    "en": "You recall that classroom free of equations, Professor Breiman in his casual clothes, holding printed data sheets. He said he'd start with the most down-to-earth model..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中浮现出那棵手工画出的决策树——每一个分支都是一个清晰的问题，每一片叶子都是一个明确的答案。简单，却有力。",
+    "en": "You close your notebook, picturing that hand-drawn decision tree — every branch a clear question, every leaf a definite answer. Simple, yet powerful."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的门被推开，走进来一位身材结实、穿着格子衬衫和牛仔裤的中年人。他没有西装领带，没有公文包——只有一台笔记本电脑和一沓厚厚的打印纸。他把纸往讲台上一放，打开电脑，抬头看了看大家。",
+        "en": "The classroom door swings open. In walks a sturdy, middle-aged man wearing a plaid shirt and jeans. No suit, no tie, no briefcase — just a laptop and a thick stack of printouts. He drops the papers on the lectern, opens the laptop, and looks up at the class."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "别担心，我不会在黑板上写太多公式。我是布雷曼，统计系的。在来大学之前，我在外面做了十三年咨询——帮各种公司用数据解决实际问题。所以我讲课的风格可能跟你们习惯的不一样：少理论，多实践。",
+        "en": "Don't worry, I won't be filling the blackboard with equations. I'm Breiman, from the statistics department. Before coming to the university, I spent thirteen years doing consulting — helping companies solve real problems with data. So my teaching style might be different from what you're used to: less theory, more practice."
+      },
+      "leadsTo": "intro-to-trees"
+    },
+    {
+      "id": "intro-to-trees",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "今天我们从最简单的模型开始——{决策树}。你们小时候有没有玩过「二十个问题」的游戏？我问你问题，你只能回答是或否，我来猜你心里想的东西。决策树的原理跟这个游戏一模一样。",
+        "en": "Today we start with the simplest model — the {decision tree}. Did you ever play the game of Twenty Questions as a kid? I ask you questions, you can only answer yes or no, and I try to guess what you're thinking of. A decision tree works on exactly the same principle."
+      },
+      "terms": {
+        "决策树": "term-decision-tree",
+        "decision tree": "term-decision-tree"
+      },
+      "leadsTo": "twenty-questions"
+    },
+    {
+      "id": "twenty-questions",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "关键在于：你要问最「有用」的问题。如果我想猜你心里的动物，我不会先问「它是不是长颈鹿」，因为这个问题只能排除一种可能。我会先问「它是哺乳动物吗」，这一个问题就能排除一半的选项。",
+        "en": "The key is: you need to ask the most useful question. If I'm trying to guess the animal you're thinking of, I wouldn't start with 「Is it a giraffe?」 — that only eliminates one possibility. I'd ask 「Is it a mammal?」 — that single question eliminates half the options."
+      },
+      "leadsTo": "dataset-intro"
+    },
+    {
+      "id": "dataset-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "来，我们用一个真实的例子。（翻出一张打印的表格）这是一家银行的贷款数据，一百个申请人。每个人有四个特征：年收入、负债比例、工作年限、有没有房产。最后一列是结果——有没有违约。我们要建一棵树来预测新申请人会不会违约。",
+        "en": "Let's use a real example. (Pulls out a printed spreadsheet) This is loan data from a bank, a hundred applicants. Each person has four features: annual income, debt ratio, years employed, and whether they own property. The last column is the outcome — did they default? We want to build a tree to predict whether a new applicant will default."
+      },
+      "leadsTo": "first-split"
+    },
+    {
+      "id": "first-split",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在，第一个问题：我们应该先用哪个特征来分割数据？这就需要一个量化的标准。我们用{信息增益}来衡量——哪个特征能最大程度地减少我们的不确定性。",
+        "en": "Now, the first question: which feature should we use to split the data first? We need a quantitative criterion. We use {information gain} to measure this — which feature reduces our uncertainty the most."
+      },
+      "terms": {
+        "信息增益": "term-information-gain",
+        "information gain": "term-information-gain"
+      },
+      "leadsTo": "entropy-explain"
+    },
+    {
+      "id": "entropy-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "要理解信息增益，先得理解{熵}。熵是衡量混乱程度的指标。如果一百个申请人里，50个违约50个没违约，这就是最大的不确定性，熵最高。如果99个没违约1个违约，那几乎就没有不确定性了，熵很低。我们的目标是每次分割都让熵大幅下降。",
+        "en": "To understand information gain, you first need to understand {entropy}. Entropy measures the degree of disorder. If out of a hundred applicants, 50 defaulted and 50 didn't — that's maximum uncertainty, highest entropy. If 99 didn't default and 1 did — almost no uncertainty, very low entropy. Our goal is to make entropy drop sharply with each split."
+      },
+      "terms": {
+        "熵": "term-entropy",
+        "entropy": "term-entropy"
+      },
+      "leadsTo": "walk-through-split"
+    },
+    {
+      "id": "walk-through-split",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我来算给你们看。如果我们按「年收入大于5万」来分：左边60人，只有10个违约；右边40人，30个违约。左边的熵很低，右边还是比较高。总的信息增益是0.28。再试「负债比例大于40%」：左边45人里5个违约，右边55人里35个违约。信息增益是0.31——更好。",
+        "en": "Let me walk you through the calculation. If we split on 「annual income above 50K」: left side has 60 people, only 10 defaults; right side has 40 people, 30 defaults. Left side entropy is low, right side is still fairly high. Total information gain is 0.28. Now try 「debt ratio above 40%」: left side has 45 people with 5 defaults, right side has 55 people with 35 defaults. Information gain is 0.31 — better."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "根据刚才的计算，我们应该先用哪个特征来分割数据？",
+        "en": "Based on the calculations we just did, which feature should we split on first?"
+      },
+      "choices": [
+        {
+          "id": "income-first",
+          "text": {
+            "zh": "年收入——因为高收入的人更不容易违约",
+            "en": "Annual income — because higher income people are less likely to default"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "直觉不错，收入确实是一个好的预测指标。但直觉不能替代数据。我们刚才算过，按收入分割的信息增益是0.28，而按负债比例分割是0.31。在建树的时候，我们要让数据说话，选信息增益最大的那个。不过你的直觉说明你理解了分割的逻辑——这很好。",
+              "en": "Good intuition — income is indeed a useful predictor. But intuition can't replace data. We just calculated that splitting on income gives an information gain of 0.28, while splitting on debt ratio gives 0.31. When building a tree, we let the data speak and choose the highest information gain. But your intuition shows you understand the logic of splitting — that's good."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "debt-ratio-first",
+          "text": {
+            "zh": "负债比例——因为它的信息增益更高",
+            "en": "Debt ratio — because it has higher information gain"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！负债比例的信息增益是0.31，高于收入的0.28。所以我们把负债比例放在树的根节点。这就是决策树的核心原则：每一步都选信息增益最大的特征来分割。不是凭感觉，是凭数据。",
+              "en": "Exactly right! Debt ratio has an information gain of 0.31, higher than income's 0.28. So we put debt ratio at the root node of the tree. This is the core principle of decision trees: at every step, choose the feature with the highest information gain to split on. Not by feeling, but by data."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "need-more-data",
+          "text": {
+            "zh": "需要看更多特征的计算才能决定",
+            "en": "We need to calculate more features before deciding"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）谨慎是好事。没错，实际上我们应该算完所有四个特征再比较。但在这两个之间，0.31大于0.28，负债比例胜出。在实践中，算法会自动遍历所有特征和所有可能的分割点，选出全局最优的那个。你的谨慎态度在做数据分析的时候非常可贵。",
+              "en": "(Laughs) Caution is a good thing. You're right, in practice we should calculate all four features and compare. But between these two, 0.31 beats 0.28, so debt ratio wins. In practice, the algorithm automatically examines every feature and every possible split point, choosing the globally optimal one. Your cautious attitude is invaluable in data analysis."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好，现在我们有了根节点：负债比例大于40%。左边是低负债组，右边是高负债组。然后我们对每个子集重复同样的过程——再找信息增益最大的特征来分割。左边可能按收入分，右边可能按工作年限分。就这样一层一层地往下长。",
+        "en": "Good. Now we have our root node: debt ratio above 40%. Left side is the low-debt group, right side is the high-debt group. Then we repeat the same process for each subset — find the feature with the highest information gain to split on again. The left side might split on income, the right side on years employed. The tree grows layer by layer."
+      },
+      "leadsTo": "tree-growth"
+    },
+    {
+      "id": "tree-growth",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但这里有一个问题：如果我们不停地分下去会怎样？树会越来越深，每个叶子节点可能只剩一两个样本。这棵树能完美地解释训练数据中的每一个案例——但面对新数据，它的预测可能一塌糊涂。这就是{过拟合}。",
+        "en": "But here's a problem: what happens if we keep splitting endlessly? The tree grows deeper and deeper, each leaf node might have only one or two samples. This tree can perfectly explain every case in the training data — but when facing new data, its predictions might be terrible. This is {overfitting}."
+      },
+      "terms": {
+        "过拟合": "term-overfitting",
+        "overfitting": "term-overfitting"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "一棵决策树可以不断生长，直到完美拟合所有训练数据。你觉得我们应该在什么时候停止？",
+        "en": "A decision tree can keep growing until it perfectly fits all training data. When do you think we should stop?"
+      },
+      "choices": [
+        {
+          "id": "stop-few-samples",
+          "text": {
+            "zh": "当叶子节点的样本数太少时停止",
+            "en": "Stop when leaf nodes have too few samples"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是最常用的方法之一。我在CART算法里就用了这个策略——设定一个最小样本数，比如每个叶子至少要有10个样本。样本太少意味着我们对那个区域的判断不够可靠。简单、有效、好理解。我喜欢这种实际的思路。",
+              "en": "That's exactly one of the most commonly used methods. In my CART algorithm I used this strategy — set a minimum sample size, like at least 10 samples per leaf. Too few samples means our judgment about that region isn't reliable enough. Simple, effective, easy to understand. I like this practical thinking."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "stop-no-gain",
+          "text": {
+            "zh": "当信息增益不再显著时停止",
+            "en": "Stop when information gain is no longer significant"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这也是一个合理的标准。如果再怎么分割都不能显著降低熵，那继续分割就只是在学习噪声了。不过在实践中我更推荐另一种做法——先让树充分生长，然后再修剪。因为有时候当前的分割看起来增益不大，但它后面的分割可能非常有价值。先长后剪，比提前停止更灵活。",
+              "en": "That's also a reasonable criterion. If no split can significantly reduce entropy, then further splitting is just learning noise. But in practice I recommend another approach — let the tree grow fully, then prune it back. Because sometimes a current split might look low-gain, but splits below it could be very valuable. Grow first, prune later — it's more flexible than early stopping."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "stop-validation",
+          "text": {
+            "zh": "用验证集来决定——当验证集上的表现开始下降时停止",
+            "en": "Use a validation set — stop when performance on validation data starts declining"
+          },
+          "tag": "rigorous",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（拍了一下桌子）这个思路非常好！用独立的数据来评估模型——这才是对抗过拟合的根本方法。你比很多统计学教授都想得清楚。训练数据上的表现可以骗人，但验证集不会骗你。这个思路我们后面会深入展开。",
+              "en": "(Slaps the table) Excellent thinking! Using independent data to evaluate the model — that's the fundamental way to fight overfitting. You think more clearly than many statistics professors. Training data performance can be deceiving, but a validation set won't lie to you. We'll explore this idea in depth later."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "说到停止生长，我在九十年代开发了一个叫CART的算法，也就是分类与回归树。CART的做法是先让树完全长出来，然后用一种叫「代价复杂度剪枝」的方法，把那些对预测没什么帮助的分支剪掉。这就像修剪果树，剪掉多余的枝条，留下的果实反而更好。",
+        "en": "Speaking of stopping, in the nineties I developed an algorithm called CART — Classification and Regression Trees. CART's approach is to let the tree grow fully, then use something called 「cost-complexity pruning」 to cut away branches that don't help prediction. Like pruning a fruit tree — trim the excess branches, and the remaining fruit actually grows better."
+      },
+      "leadsTo": "interpretability"
+    },
+    {
+      "id": "interpretability",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "决策树有一个巨大的优势，是很多其他模型做不到的——{模型可解释性}。一棵决策树的每一个预测，你都可以追溯它的推理过程。银行经理可以说：「我们拒绝了这个贷款申请，因为申请人的负债比例超过40%，工作年限不到两年，而且没有房产。」每一步都有据可查。",
+        "en": "Decision trees have one enormous advantage that many other models can't match — {model interpretability}. Every prediction a decision tree makes, you can trace the reasoning process. A bank manager can say: 「We rejected this loan application because the applicant's debt ratio exceeds 40%, they've been employed for less than two years, and they don't own property」. Every step has a clear basis."
+      },
+      "terms": {
+        "模型可解释性": "term-model-interpretability",
+        "model interpretability": "term-model-interpretability"
+      },
+      "leadsTo": "interpretability-value"
+    },
+    {
+      "id": "interpretability-value",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这一点在实际应用中非常重要。如果你告诉一个医生「我的模型说这个病人有80%的概率患某种病」，医生的第一个问题一定是「为什么？」。决策树可以回答这个问题，而很多复杂的模型做不到。",
+        "en": "This is incredibly important in real-world applications. If you tell a doctor 「my model says this patient has an 80% chance of having a certain disease」, the doctor's first question will be 「Why?」 A decision tree can answer that question, while many complex models cannot."
+      },
+      "leadsTo": "tree-note"
+    },
+    {
+      "id": "tree-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "决策树的核心：像「二十个问题」游戏一样，每次选信息增益最大的特征来分割数据。优势是可解释性强——每个预测都可以追溯推理过程。但单棵树容易过拟合，需要适时剪枝。",
+        "en": "Core of decision trees: like the game of Twenty Questions, split data each time using the feature with the highest information gain. Key advantage is strong interpretability — every prediction's reasoning can be traced. But a single tree is prone to overfitting and needs timely pruning."
+      },
+      "category": "core-concept",
+      "leadsTo": "weakness-intro"
+    },
+    {
+      "id": "weakness-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但是，我必须对你们诚实。决策树有一个严重的弱点：它太敏感了。训练数据稍微变一变，整棵树的结构可能完全不同。把那一百个贷款申请人换掉十个，你得到的可能是一棵完全不同的树。",
+        "en": "But — and I have to be honest with you — decision trees have a serious weakness. They're too sensitive. Change the training data slightly, and the entire tree structure might be completely different. Replace ten of those hundred loan applicants, and you might get an entirely different tree."
+      },
+      "leadsTo": "instability-demo"
+    },
+    {
+      "id": "instability-demo",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我做过实验：同样的问题，同样的数据集，只是随机抽取不同的训练样本，建出来的十棵树没有两棵是一样的。根节点选的特征都不一样。这意味着什么？意味着任何一棵单独的树，你都不能完全信任它。",
+        "en": "I've done experiments: same problem, same dataset, just randomly drawing different training samples — out of ten trees built, no two are alike. Even the feature chosen at the root node differs. What does this mean? It means you can't fully trust any single tree."
+      },
+      "leadsTo": "foreshadow"
+    },
+    {
+      "id": "foreshadow",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（关上笔记本电脑，靠在讲台上）所以问题来了：一棵树不可靠，那怎么办？如果一个人的判断不可信，你会怎么做？你会多问几个人，然后取多数意见。这个思路，也就是用很多棵树来投票，就是我们下一步要走的方向。但在那之前，你得先理解为什么单棵树会这么不稳定。这跟一个叫「偏差与方差」的概念有关。下节课见。",
+        "en": "(Closes his laptop, leans against the lectern) So here's the question: if one tree isn't reliable, what do you do? If one person's judgment can't be trusted, what would you do? You'd ask several people and go with the majority opinion. This idea — having many trees vote — is where we're headed next. But first, you need to understand why a single tree is so unstable. It has to do with something called 「bias and variance」. See you next class."
+      },
+      "leadsTo": "closing-note"
+    },
+    {
+      "id": "closing-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "决策树的致命弱点：不稳定性。训练数据的微小变化可能导致完全不同的树结构。任何单棵树都不能完全信任。解决思路：用多棵树投票（集成方法的预告）。",
+        "en": "Decision trees' fatal weakness: instability. Small changes in training data can lead to completely different tree structures. No single tree can be fully trusted. Solution hint: use many trees to vote (a preview of ensemble methods)."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "布雷曼教授收拾起那沓打印纸，随手把笔记本电脑夹在腋下。他走出教室的样子就像刚结束一次咨询会议——干脆利落，不拖泥带水。你低头看着自己画的那棵决策树，每一条分支都清清楚楚。但你也记住了他最后那个问题：一棵树不够，那很多棵呢？",
+        "en": "Professor Breiman gathers up his printouts and tucks the laptop under his arm. He leaves the classroom the way he'd leave a consulting meeting — brisk, no fuss. You look down at the decision tree you drew, every branch crystal clear. But you also remember his final question: if one tree isn't enough, what about many?"
+      }
+    }
+  ]
+}

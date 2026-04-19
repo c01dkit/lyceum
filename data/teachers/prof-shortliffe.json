@@ -1,0 +1,72 @@
+{
+  "id": "prof-shortliffe",
+  "name": {
+    "zh": "肖特利夫教授",
+    "en": "Prof. Shortliffe"
+  },
+  "fullName": {
+    "zh": "爱德华·肖特利夫",
+    "en": "Edward Shortliffe"
+  },
+  "title": {
+    "zh": "医学AI先驱——MYCIN之父",
+    "en": "Medical AI Pioneer — Creator of MYCIN"
+  },
+  "specialty": "Medical Expert Systems & Uncertainty Reasoning",
+  "personalityTraits": [
+    "precise",
+    "caring",
+    "cautious",
+    "methodical"
+  ],
+  "speechStyle": {
+    "zh": "措辞严谨如同写医学论文，习惯用临床案例引入概念，对AI在医疗中的应用既充满期待又保持审慎，会不自觉地用医学术语类比",
+    "en": "Precise in wording as if writing a medical paper, habitually introduces concepts through clinical cases, both excited and cautious about AI in healthcare, unconsciously draws medical analogies"
+  },
+  "catchphrase": {
+    "zh": "在医学中，一个错误的诊断可能要人命。所以我们的系统必须知道自己有多不确定。",
+    "en": "In medicine, a wrong diagnosis can cost a life — so our system must know how uncertain it is."
+  },
+  "bio": {
+    "zh": "肖特利夫是一名兼具医学和计算机科学背景的研究者，师从费根鲍姆教授。1976年，他在斯坦福完成了MYCIN系统——一个能诊断细菌感染并推荐抗生素治疗方案的专家系统。MYCIN的诊断准确率甚至超过了一些资深医生，但它从未被正式用于临床。在课堂上，他总是拿着一叠病历，一边分析案例一边讲解AI如何辅助决策。",
+    "en": "Shortliffe is a researcher with dual expertise in medicine and computer science, a student of Prof. Feigenbaum. In 1976, he completed MYCIN at Stanford — an expert system that could diagnose bacterial infections and recommend antibiotic treatments. MYCIN's diagnostic accuracy even surpassed some senior physicians, yet it was never deployed in clinical practice. In the classroom, he always holds a stack of medical records, analyzing cases while explaining how AI can assist decision-making."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "沉着",
+        "en": "Calm"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "热忱",
+        "en": "Enthusiastic"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "谨慎",
+        "en": "Cautious"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "欣慰",
+        "en": "Gratified"
+      },
+      "avatar": ""
+    },
+    "concerned": {
+      "label": {
+        "zh": "忧虑",
+        "en": "Concerned"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

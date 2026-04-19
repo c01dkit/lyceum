@@ -1,0 +1,365 @@
+{
+  "id": "lesson-05",
+  "course": "multimodal-intelligence",
+  "title": {
+    "zh": "感知与理解的鸿沟",
+    "en": "The Gap Between Perception and Understanding"
+  },
+  "knowledgePoint": {
+    "zh": "从模式匹配到真正的世界理解——当前多模态AI尚未跨越的鸿沟",
+    "en": "From pattern matching to genuine world understanding — the gap multimodal AI has not yet crossed"
+  },
+  "teacher": "prof-li",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你闭上眼，最后一节课的画面再次浮现。金色的阳光从落地窗倾泻而入，全息投影中显示着两个巨大的词：「感知」和「理解」。它们之间隔着一道宽阔的、闪烁着光芒的裂缝。李飞飞教授站在裂缝的一侧，伸出手，仿佛在丈量那道鸿沟的宽度。",
+    "en": "You close your eyes, and images from the final lesson reappear. Golden sunlight pours through floor-to-ceiling windows, while the holographic projection displays two enormous words — 「Perception」 and 「Understanding」 — separated by a wide, shimmering crack. Prof. Li stands on one side of the gap, reaching out her hand, as if measuring its width."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那道鸿沟仍然清晰地印在脑海中。感知和理解之间的距离，也许就是当前AI与真正智能之间的距离。但李飞飞教授的最后一句话给了你信心——「每一步真诚的探索，都让我们离答案更近一点。」",
+    "en": "You return to the present. That gap remains vivid in your mind. The distance between perception and understanding may well be the distance between current AI and true intelligence. But Prof. Li's final words gave you confidence — 「Every honest step of exploration brings us a little closer to the answer」."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。你走进教室时，发现今天的布置与以往不同。全息投影没有显示复杂的模型架构或绚丽的数据流——只有两个安静地悬浮在空气中的巨大词语：左边是「感知」，右边是「理解」，中间隔着一道宽阔的裂缝，散发着淡淡的金色光芒。李飞飞教授坐在窗边的一把椅子上，阳光洒在她身上，表情平静而深沉。",
+        "en": "The final lesson. As you enter the classroom, you find today's arrangement different from before. The holographic projection displays no complex model architectures or dazzling data streams — only two enormous words floating quietly in the air: 「Perception」 on the left, 「Understanding」 on the right, separated by a wide crack emanating a faint golden glow. Prof. Li sits in a chair by the window, sunlight washing over her, her expression calm and contemplative."
+      },
+      "leadsTo": "opening"
+    },
+    {
+      "id": "opening",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（站起来，走到投影前）在过去四节课里，我们走了很远。从文本AI的局限，到CLIP的桥梁，到多模态大模型的「看见」，再到空间智能的愿景。今天是最后一课，我想和你们一起面对一个我自己也没有答案的问题。（指向投影中的裂缝）这道鸿沟，也就是感知和理解之间的鸿沟，到底有多宽？我们能跨过去吗？",
+        "en": "(Stands up and walks to the projection) Over the past four lessons, we've come a long way. From the limitations of text-only AI, to CLIP's bridge, to the 「seeing」 of multimodal large models, to the vision of spatial intelligence. Today is the last lesson, and I want to face a question with you that I myself don't have an answer to. (Points to the crack in the projection) This gap — the gap between perception and understanding — how wide is it really? Can we cross it?"
+      },
+      "leadsTo": "impressive-demo"
+    },
+    {
+      "id": "impressive-demo",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先让我承认——当今的多模态AI确实令人印象深刻。（全息投影展示一系列成功案例）GPT-4V能描述一张复杂的照片，分析一张科学图表，甚至读懂手写的笔记。Gemini能理解视频中的事件序列。这些能力在五年前还是不可想象的。很多人看到这些演示后会说：「AI已经理解了。」",
+        "en": "Let me first acknowledge — today's multimodal AI is truly impressive. (The holographic projection shows a series of success cases) GPT-4V can describe a complex photo, analyze a scientific chart, even read handwritten notes. Gemini can understand event sequences in videos. These capabilities were unimaginable five years ago. Many people see these demonstrations and say: 「AI already understands」."
+      },
+      "leadsTo": "but-then"
+    },
+    {
+      "id": "but-then",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但是——（投影切换到一系列失败案例）让我给你们看一些让我保持清醒的例子。",
+        "en": "But — (the projection switches to a series of failure cases) let me show you some examples that keep me grounded."
+      },
+      "leadsTo": "physics-failure"
+    },
+    {
+      "id": "physics-failure",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（展示一张图片：一个气球被绑在一块砖头上）我问最先进的多模态模型：「如果剪断绳子，会发生什么？」它的回答是：「气球和砖头都会掉到地上。」它忘了气球会飞走。（展示另一张图：一杯水倒扣在桌上）我问：「如果翻转这个杯子，水会怎样？」它说：「水会留在杯中。」它完全忽略了重力。这些是人类三岁小孩都不会犯的错误。",
+        "en": "(Shows an image: a balloon tied to a brick) I ask the most advanced multimodal model: 「What happens if you cut the string?」 Its answer: 「Both the balloon and the brick will fall to the ground」. — It forgot the balloon would float away. (Shows another image: a glass of water placed upside down on a table) I ask: 「If you flip this cup, what happens to the water?」 It says: 「The water stays in the cup」. — It completely ignores gravity. These are mistakes a three-year-old human wouldn't make."
+      },
+      "leadsTo": "common-sense-gap"
+    },
+    {
+      "id": "common-sense-gap",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这些失败案例揭示了一个关键问题：当前的多模态AI缺乏{常识推理}能力。人类拥有大量关于物理世界的「隐含知识」——东西会掉下去，水会流动，玻璃会碎，火会烫。这些知识如此基本，以至于我们从来不会在文字中明确表述它们。但AI不具备这些知识，因为它从未亲身体验过。",
+        "en": "These failures reveal a critical issue: current multimodal AI lacks {common sense reasoning} ability. Humans possess a vast body of 「implicit knowledge」 about the physical world — things fall down, water flows, glass breaks, fire burns. This knowledge is so fundamental that we never explicitly state it in text. But AI doesn't possess this knowledge, because it has never experienced it firsthand."
+      },
+      "terms": {
+        "常识推理": "term-common-sense-reasoning",
+        "common sense reasoning": "term-common-sense-reasoning"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "今天的多模态AI能描述复杂图片、分析图表，但在物理常识上犯低级错误。你觉得这种「强大能力与低级失误并存」的现象说明了什么？",
+        "en": "Today's multimodal AI can describe complex images and analyze charts, yet makes basic errors in physical common sense. What do you think this coexistence of 「powerful capabilities and basic mistakes」 tells us?"
+      },
+      "choices": [
+        {
+          "id": "different-intelligence",
+          "text": {
+            "zh": "AI的「智能」和人类的智能是根本不同的——它有不同的优势和盲区",
+            "en": "AI 「intelligence」 is fundamentally different from human intelligence — it has different strengths and blind spots"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常重要的认识。AI的智能和人类智能的分布是完全不同的。人类在物理常识方面几乎不会出错，但在处理海量数据、记忆细节方面远不如AI。AI在模式识别和信息综合方面惊人地强大，但在需要因果理解的地方经常失败。它们的智能图谱就像两个形状完全不同的拼图，有少量重叠但大部分不同。",
+              "en": "This is a very important realization. The distribution of AI intelligence and human intelligence are completely different. Humans almost never err in physical common sense, but fall far behind AI in processing massive data and remembering details. AI is astonishingly powerful at pattern recognition and information synthesis, but frequently fails where causal understanding is needed. Their intelligence profiles are like two entirely different-shaped puzzles, overlapping in a few places but mostly different."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "pattern-matching",
+          "text": {
+            "zh": "它们只是非常高级的模式匹配器——看到的模式越多能力越强，但没有真正的理解",
+            "en": "They are just very advanced pattern matchers — the more patterns seen, the more capable, but no true understanding"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个观点有一定的道理，但我想邀请你更深入地思考「模式匹配」和「理解」之间的边界。如果一个系统能从看过的数十亿图片中提取出抽象的视觉概念，比如「遮挡」「透视」「光影」——这算不算一种理解？也许人类大脑的某些「理解」在底层也是某种形式的模式匹配，只是更加精密和鲁棒。这条边界也许比我们想象的更加模糊。",
+              "en": "There's some truth to this view, but I'd invite you to think more deeply about the boundary between 「pattern matching」 and 「understanding」. If a system can extract abstract visual concepts from billions of images — like 「occlusion」, 「perspective」, 「light and shadow」 — does that count as understanding? Perhaps some of the human brain's 「understanding」 is also a form of pattern matching at its base, just more refined and robust. That boundary may be more blurred than we imagine."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "missing-ingredient",
+          "text": {
+            "zh": "也许它们的学习方式缺少某种关键成分——某种当前方法论无法提供的东西",
+            "en": "Perhaps their learning approach is missing some crucial ingredient — something current methodology cannot provide"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我常常在深夜思考的问题。也许缺失的是具身经验，是在物理世界中的交互。也许缺失的是时间连续性，因为当前的模型处理的都是静态快照。也许缺失的是某种我们还没发明出来的学习机制。科学中最激动人心的时刻，就是你意识到缺少什么，但还不知道答案。这意味着巨大的发现正等在前方。",
+              "en": "This is exactly what I often ponder late at night. Perhaps what's missing is embodied experience — interaction in the physical world. Perhaps it's temporal continuity — current models process static snapshots. Perhaps it's some learning mechanism we haven't invented yet. The most exciting moment in science is when you realize what's missing but don't yet know the answer — because it means a great discovery awaits."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我再从另一个角度来审视这道鸿沟。如果你们学过Pearl教授在三年级的课，那门课讲的是贝叶斯推理和因果关系，你应该记得他反复强调的一点：相关性和因果性之间有根本的区别。",
+        "en": "Let me examine this gap from another angle. If you took Prof. Pearl's course in Grade 3 — on Bayesian reasoning and causality — you should remember a point he emphasized repeatedly: there is a fundamental difference between correlation and causation."
+      },
+      "leadsTo": "causal-gap"
+    },
+    {
+      "id": "causal-gap",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "当前的多模态AI本质上是在学习统计相关性。它学到「气球」的图片通常和「飘浮」这个词共同出现，但它没有学到「氦气密度小于空气，因此气球受浮力作用会上升」。前者是相关性，后者是{因果理解}。真正的理解需要因果模型——不仅知道「什么和什么经常一起出现」，还要知道「为什么它们会一起出现」。",
+        "en": "Current multimodal AI is essentially learning statistical correlations. It learns that pictures of 「balloons」 often co-occur with the word 「float」, but it hasn't learned that 「helium is less dense than air, therefore balloons rise due to buoyancy」. The former is correlation; the latter is {causal understanding}. True understanding requires causal models — knowing not just 「what tends to appear together」 but 「why they appear together」."
+      },
+      "terms": {
+        "因果理解": "term-causal-understanding",
+        "causal understanding": "term-causal-understanding"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "你认为多模态AI能否最终跨越这道「感知到理解」的鸿沟？",
+        "en": "Do you believe multimodal AI can ultimately cross this gap from 「perception to understanding」?"
+      },
+      "choices": [
+        {
+          "id": "yes-eventually",
+          "text": {
+            "zh": "可以——只要给它足够的数据、更好的架构、以及具身经验",
+            "en": "Yes — given enough data, better architectures, and embodied experience"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一种积极的技术乐观主义。确实，AI领域的每一次「不可能」后来都被打破了——人们曾经认为机器不可能下赢围棋，不可能写出流畅的文章，不可能描述图片。也许「不可能理解」也只是当前的局限。但我要提醒你：也许跨越这道鸿沟需要的是一个我们目前还看不到的范式变革，而非现有方法的渐进改进。",
+              "en": "That's a kind of positive technological optimism. Indeed, every 「impossibility」 in AI has been broken — people once thought machines could never beat humans at Go, never write fluent prose, never describe images. Perhaps 「cannot understand」 is just a current limitation too. But I should caution: perhaps crossing this gap requires a paradigm shift we can't yet see, rather than incremental improvements to existing methods."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "no-fundamental",
+          "text": {
+            "zh": "不能——统计学习有其根本性的天花板，某些类型的理解需要完全不同的机制",
+            "en": "No — statistical learning has a fundamental ceiling; some types of understanding require entirely different mechanisms"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个严肃的哲学立场，我很尊重它。Pearl教授可能也会同意你。他一直主张，没有因果推理框架的统计学习永远无法达到真正的理解。也许「理解」需要一种全新的计算范式，它不能仅仅依赖更大的模型和更多的数据，而必须是一种完全不同的信息处理方式。这个问题的答案，坦白说，我也不确定。但提出正确的问题，本身就是进步。",
+              "en": "That's a serious philosophical position, and I respect it deeply. Prof. Pearl would probably agree with you — he has long argued that statistical learning without a causal reasoning framework can never achieve true understanding. Perhaps 「understanding」 requires an entirely new computational paradigm — not just bigger models and more data, but a fundamentally different way of processing information. The answer to this question, honestly, I'm not sure of either. But asking the right question is itself progress."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "wrong-question",
+          "text": {
+            "zh": "也许「理解」这个概念本身需要重新定义——也许存在多种不同类型的理解",
+            "en": "Perhaps the concept of 「understanding」 itself needs redefinition — perhaps there are multiple different types of understanding"
+          },
+          "tag": "meta-thinking",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（微笑）又是一个质疑问题本身的回答。这让我想起了图灵教授在一年级课堂上的策略。也许「理解」确实不是一个非此即彼的概念。也许有感知层面的理解、有语义层面的理解、有因果层面的理解、有社会层面的理解。AI也许已经掌握了前两层，正在向第三层和第四层摸索。也许鸿沟其实是需要一步一步攀登的阶梯，而不是需要一跃而过的峡谷。",
+              "en": "(Smiles) Another answer that questions the question itself — it reminds me of Prof. Turing's strategy in his first-year classroom. Perhaps 「understanding」 truly isn't an all-or-nothing concept. Perhaps there's perceptual understanding, semantic understanding, causal understanding, social understanding. Maybe AI has already mastered the first two layers and is groping toward the third and fourth. Maybe the gap isn't a canyon to leap across, but a staircase to climb step by step."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "无论答案是什么，有一件事我非常确定：我们正走在一条正确的道路上。从纯文本到多模态，从2D识别到3D理解，从被动观察到具身交互，每一步都在缩小感知与理解之间的距离。也许我们这一代人无法完全跨越那道鸿沟，但我们能让它变得更窄。",
+        "en": "Whatever the answer, there is one thing I'm very certain of — we are on the right path. From text-only to multimodal, from 2D recognition to 3D understanding, from passive observation to embodied interaction — every step narrows the distance between perception and understanding. Perhaps our generation cannot fully cross that gap, but we can make it narrower."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "感知vs理解的鸿沟：当前多模态AI擅长模式识别和信息综合，但缺乏物理常识和因果推理。关键区分——相关性（统计共现）vs因果性（理解「为什么」）。跨越这道鸿沟可能需要：具身经验、因果推理框架、或者某种全新的学习范式。",
+        "en": "The perception vs. understanding gap: current multimodal AI excels at pattern recognition and information synthesis but lacks physical common sense and causal reasoning. Key distinction — correlation (statistical co-occurrence) vs. causation (understanding 「why」). Crossing this gap may require: embodied experience, causal reasoning frameworks, or some entirely new learning paradigm."
+      },
+      "category": "core-concept",
+      "leadsTo": "human-centered-vision"
+    },
+    {
+      "id": "human-centered-vision",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "在这门课的最后，我想回到一个贯穿始终的主题——以人为中心的AI。技术的进步令人兴奋，但我们必须始终记住一个问题：这一切是为了谁？",
+        "en": "At the end of this course, I want to return to a theme that has run throughout — human-centered AI. Technological progress is exciting, but we must always keep one question in mind: who is all of this for?"
+      },
+      "leadsTo": "personal-reflection"
+    },
+    {
+      "id": "personal-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我做了二十年的AI研究。从ImageNet到多模态模型，到空间智能。每一次技术突破都让我激动不已。但真正让我坚持下来的动力，并不是技术本身的精妙——而是想到这些技术有朝一日可以帮助一位独居的老人安全地生活，可以帮助一个盲人「看见」世界，可以帮助一个偏远山区的孩子获得和城市孩子一样的教育资源。",
+        "en": "I've been doing AI research for twenty years. From ImageNet to multimodal models, to spatial intelligence. Every technical breakthrough thrills me. But what truly keeps me going isn't the elegance of the technology itself — it's knowing that someday these technologies could help an elderly person living alone stay safe, help a blind person 「see」 the world, help a child in a remote mountain village access the same educational resources as a city child."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "在这门课的结尾，你对多模态AI的未来有什么样的期望？",
+        "en": "At the end of this course, what are your expectations for the future of multimodal AI?"
+      },
+      "choices": [
+        {
+          "id": "serve-humanity",
+          "text": {
+            "zh": "我希望它成为一个帮助人类的工具——增强人类能力而非取代人类",
+            "en": "I hope it becomes a tool that helps humanity — augmenting human capabilities rather than replacing humans"
+          },
+          "tag": "humanist",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（眼中闪过一丝感动）这正是我一直以来的信念。AI应该是人类的伙伴，帮助我们做到我们做不到的事情，帮助那些需要帮助的人。是帮助医生看到肉眼看不见的病变。是让每个孩子都能获得个性化的教育。技术的价值在于它服务的对象。",
+              "en": "(A flicker of emotion in her eyes) This is exactly what I've always believed. AI should be humanity's partner, helping us do what we cannot, helping those who need help. Not replacing doctors, but helping doctors see lesions invisible to the naked eye. Not replacing teachers, but enabling every child to receive personalized education. Technology's value lies in whom it serves."
+            }
+          },
+          "leadsTo": "final-dialog"
+        },
+        {
+          "id": "understand-world",
+          "text": {
+            "zh": "我希望它能帮助我们理解智能本身——在构建AI的过程中，我们也在认识人类自己",
+            "en": "I hope it helps us understand intelligence itself — in building AI, we are also coming to know ourselves"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常深远的愿景。确实，每一次试图教机器「理解」世界的尝试，都会反过来让我们更深入地理解人类智能的本质。为什么人类能从几张图片中学会一个新概念？为什么三岁的孩子拥有比最先进AI更好的物理直觉？这些问题不仅关乎AI的未来，也关乎我们对自身的认知。研究AI，就是研究人类自己。",
+              "en": "That's a very far-reaching vision. Indeed, every attempt to teach machines to 「understand」 the world in turn deepens our understanding of the nature of human intelligence. Why can humans learn a new concept from just a few images? Why does a three-year-old have better physical intuition than the most advanced AI? These questions concern not just the future of AI, but our self-knowledge. To study AI is to study ourselves."
+            }
+          },
+          "leadsTo": "final-dialog"
+        },
+        {
+          "id": "cautious-hope",
+          "text": {
+            "zh": "我充满期待但也保持警惕——确保强大的多模态AI被安全和负责任地使用",
+            "en": "I'm hopeful but also vigilant — ensuring powerful multimodal AI is used safely and responsibly"
+          },
+          "tag": "responsible",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这种审慎的态度非常可贵。随着多模态AI变得越来越强大，它可以用于好的目的，也可以被滥用——深度伪造、大规模监控、偏见放大……这些风险是真实存在的。我在斯坦福大学推动的「以人为中心的AI」研究，核心原则之一就是：技术发展必须伴随伦理思考。每一个AI研究者都应该问自己：我构建的东西，最终会让这个世界变得更好还是更坏？",
+              "en": "That kind of prudence is very valuable. As multimodal AI grows more powerful, it can be used for good purposes, but also for abuse — deepfakes, mass surveillance, bias amplification... these risks are real. One core principle of the 「human-centered AI」 research I've championed at Stanford is this: technological development must be accompanied by ethical reflection. Every AI researcher should ask themselves: will what I'm building ultimately make the world better or worse?"
+            }
+          },
+          "leadsTo": "final-dialog"
+        }
+      ]
+    },
+    {
+      "id": "final-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（走回窗边，望向远方）让我用一句话总结这门课。我们从「超越文字」出发，走过了对比学习的桥梁，见证了多模态大模型的诞生，探索了空间智能的前沿，最后来到了感知与理解的分界线。这条路还很长——但每一步都很重要。",
+        "en": "(Walks back to the window, gazing into the distance) Let me summarize this course in one thought. We started from 「Beyond Text, crossed the bridge of contrastive learning, witnessed the birth of multimodal large models, explored the frontier of spatial intelligence, and finally arrived at the dividing line between perception and understanding. The road ahead is long — but every step matters."
+      },
+      "leadsTo": "closing-words"
+    },
+    {
+      "id": "closing-words",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "我想对你们说的最后一件事是：不要被技术的复杂性吓到，也不要被当前的局限性劝退。每一个从事AI研究的人，从图灵到明斯基，从辛顿到Pearl，再到今天你们每一个人，都在为同一个目标努力：理解智能的本质，让技术服务于人类的福祉。这是一场接力赛，而你们是下一棒的选手。",
+        "en": "The last thing I want to say to you is: don't be intimidated by the complexity of the technology, and don't be discouraged by current limitations. Everyone who works in AI — from Turing to Minsky, from Hinton to Pearl, to each of you today — is working toward the same goal: understanding the nature of intelligence and making technology serve human well-being. This is a relay race, and you are the next runners."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "这门课的核心线索：超越文字（符号接地问题）→ 对比学习桥梁（CLIP）→ 多模态大模型（看见但不完全理解）→ 空间智能（3D理解和具身交互）→ 感知与理解的鸿沟（常识、因果、理解的多层次性）。李飞飞教授的信念：AI的终极价值在于以人为中心——帮助人类，而非取代人类。",
+        "en": "Core thread of this course: Beyond Text (grounding problem) → Contrastive learning bridge (CLIP) → Multimodal large models (seeing but not fully understanding) → Spatial intelligence (3D understanding and embodied interaction) → The perception-understanding gap (common sense, causality, multi-layered understanding). Prof. Li's belief: AI's ultimate value is human-centered — helping people, not replacing them."
+      },
+      "category": "course-summary",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "李飞飞教授轻轻关闭了全息投影。「感知」和「理解」两个词在空气中停留了一瞬，然后缓缓消散。金色的阳光从落地窗涌入，温暖地包裹了整个教室。她拿起桌上那只苹果。从第一节课到最后一节课，这只苹果仿佛一直在提醒你：真正的理解，远不止是「认出」一只苹果。她朝你微笑了一下，轻轻说：「每一步真诚的探索，都让我们离答案更近一点。」然后她走入了窗外那片金色的光芒中。你坐在教室里，回想着这五节课——从文字到图像，从感知到理解，从技术到人文。那道鸿沟依然存在，但它已经不再让你感到畏惧，反而激起了一种渴望，一种亲手去缩小它的渴望。",
+        "en": "Prof. Li gently shuts off the holographic projection. The words 「Perception」 and 「Understanding」 linger in the air for an instant, then slowly dissolve. Golden sunlight floods through the floor-to-ceiling windows, warmly embracing the entire classroom. She picks up the apple from the desk — from the first lesson to the last, this apple seems to have been a constant reminder: true understanding is never just 「recognizing」 an apple. She smiles at you gently and says quietly: 「Every honest step of exploration brings us a little closer to the answer」. Then she walks into the golden light beyond the windows. You sit in the classroom, reflecting on these five lessons — from text to image, from perception to understanding, from technology to humanity. The gap still exists, but it no longer fills you with dread — instead, it ignites a longing, a desire to narrow it with your own hands."
+      }
+    }
+  ]
+}

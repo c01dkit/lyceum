@@ -1,0 +1,354 @@
+{
+  "id": "lesson-05",
+  "course": "deep-learning-foundations",
+  "title": {
+    "zh": "预训练与微调",
+    "en": "Pretraining and Fine-tuning"
+  },
+  "knowledgePoint": {
+    "zh": "两阶段训练范式——无监督预训练提供良好初始化，有监督微调针对具体任务优化",
+    "en": "The two-phase training paradigm — unsupervised pretraining provides good initialization, supervised fine-tuning optimizes for specific tasks"
+  },
+  "teacher": "prof-hinton",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你闭上眼，回到那间深蓝色的教室。辛顿教授在白板上画了两个阶段——左边写着「探索」，右边写着「精炼」。他正在解释一种看似简单却影响深远的训练策略：先让网络自由地学习数据的结构，再用有标签的数据来对准目标。",
+    "en": "You close your eyes and return to that deep blue classroom. Prof. Hinton has drawn two phases on the whiteboard — 「Exploration」 on the left, 「Refinement」 on the right. He's explaining a seemingly simple yet profoundly influential training strategy: first let the network freely learn the structure of data, then use labeled data to aim at the target."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。两阶段范式的精妙之处在于它把「理解世界」和「完成任务」分开了。先广泛地学习，再针对性地精炼——这也许是所有学习的基本模式。",
+    "en": "You return to the present. The elegance of the two-phase paradigm lies in separating 「understanding the world」 from 「completing the task」. Learn broadly first, then refine specifically — perhaps this is the fundamental pattern of all learning."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的大屏幕上分成了左右两半。左半边显示着大量没有标签的图片——花朵、汽车、动物、风景，杂乱无章地堆在一起。右半边显示着整齐排列的分类图片，每张图片下面都有一个清晰的标签。辛顿教授站在两者中间，左手指着左边，右手指着右边。",
+        "en": "The large screen is split into two halves. The left shows masses of unlabeled images — flowers, cars, animals, landscapes, piled together chaotically. The right displays neatly arranged classified images, each with a clear label underneath. Prof. Hinton stands between them, left hand pointing left, right hand pointing right."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "看看屏幕两边的差异。左边是海量的数据，但没有人告诉你每张图片是什么。右边是有标签的数据，但数量很少。这就是机器学习面临的一个根本现实：未标注数据到处都是，标注数据却非常昂贵。",
+        "en": "Look at the difference between the two sides of the screen. Left — massive amounts of data, but nobody tells you what each image is. Right — labeled data, but very little of it. This is a fundamental reality in machine learning: unlabeled data is everywhere, but labeled data is extremely expensive."
+      },
+      "leadsTo": "labeling-cost"
+    },
+    {
+      "id": "labeling-cost",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "想想看——互联网上每天产生的图片有数十亿张，但要给每张图片标注「这是一只猫」「这是一辆车」需要人类一张一张地看。这需要大量的时间和金钱。ImageNet数据集花了几年时间才标注完一千四百万张图片。而没有标签的图片呢？多到数不清。",
+        "en": "Think about it — billions of images are produced on the internet every day, but annotating each one with 「this is a cat」 or 「this is a car」 requires humans looking at them one by one. This takes enormous time and money. The ImageNet dataset took years to annotate its fourteen million images. And unlabeled images? There are too many to count."
+      },
+      "leadsTo": "two-phase-intro"
+    },
+    {
+      "id": "two-phase-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是为什么我们提出了两阶段训练范式。第一阶段是{无监督学习}，用海量的未标注数据来训练网络，让它学习数据的基本结构和规律。第二阶段是{微调}，用少量有标签的数据来调整网络，让它学会具体的分类任务。",
+        "en": "That's why we proposed the two-phase training paradigm. Phase one: {unsupervised learning} — train the network with massive unlabeled data, letting it learn the basic structure and patterns of data. Phase two: {fine-tuning} — adjust the network with a small amount of labeled data, letting it learn the specific classification task."
+      },
+      "terms": {
+        "无监督学习": "term-unsupervised-learning",
+        "微调": "term-fine-tuning",
+        "unsupervised learning": "term-unsupervised-learning",
+        "fine-tuning": "term-fine-tuning"
+      },
+      "leadsTo": "phase-one-detail"
+    },
+    {
+      "id": "phase-one-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一阶段的预训练，就是我们之前讲的逐层RBM训练。网络不知道图片里是猫还是狗，它只是学习「图像一般长什么样子」，比如哪些像素组合经常出现，什么样的特征模式是常见的。经过这个阶段，每一层的权重已经不再是随机的，它们编码了数据的统计规律。",
+        "en": "Phase one pretraining is exactly the layer-wise RBM training we discussed earlier. The network doesn't know if the image contains a cat or a dog; it just learns 「what images generally look like」 — which pixel combinations frequently appear, what feature patterns are common. After this phase, each layer's weights are no longer random — they encode the statistical patterns of the data."
+      },
+      "leadsTo": "phase-two-detail"
+    },
+    {
+      "id": "phase-two-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二阶段的微调就是标准的有监督训练——给网络看一张图片和正确标签，计算误差，反向传播更新权重。但因为预训练已经给了网络一个好的起点，微调只需要做「最后一英里」的调整。就好比你已经雕好了一座雕塑的大致轮廓，微调只是用细砂纸磨掉最后的毛边。",
+        "en": "Phase two fine-tuning is standard supervised training — show the network an image and the correct label, compute the error, backpropagate to update weights. But because pretraining has given the network a good starting point, fine-tuning only needs to make 「last mile」 adjustments. It's like having already carved the rough shape of a sculpture; fine-tuning is just using fine sandpaper to smooth the final rough edges."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "预训练给网络提供了一个好的「起点」。你觉得为什么好的起点如此重要？",
+        "en": "Pretraining gives the network a good 「starting point」. Why do you think a good starting point is so important?"
+      },
+      "choices": [
+        {
+          "id": "loss-landscape",
+          "text": {
+            "zh": "深层网络的损失函数很复杂，好的起点让优化更容易找到好的解",
+            "en": "Deep networks have complex loss landscapes; a good starting point makes it easier for optimization to find good solutions"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常到位。深层网络的损失函数是一个极其复杂的高维地形——充满了局部最小值、鞍点和平坦区域。随机初始化就像把你随机扔到这个地形的某个点上；而预训练把你放到了一个「好的山谷附近」。从一个好的位置出发，梯度下降更容易找到一个令人满意的解，而不是被困在某个糟糕的局部最小值里。",
+              "en": "Very much on point. The loss function of a deep network is an incredibly complex high-dimensional landscape — full of local minima, saddle points, and flat regions. Random initialization is like being dropped at a random point on this terrain; pretraining places you near a 「good valley」. Starting from a good position, gradient descent is more likely to find a satisfying solution rather than getting stuck in some terrible local minimum."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "data-efficiency",
+          "text": {
+            "zh": "好的起点意味着只需要少量标注数据就能达到好的效果",
+            "en": "A good starting point means only a small amount of labeled data is needed to achieve good results"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常实际的优势。如果网络从零开始学，它需要大量的标注样本来学会每一层的特征。但如果预训练已经教会了它「什么是边缘」「什么是纹理」「什么是形状」，它只需要少量标注样本来学会「边缘和形状的哪些组合对应猫」。这在标注数据稀缺的领域（比如医学影像）尤其有价值。",
+              "en": "That's a very practical advantage. If the network learns from scratch, it needs massive labeled samples to learn features at every layer. But if pretraining has already taught it 「what edges are」, 「what textures are」, 「what shapes are」, it only needs a few labeled samples to learn 「which combinations of edges and shapes correspond to cats」. This is especially valuable in domains where labeled data is scarce, like medical imaging."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "generalization",
+          "text": {
+            "zh": "预训练学到的是通用知识，这种知识可以迁移到各种不同的任务",
+            "en": "Pretraining learns general knowledge that can transfer to various different tasks"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的思路已经触碰到了一个极其重要的概念：{迁移学习}。如果预训练学到的特征是通用的，比如边缘、纹理和形状，那么同一组预训练权重就可以被用来完成不同的任务，像是分类猫狗、检测行人或者识别花卉。换一个任务，通常只需要更换最后的微调阶段。这种“预训练一次，微调多次”的思路，在未来会变得越来越重要。",
+              "en": "Your thinking has touched on an extremely important concept — {transfer learning}. If the features learned during pretraining are general — edges, textures, shapes — then the same pretrained weights can be used for different tasks: classifying cats and dogs, detecting pedestrians, recognizing flowers... switching tasks only requires switching the final fine-tuning phase. Pretrain once, fine-tune many times — this idea will become increasingly important in the future."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "预训练加微调的范式从根本上改变了我们训练深层网络的方式。但这里面有一个微妙的平衡需要把握。",
+        "en": "The pretraining plus fine-tuning paradigm fundamentally changed how we train deep networks. But there's a subtle balance that needs to be struck."
+      },
+      "terms": {},
+      "leadsTo": "balance-issue"
+    },
+    {
+      "id": "balance-issue",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "微调的时候有一个关键问题：调多少？如果调得太少，网络还是在做预训练学到的「通用理解」，没有针对具体任务做优化。如果调得太多，预训练学到的通用知识就被覆盖了，网络过度适应了训练数据，也就是过拟合。这就像给一块璞玉打磨——磨得太轻，形状不对；磨得太重，原来的质地就毁了。",
+        "en": "During fine-tuning, there's a critical question: how much to tune? If you tune too little, the network is still doing the 「general understanding」 learned in pretraining, without optimizing for the specific task. If you tune too much, the general knowledge from pretraining gets overwritten, and the network overfits the training data. It's like polishing a rough jade — too gentle and the shape is wrong; too aggressive and you destroy the original texture."
+      },
+      "leadsTo": "practical-tips"
+    },
+    {
+      "id": "practical-tips",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "实践中我们学到了一些技巧。比如，微调时要用比预训练更小的学习率。我们不想大幅度改变已经学好的底层特征，只想做微小的调整。另外，有时候我们会冻结底层，只微调顶层。这是因为底层的通用特征通常已经足够好了，需要调整的主要是高层的任务特定特征。",
+        "en": "In practice, we've learned some techniques. For instance, use a smaller learning rate during fine-tuning than during pretraining — because we don't want to drastically change the well-learned bottom-layer features, just make minor adjustments. Also, sometimes we freeze the bottom layers and only fine-tune the top — because bottom-layer general features are usually good enough, and what mainly needs adjustment are the high-level task-specific features."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "预训练学习通用知识，微调针对具体任务。你觉得这种两阶段方法和人类的学习方式有什么相似之处？",
+        "en": "Pretraining learns general knowledge, fine-tuning targets specific tasks. What similarities do you see between this two-phase approach and how humans learn?"
+      },
+      "choices": [
+        {
+          "id": "school-work",
+          "text": {
+            "zh": "像先上学打基础，再到工作中学习专业技能",
+            "en": "Like going to school to build foundations first, then learning professional skills at work"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了起来）这个比喻太贴切了。大学教育给你的是通用的思维能力和知识基础，比如数学、逻辑、写作、批判性思维。工作之后你才学会具体的专业技能。而且请注意，学校教育阶段不需要明确的「标签」。没有人会告诉你「今天学的这个定理，以后你会用在金融分析上」。你只是在广泛地学习世界的结构。这和无监督预训练如出一辙。",
+              "en": "(Laughs) That analogy is spot on. University education gives you general thinking abilities and knowledge foundations — math, logic, writing, critical thinking. You learn specific professional skills only after starting work. And notice, the school phase doesn't need explicit 「labels」 — nobody tells you 「this theorem you're learning today, you'll use it in financial analysis later」. You're just broadly learning the structure of the world. This is exactly like unsupervised pretraining."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "child-development",
+          "text": {
+            "zh": "像婴儿先通过观察学习基本概念，再通过互动学习具体技能",
+            "en": "Like infants first learning basic concepts through observation, then learning specific skills through interaction"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我一直以来的信念！婴儿在学会说话之前，已经通过观察学会了大量关于世界的知识——物体是三维的、东西会掉下来、面孔是特别的。这些「预训练」的知识为后续的语言学习、社交学习铺平了道路。我们的两阶段范式在某种意义上模仿了发育的自然顺序：先理解世界，再学习任务。",
+              "en": "That's exactly what I've always believed! Before learning to speak, infants have already learned vast amounts about the world through observation — objects are three-dimensional, things fall down, faces are special. This 「pretrained」 knowledge paves the way for subsequent language and social learning. Our two-phase paradigm in some sense mimics the natural order of development: understand the world first, then learn tasks."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "expert-novice",
+          "text": {
+            "zh": "也有区别——人类可以从很少的例子学会新概念，目前的网络还做不到",
+            "en": "There are differences too — humans can learn new concepts from very few examples, which current networks can't do"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你指出了一个关键的差距。人类看到两三张猫的照片就能认出所有的猫，但我们的网络通常需要成千上万个例子。也许是因为人类一生中积累的「预训练」远比我们给网络的要丰富得多——几十年的视觉、听觉、触觉经验。又或者，人类有某种我们还没理解的学习机制。缩小这个差距是我们未来最重要的挑战之一。",
+              "en": "You've pointed out a critical gap. Humans can recognize all cats after seeing just two or three photos, but our networks typically need thousands of examples. Perhaps it's because humans' accumulated 「pretraining」 throughout life is far richer than what we give our networks — decades of visual, auditory, and tactile experience. Or perhaps humans have some learning mechanism we don't yet understand. Narrowing this gap is one of our most important future challenges."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "预训练加微调的范式在2006到2012年之间一直是训练深层网络的主要方式。但有趣的是，到了2012年之后，随着ReLU、dropout和更大的数据集出现，人们发现直接端到端训练深层网络也变得可行了——不一定需要无监督预训练。",
+        "en": "The pretraining plus fine-tuning paradigm was the main approach for training deep networks from 2006 to 2012. But interestingly, after 2012, with the emergence of ReLU, dropout, and larger datasets, people found that training deep networks end-to-end directly also became feasible — unsupervised pretraining wasn't always necessary."
+      },
+      "leadsTo": "paradigm-evolution"
+    },
+    {
+      "id": "paradigm-evolution",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这是否意味着预训练没用了？我不这么认为。预训练的思想本身是极其深刻，它主张用大量数据学习通用表示，然后迁移到具体任务。具体的实现方式可能会变，也许将来会采用其他方法，但这个两阶段的思想框架，我相信会一直存在。",
+        "en": "Does this mean pretraining became useless? I don't think so. The idea of pretraining itself is profoundly deep — learning general representations from massive data, then transferring to specific tasks. The specific implementation might change — perhaps in the future pretraining won't be done with RBMs but in other ways — but this two-phase conceptual framework, I believe, will persist."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "两阶段训练范式：首先是预训练，用海量无标签数据学习通用特征表示；然后是微调，用少量有标签数据针对具体任务做精细调整。关键在于平衡：微调太少则不够专业化，微调太多又会丢失通用知识，导致过拟合。预训练的核心价值在于迁移学习，一次预训练可以迁移到多个不同任务。",
+        "en": "Two-phase training paradigm: (1) Pretraining — learn general feature representations from massive unlabeled data; (2) Fine-tuning — make precise adjustments for specific tasks using small amounts of labeled data. Key balance: too little fine-tuning means insufficient specialization; too much means losing general knowledge (overfitting). The core value of pretraining is transfer learning — one pretraining can transfer to multiple different tasks."
+      },
+      "category": "core-concept",
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "辛顿说预训练的思想会一直存在。你觉得这种「先学通用知识，再学专业技能」的策略在未来会如何发展？",
+        "en": "Hinton says the idea of pretraining will persist. How do you think this strategy of 「learn general knowledge first, then professional skills」 will evolve in the future?"
+      },
+      "choices": [
+        {
+          "id": "bigger-pretrain",
+          "text": {
+            "zh": "预训练的规模会越来越大——用更多数据、更大模型来学习更丰富的通用知识",
+            "en": "Pretraining will scale up — using more data and larger models to learn richer general knowledge"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个非常合理的预测。计算能力在不断增长，可用的数据也在爆炸式增长。如果预训练的规模扩大十倍、百倍，学到的通用表示会有多强大？我很想知道。也许有一天，一个足够大的预训练模型能学到如此丰富的世界知识，以至于微调变得几乎不需要——给它看几个例子就够了。这让我想象中感到兴奋。",
+              "en": "That's a very reasonable prediction. Computing power keeps growing, and available data is exploding. If pretraining scales up tenfold, a hundredfold, how powerful would the general representations be? I'd love to know. Perhaps one day, a sufficiently large pretrained model could learn such rich world knowledge that fine-tuning becomes almost unnecessary — just a few examples would suffice. The thought is exciting."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "multimodal-pretrain",
+          "text": {
+            "zh": "预训练可能不限于单一类型的数据——同时从图像、文本、声音中学习",
+            "en": "Pretraining might not be limited to a single data type — learning simultaneously from images, text, and sound"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "多模态学习——这确实是一个激动人心的方向。人类的学习从来都不是单一模态的：我们同时看、听、触摸、闻，所有感官输入在大脑中融合成统一的理解。如果预训练能同时处理图像和文本，也许模型能学到更深层的概念，比如理解「猫」不仅仅是一种视觉模式，还关联着「喵」的声音和「柔软」的触感。这种跨模态的理解可能更接近真正的智能。",
+              "en": "Multimodal learning — that's truly an exciting direction. Human learning is never unimodal: we simultaneously see, hear, touch, smell, and all sensory inputs merge into unified understanding in the brain. If pretraining could process images and text simultaneously, perhaps models could learn deeper concepts — understanding that 「cat」 isn't just a visual pattern, but is also associated with the sound 「meow」 and the sensation 「soft」. This cross-modal understanding might be closer to true intelligence."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "pretrain-limits",
+          "text": {
+            "zh": "也许有些东西是无监督预训练学不到的，比如因果关系和推理能力",
+            "en": "Maybe there are things unsupervised pretraining can't learn — like causal reasoning and inference abilities"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个深刻的质疑。观察数据的统计规律，比如「什么和什么经常一起出现」，和理解「什么导致了什么」之间，存在着根本的区别。预训练擅长前者，但因果推理可能需要不同的学习机制。朱迪亚·珀尔一直在强调这一点。也许未来的预训练需要结合因果推断和干预实验，而不是仅仅停留在被动观察上。这是一个开放的、令人着迷的问题。",
+              "en": "That's a profound challenge. There's a fundamental difference between observing statistical patterns in data — 「what tends to co-occur with what」 — and understanding 「what causes what」. Pretraining excels at the former, but causal reasoning may require different learning mechanisms. Judea Pearl has been emphasizing this point. Perhaps future pretraining will need to incorporate causal inference and intervention experiments, not just passive observation. This is an open and fascinating question."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好了，今天的课我们从宏观上理解了预训练和微调的两阶段范式。下节课我们来聊一个更具体的技术问题：当你的深层网络好不容易训练起来了，它可能会面临另一个大敌，那就是过拟合。网络太大、参数太多，它可能会「死记硬背」训练数据，却没能真正学会规律。我会介绍一种我非常自豪的发明来对付这个问题，它叫dropout。",
+        "en": "Alright, today we understood the pretraining and fine-tuning two-phase paradigm from a high level. Next lesson we'll discuss a more specific technical problem: once your deep network is finally trained, it may face another great enemy — overfitting. When the network is too large with too many parameters, it might 「memorize」 training data instead of truly learning patterns. I'll introduce an invention I'm very proud of to combat this — dropout."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "预训练与微调的实用要点：微调时使用更小的学习率以保护底层通用特征；可以冻结底层只微调顶层；预训练的真正价值在于迁移学习——同一组预训练权重可以迁移到不同任务。这种「先通用后专业」的策略可能是深度学习最持久的思想之一。",
+        "en": "Practical tips for pretraining and fine-tuning: use a smaller learning rate during fine-tuning to protect bottom-layer general features; can freeze bottom layers and only fine-tune top layers; the real value of pretraining is transfer learning — the same pretrained weights can transfer to different tasks. This 「general first, specialized second」 strategy may be one of deep learning's most enduring ideas."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "辛顿教授走到屏幕前，按下一个按钮，左右两半的屏幕合为一体。无标签的图片和有标签的图片交织在一起，形成了一幅奇妙的马赛克。他退后一步欣赏了一下，然后摇了摇头：「先看世界，再做决定，这也许是学习最基本的智慧。下次课见。」他端起那杯永远喝不完的茶，走出了教室。",
+        "en": "Prof. Hinton walks to the screen and presses a button, merging the two halves — unlabeled and labeled images interweave into a wonderful mosaic. He steps back to admire it, then shakes his head: 「See the world first, then make decisions — perhaps that's the most fundamental wisdom of learning. See you next time」. He picks up his seemingly bottomless cup of tea and walks out of the classroom."
+      }
+    }
+  ]
+}

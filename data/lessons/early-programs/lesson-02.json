@@ -1,0 +1,355 @@
+{
+  "id": "lesson-02",
+  "course": "early-programs",
+  "title": {
+    "zh": "第一个会思考的程序",
+    "en": "The First Thinking Program"
+  },
+  "knowledgePoint": {
+    "zh": "Logic Theorist——第一个AI程序，能够证明数学定理",
+    "en": "The Logic Theorist — the first AI program, capable of proving mathematical theorems"
+  },
+  "teacher": "prof-simon",
+  "estimatedMinutes": 14,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你翻开笔记本，看到自己写下的“逻辑理论家”几个字，记忆的闸门悄然打开。司马贺教授捧着那本厚重的《数学原理》走上讲台，圣诞节的故事又一次在耳边响起……",
+    "en": "You flip open your notebook and see the words 「Logic Theorist」 in your own handwriting. The floodgates of memory open quietly. Prof. Simon steps up to the lectern with that heavy copy of Principia Mathematica, and the Christmas story begins once more..."
+  },
+  "recallOutro": {
+    "zh": "你从回忆中醒来，心中仍回荡着那个圣诞夜的奇迹——一段程序第一次学会了思考。",
+    "en": "You emerge from the memory, the miracle of that Christmas night still echoing within — the first time a program learned to think."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "司马贺教授走进教室时，手里捧着一本厚重的精装书。封面上的字样已经有些模糊，但依稀能看到：Principia Mathematica。他把书轻轻放在讲台上，翻开一页，上面密密麻麻地写满了逻辑符号。",
+        "en": "Professor Simon walks into the classroom carrying a heavy hardcover book. The lettering on the cover is somewhat faded, but you can make out: Principia Mathematica. He places it gently on the lectern and opens a page filled with dense logical symbols."
+      },
+      "leadsTo": "christmas-story"
+    },
+    {
+      "id": "christmas-story",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "1955年的圣诞节，我没有买礼物，也没有装饰圣诞树。我和纽厄尔做了一件从来没有人做过的事——我们让一台机器证明了一条数学定理。那天晚上，我对妻子说：「多萝西亚，圣诞节快乐。我们刚刚创造了一个会思考的程序。」",
+        "en": "Christmas 1955. I didn't buy presents, and I didn't decorate a tree. Newell and I did something no one had ever done before — we made a machine prove a mathematical theorem. That evening, I told my wife: 「Dorothea, Merry Christmas. We've just created a thinking program」."
+      },
+      "leadsTo": "what-is-lt"
+    },
+    {
+      "id": "what-is-lt",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我们叫这个程序{逻辑理论家}，也就是Logic Theorist。它的任务是什么呢？证明这本罗素和怀特海的《数学原理》里面的定理。",
+        "en": "We called this program the {Logic Theorist}. What was its task? To prove the theorems in this book — Russell and Whitehead's Principia Mathematica."
+      },
+      "terms": {
+        "逻辑理论家": "term-logic-theorist",
+        "Logic Theorist": "term-logic-theorist"
+      },
+      "leadsTo": "principia-explain"
+    },
+    {
+      "id": "principia-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "《数学原理》是二十世纪最伟大的逻辑学著作之一。罗素和怀特海花了十多年时间，试图从最基本的逻辑公理出发，推导出整个数学。书中有五十二条定理，每一条都是从公理一步一步严格推导出来的。",
+        "en": "Principia Mathematica was one of the greatest works of logic in the twentieth century. Russell and Whitehead spent over a decade trying to derive all of mathematics from basic logical axioms. The book contains fifty-two theorems, each rigorously derived step by step from axioms."
+      },
+      "leadsTo": "how-it-worked"
+    },
+    {
+      "id": "how-it-worked",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "逻辑理论家的工作方式是这样的：我们给它一组公理，也就是那些不需要证明的基本事实，再加上一组推理规则。然后，我们设定一个目标定理，让它自己去搜索证明路径。它需要自己找出从公理到定理，中间究竟需要哪些步骤。",
+        "en": "Here's how the Logic Theorist worked: we gave it a set of axioms — basic facts that don't need proof — and a set of inference rules. Then we gave it a target theorem and let it search for a proof path on its own. It had to figure out: what steps are needed to get from the axioms to the theorem."
+      },
+      "leadsTo": "the-results"
+    },
+    {
+      "id": "the-results",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "结果呢？五十二条定理，它证明了三十八条！三十八条！而且（提高了声音）其中有一条定理，它找到的证明比罗素和怀特海的原始证明更优雅、更简洁！",
+        "en": "The results? Out of fifty-two theorems, it proved thirty-eight! Thirty-eight! And — (raising his voice) — for one of those theorems, it found a proof that was more elegant and more concise than Russell and Whitehead's original!"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "逻辑理论家找到了比人类数学家更优雅的证明。我们兴奋之余，做了一件大胆的事——把这篇论文提交给了一家数学期刊，作者栏写了三个名字：纽厄尔、西蒙、逻辑理论家。你觉得，一个程序应该被列为论文的共同作者吗？",
+        "en": "The Logic Theorist found a more elegant proof than the human mathematicians. In our excitement, we did something bold — we submitted the paper to a math journal with three authors: Newell, Simon, and the Logic Theorist. Do you think a program should be listed as co-author of a paper?"
+      },
+      "choices": [
+        {
+          "id": "yes-author",
+          "text": {
+            "zh": "应该——它做出了原创性的智力贡献",
+            "en": "Yes — it made an original intellectual contribution"
+          },
+          "tag": "progressive",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）我们也是这么想的！但期刊拒绝了。编辑们认为只有人类才能做学术贡献。不过让我告诉你——今天，AI生成的研究成果的署名问题，依然是一个激烈争论的话题。我们在1956年提出的问题，到现在还没有答案。",
+              "en": "(Laughs) That's exactly what we thought! But the journal rejected it. The editors believed only humans could make scholarly contributions. But let me tell you — today, the question of authorship for AI-generated research is still fiercely debated. The question we raised in 1956 still has no answer."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "no-author",
+          "text": {
+            "zh": "不应该——程序只是工具，真正的创造者是设计它的人",
+            "en": "No — the program is just a tool; the real creators are the people who designed it"
+          },
+          "tag": "traditional",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这也是期刊编辑的观点。但让我追问一句，如果逻辑理论家找到了一个比人类更优雅的证明，而这个证明不是我们预设的，也不是我们预料到的……那这个「创造」到底属于谁？工具和创造者之间的界限，也许比我们想象的更模糊。",
+              "en": "That was the journal editors' view too. But let me press you — if the Logic Theorist found a proof more elegant than any human's, and this proof wasn't preset by us, wasn't predicted by us... then who does this 「creation」 belong to? The line between tool and creator may be blurrier than we think."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "complicated",
+          "text": {
+            "zh": "这个问题很复杂——需要重新定义「作者」的含义",
+            "en": "It's complicated — we need to redefine what 「author」 means"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常有智慧的回答。也许传统的「作者」概念不再适用了。就像摄影刚发明时，人们也争论过：按快门的是人，但构图是人做的吗？光线是人控制的吗？什么才算「创作」？每一次技术革新都在挑战我们对创造力的定义。",
+              "en": "A very wise answer. Perhaps the traditional concept of 「author」 no longer applies. Just like when photography was first invented, people debated: the person presses the shutter, but did the person compose the image? Did they control the light? What counts as 「creation」? Every technological revolution challenges our definition of creativity."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "无论如何，逻辑理论家完成了一件历史性的壮举：它证明了机器可以做「智力工作」。在此之前，所有人都认为证明数学定理是纯粹的人类智慧活动。而现在，一台机器也做到了。",
+        "en": "Regardless, the Logic Theorist accomplished a historic feat: it proved that machines could do 「intellectual work」. Before this, everyone assumed that proving mathematical theorems was a purely human intellectual activity. Now a machine had done it too."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "逻辑理论家（1955-56）：世界上第一个AI程序。给定公理和推理规则，自动搜索数学定理的证明路径。证明了《数学原理》中52条定理中的38条，其中一条证明比原著更优雅。",
+        "en": "The Logic Theorist (1955-56): the world's first AI program. Given axioms and inference rules, it automatically searched for proof paths of mathematical theorems. Proved 38 of 52 theorems in Principia Mathematica, with one proof more elegant than the original."
+      },
+      "category": "historical-fact",
+      "leadsTo": "how-search-worked"
+    },
+    {
+      "id": "how-search-worked",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我给你们讲讲它是怎么搜索的。你可以把证明想象成走迷宫。起点是公理，终点是目标定理。每一步，你可以应用一条推理规则，走到一个新的位置。逻辑理论家要做的，就是在这个巨大的迷宫里找到一条路。",
+        "en": "Let me tell you how it searched. You can think of proving a theorem like navigating a maze. The starting point is the axioms, the destination is the target theorem. At each step, you can apply an inference rule to reach a new position. What the Logic Theorist had to do was find a path through this enormous maze."
+      },
+      "leadsTo": "search-challenge"
+    },
+    {
+      "id": "search-challenge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但这个迷宫有多大呢？大到几乎无法穷举。如果每一步有十种可能的规则可以应用，十步之后就有一百亿种路径。所以逻辑理论家不能盲目搜索——它需要某种「直觉」来判断哪些方向更有希望。",
+        "en": "But how large is this maze? So large it's practically impossible to exhaust. If there are ten possible rules to apply at each step, after ten steps there are ten billion possible paths. So the Logic Theorist couldn't search blindly — it needed some kind of 「intuition」 to judge which directions were more promising."
+      },
+      "leadsTo": "heuristics-intro"
+    },
+    {
+      "id": "heuristics-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这种「直觉」，我们后来叫它{启发式搜索}。不是完美的方法，不保证一定能找到答案，但它能大大缩小搜索范围。就像你走迷宫时，会选择看起来更接近出口的方向，而不是随机乱走。",
+        "en": "This 「intuition, we later called {heuristic search}. Not a perfect method, no guarantee of finding the answer, but it could dramatically narrow the search space. Just like when you navigate a maze, you choose the direction that seems closer to the exit rather than wandering randomly."
+      },
+      "terms": {
+        "启发式搜索": "term-heuristic-search",
+        "heuristic search": "term-heuristic-search"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "逻辑理论家能证明定理，但它做的事情和人类数学家做的事情一样吗？换句话说——「计算」和「推理」之间有区别吗？",
+        "en": "The Logic Theorist could prove theorems, but was what it did the same as what human mathematicians do? In other words — is there a difference between 「calculating」 and 「reasoning」?"
+      },
+      "choices": [
+        {
+          "id": "no-difference",
+          "text": {
+            "zh": "没有本质区别——推理就是一种复杂的计算",
+            "en": "No fundamental difference — reasoning is just complex calculation"
+          },
+          "tag": "computationalist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我和纽厄尔的信念！我们提出了一个大胆的假说——{物理符号系统假说}：任何足够强大的符号操作系统，都具备通用智能的充分必要条件。换句话说，思考就是符号计算。这个假说至今仍在争论之中。",
+              "en": "That was exactly our belief — mine and Newell's! We proposed a bold hypothesis — the {Physical Symbol System Hypothesis}: any sufficiently powerful symbol-manipulation system has the necessary and sufficient conditions for general intelligence. In other words, thinking IS symbol computation. This hypothesis is still debated to this day."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "yes-difference",
+          "text": {
+            "zh": "有区别——推理需要理解和创造，计算只是执行",
+            "en": "Yes — reasoning requires understanding and creativity, calculation is just execution"
+          },
+          "tag": "humanist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "许多哲学家也这么认为。但让我给你一个挑战：如果逻辑理论家找到了一个人类没想到的证明方法，这算不算「创造」？如果它的搜索过程是有选择、有判断的，这算不算「理解」？也许界限没有那么清晰。",
+              "en": "Many philosophers agree with you. But let me give you a challenge: if the Logic Theorist found a proof method no human had thought of, does that count as 「creativity」? If its search process wasn't pure brute force but involved selection and judgment, does that count as 「understanding」? Perhaps the line isn't as clear as it seems."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "depends",
+          "text": {
+            "zh": "取决于你怎么定义这两个词——也许它们是连续光谱而非二元对立",
+            "en": "It depends on how you define them — perhaps they're a spectrum rather than a binary"
+          },
+          "tag": "spectrum",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（赞赏地点头）你有哲学家的气质。也许计算和推理确实是一个连续的光谱。从简单的加法，到启发式搜索，到创造性推理——也许只是复杂程度的不同，而不是本质的不同。",
+              "en": "(Nods approvingly) You have the temperament of a philosopher. Perhaps calculation and reasoning truly aren't either-or but a continuous spectrum. From simple addition, to heuristic search, to creative reasoning — perhaps it's just a difference of complexity, not of essence."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管这场哲学争论如何收场，有一件事是确定的——逻辑理论家打开了一扇门。它告诉全世界：机器不仅仅是计算器，它们可以做被认为需要「智慧」的工作。而这，正是AI作为一门学科的起点。",
+        "en": "Regardless of how this philosophical debate ends, one thing is certain — the Logic Theorist opened a door. It told the world: machines aren't just calculators; they can do work that was thought to require 「wisdom」. And that was the very starting point of AI as a discipline."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "逻辑理论家证明了定理，但它只能处理形式逻辑。如果你是1956年的研究者，你会想让机器接下来做什么？",
+        "en": "The Logic Theorist proved theorems, but it could only handle formal logic. If you were a researcher in 1956, what would you want machines to do next?"
+      },
+      "choices": [
+        {
+          "id": "general-problems",
+          "text": {
+            "zh": "解决更通用的问题——不只是逻辑，而是任何领域",
+            "en": "Solve more general problems — not just logic, but any domain"
+          },
+          "tag": "generalist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你和我想到一块去了！这正是我们接下来做的事情——创造一个能解决各种问题的通用程序。下节课，我会告诉你们这个雄心勃勃的项目：通用问题求解器。",
+              "en": "You and I think alike! That's exactly what we did next — create a general-purpose program that could solve all kinds of problems. Next class, I'll tell you about this ambitious project: the General Problem Solver."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "understand-language",
+          "text": {
+            "zh": "理解人类语言——让机器能读懂文字",
+            "en": "Understand human language — let machines read and comprehend text"
+          },
+          "tag": "language-focused",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "自然语言理解——这确实是AI最困难的挑战之一。语言充满了歧义、暗示、文化背景……这个问题到今天依然在推动着AI研究的前沿。你提出了一个极其深远的方向。",
+              "en": "Natural language understanding — that's indeed one of AI's greatest challenges. Language is full of ambiguity, implication, cultural context... this problem still drives the frontier of AI research today. You've pointed toward a profoundly far-reaching direction."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "learn-by-itself",
+          "text": {
+            "zh": "自己学习——不需要人类手动编写规则",
+            "en": "Learn on its own — without humans manually writing rules"
+          },
+          "tag": "learning-focused",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "让机器自己学习！这在当时看来几乎是天方夜谭。但你知道吗？今天最成功的AI，也就是深度学习，做的正是这件事。它从数据中自动学习，而非依赖人类手写规则。你跳过了半个世纪，直接看到了未来。",
+              "en": "Let machines learn on their own! Back then that seemed almost like science fiction. But you know what? Today's most successful AI — deep learning — does exactly that. Learning automatically from data rather than relying on human-written rules. You've leapt over half a century and glimpsed the future."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "1955年的那个圣诞夜，当逻辑理论家第一次完成一个证明的时候，我站在那台笨重的计算机旁边，激动得说不出话来。纽厄尔在旁边大叫。那是我一生中最美好的圣诞礼物。",
+        "en": "On that Christmas night in 1955, when the Logic Theorist completed its first proof, I stood beside that clunky computer, too excited to speak. Newell was shouting beside me. It was the most beautiful Christmas gift of my entire life."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "逻辑理论家的意义：证明了机器可以进行「智力工作」——不仅仅是计算，而是搜索和推理。它使用启发式搜索来在巨大的可能性空间中找到证明路径。",
+        "en": "The significance of the Logic Theorist: it proved machines could perform 「intellectual work」 — not just calculation, but search and reasoning. It used heuristic search to find proof paths in an enormous space of possibilities."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "司马贺教授合上了那本《数学原理》，手指在封面上轻轻抚过，像是在抚摸一段岁月。他离开时，你脑海中浮现出一幅画面：1955年的圣诞夜，两个年轻人守在一台闪烁着灯光的庞大机器旁，见证了历史的诞生。你开始理解——那不仅仅是一个程序，那是人类向「思维」发起挑战的第一步。",
+        "en": "Professor Simon closes the copy of Principia Mathematica, his fingers tracing gently across the cover, as if caressing a passage of time. As he leaves, an image forms in your mind: Christmas night 1955, two young men beside a massive machine flickering with lights, witnessing the birth of history. You begin to understand — that wasn't just a program; it was humanity's first step in challenging the nature of 「thought」 itself."
+      }
+    }
+  ]
+}

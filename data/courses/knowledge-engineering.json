@@ -1,0 +1,51 @@
+{
+  "id": "knowledge-engineering",
+  "name": {
+    "zh": "知识工程",
+    "en": "Knowledge Engineering"
+  },
+  "description": {
+    "zh": "当AI走进医院，一切变得更加严肃。肖特利夫教授将带你体验MYCIN系统——一个能诊断细菌感染的专家系统。在这里，你将直面AI最尖锐的问题：如何处理不确定性？如何获取知识？如何让机器解释自己的判断？",
+    "en": "When AI enters the hospital, everything becomes more serious. Prof. Shortliffe will walk you through MYCIN — an expert system that diagnoses bacterial infections. Here, you will confront AI's sharpest questions: how to handle uncertainty, how to acquire knowledge, and how to make machines explain their reasoning."
+  },
+  "grade": "grade-2",
+  "teacher": "prof-shortliffe",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-mycin",
+      "description": {
+        "zh": "了解MYCIN系统的工作原理和在医学领域的突破性意义",
+        "en": "Understand how MYCIN works and its breakthrough significance in medicine"
+      }
+    },
+    {
+      "id": "obj-uncertainty",
+      "description": {
+        "zh": "理解不确定性推理和确定性因子的概念",
+        "en": "Understand uncertainty reasoning and the concept of certainty factors"
+      }
+    },
+    {
+      "id": "obj-knowledge-elicitation",
+      "description": {
+        "zh": "认识知识获取过程的困难和知识工程师的角色",
+        "en": "Recognize the difficulties of knowledge acquisition and the role of knowledge engineers"
+      }
+    },
+    {
+      "id": "obj-explanation",
+      "description": {
+        "zh": "理解为什么AI系统需要能够解释自己的推理过程",
+        "en": "Understand why AI systems need to explain their reasoning process"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "grade-3",
+  "name": {
+    "zh": "三年级：机器学习的兴起",
+    "en": "Grade 3: The Rise of Machine Learning"
+  },
+  "subtitle": {
+    "zh": "1986-2005：让数据说话",
+    "en": "1986-2005: Let the Data Speak"
+  },
+  "description": {
+    "zh": "规则写不完，知识提不尽——既然如此，何不让机器自己从数据中学习？从反向传播的复兴到支持向量机的数学优雅，从贝叶斯网络的概率推理到随机森林的集成智慧，你将见证AI从手工匠艺走向科学方法的蜕变。",
+    "en": "Rules can't cover everything, knowledge can't be fully extracted — so why not let machines learn from data themselves? From the revival of backpropagation to the mathematical elegance of SVMs, from Bayesian probabilistic reasoning to the ensemble wisdom of random forests, you will witness AI's transformation from handcraft to scientific method."
+  },
+  "era": "1986-2005",
+  "theme": {
+    "name": "fresh-growth-green",
+    "primaryColor": "#3D8B37",
+    "secondaryColor": "#7ABF6E"
+  },
+  "courses": [
+    "neural-revival",
+    "statistical-learning",
+    "bayesian-reasoning",
+    "ensemble-methods"
+  ],
+  "unlockCondition": null
+}

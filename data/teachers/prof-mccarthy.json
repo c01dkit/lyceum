@@ -1,0 +1,71 @@
+{
+  "id": "prof-mccarthy",
+  "name": {
+    "zh": "麦卡锡教授",
+    "en": "Prof. McCarthy"
+  },
+  "fullName": {
+    "zh": "约翰·麦卡锡",
+    "en": "John McCarthy"
+  },
+  "title": {
+    "zh": "符号AI与LISP之父",
+    "en": "Father of Symbolic AI & LISP"
+  },
+  "specialty": "Symbolic AI & LISP",
+  "personalityTraits": [
+    "enthusiastic",
+    "practical",
+    "inventive"
+  ],
+  "speechStyle": {
+    "zh": "充满激情地讲解形式系统，喜欢通过动手演示来教学，语言直接而富有感染力",
+    "en": "Passionate about formal systems, loves teaching through hands-on demonstrations, direct and inspiring in speech"
+  },
+  "catchphrase": {
+    "zh": "别光想，我们来写出来！",
+    "en": "Don't just think — let's write it out!"
+  },
+  "bio": {
+    "zh": "1958年发明了LISP编程语言，提出了「人工智能」这个术语，坚信机器可以通过符号推理来实现智能。在课堂上，他总是迫不及待地想让学生亲自动手尝试。",
+    "en": "Invented the LISP programming language in 1958 and coined the term 「artificial intelligence」. A firm believer that machines can achieve intelligence through symbolic reasoning. In the classroom, he's always eager to get students experimenting hands-on."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "平静",
+        "en": "Calm"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "热情",
+        "en": "Enthusiastic"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "沉思",
+        "en": "Thoughtful"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "会心一笑",
+        "en": "Amused"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自豪",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

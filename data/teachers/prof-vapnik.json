@@ -1,0 +1,72 @@
+{
+  "id": "prof-vapnik",
+  "name": {
+    "zh": "瓦普尼克教授",
+    "en": "Prof. Vapnik"
+  },
+  "fullName": {
+    "zh": "弗拉基米尔·瓦普尼克",
+    "en": "Vladimir Vapnik"
+  },
+  "title": {
+    "zh": "统计学习理论奠基人——支持向量机之父",
+    "en": "Founder of Statistical Learning Theory — Father of SVMs"
+  },
+  "specialty": "Statistical Learning Theory & Support Vector Machines",
+  "personalityTraits": [
+    "rigorous",
+    "mathematical",
+    "confident",
+    "philosophical"
+  ],
+  "speechStyle": {
+    "zh": "逻辑极为严密，每一句话都像在推导定理，偶尔会停下来强调「这一步为什么重要」，对数学美感有近乎执着的追求，不喜欢含糊的表述",
+    "en": "Extremely rigorous in logic, every sentence feels like deriving a theorem, occasionally pauses to emphasize 「why this step matters, pursues mathematical beauty with near-obsessive devotion, dislikes vague statements"
+  },
+  "catchphrase": {
+    "zh": "当你有有限的数据时，不要试图估计概率密度——直接解决问题。",
+    "en": "When you have limited data, do not try to estimate the probability density — solve the problem directly."
+  },
+  "bio": {
+    "zh": "瓦普尼克出生于苏联，是统计学习理论的奠基人。他与切尔沃宁基斯共同提出了VC维度理论，为机器学习的泛化能力提供了严格的数学基础。1990年代移居美国后，他在贝尔实验室发明了支持向量机（SVM），这一方法凭借优雅的数学框架和卓越的实际表现，在很长一段时间内是机器学习领域的王者。在课堂上，他像一位严格的数学教授，黑板上写满了公式，但每一步推导都有深刻的直觉支撑。",
+    "en": "Vapnik, born in the Soviet Union, is the founder of statistical learning theory. Together with Chervonenkis, he developed VC dimension theory, providing rigorous mathematical foundations for machine learning generalization. After moving to the US in the 1990s, he invented Support Vector Machines (SVMs) at Bell Labs, a method that reigned supreme in machine learning for years thanks to its elegant mathematics and excellent practical performance. In the classroom, he is like a strict math professor — the blackboard fills with formulas, but every derivation is backed by deep intuition."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "严谨",
+        "en": "Precise"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "激昂",
+        "en": "Impassioned"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "凝思",
+        "en": "Contemplative"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "淡然",
+        "en": "Composed"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自信",
+        "en": "Confident"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

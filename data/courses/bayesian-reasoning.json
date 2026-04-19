@@ -1,0 +1,52 @@
+{
+  "id": "bayesian-reasoning",
+  "name": {
+    "zh": "贝叶斯方法与因果推理",
+    "en": "Bayesian Methods & Causal Reasoning"
+  },
+  "description": {
+    "zh": "世界充满不确定性，而贝叶斯定理给了我们一种优雅的方式来应对它。珀尔教授将带你从概率推理走向因果推理——从「看到了什么」到「如果我做了什么会怎样」，这是AI理解世界的关键一步。",
+    "en": "The world is full of uncertainty, and Bayes' theorem gives us an elegant way to handle it. Prof. Pearl will take you from probabilistic reasoning to causal reasoning — from 「what did I see」 to 「what would happen if I did X」 — a crucial step for AI to truly understand the world."
+  },
+  "grade": "grade-3",
+  "teacher": "prof-pearl",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-bayes-theorem",
+      "description": {
+        "zh": "理解贝叶斯定理的含义及其在不确定性推理中的作用",
+        "en": "Understand Bayes' theorem and its role in reasoning under uncertainty"
+      }
+    },
+    {
+      "id": "obj-bayesian-network",
+      "description": {
+        "zh": "理解贝叶斯网络如何用图结构表示变量之间的依赖关系",
+        "en": "Understand how Bayesian networks use graph structures to represent dependencies between variables"
+      }
+    },
+    {
+      "id": "obj-causation",
+      "description": {
+        "zh": "区分相关性与因果性，理解因果推理的三个层级",
+        "en": "Distinguish correlation from causation, understand the three levels of causal reasoning"
+      }
+    },
+    {
+      "id": "obj-do-calculus",
+      "description": {
+        "zh": "初步了解干预的概念及do-算子的思想",
+        "en": "Gain initial understanding of the concept of intervention and the do-calculus idea"
+      }
+    }
+  ]
+}

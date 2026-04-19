@@ -1,0 +1,330 @@
+{
+  "id": "lesson-02",
+  "course": "knowledge-engineering",
+  "title": {
+    "zh": "MYCIN的诊断室",
+    "en": "MYCIN's Consulting Room"
+  },
+  "knowledgePoint": {
+    "zh": "MYCIN的工作原理——基于规则的细菌感染诊断",
+    "en": "How MYCIN works — rule-based medical diagnosis for bacterial infections"
+  },
+  "teacher": "prof-shortliffe",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你闭上眼，记忆中那间教室又浮现了出来。肖特利夫教授正在计算机终端前忙碌，屏幕上跳动着一行行绿色的文字——那次亲眼目睹MYCIN进行诊断的经历，正从记忆深处涌回。",
+    "en": "You close your eyes, and that classroom materializes again. Professor Shortliffe is busy at the computer terminal, lines of green text flickering across the screen — that experience of watching MYCIN perform a diagnosis firsthand is surging back from deep memory."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，脑海中还回响着终端打印机嗒嗒作响的声音。几百条规则，一层层筛选，最终指向一个诊断。这就是MYCIN的力量。",
+    "en": "You come back to the present, the clatter of the terminal printer still echoing in your mind. Hundreds of rules, filtering layer by layer, converging on a diagnosis — that is the power of MYCIN."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的角落里多了一台计算机终端，米黄色的机箱旁边连着一台嗡嗡作响的打印机。肖特利夫教授今天来得很早，他正在终端前调试什么。看到你走进来，他招了招手。",
+        "en": "A computer terminal has appeared in the corner of the classroom, its beige casing connected to a humming printer. Professor Shortliffe arrived early today, adjusting something at the terminal. He waves you over when he sees you walk in."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "来得正好！今天我要让你们亲眼看看{MYCIN}是怎么工作的。上次我说过，我们把医生的知识变成了规则。今天你们会看到这些规则是怎么运转起来的。",
+        "en": "Perfect timing! Today I'm going to show you how {MYCIN} works, right before your eyes. Last time I mentioned that we convert doctors' knowledge into rules. Today you'll see those rules in action."
+      },
+      "terms": {
+        "MYCIN": "term-mycin"
+      },
+      "leadsTo": "case-intro"
+    },
+    {
+      "id": "case-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们来模拟一个真实的诊断场景。假设有一位病人，约翰，56岁男性，因为持续高烧和寒战住进了医院。初步的血液培养结果显示有细菌生长，但还不确定是哪种细菌。MYCIN需要帮助医生找出最可能的感染菌种，然后推荐合适的抗生素。",
+        "en": "Let's simulate a real diagnostic scenario. Suppose we have a patient, John, a 56-year-old male, admitted to the hospital with persistent high fever and chills. Preliminary blood culture results show bacterial growth, but the specific bacterium hasn't been identified yet. MYCIN needs to help the doctor determine the most likely infectious organism and then recommend appropriate antibiotics."
+      },
+      "leadsTo": "mycin-starts"
+    },
+    {
+      "id": "mycin-starts",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（他在终端上敲了几个键）MYCIN首先会问一系列问题。看——屏幕上出现了：「病人的姓名？年龄？感染的部位是什么？血培养的结果是什么？」 它会用这些信息来激活知识库中的规则。",
+        "en": "(He types a few keystrokes on the terminal.) MYCIN starts by asking a series of questions. Look — the screen reads: 「Patient name? Age? Site of infection? Blood culture results?」 It uses this information to activate rules in its knowledge base."
+      },
+      "leadsTo": "rule-example"
+    },
+    {
+      "id": "rule-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们看一条典型的{产生式规则}。（他在黑板上写道）规则027：如果感染的部位是血液，培养结果显示革兰氏阴性杆菌，病人最近做过泌尿外科手术，那么，有很高的可能性是大肠杆菌感染。",
+        "en": "Let me show you a typical {production rule}. (He writes on the blackboard.) Rule 027: IF — the site of infection is blood, AND the culture shows gram-negative rods, AND the patient recently had urogenital surgery — THEN there is a high likelihood of E. coli infection."
+      },
+      "terms": {
+        "产生式规则": "term-production-rule",
+        "production rule": "term-production-rule"
+      },
+      "leadsTo": "how-rules-fire"
+    },
+    {
+      "id": "how-rules-fire",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "MYCIN的工作方式叫{后向推理}。它从目标出发，比如「这个病人感染了什么细菌？」，然后倒过来找：要回答这个问题，我需要知道哪些信息？于是它一层层往回追问，直到找到已经掌握的事实，或是需要向医生提问才能获得的信息。",
+        "en": "MYCIN's reasoning method is called {backward chaining}. It starts from the goal — 「What bacterium has infected this patient?」 — and works backward: what information do I need to answer this question? So it traces back layer by layer, until it reaches facts already known or information that requires asking the doctor."
+      },
+      "terms": {
+        "后向推理": "term-backward-chaining",
+        "backward chaining": "term-backward-chaining"
+      },
+      "leadsTo": "inference-engine-explain"
+    },
+    {
+      "id": "inference-engine-explain",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "执行这个推理过程的部分，我们叫它{推理引擎}。它和{知识库}是分开的——知识库存放规则，推理引擎决定怎么使用这些规则。这个分离非常关键，因为同一个推理引擎可以配合不同领域的知识库工作。",
+        "en": "The component that performs this reasoning process is called the {inference engine}. It's separate from the {knowledge base} — the knowledge base stores the rules, and the inference engine decides how to apply them. This separation is crucial, because the same inference engine could work with knowledge bases from different domains."
+      },
+      "terms": {
+        "推理引擎": "term-inference-engine",
+        "inference engine": "term-inference-engine",
+        "知识库": "term-knowledge-base",
+        "knowledge base": "term-knowledge-base"
+      },
+      "leadsTo": "diagnosis-scenario"
+    },
+    {
+      "id": "diagnosis-scenario",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（他转回终端）好，现在我把约翰的信息输入进去。感染部位：血液。培养形态：杆菌。革兰氏染色：阴性。最近是否有泌尿外科手术：没有。但是病人有免疫抑制的状况。来看看MYCIN会怎么推理。",
+        "en": "(He turns back to the terminal.) Now I'll enter John's information. Site of infection: blood. Culture morphology: rod-shaped. Gram stain: negative. Recent urogenital surgery: no. But the patient is immunocompromised. Let's see how MYCIN reasons through this."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "约翰的血培养显示革兰氏阴性杆菌，他没有做过泌尿外科手术，但有免疫抑制。规则027要求有泌尿外科手术史。这时MYCIN该怎么办？",
+        "en": "John's blood culture shows gram-negative rods. He hasn't had urogenital surgery, but he is immunocompromised. Rule 027 requires a history of urogenital surgery. What should MYCIN do?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "规则027不满足条件，跳过它，尝试其他规则",
+            "en": "Rule 027's conditions aren't met — skip it and try other rules"
+          },
+          "tag": "systematic-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！规则027的前提条件之一不满足，所以它不会被激活。MYCIN会继续检查其他规则——也许规则042说「如果是革兰氏阴性杆菌，并且病人有免疫抑制，那么考虑假单胞菌感染」。系统会逐一检查所有可能适用的规则。",
+              "en": "Exactly right! One of Rule 027's preconditions isn't met, so it won't fire. MYCIN moves on to check other rules — perhaps Rule 042 says 「If gram-negative rods AND patient is immunocompromised, THEN consider Pseudomonas infection」. The system checks every potentially applicable rule, one by one."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "降低规则027的确定性，但仍然保留大肠杆菌的可能性",
+            "en": "Lower Rule 027's certainty, but keep E. coli as a possibility"
+          },
+          "tag": "probabilistic-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "有趣的想法，你在考虑灵活性。不过MYCIN的规则是严格的，如果前提条件之一不满足，这条规则就不会触发。但你提到的确定性调整确实是MYCIN的一个重要特性，我们下节课会专门讲。大肠杆菌可能通过其他规则仍然出现在候选列表里。",
+              "en": "Interesting thought — you're thinking about flexibility. However, MYCIN's rules are strict: if a precondition isn't met, the rule doesn't fire. But the certainty adjustment you mention is indeed an important feature of MYCIN — we'll cover that in detail next lesson. E. coli might still appear on the candidate list through other rules."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "向医生追问更多信息，看看有没有遗漏",
+            "en": "Ask the doctor for more information to see if anything was missed"
+          },
+          "tag": "inquiry-driven",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这也是MYCIN会做的事情！当它需要某个信息来判断一条规则是否适用时，它会直接向医生提问。这就是后向推理的特点——从目标出发，缺什么就问什么。不过对于规则027，手术史已经确认为「没有」，所以这条规则确实不适用了。系统会转向其他规则继续推理。",
+              "en": "That's also something MYCIN does! When it needs certain information to determine if a rule applies, it asks the doctor directly. That's the nature of backward chaining — start from the goal, ask for whatever is missing. However, for Rule 027, the surgical history has been confirmed as 「no, so this rule indeed doesn't apply. The system will move on to other rules."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（他指着屏幕）看，MYCIN经过检查大约二十条规则之后，给出了它的结论：最可能的感染菌是假单胞菌，置信度0.75。第二可能是克雷伯菌，置信度0.45。基于这个诊断，它推荐了两种抗生素方案。",
+        "en": "(He points at the screen.) Look — after checking roughly twenty rules, MYCIN has reached its conclusion: the most likely infecting organism is Pseudomonas, with a certainty of 0.75. Second most likely is Klebsiella, with a certainty of 0.45. Based on this diagnosis, it recommends two antibiotic regimens."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "MYCIN的工作原理：用后向推理从诊断目标出发，逐层回溯检查产生式规则的前提条件。推理引擎与知识库分离——引擎执行推理，知识库存放规则。",
+        "en": "How MYCIN works: backward chaining starts from the diagnostic goal and traces back through production rules' preconditions layer by layer. The inference engine is separate from the knowledge base — the engine performs reasoning, the knowledge base stores rules."
+      },
+      "category": "core-concept",
+      "leadsTo": "what-if-wrong"
+    },
+    {
+      "id": "what-if-wrong",
+      "type": "dialog",
+      "mood": "serious",
+      "text": {
+        "zh": "现在让我问你们一个严肃的问题。（他停顿了一下）如果MYCIN诊断错了呢？如果它推荐了错误的抗生素呢？在医学中，一个错误的诊断可能要人命。所以我们的系统必须知道自己有多不确定。",
+        "en": "Now let me ask you a serious question. (He pauses.) What if MYCIN is wrong? What if it recommends the wrong antibiotic? In medicine, a wrong diagnosis can cost a life — so our system must know how uncertain it is."
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "如果MYCIN的诊断结果是错误的，你认为最重要的应对措施是什么？",
+        "en": "If MYCIN's diagnosis turns out to be wrong, what do you think is the most important safeguard?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "系统必须能解释自己的推理过程，让医生检查",
+            "en": "The system must be able to explain its reasoning so doctors can review it"
+          },
+          "tag": "transparency-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我们花了大量精力实现的功能！MYCIN有一个{解释机制}——医生可以随时问「你为什么问这个问题？」或者「你是根据什么得出这个结论的？」系统会列出它使用的每一条规则和推理链。如果医生觉得某个环节有问题，可以质疑并纠正。",
+              "en": "This is exactly what we've invested enormous effort to implement! MYCIN has an {explanation facility} — the doctor can ask at any time, 「Why are you asking this question?」 or 「What led you to this conclusion?」 The system will list every rule and reasoning chain it used. If the doctor spots a problem at any step, they can challenge and correct it."
+            },
+            "terms": {
+              "解释机制": "term-explanation-facility",
+              "explanation facility": "term-explanation-facility"
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "系统应该给出多个备选方案，标明各自的可能性",
+            "en": "The system should offer multiple alternatives with their likelihoods"
+          },
+          "tag": "multi-hypothesis",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得对！MYCIN确实不会只给一个答案。它列出多个可能的病原体，每个都附带一个置信度数值。它推荐的抗生素方案也会考虑覆盖多种可能的感染源。这样即使第一猜测不对，治疗方案也能有所覆盖。",
+              "en": "Well said! MYCIN indeed doesn't give just one answer. It lists multiple possible pathogens, each with a certainty value. Its antibiotic recommendations also consider coverage for multiple possible infections. This way, even if the top guess is wrong, the treatment plan still provides coverage."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "加入更多的规则，让系统更加准确",
+            "en": "Add more rules to make the system more accurate"
+          },
+          "tag": "improvement-driven",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这当然是我们一直在做的事情。目前MYCIN已经有大约六百条规则了。但是（他叹了口气）加规则不是那么简单的。每加一条新规则，都必须确保它不会和现有规则冲突。而且规则越多，从专家那里获取知识就越困难。这个问题我们以后会详细讨论。",
+              "en": "That's certainly something we're always working on. MYCIN currently has about six hundred rules. But (he sighs) adding rules isn't so simple. Every new rule must be verified not to conflict with existing ones. And the more rules you need, the harder it becomes to extract knowledge from experts. We'll discuss that problem in detail later."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "其实你们说的这些，解释能力、多重备选、持续改进，都是MYCIN的设计目标。我们特别重视解释能力，因为如果一个系统给不出理由，医生凭什么信任它？在医学这样高风险的领域，透明度和可验证性至关重要。",
+        "en": "What you've described — explainability, multiple alternatives, continuous improvement — are all design goals for MYCIN. We place special emphasis on explainability, because if a system can't give reasons, why should a doctor trust it? In a high-stakes field like medicine, transparency and verifiability are paramount."
+      },
+      "leadsTo": "architecture-summary"
+    },
+    {
+      "id": "architecture-summary",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我总结一下MYCIN的架构。三个核心组件：第一是{知识库}，存放所有的产生式规则；第二是{推理引擎}，通过后向推理来应用规则；第三是{解释机制}，让系统能说明自己为什么做出某个判断。这三者共同构成了一个完整的{专家系统}。",
+        "en": "Let me summarize MYCIN's architecture. Three core components: first, the {knowledge base} — storing all the production rules; second, the {inference engine} — applying rules through backward chaining; third, the {explanation facility} — allowing the system to explain why it made a particular judgment. Together, these three form a complete {expert system}."
+      },
+      "terms": {
+        "知识库": "term-knowledge-base",
+        "knowledge base": "term-knowledge-base",
+        "推理引擎": "term-inference-engine",
+        "inference engine": "term-inference-engine",
+        "解释机制": "term-explanation-facility",
+        "explanation facility": "term-explanation-facility",
+        "专家系统": "term-expert-system",
+        "expert system": "term-expert-system"
+      },
+      "leadsTo": "note2"
+    },
+    {
+      "id": "note2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "MYCIN的三大核心组件：知识库（存放产生式规则）、推理引擎（后向推理）、解释机制（解释推理过程）。透明度和可解释性在医学AI中至关重要。",
+        "en": "MYCIN's three core components: knowledge base (production rules), inference engine (backward chaining), explanation facility (explains reasoning). Transparency and explainability are critical in medical AI."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "不过你们注意到了吗？MYCIN给出的那些数字，比如0.75、0.45，它的置信度是怎么计算的？当两条规则给出矛盾的结论时，又该怎么处理？下一次课，我们来深入讨论不确定性的问题。这是MYCIN最巧妙也最有争议的部分。",
+        "en": "But did you notice those numbers MYCIN gave — 0.75, 0.45 — how does it calculate that certainty? When two rules give contradictory conclusions, how should we handle it? Next time, we'll dive deep into the problem of uncertainty. It's the most ingenious — and most controversial — part of MYCIN."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "肖特利夫教授关掉终端，屏幕上的绿色光标最后闪了一下便消失了。他把约翰的病例档案整理好，仔细放回文件夹。你看着那台沉默下来的计算机，心里在想：几百条规则，一个推理引擎，竟然能做出接近专家水平的诊断。可那些数字，比如0.75、0.45，它们背后到底藏着什么奥秘？",
+        "en": "Professor Shortliffe powers off the terminal. The green cursor blinks one last time and vanishes. He tidies John's case file and carefully places it back in the folder. You stare at the now-silent computer, thinking: hundreds of rules, one inference engine, and it produces diagnoses rivaling expert physicians. But those numbers — 0.75, 0.45 — what secrets do they hold?"
+      }
+    }
+  ]
+}

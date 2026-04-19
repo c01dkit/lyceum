@@ -1,0 +1,375 @@
+{
+  "id": "lesson-05",
+  "course": "early-programs",
+  "title": {
+    "zh": "黄金年代与未竟之梦",
+    "en": "The Golden Age and Unfinished Dreams"
+  },
+  "knowledgePoint": {
+    "zh": "1950s-1960s AI黄金年代的成就总结与未来展望",
+    "en": "A summary of the 1950s-1960s AI golden age achievements and a look toward the future"
+  },
+  "teacher": "prof-simon",
+  "estimatedMinutes": 15,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你坐在空荡荡的教室里，窗外的光线和那天最后一课时一模一样。司马贺教授没有带任何道具，只是站在讲台前，环视着每一个人。那场关于梦想与遗憾的告别，在记忆中缓缓重演……",
+    "en": "You sit in the empty classroom, the light through the windows exactly as it was on that final day. Prof. Simon brought no props — he simply stood at the lectern, looking at each person in turn. That farewell of dreams and regrets replays slowly in your memory..."
+  },
+  "recallOutro": {
+    "zh": "你深吸一口气，从回忆中走出。黄金年代已经远去，但那些未竟之梦并未消散——它们只是换了一种方式，在未来继续生长。",
+    "en": "You take a deep breath and step out of the memory. The golden age has long passed, but those unfinished dreams have not faded — they simply found new ways to keep growing in the future."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。司马贺教授走进教室时，步伐比平时慢了一些。他没有带任何道具——没有老照片，没有书，没有汉诺塔。只是走到讲台前，环视了一圈教室，像是在和每一个人做无声的道别。然后他开口了，声音比往常更柔和。",
+        "en": "The final class. Professor Simon walks into the classroom a bit more slowly than usual. He hasn't brought any props — no old photographs, no books, no Tower of Hanoi. He simply walks to the lectern, surveys the entire classroom, as if silently saying farewell to each person. Then he speaks, his voice softer than before."
+      },
+      "leadsTo": "opening-reflection"
+    },
+    {
+      "id": "opening-reflection",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "这几节课，我带你们走了一段旅程，从达特茅斯的梦想，到逻辑理论家的诞生，到GPS的雄心，到ELIZA的镜子。今天，我想退后一步，看看全景。我们梦想了什么？我们做到了什么？我们又错过了什么？",
+        "en": "Over these past few classes, I've taken you on a journey — from the Dartmouth dream, to the birth of the Logic Theorist, to GPS's ambition, to ELIZA's mirror. Today, I want to step back and see the full picture. What did we dream? What did we achieve? And what did we miss?"
+      },
+      "leadsTo": "the-heroes"
+    },
+    {
+      "id": "the-heroes",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "让我先向那些英雄们致敬。图灵为我们奠定了计算的理论基础，还留下了那个永恒的问题：机器能思考吗？麦卡锡发明了LISP，给了AI一个名字和一门语言。明斯基探索了神经网络，后来又提出了框架理论。香农创造了信息论，让我们理解了什么是「信息」。",
+        "en": "Let me first pay tribute to the heroes. Turing — he gave us the theoretical foundation of computation, and that eternal question: can machines think? McCarthy — he invented LISP, gave AI a name and a language. Minsky — he explored neural networks, later proposed frame theory. Shannon — he created information theory, helping us understand what 「information」 is."
+      },
+      "leadsTo": "newell-and-simon"
+    },
+    {
+      "id": "newell-and-simon",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（停顿了一下，微笑）至于纽厄尔和我——我们创造了会推理的程序，试图理解人类思维的机制。我们不是最聪明的，但也许我们是最固执的。纽厄尔常说：「赫伯特，我们在做一件可能需要一百年才能完成的事情。」他说对了。",
+        "en": "(Pauses, smiles) As for Newell and me — we created programs that could reason and tried to understand the mechanisms of human thought. We weren't the most brilliant, but perhaps we were the most stubborn. Newell used to say: 「Herb, we're doing something that might take a hundred years to finish」. He was right."
+      },
+      "leadsTo": "the-programs"
+    },
+    {
+      "id": "the-programs",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "再来看看那些程序，逻辑理论家证明了机器可以推理。GPS试图成为通用的问题解决者。ELIZA揭示了人性的弱点。还有SHRDLU，它能理解一个积木世界的语言。还有Shakey，第一个能在现实世界中移动的机器人。",
+        "en": "Now look at the programs — our children. The Logic Theorist proved machines could reason. GPS attempted to be a general problem solver. ELIZA revealed a vulnerability of human nature. And there was SHRDLU — which could understand language about a blocks world. And Shakey — the first robot that could move through the real world."
+      },
+      "leadsTo": "symbolism-era"
+    },
+    {
+      "id": "symbolism-era",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这整个时代有一条贯穿始终的主线：{符号主义}。我们相信，智能的本质是符号操作，也就是说，给机器正确的符号和规则，它就能思考。逻辑理论家、GPS、SHRDLU……都建立在这个信念之上。",
+        "en": "Throughout this entire era, there was one thread running through everything: {symbolism}. We believed the essence of intelligence was symbol manipulation — give a machine the right symbols and rules, and it can think. The Logic Theorist, GPS, SHRDLU... all were built on this belief."
+      },
+      "terms": {
+        "符号主义": "term-symbolism",
+        "symbolism": "term-symbolism"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾这个黄金年代，你认为最伟大的成就是什么？",
+        "en": "Looking back at this golden age, what do you think was the greatest achievement?"
+      },
+      "choices": [
+        {
+          "id": "proving-possible",
+          "text": {
+            "zh": "证明了机器智能是可能的——打破了「只有人能思考」的迷信",
+            "en": "Proving machine intelligence is possible — breaking the myth that only humans can think"
+          },
+          "tag": "possibility",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "是的！这也许是最根本的贡献。在逻辑理论家之前，「会思考的机器」只是科幻小说的素材。在它之后，这成了一个严肃的科学研究方向。从「不可能」到「也许可以」，这一步的意义是无价的。",
+              "en": "Yes! That's perhaps the most fundamental contribution. Before the Logic Theorist, 「thinking machines」 were just material for science fiction. After it, this became a serious scientific research direction. From 「impossible」 to 「maybe possible」 — that step was priceless."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "methods-and-tools",
+          "text": {
+            "zh": "创造了搜索、推理、知识表示等核心方法",
+            "en": "Creating core methods like search, reasoning, and knowledge representation"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "务实而准确的评价。启发式搜索、手段-目的分析、知识表示、自动推理……这些方法论至今仍是AI的基石。即使后来的深度学习革命改变了很多东西，这些经典概念依然在发挥作用。",
+              "en": "A pragmatic and accurate assessment. Heuristic search, means-ends analysis, knowledge representation, automated reasoning... these methodologies remain the cornerstones of AI to this day. Even after the deep learning revolution changed many things, these classical concepts continue to play vital roles."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "questions-raised",
+          "text": {
+            "zh": "提出了关于智能、意识、人机关系的深刻问题",
+            "en": "Raising profound questions about intelligence, consciousness, and human-machine relations"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你看到了比技术更深层的东西。图灵的「机器能思考吗？」、ELIZA效应揭示的人性弱点、GPS暴露的智能复杂性……这些问题至今仍在引领我们的思考。也许问出正确的问题，比找到答案更重要。",
+              "en": "You see something deeper than technology. Turing's 「Can machines think?, the ELIZA effect's revelation of human vulnerability, the complexity of intelligence exposed by GPS... these questions still guide our thinking today. Perhaps asking the right questions matters more than finding answers."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但是，每一个黄金年代，都有它的落幕。从1960年代末开始，暴风雨的征兆已经出现了。",
+        "en": "But — every golden age has its curtain call. From the late 1960s onward, signs of a coming storm were already appearing."
+      },
+      "leadsTo": "perceptrons"
+    },
+    {
+      "id": "perceptrons",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "1969年，明斯基和帕佩特出版了一本叫《感知机》的书。这本书用严格的数学证明，指出了当时神经网络方法的根本局限。它的影响是毁灭性的——几乎整整一代研究者放弃了神经网络的研究方向。",
+        "en": "In 1969, Minsky and Papert published a book called 「Perceptrons」. With rigorous mathematical proofs, it pointed out the fundamental limitations of the neural network methods of the time. Its impact was devastating — nearly an entire generation of researchers abandoned neural network research."
+      },
+      "leadsTo": "funding-crisis"
+    },
+    {
+      "id": "funding-crisis",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "与此同时，政府的耐心正在耗尽。我们当年承诺了太多——十年内实现机器翻译、二十年内创造通用智能。但十年过去了，二十年过去了，机器翻译的质量依然惨不忍睹，通用智能更是遥遥无期。",
+        "en": "Meanwhile, government patience was running out. We had promised too much — machine translation within ten years, general intelligence within twenty. But ten years passed, twenty years passed, and machine translation quality was still abysmal; general intelligence was nowhere in sight."
+      },
+      "leadsTo": "lighthill"
+    },
+    {
+      "id": "lighthill",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "1973年，英国政府委托詹姆斯·莱特希尔爵士撰写了一份评估报告——{莱特希尔报告}。这份报告措辞严厉，结论直截了当：AI研究未能实现其承诺，大部分研究没有实际价值。报告发布后，英国几乎全面削减了AI研究经费。",
+        "en": "In 1973, the British government commissioned Sir James Lighthill to write an evaluation — the {Lighthill Report}. The report was harshly worded, its conclusion blunt: AI research had failed to deliver on its promises, and most research had no practical value. After the report was published, Britain slashed AI research funding almost entirely."
+      },
+      "terms": {
+        "莱特希尔报告": "term-lighthill-report",
+        "Lighthill Report": "term-lighthill-report"
+      },
+      "leadsTo": "ai-winter-begins"
+    },
+    {
+      "id": "ai-winter-begins",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "美国也在削减经费。国防高级研究计划局，也就是DARPA，大幅缩减了对AI基础研究的支持。很多优秀的年轻人离开了这个领域，转去做其他研究。人们开始管这段时期叫做「AI寒冬」。",
+        "en": "The US was cutting funding too. DARPA — the Defense Advanced Research Projects Agency — dramatically reduced its support for basic AI research. Many talented young people left the field for other research areas. People began calling this period the 「AI winter」."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI寒冬的成因：过度乐观的承诺未能兑现；《感知机》一书重创了神经网络研究；1973年莱特希尔报告导致英国大幅削减AI经费；美国DARPA也缩减了基础研究支持。",
+        "en": "Causes of the AI winter: overly optimistic promises went unfulfilled; the 「Perceptrons」 book devastated neural network research; the 1973 Lighthill Report led Britain to slash AI funding; US DARPA also reduced basic research support."
+      },
+      "category": "historical-fact",
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "面对AI的未来，考虑到我们曾经过度乐观，你觉得我们应该持什么态度？",
+        "en": "Facing AI's future — considering we've been overly optimistic before — what attitude do you think we should hold?"
+      },
+      "choices": [
+        {
+          "id": "cautious-optimism",
+          "text": {
+            "zh": "谨慎乐观——吸取教训，但不放弃梦想",
+            "en": "Cautious optimism — learn from the past, but don't abandon the dream"
+          },
+          "tag": "balanced",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这也许是最明智的立场。我们不必重蹈覆辙，不再承诺「十年内实现通用智能」。但我们也不必因为曾经摔倒就不再行走。每一次失败都教会了我们更多。正如我常说的，科学的进步始于好奇心，而非答案。",
+              "en": "That's perhaps the wisest stance. We don't need to repeat our mistakes — no more promises of 「general intelligence within ten years」. But we also don't need to stop walking just because we've stumbled. Every failure has taught us more. As I always say — scientific progress begins with curiosity, not answers."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "more-caution",
+          "text": {
+            "zh": "应该更加谨慎——诚实面对AI的能力和局限",
+            "en": "We should be more cautious — be honest about AI's capabilities and limitations"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "谨慎是一种美德。如果我们当年更诚实一些，告诉政府和公众这需要几代人的努力，而不是短短十年，也许就不会有AI寒冬。诚实的代价或许是更少的经费，但它带来的，是更持久的信任。",
+              "en": "Caution is a virtue. If we had been more honest back then — told governments and the public that this would take generations, not a decade — perhaps there would have been no AI winter. The cost of honesty might be less funding, but what honesty brings is more lasting trust."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "keep-dreaming",
+          "text": {
+            "zh": "大胆向前——每个伟大的成就都始于「不切实际」的梦想",
+            "en": "Be bold — every great achievement began with an 「unrealistic」 dream"
+          },
+          "tag": "visionary",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了，眼中有光）你让我想起了年轻时的自己。我们当年也是这么想的。也许你是对的，也许世界需要的就是一群不怕失败的年轻人。只是请记住，大胆的梦想需要扎实的工作来支撑。光有梦想不够，还要卷起袖子干活。",
+              "en": "(Laughs, eyes gleaming) You remind me of my younger self. That's exactly what we thought back then. Perhaps you're right — perhaps what the world needs is a group of young people unafraid of failure. Just remember, bold dreams need solid work to support them. Dreams alone aren't enough — you also have to roll up your sleeves and get to work."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管你们选择什么态度，有一件事是确定的：AI的故事还远远没有结束。符号主义遇到了瓶颈，但新的路径正在被发现。神经网络会复兴，数据驱动的方法会崛起，新的范式会诞生。",
+        "en": "Whatever attitude you choose, one thing is certain: AI's story is far from over. Symbolism hit a bottleneck, but new paths are being discovered. Neural networks will revive, data-driven methods will rise, new paradigms will be born."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "作为这门课的最后一个问题：如果你可以回到1956年的达特茅斯会议，你最想对那群年轻的先驱们说什么？",
+        "en": "As the final question of this course: if you could go back to the 1956 Dartmouth Conference, what would you most want to say to those young pioneers?"
+      },
+      "choices": [
+        {
+          "id": "youre-on-right-track",
+          "text": {
+            "zh": "你们走对了方向，但路比你们想的要长得多",
+            "en": "You're on the right track, but the road is far longer than you think"
+          },
+          "tag": "encourager",
+          "response": {
+            "mood": "nostalgic",
+            "text": {
+              "zh": "（深深叹了口气）是啊，路长得超乎想象。我们以为是一场短跑，结果发现是一场超级马拉松。但你知道吗？即使知道路有多长，我相信我们当年还是会出发的。因为有些旅程，值得你用一生去走。",
+              "en": "(Sighs deeply) Yes, the road was unimaginably long. We thought it was a sprint, but it turned out to be an ultra-marathon. But you know what? Even knowing how long the road was, I believe we would have set out anyway. Because some journeys are worth spending a lifetime on."
+            }
+          },
+          "leadsTo": "farewell"
+        },
+        {
+          "id": "learn-from-humans",
+          "text": {
+            "zh": "多观察人类——理解智能的关键，也许在于理解我们自己",
+            "en": "Observe humans more — the key to understanding intelligence might lie in understanding ourselves"
+          },
+          "tag": "cognitive",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（眼睛亮了）你说出了我毕生的信念！这正是我一直在做的事情——把认知心理学和计算机科学结合起来。理解机器智能的最好方式，也许就是理解人类智能。我们既是创造者，也是最好的范本。谢谢你，你让一个老人很欣慰。",
+              "en": "(Eyes brighten) You've spoken my lifelong conviction! That's exactly what I've been doing — combining cognitive psychology with computer science. The best way to understand machine intelligence may be to understand human intelligence. We are both the creators and the best templates. Thank you — you've made an old man very happy."
+            }
+          },
+          "leadsTo": "farewell"
+        },
+        {
+          "id": "think-about-responsibility",
+          "text": {
+            "zh": "想想你们创造的东西会带来什么——别只想着能不能，也想想该不该",
+            "en": "Think about what your creations will bring — don't just ask 「can we」 but also 「should we」"
+          },
+          "tag": "ethical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（沉默了几秒）这也许是我们当年最大的盲区。我们太沉浸在「能不能做到」的兴奋中，很少停下来想「做到之后会怎样」。维森鲍姆是最早意识到这个问题的人之一，但他被当成了扫兴的人。如果我能重来，我会更认真地倾听他的警告。",
+              "en": "(Silent for a few seconds) That was perhaps our biggest blind spot. We were so immersed in the excitement of 「can we do it」 that we rarely stopped to think 「what happens when we do」. Weizenbaum was one of the first to recognize this, but he was treated as a killjoy. If I could do it over, I would have listened more carefully to his warnings."
+            }
+          },
+          "leadsTo": "farewell"
+        }
+      ]
+    },
+    {
+      "id": "farewell",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "（停顿了很长时间，目光温柔）好了，孩子们。这是我最后一节课了。我已经把我知道的故事都告诉你们了——那些梦想家的勇气、那些程序的辉煌、那些失败的教训。接下来的路，是你们的了。",
+        "en": "(A long pause, eyes gentle)Well, dear students. This is my final class. I've told you all the stories I know — the courage of the dreamers, the brilliance of the programs, the lessons of the failures. The road ahead is yours."
+      },
+      "leadsTo": "final-words"
+    },
+    {
+      "id": "final-words",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "梦想没有结束。它才刚刚开始。下一代人会找到我们无法想象的新路径。也许你们之中，就有那个找到新路径的人。记住——科学的进步始于好奇心，而非答案。永远保持好奇。",
+        "en": "The dream isn't over. It's just beginning. The next generation will find new paths we couldn't imagine. Perhaps among you is the person who will find that new path. Remember — scientific progress begins with curiosity, not answers. Stay curious, always."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "1950s-1960s AI黄金年代总结：符号主义是主导范式，相信智能=符号操作。核心成就：逻辑理论家、GPS、ELIZA、SHRDLU等。因过度承诺和实际进展的落差，导致了AI寒冬（经费削减、人才流失）。但黄金年代奠定的方法论和提出的根本问题，至今仍在指引AI研究。",
+        "en": "Summary of the 1950s-1960s AI golden age: symbolism was the dominant paradigm, believing intelligence = symbol manipulation. Key achievements: Logic Theorist, GPS, ELIZA, SHRDLU, etc. The gap between over-promises and actual progress led to the AI winter (funding cuts, talent exodus). But the methodology and fundamental questions from the golden age continue to guide AI research today."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "司马贺教授最后看了你们一眼，那目光中有骄傲、有感伤、有期待。他转身走向门口，脚步不紧不慢。走到门边时，他停了一下，没有回头，只是轻声说了一句：「好奇心。永远是好奇心。」然后他走了。教室里安静了很久。窗外的阳光洒进来，照在空荡荡的讲台上。你心中有一种奇特的感觉，像是送别了一位远行的故人，又像是刚刚收到了一封来自未来的信。AI的故事，从这里开始，但远远没有结束。",
+        "en": "Professor Simon gives you one last look — in his eyes there is pride, wistfulness, and expectation. He turns and walks toward the door, unhurried. At the doorway, he pauses without looking back, and says softly: 「Curiosity. Always curiosity」. Then he is gone. The classroom is quiet for a long time. Sunlight streams through the windows, illuminating the empty lectern. You feel something strange — as if you've just said farewell to a traveler setting off on a long journey, and at the same time, as if you've just received a letter from the future. The story of AI begins here, but it is far, far from over."
+      }
+    }
+  ]
+}

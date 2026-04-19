@@ -1,0 +1,334 @@
+{
+  "id": "lesson-03",
+  "course": "transformer-architecture",
+  "title": {
+    "zh": "多头注意力与位置编码",
+    "en": "Multi-Head Attention & Positional Encoding"
+  },
+  "knowledgePoint": {
+    "zh": "多头注意力捕捉不同类型的关系；位置编码注入顺序信息",
+    "en": "Multiple attention heads capture different relationships; positional encoding injects order information"
+  },
+  "teacher": "prof-vaswani",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间金色的教室。全息显示上漂浮着八组平行的注意力光线，那是八个头，八种视角。它们同时运行，各自捕捉句子中不同类型的关系。瓦斯瓦尼教授站在旁边，手指指着一条优美的正弦曲线，说：没有循环，我们需要一种别的方式来告诉模型「顺序」。",
+    "en": "You close your eyes, and your thoughts drift back to that golden classroom. Eight parallel sets of attention beams float on the holographic display — eight heads, eight perspectives — running simultaneously, each capturing a different type of relationship in the sentence. Prof. Vaswani stands nearby, pointing at an elegant sinusoidal curve, saying: without recurrence, we need another way to tell the model about 「order」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。两个关键的设计在脑海中清晰了：多头注意力让模型同时从多个角度理解词与词之间的关系，比如语法、语义、指代和距离，每个头专注于一种模式。位置编码则用正弦和余弦函数为每个位置生成独特的「指纹」，让模型在没有循环的情况下也能感知顺序。简洁，优美，有效。",
+    "en": "You return to the present. Two key designs are clear in your mind: multi-head attention lets the model simultaneously understand word relationships from multiple angles — syntax, semantics, coreference, distance — each head focusing on one pattern. Positional encoding uses sine and cosine functions to generate a unique 「fingerprint」 for each position, letting the model perceive order without recurrence. Simple, elegant, effective."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "瓦斯瓦尼教授走进教室时，全息显示上已经浮着两组图案：左边是一张注意力热力图，颜色深浅不一；右边是一组波浪形的曲线，像水面上的涟漪。他看了看这两组图案，微微一笑，像是在欣赏一件自己参与设计的作品。",
+        "en": "When Prof. Vaswani walks in, two sets of patterns already float on the holographic display: on the left, an attention heatmap with varying color intensities; on the right, a set of wave-like curves, like ripples on water. He looks at the two patterns and smiles slightly, as if admiring a work he helped design."
+      },
+      "leadsTo": "single-head-limit"
+    },
+    {
+      "id": "single-head-limit",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们学了自注意力的计算：Q、K、V，点积，softmax，加权和。一组QKV就是一个「注意力头」。但一个头只能学习一种注意力模式。看这张热力图——一个头学到了「每个词主要关注它前面的词」。这对理解语法很有用。但如果我想同时知道指代关系呢？比如「it」指的是三句话之前的「the cat」？一个头做不到同时捕捉两种完全不同的关系。",
+        "en": "Last lesson we learned self-attention computation: Q, K, V, dot product, softmax, weighted sum. One set of QKV is one 「attention head」. But a single head can only learn one attention pattern. Look at this heatmap — one head learned that 「each word primarily attends to the word before it」. This is useful for understanding syntax. But what if I also want to know coreference? Like 「it」 referring to 「the cat」 three sentences earlier? One head cannot capture two entirely different types of relationships simultaneously."
+      },
+      "leadsTo": "multi-head-idea"
+    },
+    {
+      "id": "multi-head-idea",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "解决方案是直觉上最自然的：既然一个头不够，那就用多个。{多头注意力}的设计是：把原始的Q、K、V分别投影到多个低维子空间中，比如8个——每个子空间独立地运行一次自注意力，然后把8个输出拼接起来，再做一次线性变换。8个头，8种不同的视角，同时运行。",
+        "en": "The solution is the most natural one intuitively: if one head isn't enough, use many. The design of {multi-head attention} is: project the original Q, K, V into multiple lower-dimensional subspaces — say, 8 — each subspace runs self-attention independently, then concatenate the 8 outputs and apply one more linear transformation. Eight heads, eight different perspectives, running simultaneously."
+      },
+      "terms": {
+        "多头注意力": "term-multi-head-attention",
+        "multi-head attention": "term-multi-head-attention"
+      },
+      "leadsTo": "hologram-multi-head"
+    },
+    {
+      "id": "hologram-multi-head",
+      "type": "narration",
+      "text": {
+        "zh": "全息显示上出现了八组并列的小型注意力网络，每组用不同的颜色标记。第一组主要关注相邻的词，连线短而密集。第二组的连线更长更稀疏，似乎在追踪远距离的依赖。第三组的连线呈现出一种规律的模式——可能在捕捉句法结构。八组网络同时闪烁，各有各的节奏。",
+        "en": "Eight parallel miniature attention networks appear on the holographic display, each marked in a different color. The first group mainly connects adjacent words — short, dense lines. The second group has longer, sparser connections, seemingly tracking long-distance dependencies. The third shows a regular pattern — perhaps capturing syntactic structure. All eight networks flicker simultaneously, each with its own rhythm."
+      },
+      "leadsTo": "why-subspace"
+    },
+    {
+      "id": "why-subspace",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "一个关键的设计选择：我们没有简单地复制8份完整的注意力机制，而是把512维的向量分成8个64维的子空间。这意味着每个头的计算量只有原来的1/8，而8个头加起来的总计算量和一个完整的注意力头大致相同。多头注意力几乎不增加计算成本——它只是重新组织了计算的方式。",
+        "en": "A key design choice: we didn't simply duplicate 8 full attention mechanisms. Instead, we split the 512-dimensional vector into 8 subspaces of 64 dimensions each. This means each head's computation is only 1/8 of the original, and the total computation of all 8 heads is roughly the same as a single full attention head. Multi-head attention adds almost no computational cost — it merely reorganizes how computation is done."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "训练完成后，8个注意力头通常会学到不同的模式。你觉得这种「自发分工」是怎么产生的？",
+        "en": "After training, the 8 attention heads typically learn different patterns. How do you think this 「spontaneous division of labor」 emerges?"
+      },
+      "choices": [
+        {
+          "id": "choice-random-init",
+          "text": {
+            "zh": "随机初始化让每个头从不同的起点开始学习，梯度下降引导它们走向不同的局部最优",
+            "en": "Random initialization gives each head a different starting point, and gradient descent guides them to different local optima"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常精准。随机初始化打破了对称性。如果所有头的初始参数完全相同，它们就会学到完全相同的模式。不同的起点，加上梯度下降的非线性优化过程，自然地引导不同的头走向不同的解。这种通过随机性实现多样性的思想在机器学习中非常常见，布雷曼教授的随机森林用的也是同样的原理。",
+              "en": "Very precise. Random initialization breaks the symmetry. If every head started with identical parameters, they would learn identical patterns. Different starting points combined with the nonlinear optimization of gradient descent naturally guide different heads toward different solutions. This idea of using randomness to achieve diversity is very common in machine learning. Professor Breiman's random forests follow the same principle."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-task-pressure",
+          "text": {
+            "zh": "翻译任务本身需要多种类型的信息，包括语法、语义和位置。这些需求迫使不同的头专注于不同的方面。",
+            "en": "The translation task itself requires multiple types of information — syntax, semantics, position — forcing different heads to specialize"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个很好的视角。如果任务只需要一种信息，多个头可能会退化为冗余。正是因为翻译需要同时理解语法结构、语义关系和词序，不同的头才有了「分工」的动力。任务的复杂性催生了模型内部的多样性。这也解释了为什么在简单任务上，并非所有头都同样有用——有些头会变得冗余。",
+              "en": "A nice perspective. If a task only needs one kind of information, multiple heads might collapse into redundancy. Precisely because translation requires understanding grammatical structure, semantic relationships, and word order at the same time, different heads have an incentive to 'divide labor'. The complexity of the task gives rise to internal diversity in the model. This also explains why on simpler tasks not all heads are equally useful; some of them become redundant."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-subspace",
+          "text": {
+            "zh": "每个头在不同的低维子空间中运作，天然地在不同的特征维度上寻找模式",
+            "en": "Each head operates in a different low-dimensional subspace, naturally seeking patterns in different feature dimensions"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这触及了架构设计的一个巧妙之处。不同的投影矩阵把原始向量映射到不同的子空间，每个子空间强调原始信息的不同方面。一个子空间可能更敏感于词性特征，另一个更敏感于位置特征。投影矩阵本身是可学习的，所以模型可以自由决定每个子空间应该关注什么。",
+              "en": "You've touched on an elegant aspect of the architecture. Different projection matrices map the original vector into different subspaces, and each subspace emphasizes a different facet of the original information. One subspace might be more sensitive to part-of-speech features, another to positional features. The projection matrices themselves are learnable, so the model is free to decide what each subspace should focus on."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "多头注意力解决了「一个头只能看一种模式」的问题。但现在让我们回到上节课遗留的另一个关键问题——位置。",
+        "en": "Multi-head attention solves the problem of 「one head can only see one pattern」. But now let's return to another critical issue left from last lesson — position."
+      },
+      "leadsTo": "position-problem"
+    },
+    {
+      "id": "position-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "自注意力有一个数学上的特性：它是置换不变的。如果你打乱输入序列中词的顺序，注意力的输出也只是做了相同的打乱——每个词的注意力权重不会改变。换句话说，自注意力根本不知道「顺序」的存在。「猫追狗」和「狗追猫」在纯自注意力看来是一模一样的。",
+        "en": "Self-attention has a mathematical property: it is permutation invariant. If you shuffle the order of words in the input sequence, the attention output simply undergoes the same shuffle — each word's attention weights don't change. In other words, self-attention has no notion of 「order」 whatsoever. 「Cat chases dog」 and 「dog chases cat」 look identical to pure self-attention."
+      },
+      "leadsTo": "position-solution"
+    },
+    {
+      "id": "position-solution",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们的解决方案是{位置编码}。在词嵌入向量中加入位置信息——具体做法是：为每个位置生成一个与词嵌入同样维度的向量，然后直接加到词嵌入上。位置0有自己独特的编码，位置1也有，以此类推。这样，即使两个位置上是同一个词，它们在注意力计算中也会表现不同。",
+        "en": "Our solution is {positional encoding}. We add position information to the word embedding vectors — specifically: for each position, we generate a vector of the same dimension as the word embedding, then add it directly to the embedding. Position 0 has its own unique encoding, position 1 has its own, and so on. This way, even if the same word appears at two different positions, they will behave differently in the attention computation."
+      },
+      "terms": {
+        "位置编码": "term-positional-encoding",
+        "positional encoding": "term-positional-encoding"
+      },
+      "leadsTo": "sinusoidal"
+    },
+    {
+      "id": "sinusoidal",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指向全息显示上的波浪曲线）我们选择了正弦和余弦函数来生成位置编码。每个维度使用不同频率的正弦波，低维度用低频率，变化缓慢；高维度用高频率，变化快速。这就像一个多精度的时钟系统：秒针转得快，分针转得慢，时针转得更慢。不同的「指针」在不同的时间尺度上编码位置信息。",
+        "en": "(Pointing at the wave curves on the holographic display) We chose sine and cosine functions to generate positional encodings. Each dimension uses a sinusoidal wave of a different frequency — low dimensions use low frequencies (changing slowly), high dimensions use high frequencies (changing rapidly). It's like a multi-precision clock system: the second hand moves fast, the minute hand slowly, the hour hand even slower — different 「hands」 encode position information at different time scales."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "我们本可以简单地把位置编号（0, 1, 2, 3...）直接作为特征输入。为什么要用正弦函数这么复杂的方案？",
+        "en": "We could have simply used position numbers (0, 1, 2, 3...) directly as input features. Why use something as complex as sinusoidal functions?"
+      },
+      "choices": [
+        {
+          "id": "choice-relative",
+          "text": {
+            "zh": "正弦函数有一个特殊性质：两个位置的编码之差只取决于它们的距离，不取决于绝对位置",
+            "en": "Sine functions have a special property: the difference between two positions' encodings depends only on their distance, not absolute position"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了最关键的数学性质。对于任意固定的偏移量k，从位置t到位置t+k的编码变换可以表示为一个线性变换——而且这个变换只取决于k，和t无关。这意味着模型可以容易地学会「关注前面第三个词」这样的相对位置关系，无论当前位置在哪里。这种平移不变性是正弦编码最核心的优势。",
+              "en": "You've grasped the most important mathematical property. For any fixed offset k, the encoding transformation from position t to position t+k can be expressed as a linear transformation, and this transformation depends only on k, not on t. That means the model can easily learn relative-position relationships like 'attend to the third word back', regardless of where the current position is. This translation invariance is the most central advantage of sinusoidal encoding."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-bounded",
+          "text": {
+            "zh": "直接用位置编号的话，数值会越来越大，可能导致训练不稳定；正弦值始终在-1到1之间",
+            "en": "Using position numbers directly would create ever-growing values that could destabilize training; sine values always stay between -1 and 1"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常实际的考虑，而且你说得对。如果位置编号达到几千，而词嵌入的值通常在较小的范围内，两者的尺度不匹配会给优化带来麻烦。正弦函数的有界性确保了位置编码不会主导词嵌入的信息。除此之外，正弦编码还有更深层的数学优势——它允许模型捕捉相对位置关系。",
+              "en": "A very practical consideration, and you are right. If the position numbers reach into the thousands while the word embedding values stay in a small range, the mismatch in scale causes optimization headaches. The boundedness of sine functions ensures that the positional encoding does not dominate the word-embedding information. Beyond this, sinusoidal encoding has a deeper mathematical advantage: it lets the model capture relative-position relationships."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-generalize",
+          "text": {
+            "zh": "正弦编码可以自然地推广到训练时没见过的更长序列",
+            "en": "Sinusoidal encoding can naturally generalize to longer sequences not seen during training"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是正弦编码的另一个重要优点。因为正弦和余弦是连续函数，即使序列长度超过了训练时的最大长度，编码仍然是有定义的、合理的。相比之下，如果用可学习的位置嵌入（这也是一种有效的方案），那么模型只能处理训练时见过的位置范围。不过公平地说，在实践中这个泛化优势的重要性取决于具体的应用场景。",
+              "en": "This is another important advantage of sinusoidal encoding. Because sine and cosine are continuous functions, the encoding remains well defined and meaningful even when the sequence length exceeds the maximum seen during training. By contrast, learnable positional embeddings (which are also a valid scheme) only work within the position range seen in training. To be fair, in practice the importance of this generalization advantage depends on the specific application."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "位置编码是一个优美的设计。它用数学函数的固有属性来编码一个离散的概念，也就是位置。正弦波的周期性、有界性和线性可变换性，恰好满足了我们对位置编码的所有需求。当然，也有研究者尝试用可学习的位置嵌入来替代固定的正弦编码，两种方案都能工作。但我偏爱正弦编码的简洁和数学优美。",
+        "en": "Positional encoding is an elegant design — it uses the inherent properties of mathematical functions to encode a discrete concept (position). The periodicity, boundedness, and linear transformability of sinusoidal waves happen to satisfy all our requirements for positional encoding. Of course, other researchers have tried learnable position embeddings as an alternative — both approaches work. But I favor the simplicity and mathematical beauty of sinusoidal encoding."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "多头注意力：将Q、K、V投影到多个低维子空间，并行运行多组注意力，然后拼接输出。不同头自发学会捕捉不同类型的关系（语法、语义、距离等），计算量与单头注意力大致相同。位置编码：用不同频率的正弦/余弦函数编码每个位置。关键性质：相对位置关系可表示为线性变换，值有界，可泛化到更长序列。",
+        "en": "Multi-head attention: project Q, K, V into multiple low-dimensional subspaces, run attention in parallel, concatenate outputs. Different heads spontaneously learn different relationship types (syntax, semantics, distance, etc.), with roughly the same compute as single-head. Positional encoding: encode each position with sine/cosine functions of varying frequencies. Key properties: relative position expressible as linear transform, bounded values, generalizable to longer sequences."
+      },
+      "category": "core-concept",
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "多头注意力让模型有了多个视角。但一个潜在的风险是：如果不同的头学到了相同的模式，那多头就变成了冗余。你觉得怎样可以鼓励头之间的多样性？",
+        "en": "Multi-head attention gives the model multiple perspectives. But a potential risk is: if different heads learn the same patterns, multiple heads become redundant. How do you think we could encourage diversity among heads?"
+      },
+      "choices": [
+        {
+          "id": "choice-regularize",
+          "text": {
+            "zh": "加入一个正则化项，惩罚不同头之间注意力模式的相似性",
+            "en": "Add a regularization term that penalizes similarity between attention patterns of different heads"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个被探索过的方向。通过最大化不同头之间注意力分布的差异，可以在一定程度上促进多样性。不过在实践中，我们发现对于足够复杂的任务，比如翻译——随机初始化加上任务本身的多样化需求，通常就足以让不同的头自发分化。额外的正则化有时反而会限制模型的学习自由度。",
+              "en": "This direction has been explored. Maximizing the divergence among the attention distributions of different heads can promote diversity to some extent. However, in practice we found that for sufficiently complex tasks like translation, random initialization plus the inherent diversity of the task is usually enough to make different heads specialize on their own. Extra regularization sometimes restricts the model's freedom to learn."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-dropout",
+          "text": {
+            "zh": "在训练时随机丢弃一些头，迫使剩余的头更独立地工作",
+            "en": "Randomly drop some heads during training, forcing remaining heads to work more independently"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "有意思的想法——这类似于dropout的精神。事实上，确实有研究者尝试过「head dropout」，训练时随机禁用部分注意力头。这迫使每个头都必须独立地提取有用信息，减少了头之间的共适应。这和深度学习中dropout防止过拟合的原理是相通的。",
+              "en": "An interesting idea, in the spirit of dropout. Researchers have actually tried 'head dropout', randomly disabling some attention heads during training. This forces every head to extract useful information independently and reduces co-adaptation among heads. The principle is the same as dropout preventing overfitting in deep learning."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-trust-training",
+          "text": {
+            "zh": "也许不需要特别干预——只要任务足够复杂，梯度下降自然会找到有效的分工",
+            "en": "Perhaps no special intervention is needed — if the task is complex enough, gradient descent will naturally find effective specialization"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这基本上是我们在论文中采取的立场。我们没有添加任何额外的机制来鼓励头之间的多样性，随机初始化和翻译任务本身的复杂性就足够了。当然，后来的研究确实发现，在某些任务上并非所有头都同样重要，有些头可以被剪掉而不影响性能。这说明多样性的问题值得进一步研究。",
+              "en": "This is essentially the position we took in the paper. We didn't add any extra mechanism to encourage head diversity. Random initialization plus the inherent complexity of translation was enough. Of course, later research did find that on some tasks not all heads matter equally; some can be pruned without hurting performance. That suggests the diversity question is worth further study."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我们解决了两个核心设计问题：多头注意力让模型拥有了多元的视角，位置编码让模型在没有循环的情况下也能感知顺序。下节课，我们要把所有的组件组装在一起，包括编码器、解码器和交叉注意力，看看完整的Transformer架构是什么样子。",
+        "en": "Today we addressed two core design questions: multi-head attention gives the model diverse perspectives, and positional encoding lets the model perceive order without recurrence. Next lesson, we'll assemble all the components together — encoder, decoder, cross-attention — and see what the complete Transformer architecture looks like."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "全息显示上，八组注意力网络缓缓汇聚成一束光，同时那些正弦波形的位置编码曲线叠加到每个词的光圈上，让它们各自有了独特的脉动节奏。瓦斯瓦尼教授注视着这幅画面，那是一个拥有多个视角、每个位置都有独特身份的序列。他轻声说了一句：「一组注意力是聚光灯，多组注意力是整片星空。」说完便转身离去，留下教室里那些闪烁的光点，像是一首用数学写成的交响乐。",
+        "en": "On the holographic display, the eight attention networks slowly converge into a single beam of light, while the sinusoidal positional encoding curves overlay each word's halo, giving each a unique pulsing rhythm. Prof. Vaswani gazes at this scene — multiple perspectives, a sequence where every position has a unique identity — and says softly: 「One attention is a spotlight; many attentions are an entire sky of stars」. He turns and leaves, the flickering points of light remaining in the classroom like a symphony written in mathematics."
+      }
+    }
+  ]
+}

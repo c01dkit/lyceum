@@ -1,0 +1,321 @@
+{
+  "id": "lesson-03",
+  "course": "turing-test",
+  "title": {
+    "zh": "什么是计算？",
+    "en": "What Is Computation?"
+  },
+  "knowledgePoint": {
+    "zh": "图灵机与计算理论——理解「可计算」的含义与边界",
+    "en": "Turing machines and the theory of computation — understanding the meaning and limits of 「computable」"
+  },
+  "teacher": "prof-turing",
+  "estimatedMinutes": 14,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "一卷长长的纸带在你的记忆中缓缓展开，横贯整面黑板。图灵教授在方格间画下箭头的样子清晰如昨——那台只存在于纸面上的机器，竟蕴含着整个计算世界的秘密。",
+    "en": "A long paper tape unfurls slowly across your memory, spanning the entire blackboard. You can still see Prof. Turing drawing arrows between the squares as if it were yesterday — that machine existing only on paper, yet harboring the secrets of the entire computational world."
+  },
+  "recallOutro": {
+    "zh": "你从回忆中醒来，耳边似乎还回响着图灵教授离开时说的话——「有时候知道什么是不可能的，比知道什么是可能的更重要。」",
+    "en": "You emerge from the memory, and Prof. Turing's parting words still seem to echo — 「Sometimes knowing what is impossible is more important than knowing what is possible」."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "图灵教授今天带了一卷长长的纸带走进教室。他把纸带一端固定在黑板左侧，慢慢展开横贯整面黑板，纸带上画着一个个小方格。几个学生好奇地交头接耳。图灵教授拿起粉笔，在纸带中间一个方格上画了一个箭头。",
+        "en": "Professor Turing walks into class today carrying a long paper tape. He pins one end to the left side of the blackboard and slowly unfurls it across the entire board, revealing small squares drawn along its length. A few students whisper curiously. Professor Turing picks up his chalk and draws an arrow pointing to one square in the middle of the tape."
+      },
+      "leadsTo": "intro-computation"
+    },
+    {
+      "id": "intro-computation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在我们讨论机器能不能「思考」之前，也许应该先问一个更根本的问题：机器能「算」什么？什么是「计算」的本质？1936年，在我24岁的时候，我试图回答这个问题。",
+        "en": "Before we discuss whether machines can 「think」, perhaps we should first ask a more fundamental question: what can machines 「compute」? What is the essence of 「computation」? In 1936, when I was 24, I attempted to answer this question."
+      },
+      "leadsTo": "tape-explanation"
+    },
+    {
+      "id": "tape-explanation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指向纸带）这就是我想象出来的机器。它极其简单——简单到几乎荒谬。一条无限长的纸带，被分成一个个小格子。每个格子里要么是空白，要么写着一个符号，比如0或1。",
+        "en": "(Points to the tape) This is the machine I imagined. It is extremely simple — simple to the point of seeming absurd. An infinitely long tape, divided into small cells. Each cell is either blank or contains a symbol, such as 0 or 1."
+      },
+      "leadsTo": "head-explanation"
+    },
+    {
+      "id": "head-explanation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "然后我们有一个「读写头」——就是这个箭头。它停在某一个格子上，能做三件事：读出这个格子里的符号、写入一个新的符号、然后向左或向右移动一格。就这么简单。",
+        "en": "Then we have a 「read-write head」 — this arrow here. It sits on one cell and can do three things: read the symbol in that cell, write a new symbol, then move one cell left or right. That's all."
+      },
+      "leadsTo": "states-explanation"
+    },
+    {
+      "id": "states-explanation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "最后一个要素是机器有若干「状态」。在每个时刻，根据当前状态和读到的符号，机器会按照一组固定的规则来决定：写什么符号、往哪边移动、切换到什么状态。这就是{图灵机}，它由纸带、读写头、状态和规则构成。",
+        "en": "One last element — the machine has several 「states」. At each moment, based on the current state and the symbol it reads, the machine follows a fixed set of rules to decide: what symbol to write, which direction to move, and what state to switch to. This is the {Turing Machine} — tape, read-write head, states, and rules."
+      },
+      "terms": {
+        "图灵机": "term-turing-machine",
+        "Turing Machine": "term-turing-machine"
+      },
+      "leadsTo": "example-intro"
+    },
+    {
+      "id": "example-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我演示一下它怎么做加法。假设纸带上写着「1 + 1」——我们用一种更简单的方式表示：用一个1代表数字1，用0作为分隔符。所以纸带上是……1, 0, 1。",
+        "en": "Let me demonstrate how it does addition. Suppose the tape reads 「1 + 1」 — we'll represent this in a simpler way: use a single 1 to represent the number 1, and 0 as a separator. So the tape shows... 1, 0, 1."
+      },
+      "leadsTo": "example-walkthrough"
+    },
+    {
+      "id": "example-walkthrough",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（边说边在黑板上演示）读写头从左边开始。读到1，记住，我们在处理第一个数。移动到右边，读到0，这是分隔符，说明第一个数结束了。把这个0改成1，继续往右，读到1。现在我们已经把两个1连在一起了：1, 1。读写头继续往右，读到空白，计算结束。结果是两个1，也就是2。",
+        "en": "(Demonstrates on the blackboard while speaking) The head starts from the left. Reads 1 — remember, we're processing the first number. Moves right, reads 0 — ah, a separator, meaning the first number has ended. Change this 0 to a 1, continue right, read 1. Now we have two 1s connected: 1, 1. The head continues right, reads blank — done. The result is two 1s, which is 2."
+      },
+      "leadsTo": "simple-but-powerful"
+    },
+    {
+      "id": "simple-but-powerful",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你们也许在想——就这？一台只会在纸带上写写擦擦、左移右移的机器？这能有什么了不起的？",
+        "en": "You might be thinking — that's it? A machine that just writes, erases, and moves left and right on a tape? What's so remarkable about that?"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "这台如此简单的机器，你觉得它的计算能力有什么限制？",
+        "en": "This remarkably simple machine — what do you think are the limits of its computing power?"
+      },
+      "choices": [
+        {
+          "id": "only-simple",
+          "text": {
+            "zh": "只能做简单的算术，复杂的肯定不行",
+            "en": "It can only do simple arithmetic — complex tasks are certainly beyond it"
+          },
+          "tag": "underestimate",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微一笑）这是大多数人的第一反应。但让我告诉你一个惊人的事实——这台看似简陋的机器，理论上可以计算任何可计算的函数。任何。没有例外。你手中的智能手机，本质上做的事情和这台纸带机器完全一样。",
+              "en": "(A slight smile) That's most people's first reaction. But let me tell you something astonishing — this seemingly primitive machine can, in theory, compute any computable function. Any. Without exception. Your smartphone is essentially doing exactly the same thing as this tape machine."
+            }
+          },
+          "leadsTo": "church-turing"
+        },
+        {
+          "id": "maybe-anything",
+          "text": {
+            "zh": "也许它的能力比看起来强大得多？",
+            "en": "Perhaps its capability is far greater than it appears?"
+          },
+          "tag": "good-intuition",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你的直觉是对的。这台简单的机器拥有一个惊人的性质：它可以计算任何可计算的函数。任何现代计算机能做的计算，这台纸带机器理论上都能做到，只是可能需要更多时间和更长的纸带。",
+              "en": "Your intuition is correct. This simple machine possesses an astonishing property — it can compute any computable function. Anything a modern computer can compute, this tape machine can theoretically do as well — it might just need more time and a longer tape."
+            }
+          },
+          "leadsTo": "church-turing"
+        },
+        {
+          "id": "needs-more-info",
+          "text": {
+            "zh": "不确定——这取决于「计算」怎么定义",
+            "en": "Not sure — it depends on how 「computation」 is defined"
+          },
+          "tag": "precise-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "一个非常精确的回答！你触及了问题的核心。「计算」到底怎么定义？这正是这台机器存在的意义——它不仅仅是一台计算设备，它本身就是「计算」这个概念的定义。",
+              "en": "A very precise answer! You've touched the heart of the matter. How exactly do we define 「computation」? That is precisely why this machine exists — it's not merely a computing device, it IS the definition of the concept of 「computation」 itself."
+            }
+          },
+          "leadsTo": "church-turing"
+        }
+      ]
+    },
+    {
+      "id": "church-turing",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{丘奇-图灵论题}的核心思想：任何可以被精确描述的计算过程，都可以用图灵机来执行。换句话说，图灵机定义了「可计算」的边界。任何你能想象出的计算机，无论多么先进，它的计算能力都不会超过一台图灵机。",
+        "en": "This is the core idea of the {Church-Turing thesis}: any computational process that can be precisely described can be executed by a Turing machine. In other words — the Turing machine defines the boundary of 「computable」. Any computer you can imagine, no matter how advanced, will not exceed the computational power of a Turing machine."
+      },
+      "terms": {
+        "丘奇-图灵论题": "term-church-turing-thesis",
+        "Church-Turing thesis": "term-church-turing-thesis"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "图灵机：纸带 + 读写头 + 状态 + 规则。虽然极其简单，但理论上可以计算任何可计算的函数。丘奇-图灵论题：任何可精确描述的计算都能被图灵机执行。",
+        "en": "Turing Machine: tape + read-write head + states + rules. Though extremely simple, it can theoretically compute any computable function. Church-Turing thesis: any precisely describable computation can be performed by a Turing machine."
+      },
+      "category": "core-concept",
+      "leadsTo": "but-limits"
+    },
+    {
+      "id": "but-limits",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但现在，让我告诉你们一件令人沮丧的事情。图灵机很强大，但它不是万能的。有些问题，任何计算机都做不到，永远做不到。",
+        "en": "But now, let me tell you something unsettling. The Turing machine is powerful — but it is not omnipotent. There are problems that not just Turing machines, but ANY computer, cannot solve. Ever."
+      },
+      "leadsTo": "halting-setup"
+    },
+    {
+      "id": "halting-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "考虑这个问题：给你一个程序和一个输入，你能不能写另一个程序来判断——这个程序在给定输入下会最终停下来，还是会永远运行下去？",
+        "en": "Consider this problem: given a program and an input, can you write another program that determines — will this program eventually halt on the given input, or will it run forever?"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得有没有可能写出这样一个「万能判断程序」——它能判断任意程序是否会停机？",
+        "en": "Do you think it's possible to write such a 「universal judge program」 — one that can determine whether any arbitrary program will halt?"
+      },
+      "choices": [
+        {
+          "id": "yes-possible",
+          "text": {
+            "zh": "应该可以——只要分析程序的逻辑就行",
+            "en": "It should be possible — just analyze the program's logic"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "直觉上确实如此。但让我告诉你为什么不行。假设这个万能判断程序存在，我们叫它H。现在我构造一个刁钻的程序D：D问H「我会停机吗？」如果H说「会」，D就故意进入死循环；如果H说「不会」，D就立刻停机。这样H无论回答什么都是错的。矛盾。",
+              "en": "Intuitively, that seems right. But let me show you why it's impossible. Assume this universal judge program exists — call it H. Now I construct a devious program D: D asks H 「Will I halt?」 If H says 「yes」, D deliberately enters an infinite loop; if H says 「no, D immediately halts. So H is wrong no matter what it answers. Contradiction."
+            }
+          },
+          "leadsTo": "halting-reveal"
+        },
+        {
+          "id": "no-impossible",
+          "text": {
+            "zh": "不可能——有些程序的行为是无法预测的",
+            "en": "Impossible — some programs' behavior is unpredictable"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "你的直觉很好。但更重要的是，这是在数学上是不可能的。我们可以严格证明这一点。假设万能判断程序H存在，我就构造一个程序D：D问H「我会停机吗？」如果H说「会」，D就死循环；如果H说「不会」，D就停机。H怎么回答都是错的。矛盾。所以H不存在。",
+              "en": "Your intuition is good. But more importantly — this isn't an engineering difficulty, it's a mathematical impossibility. We can prove it rigorously. Assume universal judge program H exists. I construct program D: D asks H 「Will I halt?」 If H says 「yes」, D loops forever; if H says 「no, D halts. H is wrong either way. Contradiction — so H cannot exist."
+            }
+          },
+          "leadsTo": "halting-reveal"
+        },
+        {
+          "id": "depends",
+          "text": {
+            "zh": "也许能判断大部分程序，但不是所有",
+            "en": "Maybe for most programs, but not all"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "一个很有分寸的回答，而且你是对的。对于很多具体的程序，我们确实能判断它会不会停。但写一个能判断所有程序的万能判断器？不行。这是可以严格证明的。假设它存在，我就能构造一个自相矛盾的程序：问判断器「我停不停？」然后故意做相反的事。因此，这一矛盾就证明了万能判断器不存在。",
+              "en": "A very measured answer — and you're right. For many specific programs, we can indeed determine whether they halt. But writing a universal judge for ALL programs? Impossible. This can be rigorously proven. If it existed, I could construct a self-contradictory program: ask the judge 「Will I halt?」 then deliberately do the opposite. Contradiction — so the universal judge cannot exist."
+            }
+          },
+          "leadsTo": "halting-reveal"
+        }
+      ]
+    },
+    {
+      "id": "halting-reveal",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是著名的{停机问题}。它是不可判定的——不存在任何算法能对所有程序-输入对做出正确的停机判断。这是计算理论中第一个被证明「不可计算」的问题。",
+        "en": "This is the famous {Halting Problem}. It is undecidable — there exists no algorithm that can correctly determine halting for all program-input pairs. This was the first problem proven to be 「uncomputable」 in the theory of computation."
+      },
+      "terms": {
+        "停机问题": "term-halting-problem",
+        "Halting Problem": "term-halting-problem"
+      },
+      "leadsTo": "mind-blowing"
+    },
+    {
+      "id": "mind-blowing",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "请花一刻时间体会这件事的深意。这不是说我们还没找到方法——而是数学上证明了，这个方法永远不会被找到。无论未来的计算机多么强大，无论算法多么精妙，有些问题就是不可计算的。计算有边界。",
+        "en": "Take a moment to appreciate the depth of this. This doesn't mean we haven't found a method yet — it means mathematics has proven that such a method will NEVER be found. No matter how powerful future computers become, no matter how ingenious the algorithms, some problems are simply uncomputable. Computation has boundaries."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "停机问题：不存在任何程序能判断所有程序是否会停机。证明方法：反证法+对角线论证（自指矛盾）。意义：存在数学上可证明的「不可计算」问题——计算有边界。",
+        "en": "Halting Problem: no program can determine whether all programs will halt. Proof: proof by contradiction + diagonalization (self-referential paradox). Significance: there exist mathematically provable 「uncomputable」 problems — computation has boundaries."
+      },
+      "category": "core-concept",
+      "leadsTo": "connection-to-ai"
+    },
+    {
+      "id": "connection-to-ai",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "现在你们也许在想——这和人工智能有什么关系？关系非常大。如果计算本身有边界，那么任何基于计算的智能也必然有边界。如果我们的大脑是一台图灵机，那有些问题我们人类也永远解决不了。下一节课，我们会从不同角度来探讨智能的边界。",
+        "en": "Now you might be wondering — what does this have to do with artificial intelligence? A great deal. If computation itself has boundaries, then any intelligence based on computation must also have boundaries. If our brains are Turing machines, then there are problems we humans can never solve either. Next class, we'll explore the boundaries of intelligence from different angles."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "图灵教授小心地收起那卷纸带，把它卷成一个整齐的圆柱。走出教室前，他回过头说：「记住——有时候知道什么是不可能的，比知道什么是可能的更重要。」你看着黑板上残留的箭头和方格，意识到这台只存在于纸面上的简陋机器，竟然定义了整个计算世界的边界。",
+        "en": "Professor Turing carefully rolls up the paper tape into a neat cylinder. Before leaving the classroom, he turns and says: 「Remember — sometimes knowing what is impossible is more important than knowing what is possible」. You look at the arrows and squares remaining on the blackboard, realizing that this humble machine, existing only on paper, has defined the boundaries of the entire computational world."
+      }
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "id": "lesson-02",
+  "course": "turing-test",
+  "title": {
+    "zh": "模仿游戏",
+    "en": "The Imitation Game"
+  },
+  "knowledgePoint": {
+    "zh": "图灵测试——一种评估机器智能的实用方法",
+    "en": "The Turing Test — a practical way to evaluate machine intelligence"
+  },
+  "teacher": "prof-turing",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你的目光变得恍惚，黑板上三个用虚线连接的方框重新在记忆中成形。图灵教授那天语速比平时稍快——你记得他谈起那个「派对游戏」时眼中罕见的光芒。",
+    "en": "Your gaze grows distant, and the three dotted-line boxes on the blackboard reassemble themselves in your memory. Prof. Turing spoke a little faster that day — you remember the rare gleam in his eyes as he described that 「party game」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。裁判、人类、机器——那张简洁的图仿佛仍在提醒你：也许判断智能最诚实的方式，就是承认我们只能观察行为。",
+    "en": "You snap back to reality. Judge, Human, Machine — that simple diagram still seems to whisper: perhaps the most honest way to judge intelligence is to accept that we can only observe behavior."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "图灵教授今天来得比上次早。他已经站在黑板前，画了一张奇怪的图：三个方框，用虚线连接，中间写着问号。他似乎有些兴奋——尽管他的兴奋只体现在语速比平时稍快了一些。",
+        "en": "Professor Turing has arrived earlier today. He is already standing at the blackboard, having drawn a strange diagram: three boxes connected by dotted lines, with question marks in between. He seems somewhat excited — though his excitement only manifests as a slightly faster speaking pace than usual."
+      },
+      "leadsTo": "party-game"
+    },
+    {
+      "id": "party-game",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们发现，「机器能思考吗」这个问题太模糊了。今天，我要给你们介绍一个替代方案。不过，让我先描述一个派对游戏。",
+        "en": "Last class we discovered that the question 「Can machines think?」 is too vague. Today, I want to introduce an alternative. But first, let me describe a party game."
+      },
+      "leadsTo": "imitation-game-setup"
+    },
+    {
+      "id": "imitation-game-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "想象一下：有三个人参与一个游戏。一位男士，一位女士，还有一位裁判。裁判在一个房间里，通过纸条与另外两人交流。他看不到他们。男士的任务是假装自己是女士。女士的任务是证明自己才是真正的女士。裁判要判断谁是谁。",
+        "en": "Imagine this: three people participate in a game. A man, a woman, and a judge. The judge is in a separate room, communicating with the other two only through written notes — he cannot see them. The man's task is to pretend he is the woman. The woman's task is to prove she is the real woman. The judge must determine — who is who."
+      },
+      "leadsTo": "the-twist"
+    },
+    {
+      "id": "the-twist",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是「模仿游戏」。有趣吧？但真正精妙的一步还在后面——如果我们把那位男士换成一台机器呢？",
+        "en": "This is the 「imitation game」. Interesting, right? But the truly brilliant step comes next — what if we replace the man with a machine?"
+      },
+      "leadsTo": "turing-test-reveal"
+    },
+    {
+      "id": "turing-test-reveal",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在游戏变成了这样：一台机器和一个人在幕后，裁判通过文字交流来判断——哪个是人，哪个是机器。如果机器能让裁判无法分辨，那我们就可以说：这台机器通过了{图灵测试}。",
+        "en": "Now the game becomes this: a machine and a human are behind the curtain, and the judge communicates through text to determine — which is the human, which is the machine. If the machine can fool the judge into being unable to tell, then we can say: this machine has passed the {Turing Test}."
+      },
+      "terms": {
+        "图灵测试": "term-turing-test",
+        "Turing Test": "term-turing-test"
+      },
+      "leadsTo": "why-text-question"
+    },
+    {
+      "id": "why-text-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得为什么图灵测试要求只能通过文字交流，而不是面对面？",
+        "en": "Why do you think the Turing Test requires communication through text only, rather than face to face?"
+      },
+      "choices": [
+        {
+          "id": "avoid-appearance",
+          "text": {
+            "zh": "避免外貌的干扰——我们不应该因为它「看起来不像人」就否定它",
+            "en": "To avoid the distraction of appearance — we shouldn't reject it just because it 「doesn't look human」"
+          },
+          "tag": "insight-appearance",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "正是如此。如果我们面对面测试，那我们测的就不是智能了——而是长相。一台机器也许有非凡的头脑，却因为不是血肉之躯而被否定。这不公平，也不科学。文字交流剥离了一切无关的物理因素。",
+              "en": "Precisely. If we tested face to face, we wouldn't be testing intelligence — we'd be testing appearance. A machine might have an extraordinary mind but be rejected because it isn't flesh and blood. That's neither fair nor scientific. Text communication strips away all irrelevant physical factors."
+            }
+          },
+          "leadsTo": "after-text-question"
+        },
+        {
+          "id": "tech-limitation",
+          "text": {
+            "zh": "技术限制——当时的机器做不出逼真的外貌和声音",
+            "en": "Technical limitation — machines of that era couldn't produce realistic appearance or voice"
+          },
+          "tag": "practical-view",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个实际的考虑，没错。但即使技术允许，我仍然会选择文字交流。原因很简单——文字迫使裁判只关注思维的质量，而非任何表面的模仿。这是精心的设计。",
+              "en": "That is a practical consideration, yes. But even if the technology allowed it, I would still choose text communication. The reason is simple — text forces the judge to focus solely on the quality of thought, not any superficial mimicry. This is not a technical limitation, but a deliberate design choice."
+            }
+          },
+          "leadsTo": "after-text-question"
+        },
+        {
+          "id": "focus-language",
+          "text": {
+            "zh": "语言是思维的最佳体现——能用语言交流就能展示智能",
+            "en": "Language is the best manifestation of thought — communicating through language demonstrates intelligence"
+          },
+          "tag": "language-view",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "一个深刻的观察。自然语言也许是人类智能最复杂的产物。要理解一个笑话、一段隐喻、一个反讽……这需要推理、知识、常识和文化理解的综合运用。如果一个实体能自如地运用语言，它很可能具备了我们所说的「智能」。",
+              "en": "A profound observation. Natural language is perhaps the most complex product of human intelligence. To understand a joke, a metaphor, an irony... this requires the combined application of reasoning, knowledge, common sense, and cultural understanding. If an entity can use language fluently, it very likely possesses what we call 「intelligence」."
+            }
+          },
+          "leadsTo": "after-text-question"
+        }
+      ]
+    },
+    {
+      "id": "after-text-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个测试的精妙之处在于——它完全绕开了「什么是思考」这个无解的问题。我们不问机器在不在思考，只问：它的行为能不能骗过一个聪明的裁判。这是一个可以实际操作的实验。",
+        "en": "The elegance of this test lies in the fact that it completely sidesteps the unanswerable question of 「what is thinking」. We don't ask whether the machine is thinking — we only ask: can its behavior fool an intelligent judge? This is an experiment that can actually be conducted."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "图灵测试：裁判通过文字与一个人和一台机器分别交流。如果裁判无法分辨谁是机器，则机器通过测试。关键：用可操作的行为测试替代不可定义的「思考」概念。",
+        "en": "The Turing Test: a judge communicates via text with both a human and a machine. If the judge cannot tell which is the machine, the machine passes. Key insight: replace the undefinable concept of 「thinking」 with an operationally testable behavioral test."
+      },
+      "category": "core-concept",
+      "leadsTo": "but-sufficient"
+    },
+    {
+      "id": "but-sufficient",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但是——通过图灵测试，是否就意味着机器真的在「理解」呢？让我给你们介绍一个著名的反驳。",
+        "en": "But — does passing the Turing Test mean the machine truly 「understands」? Let me introduce a famous counter-argument."
+      },
+      "leadsTo": "chinese-room-setup"
+    },
+    {
+      "id": "chinese-room-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "有同学告诉我，哲学家塞尔在1980年提出了一个思想实验。想象一个完全不懂中文的英国人被锁在一个房间里。房间里有一本厚厚的规则手册——针对每一个可能收到的中文问题，手册上都写着应该给出什么中文回答。",
+        "en": "A classmate told me that philosopher Searle proposed a thought experiment in 1980. Imagine an Englishman who speaks no Chinese whatsoever, locked in a room. In the room is a thick rulebook — for every possible Chinese question that could be received, the book specifies what Chinese answer to give."
+      },
+      "leadsTo": "chinese-room-explain"
+    },
+    {
+      "id": "chinese-room-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "外面的人往房间里递中文纸条，这个人查手册、抄下对应的中文答案递出去。从外面看——这个房间完美地通过了中文版的图灵测试。但房间里的人理解中文吗？显然不。这就是{中文房间}论证。",
+        "en": "People outside slip Chinese notes into the room. The man inside looks up the rulebook and copies out the corresponding Chinese answer. From the outside — this room perfectly passes a Chinese version of the Turing Test. But does the person inside understand Chinese? Obviously not. This is the {Chinese Room} argument."
+      },
+      "terms": {
+        "中文房间": "term-chinese-room",
+        "Chinese Room": "term-chinese-room"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "中文房间论证能否推翻图灵测试？一台通过图灵测试的机器，有没有可能完全不「理解」任何事？",
+        "en": "Does the Chinese Room argument refute the Turing Test? Could a machine that passes the Turing Test completely fail to 「understand」 anything?"
+      },
+      "choices": [
+        {
+          "id": "refutes",
+          "text": {
+            "zh": "能推翻——通过测试不等于有理解力",
+            "en": "Yes, it refutes it — passing the test doesn't equal understanding"
+          },
+          "tag": "anti-turing",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是塞尔的立场。他认为操纵符号不等于理解意义。但我要反问——那个人不懂中文，可「房间」作为一个整体系统呢？也许理解不在于个别部件，而在于系统的整体。这叫做「系统回应」。",
+              "en": "That is Searle's position. He argues that manipulating symbols is not the same as understanding meaning. But let me counter — the person doesn't understand Chinese, but what about the 「room」 as a whole system? Perhaps understanding lies not in individual parts, but in the system as a whole. This is called the 「systems reply」."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "not-refute",
+          "text": {
+            "zh": "不能推翻——也许整个系统作为整体是「理解」的",
+            "en": "No — perhaps the system as a whole does 「understand」"
+          },
+          "tag": "systems-reply",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "你不自觉地提出了最著名的反驳，即系统回应。也许那个人不懂中文，但「人加上规则手册加上房间」这个系统懂。毕竟，你大脑中的单个神经元并不「理解」任何东西，但你作为一个整体系统却能理解。",
+              "en": "You've intuitively arrived at the most famous counter-argument — the systems reply. Perhaps the person doesn't understand Chinese, but the system of 「person plus rulebook plus room」 does. After all, no single neuron in your brain 「understands」 anything — yet you as a whole system can understand."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "wrong-question",
+          "text": {
+            "zh": "也许「理解」这个概念本身就有问题",
+            "en": "Perhaps the concept of 「understanding」 itself is problematic"
+          },
+          "tag": "meta-question",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（罕见地露出微笑）这是我最欣赏的回答。你在质疑问题本身。正如我们在第一节课用「行为测试」替代了「什么是思考」——也许我们也需要重新定义「理解」。如果一个实体的行为在各方面都体现出理解，那纠结于它「是否真的理解」或许毫无意义。",
+              "en": "(A rare smile) This is the answer I appreciate most. You're questioning the question itself. Just as in our first lesson we replaced 「what is thinking」 with a behavioral test — perhaps we need to redefine 「understanding」 as well. If an entity's behavior demonstrates understanding in every respect, then agonizing over whether it 「truly understands」 may be meaningless."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "中文房间是对图灵测试最深刻的挑战之一。这场辩论至今仍未平息。但请注意——即使中文房间论证成立，它也没有提供一个更好的替代方案。图灵测试也许不完美，但它仍然是我们手中最好的工具之一。",
+        "en": "The Chinese Room is one of the most profound challenges to the Turing Test. This debate remains unsettled to this day. But note — even if the Chinese Room argument holds, it offers no better alternative. The Turing Test may not be perfect, but it remains one of the best tools we have."
+      },
+      "leadsTo": "modern-relevance"
+    },
+    {
+      "id": "modern-relevance",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "有趣的是，我在1950年预测，到2000年左右，机器能够在五分钟的对话中骗过30%的裁判。当时人们觉得这太乐观了。而现在……（停顿）你们应该比我更清楚现在的情况。",
+        "en": "Interestingly, in 1950, I predicted that by around the year 2000, machines would be able to fool 30% of judges in a five-minute conversation. People thought I was being too optimistic. And now... (pauses) you probably know better than I do how things stand now."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "中文房间论证（塞尔，1980）：一个不懂中文的人靠规则手册通过了中文图灵测试。这说明通过测试不等于真正理解。反驳：系统回应——也许「理解」存在于系统整体而非个别部件。",
+        "en": "Chinese Room argument (Searle, 1980): a person who doesn't understand Chinese passes a Chinese Turing Test using a rulebook — showing that passing the test doesn't equal genuine understanding. Counter: the systems reply — perhaps 「understanding」 resides in the system as a whole, not in individual components."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们讨论了测试智能的方式。但还有一个更基本的问题：什么是「计算」？一台机器到底能算什么？下一节课，我会给你们看一台我想象出来的机器。它只存在于纸面上，却定义了「计算」本身。",
+        "en": "We've discussed how to test intelligence. But there's an even more fundamental question — what is 「computation」? What exactly can a machine calculate? Next class, I'll show you a machine I imagined. A machine that exists only on paper — but it defined 「computation」 itself."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "图灵教授走到黑板前，在那三个方框下面分别写上了「裁判」「人类」「机器」。他看了看自己的图，若有所思地点了点头，然后安静地离开了教室。你盯着黑板上的图，第一次意识到——也许判断智能最诚实的方式，就是承认我们只能观察行为，而无法窥探灵魂。",
+        "en": "Professor Turing walks to the blackboard and writes 「Judge」, 「Human」, and 「Machine」 beneath the three boxes. He looks at his diagram, nods pensively, and then quietly leaves the classroom. You stare at the diagram on the board, realizing for the first time — perhaps the most honest way to judge intelligence is to admit that we can only observe behavior, never peer into the soul."
+      }
+    }
+  ]
+}

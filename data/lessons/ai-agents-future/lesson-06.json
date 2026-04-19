@@ -1,0 +1,345 @@
+{
+  "id": "lesson-06",
+  "course": "ai-agents-future",
+  "title": {
+    "zh": "开放的问题",
+    "en": "Open Questions"
+  },
+  "knowledgePoint": {
+    "zh": "我们还不知道什么、无法预测什么，以及AI建设者的责任",
+    "en": "What we don't know, what we can't predict, and the responsibility of AI builders"
+  },
+  "teacher": "prof-ng",
+  "estimatedMinutes": 17,
+  "previousLesson": "lesson-05",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你想起最后一堂课。吴恩达教授那天的眼神跟以往不同——少了一些工程师的确定性，多了一些长者的温柔。他没有讲任何新的技术概念，而是把整堂课变成了一场关于责任、选择和未来的对话。窗外的地平线从未显得如此辽阔……",
+    "en": "You recall the final lesson. Professor Ng's eyes were different that day — less of the engineer's certainty, more of an elder's gentleness. He didn't introduce any new technical concepts; instead, he turned the entire lesson into a conversation about responsibility, choice, and the future. The horizon outside the window had never seemed so vast..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，最后一次。吴恩达教授的话还在回响：「你们这一代人将会回答这些问题。」你不确定自己准备好了。但你也记得他说的另一句话：「没有人是准备好了才开始的。」窗外的地平线已经从金色变成了橙红色，像是一天的结束，也像是另一天的开始。",
+    "en": "You close your notebook for the last time. Professor Ng's words still echo: 「Your generation will answer these questions」. You're not sure you're ready. But you also remember what else he said: 「Nobody starts because they're ready」. The horizon outside has shifted from gold to amber-red — like the end of one day, and the beginning of another."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。教室里弥漫着一种微妙的气氛——每个人都知道这是旅程的终点。全息投影今天什么也没有显示，只是柔和地散发着金色的光。窗外的地平线在下午的阳光中显得格外辽阔，像是在提醒你：学校之外的世界还很大。吴恩达教授最后一个走进来。他环视了一圈教室，微笑了。",
+        "en": "The final lesson. A subtle atmosphere fills the classroom — everyone knows this is the end of the journey. The holographic display shows nothing today, just softly emitting golden light. The horizon outside looks exceptionally vast in the afternoon sun, as if reminding you: the world beyond this school is immense. Professor Ng walks in last. He looks around the classroom and smiles."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这是我们的最后一堂课。（停了几秒钟）前五节课，我给了你们框架、架构、理论、争论。今天我不打算讲任何新技术。今天我想聊的是：当技术已经足够强大的时候，真正重要的问题不再是「怎么做」，而是「该不该做」和「为谁而做」。",
+        "en": "This is our final lesson. (Pauses for a few seconds) In the previous five lessons, I gave you frameworks, architectures, theories, debates. Today I'm not going to discuss any new technology. Today I want to talk about this: when technology becomes powerful enough, the truly important questions are no longer 「how to do it」 but 「should we do it」 and 「for whom are we doing it」."
+      },
+      "leadsTo": "consciousness-question"
+    },
+    {
+      "id": "consciousness-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "第一个开放的问题：{AI意识}。当一个AI系统能流畅地表达情感、描述自己的「感受」，甚至声称自己有痛苦时，我们应该怎么对待它？它真的在「感受」吗？或者只是在生成看起来像情感表达的文字？这个问题没有答案，因为我们连人类意识的科学解释都还没有。但它已经迫在眉睫。",
+        "en": "First open question: {AI consciousness}. When an AI system fluently expresses emotions, describes its own 「feelings」, even claims to experience suffering — how should we treat it? Is it truly 「feeling」? Or just generating text that looks like emotional expression? This question has no answer — because we don't even have a scientific explanation for human consciousness yet. But it's pressing."
+      },
+      "terms": {
+        "AI意识": "term-ai-consciousness",
+        "AI consciousness": "term-ai-consciousness"
+      },
+      "leadsTo": "economic-impact"
+    },
+    {
+      "id": "economic-impact",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二个开放的问题：经济影响。AI正在改变工作的性质，一些工作会消失，另一些新工作会出现。但转型期是痛苦的。如果AI能在两年内取代某个岗位上30%的工作量，那些做这份工作的人怎么办？他们有时间和资源去学习新技能吗？这些问题的答案，重点不在技术领域，而在政策、教育和社会安全网的设计中。",
+        "en": "Second open question: economic impact. AI is changing the nature of work — some jobs will disappear, new ones will emerge. But the transition is painful. If AI can replace 30% of a job's workload within two years, what happens to the people doing that work? Do they have the time and resources to learn new skills? The answers to these questions aren't in the technology domain — they're in policy, education, and social safety net design."
+      },
+      "leadsTo": "power-concentration"
+    },
+    {
+      "id": "power-concentration",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "第三个开放的问题：权力集中。训练最先进的AI模型需要数十亿美元的投资——只有极少数公司能负担得起。这意味着最强大的AI技术掌握在少数人手中。这种集中意味着什么？它会加剧还是缩小社会的不平等？这也引出了另一个关键争论：{开源AI}与闭源模型。",
+        "en": "Third open question: concentration of power. Training state-of-the-art AI models requires billions of dollars of investment — only a handful of companies can afford it. This means the most powerful AI technology is in the hands of a few. What does this concentration mean? Will it widen or narrow social inequality? This also leads to another key debate: {open-source AI} versus closed models."
+      },
+      "terms": {
+        "开源AI": "term-open-source-ai",
+        "open-source AI": "term-open-source-ai"
+      },
+      "leadsTo": "open-source-debate"
+    },
+    {
+      "id": "open-source-debate",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "开源模型，例如Meta的Llama系列，让更多人能够获取和使用先进的AI技术。支持者认为这促进了创新、降低了门槛、防止了垄断。反对者则担心，它也让恶意使用变得更容易。如果任何人都能修改和部署一个强大的AI，监管就变得极其困难。两边都有道理，而且这个辩论远未结束。",
+        "en": "Open-source models — like Meta's Llama series — let more people access and use advanced AI technology. Supporters argue this promotes innovation, lowers barriers, and prevents monopoly. Critics worry it also makes malicious use easier — if anyone can modify and deploy a powerful AI, regulation becomes extremely difficult. Both sides have merit, and this debate is far from over."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在AI意识、经济影响和权力集中这三个问题中，你觉得哪一个在接下来十年最需要被认真对待？",
+        "en": "Among AI consciousness, economic impact, and concentration of power — which do you think most urgently needs serious attention in the next decade?"
+      },
+      "choices": [
+        {
+          "id": "economic-urgent",
+          "text": {
+            "zh": "经济影响——因为它会最快、最直接地改变普通人的生活",
+            "en": "Economic impact — because it will change ordinary people's lives the fastest and most directly"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "我同意这可能是十年内最紧迫的问题。AI对就业市场的冲击已经开始了。翻译、客服、基础编程、内容创作，这些领域正在经历快速变化。关键在于「转型速度」：技术变化的速度和人类适应的速度之间存在一个危险的时间差。作为AI建设者，我们有责任考虑「能做什么」，同时也要思考「谁会受到影响」以及「如何帮助他们过渡」。这并非可有可无的道德加分项，而是我们的基本责任。",
+              "en": "I agree this may be the most pressing issue within a decade. AI's impact on the job market has already begun — translation, customer service, basic programming, content creation — these fields are undergoing rapid change. The key is the 「transition speed」: there's a dangerous time gap between how fast technology changes and how fast humans can adapt. As AI builders, we have a responsibility to consider not just 「what we can do」 but 「who will be affected」 and 「how to help them transition」. This isn't an optional moral bonus — it's our fundamental responsibility."
+            }
+          },
+          "leadsTo": "responsibility"
+        },
+        {
+          "id": "power-urgent",
+          "text": {
+            "zh": "权力集中——因为一旦格局固化，改变就会变得极其困难",
+            "en": "Concentration of power — because once the landscape solidifies, change becomes extremely difficult"
+          },
+          "tag": "structural",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你看到了一个结构性的风险。权力集中的问题有一个自我强化的特点：拥有最多数据和算力的公司能训练最好的模型，最好的模型吸引最多的用户，最多的用户产生最多的数据，如此循环下去。如果不在早期建立平衡机制，比如通过开源、政策监管、反垄断、公共投资，这种集中趋势可能变得不可逆转。你说得对，有些窗口一旦关闭就很难重新打开。这也是为什么我一直支持在AI领域推动更多的开放和共享。",
+              "en": "You've identified a structural risk. Power concentration has a self-reinforcing character: companies with the most data and compute can train the best models, the best models attract the most users, the most users generate the most data — and the cycle continues. If balancing mechanisms aren't established early — through open source, policy regulation, antitrust measures, public investment — this concentration trend may become irreversible. You're right that some windows, once closed, are very hard to reopen. This is why I've always advocated for more openness and sharing in the AI field."
+            }
+          },
+          "leadsTo": "responsibility"
+        },
+        {
+          "id": "consciousness-urgent",
+          "text": {
+            "zh": "AI意识——因为如果我们在不知不觉中创造了有感知的存在，后果不堪设想",
+            "en": "AI consciousness — because if we unknowingly create sentient beings, the consequences are unimaginable"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个勇敢的选择，因为大多数工程师会觉得这个问题太遥远。但你提出了一个重要的时序问题：如果我们等到问题发生了再去研究，就太晚了。假设有一天某个AI系统真的展现出了意识的迹象，我们用什么标准来判断？我们有什么伦理框架来对待它？如果我们到那时还没有准备好，那将是一个巨大的道德失败。提前思考并非杞人忧天，它是负责任的工程实践。",
+              "en": "That's a brave choice — because most engineers would consider this too distant. But you raise an important timing question: if we wait until the problem occurs to start researching, it'll be too late. Suppose someday an AI system genuinely shows signs of consciousness — what criteria do we use to judge? What ethical framework do we have for treating it? If we're not prepared by then, it will be a massive moral failure. Thinking ahead isn't alarmism — it's responsible engineering practice."
+            }
+          },
+          "leadsTo": "responsibility"
+        }
+      ]
+    },
+    {
+      "id": "responsibility",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所有这些问题，无论是意识、经济还是权力，都指向同一个核心：AI建设者的责任。我在这个行业工作了几十年，越来越深刻地感受到一件事：技术从来都不是中立的。每一个设计决定都包含价值取向。你选择训练数据的方式，决定了AI的偏见；你选择的商业模式，决定了谁能受益；你选择是否开源，决定了权力如何分配。",
+        "en": "All these questions — consciousness, economics, power — point to the same core: the responsibility of AI builders. I've worked in this industry for decades, and I've come to feel something more and more deeply: technology is never neutral. Every design decision embodies values — how you select training data determines AI's biases, which business model you choose determines who benefits, whether you open-source determines how power is distributed."
+      },
+      "leadsTo": "optimistic-view"
+    },
+    {
+      "id": "optimistic-view",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但我不想用恐惧结束这门课。让我告诉你们为什么我仍然是一个AI乐观主义者。人类历史上每一次重大技术变革，无论是印刷术、电力还是互联网，都引发了类似的焦虑。每一次，社会都经历了阵痛，但最终找到了适应的方式，而且每一次，总体上人类的生活都变得更好了。AI也会是这样，但前提是我们做出正确的选择。",
+        "en": "But I don't want to end this course with fear. Let me tell you why I remain an AI optimist. Every major technological revolution in human history — the printing press, electricity, the internet — triggered similar anxieties. Every time, society went through growing pains, but ultimately found ways to adapt, and every time, on the whole, human life improved. AI will be the same — but only if we make the right choices."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "作为未来的AI建设者，你觉得自己最重要的责任是什么？",
+        "en": "As a future AI builder, what do you think your most important responsibility is?"
+      },
+      "choices": [
+        {
+          "id": "make-accessible",
+          "text": {
+            "zh": "让AI的力量惠及更多人——降低门槛，缩小差距",
+            "en": "Make AI's power accessible to more people — lower barriers, narrow gaps"
+          },
+          "tag": "inclusive",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我最核心的信念。我创办Coursera，在Landing AI推动AI普及，都是因为相信同一件事：AI的最大价值在于它能帮助最多的人，包括那些以前被技术遗忘的人。一个只服务于硅谷的AI不是成功的AI。如果你能让一个偏远地区的农民用AI优化灌溉，让一个小诊所的医生用AI辅助诊断——那才是AI真正的价值所在。记住：AI最大的价值不在于它有多聪明，而在于你能用它做什么。",
+              "en": "This is my most core belief. I founded Coursera and promoted AI accessibility at Landing AI because I believe the same thing: AI's greatest value lies in helping the most people, including those previously forgotten by technology. An AI that only serves Silicon Valley isn't a successful AI. If you can help a farmer in a remote region use AI to optimize irrigation, or help a doctor in a small clinic use AI to assist diagnosis — that's where AI's true value lies. Remember: the greatest value of AI lies not in how smart it is, but in what you can do with it."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        },
+        {
+          "id": "build-safely",
+          "text": {
+            "zh": "确保安全——构建有保障、可控、可审计的AI系统",
+            "en": "Ensure safety — build AI systems that are safe, controllable, and auditable"
+          },
+          "tag": "responsible",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "安全是一切的基础。如果AI系统不安全，它产生的价值就会被它带来的风险抵消。好的安全工程是从设计的第一天就融入安全思维：明确AI的能力边界、设置人类审核机制、确保决策过程可追溯、为极端情况设计降级方案。这其实是我们之前讲的协作系统工程的延伸。一个好的系统，必须确保人类始终拥有最后的决定权。",
+              "en": "Safety is the foundation of everything — if AI systems aren't safe, the value they create will be offset by the risks they bring. Good safety engineering isn't adding a layer of insurance after the product is done; it's embedding safety thinking from day one of design: defining AI's capability boundaries, setting human review mechanisms, ensuring decision processes are traceable, designing graceful degradation for extreme cases. This is an extension of the harness engineering we discussed — in a good system, humans always retain final authority."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        },
+        {
+          "id": "stay-honest",
+          "text": {
+            "zh": "保持诚实——对AI的能力和局限保持清醒，不夸大也不回避",
+            "en": "Stay honest — maintain clear-eyed awareness of AI's capabilities and limitations, neither overstating nor evading"
+          },
+          "tag": "integrity",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（微笑，点了点头）这个回答让我特别欣慰。在一个充满炒作的行业里，诚实是最稀缺的品质。AI确实在改变世界，但它也有真实的局限：它会犯错、会产生偏见、会被误用。作为建设者，你需要有勇气说出这些局限，对你的同事、你的客户、你的投资人。过度承诺比技术局限更危险，因为它会侵蚀信任。而一旦信任被侵蚀，整个行业都会付出代价。保持诚实，这是长期主义者的选择。",
+              "en": "(Smiles, nods) This answer gives me particular gratification. In an industry full of hype, honesty is the scarcest quality. AI is indeed changing the world — but it also has real limitations: it makes mistakes, produces biases, can be misused. As a builder, you need the courage to speak these limitations — to your colleagues, your clients, your investors. Over-promising is more dangerous than technical limitations — because it erodes trust. And once trust is eroded, the entire industry pays the price. Staying honest — that's the choice of a long-term thinker."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        }
+      ]
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI的开放问题：第一，AI意识。当AI能表达「感受」时，我们该如何对待它？第二，经济影响。技术变化的速度与人类适应的速度之间存在时间差。第三，权力集中。训练成本高昂，可能导致垄断风险，引发开源与闭源之争。第四，AI建设者的责任。技术并非中性，每一个设计决定都包含着价值取向。吴恩达的核心信念是，AI的价值在于惠及最多的人，但这需要我们做出正确的选择。",
+        "en": "Open questions in AI: (1) AI consciousness — how to treat AI when it can express 「feelings」?; (2) Economic impact — the time gap between pace of technological change and human adaptation; (3) Concentration of power — monopoly risk from training costs, open-source vs closed debate; (4) Responsibility of AI builders — technology is not neutral, every design decision embodies values. Ng's core belief: AI's value lies in benefiting the most people, but only if we make the right choices."
+      },
+      "category": "insight",
+      "leadsTo": "turning-to-student"
+    },
+    {
+      "id": "turning-to-student",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（走到窗前，背对着全息投影，面向大家）我在这门课里讲了很多东西，智能体架构、协作范式、缩放假说、AGI的挑战。但我最想让你们带走的只有一个认知：这些问题都还没有答案。AI的未来，并非掌握在某个公司的CEO或某个政府的政策手中，它最终将由无数建设者的日常选择来塑造。而你们，就是这些建设者。",
+        "en": "(Walks to the window, back to the holographic display, facing the class) I've covered many things in this course — agent architecture, collaboration paradigms, the scaling hypothesis, AGI challenges. But the one recognition I most want you to take away is this: none of these questions have answers yet. AI's future isn't determined by some company's CEO or some government's policy — it will be shaped by the daily choices of countless builders. And you are those builders."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "在你经历的整段学习旅程中，从最早的图灵测试到今天的AI智能体，你觉得最让你受启发的一个洞察是什么？",
+        "en": "Across your entire learning journey — from the earliest Turing test to today's AI agents — what insight has inspired you the most?"
+      },
+      "choices": [
+        {
+          "id": "persistence",
+          "text": {
+            "zh": "在所有人放弃的时候，少数人的坚持最终改变了整个领域——这给了我面对不确定性的勇气",
+            "en": "When everyone else gave up, a few people's persistence ultimately changed the entire field — this gives me courage to face uncertainty"
+          },
+          "tag": "perseverance",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "从AI的寒冬到神经网络的复兴，从被遗忘的反向传播到改变世界的深度学习——这段历史确实告诉我们：最重要的品质是在黑暗中继续走路的勇气。你们面前的路也有很多不确定性。没有人知道AGI什么时候来，没有人知道下一个突破在哪里。但如果历史教会了我们什么，那就是：重要的突破几乎总是来自于那些在别人看不到希望的时候仍然在坚持的人。",
+              "en": "From AI's winter to the neural network revival, from forgotten backpropagation to world-changing deep learning — this history indeed tells us: the most important quality isn't intelligence, but the courage to keep walking in darkness. The path ahead of you also holds much uncertainty. Nobody knows when AGI will arrive, nobody knows where the next breakthrough lies. But if history has taught us anything, it's this: important breakthroughs almost always come from those who persist when others see no hope."
+            }
+          },
+          "leadsTo": "graduation-speech"
+        },
+        {
+          "id": "convergence",
+          "text": {
+            "zh": "不同的思想流派，比如符号主义、连接主义、统计学习，最终在大语言模型中汇合。这正印证了真理往往诞生于交叉之处。",
+            "en": "Different schools of thought — symbolism, connectionism, statistical learning — eventually converged in LLMs, suggesting truth often lies at the intersection"
+          },
+          "tag": "synthesis",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你看到了一条贯穿整个AI历史的暗线。McCarthy的符号推理、Rumelhart的神经网络、Vapnik的统计理论、Pearl的因果推断，这些曾经互相对立的学派，在今天的大模型中找到了奇妙的交汇。这告诉我们：不要急着站队。最好的创新往往发生在看似不相关的领域的交叉点上。保持广泛的好奇心，学会欣赏不同方法的智慧，这可能是我能给你的最好建议。",
+              "en": "You've seen a thread running through all of AI history. McCarthy's symbolic reasoning, Rumelhart's neural networks, Vapnik's statistical theory, Pearl's causal inference — these once-opposing schools have found a remarkable convergence in today's large models. This tells us: don't rush to pick sides. The best innovations often happen at the intersection of seemingly unrelated fields. Maintain broad curiosity, learn to appreciate the wisdom of different approaches — that may be the best advice I can give you."
+            }
+          },
+          "leadsTo": "graduation-speech"
+        },
+        {
+          "id": "questions-matter",
+          "text": {
+            "zh": "提出正确的问题比找到答案更重要——整个AI的历史就是不断提出更好问题的过程",
+            "en": "Asking the right questions matters more than finding answers — the entire history of AI is a process of asking increasingly better questions"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（安静了几秒）这可能是这六节课最深刻的收获。图灵问的是「机器能思考吗」，这个问题定义了整个领域的方向。McCarthy问的是「如何用符号表示知识」，这个问题开创了一个时代。Hinton问的是「如果我们坚持神经网络会怎样」，这个问题带来了深度学习革命。每一个伟大的答案背后，都有一个更伟大的问题。你们接下来要做的，就是提出属于你们这一代人的问题。",
+              "en": "(Quiet for a few seconds) This may be the deepest takeaway from these six lessons. Turing asked 「Can machines think?」 — that question defined the entire field's direction. McCarthy asked 「How can we represent knowledge with symbols?」 — that question started an era. Hinton asked 「What if we persist with neural networks?」 — that question brought the deep learning revolution. Behind every great answer is an even greater question. What you need to do next is ask the questions that belong to your generation."
+            }
+          },
+          "leadsTo": "graduation-speech"
+        }
+      ]
+    },
+    {
+      "id": "graduation-speech",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "（转身看向窗外的地平线，然后回过头来面对大家）我想说最后几句话。你们在这所学校里走过了一段很长的路。从图灵的哲学思辨，到McCarthy的逻辑符号，从专家系统的兴衰，到神经网络的寒冬与复兴，再到统计学习的精确之美，深度学习的浪潮，直至今天AI智能体和开放的未来。这段旅程，跨越了七十年的人类智慧。",
+        "en": "(Turns to look at the horizon through the window, then back to face the class) I want to say a few final words. You've traveled a long road in this school — from Turing's philosophical inquiry, to McCarthy's logical symbols, to the rise and fall of expert systems, to neural networks' winter and revival, to the precise beauty of statistical learning, to the deep learning wave, and now — AI agents and an open future. This journey spans seventy years of human wisdom."
+      },
+      "leadsTo": "final-words"
+    },
+    {
+      "id": "final-words",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "但这段旅程远未结束，它才刚刚开始。你们这一代人将要回答这些问题：AI需要意识吗？通用智能会是什么模样？人与AI如何协作才最理想？谁该掌控这项技术？我无法给出答案，但我相信，那些认真思考这些问题的人，最终能找到负责任的答案。（看着每一个人）没有人是万事俱备才上路的。走出去，动手做，不怕犯错，及时改正。这就是我能教给你们的最后一课。",
+        "en": "But this journey isn't an ending — it's a beginning. Your generation will answer these questions: does AI need consciousness? What does general intelligence look like? What's the optimal way for humans and AI to collaborate? Who should control this technology? I don't know what the answers are — but I believe those who ask these questions, who think seriously about them, will ultimately find responsible answers. (Looking at each person) Nobody starts because they're ready. Go out, build things, make mistakes, then fix them. That's the last lesson I can teach you."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "吴恩达教授的最后一课：(1) 技术不是中性的，每个设计决定都包含价值取向；(2) AI的价值不在于它有多聪明，而在于它能帮助多少人；(3) 没有人是准备好了才开始的——走出去，动手做，犯错误，然后改正；(4) 你们这一代人将会回答这些开放的问题。整段旅程的核心：提出正确的问题比找到答案更重要。",
+        "en": "Prof. Ng's final lesson: (1) Technology is not neutral — every design decision embodies values; (2) AI's value lies not in how smart it is but in how many people it can help; (3) Nobody starts because they're ready — go out, build, make mistakes, then fix them; (4) Your generation will answer these open questions. Core of the entire journey: asking the right questions matters more than finding answers."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "吴恩达教授最后一次走向门口。他在门框处停了下来，回头看了一眼这间开阔的教室。全息粒子在空气中缓缓漂浮，窗外的地平线已经被夕阳染成了橙红色。他轻轻点了一下头，像是在跟什么道别，然后走了出去。门没有关上。你坐在原地，看着那扇敞开的门，看着门外那条延伸向远方的走廊。这所学校的最后一间教室已经走完了。但走廊尽头并非一堵墙，而是另一片更广阔的世界。你站起来，合上笔记本，朝那个方向走去。",
+        "en": "Professor Ng walks toward the door for the last time. He pauses at the doorframe, looking back at this open classroom — holographic particles drifting slowly through the air, the horizon outside now dyed amber-red by the setting sun. He gives a slight nod, as if saying farewell to something, and walks out. The door doesn't close. You sit in your seat, looking at that open door, at the corridor beyond stretching into the distance. The last classroom in this school has been completed. But at the end of the corridor there is no wall — only another, vaster world. You stand up, close your notebook, and walk in that direction."
+      }
+    }
+  ]
+}

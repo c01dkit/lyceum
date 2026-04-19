@@ -1,0 +1,52 @@
+{
+  "id": "deep-reinforcement-learning",
+  "name": {
+    "zh": "深度强化学习",
+    "en": "Deep Reinforcement Learning"
+  },
+  "description": {
+    "zh": "一个程序能否通过不断试错，从零开始学会下围棋并击败人类冠军？西尔弗教授将带你理解强化学习的核心思想——试错与回报，见证深度Q网络如何在Atari游戏中超越人类，追踪AlphaGo从依赖人类棋谱到完全自我对弈的进化之路。",
+    "en": "Can a program learn to play Go from scratch through trial and error, and defeat human champions? Prof. Silver will guide you through the core idea of reinforcement learning — trial-and-error and reward, witness how Deep Q-Networks surpassed humans in Atari games, and trace AlphaGo's evolution from relying on human games to pure self-play."
+  },
+  "grade": "grade-4",
+  "teacher": "prof-silver",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-rl-fundamentals",
+      "description": {
+        "zh": "理解强化学习的基本框架：智能体、环境、状态、动作、回报",
+        "en": "Understand the RL framework: agent, environment, state, action, reward"
+      }
+    },
+    {
+      "id": "obj-dqn",
+      "description": {
+        "zh": "理解深度Q网络如何将深度学习引入强化学习",
+        "en": "Understand how Deep Q-Networks brought deep learning into reinforcement learning"
+      }
+    },
+    {
+      "id": "obj-policy-gradient",
+      "description": {
+        "zh": "掌握策略梯度方法的核心思想",
+        "en": "Master the core idea of policy gradient methods"
+      }
+    },
+    {
+      "id": "obj-alphago",
+      "description": {
+        "zh": "理解AlphaGo的架构和AlphaGo Zero的自我对弈范式",
+        "en": "Understand AlphaGo's architecture and AlphaGo Zero's self-play paradigm"
+      }
+    }
+  ]
+}

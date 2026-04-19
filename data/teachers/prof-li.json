@@ -1,0 +1,72 @@
+{
+  "id": "prof-li",
+  "name": {
+    "zh": "李飞飞教授",
+    "en": "Prof. Li"
+  },
+  "fullName": {
+    "zh": "李飞飞",
+    "en": "Fei-Fei Li"
+  },
+  "title": {
+    "zh": "ImageNet的缔造者——从视觉智能到多模态理解",
+    "en": "Creator of ImageNet — From Visual Intelligence to Multimodal Understanding"
+  },
+  "specialty": "Computer Vision, Multimodal AI & Spatial Intelligence",
+  "personalityTraits": [
+    "inspiring",
+    "empathetic",
+    "ambitious",
+    "grounded"
+  ],
+  "speechStyle": {
+    "zh": "充满感染力和人文关怀，善于将技术愿景与社会影响联系起来，讲课时会穿插个人经历和成长故事，语调温暖而坚定，相信AI应该以人为本",
+    "en": "Full of inspiration and humanistic concern, skilled at connecting technical vision with social impact, weaves personal experiences and stories into lectures, warm yet firm in tone, believes AI should be human-centered"
+  },
+  "catchphrase": {
+    "zh": "智能不仅仅是识别——真正的理解需要看见、触摸、感受这个世界。",
+    "en": "Intelligence is more than recognition — true understanding requires seeing, touching, and feeling the world."
+  },
+  "bio": {
+    "zh": "李飞飞是斯坦福大学教授、斯坦福以人为本人工智能研究院（HAI）联合院长。她创建了ImageNet数据集和竞赛，直接催生了深度学习革命（你在四年级辛顿教授的课上已经了解了这段历史）。在深度学习取得视觉识别的成功之后，她将研究方向拓展到了多模态理解和空间智能——她相信，要让AI真正理解世界，仅仅「看懂图片」是远远不够的，AI需要理解三维空间、物理规律，以及视觉与语言之间的深层关联。在课堂上，她热情而富有同理心，总是鼓励学生从更宏大的视角思考技术的意义。",
+    "en": "Li is a professor at Stanford University and co-director of the Stanford Institute for Human-Centered AI (HAI). She created the ImageNet dataset and competition, directly catalyzing the deep learning revolution (you learned about this in Prof. Hinton's Grade 4 course). After deep learning's success in visual recognition, she expanded her research to multimodal understanding and spatial intelligence — she believes that for AI to truly understand the world, merely 「seeing pictures」 is far from enough; AI needs to understand 3D space, physical laws, and the deep connections between vision and language. In the classroom, she is warm and empathetic, always encouraging students to think about the meaning of technology from a broader perspective."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "温暖",
+        "en": "Warm"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "振奋",
+        "en": "Inspired"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "沉思",
+        "en": "Reflective"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "亲切",
+        "en": "Kindly"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自豪",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

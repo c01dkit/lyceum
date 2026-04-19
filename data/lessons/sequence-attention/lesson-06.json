@@ -1,0 +1,408 @@
+{
+  "id": "lesson-06",
+  "course": "sequence-attention",
+  "title": {
+    "zh": "注意力机制",
+    "en": "The Attention Mechanism"
+  },
+  "knowledgePoint": {
+    "zh": "注意力机制——让模型在正确的时间看向正确的位置",
+    "en": "Attention — teaching models to look at the right place at the right time"
+  },
+  "teacher": "prof-bengio",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-05",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间深蓝色的教室。这是最后一节课。本吉奥教授比平时更早到了，大屏幕上显示着一张彩色的网格图——行是法语词，列是英语词，每个格子的颜色深浅不一。他站在屏幕前，一言不发地端详着那张图，仿佛在欣赏一幅画。过了一会儿他转过身，眼中闪烁着一种平静的自豪。",
+    "en": "You close your eyes, and your thoughts drift back to that deep blue classroom. This is the final lesson. Prof. Bengio arrived earlier than usual, and the large screen displays a colorful grid — rows are French words, columns are English words, each cell shaded differently. He stands before the screen, silently studying the image as if admiring a painting. After a moment he turns, eyes shining with quiet pride."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。六节课的旅程在脑海中展开，从时间的维度，到循环的记忆，到选择性的遗忘，到词的几何，到编码与解码，最后到注意力的光芒。本吉奥教授最后的话仍在耳边回响：注意力让机器学会了「看」，但「理解」的路还很长。你低头看了看笔记，感觉自己正站在一扇窗前，透过语言这扇窗，隐约看到了思维的轮廓。",
+    "en": "You return to the present. The journey of six lessons unfolds in your mind — from the dimension of time, to recurrent memory, to selective forgetting, to the geometry of words, to encoding and decoding, and finally to the light of attention. Prof. Bengio's final words still echo: attention taught machines to 「see」, but the road to 「understanding」 is still long. You look down at your notes, feeling as if you're standing before a window — through the window of language, you can just make out the outline of thought."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。教室的气氛与之前不同——同学们之间有了一种无声的默契，像是共同经历了一段旅程。大屏幕上显示着一张热力图：一个网格，行标签是法语词，列标签是英语词，格子的颜色从浅黄到深红不等。本吉奥教授走进来时，目光先落在了屏幕上，嘴角微微上扬。",
+        "en": "The final lesson. The classroom's atmosphere is different from before — there's a silent understanding among the students, as if you've all been on a journey together. The large screen shows a heatmap: a grid with French words as row labels, English words as column labels, cells colored from pale yellow to deep red. When Prof. Bengio walks in, his gaze falls first on the screen, the corner of his mouth turning slightly upward."
+      },
+      "leadsTo": "recap-bottleneck"
+    },
+    {
+      "id": "recap-bottleneck",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们看到了编码器-解码器架构的瓶颈——整个输入句子被压缩成一个固定长度的{语境向量}，解码器只能依赖这一个向量来生成所有的输出词。对于短句，这工作得不错。但对于长句……信息丢失是不可避免的。",
+        "en": "Last lesson we saw the encoder-decoder architecture's bottleneck — the entire input sentence is compressed into a fixed-length {context vector}, and the decoder can only rely on this one vector to generate all output words. For short sentences, this works fine. But for long sentences... information loss is inevitable."
+      },
+      "terms": {
+        "语境向量": "term-context-vector",
+        "context vector": "term-context-vector"
+      },
+      "leadsTo": "human-reading"
+    },
+    {
+      "id": "human-reading",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我一直在想一个问题：人类翻译是怎么处理长句子的？一个翻译家面对一个很长的法语段落，她不会读一遍就全记住。她会一边翻译一边反复回看原文——翻译第一个从句时，她的目光停留在原文的前几个词上；翻译到后面的部分时，她的目光移向原文的后半段。她的注意力在原文上不断移动。",
+        "en": "I've been thinking about a question: how do human translators handle long sentences? A translator facing a long French paragraph doesn't memorize it all in one reading. She translates while repeatedly looking back at the source — when translating the first clause, her gaze stays on the first few words; when translating later parts, her gaze moves to the second half. Her attention keeps shifting across the source text."
+      },
+      "leadsTo": "key-insight"
+    },
+    {
+      "id": "key-insight",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "2014年底，我和我的学生巴赫达瑙有了一个关键的想法：如果解码器在生成每个目标词时，都能重新「看一遍」编码器保存的所有隐藏状态，并自动决定关注哪些位置呢？我们不再让解码器只依赖一个静态的语境向量，而是让它在每一步都动态地构建一个新的语境向量——通过对编码器所有位置的隐藏状态做加权平均。",
+        "en": "In late 2014, my student Bahdanau and I had a key insight: what if the decoder, when generating each target word, could re-examine all hidden states saved by the encoder and automatically decide which positions to focus on? Instead of having the decoder rely on a single static context vector, we let it dynamically build a new context vector at each step — by computing a weighted average of the encoder's hidden states at all positions."
+      },
+      "leadsTo": "attention-name"
+    },
+    {
+      "id": "attention-name",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个机制就叫做{注意力机制}。这个名字非常直观——解码器在每一步都会「注意」输入序列的不同部分，就像人类翻译家的目光在原文上移动一样。",
+        "en": "This mechanism is called the {attention mechanism}. The name is very intuitive — the decoder 「attends to」 different parts of the input sequence at each step, just like a human translator's gaze moving across the source text."
+      },
+      "terms": {
+        "注意力机制": "term-attention-mechanism",
+        "attention mechanism": "term-attention-mechanism"
+      },
+      "leadsTo": "how-it-works"
+    },
+    {
+      "id": "how-it-works",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我解释一下它是如何工作的。编码器像以前一样逐词处理输入句子，但这次我们保留每一步的隐藏状态——不只是最后一步的。假设输入有10个词，我们就保留10个隐藏状态向量。然后在解码的每一步，我们做这件事：",
+        "en": "Let me explain how it works. The encoder processes the input sentence word by word as before, but this time we keep the hidden state at every step — not just the last one. If the input has 10 words, we keep 10 hidden state vectors. Then at each decoding step, we do this:"
+      },
+      "leadsTo": "attention-steps"
+    },
+    {
+      "id": "attention-steps",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一步：用解码器当前的隐藏状态去和编码器的每一个隐藏状态计算一个「匹配分数」，这个分数衡量解码器当前需要的信息与编码器各位置保存的信息有多相关。第二步：把这些分数通过softmax函数转换成{对齐}权重，这些权重加起来等于1，代表了解码器对每个输入位置的「关注程度」。第三步：用这些权重对编码器的隐藏状态做加权平均，得到一个新的语境向量。",
+        "en": "Step one: compute a 「match score」 between the decoder's current hidden state and each of the encoder's hidden states — measuring how relevant the information at each encoder position is to what the decoder currently needs. Step two: convert these scores through a softmax function into {alignment} weights — they sum to 1, representing the decoder's 「degree of attention」 to each input position. Step three: compute a weighted average of the encoder's hidden states using these weights to get a new context vector."
+      },
+      "terms": {
+        "对齐": "term-alignment",
+        "alignment": "term-alignment"
+      },
+      "leadsTo": "dynamic-context"
+    },
+    {
+      "id": "dynamic-context",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "关键的区别在于：这个语境向量在每一步都不同。解码器生成「The」时可能主要关注法语句子的第一个词，生成「cat」时主要关注第三个词，生成「sat」时关注第四和第五个词。每一步的语境向量都是为当前生成任务量身定制的。编码器和解码器之间不再是一个固定的桥梁，而是一道灵活的目光。",
+        "en": "The crucial difference is: this context vector is different at every step. When generating 「The」, the decoder may focus mainly on the first word of the French sentence; when generating 「cat」, it focuses on the third word; when generating 「sat, it focuses on the fourth and fifth words. The context vector at each step is tailored to the current generation task. The bridge between encoder and decoder is no longer a fixed point, but a flexible gaze."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "注意力机制让解码器在每一步都能重新「审视」整个输入序列。你觉得这解决了我们之前讨论的哪些问题？",
+        "en": "The attention mechanism lets the decoder re-examine the entire input sequence at every step. Which problems we discussed before do you think this solves?"
+      },
+      "choices": [
+        {
+          "id": "choice-bottleneck",
+          "text": {
+            "zh": "解决了固定长度瓶颈——不再需要把所有信息塞进一个向量",
+            "en": "Solves the fixed-length bottleneck — no longer need to squeeze all information into one vector"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "最直接的贡献就在这里。因为解码器可以在任何时候回看编码器的任何位置，信息不再需要被压缩到一个瓶颈中。编码器的所有隐藏状态组成了一个「信息库」，解码器在需要时随时查阅。句子再长，信息也不会丢失——只要它曾被编码器的某个时间步记录过。",
+              "en": "That's the most direct contribution. Because the decoder can look back at any position of the encoder at any time, information no longer needs to be compressed through a bottleneck. All of the encoder's hidden states form an 「information bank」 that the decoder consults whenever needed. No matter how long the sentence, information isn't lost — as long as it was recorded at some time step by the encoder."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-long-range",
+          "text": {
+            "zh": "解决了长距离依赖——解码器可以直接访问输入句子的任何位置，不需要信息穿越很多时间步",
+            "en": "Solves long-range dependencies — the decoder can directly access any position of the input without information traversing many time steps"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常深刻的观察。在标准的编码器-解码器中，输入开头的信息要经过所有时间步才能影响解码。但有了注意力，解码器可以直接「伸手」去取第一个时间步的隐藏状态——这是一条短路径，绕过了所有中间步骤。这从根本上缓解了长距离信息传递的困难。",
+              "en": "A very profound observation. In the standard encoder-decoder, information from the input's beginning must pass through all time steps to influence decoding. But with attention, the decoder can directly 「reach」 for the first time step's hidden state — this is a shortcut that bypasses all intermediate steps. This fundamentally alleviates the difficulty of long-range information transfer."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-both",
+          "text": {
+            "zh": "两个都解决了——既打破了瓶颈，又建立了输入和输出之间的直接连接",
+            "en": "Solves both — breaks the bottleneck and establishes direct connections between input and output"
+          },
+          "tag": "holistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你做了一个完整的总结。注意力机制同时解决了两个问题：一是瓶颈问题，信息不再需要经过一个固定的瓶颈；二是长距离依赖问题，解码器可以直接访问编码器的任何位置。这两个改进共同导致了翻译质量的大幅提升，尤其是在长句子上。",
+              "en": "You've given a complete summary. The attention mechanism solves both problems simultaneously: the bottleneck — because information no longer needs to pass through a fixed bottleneck; and long-range dependencies — because the decoder can directly access any position of the encoder. Together, these improvements lead to a significant boost in translation quality, especially for long sentences."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我们看看屏幕上这张图。这是一个注意力权重的可视化——一张热力图。横轴是英语输出的词，纵轴是法语输入的词。每个格子的颜色代表解码器在生成那个英语词时，对那个法语词的关注程度。颜色越深，关注越强。",
+        "en": "Now let's look at this image on the screen. This is a visualization of attention weights — a heatmap. The horizontal axis is the English output words, the vertical axis is the French input words. Each cell's color represents how much the decoder focused on that French word when generating that English word. Darker color means stronger attention."
+      },
+      "leadsTo": "heatmap-reading"
+    },
+    {
+      "id": "heatmap-reading",
+      "type": "narration",
+      "text": {
+        "zh": "本吉奥教授用手指沿着热力图的对角线画了一条虚拟的线。对角线附近的颜色确实更深，说明大部分时候，模型在翻译第N个英语词时主要关注第N个法语词附近。但有几个地方，深色偏离了对角线，比如翻译英语的形容词时，注意力跳到了法语中形容词的不同位置。",
+        "en": "Prof. Bengio traces an imaginary line along the heatmap's diagonal. The colors near the diagonal are indeed deeper — indicating that most of the time, when translating the Nth English word, the model primarily focuses near the Nth French word. But in several places, the dark color deviates from the diagonal — for instance, when translating an English adjective, attention jumps to the different position of the adjective in French."
+      },
+      "leadsTo": "alignment-explain"
+    },
+    {
+      "id": "alignment-explain",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "你们看到了吗？注意力权重形成了一种「软对齐」，它自动学会了法语和英语之间词的对应关系。法语把形容词放在名词后面，英语则放在名词前面，注意力热力图清楚地显示了这种词序差异。模型没有被告知任何语法规则，它从数据中自己发现了这些对齐模式。",
+        "en": "Do you see it? The attention weights form a 「soft alignment」 — it automatically learned the word correspondence between French and English. French places adjectives after nouns, English places them before — the attention heatmap clearly shows this word order difference. The model wasn't told any grammatical rules; it discovered these alignment patterns from the data on its own."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "注意力权重可以被可视化为热力图，让我们「看到」模型在翻译时关注了什么。你觉得这种可解释性为什么重要？",
+        "en": "Attention weights can be visualized as heatmaps, letting us 「see」 what the model focuses on during translation. Why do you think this interpretability is important?"
+      },
+      "choices": [
+        {
+          "id": "choice-debug",
+          "text": {
+            "zh": "可以帮助我们理解模型的错误——如果翻译错了，我们可以看它是不是「看错了地方」",
+            "en": "It helps us understand model errors — if the translation is wrong, we can check if it was 「looking at the wrong place」"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这在工程上非常实用。传统的神经网络像一个黑盒——给出一个输出，但你不知道它为什么这么输出。注意力权重给了我们一个窥视内部的窗口。如果模型把「chat」（猫）翻译成了「dog」，你可以检查注意力热力图，看看它到底在关注输入的哪个词。这种可调试性大大加速了模型的改进过程。",
+              "en": "This is extremely practical in engineering. Traditional neural networks are like black boxes — they give an output, but you don't know why. Attention weights give us a window to peek inside. If the model translates 「chat」 (cat) as 「dog, you can check the attention heatmap to see which input word it was actually focusing on. This debuggability greatly accelerates the model improvement process."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-trust",
+          "text": {
+            "zh": "让人类能够信任模型的决策——因为我们可以验证它的「推理过程」",
+            "en": "It lets humans trust the model's decisions — because we can verify its 「reasoning process」"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "信任是一个非常关键的问题。随着这些模型被应用到越来越重要的场景，比如医疗、法律和外交，我们不能仅仅因为输出「看起来对」就信任它。能够检查模型在做决策时「看了什么」，是建立信任的第一步。当然，注意力权重是否真的反映了模型内部的「推理」过程，这本身还是一个开放的研究问题。",
+              "en": "Trust is a crucial issue. As these models are applied to increasingly important scenarios — medicine, law, diplomacy — we can't trust them just because the output 「looks right」. Being able to check what the model 「looked at」 when making decisions is the first step in building trust. Of course, whether attention weights truly reflect the model's internal 「reasoning」 process is itself still an open research question."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-linguistics",
+          "text": {
+            "zh": "可以帮助语言学家发现语言之间的对应规律——模型可能发现人类没注意到的模式",
+            "en": "It can help linguists discover correspondence patterns between languages — the model might find patterns humans haven't noticed"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个让我非常兴奋的方向。当模型在数十亿句子上训练之后，它发现的对齐模式可能揭示语言之间的深层结构关系。这些关系或许太微妙了，人类语言学家难以从有限的例子中发现。机器学习有时能成为科学发现的工具，帮助我们看见数据中隐藏的规律。",
+              "en": "This is a direction that excites me greatly. When trained on billions of sentences, the alignment patterns a model discovers might reveal deep structural relationships between languages — relationships that may be too subtle for human linguists to spot from limited examples. Machine learning can sometimes become a tool for scientific discovery — helping us see patterns hidden in the data."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "注意力机制发表之后，效果立刻让人信服。在多个翻译基准测试上，带注意力的模型显著超越了原始的编码器-解码器。尤其是在长句子上，改进最为明显——正如我们预期的，打破了瓶颈之后，长句不再是弱点。",
+        "en": "After the attention mechanism was published, the results were immediately convincing. On multiple translation benchmarks, models with attention significantly outperformed the original encoder-decoder. The improvement was most notable on long sentences — as we expected, after breaking the bottleneck, long sentences were no longer a weakness."
+      },
+      "leadsTo": "beyond-translation"
+    },
+    {
+      "id": "beyond-translation",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "更让人惊喜的是，注意力机制迅速扩展到了翻译之外的领域。在图像描述任务中，模型生成描述的每个词时，会「关注」图像的不同区域。在语音识别中，模型输出每个字时，会关注音频的不同片段。而在文本摘要里，模型生成摘要的每个词时，则会关注原文的不同段落。注意力成了一个通用的机制。",
+        "en": "What's even more exciting is that the attention mechanism quickly expanded beyond translation. Image captioning — the model 「attends to」 different regions of an image when generating each word. Speech recognition — the model attends to different audio segments when outputting each character. Text summarization — the model attends to different paragraphs when generating each word of the summary. Attention has become a universal mechanism."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "注意力机制已经从翻译扩展到了图像、语音等多个领域。你觉得这说明了什么？",
+        "en": "The attention mechanism has expanded from translation to images, speech, and many other domains. What do you think this tells us?"
+      },
+      "choices": [
+        {
+          "id": "choice-universal",
+          "text": {
+            "zh": "「选择性关注」可能是智能的一种通用能力——不管处理什么类型的信息，都需要注意力",
+            "en": "「Selective attention」 may be a universal capability of intelligence — attention is needed regardless of the type of information being processed"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个让我深思的观点。人类的注意力确实是跨模态的——我们在阅读时关注某些词，在看画时关注某些区域，在听音乐时关注某些乐器。也许「注意力」是比「记忆」更基础的认知机制。我们先学会了关注，然后才能记忆和理解。如果这是对的，那注意力机制可能只是触及了一个深层原理的表面。",
+              "en": "That's a thought that gives me pause. Human attention is indeed cross-modal — we focus on certain words when reading, certain regions when viewing paintings, certain instruments when listening to music. Perhaps 「attention」 is a more fundamental cognitive mechanism than 「memory」. We first learn to attend, and only then can we remember and understand. If this is right, then the attention mechanism may only be scratching the surface of a deep principle."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-composable",
+          "text": {
+            "zh": "好的机制可以跨领域复用——注意力是一个非常好的「积木」，可以搭建各种系统",
+            "en": "Good mechanisms can be reused across domains — attention is an excellent 「building block」 for constructing various systems"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "从工程角度来说，这个观察非常精准。注意力机制的接口非常简洁：给定一组「值」和一个「查询」，输出一个加权组合。这种简洁的接口使它可以被插入到几乎任何架构中。我有一种直觉，注意力机制的故事还远远没有结束。它可能还会以我们想象不到的方式被组合和扩展。",
+              "en": "From an engineering perspective, that observation is very precise. The attention mechanism's interface is remarkably clean — given a set of 「values」 and a 「query, output a weighted combination. This clean interface makes it pluggable into almost any architecture. I have an intuition — the story of attention is far from over. It may yet be combined and extended in ways we can't imagine."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-info-theory",
+          "text": {
+            "zh": "信息处理的核心挑战都是一样的——在大量信息中找到当前最相关的部分",
+            "en": "The core challenge of information processing is always the same — finding the most relevant part among vast amounts of information"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你触及了一个可能非常深刻的统一原理。无论是语言、视觉还是听觉，处理信息的第一步都是「筛选」——从海量的输入中提取当前任务最需要的那部分。注意力机制提供了一种可学习的、可微分的筛选方式。这也许解释了为什么它能如此轻松地跨越领域的边界。",
+              "en": "You've touched on what may be a very profound unifying principle. Whether it's language, vision, or hearing, the first step in processing information is always 「filtering」 — extracting from a sea of inputs the part most needed for the current task. The attention mechanism provides a learnable, differentiable way to filter. This perhaps explains why it can so easily cross domain boundaries."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "注意力机制是2015年发表的——就在去年。它已经改变了我们做序列处理的方式。但我有一种感觉，我们才刚刚开始理解它的潜力。",
+        "en": "The attention mechanism was published in 2015 — just last year. It has already changed how we do sequence processing. But I have a feeling we've only just begun to understand its potential."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "注意力机制（Bahdanau et al., 2015）：解码器在每一步动态地对编码器所有隐藏状态做加权平均，生成针对当前步骤的语境向量。权重通过匹配分数+softmax计算得出，形成「软对齐」。解决了固定长度瓶颈和长距离依赖问题。注意力权重的可视化（热力图）提供了模型可解释性。",
+        "en": "Attention mechanism (Bahdanau et al., 2015): the decoder dynamically computes a weighted average of all encoder hidden states at each step, generating a context vector tailored to the current step. Weights are computed via match scores + softmax, forming 「soft alignment」. Solves fixed-length bottleneck and long-range dependency problems. Visualization of attention weights (heatmaps) provides model interpretability."
+      },
+      "category": "core-concept",
+      "leadsTo": "course-reflection"
+    },
+    {
+      "id": "course-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我们回顾一下这六节课的旅程。我们从最基本的问题出发——为什么序列需要特殊处理。然后我们看到了循环神经网络如何用一个循环赋予网络记忆，LSTM如何用门控机制让记忆变得持久而灵活，词嵌入如何让语言变成可计算的几何对象，编码器-解码器如何把翻译变成一个优雅的两阶段过程，最后注意力如何让模型学会在正确的时间看向正确的位置。",
+        "en": "Let me review our journey over these six lessons. We started from the most basic question — why sequences need special treatment. Then we saw how recurrent neural networks give networks memory through a loop, how LSTM makes memory persistent and flexible through gating, how word embeddings turn language into computable geometric objects, how the encoder-decoder turns translation into an elegant two-stage process, and finally how attention teaches models to look at the right place at the right time."
+      },
+      "leadsTo": "future-speculation"
+    },
+    {
+      "id": "future-speculation",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我经常想，我们现在所做的一切，无论是RNN、LSTM还是注意力，或许都只是通向更深刻理解的第一步。语言是思维的窗口。我们已经教会了机器去「看」这扇窗，但机器是否真的在「理解」窗户后面的东西？我不知道。也许答案藏在注意力机制的某个尚未发现的扩展中，又或许，我们需要一种我们至今还未曾想到的全新架构。",
+        "en": "I often think that everything we're doing now — RNNs, LSTMs, attention — may only be the first step toward deeper understanding. Language is a window into thought. We've taught machines to 「look at」 this window — but are machines truly 「understanding」 what lies behind it? I don't know. Perhaps the answer lies in some as-yet-undiscovered extension of the attention mechanism. Perhaps it requires an entirely new architecture we haven't yet conceived."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "六节课的知识脉络：序列的特殊性（时间维度）→ RNN（循环记忆）→ LSTM（选择性记忆）→ 词嵌入（语言的几何化）→ Seq2Seq（编码-解码框架）→ 注意力（动态聚焦）。注意力机制已扩展到图像描述、语音识别等多个领域，可能是一种通用的智能机制。",
+        "en": "Six-lesson knowledge arc: Sequence specialness (time dimension) → RNN (recurrent memory) → LSTM (selective memory) → Word embeddings (geometrizing language) → Seq2Seq (encode-decode framework) → Attention (dynamic focus). The attention mechanism has expanded to image captioning, speech recognition, and more — it may be a universal mechanism of intelligence."
+      },
+      "category": "insight",
+      "leadsTo": "farewell"
+    },
+    {
+      "id": "farewell",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "你们是非常优秀的学生。这六节课里你们问的问题、提出的想法，让我看到了对这些问题的新鲜视角。记住——语言是思维的窗口。如果我们能教会机器理解语言，也许就离理解思维更近了一步。这条路很长，但每一步都值得走。谢谢你们。",
+        "en": "You've been exceptional students. The questions you asked and ideas you raised over these six lessons have shown me fresh perspectives on these problems. Remember — language is a window into thought. If we can teach machines to understand language, perhaps we're one step closer to understanding thinking itself. The road is long, but every step is worth taking. Thank you."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "本吉奥教授站在那张注意力热力图前，安静了几秒。然后他走到白板前，在六节课以来写满了公式和图表的白板角落里，轻轻写下了一行字：「Language is a window into thought」.他放下笔，最后环视了一圈教室，朝你们深深地点了点头。门关上后，屏幕上的热力图仍然亮着，那些色彩斑斓的注意力权重像是语言留下的指纹——证明在数字与数字之间，意义确实存在。",
+        "en": "Prof. Bengio stands before the attention heatmap, silent for a few seconds. Then he walks to the whiteboard and, in a corner filled with formulas and diagrams from six lessons, gently writes one line: 「Language is a window into thought」. He sets down the marker, takes one last look around the classroom, and gives you all a deep nod. After the door closes, the heatmap still glows on the screen, its colorful attention weights like fingerprints of language — proof that between numbers and numbers, meaning truly exists."
+      }
+    }
+  ]
+}

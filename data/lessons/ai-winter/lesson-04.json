@@ -1,0 +1,267 @@
+{
+  "id": "lesson-04",
+  "course": "ai-winter",
+  "title": {
+    "zh": "寒冬降临",
+    "en": "Winter Falls"
+  },
+  "knowledgePoint": {
+    "zh": "AI寒冬的具体影响——经费枯竭、实验室关闭、人才流失",
+    "en": "The concrete effects of the AI winter — funding dried up, labs closed, talent fled"
+  },
+  "teacher": "prof-minsky",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你翻开笔记本，看到一页上写着「寒冬」两个字，旁边画了一个温度计指向零下的简笔画。思绪拉回教室，明斯基教授今天的语气像是在描述一场亲历的灾难……",
+    "en": "You flip open your notebook to a page with the words 「Winter」 and a simple sketch of a thermometer pointing below zero. Your mind drifts back to the classroom, where Professor Minsky's tone today sounds like someone describing a disaster he lived through..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，想到那些在寒冬中被迫离开的研究者们。他们的才华并没有消失，只是被迫流向了其他地方。而AI这个词，在很长一段时间里成了不能说出口的禁忌。",
+    "en": "You close your notebook, thinking about those researchers forced to leave during the winter. Their talent didn't vanish — it was just forced elsewhere. And for a long time, the term 「AI」 became a word no one dared speak."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "你走进教室，发现今天的灯光似乎比往常更暗。明斯基教授站在窗边，背对着你，看着窗外灰蒙蒙的天空。过了好一会儿，他才转过身来。",
+        "en": "You walk into the classroom and notice the lights seem even dimmer than usual. Professor Minsky is standing by the window, his back to you, gazing at the overcast sky outside. After a long moment, he finally turns around."
+      },
+      "leadsTo": "intro-dialog"
+    },
+    {
+      "id": "intro-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "前两节课，我们讨论了莱特希尔报告和感知机争议，那是两记重拳。但那些只是导火索。今天我要讲的，是这些打击的实际后果。{AI寒冬}到底意味着什么？它不是一个抽象的概念，而是真实的人、真实的实验室、真实的梦想被冻死在冰天雪地里。",
+        "en": "In the last two lessons, we discussed the Lighthill Report and the Perceptron controversy — two heavy blows. But those were just the fuses. Today I'll tell you about the actual consequences. What does the {AI winter} actually mean? It's not an abstract concept — it's real people, real laboratories, real dreams frozen to death in the cold."
+      },
+      "terms": {
+        "AI寒冬": "term-ai-winter",
+        "AI winter": "term-ai-winter"
+      },
+      "leadsTo": "darpa-cuts"
+    },
+    {
+      "id": "darpa-cuts",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先从钱说起。DARPA在六十年代对AI的资助非常慷慨——他们相信AI能用于军事情报分析、自动翻译、战场决策。但到了七十年代中期，他们越来越不耐烦了。曼斯菲尔德修正案要求所有国防研究必须有明确的军事应用前景。我们的「理解智能本质」这种目标？不够格。经费开始大幅削减。",
+        "en": "Let's start with money. DARPA was very generous with AI funding in the sixties — they believed AI could be used for military intelligence analysis, automatic translation, battlefield decision-making. But by the mid-seventies, they were growing impatient. The Mansfield Amendment required all defense research to have clear military application prospects. Our goal of 「understanding the nature of intelligence」? Not good enough. Funding began to be slashed dramatically."
+      },
+      "leadsTo": "lab-closures"
+    },
+    {
+      "id": "lab-closures",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我亲眼看着MIT的同事们一个接一个地离开。有些人转去了传统计算机科学——数据库、编程语言、操作系统。有些人彻底离开了学术界，去了工业界做完全不相关的工作。最优秀的头脑，就这样被浪费了。一个博士生跟了我四年，快要毕业的时候告诉我他要转行，因为他看不到AI领域的未来。那一天我心里很不好受。",
+        "en": "I watched my colleagues at MIT leave one by one. Some transferred to traditional computer science — databases, programming languages, operating systems. Others left academia entirely, going to industry for completely unrelated work. The best minds, wasted like that. A PhD student had been with me for four years. Just before graduation, he told me he was switching fields because he couldn't see a future in AI. That was a hard day."
+      },
+      "leadsTo": "stigma"
+    },
+    {
+      "id": "stigma",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "更有意思的是，连「人工智能」这个词都变成了毒药。如果你在经费申请书里写「AI研究」，几乎等于自动被拒。于是人们开始玩文字游戏，把AI叫做「知识工程」、「认知科学」、「信息处理」……什么都行，就是不能叫AI。同样的研究，换一个标签，突然就又能拿到经费了。你觉得这说明了什么？",
+        "en": "Here's something even more telling — the very term 「artificial intelligence」 became poison. If you wrote 「AI research」 on a funding application, it was practically an automatic rejection. So people started playing word games: calling AI 「knowledge engineering」, 「cognitive science」, 「information processing」 — anything was fine, as long as it wasn't 「AI」. The same research, slap on a different label, and suddenly the funding came through again. What does that tell you?"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "在AI寒冬期间，很多研究者把自己的工作重新包装，避免使用「人工智能」这个标签。你怎么看这种做法？",
+        "en": "During the AI winter, many researchers repackaged their work to avoid the 「artificial intelligence」 label. What do you think of this practice?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "这是明智的生存策略——研究能继续下去才是最重要的",
+            "en": "It's a smart survival strategy — the most important thing is that the research continues"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "我也是这么做的，虽然不太情愿。我继续研究视觉和机器人，但在对外描述时小心翼翼地避开AI这个词。实用主义有时候很丑陋，但它能让你在风暴中活下来。等天气好转再把旗帜重新竖起来——这是一种战略，不是背叛。",
+              "en": "That's what I did too, though reluctantly. I continued researching vision and robotics, but carefully avoided the word AI in external descriptions. Pragmatism can be ugly sometimes, but it keeps you alive through the storm. Wait for the weather to clear, then raise the flag again — that's strategy, not betrayal."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "这是一种妥协——如果连自己的旗帜都不敢举，学科尊严何在？",
+            "en": "It's a compromise — if you don't even dare raise your own banner, where is the discipline's dignity?"
+          },
+          "tag": "principled",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你让我想起了几位拒绝改名的同行。他们坚持在论文里写「人工智能」，坚持参加AI会议。他们中的大多数人在学术上付出了沉重的代价——论文被拒、经费申请失败、晋升受阻。但他们保住了这个领域的火种。两种选择都有道理，也都有代价。",
+              "en": "You remind me of a few colleagues who refused to rebrand. They insisted on writing 「artificial intelligence」 in their papers, insisted on attending AI conferences. Most of them paid a heavy academic price — rejected papers, failed funding applications, stalled promotions. But they kept the flame alive for this field. Both choices have merit, and both have costs."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "这个现象本身就说明问题——科学资助体系过于受舆论影响",
+            "en": "The phenomenon itself is telling — the scientific funding system is too influenced by public opinion"
+          },
+          "tag": "systemic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "一针见血。同一个研究者，做同样的工作，只因为换了一个标签就能从被拒变为被资助。这说明评审者判断的根本是这个领域当下的「风评」。这是科学资助体系中一个深层的结构性问题，到今天也没有真正解决。",
+              "en": "Right on the mark. The same researcher, doing the same work, goes from rejected to funded just by changing a label — that means the reviewers aren't judging the quality of the research itself, but the field's current 「reputation」. That's a deep structural problem in the scientific funding system, and it hasn't been truly solved to this day."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在一片萧条之中，有一个引人注目的例外——日本。1982年，就是今年，日本通商产业省宣布了一个雄心勃勃的计划：{第五代计算机}项目。他们要花十年、投入数十亿日元，建造能够进行智能推理的计算机。",
+        "en": "Amidst all the gloom, there's one notable exception — Japan. In 1982, this very year, Japan's Ministry of International Trade and Industry announced an ambitious plan: the {Fifth Generation Computer} project. They would spend ten years and invest billions of yen to build computers capable of intelligent reasoning."
+      },
+      "terms": {
+        "第五代计算机": "term-fifth-generation",
+        "Fifth Generation Computer": "term-fifth-generation"
+      },
+      "leadsTo": "fifth-gen-reaction"
+    },
+    {
+      "id": "fifth-gen-reaction",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "说实话，我对日本的计划有复杂的感觉。一方面，在所有人都在逃离AI的时候，日本人大胆地押了重注——这种勇气值得尊重。另一方面……他们计划的核心是基于逻辑编程的推理机。我不确定这条路能走通。逻辑推理只是智能的一小部分。但谁知道呢？也许日本人能做到我们做不到的事情。",
+        "en": "Honestly, I have mixed feelings about Japan's plan. On one hand, when everyone was fleeing AI, the Japanese made a bold bet — that kind of courage deserves respect. On the other hand... the core of their plan is an inference engine based on logic programming. I'm not sure that path can succeed. Logical reasoning is only a small part of intelligence. But who knows? Maybe the Japanese can achieve what we couldn't."
+      },
+      "leadsTo": "western-panic"
+    },
+    {
+      "id": "western-panic",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "有意思的是，日本的这个宣布反而在西方引起了恐慌。美国国防部突然开始担心：如果日本在AI上超过我们怎么办？于是他们又想重新资助AI研究了。你看——科学经费有时候不取决于科学本身的好坏，而取决于地缘政治的博弈。讽刺吧？",
+        "en": "Interestingly, Japan's announcement actually caused a panic in the West. The U.S. Department of Defense suddenly started worrying: what if Japan surpasses us in AI? So they began considering refunding AI research. You see — science funding sometimes depends not on the quality of the science, but on geopolitical rivalry. Ironic, isn't it?"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "AI寒冬给了我们很多教训——关于科学研究如何与资金、政治、公众期望互动。你觉得最重要的教训是什么？",
+        "en": "The AI winter taught us many lessons — about how scientific research interacts with funding, politics, and public expectations. What do you think is the most important lesson?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "科学研究需要长期稳定的支持，不能随着风向摇摆",
+            "en": "Scientific research needs long-term stable support, not swaying with the winds"
+          },
+          "tag": "institutional",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "如果我能改变一件事，就是这个。基础研究的突破往往需要二十年、三十年甚至更久。你不能每五年做一次评估，发现没有「重大成果」就砍掉经费。可惜政治的周期是四年一选举，而科学的周期以十年为单位。这两个时钟永远对不上。",
+              "en": "If I could change one thing, it would be this. Breakthroughs in fundamental research often take twenty, thirty years or more. You can't evaluate every five years and cut funding when there are no 「major results」. Unfortunately, the political cycle is four years per election, while the science cycle runs in decades. Those two clocks will never synchronize."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "研究者必须学会管理外界的期望——承诺应该和能力匹配",
+            "en": "Researchers must learn to manage external expectations — promises should match capabilities"
+          },
+          "tag": "communicative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这一课我们用了二十年的代价来学。如果当初我们更谨慎地描述自己的能力和局限，比如明确说「我们能做X，还不能做Y，需要Z年时间来尝试」，也许信任不会崩溃得那么彻底。科学家需要成为更好的沟通者。光有好的研究还不够，你还得让别人准确地理解你在做什么。",
+              "en": "That's a lesson we paid twenty years to learn. If we had described our capabilities and limitations more carefully — 「we can do X, we can't yet do Y, we need Z years to try」 — perhaps trust wouldn't have collapsed so completely. Scientists need to be better communicators. Good research alone isn't enough — you also need people to accurately understand what you're doing."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "不要把所有鸡蛋放在一个篮子里——多元化的研究方向更能抵抗风险",
+            "en": "Don't put all your eggs in one basket — diversified research directions are more resilient"
+          },
+          "tag": "strategic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "好比喻。六十年代的AI研究太集中在符号方法上了。当符号AI遇到瓶颈，整个领域都受到了冲击。如果我们当初能保留更多条路线，比如神经网络、统计方法，或者混合系统，寒冬也许不会那么严酷。多样性是最好的保险。这在生态学里是常识，但在科学研究策略里，人们总是忘记这一点。",
+              "en": "Good metaphor. AI research in the sixties was too concentrated on symbolic methods. When symbolic AI hit a bottleneck, the entire field was shaken. If we had preserved more diverse paths — neural networks, statistical methods, hybrid systems — the winter might not have been so severe. Diversity is the best insurance. That's common knowledge in ecology, but in research strategy, people always forget it."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "寒冬最残酷的影响不是经费的减少——那还能恢复。最残酷的是一整代年轻人被吓跑了。在七十年代末、八十年代初选择读研究生的聪明孩子们，有多少人因为AI的坏名声而选了别的方向？我们永远不会知道那些失去的可能性。",
+        "en": "The cruelest impact of the winter wasn't the funding cuts — those can be restored. The cruelest thing was that an entire generation of young people was scared away. How many bright kids choosing graduate school in the late seventies and early eighties picked another field because of AI's bad reputation? We'll never know those lost possibilities."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI寒冬的连锁效应：(1) DARPA大幅削减经费，曼斯菲尔德修正案要求研究必须有明确的军事应用；(2) 实验室缩编，人才外流至其他计算机科学分支或工业界；(3) 「人工智能」一词本身成为禁忌，研究者被迫将工作重新包装为「知识工程」等名称；(4) 日本第五代计算机项目是寒冬中的唯一例外，但也引发了西方的地缘政治焦虑。",
+        "en": "Cascading effects of the AI winter: (1) DARPA drastically cut funding; the Mansfield Amendment required clear military applications; (2) Labs downsized, talent fled to other CS branches or industry; (3) The term 「artificial intelligence」 itself became taboo; researchers repackaged work as 「knowledge engineering」 etc.; (4) Japan's Fifth Generation Computer project was the sole exception, but also triggered geopolitical anxiety in the West."
+      },
+      "category": "core-concept",
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但即使是最严酷的冬天，雪下面也有种子在等待。下一节课，也是这门课的最后一节，我要告诉你们，在寒冬中存活下来的那些人和那些想法。也许其中某些种子，在未来的某个春天，会开出我们意想不到的花。",
+        "en": "But even in the harshest winter, seeds wait beneath the snow. Next lesson — the last of this course — I'll tell you about the people and ideas that survived the winter. Perhaps some of those seeds will bloom in ways none of us can imagine, in some future spring."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "明斯基教授从窗边走回来，关掉了讲台上的台灯。教室陷入了一片昏暗。他走到门口时停了一下，对你说了一句：「最困难的不是寒冬本身，是在寒冬里还记得为什么要坚持。」然后他消失在走廊的阴影中。",
+        "en": "Professor Minsky walks back from the window and switches off the desk lamp on the podium. The classroom sinks into darkness. He pauses at the doorway and says to you: 「The hardest part isn't the winter itself — it's remembering why you persevere while you're in it」. Then he disappears into the shadows of the hallway."
+      }
+    }
+  ]
+}

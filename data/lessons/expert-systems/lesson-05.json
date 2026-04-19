@@ -1,0 +1,294 @@
+{
+  "id": "lesson-05",
+  "course": "expert-systems",
+  "title": {
+    "zh": "通往未来的门",
+    "en": "A Door to the Future"
+  },
+  "knowledgePoint": {
+    "zh": "从1977年的视角审视专家系统的潜力与局限",
+    "en": "The potential and limitations of expert systems as seen from 1977"
+  },
+  "teacher": "prof-feigenbaum",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你最后一次走进那间七十年代的教室。费根鲍姆教授已经在讲台前了，但今天他没有带文件夹，也没有幻灯片。他只是站在那里，像是在思考该从何说起。",
+    "en": "You walk into that 1970s classroom one last time. Professor Feigenbaum is already at the front, but today he carries no folders, no slides. He simply stands there, as if thinking about where to begin."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。费根鲍姆教授的最后一课已经结束，但他的声音还在你脑海中回荡：「去看看那些专家，去学习他们的知识，然后教给机器。」这个使命，似乎才刚刚开始。",
+    "en": "You return to the present. Professor Feigenbaum's final lesson is over, but his voice still echoes in your mind: 「Go find the experts, learn their knowledge, and teach it to machines」. This mission, it seems, has only just begun."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这是费根鲍姆教授的最后一节课。教室窗外的阳光比平时明亮一些，钢制文件柜的棱角在光线中变得柔和了。他走到讲台前，环视了一圈，微微一笑。",
+        "en": "This is Professor Feigenbaum's final lesson. The sunlight through the classroom windows is brighter than usual, softening the hard edges of the steel filing cabinets. He walks to the front, surveys the room, and smiles."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这几节课下来，我们走了很长一段路。从通用人工智能的困境，到{DENDRAL}的突破，到{专家系统}的架构，再到{知识瓶颈}的困扰。今天是最后一课，我想带你们站到山顶上，看看我们走了多远，也看看前方的路。",
+        "en": "Over these lessons, we've traveled a long way. From the impasse of general AI, to {DENDRAL}'s breakthrough, to the architecture of {expert systems}, to the challenge of the {knowledge bottleneck}. Today is our last lesson. I want to take you to the mountaintop — to see how far we've come, and to look at the road ahead."
+      },
+      "terms": {
+        "DENDRAL": "term-dendral",
+        "专家系统": "term-expert-system",
+        "expert systems": "term-expert-system",
+        "知识瓶颈": "term-knowledge-bottleneck",
+        "knowledge bottleneck": "term-knowledge-bottleneck"
+      },
+      "leadsTo": "achievements"
+    },
+    {
+      "id": "achievements",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先说说我们已经做到的事情。DENDRAL在分子结构鉴定上达到了专家级水平。现在我们正在建造一个叫MYCIN的系统，它能诊断血液感染并推荐抗生素治疗方案。初步测试的结果非常令人鼓舞，在某些测试中，它的诊断准确率甚至高于一些年轻医生。",
+        "en": "Let's start with what we've accomplished. DENDRAL achieved expert-level performance in molecular structure identification. Right now, we're building a system called MYCIN — it can diagnose blood infections and recommend antibiotic treatments. Preliminary test results are very encouraging — in some tests, its diagnostic accuracy exceeds that of some junior physicians."
+      },
+      "leadsTo": "vision"
+    },
+    {
+      "id": "vision",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我想象的未来是这样的：每个领域都可以有自己的{专家系统}。一个偏远山区的小诊所，可以有一个水平接近大城市专家的诊断系统。一个刚毕业的工程师，可以得到一个拥有二十年经验的老工程师的指导。甚至在教育领域——一个学生可以得到一位永远耐心、永远在线的虚拟导师。",
+        "en": "Here's the future I envision: every field could have its own {expert system}. A small clinic in a remote mountain village could have a diagnostic system rivaling big-city specialists. A fresh graduate engineer could receive guidance equivalent to a twenty-year veteran's. Even in education — a student could have a virtual tutor who is endlessly patient and always available."
+      },
+      "terms": {
+        "专家系统": "term-expert-system",
+        "expert system": "term-expert-system"
+      },
+      "leadsTo": "democratize"
+    },
+    {
+      "id": "democratize",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "你看到了吗？专家系统最深远的意义也许在于：让专业知识不再被少数人垄断。全世界最好的化学家只有那么几十位，但他们的知识可以被复制到成千上万台机器上。{知识工程}的最终目标，就是让知识流动起来，让它到达每一个需要它的地方。",
+        "en": "Do you see? The most far-reaching significance of expert systems may be this: making specialized knowledge no longer the monopoly of a few. The world's finest chemists number only a few dozen, but their knowledge can be replicated across thousands of machines. The ultimate goal of {knowledge engineering} is to make knowledge flow — to deliver it everywhere it's needed."
+      },
+      "terms": {
+        "知识工程": "term-knowledge-engineering",
+        "knowledge engineering": "term-knowledge-engineering"
+      },
+      "leadsTo": "but-honest"
+    },
+    {
+      "id": "but-honest",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但我必须对你们诚实。我们面前还有很大的困难。首先，{知识获取}仍然是最大的障碍——我们还没有找到高效地从专家那里提取知识的方法。其次，我们的系统很脆弱：一旦遇到{知识库}里没有涵盖的情况，它不会像人一样灵活应变，而是会给出错误的答案，或者干脆无法回答。",
+        "en": "But I must be honest with you. Great difficulties still lie ahead. First, {knowledge acquisition} remains the biggest obstacle — we haven't found an efficient way to extract knowledge from experts. Second, our systems are brittle: when faced with a situation not covered by the {knowledge base}, they don't adapt flexibly like humans. They either give wrong answers or fail to answer at all."
+      },
+      "terms": {
+        "知识获取": "term-knowledge-acquisition",
+        "knowledge acquisition": "term-knowledge-acquisition",
+        "知识库": "term-knowledge-base",
+        "knowledge base": "term-knowledge-base"
+      },
+      "leadsTo": "cannot-learn"
+    },
+    {
+      "id": "cannot-learn",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有一点我一直在思考：我们的系统不能自己学习。它的所有知识都是人手动编写进去的。如果有一种化合物是化学家从未见过的，DENDRAL也识别不了。它只知道我们教给它的东西——不多也不少。",
+        "en": "There's another point I keep thinking about: our systems can't learn on their own. All their knowledge is manually written in by humans. If there's a compound no chemist has ever seen, DENDRAL can't identify it either. It knows only what we teach it — no more, no less."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "你认为专家系统未来面临的最大挑战是什么？",
+        "en": "What do you think is the greatest challenge expert systems will face going forward?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "知识获取太慢、太贵——无法快速扩展到新领域",
+            "en": "Knowledge acquisition is too slow and expensive — can't scale quickly to new domains"
+          },
+          "tag": "scalability",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常现实的问题。建造一个专家系统需要几年时间和大量资金。如果每个领域都要从零开始这个过程，那专家系统的推广速度就会非常有限。我希望未来能有更好的工具和方法来加速{知识获取}……但说实话，我现在还看不到明确的出路。",
+              "en": "That's a very real concern. Building an expert system takes years and substantial funding. If every domain requires starting this process from scratch, the proliferation of expert systems will be painfully slow. I hope better tools and methods for {knowledge acquisition} will emerge... but honestly, I don't yet see a clear path forward."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "系统太脆弱——遇到规则之外的情况就无法处理",
+            "en": "Systems are too brittle — they can't handle situations outside their rules"
+          },
+          "tag": "brittleness",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说中了一个关键弱点。人类专家遇到陌生情况时，可以类比、猜测、创造性地应对。我们的系统做不到。它们是严格遵循规则的——规则覆盖的范围之内表现优异，之外就一片空白。要让系统拥有这种灵活性，可能需要一种全新的方法……但那是什么，我还不确定。",
+              "en": "You've identified a critical weakness. When human experts encounter unfamiliar situations, they can reason by analogy, guess, respond creatively. Our systems can't. They strictly follow rules — excellent within the rules' coverage, blank outside it. Giving systems that kind of flexibility might require an entirely new approach... but what that would look like, I'm not yet sure."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "系统不能自己学习，永远只知道人类教它的东西",
+            "en": "Systems can't learn on their own — they only ever know what humans teach them"
+          },
+          "tag": "learning-gap",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这一点让我既担忧又好奇。如果有一天，机器不仅能运用知识，还能自己获取和生成新知识……那将是一个全新的阶段。但以目前的技术，我们还不知道怎么做到这一点。也许某天会有人找到方法——但那可能需要对人工智能有完全不同的理解方式。",
+              "en": "This one both worries and fascinates me. If someday machines could not only apply knowledge but also acquire and generate new knowledge on their own... that would be an entirely new era. But with current technology, we don't know how to achieve this. Perhaps someone will find a way someday — but that might require a fundamentally different understanding of artificial intelligence."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这些挑战都是真实的，我不会假装它们不存在。但我也想说——每一个伟大的技术方向在早期都面临着看似不可逾越的障碍。关键在于我们是否相信这个方向值得走下去。",
+        "en": "These challenges are real, and I won't pretend they aren't. But I also want to say — every great technological direction faces seemingly insurmountable obstacles in its early days. The question is whether we believe the direction is worth pursuing."
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "你觉得机器有一天能真正替代人类专家吗？",
+        "en": "Do you think machines can ever truly replace human experts?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "可以——只要知识被完整编码，机器在执行上更可靠",
+            "en": "Yes — as long as knowledge is fully encoded, machines are more reliable in execution"
+          },
+          "tag": "optimist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你的信心让我高兴。机器确实有独特的优势——它不会疲倦，不会遗忘，不会受情绪影响。但「完整编码」这四个字，说起来容易做起来难。正如我们讨论过的，专家的很多知识是默会的。也许在某些定义明确的领域，机器可以做到；但在需要创造力和灵活性的领域，我觉得人类专家还有独特的位置。",
+              "en": "Your confidence makes me glad. Machines do have unique advantages — they don't tire, don't forget, aren't swayed by emotion. But 「fully encoded」 is easier said than done. As we discussed, much of an expert's knowledge is tacit. Perhaps in well-defined domains machines can do it, but in domains requiring creativity and flexibility, I think human experts still hold a unique place."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "不能——人类专家有直觉和创造力，这些无法被编码",
+            "en": "No — human experts have intuition and creativity that can't be encoded"
+          },
+          "tag": "skeptic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你可能是对的，至少在目前的技术框架下。但让我问你一个问题：五十年前，没有人相信机器能在化学分析中达到专家级水平，而现在DENDRAL做到了。也许「无法编码」只是当前的限制，而非永恒的真理。不过我承认，我现在看不到直觉和创造力被编码的具体路径。",
+              "en": "You may be right, at least within current technological frameworks. But let me ask you something: fifty years ago, no one believed a machine could achieve expert-level performance in chemical analysis, yet DENDRAL did it. Perhaps 「can't be encoded」 is merely a current limitation, not an eternal truth. But I'll admit, I don't currently see a concrete path to encoding intuition and creativity."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "也许目标不应该是替代，而是辅助——让专家变得更强",
+            "en": "Maybe the goal shouldn't be replacement, but augmentation — making experts stronger"
+          },
+          "tag": "augmentation",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（眼睛亮了起来）这个想法我非常喜欢。也许最好的结果是人和机器的结合比任何一方单独工作都更强大。专家提供直觉、创造力和对例外情况的处理能力，系统提供全面的知识覆盖和不知疲倦的推理能力。一加一大于二。",
+              "en": "(Eyes brighten) I love that idea. Perhaps the best outcome isn't machines replacing humans, but the combination of human and machine being more powerful than either alone. The expert provides intuition, creativity, and the ability to handle exceptions; the system provides comprehensive knowledge coverage and tireless reasoning. One plus one greater than two."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管未来走向何方，有一件事我可以确定：知识的价值不会减少。无论用什么技术，是{产生式规则}也好，还是将来某种新方法也好，核心问题始终是：如何把人类最宝贵的知识保存下来，传递下去，让更多人受益。",
+        "en": "Whatever the future holds, one thing I'm certain of: the value of knowledge will not diminish. Whatever technology we use — {production rules} or some future new approach — the core question remains: how do we preserve humanity's most precious knowledge, pass it on, and let more people benefit from it."
+      },
+      "terms": {
+        "产生式规则": "term-production-rule",
+        "production rules": "term-production-rule"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "从1977年看专家系统：潜力在于将稀缺的专业知识民主化，让每个人都能获得专家级的帮助。局限在于——系统脆弱、无法自学、知识获取困难。核心使命始终不变：让人类知识流动起来。",
+        "en": "Expert systems from the 1977 vantage point: the potential lies in democratizing scarce expertise, giving everyone access to expert-level assistance. The limitations are brittleness, inability to self-learn, and the difficulty of knowledge acquisition. The core mission remains: making human knowledge flow."
+      },
+      "category": "core-concept",
+      "leadsTo": "farewell"
+    },
+    {
+      "id": "farewell",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "好了，我的课就到这里了。（停顿了一下，认真地看着你们）我最后想说的是，走出这间教室之后，去看看你们身边的专家。不管他们是医生、工程师、农民还是厨师，他们脑子里都有珍贵的知识在等待被发现和保存。知识就是力量，但前提是你得把它从专家的脑袋里取出来。去做这件事吧。",
+        "en": "Well, my lessons end here. (Pauses, looking at you intently) The last thing I want to say is this — after you leave this classroom, go look at the experts around you. Whether they're doctors, engineers, farmers, or chefs, they all carry precious knowledge in their minds, waiting to be discovered and preserved. Knowledge is power — but first you have to get it out of the expert's head. Go do that."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "费根鲍姆教授的临别嘱托：每位专家脑中都有等待发掘的知识宝藏。无论技术如何发展，核心始终是：发现知识、编码知识、传播知识。",
+        "en": "Professor Feigenbaum's parting charge: every expert's mind holds a treasure of knowledge waiting to be uncovered. Whatever technology evolves, the core remains: discover knowledge, encode knowledge, spread knowledge."
+      },
+      "category": "reflection",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "费根鲍姆教授向你们点了点头，然后走向了门口。走到门边时他停了一下，回头看了一眼那些装满数据的文件柜，嘴角浮起一丝微笑——仿佛看到了这些知识终将被释放出来的那一天。门在他身后轻轻关上了。教室里只剩下荧光灯低沉的嗡嗡声和窗外渐暖的阳光。你在笔记本上写下了最后一行字：知识就是力量。",
+        "en": "Professor Feigenbaum nods to you, then walks to the door. At the threshold, he pauses and glances back at the filing cabinets filled with data, a faint smile crossing his lips — as if he can see the day when all that knowledge will finally be set free. The door closes softly behind him. The classroom holds only the low hum of fluorescent lights and the warming sunlight through the window. You write one final line in your notebook: Knowledge is power."
+      }
+    }
+  ]
+}

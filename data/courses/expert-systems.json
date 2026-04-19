@@ -1,0 +1,51 @@
+{
+  "id": "expert-systems",
+  "name": {
+    "zh": "专家系统",
+    "en": "Expert Systems"
+  },
+  "description": {
+    "zh": "如果把人类专家的知识一条一条地写成规则，机器能否像专家一样做判断？费根鲍姆教授将带你走进专家系统的世界——从第一个成功的知识系统DENDRAL开始，见证AI从理论走向应用的关键一步。",
+    "en": "If we encode a human expert's knowledge as rules one by one, can a machine make judgments like an expert? Prof. Feigenbaum will take you into the world of expert systems — starting from DENDRAL, the first successful knowledge system, witness the critical step where AI moved from theory to application."
+  },
+  "grade": "grade-2",
+  "teacher": "prof-feigenbaum",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-expert-system-concept",
+      "description": {
+        "zh": "理解专家系统的核心思想：用规则编码领域专家的知识",
+        "en": "Understand the core idea of expert systems: encoding domain expert knowledge as rules"
+      }
+    },
+    {
+      "id": "obj-dendral",
+      "description": {
+        "zh": "了解DENDRAL的工作原理及其作为首个专家系统的历史意义",
+        "en": "Understand how DENDRAL works and its historical significance as the first expert system"
+      }
+    },
+    {
+      "id": "obj-rule-based-reasoning",
+      "description": {
+        "zh": "掌握产生式规则、前向推理与后向推理的基本概念",
+        "en": "Master the basic concepts of production rules, forward chaining, and backward chaining"
+      }
+    },
+    {
+      "id": "obj-knowledge-bottleneck",
+      "description": {
+        "zh": "认识知识获取瓶颈——为什么从专家脑中提取知识如此困难",
+        "en": "Recognize the knowledge acquisition bottleneck — why extracting knowledge from experts is so difficult"
+      }
+    }
+  ]
+}

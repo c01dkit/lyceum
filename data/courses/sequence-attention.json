@@ -1,0 +1,52 @@
+{
+  "id": "sequence-attention",
+  "name": {
+    "zh": "RNN/LSTM与注意力",
+    "en": "RNN, LSTM & Attention"
+  },
+  "description": {
+    "zh": "世界充满了顺序和时间——语言是词的序列，音乐是音符的序列，人生是事件的序列。本吉奥教授将带你理解循环神经网络如何处理序列数据，长短期记忆如何解决「遗忘」问题，词嵌入如何让机器理解语义，以及注意力机制如何让模型学会「看向正确的地方」。",
+    "en": "The world is full of sequences and time — language is a sequence of words, music is a sequence of notes, life is a sequence of events. Prof. Bengio will help you understand how recurrent neural networks process sequential data, how LSTM solves the 「forgetting」 problem, how word embeddings let machines grasp semantics, and how the attention mechanism teaches models to 「look at the right place」."
+  },
+  "grade": "grade-4",
+  "teacher": "prof-bengio",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-rnn",
+      "description": {
+        "zh": "理解循环神经网络处理序列数据的核心机制",
+        "en": "Understand the core mechanism of RNNs for processing sequential data"
+      }
+    },
+    {
+      "id": "obj-lstm",
+      "description": {
+        "zh": "理解LSTM的门控机制如何解决长程依赖问题",
+        "en": "Understand how LSTM's gating mechanism solves long-range dependency problems"
+      }
+    },
+    {
+      "id": "obj-embeddings",
+      "description": {
+        "zh": "理解词嵌入和分布式语义表示的原理",
+        "en": "Understand the principles of word embeddings and distributed semantic representations"
+      }
+    },
+    {
+      "id": "obj-attention",
+      "description": {
+        "zh": "掌握注意力机制的核心思想及其对序列到序列模型的变革",
+        "en": "Master the core idea of attention mechanisms and their transformation of seq2seq models"
+      }
+    }
+  ]
+}

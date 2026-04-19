@@ -1,0 +1,53 @@
+{
+  "id": "deep-learning-foundations",
+  "name": {
+    "zh": "深度学习的曙光",
+    "en": "Dawn of Deep Learning"
+  },
+  "description": {
+    "zh": "几十年来，神经网络一直被主流学术界冷落。辛顿教授从未放弃——他带领你走进深度信念网络的世界，理解为什么预训练能解锁深层网络的力量，见证2012年ImageNet竞赛如何让整个世界重新认识神经网络。",
+    "en": "For decades, neural networks were sidelined by mainstream academia. Prof. Hinton never gave up — he will guide you through the world of deep belief networks, help you understand why pretraining unlocks the power of deep networks, and witness how the 2012 ImageNet competition made the entire world rediscover neural networks."
+  },
+  "grade": "grade-4",
+  "teacher": "prof-hinton",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06",
+    "lesson-07"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-dbn",
+      "description": {
+        "zh": "理解深度信念网络和逐层预训练的核心思想",
+        "en": "Understand the core ideas of deep belief networks and layer-wise pretraining"
+      }
+    },
+    {
+      "id": "obj-vanishing-gradient",
+      "description": {
+        "zh": "理解梯度消失问题及其对深层网络训练的影响",
+        "en": "Understand the vanishing gradient problem and its impact on training deep networks"
+      }
+    },
+    {
+      "id": "obj-regularization",
+      "description": {
+        "zh": "掌握Dropout等正则化技术的原理和作用",
+        "en": "Master the principles and effects of regularization techniques like Dropout"
+      }
+    },
+    {
+      "id": "obj-imagenet",
+      "description": {
+        "zh": "理解ImageNet 2012竞赛的历史意义及深度学习的爆发",
+        "en": "Understand the historical significance of ImageNet 2012 and the deep learning explosion"
+      }
+    }
+  ]
+}

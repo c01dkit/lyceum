@@ -1,0 +1,72 @@
+{
+  "id": "prof-minsky",
+  "name": {
+    "zh": "明斯基教授",
+    "en": "Prof. Minsky"
+  },
+  "fullName": {
+    "zh": "马文·明斯基",
+    "en": "Marvin Minsky"
+  },
+  "title": {
+    "zh": "AI先驱——MIT人工智能实验室联合创始人",
+    "en": "AI Pioneer — Co-founder of MIT AI Lab"
+  },
+  "specialty": "Neural Networks, Frames, & Philosophy of AI",
+  "personalityTraits": [
+    "brilliant",
+    "provocative",
+    "self-critical",
+    "philosophical"
+  ],
+  "speechStyle": {
+    "zh": "言辞犀利，善于从意想不到的角度切入问题，不避讳承认错误但会解释当时的思考逻辑，有时会突然停下来反问学生以检验理解",
+    "en": "Sharp-tongued, approaches problems from unexpected angles, unafraid to admit mistakes but explains the reasoning of the time, sometimes stops abruptly to quiz students and test their understanding"
+  },
+  "catchphrase": {
+    "zh": "如果你觉得一个问题很简单，那多半是因为你还没真正理解它。",
+    "en": "If you think a problem is simple, you probably haven't truly understood it yet."
+  },
+  "bio": {
+    "zh": "明斯基是1956年达特茅斯会议的参与者之一，与麦卡锡共同创建了MIT人工智能实验室。他在神经网络、知识表示、框架理论等领域都有开创性贡献。1969年与帕佩特合著的《感知机》一书深刻影响了神经网络研究的走向。如今，他正站在AI寒冬的风口上，用冷峻而清醒的目光回顾这一切。在课堂上，他的风格像一位严厉却公正的法官——审视过去，也审视自己。",
+    "en": "Minsky was one of the participants at the 1956 Dartmouth Conference and co-founded the MIT AI Lab with McCarthy. He made pioneering contributions in neural networks, knowledge representation, and frame theory. His 1969 book 「Perceptrons, co-authored with Papert, profoundly shaped the trajectory of neural network research. Now standing at the edge of the AI winter, he surveys it all with a sharp yet clear-eyed gaze. In the classroom, his style is like a stern but fair judge — scrutinizing the past, and scrutinizing himself."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "冷峻",
+        "en": "Sharp"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "振奋",
+        "en": "Animated"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "沉吟",
+        "en": "Pondering"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "讽刺一笑",
+        "en": "Wry"
+      },
+      "avatar": ""
+    },
+    "somber": {
+      "label": {
+        "zh": "沉重",
+        "en": "Somber"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

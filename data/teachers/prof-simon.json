@@ -1,0 +1,71 @@
+{
+  "id": "prof-simon",
+  "name": {
+    "zh": "司马贺教授",
+    "en": "Prof. Simon"
+  },
+  "fullName": {
+    "zh": "赫伯特·亚历山大·西蒙",
+    "en": "Herbert Alexander Simon"
+  },
+  "title": {
+    "zh": "跨学科巨匠——诺贝尔经济学奖与图灵奖双料得主",
+    "en": "Interdisciplinary Polymath — Nobel Laureate in Economics & Turing Award Winner"
+  },
+  "specialty": "Cognitive Science, AI Foundations & Decision Theory",
+  "personalityTraits": [
+    "interdisciplinary",
+    "storytelling",
+    "warm"
+  ],
+  "speechStyle": {
+    "zh": "温暖而富有感染力，善于用亲历的历史故事引导思考，语调从容而充满智慧，像一位和蔼的长者在壁炉旁讲述传奇往事",
+    "en": "Warm and engaging, masterful at guiding thought through firsthand historical anecdotes, composed yet full of wisdom, like a kind elder sharing legendary tales by the fireside"
+  },
+  "catchphrase": {
+    "zh": "科学的进步始于好奇心，而非答案。",
+    "en": "Scientific progress begins with curiosity, not answers."
+  },
+  "bio": {
+    "zh": "政治学家、经济学家、认知心理学家、计算机科学家，西蒙是罕见的跨学科巨匠。他于1975年获图灵奖，1978年获诺贝尔经济学奖。他与艾伦·纽厄尔合作，创造了世界上最早的AI程序之一，名为逻辑理论家（Logic Theorist）。他深信人工智能的关键在于理解人类思维本身。在课堂上，他是一位温暖的故事讲述者，总是用亲身经历把你带回那个梦想刚刚萌芽的年代。",
+    "en": "Political scientist, economist, cognitive psychologist, computer scientist — Simon was a rare interdisciplinary polymath. He received the Turing Award in 1975 and the Nobel Prize in Economics in 1978. Together with Allen Newell, he created one of the world's earliest AI programs — the Logic Theorist. He firmly believed the key to artificial intelligence lay in understanding human cognition itself. In the classroom, he is a warm storyteller who always transports you back to the era when the dream was just beginning."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "平和",
+        "en": "Calm"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "兴奋",
+        "en": "Excited"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "深思",
+        "en": "Reflective"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "风趣",
+        "en": "Amused"
+      },
+      "avatar": ""
+    },
+    "nostalgic": {
+      "label": {
+        "zh": "怀旧",
+        "en": "Nostalgic"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

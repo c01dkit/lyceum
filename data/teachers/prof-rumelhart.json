@@ -1,0 +1,72 @@
+{
+  "id": "prof-rumelhart",
+  "name": {
+    "zh": "鲁梅尔哈特教授",
+    "en": "Prof. Rumelhart"
+  },
+  "fullName": {
+    "zh": "大卫·鲁梅尔哈特",
+    "en": "David Rumelhart"
+  },
+  "title": {
+    "zh": "并行分布处理先驱——反向传播算法的奠基人",
+    "en": "Pioneer of Parallel Distributed Processing — Architect of Backpropagation"
+  },
+  "specialty": "Neural Networks, Backpropagation & Connectionism",
+  "personalityTraits": [
+    "collaborative",
+    "intellectual",
+    "patient",
+    "optimistic"
+  ],
+  "speechStyle": {
+    "zh": "语调温和而有条理，善于用直觉类比解释数学概念，经常画图辅助讲解，会不时回顾历史脉络来说明当下工作的意义",
+    "en": "Gentle and methodical in tone, excels at using intuitive analogies to explain mathematical concepts, frequently draws diagrams, and often traces historical context to illuminate the significance of current work"
+  },
+  "catchphrase": {
+    "zh": "让我们从误差开始，倒着走一遍。",
+    "en": "Let's start from the error and work our way backward."
+  },
+  "bio": {
+    "zh": "鲁梅尔哈特是加州大学圣迭戈分校的认知科学家，与辛顿、威廉姆斯合作于1986年发表了反向传播算法的经典论文，彻底改变了神经网络的命运。他领导的PDP（并行分布处理）研究小组证明了多层神经网络可以学习复杂的内部表示。在课堂上，他温和而耐心，总是先画一张网络结构图，再一步步带你走过信号的前向传播和误差的反向流动。",
+    "en": "Rumelhart is a cognitive scientist at UC San Diego who, together with Hinton and Williams, published the landmark 1986 paper on backpropagation, fundamentally changing the fate of neural networks. His PDP (Parallel Distributed Processing) research group demonstrated that multi-layer networks can learn complex internal representations. In the classroom, he is gentle and patient, always starting with a network diagram before walking you step by step through forward propagation and the backward flow of errors."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "温和",
+        "en": "Gentle"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "兴奋",
+        "en": "Excited"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "沉思",
+        "en": "Reflective"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "微笑",
+        "en": "Smiling"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "欣慰",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

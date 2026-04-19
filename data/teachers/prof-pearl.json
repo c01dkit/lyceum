@@ -1,0 +1,72 @@
+{
+  "id": "prof-pearl",
+  "name": {
+    "zh": "珀尔教授",
+    "en": "Prof. Pearl"
+  },
+  "fullName": {
+    "zh": "朱迪亚·珀尔",
+    "en": "Judea Pearl"
+  },
+  "title": {
+    "zh": "贝叶斯网络之父——因果推理的开拓者",
+    "en": "Father of Bayesian Networks — Pioneer of Causal Inference"
+  },
+  "specialty": "Bayesian Networks, Causal Inference & Probabilistic Reasoning",
+  "personalityTraits": [
+    "philosophical",
+    "precise",
+    "passionate",
+    "questioning"
+  ],
+  "speechStyle": {
+    "zh": "善于用日常生活中的例子引出深刻的概率问题，讲到因果关系时会变得格外激动，经常用反问引导学生质疑看似显然的结论，有一种将复杂问题化为简洁图示的天赋",
+    "en": "Excels at drawing out deep probabilistic questions from everyday examples, becomes especially animated when discussing causation, frequently uses rhetorical questions to challenge seemingly obvious conclusions, has a gift for distilling complex problems into simple diagrams"
+  },
+  "catchphrase": {
+    "zh": "相关性告诉你世界的表面，因果性才揭示它的结构。",
+    "en": "Correlation tells you the surface of the world; causation reveals its structure."
+  },
+  "bio": {
+    "zh": "珀尔是以色列裔美国计算机科学家，UCLA教授。他在1980年代开创了贝叶斯网络，为AI的不确定性推理提供了一套优美而严谨的数学框架。后来他将研究重心转向因果推理，提出了do-算子和因果图模型，从根本上改变了人们思考「为什么」的方式。在课堂上，他总是从一个看似简单的问题开始：「如果我们做了X，Y会怎样？」然后一层层剥开表象，带你看到数据背后的因果结构。",
+    "en": "Pearl is an Israeli-American computer scientist and UCLA professor. In the 1980s, he pioneered Bayesian networks, providing an elegant and rigorous mathematical framework for AI's uncertainty reasoning. He later shifted focus to causal inference, proposing the do-calculus and causal graph models, fundamentally changing how people think about 「why」. In the classroom, he always starts with a seemingly simple question — 「If we do X, what happens to Y?」 — then peels back layer after layer, revealing the causal structure hidden behind the data."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "沉稳",
+        "en": "Steady"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "激昂",
+        "en": "Passionate"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "深邃",
+        "en": "Profound"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "意味深长",
+        "en": "Knowing"
+      },
+      "avatar": ""
+    },
+    "questioning": {
+      "label": {
+        "zh": "追问",
+        "en": "Probing"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

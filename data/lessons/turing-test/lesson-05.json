@@ -1,0 +1,309 @@
+{
+  "id": "lesson-05",
+  "course": "turing-test",
+  "title": {
+    "zh": "图灵的遗产",
+    "en": "Turing's Legacy"
+  },
+  "knowledgePoint": {
+    "zh": "图灵对人工智能、计算机科学和哲学的持久影响",
+    "en": "Turing's lasting impact on AI, computer science, and philosophy"
+  },
+  "teacher": "prof-turing",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你想起了那最后一堂课。图灵教授什么都没带，只是走到窗边看了一会儿窗外。那天的阳光落在他身上，他的表情沉静而温柔，像一个人在平静地回顾自己的一生。",
+    "en": "You think back to that final lesson. Prof. Turing brought nothing with him — he simply walked to the window and gazed outside for a while. Sunlight fell across him that day, his expression quiet and gentle — like someone calmly looking back over the arc of a lifetime."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。笔记本上密密麻麻的问题还在，每一个问题又引出更多的问题。你忽然明白，这或许就是图灵教授真正留给你的东西——永远不要停止追问。",
+    "en": "You return to the present. Your notebook is still dense with questions, each one branching into still more questions. It dawns on you that this may be what Prof. Turing truly left behind — never stop asking."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。图灵教授走进教室时，没有带任何教具。没有纸带，没有卡片，没有信件。他只是走到窗边，看了一会儿窗外，然后转过身来。今天他的表情与往日不同——沉静中带着某种温柔，像是一个人在回顾自己的一生。",
+        "en": "The final lesson. Professor Turing enters the classroom carrying nothing. No tape, no cards, no letters. He simply walks to the window, looks outside for a moment, then turns around. His expression today is different from before — a quietness tinged with something gentle, like a person looking back over their life."
+      },
+      "leadsTo": "personal-note"
+    },
+    {
+      "id": "personal-note",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这是我们最后一节课了。在前面几节课里，我们谈了思考、测试、计算和边界。今天，我想谈谈……之后的事情。以及一些个人的事。",
+        "en": "This is our last lesson together. In the previous lessons, we discussed thinking, testing, computation, and boundaries. Today, I want to talk about... what came after. And some personal matters."
+      },
+      "leadsTo": "coded-reference"
+    },
+    {
+      "id": "coded-reference",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你们知道吗，在我的一生中，我不仅研究了如何破解密码——我自己也活在一种密码里。社会告诉我，我的一部分自我是不被接受的。我必须把它藏起来，编码成别的东西。一个破解密码的人，却不得不活在密码中。……你们可能已经知道这段历史了。",
+        "en": "Did you know, in my life, I didn't just study how to break codes — I myself lived inside a kind of code. Society told me that a part of who I was could not be accepted. I had to hide it, encode it as something else. A codebreaker, forced to live in code. ... You probably know this history already."
+      },
+      "leadsTo": "contributions-intro"
+    },
+    {
+      "id": "contributions-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但今天我不想沉浸在悲伤中。让我谈谈那些留下来的东西——那些比我个人命运更持久的东西。",
+        "en": "But today I don't want to dwell in sadness. Let me talk about what endures — the things that outlast my personal fate."
+      },
+      "leadsTo": "contribution-computation"
+    },
+    {
+      "id": "contribution-computation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一，计算理论。1936年，我用一台想象中的机器定义了「什么是计算」。今天，全世界数十亿台计算机，从超级计算机到你口袋里的手机，本质上都是图灵机的实现。每一行代码的执行，都在验证那个24岁年轻人纸上画的模型。",
+        "en": "First, computation theory. In 1936, I used an imaginary machine to define 「what is computation」. Today, billions of computers worldwide — from supercomputers to the phone in your pocket — are essentially implementations of the Turing machine. Every line of code executed validates the model that 24-year-old drew on paper."
+      },
+      "leadsTo": "contribution-codebreaking"
+    },
+    {
+      "id": "contribution-codebreaking",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二，密码破译。二战期间，我在布莱切利园领导团队破解了纳粹德国的恩尼格玛密码机。历史学家估计，这项工作将战争缩短了至少两年，挽救了约一千四百万人的生命。但这件事在战后几十年里一直是国家机密。",
+        "en": "Second, codebreaking. During World War II, I led a team at Bletchley Park to crack Nazi Germany's Enigma cipher machine. Historians estimate this work shortened the war by at least two years, saving approximately fourteen million lives. But this was kept as a state secret for decades after the war."
+      },
+      "leadsTo": "contribution-ai"
+    },
+    {
+      "id": "contribution-ai",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第三，人工智能的哲学基础。我的图灵测试，无论你是否同意它，都定义了一个时代的研究框架。「机器能思考吗？」这个问题催生了一个全新的学科，影响了从计算机科学到哲学再到认知科学的几乎每一个领域。",
+        "en": "Third, the philosophical foundations of artificial intelligence. My Turing Test — whether you agree with it or not — defined the research framework of an era. The question 「Can machines think?」 gave birth to an entirely new discipline, influencing nearly every field from computer science to philosophy to cognitive science."
+      },
+      "leadsTo": "contribution-morphogenesis"
+    },
+    {
+      "id": "contribution-morphogenesis",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "还有一项很少有人知道的贡献——形态发生学。我在生命的最后几年研究了一个问题：斑马的条纹是怎么形成的？为什么向日葵的种子排列成螺旋？我用数学方程描述了生物体如何从均匀的状态中自发产生图案。这项工作远远领先于它的时代。",
+        "en": "There's also a contribution few people know about — morphogenesis. In the last years of my life, I studied a question: how do zebra stripes form? Why are sunflower seeds arranged in spirals? I used mathematical equations to describe how organisms spontaneously generate patterns from uniform states. This work was far ahead of its time."
+      },
+      "leadsTo": "turing-award"
+    },
+    {
+      "id": "turing-award",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "而如今，ACM，也就是计算机协会，设立了一个以我的名字命名的奖项。他们称之为「计算机界的诺贝尔奖」。获奖者的名单读起来就像是一部现代计算机科学的历史：发明互联网的人、发明加密算法的人、发明深度学习的人……我想我应该为此感到荣幸。",
+        "en": "And now, the ACM — the Association for Computing Machinery — has established an award bearing my name. They call it 「the Nobel Prize of computing」. Reading the list of laureates is like reading a history of modern computer science: the inventors of the internet, the inventors of encryption algorithms, the inventors of deep learning... I suppose I should feel honored."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在图灵的这些贡献中，你认为哪一项最重要？",
+        "en": "Of all Turing's contributions, which do you consider the most important?"
+      },
+      "choices": [
+        {
+          "id": "computation-theory",
+          "text": {
+            "zh": "计算理论——它是一切现代计算机的基础",
+            "en": "Computation theory — it is the foundation of all modern computers"
+          },
+          "tag": "theory-focused",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "一个务实的选择。确实，没有计算理论，就没有今天的数字世界。每一次你在手机上滑动屏幕，背后都是图灵机在运转。但我会说——理论本身只是工具。真正重要的是用这个工具去追问的那些问题。",
+              "en": "A pragmatic choice. Indeed, without computation theory, there would be no digital world today. Every time you swipe your phone, a Turing machine is running behind it. But I would say — theory itself is merely a tool. What truly matters are the questions we pursue with that tool."
+            }
+          },
+          "leadsTo": "modern-relevance"
+        },
+        {
+          "id": "ai-foundation",
+          "text": {
+            "zh": "人工智能的哲学基础——它改变了我们理解智能的方式",
+            "en": "The philosophical foundations of AI — it changed how we understand intelligence"
+          },
+          "tag": "philosophy-focused",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "也许你是对的。技术会更新换代，但好的问题永远不会过时。「机器能思考吗？」这个问题至今仍在推动着最前沿的研究。而每一代人对这个问题的回答，都揭示了那个时代对「智能」的理解。",
+              "en": "Perhaps you are right. Technology comes and goes, but good questions never become obsolete. 「Can machines think?」 still drives the most cutting-edge research today. And each generation's answer to this question reveals that era's understanding of 「intelligence」."
+            }
+          },
+          "leadsTo": "modern-relevance"
+        },
+        {
+          "id": "codebreaking",
+          "text": {
+            "zh": "密码破译——它直接拯救了数百万人的生命",
+            "en": "Codebreaking — it directly saved millions of lives"
+          },
+          "tag": "impact-focused",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "……从人的角度来说，也许你是对的。一千四百万条生命，这从来不是抽象的统计数据。每一个数字背后都是一个人，一个家庭，一段故事。如果我的工作有任何价值，那首先是那些活下来的人。",
+              "en": "... From a human perspective, perhaps you are right. Those numbers — fourteen million lives — are not abstract statistics. Behind every number is a person, a family, a story. If my work has any value, it begins with those who survived."
+            }
+          },
+          "leadsTo": "modern-relevance"
+        }
+      ]
+    },
+    {
+      "id": "modern-relevance",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在让我们跨越时间，看看今天的世界。你们生活在一个我曾经只敢在论文中假设的时代——机器真的能进行对话了。它们能写文章、回答问题、甚至创作诗歌和音乐。",
+        "en": "Now let us leap across time and look at today's world. You live in an era I once only dared hypothesize in my papers — machines can truly carry on conversations now. They can write articles, answer questions, even compose poetry and music."
+      },
+      "leadsTo": "chatgpt-reflection"
+    },
+    {
+      "id": "chatgpt-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "有人说今天的大语言模型已经通过了图灵测试。也许在某种意义上确实如此。但我更想问的是——通过图灵测试之后呢？我们是否需要一个新的框架来理解这些系统？也许图灵测试完成了它的历史使命，是时候提出更深的问题了。",
+        "en": "Some say today's large language models have already passed the Turing Test. Perhaps in some sense they have. But what I really want to ask is — what comes after passing the Turing Test? Do we need a new framework to understand these systems? Perhaps the Turing Test has fulfilled its historical mission, and it's time to ask deeper questions."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "在大语言模型时代，你认为图灵测试还有意义吗？",
+        "en": "In the age of large language models, do you think the Turing Test is still meaningful?"
+      },
+      "choices": [
+        {
+          "id": "still-meaningful",
+          "text": {
+            "zh": "有意义——它提出的核心问题永不过时",
+            "en": "Yes — the core question it raises is timeless"
+          },
+          "tag": "enduring-value",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "你说得对。无论技术如何变化，「什么是智能」这个问题永远值得追问。图灵测试或许已不是最好的测试方法，但它提出的哲学框架，即用行为来定义能力，至今仍是我们思考AI最有力的起点之一。",
+              "en": "You're right — no matter how technology changes, the question 「what is intelligence」 will always be worth asking. The Turing Test may no longer be the best testing method, but the philosophical framework it proposed — defining capability through behavior — remains one of the most powerful starting points for thinking about AI."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        },
+        {
+          "id": "outdated",
+          "text": {
+            "zh": "已经过时——现在我们需要更精确的评估标准",
+            "en": "It's outdated — we now need more precise evaluation criteria"
+          },
+          "tag": "progressive-view",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "也许是时候了。仅仅模仿人类对话已经不够——我们现在需要评估的是：系统是否真正理解因果关系？是否能做长期规划？是否有一致的价值观？这些问题比「能否骗过裁判」深刻得多。我想我会很高兴看到这种进步。",
+              "en": "Perhaps the time has come. Merely imitating human conversation is no longer sufficient — what we now need to evaluate is: does the system truly understand causality? Can it do long-term planning? Does it have consistent values? These questions are far deeper than 「can it fool a judge」. I think I would be glad to see such progress."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        },
+        {
+          "id": "both",
+          "text": {
+            "zh": "既有意义也有局限——它是起点但不是终点",
+            "en": "Both meaningful and limited — it's a starting point, not an endpoint"
+          },
+          "tag": "balanced-view",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这是我最希望听到的回答。每一个伟大的思想实验都有它的历史使命。图灵测试打开了一扇门——但走进门之后，你需要自己找到方向。科学的进步就是不断提出更好的问题。我的问题是起点，你们的问题才是未来。",
+              "en": "This is the answer I most hoped to hear. Every great thought experiment has its historical mission. The Turing Test opened a door — but after walking through it, you must find your own direction. Scientific progress is about continually asking better questions. My question was the beginning; your questions are the future."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        }
+      ]
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "图灵的遗产包括四点：第一是计算理论，也就是图灵机，它为所有现代计算机奠定了理论基础；第二是密码破译，这项工作直接拯救了上千万生命；第三是图灵测试，它定义了AI研究的哲学框架；第四是形态发生学，用数学来解释生物图案。图灵奖是计算机界的最高荣誉。",
+        "en": "Turing's legacy: 1) Computation theory (Turing machine) — theoretical foundation of all modern computers; 2) Codebreaking — directly saved tens of millions of lives; 3) Turing Test — defined the philosophical framework for AI research; 4) Morphogenesis — explained biological patterns with mathematics. The Turing Award is computing's highest honor."
+      },
+      "category": "core-concept",
+      "leadsTo": "final-thought"
+    },
+    {
+      "id": "final-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "最后，让我说一些关于未来的话。",
+        "en": "Finally, let me say something about the future."
+      },
+      "leadsTo": "future-vision"
+    },
+    {
+      "id": "future-vision",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我曾在论文中写道，终有一天人们会自然地谈论「机器思考」，而不会觉得这是一句矛盾的话。那一天也许已经到来——又也许还没有。但我确信一件事：对这些问题的追问，本身就让我们更深刻地理解了自己。",
+        "en": "I once wrote in my paper that one day people would naturally speak of 「machines thinking」 without finding it contradictory. That day may have arrived — or perhaps not yet. But I am certain of one thing: the very pursuit of these questions has given us a deeper understanding of ourselves."
+      },
+      "leadsTo": "emotional-close"
+    },
+    {
+      "id": "emotional-close",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "我的一生很短，也并不全是幸福。但如果我的工作能让你们今天坐在这里，思考智能、计算和意识的本质；如果这些想法能在你们脑海中种下一颗种子，那一切就是值得的。继续提问，不要停止思考。这是我能给你们的最好的建议。",
+        "en": "My life was short, and not entirely happy. But if my work has brought you here today, contemplating the nature of intelligence, computation, and consciousness — if these ideas have planted a seed in your mind — then it was all worthwhile. Keep asking questions. Never stop thinking. That is the best advice I can give you."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "图灵测试在大语言模型时代：测试本身也许需要升级，但它提出的核心哲学问题，比如行为与意识的关系、智能的本质，永远值得追问。科学进步的本质是不断提出更好的问题。",
+        "en": "The Turing Test in the age of LLMs: the test itself may need upgrading, but the core philosophical questions it raised — the relationship between behavior and consciousness, the nature of intelligence — are forever worth pursuing. The essence of scientific progress is continually asking better questions."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "图灵教授站起身来，向你们微微鞠了一躬。这是五节课以来他第一次笑，那是一个安静的、释然的笑。他走向门口，在门槛上停了一下，回过头看了你们最后一眼，然后轻轻关上了门。教室里只剩下黑板上那行始终没有被擦去的字——Can machines think? 你发现你的笔记本上写满了问题，而每一个问题又引出了更多的问题。也许，这正是图灵教授真正想要教会你的东西。",
+        "en": "Professor Turing rises and gives you a slight bow. This is the first time in five lessons that he smiles — a quiet, serene smile. He walks to the door, pauses at the threshold, and looks back at you one last time. Then he gently closes the door. All that remains in the classroom is that line on the blackboard that was never erased — Can machines think? You find your notebook filled with questions, and each question has led to still more questions. Perhaps this is exactly what Professor Turing truly wanted to teach you."
+      }
+    }
+  ]
+}

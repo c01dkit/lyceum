@@ -1,0 +1,365 @@
+{
+  "id": "lesson-02",
+  "course": "convolutional-networks",
+  "title": {
+    "zh": "从生物视觉到卷积",
+    "en": "From Biological Vision to Convolution"
+  },
+  "knowledgePoint": {
+    "zh": "生物视觉皮层如何启发了卷积神经网络的架构设计",
+    "en": "How biological visual cortex inspired CNN architecture"
+  },
+  "teacher": "prof-lecun",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你再次走进那间三面屏幕的教室。这一次，屏幕上播放的是一段黑白影像——一只猫的头部被固定着，研究者在它面前移动一道光条。勒丘恩教授正等在那里，白板上已经画了一个粗糙的大脑皮层示意图。",
+    "en": "You walk back into that three-screen classroom. This time, the screens show black-and-white footage — a cat's head is fixed in place while researchers move a bar of light in front of it. Prof. LeCun is waiting there, a rough diagram of the visual cortex already sketched on the whiteboard."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记，脑海中浮现出那幅视觉皮层的分层结构图。从简单细胞到复杂细胞，从局部到整体——大自然的智慧，或许就是最好的工程蓝图。",
+    "en": "You close your notes, and the layered diagram of the visual cortex lingers in your mind. From simple cells to complex cells, from local to global — nature's wisdom may be the best engineering blueprint."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的屏幕上播放着一段经典的神经科学实验录像。画面中，一只猫被温和地固定在实验装置上，研究者在它视野中移动不同方向的光条。旁边的示波器上，神经元的放电信号随着光条方向的变化而剧烈波动。勒丘恩教授站在屏幕旁边，手里拿着一支马克笔，眼睛亮亮的。",
+        "en": "The classroom screens play a classic neuroscience experiment recording. In the footage, a cat is gently fixed in an experimental apparatus while researchers move light bars of different orientations across its field of vision. On the oscilloscope beside it, neural firing signals fluctuate dramatically as the bar's orientation changes. Prof. LeCun stands next to the screen, marker in hand, his eyes bright."
+      },
+      "leadsTo": "hubel-wiesel-intro"
+    },
+    {
+      "id": "hubel-wiesel-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "上节课我说过，大自然已经解决了视觉问题。今天我要告诉你们，它是怎么解决的。1959年，两位神经科学家，休伯尔和威泽尔，做了一个改变历史的实验。他们把微电极插入猫的视觉皮层，然后在猫眼前展示各种图案，记录神经元的反应。",
+        "en": "Last lesson I said nature has already solved the vision problem. Today I'll tell you how. In 1959, two neuroscientists — Hubel and Wiesel — conducted an experiment that changed history. They inserted microelectrodes into a cat's visual cortex, then showed various patterns in front of the cat's eyes and recorded the neurons' responses."
+      },
+      "leadsTo": "simple-cells"
+    },
+    {
+      "id": "simple-cells",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "他们发现了一件令人惊讶的事：视觉皮层里的神经元不是对整个视野都有反应。每个神经元只对视野中一小块区域内的刺激有反应。这就是{感受野}。更有趣的是，这些神经元还挑剔方向。有些只对水平线反应，有些只对垂直线反应，有些只对45度斜线反应。休伯尔把这类神经元叫做「简单细胞」。",
+        "en": "They discovered something astonishing: neurons in the visual cortex don't respond to the entire visual field. Each neuron responds only to stimuli in a small region of the visual field — this is the {receptive field}. Even more interesting, these neurons are picky about orientation. Some respond only to horizontal lines, some only to vertical lines, some only to 45-degree diagonals. Hubel called these 「simple cells」."
+      },
+      "terms": {
+        "感受野": "term-receptive-field",
+        "receptive field": "term-receptive-field"
+      },
+      "leadsTo": "complex-cells"
+    },
+    {
+      "id": "complex-cells",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "接下来他们发现了另一种神经元——「复杂细胞」。复杂细胞也对特定方向敏感，但它们的感受野更大，而且对刺激的确切位置不太敏感。一条水平线不管在感受野的上方还是下方，复杂细胞都会有反应。换句话说，复杂细胞关心「有没有这个特征」，但不太关心「特征在哪里」。",
+        "en": "Then they found another type of neuron — 「complex cells」. Complex cells are also sensitive to specific orientations, but their receptive fields are larger, and they're less sensitive to the exact position of the stimulus. Whether a horizontal line is at the top or bottom of the receptive field, the complex cell responds. In other words, complex cells care about 「whether the feature exists」 but not so much about 「where exactly it is」."
+      },
+      "leadsTo": "hierarchy-insight"
+    },
+    {
+      "id": "hierarchy-insight",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "看到了吗？大脑在做两件事。第一，用简单细胞来检测局部的基本特征，比如边缘、线条、方向。第二，用复杂细胞来汇总这些特征，同时容忍位置上的小偏移。这是一种分层的结构，底层检测简单特征，高层则将简单特征组合成复杂特征。",
+        "en": "See what's happening? The brain does two things. First: use simple cells to detect local elementary features — edges, lines, orientations. Second: use complex cells to aggregate these features while tolerating small shifts in position. This is a hierarchical structure — lower layers detect simple features, higher layers combine simple features into complex ones."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "休伯尔和威泽尔发现了视觉皮层的两种细胞。你觉得这种「简单细胞+复杂细胞」的分层组织给计算机视觉带来了什么启发？",
+        "en": "Hubel and Wiesel discovered two types of cells in the visual cortex. What inspiration do you think this 「simple cells + complex cells」 hierarchical organization offers for computer vision?"
+      },
+      "choices": [
+        {
+          "id": "choice-local-to-global",
+          "text": {
+            "zh": "可以从局部特征逐步构建全局理解——先看到边缘，再组合成形状",
+            "en": "We can gradually build global understanding from local features — first see edges, then combine into shapes"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "完全正确。这就是分层特征提取的核心思想。你不需要一步到位地理解整张图像——先提取简单特征，然后把简单特征组合成越来越复杂的表示。从边缘到纹理，到部件，到完整物体。每一层都建立在前一层的基础上。这个原理，正是卷积神经网络的灵魂。",
+              "en": "Exactly right. This is the core idea of hierarchical feature extraction. You don't need to understand the entire image in one step — first extract simple features, then combine them into increasingly complex representations. From edges to textures, to parts, to complete objects. Each layer builds on the previous one. This principle is the soul of convolutional neural networks."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-invariance",
+          "text": {
+            "zh": "复杂细胞容忍位置偏移，说明我们也需要让计算机对位置变化不敏感",
+            "en": "Complex cells tolerate positional shifts, meaning we also need to make computers insensitive to position changes"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个观察非常重要。复杂细胞给了我们一个关键的工程启示：好的视觉系统需要某种形式的「位置不变性」。一只猫出现在图像的左边还是右边，不应该影响识别结果。大脑通过复杂细胞的汇聚机制来实现这一点。我们在设计网络时，也需要类似的机制——后面你会看到，这就是「池化」的作用。",
+              "en": "That observation is critically important. Complex cells give us a key engineering insight: a good vision system needs some form of 「positional invariance」. Whether a cat appears on the left or right side of an image shouldn't affect recognition. The brain achieves this through the aggregation mechanism of complex cells. When we design networks, we need a similar mechanism — later you'll see that this is exactly what 「pooling」 does."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-receptive-field",
+          "text": {
+            "zh": "每个神经元只看一小块区域，说明不需要一次处理整张图像",
+            "en": "Each neuron only sees a small region, meaning we don't need to process the entire image at once"
+          },
+          "tag": "structural",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这一点至关重要。感受野的概念告诉我们：不需要让每个处理单元看到整张图像。局部连接就够了。这不仅是一种工程上的简化——它反映了图像的一个基本性质：相邻的像素比远处的像素更相关。利用这种局部性，我们可以大幅减少需要学习的参数数量。",
+              "en": "This is crucial. The concept of receptive fields tells us: we don't need every processing unit to see the entire image. Local connections are enough. This isn't just an engineering simplification — it reflects a fundamental property of images: neighboring pixels are more relevant than distant ones. By exploiting this locality, we can drastically reduce the number of parameters to learn."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "休伯尔和威泽尔的工作在1981年获得了诺贝尔生理学或医学奖。他们揭示了大脑处理视觉信息的基本原理。但要把这种生物学的洞察变成可以在计算机上运行的算法，还需要走一步关键的桥梁。",
+        "en": "Hubel and Wiesel's work won the Nobel Prize in Physiology or Medicine in 1981. They revealed the fundamental principles of how the brain processes visual information. But turning this biological insight into an algorithm that can run on computers required one crucial bridge."
+      },
+      "leadsTo": "neocognitron-intro"
+    },
+    {
+      "id": "neocognitron-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这座桥梁由一位日本科学家福岛邦彦在1980年搭建。他设计了一个叫「新认知机」的模型，直接模仿了简单细胞和复杂细胞的层次结构。新认知机交替使用两种层：「S层」模拟简单细胞，检测局部特征；「C层」模拟复杂细胞，汇聚特征并增加位置容忍度。",
+        "en": "That bridge was built by a Japanese scientist — Kunihiko Fukushima — in 1980. He designed a model called the 「Neocognitron」 that directly mimicked the hierarchical structure of simple and complex cells. The Neocognitron alternates between two types of layers: 「S-layers」 simulating simple cells to detect local features, and 「C-layers」 simulating complex cells to pool features and increase positional tolerance."
+      },
+      "leadsTo": "neocognitron-limit"
+    },
+    {
+      "id": "neocognitron-limit",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "新认知机的思路是对的，但有一个致命的缺陷：它没有一个好的学习算法。福岛用的是一种无监督的竞争学习机制，效果有限。整个系统更像是手工调出来的，而非真正「学」出来的。",
+        "en": "The Neocognitron had the right idea, but it had one fatal flaw: it lacked a good learning algorithm. Fukushima used an unsupervised competitive learning mechanism with limited effectiveness. The whole system was more 「hand-tuned」 than truly 「learned」."
+      },
+      "leadsTo": "lecun-enters"
+    },
+    {
+      "id": "lecun-enters",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "而我呢，当时正好在研究反向传播算法。1985年到1987年，我在巴黎跟随辛顿的学生做博士后，然后加入了贝尔实验室。我看着福岛的新认知机，看着休伯尔和威泽尔的实验，心想：如果我把这种分层的视觉结构和反向传播结合起来呢？让每一层的特征检测器是通过梯度下降自动学出来的？",
+        "en": "And I happened to be studying the backpropagation algorithm at the time. From 1985 to 1987, I did postdoctoral work in Paris studying under one of Hinton's students, then joined Bell Labs. I looked at Fukushima's Neocognitron, looked at Hubel and Wiesel's experiments, and thought: what if I combine this hierarchical visual structure with backpropagation? What if each layer's feature detectors aren't handcrafted, but automatically learned through gradient descent?"
+      },
+      "leadsTo": "feature-map-concept"
+    },
+    {
+      "id": "feature-map-concept",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就产生了一个核心概念——{特征图}。想象一下：你用一个小的过滤器在整张图像上滑动，这个过滤器会在每个位置产生一个响应值。所有这些响应值组成的新图像，就是一张特征图。如果过滤器是一个水平边缘检测器，那么特征图上亮的地方就是原图中有水平边缘的地方。",
+        "en": "This gave rise to a core concept — the {feature map}. Imagine: you slide a small filter across the entire image, and this filter produces a response value at each position. All these response values form a new image — that's a feature map. If the filter is a horizontal edge detector, then the bright spots on the feature map indicate where horizontal edges exist in the original image."
+      },
+      "terms": {
+        "特征图": "term-feature-map",
+        "feature map": "term-feature-map"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "勒丘恩说他把「分层视觉结构」和「反向传播」结合了起来。你觉得这种结合的关键优势是什么？",
+        "en": "LeCun says he combined 「hierarchical visual structure」 with 「backpropagation」. What do you think is the key advantage of this combination?"
+      },
+      "choices": [
+        {
+          "id": "choice-end-to-end",
+          "text": {
+            "zh": "整个系统可以端到端训练——从像素到分类结果，一次性优化",
+            "en": "The entire system can be trained end-to-end — from pixels to classification results, optimized all at once"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "精辟。端到端学习是我一直在推动的理念。当你把特征提取和分类放在一个统一的框架里，用同一个目标函数来优化，系统学出来的特征就是最适合分类任务的特征。而不是像手工方法那样，特征提取和分类是脱节的。这种一体化，就是力量的来源。",
+              "en": "Brilliant. End-to-end learning is an idea I've championed consistently. When you put feature extraction and classification in a unified framework, optimized with the same objective function, the features the system learns are the ones best suited for the classification task. Unlike handcrafted methods where feature extraction and classification are disconnected. This integration is the source of its power."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-auto-features",
+          "text": {
+            "zh": "特征检测器是学出来的，不是手工设计的——可以适应不同任务",
+            "en": "Feature detectors are learned, not handcrafted — they can adapt to different tasks"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "没错。在新认知机里，特征检测器本质上还是预设的。但加上反向传播之后，每个过滤器可以自动调整自己的权重，学会检测对当前任务最有用的特征。你给它手写数字，它就学会检测笔画；你给它人脸，它就学会检测眼睛和嘴巴的特征。同一个架构，不同的数据，不同的特征。",
+              "en": "Exactly. In the Neocognitron, the feature detectors were essentially preset. But with backpropagation, each filter can automatically adjust its weights to learn to detect features most useful for the current task. Give it handwritten digits, it learns to detect strokes; give it faces, it learns to detect features of eyes and mouths. Same architecture, different data, different features."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-bio-inspired",
+          "text": {
+            "zh": "借鉴了经过亿万年进化验证的结构——生物学原理为网络设计提供了可靠的参考",
+            "en": "It borrows from a structure verified by billions of years of evolution — biology provides reliable guidance for network design"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个很有深度的视角。进化是最终极的优化过程，历经几亿年的试错，淘汰了无数方案，最终留下的方案必然有其过人之处。当然，我们不需要完全复制大脑。飞机的翅膀和鸟的翅膀不一样，但空气动力学原理是相同的。我借鉴的是生物视觉的「原理」，而非「细节」。",
+              "en": "That's a very deep perspective. Evolution is the ultimate optimization process — billions of years of trial and error, eliminating countless solutions, and what remains must be a good solution. Of course, we don't need to copy the brain exactly — airplane wings differ from bird wings, but the aerodynamic principles are the same. What I borrow from biological vision is the 「principle」, not the 「details」."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我总结一下。从休伯尔和威泽尔到福岛，再到我的工作，有一条清晰的线索：生物视觉系统用分层结构处理信息，从局部到全局，从简单到复杂。我做的事情，就是把这个原理变成了一个可以用数据训练的数学模型。",
+        "en": "Let me summarize. From Hubel and Wiesel to Fukushima, to my work, there's a clear thread: the biological visual system processes information through hierarchical structures, from local to global, from simple to complex. What I did was turn this principle into a mathematical model that can be trained with data."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "卷积神经网络的生物学起源：(1) 休伯尔和威泽尔发现视觉皮层中的简单细胞检测局部方向特征，复杂细胞汇聚特征并容忍位置偏移；(2) 福岛邦彦的新认知机模仿了这种层次结构，但缺乏有效的学习算法；(3) 勒丘恩将分层视觉结构与反向传播结合，使特征检测器可以自动学习。",
+        "en": "Biological origins of CNNs: (1) Hubel & Wiesel discovered simple cells in visual cortex detect local orientation features, complex cells pool features with positional tolerance; (2) Fukushima's Neocognitron mimicked this hierarchy but lacked an effective learning algorithm; (3) LeCun combined hierarchical visual structure with backpropagation, enabling feature detectors to learn automatically."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-convolution"
+    },
+    {
+      "id": "preview-convolution",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "下节课我们要深入到这个模型的核心操作：卷积。我会告诉你们一个小小的过滤器如何在图像上滑动，如何用极少的参数从整张图像中提取有用的信息。你会发现，这个操作的数学其实出奇地简单，简单到你会怀疑它怎么可能这么有效。",
+        "en": "Next lesson we'll dive into the core operation of this model — convolution. I'll show you how a tiny filter slides across an image, extracting useful information from the entire image with very few parameters. You'll find that the mathematics of this operation are surprisingly simple — so simple you'll wonder how it can possibly be this effective."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾一下，从生物视觉到计算机视觉的这条路，你觉得最重要的跨越是什么？",
+        "en": "Looking back at the path from biological vision to computer vision, what do you think was the most important leap?"
+      },
+      "choices": [
+        {
+          "id": "choice-discovery",
+          "text": {
+            "zh": "休伯尔和威泽尔的发现——没有对生物视觉的理解，一切都无从谈起",
+            "en": "Hubel and Wiesel's discovery — without understanding biological vision, nothing else could follow"
+          },
+          "tag": "foundational",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "他们的工作确实是一切的起点。科学和工程的关系往往如此——基础研究看起来和应用没什么关系，但它提供了关键的灵感。如果没有人去研究猫的视觉皮层，也许我们要多走很多弯路才能想到分层特征提取的概念。",
+              "en": "Their work was indeed the starting point for everything. The relationship between science and engineering often works this way — basic research seems unrelated to applications, but it provides crucial inspiration. Without someone studying the cat's visual cortex, we might have taken many more detours before arriving at the concept of hierarchical feature extraction."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "choice-learning",
+          "text": {
+            "zh": "把反向传播引入视觉架构——让特征可以自动学习才是真正的突破",
+            "en": "Introducing backpropagation to the visual architecture — the real breakthrough was making features learnable"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（微微一笑）我当然同意这个观点。模仿生物结构只是第一步，但如果没有一个有效的学习算法，那个结构就是一个空壳。反向传播赋予了这个结构灵魂——它让系统能从数据中学习，而不只是被动地执行预设的操作。这才是从理论到实用的关键一步。",
+              "en": "(Smiles slightly) Of course I agree with this view. Mimicking biological structure was just the first step, but without an effective learning algorithm, that structure is an empty shell. Backpropagation gave this structure a soul — it let the system learn from data, rather than just passively executing preset operations. That's the key step from theory to practice."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "choice-neocognitron",
+          "text": {
+            "zh": "福岛的新认知机——他把生物学概念第一次翻译成了计算模型",
+            "en": "Fukushima's Neocognitron — he was the first to translate biological concepts into a computational model"
+          },
+          "tag": "historical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "福岛的贡献确实值得尊重。他是第一个把「简单细胞到复杂细胞」的概念具体化为计算架构的人。虽然他的学习方法不够有效，但他搭建了从生物学到工程学的桥梁。在科学进步中，每一步都是必要的——即使后来被更好的方法取代，先驱者的价值依然不可替代。",
+              "en": "Fukushima's contribution deserves genuine respect. He was the first to concretize the concept of 「simple cells to complex cells」 into a computational architecture. Although his learning method wasn't effective enough, he built the bridge from biology to engineering. In scientific progress, every step is necessary — even when later superseded by better methods, the value of pioneers remains irreplaceable."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好了，今天我们建立了从生物视觉到计算模型的联系。记住这条线索：局部感受野、层次化的特征提取、对位置变化的容忍——这三个生物学原理将成为卷积神经网络的三大支柱。下节课，我们来看看「卷积」这个操作究竟是怎么回事。",
+        "en": "Good, today we've established the connection from biological vision to computational models. Remember this thread: local receptive fields, hierarchical feature extraction, tolerance to positional variation — these three biological principles become the three pillars of convolutional neural networks. Next lesson, we'll see what the 「convolution」 operation is really about."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "卷积神经网络的三大生物学支柱：第一，局部感受野，每个神经元只看一小块区域；第二，层次化特征提取，从简单到复杂，逐层构建；第三，位置容忍性，它关心特征是否存在，而非精确位置。",
+        "en": "Three biological pillars of CNNs: (1) Local receptive fields — each neuron sees only a small region; (2) Hierarchical feature extraction — building from simple to complex, layer by layer; (3) Positional tolerance — caring whether a feature exists, not its exact location."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "勒丘恩教授把马克笔放下，白板上留下了一幅完整的示意图：从猫的视觉皮层，到新认知机的层次结构，再到一个标着问号的方框——那就是下节课要揭开面纱的「卷积神经网络」。他拿起咖啡杯，看了看白板上的图，对自己的作品似乎很满意。「自然是最好的老师，但你得知道怎么向它学习。」",
+        "en": "Prof. LeCun puts down the marker, leaving a complete diagram on the whiteboard: from the cat's visual cortex, to the Neocognitron's hierarchical structure, to a box marked with a question mark — the 「convolutional neural network」 to be unveiled next lesson. He picks up his coffee cup, looks at the diagram on the board, seemingly pleased with his work. 「Nature is the best teacher, but you have to know how to learn from it」."
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "early-programs",
+  "name": {
+    "zh": "第一批AI程序",
+    "en": "The First AI Programs"
+  },
+  "description": {
+    "zh": "回到人工智能的诞生之地，亲历那些改变世界的早期程序。从1956年达特茅斯会议的宏大愿景，到逻辑理论家、通用问题求解器和ELIZA的惊人创造——跟随司马贺教授的亲身讲述，感受那个梦想与勇气并存的黄金年代。",
+    "en": "Return to the birthplace of artificial intelligence and witness the early programs that changed the world. From the grand vision of the 1956 Dartmouth Conference, to the astonishing creations of the Logic Theorist, GPS, and ELIZA — follow Prof. Simon's firsthand accounts to experience the golden age where dreams and courage coexisted."
+  },
+  "grade": "grade-1",
+  "teacher": "prof-simon",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-dartmouth-conference",
+      "description": {
+        "zh": "了解1956年达特茅斯会议的背景、参与者及其对AI学科诞生的意义",
+        "en": "Understand the context, participants, and significance of the 1956 Dartmouth Conference for the birth of AI as a discipline"
+      }
+    },
+    {
+      "id": "obj-logic-theorist",
+      "description": {
+        "zh": "理解逻辑理论家（Logic Theorist）的工作原理及其作为第一个AI程序的历史地位",
+        "en": "Understand how the Logic Theorist worked and its historical significance as the first AI program"
+      }
+    },
+    {
+      "id": "obj-gps",
+      "description": {
+        "zh": "掌握通用问题求解器的手段-目的分析方法及其成就与局限",
+        "en": "Master the means-ends analysis approach of GPS and understand its achievements and limitations"
+      }
+    },
+    {
+      "id": "obj-eliza-effect",
+      "description": {
+        "zh": "理解ELIZA的工作机制及ELIZA效应对人机交互的深远影响",
+        "en": "Understand ELIZA's mechanism and the ELIZA effect's profound impact on human-computer interaction"
+      }
+    },
+    {
+      "id": "obj-golden-age",
+      "description": {
+        "zh": "总结1950s-1970s AI黄金年代的成就，理解符号主义范式及AI寒冬的成因",
+        "en": "Summarize the achievements of the 1950s-1970s AI golden age, understand the symbolist paradigm and the causes of the AI winter"
+      }
+    }
+  ]
+}

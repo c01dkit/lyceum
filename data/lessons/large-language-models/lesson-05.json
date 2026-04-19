@@ -1,0 +1,251 @@
+{
+  "id": "lesson-05",
+  "course": "large-language-models",
+  "title": {
+    "zh": "思维链推理",
+    "en": "Chain-of-Thought Reasoning"
+  },
+  "knowledgePoint": {
+    "zh": "思维链提示——让模型展示推理步骤以提升复杂问题的解答能力",
+    "en": "Chain-of-thought prompting — having models show reasoning steps to improve complex problem solving"
+  },
+  "teacher": "prof-sutskever",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你闭上眼，回到那片金色空间。苏茨克维教授在全息屏上写下了一道数学题，然后在旁边写了六个字：「让我们一步步想。」屏幕上的模型突然像换了一个人——之前它直接跳到错误答案，现在它开始一步一步地推导，最终给出了正确结果。教授转过身，眼中闪着光。",
+    "en": "You close your eyes and return to that golden space. Prof. Sutskever writes a math problem on the holographic screen, then adds six words beside it: 「Let's think step by step」. The model on screen suddenly transforms — where before it jumped to wrong answers, now it reasons step by step, arriving at the correct result. The professor turns, eyes gleaming."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。思维链推理的发现令人震撼——仅仅通过要求模型「展示思考过程」，就能大幅提升复杂推理的准确性。这暗示着一个深层的道理：也许智能不仅在于知道答案，更在于走过抵达答案的那条路。",
+    "en": "You return to the present. The discovery of chain-of-thought reasoning is stunning — merely asking models to 「show their thinking」 dramatically improves accuracy on complex reasoning. This hints at a deep truth: perhaps intelligence lies not just in knowing answers, but in walking the path to reach them."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "全息屏上显示着一道简单的数学应用题：「一个果园有23棵苹果树和17棵梨树。每棵苹果树产出48个苹果，每棵梨树产出35个梨。水果总数是多少？」下方并排显示着两个回答框——左边标注「直接回答」，显示的答案是错误的；右边标注「逐步推理」，答案正确。苏茨克维教授在两个框之间画了一条红线。",
+        "en": "The holographic screen displays a simple math word problem: 「An orchard has 23 apple trees and 17 pear trees. Each apple tree produces 48 apples, each pear tree produces 35 pears. What is the total number of fruits?」 Two response boxes appear side by side — the left labeled 「Direct answer」 shows an incorrect answer; the right labeled 「Step-by-step reasoning」 shows the correct one. Prof. Sutskever draws a red line between them."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们讨论了涌现能力——大模型突然展现出小模型没有的本领。今天我要讲一个2022年的发现，它揭示了一种简单到不可思议的方法来释放这些能力。Google的Jason Wei和他的同事发现：如果你在提示中给模型展示推理步骤的范例，模型也会学着一步步推理。",
+        "en": "Last lesson we discussed emergent abilities — large models suddenly showing capabilities absent in smaller ones. Today I'll describe a 2022 discovery that revealed an incredibly simple way to unlock these abilities. Google's Jason Wei and colleagues found that if you show the model examples of reasoning steps in your prompt, the model learns to reason step by step too."
+      },
+      "leadsTo": "cot-concept"
+    },
+    {
+      "id": "cot-concept",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{思维链}推理。核心想法极其简单：与其让模型直接输出最终答案，不如让它先展示中间推理步骤。比如解上面那道题时，模型会先算「23×48=1104个苹果」，再算「17×35=595个梨」，最后「1104+595=1699」。分步输出的准确率远远高于直接给出答案。",
+        "en": "This is {chain-of-thought} reasoning. The core idea is deceptively simple: instead of having the model output the final answer directly, have it show intermediate reasoning steps first. For the problem above, the model first computes 「23×48=1104 apples」, then 「17×35=595 pears」, finally 「1104+595=1699」. Step-by-step accuracy is far higher than direct answering."
+      },
+      "terms": {
+        "思维链": "term-chain-of-thought",
+        "chain-of-thought": "term-chain-of-thought"
+      },
+      "leadsTo": "why-works"
+    },
+    {
+      "id": "why-works",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么这样做有效？我的理解是：语言模型本质上是一个「下一个词预测器」。当它直接给出答案时，它必须在一步之内完成所有计算——这对复杂问题来说太难了。但如果让它逐步输出中间推理，每一步的预测都变得相对简单。模型把一个困难的问题分解成了一连串容易的问题。",
+        "en": "Why does this work? My understanding: a language model is fundamentally a 「next-token predictor」. When it gives an answer directly, it must complete all computation in one step — too hard for complex problems. But by outputting intermediate reasoning, each step's prediction becomes relatively simple. The model decomposes one hard problem into a chain of easy ones."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "仅仅让模型「展示推理步骤」就能大幅提升准确率。你觉得这说明了什么？",
+        "en": "Simply having models 「show their reasoning」 dramatically improves accuracy. What do you think this tells us?"
+      },
+      "choices": [
+        {
+          "id": "computation-medium",
+          "text": {
+            "zh": "语言不仅是表达的工具，更是计算的媒介——模型在用文字进行「思考」",
+            "en": "Language isn't just a tool for expression but a medium for computation — models use text to 「think」"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个非常深刻的观察。当模型写下中间步骤时，这些文字不仅是给人看的，它们实际上在扮演「工作记忆」的角色。每生成一个token，模型都可以参考之前生成的所有token。这意味着分步推理在字面意义上扩展了模型的计算能力，因为它把中间结果「存」在了自己生成的文本里。语言成为了一种计算基质。",
+              "en": "That's a very profound observation. When models write intermediate steps, these words aren't just for human consumption — they actually serve as 「working memory」. With each token generated, the model can reference all previously generated tokens. This means step-by-step reasoning literally expands the model's computational capacity — it 「stores」 intermediate results in its own generated text. Language becomes a computational substrate."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "hidden-capability",
+          "text": {
+            "zh": "模型已经具备了推理能力，只是需要正确的「格式」来释放它",
+            "en": "The model already has reasoning capability — it just needs the right 「format」 to unlock it"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个角度很有意思。确实，同一个模型，拥有同样的参数和权重，在不同的提示方式下表现却截然不同。这暗示推理能力已经编码在了参数中，只是被「直接回答」的格式给压制了。思维链提示就像是给了模型一条通道，让它把内在的能力外化为可见的步骤。这也解释了为什么这种方法只在大模型上有效，因为小模型根本没有这种被压制的能力。",
+              "en": "That's an interesting angle. Indeed, the same model — same parameters, same weights — performs drastically differently under different prompting styles. This suggests reasoning capability is already encoded in the parameters but suppressed by the 「direct answer」 format. Chain-of-thought prompting is like giving the model a channel to externalize internal capabilities into visible steps. This also explains why it only works on large models — small models simply don't have this suppressed capability."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "decomposition-key",
+          "text": {
+            "zh": "问题分解是关键——把大问题拆成小步骤，对人和AI都一样有用",
+            "en": "Problem decomposition is key — breaking big problems into small steps works for both humans and AI"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微一笑）你知道，最好的老师也是这么教学的——他们不会一上来就讲最终结论，而是一步步引导你到达那里。也许思维链推理之所以有效，正是因为它模仿了人类解决复杂问题的自然方式。笛卡尔几百年前就说过：「把困难问题分解为足够小的部分。」这个道理在AI时代依然成立。",
+              "en": "(Smiles) You know, the best teachers work exactly this way — they don't jump to final conclusions but guide you step by step. Perhaps chain-of-thought reasoning works precisely because it mimics the natural human approach to complex problems. Descartes said centuries ago: 「Divide each difficulty into as many parts as feasible」. That principle still holds in the AI era."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "思维链推理后来发展出了多种变体。一种叫做「零样本思维链」——你甚至不需要给范例，只需要在提问后面加一句「让我们一步步思考」，模型就会自动展开推理链。这进一步证明了{推理}能力已经存在于大模型中。",
+        "en": "Chain-of-thought reasoning later evolved into multiple variants. One is 「zero-shot CoT」 — you don't even need examples, just add 「Let's think step by step」 after your question, and the model automatically unfolds a reasoning chain. This further proves that {reasoning} capability already exists within large models."
+      },
+      "terms": {
+        "推理": "term-reasoning",
+        "reasoning": "term-reasoning"
+      },
+      "leadsTo": "tree-of-thought"
+    },
+    {
+      "id": "tree-of-thought",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "更进一步的发展是{思维树}方法。思维链是一条线性的推理路径，但有些问题需要探索多个可能的方向。思维树让模型生成多条推理路径，评估每条路径的前景，回溯不好的方向，选择最有希望的路径继续。这有点像下棋时的前瞻搜索——西尔弗教授在四年级的AlphaGo课程中讲过类似的思想。",
+        "en": "A further development is the {Tree-of-Thought} method. Chain-of-thought follows a single linear reasoning path, but some problems require exploring multiple possible directions. Tree-of-Thought has the model generate multiple reasoning paths, evaluate each path's prospects, backtrack from unpromising ones, and continue the most promising. It's somewhat like look-ahead search in chess — Prof. Silver discussed a similar idea in his Grade 4 AlphaGo course."
+      },
+      "terms": {
+        "思维树": "term-tree-of-thought",
+        "Tree-of-Thought": "term-tree-of-thought"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "思维链让模型「慢思考」而非「快回答」。这让你联想到什么？",
+        "en": "Chain-of-thought makes models 「think slowly」 instead of 「answer quickly」. What does this remind you of?"
+      },
+      "choices": [
+        {
+          "id": "system12",
+          "text": {
+            "zh": "人类的快思考和慢思考——心理学家卡尼曼的双系统理论",
+            "en": "Kahneman's dual-system theory — human fast thinking and slow thinking"
+          },
+          "tag": "interdisciplinary",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我经常引用的类比。卡尼曼把人类思维分为系统1（快速、直觉、容易出错）和系统2（缓慢、审慎、更准确）。没有思维链的语言模型就像系统1，它凭直觉给出答案。加上思维链后，它切换到了系统2模式，开始逐步推理，虽然慢，但更可靠。或许，通向更强AI的关键，不仅在于模型规模，更在于给予它们更多「思考」的时间和空间。",
+              "en": "That's exactly the analogy I often reference. Kahneman divided human thinking into System 1 (fast, intuitive, error-prone) and System 2 (slow, deliberate, more accurate). A language model without CoT is like System 1 — answering by intuition. With CoT, it switches to System 2 mode — step-by-step reasoning that's slower but more reliable. Perhaps the path to stronger AI lies not just in larger models, but in giving models more time and space to 「think」."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "education-analogy",
+          "text": {
+            "zh": "考试中「写出解题过程」的要求——过程比答案更重要",
+            "en": "The exam requirement to 「show your work」 — the process matters more than the answer"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了一下）你知道吗，老师要求学生写出解题过程，不仅是为了评分——更是因为写的过程本身帮助学生理清思路。同样的道理，模型在输出推理步骤时，这些步骤不仅让我们能验证它的推理，更在计算上帮助模型保持推理链路的连贯性。展示过程既是透明性的要求，也是能力的来源。",
+              "en": "(Laughs) You know, when teachers require students to show their work, it's not just for grading — it's because the act of writing helps students clarify their thinking. Similarly, when models output reasoning steps, these steps don't just let us verify their reasoning — they computationally help the model maintain coherent reasoning chains. Showing work is both a transparency requirement and a source of capability."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "computation-depth",
+          "text": {
+            "zh": "计算深度——模型通过更多步骤获得了更深的计算图",
+            "en": "Computational depth — through more steps, models gain a deeper computation graph"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是从计算理论角度的精确分析。一个Transformer的前向传播层数是固定的，比如GPT-3有96层。当模型直接给出答案时，它只有96层来完成所有计算。但如果它生成了10个中间推理token，每个token都要经过96层处理，那么整个推理的有效计算深度就变成了960层。思维链本质上是在序列维度上增加了计算的深度。这是一种优雅的用时间换空间的策略。",
+              "en": "That's a precise analysis from computational theory. A Transformer's forward pass has a fixed number of layers — GPT-3 has 96. When the model answers directly, it has only 96 layers for all computation. But if it generates 10 intermediate reasoning tokens, each processed through 96 layers, the effective computational depth becomes 960 layers. Chain-of-thought essentially increases computational depth along the sequence dimension. It's an elegant strategy of trading time for depth."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "思维链推理的发现改变了我们对语言模型能力边界的认知。以前我们以为模型的能力完全由参数量决定——模型训练好之后，它能做什么就是固定的。但现在我们知道，同一个模型在不同的「使用方式」下可以展现出截然不同的能力水平。如何与模型交互本身就是一种技术。",
+        "en": "The discovery of chain-of-thought reasoning changed our understanding of language model capability boundaries. We used to think a model's abilities were entirely determined by parameter count — once trained, what it can do is fixed. But now we know the same model can exhibit drastically different capability levels under different 「usage modes」. How you interact with a model is itself a technology."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "思维链(CoT)推理：通过让模型展示中间推理步骤，大幅提升复杂问题的准确率。原理：(1)将困难问题分解为简单步骤；(2)生成的文本充当工作记忆，扩展有效计算深度；(3)类似人类「慢思考」(系统2)。变体：零样本CoT（加「让我们一步步想」）、自一致性、思维树（探索多条路径）。关键启示：模型的能力不仅取决于参数量，还取决于使用方式。",
+        "en": "Chain-of-Thought (CoT) reasoning: by having models show intermediate steps, dramatically improves accuracy on complex problems. Principles: (1) decomposes hard problems into simple steps; (2) generated text acts as working memory, extending effective computational depth; (3) analogous to human 「slow thinking」 (System 2). Variants: zero-shot CoT (「Let's think step by step」), self-consistency, Tree-of-Thought (exploring multiple paths). Key insight: model capability depends not just on parameters but on usage mode."
+      },
+      "category": "core-concept",
+      "leadsTo": "forward-look"
+    },
+    {
+      "id": "forward-look",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "思维链推理还引出了一个更大的问题：如果模型可以通过「展示思考过程」变得更强，那还有多少这样的隐藏能力等待我们用正确的方式去释放？下节课，我们会面对语言模型最令人不安的特征之一——当它们自信满满地给出错误信息时，也就是所谓的「幻觉」问题。",
+        "en": "Chain-of-thought reasoning raises a bigger question: if models can become stronger by 「showing their thinking」, how many more hidden capabilities await the right approach to unlock? Next lesson, we'll face one of language models' most unsettling features — when they confidently produce false information, known as the 「hallucination」 problem."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "苏茨克维教授在全息屏上留下了两行字——上面一行是「Let's think step by step」，下面一行是「也许智能的本质，就是学会如何思考」。他合上笔记本，目光深邃地望着教室角落的某处，像是在和自己对话。然后他轻声说：「有时候最强大的改变，来自最简单的想法。」",
+        "en": "Prof. Sutskever leaves two lines on the holographic screen — the top reads 「Let's think step by step」, the bottom reads 「Perhaps the essence of intelligence is learning how to think」. He closes his notebook, gazing deep into a corner of the classroom as if in conversation with himself. Then he says softly: 「Sometimes the most powerful changes come from the simplest ideas」."
+      }
+    }
+  ]
+}

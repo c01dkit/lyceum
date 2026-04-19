@@ -1,0 +1,301 @@
+{
+  "id": "lesson-05",
+  "course": "ensemble-methods",
+  "title": {
+    "zh": "特征工程的艺术",
+    "en": "The Art of Feature Engineering"
+  },
+  "knowledgePoint": {
+    "zh": "特征工程与交叉验证——数据表示与模型评估的实战技能",
+    "en": "Feature engineering and cross-validation — practical skills in data representation and model evaluation"
+  },
+  "teacher": "prof-breiman",
+  "estimatedMinutes": 14,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你翻开笔记，看到上面写着「垃圾进，垃圾出」——那是布雷曼教授反复强调的话。那堂课他没有讲算法，而是讲了一些更基础、更重要的东西：怎么把原始数据变成模型能理解的语言……",
+    "en": "You flip open your notes and see 「garbage in, garbage out」 — the phrase Professor Breiman kept repeating. That class he didn't talk about algorithms; he talked about something more fundamental: how to translate raw data into a language models can understand..."
+  },
+  "recallOutro": {
+    "zh": "你想起布雷曼教授讲的那些咨询案例——每一个都证明了同一个道理：好的特征比好的算法更重要，而诚实的评估比漂亮的数字更重要。",
+    "en": "You think back to the consulting cases Professor Breiman shared — every one proving the same point: good features matter more than good algorithms, and honest evaluation matters more than impressive numbers."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "布雷曼教授今天带了一份不一样的东西——一个真实的商业案例。他把一张打印的表格投影到屏幕上，表格里的数据看起来杂乱无章：日期、金额、类别代码、客户ID……原始数据的混沌扑面而来。",
+        "en": "Professor Breiman brings something different today — a real business case. He projects a printed spreadsheet onto the screen, its data a jumble: dates, amounts, category codes, customer IDs... The chaos of raw data hits you in the face."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "前几节课我们一直在聊算法，比如决策树、bagging、随机森林。但今天我要告诉你们一个在教科书里很少讲、但在实践中决定成败的东西：{特征工程}。在我做咨询的十三年里，我见过太多人花大量时间调算法参数，却忽略了一个更根本的问题：你喂给算法的数据够好吗？",
+        "en": "The past few classes we've been talking about algorithms — decision trees, bagging, random forests. But today I'm going to tell you about something textbooks rarely cover but which determines success or failure in practice: {feature engineering}. In my thirteen years of consulting, I've seen too many people spend enormous time tuning algorithm parameters while ignoring a more fundamental question — is the data you're feeding the algorithm good enough?"
+      },
+      "terms": {
+        "特征工程": "term-feature-engineering",
+        "feature engineering": "term-feature-engineering"
+      },
+      "leadsTo": "raw-data-problem"
+    },
+    {
+      "id": "raw-data-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指着屏幕上的表格）这是我做过的一个真实项目。一家零售公司想预测哪些客户下个月会流失。他们给我的原始数据就是交易记录：2001年1月3日，客户A买了一双鞋，花了89美元。就这样一行一行的记录，几百万条。你觉得这些数据能直接扔给随机森林吗？",
+        "en": "(Points to the spreadsheet on screen) This is a real project I worked on. A retail company wanted to predict which customers would leave next month. The raw data they gave me was transaction records: January 3rd, 2001, Customer A bought a pair of shoes for $89. Row after row of records like this, millions of them. Do you think you can just feed this directly into a random forest?"
+      },
+      "leadsTo": "cant-use-raw"
+    },
+    {
+      "id": "cant-use-raw",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "当然不能。一行交易记录不能告诉你这个客户的整体行为模式。你需要把这些原始记录转化成有意义的特征。比如：这个客户最近三个月的消费总额是多少？消费频率呢？最近一次消费是什么时候？消费金额的趋势是上升还是下降？",
+        "en": "Of course not. A single transaction record can't tell you this customer's overall behavior pattern. You need to transform these raw records into meaningful features. For example: what's this customer's total spending in the last three months? How often do they buy? When was their last purchase? Is their spending trending up or down?"
+      },
+      "leadsTo": "feature-examples"
+    },
+    {
+      "id": "feature-examples",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我在那个项目里创造了四十多个特征。从时间戳里提取星期几，因为周末购物的人和工作日购物的人行为模式不同。计算每次购买的金额与该客户平均金额的比值，异常大额或小额购买可能是信号。统计客户购买的品类多样性，只买一类东西的人跟什么都买的人不一样。",
+        "en": "I created over forty features in that project. Extracted day-of-week from timestamps — because weekend shoppers and weekday shoppers have different behavior patterns. Calculated the ratio of each purchase amount to the customer's average — unusually large or small purchases might be signals. Measured the diversity of product categories each customer buys — someone who only buys one category is different from someone who buys everything."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "假设你有一个电商数据集，包含每笔订单的时间戳、金额和商品类别。你会创造哪种特征来预测客户是否会流失？",
+        "en": "Suppose you have an e-commerce dataset with each order's timestamp, amount, and product category. What kind of feature would you create to predict customer churn?"
+      },
+      "choices": [
+        {
+          "id": "recency",
+          "text": {
+            "zh": "距离最近一次购买的天数——很久没买的客户可能要流失了",
+            "en": "Days since last purchase — customers who haven't bought in a while might be leaving"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这就是我在咨询中最常用的特征之一！在营销领域有一个经典框架叫RFM，它包含最近购买时间（Recency）、购买频率（Frequency）和购买金额（Monetary）。你刚才说的就是R，它在几乎所有客户流失预测项目中都是最重要的特征之一。如果一个客户连续60天没有购买，流失的概率就会急剧上升。好特征往往就是这样，简单、直观，而且有效。",
+              "en": "That's one of the features I used most often in consulting! In marketing there's a classic framework called RFM — Recency, Frequency, Monetary value. What you just described is R, and it's one of the most important features in virtually every customer churn prediction project. If a customer hasn't purchased in 60 consecutive days, the probability of churn spikes dramatically. Good features are like that — simple, intuitive, effective."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "spending-trend",
+          "text": {
+            "zh": "消费金额的变化趋势——金额下降可能是流失的前兆",
+            "en": "Spending trend over time — declining amounts could signal impending churn"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的想法！这就是所谓的「趋势特征」——是看它随时间的变化方向。比如计算最近一个月的平均消费金额除以前三个月的平均金额，这个比值小于1就说明消费在下降。我在那个项目里就用了类似的特征，它的预测能力排在所有特征的前五名。你有做数据分析的天赋。",
+              "en": "Excellent thinking! This is what's called a 「trend feature」 — you don't look at a static number, but at its direction of change over time. For example, calculate last month's average spending divided by the previous three months' average — a ratio below 1 means spending is declining. I used a similar feature in that project, and it ranked in the top five most predictive features. You have a talent for data analysis."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "category-diversity",
+          "text": {
+            "zh": "购买品类的变化——如果开始只买打折商品，可能对品牌失去了忠诚度",
+            "en": "Changes in purchase categories — if they start buying only discounted items, they may be losing brand loyalty"
+          },
+          "tag": "insightful",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（拍了一下桌子）这个角度非常有商业洞察力！购买行为的质变，比如从正价商品转向折扣商品，从多品类变成单品类，这些都是流失的强信号。你不只是在做数据分析，你在思考数据背后的业务逻辑。在我做咨询的经历中，最好的特征工程师都有这种能力：把领域知识转化成可计算的数字。",
+              "en": "(Slaps the table) That's a perspective with real business insight! Qualitative changes in purchasing behavior — shifting from full-price to discounted items, from diverse categories to a single category — these are strong churn signals. You're not just doing data analysis; you're thinking about the business logic behind the data. In my consulting experience, the best feature engineers all had this ability: translating domain knowledge into computable numbers."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "特征工程是一门手艺，需要领域知识、创造力和实验精神的结合。没有一个通用的公式告诉你应该创造什么特征——这取决于你对问题和数据的理解。这也是为什么做了十三年咨询的人比刚毕业的博士更擅长这件事：经验会给你直觉。",
+        "en": "Feature engineering is a craft that requires a combination of domain knowledge, creativity, and an experimental spirit. There's no universal formula telling you what features to create — it depends on your understanding of the problem and the data. This is also why someone with thirteen years of consulting experience is better at this than a fresh PhD: experience gives you intuition."
+      },
+      "leadsTo": "transition-to-cv"
+    },
+    {
+      "id": "transition-to-cv",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好，假设你花了大量时间创造了一堆特征，建了一个随机森林模型，训练集上的准确率是95%。你很兴奋，去跟老板汇报。但我必须问你：这个95%可信吗？",
+        "en": "Alright, suppose you've spent lots of time creating features, built a random forest model, and the training set accuracy is 95%. You're excited, ready to report to the boss. But I have to ask: can you trust that 95%?"
+      },
+      "leadsTo": "never-test-on-train"
+    },
+    {
+      "id": "never-test-on-train",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "答案是：绝对不可信。用训练数据来评估模型，就像让学生看着答案做考试——分数当然高，但什么都说明不了。模型可能只是记住了训练数据的每一个细节，面对新数据就露馅了。这就是{过拟合}的危险所在。",
+        "en": "The answer: absolutely not. Evaluating a model on training data is like letting a student take an exam while looking at the answer key — of course the score is high, but it proves nothing. The model may have just memorized every detail of the training data and will fall apart on new data. This is the danger of {overfitting}."
+      },
+      "terms": {
+        "过拟合": "term-overfitting",
+        "overfitting": "term-overfitting"
+      },
+      "leadsTo": "cv-intro"
+    },
+    {
+      "id": "cv-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "那怎么诚实地评估你的模型？{交叉验证}。做法是这样的：把你的数据分成五份，用其中四份训练模型，用剩下的一份测试。然后换一份来做测试集，重复五次。最后取五次测试结果的平均。这样，模型永远是在它没见过的数据上被评估的。",
+        "en": "So how do you honestly evaluate your model? {Cross-validation}. Here's how: divide your data into five parts, train on four, test on the remaining one. Then rotate which part is the test set, repeating five times. Finally, take the average of five test results. This way, the model is always evaluated on data it hasn't seen."
+      },
+      "terms": {
+        "交叉验证": "term-cross-validation",
+        "Cross-validation": "term-cross-validation"
+      },
+      "leadsTo": "cv-result"
+    },
+    {
+      "id": "cv-result",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "回到那个例子——训练集上准确率95%的模型，交叉验证一做，可能只有78%。那17个百分点的差距就是过拟合的程度。78%才是你应该相信的数字，因为它来自模型从未见过的数据。",
+        "en": "Back to that example — the model with 95% accuracy on training data, after cross-validation, might only hit 78%. That 17-percentage-point gap is the degree of overfitting. 78% is the number you should trust, because it comes from data the model has never seen."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么交叉验证比简单地把数据分成「训练集」和「测试集」更好？",
+        "en": "Why is cross-validation better than simply splitting data into a 「training set」 and a 「test set」?"
+      },
+      "choices": [
+        {
+          "id": "uses-all-data",
+          "text": {
+            "zh": "因为所有数据都既被用来训练又被用来测试，数据利用率更高",
+            "en": "Because all data is used for both training and testing, maximizing data utilization"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说到点子上了。在数据有限的情况下，现实中几乎总是如此，你不想浪费任何数据。简单拆分的话，如果你留20%做测试，那训练模型的时候就少了20%的数据。而五折交叉验证每次都用了80%的数据来训练，最终每一个样本都被测试过一次。效率最大化。",
+              "en": "Right on point. When data is limited — which is almost always the case in reality — you don't want to waste any of it. With a simple split, if you hold out 20% for testing, you have 20% less data for training. With five-fold cross-validation, each round uses 80% of data for training, and ultimately every single sample gets tested once. Maximum efficiency."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "more-reliable",
+          "text": {
+            "zh": "因为单次拆分的结果可能不稳定——换一种拆法可能结果很不同",
+            "en": "Because a single split's result might be unreliable — a different split might give very different results"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确。一次随机拆分可能运气好，测试集恰好包含容易预测的样本；也可能运气差。你得到的评估结果有很大的随机性。交叉验证通过多次拆分取平均，消除了这种随机性。五个不同的测试结果的平均值，比任何单一的测试结果都更可信。这跟bagging的原理一样，都是通过平均来减少方差。",
+              "en": "Exactly right. A single random split might be lucky — the test set happens to contain easy-to-predict samples — or unlucky. Your evaluation has a lot of randomness. Cross-validation eliminates this randomness by averaging across multiple splits. The average of five different test results is more trustworthy than any single test result. It's the same principle as bagging — averaging reduces variance."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "detects-overfitting",
+          "text": {
+            "zh": "因为交叉验证能更好地检测过拟合",
+            "en": "Because cross-validation is better at detecting overfitting"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是对的，但值得更精确一些。简单的训练-测试拆分也能检测过拟合——只要你不偷看测试集。交叉验证更好的原因有两个：第一，它用到了所有数据，评估更高效；第二，多次拆分取平均让评估结果更稳定可靠。一句话：交叉验证给你一个更准确、更可信的性能估计。",
+              "en": "That's correct, but worth being more precise. A simple train-test split can also detect overfitting — as long as you don't peek at the test set. Cross-validation is better for two reasons: first, it uses all data, making evaluation more efficient; second, averaging across multiple splits makes the estimate more stable and reliable. In a nutshell: cross-validation gives you a more accurate, more trustworthy performance estimate."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在我的咨询生涯中，我经常说一句话：如果一个模型预测得好，我不在乎它长什么样。但反过来，如果你不能诚实地评估一个模型预测得好不好，那一切都是空谈。交叉验证就是诚实评估的基石。",
+        "en": "In my consulting career, I often said: if a model predicts well, I don't care what it looks like. But conversely, if you can't honestly evaluate whether a model predicts well, everything is empty talk. Cross-validation is the cornerstone of honest evaluation."
+      },
+      "leadsTo": "practical-wisdom"
+    },
+    {
+      "id": "practical-wisdom",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我分享几条实战经验。第一：在做特征工程之前，先看数据。真正地看——画图、算统计量、找异常值。很多问题在看数据的过程中就有了答案。第二：简单的特征往往比复杂的特征更有用。不要为了花哨而创造特征。第三：永远不要在没有做交叉验证的情况下相信任何模型的性能数字。",
+        "en": "Let me share a few lessons from the field. First: before doing feature engineering, look at the data. Really look — plot graphs, compute statistics, find outliers. Many problems reveal answers during data exploration. Second: simple features are often more useful than complex ones. Don't create features for the sake of being fancy. Third: never trust any model's performance numbers without cross-validation."
+      },
+      "leadsTo": "fe-cv-note"
+    },
+    {
+      "id": "fe-cv-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "特征工程：将原始数据转化为有意义的特征，需要领域知识和创造力。好的特征比好的算法更重要。交叉验证：将数据分成k份，轮流测试，确保模型在未见过的数据上被评估。训练集上的准确率不可信——交叉验证给出的才是真实性能。",
+        "en": "Feature engineering: transforming raw data into meaningful features, requiring domain knowledge and creativity. Good features matter more than good algorithms. Cross-validation: divide data into k folds, rotate testing, ensuring the model is evaluated on unseen data. Training set accuracy is untrustworthy — cross-validation gives the true performance."
+      },
+      "category": "core-concept",
+      "leadsTo": "teaser"
+    },
+    {
+      "id": "teaser",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（收起投影片）今天我们聊的是算法的前提和保障。下节课，也是最后一节课，我想跟你们聊一个更大的话题。统计学界有两种文化，两种截然不同的思维方式。我认为大多数学者走错了路。这是一个会得罪人的观点，但该说的话，我从来不怕说。",
+        "en": "(Puts away the slides) Today we talked about the prerequisites and safeguards of algorithms, not algorithms themselves. Next class — our last one — I want to discuss something bigger. The statistics community has two cultures, two fundamentally different ways of thinking. I believe most academics took the wrong path. It's an opinion that will offend people, but I've never been afraid to say what needs to be said."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "布雷曼教授关掉投影仪，把打印的案例材料留在了讲台上。「拿去看看，有兴趣的话，」他说。你拿起那份零售数据的案例报告翻了翻，上面密密麻麻地标注着各种特征的计算公式。你开始理解为什么他说实践比理论重要。真实世界的数据，从来不像教科书里那么干净整齐。",
+        "en": "Professor Breiman turns off the projector and leaves the printed case materials on the lectern — 「Take a look if you're interested, he says. You pick up the retail data case report and flip through it, finding it densely annotated with formulas for various features. You begin to understand why he says practice matters more than theory — because real-world data is never as clean and tidy as it appears in textbooks."
+      }
+    }
+  ]
+}

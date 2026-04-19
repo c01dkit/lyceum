@@ -1,0 +1,311 @@
+{
+  "id": "lesson-05",
+  "course": "bayesian-reasoning",
+  "title": {
+    "zh": "因果推理的阶梯",
+    "en": "The Ladder of Causation"
+  },
+  "knowledgePoint": {
+    "zh": "因果推理包含三个层次：观察、干预与反事实。此外，还有do-算子的基本思想。",
+    "en": "Three levels of causal reasoning — observation, intervention, and counterfactual — and the basic idea of do-calculus"
+  },
+  "teacher": "prof-pearl",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你看着笔记本上画的那座三级阶梯，上面分别写着观察、干预、想象，每一级都写满了注解。Pearl教授拿粉笔在黑板上画梯子的情景又清晰起来……",
+    "en": "You look at the three-level ladder drawn in your notebook — seeing, doing, imagining — each level filled with annotations. The scene of Prof. Pearl drawing a ladder on the blackboard in chalk comes sharply into focus..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，目光落在窗外。三个层次的推理像是三面不同的镜子，每一面映照出世界不同深度的结构。最高一级是想象，这仿佛是人类思维最独特的天赋。",
+    "en": "You close your notebook and gaze out the window. The three levels of reasoning are like three different mirrors, each reflecting the world's structure at a different depth. The highest level — imagining — seems to be the most unique gift of human thought."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "Pearl教授走进教室时，径直走到黑板前，画了一个简单的图形：三级台阶，从低到高。他在每一级旁边各写了一个词，然后退后一步，像欣赏一幅画一样注视着它。",
+        "en": "Prof. Pearl walks into the classroom and goes straight to the blackboard, drawing a simple figure: three ascending steps. He writes one word beside each level, then steps back to study it as if admiring a painting."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指着三级阶梯）\n\n上一课我们看到了{相关性}和{因果性}之间的鸿沟。今天我要给你们一张地图，帮你们理解这道鸿沟究竟有多深。我把因果推理分成三个层次，像一座阶梯。每上一级，你就获得一种更强大的推理能力。而目前的人工智能，大部分还停留在最底层。",
+        "en": "(Pointing at the three steps)\n\nLast class we saw the chasm between {correlation} and {causation}. Today I'll give you a map to understand just how deep that chasm goes. I divide causal reasoning into three levels, like a ladder. Each step up grants you a more powerful form of reasoning. And most of today's artificial intelligence is still stuck on the bottom rung."
+      },
+      "terms": {
+        "相关性": "term-correlation",
+        "correlation": "term-correlation",
+        "因果性": "term-causation",
+        "causation": "term-causation"
+      },
+      "leadsTo": "level-one"
+    },
+    {
+      "id": "level-one",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一层：观察。这一层回答的问题是「世界是怎样的？」你看到数据，发现模式。服药的人活得更久。买有机食品的人更健康。这些都是观察到的关联。几乎所有的统计分析和机器学习都在这一层运作——寻找变量之间的{相关性}。",
+        "en": "Level one: seeing. The question at this level is 「What is the world like?」 You look at data, find patterns. People who take the drug live longer. People who buy organic food are healthier. These are observed associations. Almost all statistical analysis and machine learning operates at this level — finding {correlation} among variables."
+      },
+      "terms": {
+        "相关性": "term-correlation",
+        "correlation": "term-correlation"
+      },
+      "leadsTo": "level-two"
+    },
+    {
+      "id": "level-two",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第二层：{干预}。这一层回答的问题是「如果我做了某件事，会怎样？」这跟观察完全不同。观察到「服药的人活得更久」，并不意味着「如果我给某个病人服药，他就会活得更久」。也许服药的人本来就更健康、更有健康意识。{干预}意味着主动改变一个变量，然后观察结果——打破自然的相关性，制造人为的因果。",
+        "en": "Level two: {intervention}. The question here is 「What if I do something?」 This is entirely different from observing. Observing that 「people who take the drug live longer」 does not mean 「if I give this patient the drug, they'll live longer」. Perhaps those who take the drug were already healthier and more health-conscious. Intervention means actively changing a variable and observing the result — breaking natural correlations to create artificial causation."
+      },
+      "terms": {
+        "干预": "term-intervention",
+        "intervention": "term-intervention"
+      },
+      "leadsTo": "do-operator"
+    },
+    {
+      "id": "do-operator",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为了区分「观察到X发生」和「人为让X发生」，我发明了一个数学符号{do-算子}，写作do(X=x)。它的意思是，我们主动把X设置为某个值。在因果图中，这意味着切断所有指向X的箭头，因为X的值现在由我们决定，不再受其自然原因的影响。",
+        "en": "To distinguish 「observing that X happens」 from 「making X happen, I invented a mathematical notation — the {do-calculus}. Written as do(X=x). It means: we're not passively observing the value of X, but actively setting X to a certain value. In the causal graph, this means severing all arrows pointing into X — because X's value is now decided by us, no longer influenced by its natural causes."
+      },
+      "terms": {
+        "do-算子": "term-do-calculus",
+        "do-calculus": "term-do-calculus"
+      },
+      "leadsTo": "do-example"
+    },
+    {
+      "id": "do-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "回到辛普森悖论的例子。如果我们观察到服药的人康复率更低，也许是因为病情更严重的人更倾向于服药。但如果我们进行{干预}，比如随机分配一些人服药、另一些人不服药，就能切断「病情严重程度」对「是否服药」的影响。这时候看到的差异，才是药物的真实因果效应。{do-算子}让我们在数学上精确地表达这种区别。",
+        "en": "Back to the Simpson's paradox example. If we observe that drug-takers have lower recovery rates, perhaps it's because sicker people are more inclined to take the drug. But if we perform an {intervention} — randomly assign some people to take the drug and others not to — we sever the influence of 「severity of illness」 on 「whether to take the drug」. The difference we see then is the drug's true causal effect. The {do-calculus} lets us express this distinction with mathematical precision."
+      },
+      "terms": {
+        "干预": "term-intervention",
+        "intervention": "term-intervention",
+        "do-算子": "term-do-calculus",
+        "do-calculus": "term-do-calculus"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "以下哪些问题属于第一层（观察），哪些属于第二层（干预）？\n\n(A) 吸烟的人肺癌发生率是多少？\n(B) 如果我们让一个人开始吸烟，他患肺癌的概率会增加多少？\n(C) 受过大学教育的人收入更高吗？",
+        "en": "Which of the following questions belong to Level 1 (seeing), and which to Level 2 (doing)?\n\n(A) What is the lung cancer rate among smokers?\n(B) If we make someone start smoking, how much does their lung cancer probability increase?\n(C) Do people with college education earn higher incomes?"
+      },
+      "choices": [
+        {
+          "id": "a-c-level1-b-level2",
+          "text": {
+            "zh": "A和C是观察层，B是干预层",
+            "en": "A and C are observation level, B is intervention level"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！A和C只需要查看数据就能回答，比如吸烟者的肺癌率是多少，或者大学毕业生的收入是多少。这些都是第一层的问题。但B问的是「如果我们让人吸烟会怎样」，这是一个干预问题。也许吸烟者本来就有某些共同特征，导致他们更容易患肺癌。只有干预才能排除这种可能性。",
+              "en": "Exactly right! A and C can be answered just by looking at the data — what's the lung cancer rate among smokers? What's the income of college graduates? These are Level 1 questions. But B asks 「what happens if we make someone smoke」 — that's an intervention question. Perhaps smokers already share certain characteristics that make them more susceptible to lung cancer. Only intervention can rule out that possibility."
+            }
+          },
+          "leadsTo": "level-three"
+        },
+        {
+          "id": "all-observation",
+          "text": {
+            "zh": "它们都是观察层——都可以通过数据来回答",
+            "en": "They're all observation level — all can be answered with data"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "A和C确实可以从数据中直接回答。但仔细看看B——它用了「让一个人开始吸烟」这个表述。这意味着主动改变，而非被动观察。你不能通过观察自然吸烟的人来回答这个问题，因为那些选择吸烟的人可能在其他方面也与不吸烟的人不同。B需要{干预}的思维框架。这就是第一层和第二层之间的微妙而关键的区别。",
+              "en": "A and C can indeed be answered directly from data. But look closely at B — it uses the phrase 「make someone start smoking」. That implies active change, not passive observation. You can't answer this by observing natural smokers, because people who choose to smoke might differ in other ways from non-smokers. B requires an {intervention} framework. This is the subtle yet crucial distinction between Level 1 and Level 2."
+            }
+          },
+          "leadsTo": "level-three"
+        },
+        {
+          "id": "all-different",
+          "text": {
+            "zh": "A是观察，B是干预，C其实也涉及干预（教育是否导致高收入？）",
+            "en": "A is observation, B is intervention, C actually involves intervention too (does education cause higher income?)"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你的思考很敏锐。C的原始问题「受过大学教育的人收入更高吗」，只需要观察就能回答，所以它是第一层。但你察觉到这个问题背后隐藏着一个第二层问题：「如果我们让一个人去上大学，他的收入会因此提高吗？」观察到的差异，可能是因为能上大学的人本来就更聪明或家境更好。你已经开始像因果推理者一样思考了。",
+              "en": "Sharp thinking. C's original question — 「do college-educated people earn more?」 — only requires observation, making it Level 1. But you've sensed the Level 2 question hiding behind it: 「if we send someone to college, will their income increase because of it?」 The observed difference might exist because people who go to college are already smarter or come from wealthier backgrounds. You're already starting to think like a causal reasoner."
+            }
+          },
+          "leadsTo": "level-three"
+        }
+      ]
+    },
+    {
+      "id": "level-three",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在我们来到阶梯的最高一级——第三层：想象。这一层回答的问题是「如果当初做了不同的选择，会怎样？」这就是反事实推理。一个病人去世了。医生问自己：如果当时选择了手术而不是保守治疗，他还会去世吗？这个问题之所以特殊，是因为它涉及一个从未发生过的事件。",
+        "en": "Now we reach the top of the ladder — Level 3: imagining. The question at this level is 「What if things had been different?」 This is counterfactual reasoning. A patient has died. The doctor asks: if we had chosen surgery instead of conservative treatment, would the patient still have died? This question is special because it involves an event that never actually occurred."
+      },
+      "leadsTo": "counterfactual-depth"
+    },
+    {
+      "id": "counterfactual-depth",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "反事实推理需要的能力远超前两层。你需要一个关于世界如何运作的模型——足够详细的模型，以至于你能在脑中「改写历史」并推演出另一种结果。这不仅仅是统计，这是想象力。我相信，这种想象力是人类认知最独特的能力之一。",
+        "en": "Counterfactual reasoning demands capabilities far beyond the first two levels. You need a model of how the world works — detailed enough that you can 「rewrite history」 in your mind and deduce an alternative outcome. This isn't just statistics; it's imagination. I believe this kind of imagination is one of the most unique capabilities of human cognition."
+      },
+      "leadsTo": "three-levels-summary"
+    },
+    {
+      "id": "three-levels-summary",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把三个层次总结一下。第一层，观察：「服药的人更长寿吗？」第二层，{干预}：「如果我给这个病人服药，他会更长寿吗？」第三层，反事实：「如果当初给了他药，他还会去世吗？」每一层都建立在前一层的基础上，但需要全新的信息和推理工具。",
+        "en": "Let me summarize the three levels. Level 1, seeing: 「Do people who take the drug live longer?」 Level 2, {intervention}: 「If I give this patient the drug, will they live longer?」 Level 3, counterfactual: 「If we had given them the drug, would they still have died?」 Each level builds on the one below, but requires entirely new information and reasoning tools."
+      },
+      "terms": {
+        "干预": "term-intervention",
+        "intervention": "term-intervention"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "因果推理的三级阶梯：\n- 第一层（观察/关联）：世界是怎样的？数据中的模式。\n- 第二层（干预/do-算子）：如果我做了X会怎样？需要因果模型，切断自然关联。\n- 第三层（反事实/想象）：如果当初做了不同的选择会怎样？需要完整的因果模型来「改写历史」。\n当前大多数AI停留在第一层。",
+        "en": "Ladder of causation:\n- Level 1 (Seeing/association): What is? Patterns in data.\n- Level 2 (Doing/do-calculus): What if I do X? Requires causal model, severing natural associations.\n- Level 3 (Imagining/counterfactual): What if I had done differently? Requires a complete causal model to 「rewrite history」.\nMost current AI remains at Level 1."
+      },
+      "category": "core-concept",
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么我们不能用第一层（观察）的数据来回答第二层（干预）的问题？",
+        "en": "Why can't we use Level 1 (observation) data to answer Level 2 (intervention) questions?"
+      },
+      "choices": [
+        {
+          "id": "confounders-problem",
+          "text": {
+            "zh": "因为观察数据中可能存在混杂因素，扭曲了变量之间的真实因果关系",
+            "en": "Because observational data may contain confounders that distort the true causal relationships"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "正是如此。当你被动观察时，所有的{混杂因素}都在暗中影响着数据。买有机食品的人更健康，也许是因为买得起有机食品的人通常收入更高、医疗条件更好。观察数据中，「有机食品」和「健康」之间的关联混合了多种因素的效应。{干预}通过切断混杂因素的影响，让我们看到纯粹的因果效应。",
+              "en": "Precisely. When you passively observe, all the {confounding} variables are secretly influencing the data. People who buy organic food are healthier — perhaps not because organic food is better, but because people who can afford organic food usually have higher incomes and better healthcare. In observational data, the association between 「organic food」 and 「health」 mixes the effects of multiple factors. {Intervention} severs confounders' influence, letting us see the pure causal effect."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "different-questions",
+          "text": {
+            "zh": "因为「观察到X发生」和「主动让X发生」是完全不同的操作，对应不同的概率分布",
+            "en": "Because 「observing X happen」 and 「making X happen」 are fundamentally different operations with different probability distributions"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得非常准确。P(Y|X=x)是观察到X时Y的概率，而P(Y|do(X=x))是让X发生时Y的概率。它们是两个不同的数学对象，可以相等，但通常不会。{do-算子}的发明，正是为了在数学上捕捉这种区别。在没有混杂因素的情况下，两者可以一致；但只要存在混杂，它们就会分道扬镳。",
+              "en": "Very precisely stated. P(Y|X=x) — the probability of Y when X is observed — and P(Y|do(X=x)) — the probability of Y when X is made to happen — are two different mathematical objects. They can be equal, but usually aren't. The {do-calculus} was invented precisely to capture this distinction mathematically. Without confounders, the two can coincide; but whenever confounding exists, they diverge."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "self-selection",
+          "text": {
+            "zh": "因为在观察数据中，人们会自己选择行为——这种自我选择本身就引入了偏差",
+            "en": "Because in observational data, people self-select their behaviors — and this self-selection introduces bias"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你抓住了一个非常实际的原因。自我选择偏差是{混杂因素}最常见的表现形式之一。选择吸烟的人和不吸烟的人在很多方面可能本来就不同，比如性格、生活习惯、社会环境。如果我们能随机「分配」谁吸烟（当然这在伦理上不可行），就能消除自我选择的影响。{do-算子}在数学上所做的，正是模拟这样一个不受自我选择影响的世界。",
+              "en": "You've grasped a very practical reason. Self-selection bias is one of the most common manifestations of {confounding}. People who choose to smoke may already differ from non-smokers in many ways — personality, lifestyle, social environment. If we randomly 「assigned」 who smokes — ethically impossible, of course — we'd eliminate self-selection effects. The {do-calculus} does exactly this mathematically: it simulates a world free from self-selection."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我发明{do-算子}和{因果推理}的理论框架，就是希望有一天，机器也能攀上这座阶梯。如果一台机器只能处理关联，停留在「这些像素通常跟猫一起出现」的层面，它永远不能真正理解世界。然而，如果它能推理干预和反事实，它就能回答「如果我开灯，猫会跑吗？」甚至「如果我当初没关门，猫还会在家吗？」",
+        "en": "I developed the {do-calculus} and the theoretical framework of {causal inference} in the hope that one day, machines can climb this ladder too. If a machine can only process associations — 「these pixels usually appear with cats」 — it can never truly understand the world. But if it can reason about interventions and counterfactuals, it could answer 「if I turn on the light, will the cat run?」 or even 「if I hadn't closed the door, would the cat still be home?」"
+      },
+      "terms": {
+        "do-算子": "term-do-calculus",
+        "do-calculus": "term-do-calculus",
+        "因果推理": "term-causal-inference",
+        "causal inference": "term-causal-inference"
+      },
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我们已经走了很远——从{贝叶斯定理}到{贝叶斯网络}，从{信念传播}到因果阶梯。下一课是最后一课。我想和你们聊一个更大的问题：概率推理和因果推理，能够捕捉人类智能的本质吗？机器有一天能够真正「理解」这个世界吗？让我们一起来思考这个问题。",
+        "en": "We've come a long way — from {Bayes' theorem} to {Bayesian networks}, from {belief propagation} to the ladder of causation. Next class is the last one. I want to discuss a bigger question with you: can probabilistic and causal reasoning capture the essence of human intelligence? Could machines one day truly 「understand」 the world? Let's think about that together."
+      },
+      "terms": {
+        "贝叶斯定理": "term-bayes-theorem",
+        "Bayes' theorem": "term-bayes-theorem",
+        "贝叶斯网络": "term-bayesian-network",
+        "Bayesian networks": "term-bayesian-network",
+        "信念传播": "term-belief-propagation",
+        "belief propagation": "term-belief-propagation"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "Pearl教授在黑板上的阶梯旁写下一个大大的问号。他的目光从那三级台阶上缓缓移开，望向窗外。你收起笔记本，心中回味着那三个层次——看到、做到、想到。每一级之间的跳跃都如此巨大，仿佛是不同的宇宙。而你刚刚站在了第三级的门口。",
+        "en": "Prof. Pearl writes a large question mark beside the ladder on the blackboard. His gaze slowly drifts from the three steps to the window beyond. You put away your notebook, savoring those three levels — seeing, doing, imagining. The leap between each level feels immense, as if they belong to different universes. And you've just arrived at the threshold of the third."
+      }
+    }
+  ]
+}

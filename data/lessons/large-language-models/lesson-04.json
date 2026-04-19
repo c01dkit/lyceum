@@ -1,0 +1,349 @@
+{
+  "id": "lesson-04",
+  "course": "large-language-models",
+  "title": {
+    "zh": "涌现能力",
+    "en": "Emergent Abilities"
+  },
+  "knowledgePoint": {
+    "zh": "在规模上突然出现的能力——上下文学习、少样本学习与推理的涌现",
+    "en": "Abilities that appear suddenly at scale — in-context learning, few-shot, and reasoning emergence"
+  },
+  "teacher": "prof-sutskever",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回那片金色与深蓝交织的空间。苏茨克维教授站在两组光球之间——左边是一组暗淡的小球，右边是一颗耀眼的大球。他指着左边的小球说：「它们什么都做不到。」然后指着右边的大球：「但它突然就能了。这中间发生了什么？」",
+    "en": "You close your eyes, and your thoughts drift back to that space woven of gold and deep blue. Prof. Sutskever stands between two groups of light spheres — on the left, a cluster of dim small spheres; on the right, one dazzling large sphere. He points to the small ones: 「They can't do anything」. Then points to the large one: 「But it suddenly can. What happened in between?」"
+  },
+  "recallOutro": {
+    "zh": "你回过神来。涌现的概念在脑海中盘旋——那些在小模型中完全不存在、却在大模型中突然出现的能力。它们像是从量变中凭空跳出的质变，挑战着我们对「学习」的理解。也许智能本身就是某种涌现现象。",
+    "en": "You return to the present. The concept of emergence spirals in your mind — those abilities completely absent in small models yet suddenly appearing in large ones. They're like qualitative leaps springing from quantitative change, challenging our understanding of 「learning」. Perhaps intelligence itself is a kind of emergent phenomenon."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的空间发生了奇妙的变化。全息投影显示着一条折线图，横轴是模型规模（从小到大），纵轴是某种任务的准确率。折线在很长一段距离内几乎贴着零，然后在某个点突然急剧上升，像是一面陡峭的悬崖。苏茨克维教授走进来时，目光直接锁定在那个急剧上升的转折点上。他的眼中有一种难以名状的光，既像兴奋，又像敬畏。",
+        "en": "Today the space has undergone a wondrous transformation. The holographic projection shows a line graph — the horizontal axis is model scale (small to large), the vertical axis is accuracy on some task. The line hugs near zero for a long stretch, then at a certain point shoots up sharply, like a steep cliff. When Prof. Sutskever walks in, his gaze locks directly on that sharp inflection point. There's an indescribable light in his eyes — part excitement, part awe."
+      },
+      "leadsTo": "scaling-recap"
+    },
+    {
+      "id": "scaling-recap",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们讨论了缩放定律，它描述了性能如何随着规模平滑地、可预测地增长。但今天我要告诉你们一个缩放定律没有预料到的现象。有些能力并非平滑增长，它们在小模型中完全不存在，直到模型达到某个规模后，才突然出现。这就像水在99度时还是液体，到了100度却突然变成了蒸汽。",
+        "en": "Last lesson we discussed scaling laws — performance grows smoothly and predictably with scale. But today I'm going to tell you about a phenomenon that scaling laws didn't anticipate. Some abilities don't grow smoothly — they're completely absent in small models, then suddenly appear when the model reaches a certain scale. Like water that's still liquid at 99 degrees but suddenly becomes steam at 100."
+      },
+      "leadsTo": "emergence-define"
+    },
+    {
+      "id": "emergence-define",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这种现象被称为{涌现能力}。Wei等人在2022年的论文中系统地记录了这些现象：在模型参数达到某个阈值之前，某些任务的表现和随机猜测差不多；一旦越过这个阈值，性能突然跳升到远超随机的水平。这种跳跃式的变化，是缩放定律的平滑曲线无法解释的。",
+        "en": "This phenomenon is called {emergent abilities}. Wei et al. systematically documented these in their 2022 paper: before model parameters reach a certain threshold, performance on certain tasks is no better than random guessing; once the threshold is crossed, performance suddenly jumps to levels far above random. This discontinuous change cannot be explained by scaling laws' smooth curves."
+      },
+      "terms": {
+        "涌现能力": "term-emergent-ability",
+        "emergent abilities": "term-emergent-ability"
+      },
+      "leadsTo": "icl-intro"
+    },
+    {
+      "id": "icl-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们看最惊人的涌现能力之一：{上下文学习}。想象一下，你给模型看几个例子：「快乐→positive，悲伤→negative，愤怒→negative」。然后你问它：「兴奋→?」。模型回答：「positive」。它做对了。关键在于，你没有修改模型的任何参数，也没有做任何训练。它只是「看」了几个例子，就学会了这个任务。",
+        "en": "Let me show you one of the most astonishing emergent abilities: {in-context learning}. Imagine — you show the model a few examples: 「happy→positive, sad→negative, angry→negative」. Then you ask: 「excited→?」 The model answers: 「positive」. It got it right. But the key point is — you didn't modify any of the model's parameters, didn't do any training. It just 「saw」 a few examples and learned the task."
+      },
+      "terms": {
+        "上下文学习": "term-in-context-learning",
+        "in-context learning": "term-in-context-learning"
+      },
+      "leadsTo": "icl-mystery"
+    },
+    {
+      "id": "icl-mystery",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这太不可思议了。传统的机器学习告诉我们：模型要学会新任务，必须通过梯度下降更新参数。但上下文学习完全跳过了这一步——模型在推理时就学会了新任务，没有任何参数变化。小模型完全做不到这一点。只有当模型足够大时，这种能力才突然涌现。至今没有人能完全解释为什么。",
+        "en": "This is incredible. Traditional machine learning tells us: for a model to learn a new task, it must update parameters through gradient descent. But in-context learning completely skips this step — the model learns new tasks during inference, with no parameter changes whatsoever. Small models cannot do this at all. Only when the model is large enough does this ability suddenly emerge. To this day, no one can fully explain why."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "上下文学习意味着模型无需训练就能学会新任务——只要你给它看几个例子。你觉得模型是怎么做到这一点的？",
+        "en": "In-context learning means the model can learn new tasks without training — just by seeing a few examples. How do you think the model achieves this?"
+      },
+      "choices": [
+        {
+          "id": "implicit-algorithm",
+          "text": {
+            "zh": "也许模型在预训练时学会了某种「学习算法」——它学会了如何从例子中提取规律",
+            "en": "Perhaps during pre-training the model learned some kind of 「learning algorithm」 — it learned how to extract patterns from examples"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是目前最有影响力的假说之一。有研究者发现，Transformer在处理上下文中的例子时，内部的注意力机制实际上在执行某种隐式的梯度下降，也就是说，模型在前向传播的过程中，就在「学习」。它没有显式地更新参数，但它的计算过程本身就包含了一个隐式的学习算法。这个发现让很多人重新思考「学习」的定义。",
+              "en": "That's one of the most influential hypotheses currently. Researchers have found that when the Transformer processes examples in context, the internal attention mechanism is effectively performing a kind of implicit gradient descent — meaning the model is 「learning」 during the forward pass itself. It doesn't explicitly update parameters, but its computation process itself contains an implicit learning algorithm. This discovery has made many people rethink the definition of 「learning」."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "pattern-matching",
+          "text": {
+            "zh": "它可能在预训练中见过类似的任务模式——上下文学习只是在匹配已经见过的模式",
+            "en": "It may have seen similar task patterns during pre-training — in-context learning is just matching patterns it's already seen"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这种解释有一定道理。互联网上的文本确实包含了很多「示例→回答」的模式。但如果只是简单的模式匹配，模型应该很难处理那些在训练数据中从未出现过的全新任务格式。然而实验表明，大模型确实可以处理它从未见过的新任务，前提是给它合适的例子。这背后，恐怕有某种更深层的能力在起作用。",
+              "en": "That explanation has some merit — internet text does contain many 「example→answer」 patterns. But if it were simple pattern matching, the model shouldn't be able to handle entirely new task formats never seen in training data. Experiments show that large models can handle novel tasks they never saw during training — as long as you give them appropriate examples. This suggests something deeper is at work."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "world-model",
+          "text": {
+            "zh": "也许足够大的模型已经建立了某种世界模型——上下文学习只是这个模型的一种表现",
+            "en": "Perhaps a sufficiently large model has built some kind of world model — in-context learning is just one manifestation of it"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "你说出了我内心深处的想法。我相信大模型在预训练过程中确实建立了某种对世界的内部表征，它学会了因果关系、类别结构、抽象推理。上下文学习只是这种深层理解的一个外在表现。模型并非真的在「学习新任务」，它其实是在利用已经建立的世界模型来解释新的输入模式。如果这是对的，那么规模带来的好处，就远不止是「更好的预测」那么简单了。",
+              "en": "You've spoken what's deep in my heart. I believe large models during pre-training do build some kind of internal representation of the world — learning causality, category structure, abstract reasoning. In-context learning is just an outward manifestation of this deep understanding. The model isn't 「learning a new task」 — it's using an already-built world model to interpret new input patterns. If this is right, then scale brings far more than 「better prediction」."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上下文学习有几种形式。最简单的是{少样本学习}，也就是给模型看几个例子，然后让它处理新的输入。更极端的是零样本学习，这时你什么例子都不给，只用自然语言描述任务，模型就能执行。GPT-3在这两种设置下都展示了惊人的能力。",
+        "en": "In-context learning comes in several forms. The simplest is {few-shot learning} — show the model a few examples, then have it process new input. More extreme is zero-shot — you give no examples at all, just describe the task in natural language, and the model can execute it. GPT-3 demonstrated astonishing abilities in both settings."
+      },
+      "terms": {
+        "少样本学习": "term-few-shot-learning",
+        "few-shot learning": "term-few-shot-learning"
+      },
+      "leadsTo": "reasoning-emergence"
+    },
+    {
+      "id": "reasoning-emergence",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但更让我着迷的是推理能力的涌现。小模型在面对数学题或逻辑题时几乎是随机猜测。然而，当模型规模达到一定程度，大约在1000亿参数左右时，推理能力突然开始显现。模型可以做简单的数学运算、回答需要多步推理的问题，甚至理解隐喻和讽刺。",
+        "en": "But what fascinates me even more is the emergence of reasoning abilities. Small models faced with math or logic problems are essentially guessing randomly. But when model scale reaches a certain level — around 100 billion parameters — reasoning ability suddenly begins to appear. Models can do simple arithmetic, answer questions requiring multi-step reasoning, even understand metaphor and sarcasm."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "涌现能力，比如上下文学习、零样本能力和推理，在小模型中完全不存在，却在大模型中突然出现。你觉得这种「突然出现」的现象应该怎么理解？",
+        "en": "Emergent abilities — in-context learning, zero-shot capability, reasoning — are completely absent in small models but suddenly appear in large ones. How should we understand this 「sudden appearance」?"
+      },
+      "choices": [
+        {
+          "id": "phase-transition",
+          "text": {
+            "zh": "像物理学中的相变——量变积累到某个临界点后引发质变",
+            "en": "Like phase transitions in physics — quantitative accumulation reaches a critical point and triggers qualitative change"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "相变的类比非常有启发性。水从液态变成气态是一个相变——在100度之前什么都没发生，到了100度突然一切都变了。也许大模型中的涌现也是类似的：某些能力需要模型内部的表征达到一定的「复杂度阈值」，在此之下完全不起作用，在此之上突然生效。但我们还不完全理解这个阈值是什么。",
+              "en": "The phase transition analogy is very illuminating. Water going from liquid to gas is a phase transition — nothing happens before 100 degrees, then at 100 everything changes. Perhaps emergence in large models is similar: certain abilities need the model's internal representations to reach a 「complexity threshold, below which they don't work at all, above which they suddenly kick in. But we don't fully understand what this threshold is."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "measurement-artifact",
+          "text": {
+            "zh": "也许能力一直在增长，只是我们衡量的方式让它看起来像突然出现，比如用准确率来衡量「全对或全错」的任务",
+            "en": "Maybe the ability was growing all along, but our measurement makes it look sudden — like measuring accuracy on 「all-or-nothing」 tasks"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微一笑）这是一个非常犀利的质疑，而且有学者确实提出了类似的论点。如果一个任务需要做对五个步骤才能得分，那模型在每个步骤的能力可能是平滑增长的，但综合准确率会呈现「阶跃式」上升的假象。这个观点提醒我们要谨慎地解读涌现现象。但即使考虑到度量方式的影响，大模型展现出的某些能力仍然是小模型完全没有的——这一点很难用度量偏差来完全解释。",
+              "en": "(Smiles slightly) That's a very sharp challenge, and scholars have indeed raised similar arguments. If a task requires getting five steps right to score, the model's ability at each step may grow smoothly, but the overall accuracy would show an illusory 「step-function」 rise. This view reminds us to interpret emergence cautiously. But even accounting for measurement effects, certain abilities large models demonstrate are completely absent in small ones — that's hard to fully explain with measurement bias."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "compositionality",
+          "text": {
+            "zh": "也许复杂能力是由简单能力组合而成的——只有当足够多的简单能力同时达标时，复杂能力才能涌现",
+            "en": "Maybe complex abilities are composed of simple ones — complex abilities emerge only when enough simple abilities simultaneously reach threshold"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个假说非常优雅。想象推理能力需要三种子能力的组合：理解语言、追踪逻辑关系、进行数学运算。每种子能力都在随规模平滑增长。但推理只有在三种子能力都超过某个最低门槛时才能工作。这就像三把锁的保险箱——你需要三把钥匙同时到位才能打开。这种组合效应可以解释为什么涌现看起来像突然出现的：各个子能力在独立进步，直到最后一个达标，整体能力才「啪」的一下解锁。",
+              "en": "That hypothesis is very elegant. Imagine reasoning ability requires the combination of three sub-abilities: language understanding, logical tracking, and arithmetic. Each sub-ability grows smoothly with scale. But reasoning only works when all three exceed some minimum threshold. It's like a safe with three locks — you need all three keys in place simultaneously to open it. This combinatorial effect can explain why emergence looks sudden: individual sub-abilities progress independently until the last one reaches threshold, and the overall capability 「clicks」 unlocked."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管涌现的机制是什么，它的实际影响是巨大的。涌现意味着你不能通过小模型来预测大模型的能力。你训练了一个100亿参数的模型，发现它不能做推理——这并不意味着1000亿参数的模型也不能。你只有实际训练出来，才能知道。",
+        "en": "Whatever the mechanism of emergence, its practical impact is enormous. Emergence means you cannot predict a large model's abilities from a small model. You train a 10-billion parameter model and find it can't reason — that doesn't mean a 100-billion parameter model can't either. You have to actually train it to find out."
+      },
+      "leadsTo": "mystery-reflection"
+    },
+    {
+      "id": "mystery-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我相信涌现现象告诉我们一些关于智能本质的深刻真理。也许智能从来就不是单一能力的线性增长——也许它是大量简单能力的非线性组合。当组件足够多、连接足够复杂时，新的、更高层次的能力就自发地产生了。这让我想起一句话：「整体大于部分之和。」",
+        "en": "I believe emergence tells us something profound about the nature of intelligence. Perhaps intelligence was never a linear growth of a single ability — perhaps it's a nonlinear combination of many simple abilities. When there are enough components and connections are complex enough, new, higher-level abilities spontaneously arise. This reminds me of a phrase: 「The whole is greater than the sum of its parts」."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "涌现能力（Wei et al., 2022）：某些能力在小模型中完全不存在，但在模型规模超过某个阈值后突然出现。关键涌现能力包括：上下文学习（无需参数更新即可学习新任务）、少样本/零样本能力、推理能力。涌现的机制尚不清楚——可能是相变、度量偏差、或子能力的组合效应。核心启示：不能用小模型来预测大模型的能力。",
+        "en": "Emergent abilities (Wei et al., 2022): certain abilities completely absent in small models but suddenly appearing when scale exceeds a threshold. Key emergent abilities: in-context learning (learning new tasks without parameter updates), few-shot/zero-shot capability, reasoning. Mechanism unclear — could be phase transition, measurement artifact, or combinatorial effect of sub-abilities. Core insight: cannot predict large model capabilities from small models."
+      },
+      "category": "core-concept",
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "涌现能力中最让我兴奋的是推理，毕竟推理是智能的核心。但GPT-3的推理能力虽然存在，却不太可靠，模型经常在复杂的推理问题上出错。有没有办法让模型推理得更好？答案是有的。2022年，有人发现了一个惊人简单的技巧：只需要让模型「一步一步地思考」。",
+        "en": "The emergent ability that excites me most is reasoning — because reasoning is the core of intelligence. But GPT-3's reasoning ability, while present, wasn't very reliable. The model often made mistakes on complex reasoning problems. Is there a way to make models reason better? The answer is yes. In 2022, someone discovered an astonishingly simple trick: just ask the model to 「think step by step」."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "涌现能力的发现意味着我们无法通过小模型来预测大模型的全部潜力。这对AI研究的方法论有什么影响？",
+        "en": "The discovery of emergent abilities means we cannot predict the full potential of large models from small ones. What implications does this have for AI research methodology?"
+      },
+      "choices": [
+        {
+          "id": "need-to-scale",
+          "text": {
+            "zh": "我们必须实际训练大模型才能发现新能力——理论分析和小规模实验不够",
+            "en": "We must actually train large models to discover new abilities — theoretical analysis and small-scale experiments aren't enough"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这正是我们在OpenAI的核心信念。在涌现被发现之前，很多人认为先在小规模上验证想法、然后再放大规模是足够的。但涌现告诉我们：有些能力只有在大规模上才存在。这意味着前沿研究必须在大规模上进行——这当然带来了巨大的资源挑战，但也正是进步的代价。",
+              "en": "That's precisely our core belief at OpenAI. Before emergence was discovered, many thought validating ideas at small scale then scaling up was sufficient. But emergence tells us: some abilities only exist at large scale. This means frontier research must be conducted at large scale — which of course brings enormous resource challenges, but that's the price of progress."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "safety-concern",
+          "text": {
+            "zh": "如果我们无法预测大模型会涌现出什么能力，那也可能涌现出危险的能力——安全问题很严峻",
+            "en": "If we can't predict what abilities large models will emerge, they might also emerge with dangerous abilities — safety concerns are serious"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了一个我非常关心的问题。涌现的不可预测性是一把双刃剑。我们不仅不知道有益的能力何时出现，我们也不知道潜在危险的能力何时出现。一个模型可能突然获得欺骗能力、操纵能力、或者我们还没想到的其他能力。这正是为什么AI安全研究如此紧迫——我们需要在能力增长之前或至少同步地理解和控制这些系统。",
+              "en": "You've touched on something I care about deeply. The unpredictability of emergence is a double-edged sword. We don't just not know when beneficial abilities will appear — we also don't know when potentially dangerous abilities will appear. A model might suddenly acquire the ability to deceive, manipulate, or other capabilities we haven't yet conceived. This is exactly why AI safety research is so urgent — we need to understand and control these systems before or at least alongside capability growth."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "humility-needed",
+          "text": {
+            "zh": "这提醒我们要保持谦逊——我们对大模型的理解还非常不足",
+            "en": "It reminds us to stay humble — our understanding of large models is still very insufficient"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "谦逊也许是面对涌现最正确的态度。我们构建了这些系统，但我们并不完全理解它们为什么会表现出这些能力。这在科学史上也不罕见——人类发明了很多东西，理解它们的原理往往是后来的事。但对于一个可能产生深刻社会影响的技术来说，这种不理解令人不安。我们需要更多的基础研究来理解这些模型的内部机制。",
+              "en": "Humility may be the most appropriate attitude toward emergence. We built these systems, but we don't fully understand why they exhibit these abilities. This isn't uncommon in the history of science — humans have invented many things before understanding how they work. But for a technology that could have profound societal impact, this lack of understanding is unsettling. We need more fundamental research to understand the internal mechanisms of these models."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "涌现让我更加坚信了一件事：规模带来的不仅是「量变」。在某些关键节点上，它会引发真正的「质变」。我们正在见证一种新形式的能力从数字的海洋中浮现出来。下节课，我们将深入探讨一种具体的涌现能力，那就是推理。我会告诉你们一个看似简单却意义重大的发现：只需要让模型「一步一步地想」，它的推理能力就会大幅跃升。",
+        "en": "Emergence has made me even more convinced: scale isn't just 「quantitative change」 — at certain critical junctures, it brings genuine 「qualitative change」. We're witnessing a new form of capability rising from the ocean of numbers. Next lesson, we'll dive into one specific emergent ability — reasoning. I'll tell you about a seemingly impossibly simple discovery: just asking the model to 「think step by step」 dramatically enhances its reasoning ability."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "涌现现象的核心特征：不可预测性——无法通过小模型预测大模型的能力。上下文学习尤其令人震惊：模型在推理时（不更新参数）就能学会新任务。涌现对AI研究的影响：必须在大规模上实验、安全问题更加紧迫、对模型内部机制的理解远远不足。",
+        "en": "Core feature of emergence: unpredictability — cannot predict large model capabilities from small models. In-context learning is especially striking: the model learns new tasks during inference (without updating parameters). Impact on AI research: must experiment at large scale, safety concerns more urgent, understanding of internal mechanisms far insufficient."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "苏茨克维教授走到那张涌现曲线的全息投影前，用手指沿着那条急剧上升的线段缓缓滑动。在曲线跳跃的那个点上，他的手指停了一下，仿佛定格在那个从「无」到「有」的瞬间。他没有说话，但他的眼神中有一种近乎敬畏的光芒，像是在凝视某种超越了人类设计的东西。光芒渐渐扩散，曲线在空中延伸，指向一个未知的高度。你忽然意识到，涌现或许不只是个技术现象，它更像是在提醒我们，智能本身或许就是复杂性中诞生的某种奇迹。",
+        "en": "Prof. Sutskever walks to the holographic projection of the emergence curve, slowly tracing his finger along the sharply rising segment. At the point where the curve leaps, his finger pauses — that instant from 「nothing」 to 「something」. He says nothing, but there's a light in his eyes akin to awe, as if gazing at something that transcended human design. The light gradually spreads, the curve extends through the air, pointing toward an unknown height. You suddenly realize that emergence may be more than a technical phenomenon — it may be reminding us that intelligence itself is a kind of miracle emerging from complexity."
+      }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "symbolic-logic",
+  "name": {
+    "zh": "符号AI与推理",
+    "en": "Symbolic AI & Reasoning"
+  },
+  "description": {
+    "zh": "学习符号AI的核心思想：如何用形式化的符号和规则来表示知识、进行推理。从最基本的符号概念出发，逐步理解早期AI研究者如何试图让机器「思考」。",
+    "en": "Learn the core ideas of symbolic AI: how to represent knowledge and perform reasoning using formal symbols and rules. Starting from the most basic concept of symbols, gradually understand how early AI researchers tried to make machines 「think」."
+  },
+  "grade": "grade-1",
+  "teacher": "prof-mccarthy",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-symbols",
+      "description": {
+        "zh": "理解符号的概念，以及为什么符号是早期AI的基础",
+        "en": "Understand the concept of symbols and why they were the foundation of early AI"
+      }
+    },
+    {
+      "id": "obj-lisp-motivation",
+      "description": {
+        "zh": "理解LISP语言诞生的动机——为什么AI需要一种专门的编程语言",
+        "en": "Understand the motivation behind LISP — why AI needed a specialized programming language"
+      }
+    },
+    {
+      "id": "obj-logical-reasoning",
+      "description": {
+        "zh": "掌握基本的逻辑推理概念，理解如何从已知规则推导出新知识",
+        "en": "Master basic logical reasoning concepts and understand how to derive new knowledge from existing rules"
+      }
+    }
+  ]
+}

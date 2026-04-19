@@ -1,0 +1,289 @@
+{
+  "id": "lesson-05",
+  "course": "sequence-attention",
+  "title": {
+    "zh": "编码与解码",
+    "en": "Encoding and Decoding"
+  },
+  "knowledgePoint": {
+    "zh": "序列到序列架构——机器翻译的编码器-解码器模型",
+    "en": "Sequence-to-sequence architecture for machine translation"
+  },
+  "teacher": "prof-bengio",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间深蓝色的教室。本吉奥教授站在白板前，白板被一条竖线分成了左右两半。左边写着「编码器」，右边写着「解码器」，中间用一个小圆圈连接，圆圈里写着一个字母「c」。他指着那个小圆圈，表情严肃地说：「这就是瓶颈所在。」",
+    "en": "You close your eyes, and your thoughts drift back to that deep blue classroom. Prof. Bengio stands before the whiteboard, which is divided into left and right halves by a vertical line. 「Encoder」 is written on the left, 「Decoder」 on the right, connected by a small circle in the middle with the letter 「c」 inside. He points to the small circle with a serious expression: 「This is where the bottleneck lies」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。编码器-解码器架构的优雅和局限都清晰地印在脑海中——编码器把整个输入序列压缩成一个固定长度的向量，解码器从这个向量生成输出序列。简洁、有力，但那个固定长度的中间向量真的能承载一个长句子的全部信息吗？这个疑问预示着下一节课的突破。",
+    "en": "You return to the present. Both the elegance and limitations of the encoder-decoder architecture are clearly imprinted in your mind — the encoder compresses the entire input sequence into a fixed-length vector, and the decoder generates the output sequence from it. Clean and powerful, but can that fixed-length intermediate vector truly carry all the information of a long sentence? This doubt foreshadows the breakthrough of the next lesson."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的白板已经被分成了左右两半。左边画着一个指向右方的箭头链，标注着「输入序列」。右边画着一个从左方发出的箭头链，标注着「输出序列」。两部分之间有一个小小的圆点，像两个世界之间的桥梁。本吉奥教授走进来，看了一眼白板，满意地点了点头。",
+        "en": "Today's whiteboard has been divided into left and right halves. On the left, a chain of rightward arrows labeled 「input sequence」. On the right, a chain of arrows emerging leftward labeled 「output sequence」. Between the two halves, a small dot — like a bridge between two worlds. Prof. Bengio walks in, glances at the whiteboard, and nods with satisfaction."
+      },
+      "leadsTo": "translation-challenge"
+    },
+    {
+      "id": "translation-challenge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上几节课我们学习了LSTM和词嵌入。今天我想带你们解决一个实际问题：{机器翻译}。比如把法语翻译成英语，或者把中文翻译成日语。这个问题有什么特别之处呢？输入是一个序列，输出也是一个序列。但两个序列的长度可能不同，词的顺序也可能完全不同。",
+        "en": "In the past few lessons we learned about LSTM and word embeddings. Today I want to tackle a real problem — {machine translation}. Translating French to English, or Chinese to Japanese. What's special about this problem? The input is a sequence and the output is also a sequence — but the two sequences may differ in length, and the word order may be completely different."
+      },
+      "terms": {
+        "机器翻译": "term-machine-translation",
+        "machine translation": "term-machine-translation"
+      },
+      "leadsTo": "not-word-by-word"
+    },
+    {
+      "id": "not-word-by-word",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你不能简单地逐词翻译。法语说「Je suis étudiant」，用了三个词；英语说「I am a student」，有四个词。中文说「我是学生」，也是三个词，但这里没有冠词「a」。每种语言都有自己的语法、词序和省略规则。翻译需要先「理解」整个句子的意思，然后用另一种语言重新「表达」。",
+        "en": "You can't simply translate word by word. French says 「Je suis étudiant」 — three words; English says 「I am a student」 — four words. Chinese says 「我是学生」 — three words, with no article 「a」. Each language has its own grammar, word order, omission rules. Translation requires first 「understanding」 the entire sentence's meaning, then 「re-expressing」 it in another language."
+      },
+      "leadsTo": "encoder-idea"
+    },
+    {
+      "id": "encoder-idea",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2014年，我和我的学生赵京贤，以及谷歌的萨茨基弗和维尼亚尔斯，几乎同时独立提出了一个优雅的解决方案：{序列到序列}架构，也叫{编码器-解码器}架构。思路很简单——把翻译分成两步：先读，后写。",
+        "en": "In 2014, my student Cho and I, along with Google's Sutskever and Vinyals, independently proposed an elegant solution at nearly the same time: the {sequence-to-sequence} architecture, also called the {encoder-decoder} architecture. The idea is simple — split translation into two steps: first read, then write."
+      },
+      "terms": {
+        "序列到序列": "term-seq2seq",
+        "sequence-to-sequence": "term-seq2seq",
+        "编码器-解码器": "term-encoder-decoder",
+        "encoder-decoder": "term-encoder-decoder"
+      },
+      "leadsTo": "encoder-explain"
+    },
+    {
+      "id": "encoder-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "编码器是一个LSTM。它逐词读入整个输入句子，每一步都更新自己的隐藏状态。当它读完最后一个词时，它的隐藏状态，一个固定长度的向量，就是对整个句子的「压缩理解」。我们把这个向量叫做「语境向量」。",
+        "en": "The encoder is an LSTM. It reads the entire input sentence word by word, updating its hidden state at each step. When it finishes reading the last word, its hidden state — a fixed-length vector — is a 「compressed understanding」 of the entire sentence. We call this vector the 「context vector」."
+      },
+      "leadsTo": "decoder-explain"
+    },
+    {
+      "id": "decoder-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "解码器是另一个LSTM。它接收编码器最终的隐藏状态作为自己的初始状态，然后一个词一个词地生成目标语言的句子。每一步，它根据当前状态预测下一个词，然后把这个词和更新后的状态一起传入下一步。就像一个人先把一句法语完整地读懂，然后闭上法语文本，开始用英语复述。",
+        "en": "The decoder is another LSTM. It receives the encoder's final hidden state as its own initial state, then generates the target language sentence word by word. At each step, it predicts the next word based on the current state, then passes this word and the updated state to the next step. It's like a person reading a French sentence completely, closing the French text, then retelling it in English."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "编码器把整个句子压缩成一个固定长度的向量。你觉得这种设计可能会有什么问题？",
+        "en": "The encoder compresses an entire sentence into a fixed-length vector. What problem do you think this design might have?"
+      },
+      "choices": [
+        {
+          "id": "choice-info-loss",
+          "text": {
+            "zh": "长句子包含太多信息，一个固定长度的向量可能装不下",
+            "en": "Long sentences contain too much information — a fixed-length vector may not be able to hold it all"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了最核心的问题。这就是我们所说的「瓶颈」。一个256维或512维的向量，能完美编码一个5个词的句子，但一个50个词的复杂句子呢？随着句子变长，编码器必须把越来越多的信息挤进同样大小的空间。实验表明，当句子超过一定长度时，翻译质量会急剧下降。",
+              "en": "You've grasped the most critical issue. This is what we call the 「bottleneck」. A 256 or 512-dimensional vector can perfectly encode a 5-word sentence, but what about a complex 50-word sentence? As sentences grow longer, the encoder must squeeze more and more information into the same sized space. Experiments show that when sentences exceed a certain length, translation quality drops dramatically."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-early-forgotten",
+          "text": {
+            "zh": "句子开头的信息可能会在编码过程中被后面的信息覆盖",
+            "en": "Information from the beginning of the sentence might be overwritten by later information during encoding"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个很细致的观察。虽然LSTM比标准RNN好很多，但细胞状态的容量毕竟有限。在编码很长的句子时，最终的隐藏状态会更偏向后面几个词的信息。这意味着句子开头的细节可能会变得模糊——但翻译通常需要完整保留整个句子的信息。",
+              "en": "That's a very perceptive observation. While LSTM is much better than standard RNNs, the cell state's capacity is still limited. When encoding very long sentences, the final hidden state tends to be biased toward information from the last few words. This means details from the sentence's beginning may become fuzzy — but translation typically needs to preserve the entire sentence's information."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-no-alignment",
+          "text": {
+            "zh": "解码器在生成每个词时无法知道应该关注输入句子的哪个部分",
+            "en": "The decoder can't know which part of the input sentence to focus on when generating each word"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的直觉已经触及了我们下节课要讨论的核心问题。解码器只有一个笼统的「整体理解」向量，它在生成第一个词和最后一个词时看到的上下文信息是完全一样的。但人类翻译不是这样的——翻译「国王」的时候你会看输入中「roi」的位置，翻译「高兴」的时候你会看「content」的位置。这种「看向正确位置」的能力正是下节课的主题。",
+              "en": "Your intuition already touches on the core issue we'll discuss next lesson. The decoder only has a general 「overall understanding」 vector — the context information it sees when generating the first word is exactly the same as when generating the last. But that's not how human translators work — when translating 「king」 you look at where 「roi」 is in the input, when translating 「happy」 you look at 「content」. This ability to 「look at the right place」 is exactly the topic of next lesson."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个瓶颈问题在实验中非常明显。我们的团队测试了不同长度的句子，发现一个清晰的趋势：短句的翻译质量很好，但随着句子变长，BLEU分数（这是衡量翻译质量的一个指标）会显著下降。对于超过30个词的句子，质量下降尤其明显。",
+        "en": "This bottleneck problem is very obvious in experiments. Our team tested sentences of different lengths and found a clear trend: translation quality is good for short sentences, but as sentences get longer, the BLEU score — a metric for translation quality — drops significantly. For sentences exceeding 30 words, the quality drop is especially pronounced."
+      },
+      "leadsTo": "human-contrast"
+    },
+    {
+      "id": "human-contrast",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "想想人类翻译是怎么工作的。一个翻译家不会先把整个段落记在脑子里，然后一口气翻译出来。她会反复回看原文——翻译这个从句时看看原文的对应部分，翻译那个词组时再看看另一个部分。她在「编码」和「解码」之间不断切换，而且每次切换时会关注原文的不同位置。",
+        "en": "Think about how human translation works. A translator doesn't memorize the entire paragraph first and then translate it all at once. She keeps referring back to the original — looking at the corresponding part when translating this clause, looking at another part when translating that phrase. She constantly switches between 「encoding」 and 「decoding, and each time she switches, she focuses on a different part of the source."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "人类翻译会反复回看原文的不同位置。如果我们想让模型也这样做，需要改变架构的哪个部分？",
+        "en": "Human translators keep looking back at different parts of the source text. If we want the model to do the same, which part of the architecture needs to change?"
+      },
+      "choices": [
+        {
+          "id": "choice-bigger-vector",
+          "text": {
+            "zh": "让中间的语境向量更大——用更高的维度来容纳更多信息",
+            "en": "Make the context vector bigger — use higher dimensions to hold more information"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个直觉上合理的想法，但它只是「治标」。无论向量多大，总有一个句子长到超出它的容量。而且更大的向量意味着更多的参数、更高的计算成本。真正的问题不在于容量大小，而在于架构本身——解码器只能看到一个静态的、固定的向量，无论它在生成哪个词。",
+              "en": "That's an intuitively reasonable idea, but it only treats the symptom. No matter how large the vector, there's always a sentence long enough to exceed its capacity. Moreover, larger vectors mean more parameters and higher computational costs. The real problem isn't the size — it's the architecture itself. The decoder can only see one static, fixed vector regardless of which word it's generating."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-keep-all-states",
+          "text": {
+            "zh": "不只保留最后一个隐藏状态，而是保留编码器在每一步产生的所有隐藏状态",
+            "en": "Keep not just the final hidden state, but all hidden states the encoder produces at every step"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你已经触到了突破口。如果我们保留编码器在每个时间步产生的隐藏状态——这就相当于保留了对输入序列每个位置的局部编码。然后，解码器在生成每个词时，可以「查阅」这些状态。问题变成了：解码器怎么知道该看哪些状态？这正是下节课的关键问题。",
+              "en": "You've touched the breakthrough. If we keep the encoder's hidden state at every time step — that's equivalent to keeping a local encoding of each position in the input sequence. Then, when generating each word, the decoder can 「consult」 these states. The question becomes: how does the decoder know which states to look at? That's precisely the key question for next lesson."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-bidirectional",
+          "text": {
+            "zh": "让编码器从两个方向读取输入——从左到右一遍，从右到左一遍",
+            "en": "Have the encoder read the input from both directions — left-to-right once, right-to-left once"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "双向编码确实是一个很有价值的改进，它让每个位置的隐藏状态同时包含前文和后文的信息。我们确实在实践中使用双向LSTM。然而，它并没有解决核心的瓶颈问题，最终你仍然需要把所有信息压缩到一个固定的向量中。真正的突破，在于改变编码器和解码器之间的连接方式，让解码器能在生成过程中动态地回看编码器的信息。",
+              "en": "Bidirectional encoding is indeed a valuable improvement — it lets each position's hidden state contain both forward and backward context. We do use bidirectional LSTMs in practice. But it doesn't solve the core bottleneck — ultimately you still need to compress all information into a fixed vector. The real breakthrough requires changing how the encoder and decoder connect — letting the decoder dynamically look back at the encoder's information during generation."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "序列到序列架构已经是一个巨大的进步——在它之前，机器翻译依赖于大量手工设计的语言学规则和统计特征。现在我们第一次实现了端到端的神经网络翻译：输入一个序列，输出另一个序列，中间不需要任何人工设计的语言学知识。",
+        "en": "The sequence-to-sequence architecture is already a huge advancement — before it, machine translation relied on extensive hand-designed linguistic rules and statistical features. Now for the first time we've achieved end-to-end neural network translation: input one sequence, output another, with no hand-designed linguistic knowledge needed in between."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "编码器-解码器（Seq2Seq）架构：编码器LSTM逐词读入输入句子，最终隐藏状态作为语境向量传递给解码器LSTM，解码器从该向量逐词生成输出。瓶颈问题：固定长度的语境向量无法充分表达长句子的全部信息，导致翻译质量随句长增加而下降。",
+        "en": "Encoder-decoder (Seq2Seq) architecture: the encoder LSTM reads the input sentence word by word, passing its final hidden state as a context vector to the decoder LSTM, which generates output word by word from that vector. Bottleneck problem: a fixed-length context vector cannot adequately represent all information in long sentences, causing translation quality to degrade as sentence length increases."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-attention"
+    },
+    {
+      "id": "preview-attention",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "瓶颈问题让我们的团队思考了很久。2014年底，我和我的学生巴赫达瑙想到了一个非常自然的解决方案：如果解码器在生成每个词时，都能重新「审视」编码器的所有隐藏状态，并自动决定关注哪些部分呢？这个想法后来有了一个名字，我们下节课再揭晓。",
+        "en": "The bottleneck problem kept our team thinking for a long time. In late 2014, my student Bahdanau and I arrived at a very natural solution — what if, when generating each word, the decoder could re-examine all of the encoder's hidden states and automatically decide which parts to focus on? This idea eventually got a name — we'll reveal it next lesson."
+      },
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "编码器-解码器是一个美丽的框架，它将翻译问题抽象为「理解」和「表达」两个阶段。这种两阶段的思维不仅适用于翻译，也适用于摘要、对话生成，甚至代码生成。然而，美丽的框架也有其局限。下节课，我们会看到如何打破这个局限。",
+        "en": "The encoder-decoder is a beautiful framework — it abstracts the translation problem into two stages: 「understanding」 and 「expression」. This two-stage thinking applies not just to translation, but to summarization, dialogue generation, even code generation. But beautiful frameworks have limitations too — next lesson we'll see how to break through this one."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "Seq2Seq是第一个端到端的神经机器翻译架构，不需要手工语言学特征。其思想（理解+表达）适用于翻译、摘要、对话等多种任务。但固定长度语境向量是根本瓶颈——人类翻译会反复回看原文不同位置，而Seq2Seq的解码器只能看到一个静态的全局摘要。",
+        "en": "Seq2Seq is the first end-to-end neural machine translation architecture, requiring no hand-crafted linguistic features. Its idea (understanding + expression) applies to translation, summarization, dialogue, and more. But the fixed-length context vector is the fundamental bottleneck — human translators keep referring back to different parts of the source, while Seq2Seq's decoder can only see one static global summary."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "本吉奥教授走到白板前，在编码器和解码器之间那个小小的圆点上画了一个问号。他看着这个问号，眼中带着一种你之前见过的光芒——那是哲学家在难题面前的兴奋。「一个固定的点无法承载流动的意义，」他轻声说，「也许答案是让这个点变成……一道目光。」他拿起笔记本，带着微笑走出了教室。",
+        "en": "Prof. Bengio walks to the whiteboard and draws a question mark on the small dot between the encoder and decoder. He looks at the question mark with a light in his eyes you've seen before — the excitement of a philosopher facing a hard problem. 」perhaps the answer is to turn this point into... a gaze」. He picks up his notebook and walks out of the classroom with a smile."
+      }
+    }
+  ]
+}

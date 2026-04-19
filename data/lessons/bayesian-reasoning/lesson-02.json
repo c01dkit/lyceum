@@ -1,0 +1,319 @@
+{
+  "id": "lesson-02",
+  "course": "bayesian-reasoning",
+  "title": {
+    "zh": "贝叶斯网络",
+    "en": "Bayesian Networks"
+  },
+  "knowledgePoint": {
+    "zh": "用有向图表达变量之间的复杂依赖关系——贝叶斯网络的核心思想",
+    "en": "Representing complex dependencies between variables as directed graphs — the core idea of Bayesian networks"
+  },
+  "teacher": "prof-pearl",
+  "estimatedMinutes": 15,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你看着笔记本上画的那张小小的有向图，几个圆圈和箭头勾勒出疾病与症状的关系。思绪回到了Pearl教授在黑板上画下第一条箭头的那个瞬间……",
+    "en": "You stare at the small directed graph sketched in your notebook — a few circles and arrows mapping the relationship between diseases and symptoms. Your mind drifts back to the moment Prof. Pearl drew the first arrow on the blackboard..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中浮现出那张由节点和箭头编织成的网络。原来复杂的世界可以用如此优雅的结构来描绘——每一条箭头都承载着因果与依赖的故事。",
+    "en": "You close your notebook, the network of nodes and arrows vivid in your mind. The complex world can be captured in such an elegant structure — every arrow carrying a story of cause and dependence."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "Pearl教授走进教室时，黑板上已经画好了一张图——几个圆圈用箭头连在一起，像一张简洁的地图。他放下粉笔，拍了拍手上的灰，转过身来。",
+        "en": "Prof. Pearl walks into the classroom where a diagram is already drawn on the blackboard — several circles connected by arrows, like a simple map. He sets down the chalk, dusts off his hands, and turns around."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指着黑板上的图）\n\n上次我们聊了一个变量的贝叶斯推理。但现实世界哪有那么简单？一个病人走进诊室，发烧、咳嗽、胸痛——这些症状彼此关联，又各自指向不同的可能疾病。我们怎么把这团乱麻理清楚？答案就在这张图里。",
+        "en": "(Pointing at the diagram on the blackboard)\n\nLast time we discussed Bayesian reasoning for a single variable. But when is the real world ever that simple? A patient walks into the clinic with fever, cough, and chest pain — these symptoms are interrelated, each pointing to different possible diseases. How do we untangle this mess? The answer is in this diagram."
+      },
+      "leadsTo": "medical-scenario"
+    },
+    {
+      "id": "medical-scenario",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我讲一个医生每天都会遇到的情境。一个病人来看病，说自己呼吸困难。可能的原因有很多：肺炎、哮喘、心脏病，甚至只是焦虑。而每种疾病又有自己的风险因素——吸烟增加肺炎和心脏病的风险，家族史影响哮喘。这些变量之间的关系错综复杂。",
+        "en": "Let me describe a situation doctors face every day. A patient comes in complaining of shortness of breath. There are many possible causes: pneumonia, asthma, heart disease, even just anxiety. And each disease has its own risk factors — smoking increases the risk of pneumonia and heart disease, family history affects asthma. The relationships among these variables are intricate."
+      },
+      "leadsTo": "graph-idea"
+    },
+    {
+      "id": "graph-idea",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "传统的方法是给每种可能性一个一个地算概率。但如果有十个变量，每个有两种状态，可能的组合就有一千多种。二十个变量呢？超过一百万种。逐一计算根本不现实。我们需要一种更聪明的表达方式——把变量之间的关系画成一张图。这就是{贝叶斯网络}。",
+        "en": "The traditional approach is to compute probabilities for each possibility one by one. But if there are ten variables, each with two states, the possible combinations exceed a thousand. Twenty variables? Over a million. Computing them all is simply impractical. We need a smarter representation — drawing the relationships between variables as a graph. This is a {Bayesian network}."
+      },
+      "terms": {
+        "贝叶斯网络": "term-bayesian-network",
+        "Bayesian network": "term-bayesian-network"
+      },
+      "leadsTo": "graph-anatomy"
+    },
+    {
+      "id": "graph-anatomy",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（在黑板上指点）\n\n这张图里，每个圆圈代表一个变量，比如「吸烟」「肺炎」「呼吸困难」。箭头代表直接的依赖关系：「吸烟」指向「肺炎」，意思是吸烟直接影响患肺炎的概率。「肺炎」指向「呼吸困难」，意思是肺炎直接导致呼吸困难。这些箭头构成了一张有向图。",
+        "en": "(Pointing at the blackboard)\n\nIn this graph, each circle represents a variable — say, 「smoking」, 「pneumonia」, 「shortness of breath」. Arrows represent direct dependencies: 「smoking」 points to 「pneumonia」, meaning smoking directly affects the probability of getting pneumonia. 「Pneumonia」 points to 「shortness of breath, meaning pneumonia directly causes shortness of breath. These arrows form a directed graph."
+      },
+      "leadsTo": "key-insight"
+    },
+    {
+      "id": "key-insight",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但这张图最深刻的意义在于它没有画出的箭头。如果「吸烟」和「呼吸困难」之间没有直接的箭头，这意味着什么？意味着吸烟对呼吸困难的影响完全通过肺炎来传递。一旦你知道了病人是否有肺炎，吸烟这个信息就不再提供额外的线索了。这叫做{条件独立}。",
+        "en": "But the deepest significance of this graph lies in the arrows it doesn't draw. If there's no direct arrow between 「smoking」 and 「shortness of breath, what does that mean? It means smoking's effect on shortness of breath is entirely mediated through pneumonia. Once you know whether the patient has pneumonia, the information about smoking provides no additional clue. This is called {conditional independence}."
+      },
+      "terms": {
+        "条件独立": "term-conditional-independence",
+        "conditional independence": "term-conditional-independence"
+      },
+      "leadsTo": "computation-power"
+    },
+    {
+      "id": "computation-power",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "{条件独立}听起来是一个抽象的概念，但它有巨大的实际意义。还记得我说的百万种组合吗？条件独立允许我们把一个巨大的联合概率分解成许多小的局部概率的乘积。这就像把一本百科全书压缩成一本小册子——信息没有丢失，但体积缩小了千百倍。",
+        "en": "{Conditional independence} may sound abstract, but it has enormous practical significance. Remember the million combinations I mentioned? Conditional independence allows us to decompose a huge joint probability into a product of many small local probabilities. It's like compressing an encyclopedia into a pamphlet — no information is lost, but the size shrinks a thousandfold."
+      },
+      "terms": {
+        "条件独立": "term-conditional-independence",
+        "Conditional independence": "term-conditional-independence"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在我们的医学网络中，如果你已经确认病人患有肺炎，知道他是否吸烟还会改变你对他呼吸困难的判断吗？",
+        "en": "In our medical network, if you've already confirmed the patient has pneumonia, would knowing whether they smoke still change your assessment of their shortness of breath?"
+      },
+      "choices": [
+        {
+          "id": "yes-still-matters",
+          "text": {
+            "zh": "会，吸烟可能通过其他途径影响呼吸",
+            "en": "Yes, smoking might affect breathing through other pathways"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "好问题！在真实的医学场景中，吸烟确实可能通过其他途径，比如慢性支气管炎——影响呼吸。但在我们简化的模型中，如果图上没有这些额外的路径，那么答案就是否。这正是{贝叶斯网络}的精髓：图的结构精确地告诉你哪些独立性成立，哪些不成立。",
+              "en": "Good question! In a real medical scenario, smoking could indeed affect breathing through other pathways — like chronic bronchitis. But in our simplified model, if the graph has no such additional paths, then the answer is no. This is the essence of a {Bayesian network}: the structure of the graph tells you precisely which independencies hold and which don't."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "no-independent",
+          "text": {
+            "zh": "不会，既然肺炎已经确认，吸烟的信息就多余了",
+            "en": "No — since pneumonia is confirmed, smoking information becomes redundant"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！在这个网络的结构下，一旦肺炎的状态已知，吸烟和呼吸困难就变得条件独立了。吸烟的全部影响已经「流经」了肺炎这个节点。这种结构性的推理，让我们不需要考虑所有变量的所有组合，只关注相关的局部就够了。",
+              "en": "Exactly right! Given this network's structure, once the state of pneumonia is known, smoking and shortness of breath become conditionally independent. All of smoking's influence has already 「flowed through」 the pneumonia node. This structural reasoning means we don't need to consider all combinations of all variables — focusing on the relevant local neighborhood is enough."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "depends-on-model",
+          "text": {
+            "zh": "取决于网络的结构——要看图上有没有其他路径",
+            "en": "It depends on the network structure — you'd need to check for other paths in the graph"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常严谨的思考方式。你说得对——答案完全取决于图的结构。如果吸烟通过其他路径也连接到呼吸困难，那么即使知道了肺炎状态，吸烟仍然提供信息。贝叶斯网络的力量在于：一旦画出了图，所有的条件独立关系都可以直接从图中读出来。",
+              "en": "A very rigorous way of thinking. You're right — the answer depends entirely on the structure of the graph. If smoking connects to shortness of breath through other paths too, then even knowing the pneumonia state, smoking still provides information. The power of Bayesian networks is this: once you draw the graph, all conditional independence relationships can be read directly from it."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我再举一个更日常的例子。想象你在考虑明天是否带伞出门。相关的变量有：天气预报说了什么、天空是否有乌云、地面是否潮湿、是否真的会下雨。在{贝叶斯网络}里，「是否下雨」指向「地面是否潮湿」和「天空是否有乌云」。天气预报也提供关于下雨的线索。",
+        "en": "Let me give a more everyday example. Imagine you're deciding whether to bring an umbrella tomorrow. The relevant variables are: what the weather forecast says, whether there are dark clouds in the sky, whether the ground is wet, whether it will actually rain. In a {Bayesian network}, 「whether it rains」 points to 「whether the ground is wet」 and 「whether there are dark clouds」. The weather forecast also provides clues about rain."
+      },
+      "terms": {
+        "贝叶斯网络": "term-bayesian-network",
+        "Bayesian network": "term-bayesian-network"
+      },
+      "leadsTo": "structure-matters"
+    },
+    {
+      "id": "structure-matters",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这张图捕捉了一个关键的事实：地面潮湿和天空有乌云都是下雨的结果，但它们之间没有直接的因果关系。地面潮湿不会导致天上出现乌云。然而，如果你不知道是否下过雨，看到地面潮湿确实会让你觉得天空可能有乌云——因为两者有共同的原因。一旦你知道下过雨了，地面潮湿就不再告诉你关于乌云的额外信息。",
+        "en": "This graph captures a crucial fact: wet ground and dark clouds are both consequences of rain, but there's no direct causal link between them. A wet ground doesn't cause dark clouds to appear. However, if you don't know whether it rained, seeing wet ground does make you think there might be dark clouds — because they share a common cause. Once you know it rained, the wet ground no longer tells you anything extra about the clouds."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "贝叶斯网络：用有向图表示变量间的依赖关系。节点=变量，箭头=直接依赖。核心优势：条件独立性让复杂的联合概率可以分解为局部概率的乘积，大幅降低计算复杂度。图的结构本身就编码了哪些变量在什么条件下相互独立。",
+        "en": "Bayesian networks: directed graphs representing dependencies among variables. Nodes = variables, arrows = direct dependencies. Core advantage: conditional independence lets complex joint probabilities decompose into products of local probabilities, drastically reducing computational complexity. The graph structure itself encodes which variables are independent under what conditions."
+      },
+      "category": "core-concept",
+      "leadsTo": "pearl-motivation"
+    },
+    {
+      "id": "pearl-motivation",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "我在八十年代开始研究这个问题时，人工智能领域正在经历一场困境。当时主流的专家系统用规则来推理——如果发烧且咳嗽，那么可能是肺炎。但规则越多，系统越脆弱。一条新规则可能和旧规则矛盾。而且规则无法优雅地处理不确定性。",
+        "en": "When I started working on this problem in the eighties, the AI field was in a bind. The dominant expert systems of the time used rules for reasoning — if fever and cough, then possibly pneumonia. But the more rules you added, the more brittle the system became. A new rule could contradict existing ones. And rules couldn't handle uncertainty gracefully."
+      },
+      "leadsTo": "pearl-solution"
+    },
+    {
+      "id": "pearl-solution",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我想：与其用脆弱的规则链条，为什么不直接建立一个概率模型，让数据和结构来说话？{贝叶斯网络}就是这个想法的产物。它不需要穷举所有规则，只需要定义变量之间的直接关系，然后让概率的数学自动处理其余一切。",
+        "en": "I thought: instead of brittle chains of rules, why not build a probabilistic model directly and let the data and structure speak? {Bayesian networks} are the product of that idea. They don't require enumerating all rules — just define the direct relationships between variables, and let the mathematics of probability handle everything else automatically."
+      },
+      "terms": {
+        "贝叶斯网络": "term-bayesian-network",
+        "Bayesian networks": "term-bayesian-network"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "Pearl教授说贝叶斯网络的图结构本身就蕴含了重要信息。你觉得为什么「画出这张图」如此关键？",
+        "en": "Prof. Pearl says the graph structure of a Bayesian network contains essential information in itself. Why do you think 「drawing this graph」 is so crucial?"
+      },
+      "choices": [
+        {
+          "id": "makes-assumptions-explicit",
+          "text": {
+            "zh": "它让我们的假设变得透明——哪些变量相关，哪些不相关",
+            "en": "It makes our assumptions transparent — which variables are related and which aren't"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说得好！当你把假设画成图，所有人都能看到你认为世界是怎样运转的。如果有人不同意，比如医生认为吸烟也直接影响呼吸困难——他可以指出缺少的箭头。图让讨论变得具体而有建设性。隐含的假设才是最危险的。",
+              "en": "Well said! When you draw your assumptions as a graph, everyone can see how you think the world works. If someone disagrees — say a doctor believes smoking also directly affects shortness of breath — they can point to the missing arrow. The graph makes discussion concrete and constructive. Hidden assumptions are the most dangerous kind."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "enables-computation",
+          "text": {
+            "zh": "它让计算机知道可以走哪些「捷径」来高效计算",
+            "en": "It tells the computer which 「shortcuts」 it can take for efficient computation"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常务实的观察。图的结构直接决定了哪些条件独立性成立，而每一个条件独立性都是一个计算捷径。没有这些捷径，概率推理在超过十几个变量时就完全不可行了。图结构让复杂的推理变成了可能。",
+              "en": "A very pragmatic observation. The graph's structure directly determines which conditional independencies hold, and every conditional independence is a computational shortcut. Without these shortcuts, probabilistic reasoning becomes completely infeasible beyond a dozen or so variables. The graph structure makes complex reasoning possible."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "captures-knowledge",
+          "text": {
+            "zh": "它把专家对领域的理解编码成了一种数学语言",
+            "en": "It encodes an expert's domain understanding into a mathematical language"
+          },
+          "tag": "integrative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个深刻的观点。{贝叶斯网络}是知识与数据的结合体。图的结构来自专家的领域知识，概率参数可以从数据中学习。这种「知识+数据」的融合方式，在当时是非常前沿的思想。专家提供骨架，数据填充血肉。",
+              "en": "That's a profound point. A {Bayesian network} is a fusion of knowledge and data. The graph structure comes from expert domain knowledge, while the probability parameters can be learned from data. This 「knowledge + data」 fusion was a very cutting-edge idea at the time. The expert provides the skeleton; data fills in the flesh."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "贝叶斯网络已经在很多领域得到了应用。医学诊断、故障检测、语音识别——凡是需要在不确定性下从多个线索综合判断的场景，它都能发挥作用。但我们还有一个关键问题没有回答：当你在网络中观察到某个变量的值，这个信息如何传递到网络的其他部分？",
+        "en": "Bayesian networks are already being applied in many fields. Medical diagnosis, fault detection, speech recognition — wherever you need to synthesize multiple clues under uncertainty, they can help. But there's a key question we haven't answered yet: when you observe the value of a variable in the network, how does that information propagate to the rest of the network?"
+      },
+      "leadsTo": "teaser"
+    },
+    {
+      "id": "teaser",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "想象一下：在一个由几十个节点构成的网络中，你在某一个角落观测到了一条证据。这条证据的影响如何像涟漪一样扩散到整个网络？下一课，我会告诉你们一个优雅的算法——让信念在网络中自动流动。",
+        "en": "Imagine: in a network of dozens of nodes, you observe a piece of evidence in one corner. How does the impact of that evidence ripple outward across the entire network? Next class, I'll show you an elegant algorithm — one that lets beliefs flow automatically through the network."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "贝叶斯网络的历史背景：1980年代，专家系统的规则推理方式在处理不确定性时遇到瓶颈。Pearl提出用概率图模型替代规则——变量之间的直接依赖关系构成有向图，条件独立性大幅简化计算。这种方法将领域知识（图结构）与数据（概率参数）优雅地结合在一起。",
+        "en": "Historical context of Bayesian networks: in the 1980s, rule-based reasoning in expert systems hit a bottleneck when handling uncertainty. Pearl proposed replacing rules with probabilistic graphical models — direct dependencies between variables form a directed graph, and conditional independence dramatically simplifies computation. This approach elegantly combines domain knowledge (graph structure) with data (probability parameters)."
+      },
+      "category": "historical-fact",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "Pearl教授拿起粉笔，在黑板图上的一个节点旁画了一个小小的问号。他退后一步端详那张图，像是在欣赏一件未完成的作品。你望着那些箭头和圆圈，开始理解一件事：真正理解世界，第一步是画出它的结构。",
+        "en": "Prof. Pearl picks up the chalk and draws a small question mark next to one of the nodes on the blackboard. He steps back to study the graph, as if admiring an unfinished work of art. You gaze at those arrows and circles and begin to understand something: truly understanding the world starts with drawing its structure."
+      }
+    }
+  ]
+}

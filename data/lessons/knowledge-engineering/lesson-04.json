@@ -1,0 +1,299 @@
+{
+  "id": "lesson-04",
+  "course": "knowledge-engineering",
+  "title": {
+    "zh": "知识获取之难",
+    "en": "The Difficulty of Knowledge Acquisition"
+  },
+  "knowledgePoint": {
+    "zh": "知识获取瓶颈与知识工程师的角色",
+    "en": "The knowledge acquisition bottleneck and the role of knowledge engineers"
+  },
+  "teacher": "prof-shortliffe",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你闭上眼，记忆将你带回那天的课堂。肖特利夫教授破天荒地请来了一位传染病专家——两人坐在讲台前模拟知识获取访谈，对话中的沉默和犹豫比回答本身更加令人深思。那堂关于知识瓶颈的课，正从记忆深处被唤醒。",
+    "en": "You close your eyes, and memory carries you back to that day's class. Professor Shortliffe had, for the first time, invited an infectious disease specialist — the two sat at the front, simulating a knowledge acquisition interview, and the silences and hesitations in their exchange spoke louder than the answers. That lesson on the knowledge bottleneck is awakening from deep memory."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，脑海中回荡着那位专家说的话：「我说不清楚为什么，但我就是知道。」原来知识最难的部分，不在于它太复杂，而在于它太隐蔽——连拥有它的人都未必能说出口。",
+    "en": "You come back to the present, the specialist's words echoing in your mind: 「I can't explain why, but I just know」. So the hardest thing about knowledge isn't that it's too complex — it's that it's too hidden, so deeply buried that even those who possess it can't always articulate it."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室里多了一张椅子。肖特利夫教授在讲台旁坐下，对面是一把空椅子，上面放着一个厚厚的笔记本和一支录音笔。他看起来有些疲惫——你注意到他眼下有淡淡的黑眼圈，像是连续几天熬夜访谈专家留下的痕迹。",
+        "en": "There's an extra chair in the classroom today. Professor Shortliffe sits beside the lectern, facing an empty chair with a thick notebook and a voice recorder resting on it. He looks a bit tired — you notice faint dark circles under his eyes, as if left by several consecutive nights of interviewing experts."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "同学们，过去三节课我们讲了MYCIN的规则、推理和确定性因子。你们可能觉得：道理都明白了，建一个专家系统应该不难吧？规则不就是「如果……那么……」嘛。但今天我要告诉你们这个项目中最让我头疼的部分——{知识获取}。",
+        "en": "Everyone, over the past three lessons we've covered MYCIN's rules, reasoning, and certainty factors. You might think: the concepts are clear enough, building an expert system shouldn't be that hard, right? Rules are just 「if... then..」. statements. But today I want to tell you about the part of this project that gives me the most headaches — {knowledge acquisition}."
+      },
+      "terms": {
+        "知识获取": "term-knowledge-acquisition",
+        "knowledge acquisition": "term-knowledge-acquisition"
+      },
+      "leadsTo": "bottleneck-intro"
+    },
+    {
+      "id": "bottleneck-intro",
+      "type": "dialog",
+      "mood": "serious",
+      "text": {
+        "zh": "构建MYCIN的技术部分，包括推理引擎和确定性因子的计算，虽然也很复杂，但至少是可以系统化的工程问题。真正的瓶颈在于，如何把医学专家脑子里的知识提取出来，变成计算机能用的规则。这个问题我们叫它{知识瓶颈}。",
+        "en": "The technical parts of building MYCIN — the inference engine, certainty factor calculations — are complex, but at least they're systematizable engineering problems. The real bottleneck is this: how do you extract the knowledge from a medical expert's mind and convert it into rules a computer can use? We call this the {knowledge bottleneck}."
+      },
+      "terms": {
+        "知识瓶颈": "term-knowledge-bottleneck",
+        "knowledge bottleneck": "term-knowledge-bottleneck"
+      },
+      "leadsTo": "interview-process"
+    },
+    {
+      "id": "interview-process",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "过程是这样的：我作为{知识工程师}，坐下来和一位{领域专家}，比如斯坦福医院的传染病科医生——进行长时间的访谈。我给他描述一个假设的病例，然后一步步追问：「你会怎么做？为什么？如果这个检查结果变了呢？」",
+        "en": "The process works like this: I, as the {knowledge engineer}, sit down with a {domain expert} — say, an infectious disease specialist at Stanford Hospital — for long interview sessions. I describe a hypothetical case, then probe step by step: 「What would you do? Why? What if this test result were different?」"
+      },
+      "terms": {
+        "知识工程师": "term-knowledge-engineering",
+        "knowledge engineer": "term-knowledge-engineering",
+        "领域专家": "term-domain-expert",
+        "domain expert": "term-domain-expert"
+      },
+      "leadsTo": "tacit-knowledge"
+    },
+    {
+      "id": "tacit-knowledge",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "最困难的部分是什么？专家往往说不清楚自己是怎么做判断的。（他模仿一位医生的语气）「我看了一眼病人就觉得不对劲。」「什么地方不对劲？」「我说不上来，就是一种感觉。」——这种直觉，这种多年经验积累出来的「感觉」，怎么变成规则？",
+        "en": "What's the hardest part? Experts often can't articulate how they make judgments. (He imitates a doctor's tone.) 「I took one look at the patient and knew something was wrong」. 「What was wrong?」 「I can't pinpoint it, just a feeling」. — This intuition, this 「feeling」 built from years of experience, how do you turn that into rules?"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "一位经验丰富的医生说：「我一看这个病人就觉得情况不妙，但我解释不了为什么。」作为知识工程师，你会怎么处理这种情况？",
+        "en": "An experienced doctor says: 「I took one look at this patient and knew things were bad, but I can't explain why」. As a knowledge engineer, how would you handle this?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "用具体的病例不断追问，帮助医生把直觉分解成可描述的因素",
+            "en": "Keep probing with specific cases to help the doctor break down intuition into describable factors"
+          },
+          "tag": "analytical-approach",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我们最常用的策略！我会说：「好，让我换一个病例。如果这个病人没有发烧，你还会有同样的感觉吗？」「不会。」「那如果有发烧但没有寒战呢？」「嗯……可能不会那么担心。」就这样，一层层剥下去，直觉慢慢被分解成了可以表达的条件。虽然过程很慢，但每次访谈都能挖出几条新规则。",
+              "en": "That's exactly our most common strategy! I'll say: 「Okay, let me change the case. If this patient didn't have a fever, would you still feel the same?」 「No」. 「What if there's fever but no chills?」 「Hmm... I probably wouldn't be as worried」. Layer by layer, intuition is gradually decomposed into expressible conditions. It's slow, but each interview unearths a few new rules."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "观察医生的实际诊断过程，记录他关注的每一个细节",
+            "en": "Observe the doctor's actual diagnostic process and record every detail they focus on"
+          },
+          "tag": "observational-approach",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "观察法确实很有价值。有时候医生自己说不清楚的事情，你在旁边看着反而能发现规律。比如我注意到一位专家每次看病例时，都会先翻到体温变化趋势那一页——但他自己从没提过这一点。当我问他的时候，他才意识到：「对啊，体温趋势比单次体温读数重要得多。」这就是一条隐藏的规则。",
+              "en": "Observation is indeed very valuable. Sometimes things the doctor can't articulate become visible when you watch from the side. For instance, I noticed one expert always flipped to the temperature trend page first when reviewing a case — but he'd never mentioned it. When I asked, he realized: 「Right, the temperature trend is much more important than a single temperature reading」. That's a hidden rule."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "这种直觉也许无法被编码——接受这个局限",
+            "en": "Maybe this intuition simply can't be encoded — accept the limitation"
+          },
+          "tag": "philosophical-acceptance",
+          "response": {
+            "mood": "serious",
+            "text": {
+              "zh": "你触及了一个根本性的问题。确实有一些专家知识可能永远无法被完全编码成规则。一位资深医生走进病房，看一眼病人的面色、呼吸的节奏、眼神的变化——这种整体性的判断也许超越了「如果-那么」规则的表达能力。承认这个限制很重要。我们的系统永远不能完全替代人类专家，只能在特定领域提供有力的辅助。",
+              "en": "You've touched on a fundamental issue. There is indeed some expert knowledge that may never be fully encoded as rules. A senior doctor walks into a ward, takes in the patient's complexion, breathing rhythm, the look in their eyes — this holistic judgment may exceed the expressive power of 「if-then」 rules. Acknowledging this limitation is important. Our system can never fully replace a human expert — it can only provide powerful assistance in specific domains."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "每一条MYCIN规则的背后，可能是好几个小时的访谈。我们目前有大约六百条规则，这意味着数百小时的专家面谈、反复验证、不断修改。而传染病只是医学的一个很小的分支。要覆盖整个医学？想想就让人望而却步。",
+        "en": "Behind every single MYCIN rule, there may be hours of interviews. We currently have about six hundred rules, which represents hundreds of hours of expert interviews, repeated verification, and constant revision. And infectious disease is just one small branch of medicine. To cover all of medicine? The thought alone is daunting."
+      },
+      "leadsTo": "frame-problem"
+    },
+    {
+      "id": "frame-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "还有一个更深层的困难：{框架问题}。当你改变一个条件时，哪些其他事情会跟着变，哪些不变？比如，你给病人用了一种新的抗生素——这会影响什么？体温可能下降，肝功能指标可能变化，其他药物的效果可能受到干扰……要把所有这些连锁反应都预见并编码成规则，几乎是不可能的。",
+        "en": "There's an even deeper difficulty: the {frame problem}. When you change one condition, what else changes, and what stays the same? For example, you administer a new antibiotic to the patient — what does that affect? Temperature might drop, liver function markers might shift, other medications' effects might be altered... To anticipate all these chain reactions and encode them as rules is nearly impossible."
+      },
+      "terms": {
+        "框架问题": "term-frame-problem",
+        "frame problem": "term-frame-problem"
+      },
+      "leadsTo": "common-sense"
+    },
+    {
+      "id": "common-sense",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有{常识推理}的问题。人类医生知道「一个人不可能同时怀孕和患前列腺癌」——这对人来说是显而易见的常识，但计算机不知道。如果我们不把这种常识写成规则，系统可能会得出荒谬的结论。而人类拥有的常识数量是天文数字，没有人能把它们全部列举出来。",
+        "en": "Then there's the problem of {common sense reasoning}. A human doctor knows that 「a person can't be pregnant and have prostate cancer at the same time」 — to us it's obvious common sense, but the computer doesn't know this. If we don't encode such common sense as rules, the system might reach absurd conclusions. And the amount of common sense humans possess is astronomical — nobody can enumerate it all."
+      },
+      "terms": {
+        "常识推理": "term-common-sense",
+        "common sense reasoning": "term-common-sense"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "在你看来，构建MYCIN这样的专家系统，最难的是哪个环节？",
+        "en": "In your view, what's the hardest part of building an expert system like MYCIN?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "让专家说出自己怎么思考的——隐性知识太难提取",
+            "en": "Getting experts to articulate how they think — tacit knowledge is too hard to extract"
+          },
+          "tag": "knowledge-extraction",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是我个人最深的体会。我们已经花了几年时间和斯坦福的传染病专家一起工作，但我仍然觉得只捕获了他们知识的一部分。专家做出一个诊断只需要几分钟，但要让他们解释每一步推理可能要几个小时，而且解释之后你还会发现遗漏。这种隐性知识的提取，是{知识工程}面临的最大挑战。",
+              "en": "That's my deepest personal experience. We've spent years working with Stanford's infectious disease specialists, and I still feel we've only captured a fraction of their knowledge. An expert makes a diagnosis in minutes, but explaining every reasoning step might take hours, and even then you'll find gaps. Extracting this tacit knowledge is the greatest challenge facing {knowledge engineering}."
+            },
+            "terms": {
+              "知识工程": "term-knowledge-engineering",
+              "knowledge engineering": "term-knowledge-engineering"
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "缺少常识——系统不懂人类觉得理所当然的事情",
+            "en": "Lacking common sense — the system doesn't understand what humans take for granted"
+          },
+          "tag": "common-sense-gap",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你看到了一个深层次的问题。我们的系统在传染病诊断的狭窄领域内表现出色，但它对这个领域之外的世界一无所知。它不知道人要吃饭喝水，不知道孩子会长大，不知道冬天比夏天冷。而一个真正的医生会自然地将这些常识融入判断中。这个缺口目前还看不到填补的办法。",
+              "en": "You've identified a deep-level issue. Our system performs well within the narrow domain of infectious disease diagnosis, but it knows nothing about the world outside that domain. It doesn't know people need food and water, that children grow up, that winter is colder than summer. A real doctor naturally integrates this common sense into their judgment. We don't yet see how to bridge this gap."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "规则之间的冲突和协调——确保新规则不会破坏已有规则",
+            "en": "Conflicts between rules — ensuring new rules don't break existing ones"
+          },
+          "tag": "systems-thinking",
+          "response": {
+            "mood": "serious",
+            "text": {
+              "zh": "这确实是一个越来越严重的问题。六百条规则已经让维护变得困难了。每次添加新规则，我们都要仔细检查它是否与现有规则产生矛盾。有时候两条规则单独看都合理，放在一起却会导致循环推理或互相抵消。规则系统的复杂性不是线性增长的，更像是指数级的。",
+              "en": "This is indeed an increasingly serious problem. Six hundred rules already make maintenance difficult. Every time we add a new rule, we must carefully check whether it contradicts existing ones. Sometimes two rules look perfectly reasonable individually but together cause circular reasoning or cancel each other out. The complexity of a rule system doesn't grow linearly — it's more like exponential growth."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们说的每一点都是真实存在的挑战。隐性知识、常识缺失、规则冲突——这些问题加在一起，就是我们所说的{知识瓶颈}。它是目前制约专家系统发展的最大障碍。技术上我们已经证明了推理引擎是可行的，但知识获取的效率实在太低了。",
+        "en": "Every point you've raised is a real challenge. Tacit knowledge, missing common sense, rule conflicts — together, these constitute what we call the {knowledge bottleneck}. It's currently the biggest obstacle to expert system development. Technically, we've proven that inference engines work, but the efficiency of knowledge acquisition is simply too low."
+      },
+      "terms": {
+        "知识瓶颈": "term-knowledge-bottleneck",
+        "knowledge bottleneck": "term-knowledge-bottleneck"
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "知识获取瓶颈是专家系统面临的最大难题：专家的隐性知识难以表达，常识知识数量庞大无法穷尽，规则间冲突难以协调。知识工程师通过访谈和观察提取知识，但过程极为缓慢。",
+        "en": "The knowledge acquisition bottleneck is the biggest challenge for expert systems: experts' tacit knowledge is hard to articulate, common sense knowledge is too vast to enumerate, and rule conflicts are hard to reconcile. Knowledge engineers extract knowledge through interviews and observation, but the process is extremely slow."
+      },
+      "category": "core-concept",
+      "leadsTo": "hope"
+    },
+    {
+      "id": "hope",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但这并不意味着我们应该放弃。每一条提取出来的规则都有价值。每一个经过验证的知识片段都让系统更加可靠。也许未来会有更好的知识获取方法——也许有一天，计算机能自己从医学文献中学习规则？这只是我的猜想，目前还看不到具体的路径。",
+        "en": "But this doesn't mean we should give up. Every extracted rule has value. Every verified piece of knowledge makes the system more reliable. Perhaps someday there will be better knowledge acquisition methods — maybe one day, computers could learn rules from medical literature on their own? That's just my speculation; I don't see a concrete path to it yet."
+      },
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下一节课，也是最后一节课，我们来讨论一个更大的问题：就算我们解决了技术难题，MYCIN真的能在现实中被使用吗？医院会信任它吗？医生愿意听一台机器的建议吗？这些问题可能比技术本身更难回答。",
+        "en": "Next lesson — our final one — we'll discuss an even bigger question: even if we solve the technical challenges, can MYCIN actually be used in the real world? Will hospitals trust it? Will doctors take advice from a machine? These questions may be harder to answer than the technology itself."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "肖特利夫教授站起身，把那本厚厚的访谈笔记本合上，扣在了那张空椅子上。他走到门口时回头看了一眼那把椅子，像是在想念某位不在场的专家。你望着那本笔记本，想象着里面记满了无数次「你为什么这么判断？」「我也说不清……」的对话。原来，知识最难的部分，是把它从人脑中搬出来。",
+        "en": "Professor Shortliffe stands, closes the thick interview notebook, and rests it on the empty chair. At the doorway he glances back at that chair, as if missing an absent expert. You gaze at the notebook, imagining it filled with countless exchanges of 「Why did you make that judgment?」 「I'm not really sure..」. So the hardest thing about knowledge is moving it out of the human mind."
+      }
+    }
+  ]
+}

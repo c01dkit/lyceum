@@ -1,0 +1,443 @@
+{
+  "id": "lesson-02",
+  "course": "deep-reinforcement-learning",
+  "title": {
+    "zh": "价值与决策",
+    "en": "Value and Decision"
+  },
+  "knowledgePoint": {
+    "zh": "价值函数——通过估算未来奖励来做出决策",
+    "en": "Value functions — estimating future rewards to make decisions"
+  },
+  "teacher": "prof-silver",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你闭上眼，脑海中浮现出那间蓝色灯光的教室。西尔弗教授站在一张围棋棋盘的投影前，指着一个黑白交错的局面，问了一个看似简单却意义深远的问题：「这个局面值多少分？」",
+    "en": "You close your eyes, and that blue-lit classroom surfaces in your mind. Prof. Silver stands before a projected Go board, pointing at a position of intertwined black and white stones, asking a seemingly simple yet profound question: 「How many points is this position worth?」"
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那个递推公式仍在脑海中回荡——当前状态的价值等于即时奖励加上未来价值的折扣。你开始意识到，每一次「有远见的决策」背后，都藏着对未来的某种估算。",
+    "en": "You return to the present. That recursive formula still echoes in your mind — the value of the current state equals the immediate reward plus the discounted future value. You begin to realize that behind every 「far-sighted decision」 lies some form of estimation about the future."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的大屏幕上显示着一盘围棋的中盘局面——黑白棋子犬牙交错，局势看起来非常复杂。侧面的小屏幕上滚动着一列数字，每个数字对应棋盘上的一个位置。西尔弗教授已经站在讲台前，目光平静地扫过棋盘，像是在心里默默计算着什么。",
+        "en": "The classroom's large screen shows a mid-game Go position — black and white stones interlocked in a complex formation. A side screen scrolls a column of numbers, each corresponding to a position on the board. Prof. Silver is already standing at the podium, his calm gaze sweeping across the board as if silently calculating something in his mind."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们学了强化学习的基本循环——观察、行动、奖励、学习。今天我们要解决一个核心问题：智能体如何决定下一步该做什么？",
+        "en": "Last lesson we learned the basic RL cycle — observe, act, reward, learn. Today we'll tackle a core question: how does an agent decide what to do next?"
+      },
+      "leadsTo": "chess-setup"
+    },
+    {
+      "id": "chess-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我用一个下棋的例子来说明。（指向屏幕上的围棋棋盘）假设你在下围棋，现在轮到你落子。棋盘上有两百多个空位可以选择。你会怎么做？随机选一个？显然不行。选一个能立刻吃掉对方棋子的位置？也未必是好选择。",
+        "en": "Let me illustrate with a chess example. (Points to the Go board on screen) Suppose you're playing Go and it's your turn. There are over two hundred empty positions to choose from. What do you do? Pick one randomly? Obviously not. Pick one that immediately captures an opponent's stone? That's not necessarily a good choice either."
+      },
+      "leadsTo": "greedy-problem"
+    },
+    {
+      "id": "greedy-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么「吃掉一个子」未必是好选择？因为围棋是一个关于长远利益的游戏。你现在吃掉一个子可能获得一点小利，但因此暴露了自己的弱点，三十手之后可能会因此输掉整盘棋。那种总是选择眼前最好动作的「贪心」策略，在大多数有趣的问题中都表现很差。",
+        "en": "Why isn't 「capturing a stone」 necessarily a good choice? Because Go is a game of long-term benefit. Capturing one stone now might gain you a small advantage, but exposing your own weakness in the process could cost you the entire game thirty moves later. The 「greedy」 strategy — always choosing the immediately best action — performs poorly in most interesting problems."
+      },
+      "leadsTo": "value-concept"
+    },
+    {
+      "id": "value-concept",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "那我们需要什么？我们需要一种方式来评估每个状态的「长期价值」。不仅仅是「现在能得多少分」，而是「从这个状态开始，一直到游戏结束，总共能得多少分」。这就是{价值函数}的核心思想。",
+        "en": "So what do we need? We need a way to evaluate the 「long-term value」 of each state. Not just 「how many points can I get now」, but 「from this state until the game ends, how many total points can I accumulate」. This is the core idea of the {value function}."
+      },
+      "terms": {
+        "价值函数": "term-value-function",
+        "value function": "term-value-function"
+      },
+      "leadsTo": "value-intuition"
+    },
+    {
+      "id": "value-intuition",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "用一个简单的比喻：想象你站在一个迷宫的某个位置。价值函数告诉你的是：从这个位置出发，如果你做出最优的选择，你还需要走多少步才能到达出口。有些位置离出口很近，价值就高；有些位置是死胡同，价值就低。价值函数就是你手里的「地图」。",
+        "en": "Here's a simple analogy: imagine you're at some position in a maze. The value function tells you: starting from this position, if you make optimal choices, how many steps until you reach the exit. Some positions are close to the exit, so their value is high; some are dead ends, so their value is low. The value function is the 「map」 in your hands."
+      },
+      "leadsTo": "discount-intro"
+    },
+    {
+      "id": "discount-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但这里有一个微妙的问题。假设有两个选择：选择A让你在下一步获得10分，选择B让你在一百步之后获得11分。你会选哪个？大多数人，也包括大多数智能体，会更看重眼前的奖励。这就引出了{折扣因子}的概念。",
+        "en": "But there's a subtle issue. Suppose you have two choices: choice A gives you 10 points next step; choice B gives you 11 points a hundred steps later. Which would you pick? Most people — and most agents — value nearer rewards more. This introduces the concept of the {discount factor}."
+      },
+      "terms": {
+        "折扣因子": "term-discount-factor",
+        "discount factor": "term-discount-factor"
+      },
+      "leadsTo": "discount-explain"
+    },
+    {
+      "id": "discount-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "折扣因子是一个0到1之间的数，我们通常用希腊字母γ来表示。它的含义是：未来的奖励在当前「值多少」。如果γ等于0.9，那么下一步的1分等于现在的0.9分；再下一步的1分等于现在的0.81分，也就是0.9乘以0.9。越远的奖励，折扣越大。",
+        "en": "The discount factor is a number between 0 and 1, usually denoted by the Greek letter gamma (γ). It represents how much a future reward is worth right now. If γ is 0.9, then 1 point next step is worth 0.9 points now; 1 point two steps later is worth 0.81 points now — that's 0.9 times 0.9. The farther the reward, the greater the discount."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么我们要给未来的奖励打折扣？这只是一种数学技巧，还是有更深的原因？",
+        "en": "Why do we discount future rewards? Is it just a mathematical trick, or is there a deeper reason?"
+      },
+      "choices": [
+        {
+          "id": "uncertainty",
+          "text": {
+            "zh": "因为未来是不确定的——越远的奖励，越可能因为意外而拿不到",
+            "en": "Because the future is uncertain — the farther the reward, the more likely something unexpected prevents you from getting it"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常好的直觉。从概率的角度看，未来的奖励确实伴随着更大的不确定性。在围棋中，你对下一步的判断比较可靠，但对五十步后的判断可能完全偏离。折扣因子在某种意义上反映了这种不确定性——它让智能体适度重视近期的、更可靠的奖励。",
+              "en": "Excellent intuition. From a probabilistic perspective, future rewards indeed carry greater uncertainty. In Go, your judgment of the next move is fairly reliable, but your assessment fifty moves later could be completely off. The discount factor in a sense reflects this uncertainty — it makes the agent appropriately value nearer, more reliable rewards."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "math-convergence",
+          "text": {
+            "zh": "如果不打折扣，未来奖励的总和可能是无穷大——数学上不好处理",
+            "en": "Without discounting, the sum of future rewards could be infinite — mathematically inconvenient"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说到了技术核心。如果一个任务永远不会结束，比如一个持续运行的机器人——奖励的总和确实可能趋向无穷。折扣因子保证了这个总和是有限的，因为0.9的n次方最终趋近于零。这让我们可以给每个状态计算一个确定的数值。没有折扣因子，整个价值函数的理论框架就站不住脚。",
+              "en": "You've hit the technical core. If a task never ends — like a continuously running robot — the sum of rewards could indeed approach infinity. The discount factor ensures this sum is finite, because 0.9 to the power of n eventually approaches zero. This lets us compute a definite number for each state. Without the discount factor, the entire theoretical framework of value functions falls apart."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "human-behavior",
+          "text": {
+            "zh": "因为人类天生就更看重眼前的好处——这是一种自然的偏好",
+            "en": "Because humans naturally prefer immediate benefits — it's an innate preference"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "从认知科学的角度，你说得完全正确。人类和动物都表现出「时间折扣」的行为，比如今天的一块巧克力就比一周后的更有吸引力。强化学习中的折扣因子，可以看作是对这种自然行为的数学建模。有趣的是，不同的折扣因子会塑造出不同性格的智能体：γ接近1的智能体更有远见，而γ接近0的智能体则只看眼前。",
+              "en": "From a cognitive science perspective, you're absolutely right. Humans and animals both exhibit 「temporal discounting」 — a chocolate today is more appealing than one a week from now. The discount factor in RL can be seen as a mathematical model of this natural behavior. Interestingly, different discount factors produce agents with different 「personalities」 — an agent with γ near 1 is far-sighted, while one with γ near 0 only looks at the present."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "折扣因子虽然看起来只是一个参数，但它深刻地影响着智能体的行为。设得太高，智能体会过于追求长远利益，学习速度很慢；设得太低，智能体就变成了「目光短浅」的决策者。在实践中，0.99和0.9这样的值最常见。",
+        "en": "Though the discount factor looks like just a parameter, it profoundly influences agent behavior. Set it too high and the agent chases long-term gains too aggressively, learning slowly; set it too low and the agent becomes a 「short-sighted」 decision-maker. In practice, values like 0.99 and 0.9 are most common."
+      },
+      "leadsTo": "q-function-intro"
+    },
+    {
+      "id": "q-function-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我介绍价值函数的一个重要变体。状态价值函数告诉你「这个状态有多好」，但它没有直接告诉你「该选择哪个动作」。为了做决策，我们需要一个更具体的函数——{Q函数}，也叫动作价值函数。",
+        "en": "Now let me introduce an important variant of the value function. The state-value function tells you 「how good this state is」, but it doesn't directly tell you 「which action to choose」. To make decisions, we need a more specific function — the {Q-function}, also called the action-value function."
+      },
+      "terms": {
+        "Q函数": "term-q-function",
+        "Q-function": "term-q-function"
+      },
+      "leadsTo": "q-function-explain"
+    },
+    {
+      "id": "q-function-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "Q函数接受两个输入：一个状态和一个动作。它返回的是：在这个状态下，如果我先执行这个动作，然后从此之后都做最优选择，我能得到的总折扣奖励是多少。在围棋中，Q(局面, 落子位置)就告诉你：在当前局面下，落在这个位置能带来多大的长期收益。",
+        "en": "The Q-function takes two inputs: a state and an action. It returns: in this state, if I first take this action and then make optimal choices from then on, what total discounted reward can I get? In Go, Q(position, move) tells you: given the current board position, how much long-term benefit does playing at this spot provide?"
+      },
+      "leadsTo": "q-decision"
+    },
+    {
+      "id": "q-decision",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "有了Q函数，决策就变得简单了——在每个状态下，选择Q值最高的动作就行了。（在屏幕上展示一张棋盘，每个空位标注了Q值）看，如果我们知道每个落子位置的Q值，选择最佳落子就是一个简单的「找最大值」问题。整个强化学习的目标，就浓缩成了一句话：学到一个好的Q函数。",
+        "en": "With the Q-function, decision-making becomes simple — at each state, just pick the action with the highest Q-value. (Shows a board on screen with Q-values labeled at each empty position) See, if we know the Q-value of every possible move, choosing the best move is a simple 「find the maximum」 problem. The entire goal of reinforcement learning boils down to one sentence: learn a good Q-function."
+      },
+      "leadsTo": "bellman-intro"
+    },
+    {
+      "id": "bellman-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但怎么才能学到Q函数呢？这就要用到强化学习中最重要的等式之一——{贝尔曼方程}。它的思想其实很简单，让我用一个比喻来说明。",
+        "en": "But how do we learn the Q-function? This is where one of the most important equations in reinforcement learning comes in — the {Bellman equation}. Its idea is actually quite simple; let me use an analogy to explain."
+      },
+      "terms": {
+        "贝尔曼方程": "term-bellman-equation",
+        "Bellman equation": "term-bellman-equation"
+      },
+      "leadsTo": "bellman-analogy"
+    },
+    {
+      "id": "bellman-analogy",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "想象你在爬一座山。你想知道从当前位置到山顶还有多远。有两种方法：第一种，直接测量到山顶的距离——这很难，因为你看不到山顶。第二种，走一步，然后问：「从新的位置到山顶还有多远？」如果你知道第二个问题的答案，再加上你刚才走的那一步的距离，就得到了第一个问题的答案。",
+        "en": "Imagine you're climbing a mountain. You want to know how far it is from your current position to the summit. There are two methods: first, directly measure the distance to the summit — that's hard because you can't see it. Second, take one step, then ask: 「How far from this new position to the summit?」 If you know the answer to the second question, just add the distance of the step you just took, and you have the answer to the first."
+      },
+      "leadsTo": "bellman-formal"
+    },
+    {
+      "id": "bellman-formal",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "贝尔曼方程就是这个思想的数学表达：当前状态的价值 = 即时奖励 + 折扣因子 × 下一个状态的价值。它把一个大问题分解成了一个小问题加上一步的代价。通过反复应用这个递推关系，我们可以从游戏的结局一路倒推回开头，计算出每个状态的价值。",
+        "en": "The Bellman equation is the mathematical expression of this idea: value of current state = immediate reward + discount factor × value of next state. It decomposes a big problem into a small problem plus one step's cost. By repeatedly applying this recursive relationship, we can work backward from the game's end all the way to the beginning, computing the value of every state."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "贝尔曼方程把一个状态的价值拆分成了「即时奖励」加上「下一个状态的折扣价值」。你觉得这种递推方式有什么局限性？",
+        "en": "The Bellman equation decomposes a state's value into 「immediate reward」 plus 「discounted value of the next state」. What do you think are the limitations of this recursive approach?"
+      },
+      "choices": [
+        {
+          "id": "need-next-value",
+          "text": {
+            "zh": "你需要知道下一个状态的价值才能算当前状态——但下一个状态的价值也不知道",
+            "en": "You need to know the next state's value to compute the current one — but the next state's value is also unknown"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你发现了一个看似矛盾的地方，但这正是贝尔曼方程的精妙之处。我们不需要一次性知道所有状态的准确价值。我们可以从一个粗略的猜测开始，然后不断用贝尔曼方程来更新——每更新一轮，估计就更准确一点。这种反复迭代的方法叫做「价值迭代」，在数学上可以证明它一定会收敛到正确答案。",
+              "en": "You've spotted what seems like a contradiction, but this is precisely where the Bellman equation's elegance lies. We don't need to know every state's exact value all at once. We can start from a rough guess, then keep updating with the Bellman equation — each round of updates makes the estimates more accurate. This iterative approach is called 「value iteration, and it's mathematically provable that it converges to the correct answer."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "too-many-states",
+          "text": {
+            "zh": "如果状态空间太大，比如围棋——根本无法逐一计算每个状态的价值",
+            "en": "If the state space is too large — like Go — it's impossible to compute the value of every state individually"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "一针见血。围棋有大约10的170次方个合法局面，比宇宙中的原子数量还多。你不可能为每个局面建一张查找表。这正是我们后面要讲深度强化学习的原因：用神经网络来「近似」价值函数。与其为每个状态存一个数，不如训练一个网络，让它看到任何新的状态都能估算出价值。",
+              "en": "Straight to the point. Go has approximately 10 to the 170th power legal positions — more than the number of atoms in the universe. You can't build a lookup table for every position. This is precisely why we'll discuss deep reinforcement learning later — using neural networks to 「approximate」 the value function. Instead of storing a number for every state, we train a network to estimate the value of any new state it encounters."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "assumes-optimal",
+          "text": {
+            "zh": "它假设智能体从下一步开始会做最优选择——但如果智能体还在学习中呢？",
+            "en": "It assumes the agent makes optimal choices from the next step on — but what if the agent is still learning?"
+          },
+          "tag": "critical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常深刻的观察。贝尔曼方程描述的是「最优」价值函数——前提是智能体后续都做最优选择。但在学习过程中，智能体的策略还不是最优的。实际上，我们在学习时会用当前策略来估计价值，然后用新的价值来改进策略，再用改进后的策略来更新价值……这个策略和价值互相提升的过程，是强化学习收敛的核心机制。",
+              "en": "That's a very deep observation. The Bellman equation describes the 「optimal」 value function — assuming the agent makes optimal choices thereafter. But during learning, the agent's policy isn't optimal yet. In practice, we estimate values using the current policy, then use the new values to improve the policy, then update values with the improved policy... This mutual improvement between policy and value is the core mechanism of RL convergence."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这些局限性恰恰推动了整个领域的发展。状态空间太大，催生了函数近似的方法。学习过程中策略不断变化，催生了各种策略改进算法。每一个困难都变成了一个研究方向。",
+        "en": "These limitations are precisely what drove the field's development. State spaces too large spawned function approximation methods. Constantly changing policies during learning spawned various policy improvement algorithms. Every difficulty became a research direction."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "价值函数评估一个状态的长期价值（而非即时奖励）。Q函数是价值函数的变体，评估「在某状态下执行某动作」的长期价值。决策方法：选择Q值最高的动作。贝尔曼方程是核心递推关系：V(当前) = 即时奖励 + γ × V(下一个)。折扣因子γ控制智能体对远期奖励的重视程度。局限：状态空间太大时无法精确计算每个状态的价值。",
+        "en": "Value function evaluates a state's long-term value (not just immediate reward). Q-function is a variant that evaluates 「taking a specific action in a specific state」 for long-term value. Decision method: pick the action with the highest Q-value. Bellman equation is the core recursive relation: V(current) = immediate reward + γ × V(next). Discount factor γ controls how much the agent values distant rewards. Limitation: can't compute exact values when state space is too large."
+      },
+      "category": "core-concept",
+      "leadsTo": "practical-example"
+    },
+    {
+      "id": "practical-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（切换屏幕到一个简单的网格世界）让我用一个简单的例子把所有概念串起来。这是一个4×4的网格，智能体从左上角出发，目标是到达右下角。每走一步奖励是-1（因为我们希望它尽快到达），到达终点奖励是+10。折扣因子设为0.9。",
+        "en": "(Switches screen to a simple grid world) Let me tie all the concepts together with a simple example. This is a 4×4 grid. The agent starts in the top-left corner, and the goal is to reach the bottom-right corner. Each step gives a reward of -1 (because we want it to arrive quickly), and reaching the goal gives +10. The discount factor is 0.9."
+      },
+      "leadsTo": "grid-walkthrough"
+    },
+    {
+      "id": "grid-walkthrough",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "终点的价值是+10。离终点一步远的格子价值是多少？-1加上0.9乘以10，等于8。离终点两步远呢？-1加上0.9乘以8，等于6.2。你看到了吗？价值像涟漪一样从终点向外扩散，离终点越远，价值越低。智能体只需要沿着价值递增的方向走，就能找到最优路径。",
+        "en": "The goal's value is +10. What's the value of a cell one step from the goal? -1 plus 0.9 times 10 equals 8. Two steps away? -1 plus 0.9 times 8 equals 6.2. See the pattern? Value ripples outward from the goal like waves, decreasing with distance. The agent only needs to follow the direction of increasing value to find the optimal path."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "在这个网格世界的例子中，我们可以精确计算每个格子的价值。但在围棋中，局面数量超过了10的170次方。你觉得我们该怎么办？",
+        "en": "In this grid world example, we can compute each cell's value exactly. But in Go, the number of positions exceeds 10 to the 170th power. What do you think we should do?"
+      },
+      "choices": [
+        {
+          "id": "neural-network",
+          "text": {
+            "zh": "用神经网络来近似价值函数——不需要存储每个状态的值",
+            "en": "Use a neural network to approximate the value function — no need to store every state's value"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我们在DeepMind所做的事情。我们不去为每个状态建一张巨大的查找表，而是训练一个神经网络，让它学会从棋盘的视觉特征中直接估算价值。网络可以泛化，它能对从未见过的新局面给出合理的价值估计。这就是「深度」强化学习名字的由来，因为我们用深度神经网络来做价值近似。下节课我们就来讲这个。",
+              "en": "That's exactly what we do at DeepMind. Instead of building a massive lookup table for every state, we train a neural network to learn how to estimate values directly from the board's visual features. The network can generalize — it gives reasonable value estimates for new positions it's never seen before. That's where 「deep」 reinforcement learning gets its name — using deep neural networks for value approximation. That's what we'll cover next lesson."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "sample-states",
+          "text": {
+            "zh": "只计算最有可能出现的那些状态——忽略不太可能遇到的局面",
+            "en": "Only compute values for the most likely states — ignore positions unlikely to occur"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个聪明的想法，而且在实践中确实有效。蒙特卡洛树搜索就使用了类似的策略，它不会探索所有可能的局面，只会沿着最有希望的路径深入搜索。但即使这样，你仍然需要一种方法来评估那些你采样到的状态的价值。所以这个策略和价值近似是互补的：一方面减少要评估的状态数量，另一方面用更好的方法来评估它们。",
+              "en": "That's a clever idea, and it does work in practice. Monte Carlo tree search uses a similar strategy — it doesn't explore every possible position, only searching deeply along the most promising paths. But even so, you still need a way to evaluate the states you do sample. So this strategy complements value approximation — reduce the number of states to evaluate while using better methods to evaluate them."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "abstract-features",
+          "text": {
+            "zh": "提取棋盘的高层特征——不看每个棋子，而是看整体形势",
+            "en": "Extract high-level features from the board — look at the overall situation rather than individual stones"
+          },
+          "tag": "abstract-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你的思路和人类棋手很像。职业棋手看到一个局面，不会逐一分析每个棋子，而是识别出一些模式，比如「厚势」「薄味」「先手」。如果我们能让智能体也学会提取这样的特征，就能大幅度压缩状态空间。实际上，深度神经网络做的正是这件事：它能自动从原始输入中学习，提取出有用的高层特征。",
+              "en": "Your thinking is very similar to how human players operate. A professional player looking at a position doesn't analyze each stone individually but recognizes patterns — 「thickness」, 「thinness」, 「initiative」. If we can get an agent to learn to extract such features, the state space can be drastically compressed. In fact, this is precisely what deep neural networks do — automatically learn to extract useful high-level features from raw inputs."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我们从「这个状态有多好」这个简单问题出发，逐步建立起价值函数和Q函数的概念。我们用贝尔曼方程来递推计算价值，用折扣因子来平衡远近期奖励。然而，一旦面对真实的复杂问题，精确的价值表格就行不通了。",
+        "en": "Today we started from a simple question — 「how good is this state」 — and built up the concepts of value functions and Q-functions. We used the Bellman equation for recursive value computation and the discount factor to balance near- and long-term rewards. But for real complex problems, exact value tables won't work."
+      },
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "下节课，我们来讲一个让整个领域都为之兴奋的突破——一个叫做DQN的算法。它用深度神经网络来近似Q函数，然后直接在Atari游戏的原始像素上学习。结果让我们所有人都震惊了：同一个算法，不做任何针对性修改，就能在几十种不同的游戏上达到甚至超过人类水平。",
+        "en": "Next lesson, we'll talk about a breakthrough that thrilled the entire field — an algorithm called DQN. It uses a deep neural network to approximate the Q-function and learns directly from the raw pixels of Atari games. The results stunned all of us: the same algorithm, with no game-specific modifications, achieved or even surpassed human-level performance across dozens of different games."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "强化学习的核心目标：学到一个好的Q函数，然后在每个状态选择Q值最高的动作。贝尔曼方程通过递推关系将大问题分解为小问题。折扣因子(γ)平衡远近期奖励，反映未来的不确定性。核心挑战：当状态空间极大时（如围棋的10^170），需要用函数近似（如神经网络）来替代精确的价值表。",
+        "en": "Core RL goal: learn a good Q-function, then pick the highest Q-value action at each state. Bellman equation decomposes big problems into small ones via recursion. Discount factor (γ) balances near- vs. long-term rewards, reflecting future uncertainty. Core challenge: when the state space is enormous (like Go's 10^170), function approximation (e.g., neural networks) must replace exact value tables."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "西尔弗教授关掉了网格世界的演示，屏幕切回到围棋棋盘。他指着棋盘上一个看似平凡的落子位置，说：「三个月前，我们的程序在这个位置下出了一手，连职业九段都说看不懂。但它的Q值是所有选项中最高的。后来证明，那是一步妙手。」他拿起遥控器，平静地走向门口。蓝色的灯光下，那张围棋棋盘还亮着，每个空位旁边的数字静静闪烁——那是Q函数对这个世界的理解。",
+        "en": "Prof. Silver closes the grid world demo, and the screen switches back to the Go board. He points to a seemingly ordinary move on the board and says: 「Three months ago, our program played a move at this position that even professional 9-dan players said they couldn't understand. But its Q-value was the highest among all options. It turned out to be a brilliant move」. He picks up the remote and walks calmly toward the door. Under the blue light, the Go board still glows, numbers beside each empty position flickering quietly — the Q-function's understanding of this world."
+      }
+    }
+  ]
+}

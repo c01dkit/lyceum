@@ -1,0 +1,295 @@
+{
+  "id": "lesson-05",
+  "course": "convolutional-networks",
+  "title": {
+    "zh": "LeNet——手写识别的先驱",
+    "en": "LeNet — Pioneer of Handwriting Recognition"
+  },
+  "knowledgePoint": {
+    "zh": "第一个成功的卷积神经网络应用——LeNet与手写数字识别",
+    "en": "The first successful CNN application — LeNet for digit recognition"
+  },
+  "teacher": "prof-lecun",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你推开教室门，看到勒丘恩教授正在拆一台老旧的设备——看起来像是某种扫描仪和电路板的组合。他的眼神里有一种特殊的温柔，像是在重逢一位老朋友。屏幕上显示着一排排手写数字。",
+    "en": "You push open the classroom door and see Prof. LeCun disassembling an old device — it looks like some combination of a scanner and circuit board. There's a special tenderness in his eyes, as if reuniting with an old friend. Rows of handwritten digits fill the screens."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中浮现出那个简单却优雅的架构图：两层卷积，两层池化，三层全连接。就这么简单的结构，读了美国上千万张支票。有时候，改变世界的发明看起来出乎意料地朴素。",
+    "en": "You close your notebook, and the simple yet elegant architecture diagram lingers in your mind: two convolution layers, two pooling layers, three fully connected layers. Such a simple structure, and it read tens of millions of American checks. Sometimes inventions that change the world look surprisingly plain."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的大屏幕上显示着一段黑白录像——1990年代的画面，一台机器正在高速扫描邮寄信封，自动读取手写的邮政编码。画面跳转到一家银行，另一台机器正在处理一叠手写支票。勒丘恩教授站在屏幕前，手里拿着一份泛黄的论文复印件，封面上写着「Backpropagation Applied to Handwritten Zip Code Recognition」。",
+        "en": "The large screen shows a black-and-white recording — footage from the 1990s of a machine scanning mailed envelopes at high speed, automatically reading handwritten zip codes. The footage cuts to a bank, where another machine processes a stack of handwritten checks. Prof. LeCun stands before the screen holding a yellowed paper reprint, its cover reading 「Backpropagation Applied to Handwritten Zip Code Recognition」."
+      },
+      "leadsTo": "personal-story"
+    },
+    {
+      "id": "personal-story",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "1988年，我加入贝尔实验室。当时AT&T需要解决一个实际问题：每天有几百万张手写支票需要处理，人工成本太高了。我的任务是让机器能自动识别手写的数字——0到9，十个类别。听起来简单吧？",
+        "en": "In 1988, I joined Bell Labs. AT&T had a practical problem to solve: millions of handwritten checks needed processing every day, and the cost of doing it by hand was too high. My task was to make machines automatically recognize handwritten digits — 0 through 9, ten categories. Sounds simple, right?"
+      },
+      "leadsTo": "mnist-intro"
+    },
+    {
+      "id": "mnist-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们首先需要数据。我和同事们收集了几万张手写数字的图片，标注了正确答案，做成了一个标准数据集。后来它有了一个名字，叫{MNIST}。每张图片是28乘28像素的灰度图。这个数据集后来成了整个机器学习领域最常用的基准测试之一，几乎每个新算法都要先在MNIST上跑一下证明自己。",
+        "en": "First we needed data. My colleagues and I collected tens of thousands of handwritten digit images, labeled them with correct answers, and assembled a standard dataset — it later got a name: {MNIST}. Each image is 28-by-28 pixels, grayscale. This dataset later became one of the most commonly used benchmarks in the entire machine learning field — almost every new algorithm runs on MNIST first to prove itself."
+      },
+      "terms": {
+        "MNIST": "term-mnist"
+      },
+      "leadsTo": "challenge-variation"
+    },
+    {
+      "id": "challenge-variation",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "手写数字看起来简单，但变化非常大。同一个人写的「7」每次都不一样，不同人的「7」更是千差万别——有的有横杠，有的没有，有的歪斜，有的端正。传统的模板匹配方法在这种变化面前束手无策。我们需要一种能自动处理变化的方法。",
+        "en": "Handwritten digits seem simple, but the variation is enormous. The same person's 「7」 looks different each time, and different people's 「7s」 vary wildly — some have a crossbar, some don't, some are tilted, some are upright. Traditional template matching methods are helpless against this variation. We needed a method that could automatically handle variation."
+      },
+      "leadsTo": "lenet-architecture"
+    },
+    {
+      "id": "lenet-architecture",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "于是我设计了{LeNet}。让我给你们画一下它的架构。输入是28乘28的灰度图像。第一层：6个5乘5的卷积滤波器，生成6张特征图。然后是一层2乘2的池化。第二层：16个5乘5的卷积滤波器。再一层池化。最后接三层全连接网络，输出10个数字，对应0到9的概率。整个网络大约有6万个可训练参数。",
+        "en": "So I designed {LeNet}. Let me sketch its architecture for you. Input is a 28-by-28 grayscale image. First layer: six 5-by-5 convolution filters, generating 6 feature maps. Then a 2-by-2 pooling layer. Second layer: sixteen 5-by-5 convolution filters. Another pooling layer. Finally, three fully connected layers, outputting 10 numbers corresponding to the probabilities for digits 0 through 9. The entire network has about 60,000 trainable parameters."
+      },
+      "terms": {
+        "LeNet": "term-lenet"
+      },
+      "leadsTo": "architecture-insight"
+    },
+    {
+      "id": "architecture-insight",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "注意这个设计的节奏：卷积、池化、卷积、池化、全连接。空间分辨率逐层降低，通道数逐层增加——从1通道到6通道再到16通道。到了全连接层的时候，空间信息已经被压缩得足够小，可以直接展平成一维向量来做分类了。这个「先提取特征，再做分类」的设计模式，后来成了所有卷积网络的标准范式。",
+        "en": "Notice the rhythm of this design: convolution, pooling, convolution, pooling, fully connected. Spatial resolution decreases layer by layer, while channel count increases — from 1 channel to 6 channels to 16 channels. By the time we reach the fully connected layers, spatial information has been compressed enough to be flattened into a one-dimensional vector for classification. This 「extract features first, then classify」 design pattern later became the standard paradigm for all convolutional networks."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "LeNet的架构是「卷积→池化→卷积→池化→全连接」。你觉得为什么要用两层卷积而不是一层？",
+        "en": "LeNet's architecture is 「convolution → pooling → convolution → pooling → fully connected」. Why use two convolution layers instead of one?"
+      },
+      "choices": [
+        {
+          "id": "choice-hierarchy",
+          "text": {
+            "zh": "两层可以建立层级——第一层学基本特征，第二层学特征的组合",
+            "en": "Two layers build hierarchy — the first layer learns basic features, the second learns combinations of features"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "完全正确。一层卷积只能学到局部的简单模式——边缘、笔画片段。但你需要把这些简单模式组合起来才能区分不同的数字。「6」和「0」都有曲线，但曲线的组合方式不同。第二层卷积在第一层的特征图上工作，自然就在学习「特征的组合」，也就是更高层次的表示。",
+              "en": "Exactly right. One convolution layer can only learn local simple patterns — edges, stroke fragments. But you need to combine these simple patterns to distinguish different digits. 「6」 and 「0」 both have curves, but the curves combine differently. The second convolution layer works on the first layer's feature maps, so it naturally learns 「combinations of features」 — higher-level representations."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-receptive-field",
+          "text": {
+            "zh": "两层加上池化后，第二层能看到的区域比第一层大得多",
+            "en": "With two layers plus pooling, the second layer can see a much larger area than the first"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常好的技术分析。第一层的5乘5滤波器只能看到5乘5的像素区域。但经过池化之后空间缩小了一半，所以第二层的5乘5滤波器实际上覆盖了原始图像中10乘10甚至更大的区域。这意味着第二层可以捕捉更大范围的结构，比如完整的笔画弯曲、数字的整体轮廓。感受野的逐层扩大是深度网络的核心优势之一。",
+              "en": "Excellent technical analysis. The first layer's 5-by-5 filter can only see a 5-by-5 pixel region. But after pooling shrinks the space by half, the second layer's 5-by-5 filter effectively covers a 10-by-10 or even larger region of the original image. This means the second layer can capture larger-scale structures — like complete stroke curves, the overall contour of a digit. Progressive enlargement of the receptive field is one of the core advantages of deep networks."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-capacity",
+          "text": {
+            "zh": "更多层意味着更多参数，网络的表达能力更强",
+            "en": "More layers mean more parameters, giving the network greater expressive power"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "表达能力确实随深度增加，但这里有一个微妙之处。增加深度比增加宽度更高效，也就是说，两层各16个滤波器比一层256个滤波器的参数少得多，但表达能力可能更强。深度带来的是组合性——每一层的特征可以被下一层任意组合。这种组合爆炸效应，让深层网络比浅层宽网络更具优势。",
+              "en": "Expressive power does increase with depth, but there's a subtlety here. Increasing depth is more efficient than increasing width — that is, two layers of 16 filters each has far fewer parameters than one layer of 256 filters, but may be more expressive. Depth brings compositionality — features from each layer can be arbitrarily combined by the next. This combinatorial explosion gives deep networks an advantage over shallow, wide ones."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "LeNet在MNIST上达到了什么效果呢？错误率低于百分之一。在1990年代，这个结果击败了所有其他方法，包括最精心设计的手工特征加传统分类器的组合。",
+        "en": "What results did LeNet achieve on MNIST? An error rate below one percent. In the 1990s, this result beat all other methods — including the most carefully designed combinations of handcrafted features with traditional classifiers."
+      },
+      "leadsTo": "real-world-impact"
+    },
+    {
+      "id": "real-world-impact",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "但最让我骄傲的不是实验室里的数字。AT&T把LeNet部署到了实际的支票处理系统中。到了1990年代末，美国百分之十以上的手写支票是由基于我设计的网络的系统来读取的。每天处理几百万张支票，错误率极低。这是深度学习第一次在真实的大规模工业应用中证明了自己。",
+        "en": "But what makes me most proud isn't the lab numbers. AT&T deployed LeNet into actual check processing systems. By the late 1990s, over ten percent of handwritten checks in America were read by systems based on the network I designed. Millions of checks processed daily, with extremely low error rates. This was the first time deep learning proved itself in a real, large-scale industrial application."
+      },
+      "leadsTo": "skepticism"
+    },
+    {
+      "id": "skepticism",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但你们知道吗？即使有了这样的成功，学术界大多数人仍然不买账。他们说：「手写数字太简单了，这只是一个特例。」「在更复杂的问题上，支持向量机表现更好。」「神经网络需要太多调参技巧，不可靠。」这些质疑持续了十几年。",
+        "en": "But you know what? Even with such success, most of the academic community still wasn't buying it. They said: 「Handwritten digits are too simple, this is just a special case」. 「On more complex problems, support vector machines perform better」. 「Neural networks require too much parameter tuning, they're unreliable」. This skepticism persisted for over a decade."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "LeNet在商业上很成功，但学术界仍然怀疑。你觉得为什么实际应用的成功不能说服学术界？",
+        "en": "LeNet was commercially successful, but academia remained skeptical. Why do you think practical success couldn't convince the academic world?"
+      },
+      "choices": [
+        {
+          "id": "choice-theoretical",
+          "text": {
+            "zh": "学术界需要理论解释——光说「好用」不够，要说清「为什么好用」",
+            "en": "Academia needs theoretical explanations — just saying 「it works」 isn't enough, you must explain 「why it works」"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个合理的要求。当时我们确实无法从理论上解释为什么卷积网络在实践中表现这么好。支持向量机有优雅的数学理论支持，而神经网络更像是一门「手艺」——你得知道怎么初始化权重、怎么选学习率、什么时候停止训练。缺乏理论解释让很多严谨的研究者不放心。",
+              "en": "That's a fair demand. At the time we really couldn't explain theoretically why convolutional networks performed so well in practice. Support vector machines had elegant mathematical theory behind them, while neural networks were more of a 「craft」 — you had to know how to initialize weights, how to choose learning rates, when to stop training. The lack of theoretical explanation made many rigorous researchers uneasy."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-generalize",
+          "text": {
+            "zh": "手写数字太简单了——人们担心这种方法不能推广到更复杂的任务",
+            "en": "Handwritten digits are too simple — people worried this approach couldn't generalize to more complex tasks"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（带着一丝苦笑）这正是我听到最多的批评。「行，你能认数字，那你能认几千种不同的物体吗？」说实话，在当时的硬件条件下，我也没法证明。MNIST只有28乘28的小图片，10个类别。要处理真实世界的彩色高分辨率图像，需要的计算量远远超出了1990年代的能力。我只能等——等硬件追上来。",
+              "en": "(With a slight wry smile) That was the criticism I heard most. 「Sure, you can recognize digits, but can you recognize thousands of different objects?」 Honestly, with the hardware of that time, I couldn't prove it. MNIST has only 28-by-28 small images with 10 categories. Processing real-world color high-resolution images required computation far beyond 1990s capabilities. I could only wait — wait for the hardware to catch up."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-fashion",
+          "text": {
+            "zh": "学术潮流的影响——当时统计学习方法正热门，大家都在追那个方向",
+            "en": "Influence of academic trends — statistical learning methods were hot at the time, everyone was chasing that direction"
+          },
+          "tag": "sociological",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说得很真实。学术界也有潮流和从众效应。1990年代到2000年代，支持向量机和核方法是最时髦的研究方向。做神经网络的人被看作「过时的」。发论文变得更困难，申请经费也更困难。但我一直认为：科学不应该由潮流决定，应该由结果决定。我们只是需要更大的舞台来证明自己。",
+              "en": "That's a very honest observation. Academia has trends and herd effects too. From the 1990s to 2000s, support vector machines and kernel methods were the trendiest research directions. People doing neural networks were seen as 「outdated」. Publishing papers became harder, getting funding became harder. But I've always believed: science shouldn't be determined by trends, but by results. We just needed a bigger stage to prove ourselves."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "尽管有这些质疑，我、辛顿和本吉奥从来没有放弃。我们在各自的实验室继续推进神经网络的研究，等待着计算能力和数据量赶上我们的想法。2006年前后，辛顿发表了关于深度信念网络的论文，重新点燃了学术界对深度学习的兴趣。但真正的爆发，要等到2012年。",
+        "en": "Despite this skepticism, Hinton, Bengio, and I never gave up. We continued advancing neural network research in our respective labs, waiting for computing power and data volume to catch up with our ideas. Around 2006, Hinton published papers on deep belief networks, reigniting academic interest in deep learning. But the real explosion had to wait until 2012."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "LeNet架构：输入28x28 → 卷积(6滤波器) → 池化 → 卷积(16滤波器) → 池化 → 全连接 → 输出10类。约6万参数。在MNIST上错误率<1%，部署于AT&T支票处理系统，处理美国10%以上的手写支票。但学术界仍然怀疑：缺乏理论解释、任务太简单、与SVM相比不够流行。",
+        "en": "LeNet architecture: input 28x28 → conv(6 filters) → pool → conv(16 filters) → pool → fully connected → output 10 classes. ~60K parameters. Error rate <1% on MNIST, deployed in AT&T check processing systems handling 10%+ of US handwritten checks. But academia remained skeptical: lacking theoretical explanation, task too simple, less popular than SVMs."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-deeper"
+    },
+    {
+      "id": "preview-deeper",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "下节课，我们要跳到2012年之后的世界。你们会看到，当硬件终于追上来的时候，卷积网络的威力是多么惊人。AlexNet、VGGNet、GoogLeNet——这些名字你们以后会经常听到。它们都是LeNet的后代，但比它大得多、深得多、强得多。",
+        "en": "Next lesson, we'll jump to the world after 2012. You'll see just how staggering the power of convolutional networks becomes when hardware finally catches up. AlexNet, VGGNet, GoogLeNet — you'll hear these names a lot from now on. They're all descendants of LeNet, but much larger, much deeper, and much more powerful."
+      },
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "LeNet也许看起来很小，只有5层，6万个参数。但它包含了卷积神经网络的所有核心思想：局部连接、参数共享、卷积加池化的层级结构、端到端的反向传播训练。后来那些震惊世界的网络，本质上只是把LeNet的思想放大了。它们用了更多层、更多滤波器、更大的图像、更多的数据。核心架构没有变。",
+        "en": "LeNet may look small — just 5 layers, 60,000 parameters. But it contains all the core ideas of convolutional neural networks: local connectivity, parameter sharing, the convolution-plus-pooling hierarchy, end-to-end backpropagation training. Those later networks that stunned the world essentially just scaled up LeNet's ideas — more layers, more filters, bigger images, more data. The core architecture didn't change."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "LeNet的历史意义：第一个成功的端到端训练的卷积神经网络，在真实工业应用中大规模部署。虽然受限于当时的硬件只能处理小图像，但它包含了所有核心思想。后来的AlexNet、VGGNet等本质上是LeNet思想的放大版。坚持者（LeCun、Hinton、Bengio）在学术寒冬中持续推进，等待着硬件和数据的成熟。",
+        "en": "LeNet's historical significance: the first successful end-to-end trained CNN, deployed at scale in real industrial applications. Though limited by hardware to small images, it contained all the core ideas. Later AlexNet, VGGNet etc. were essentially scaled-up versions of LeNet's ideas. The persistent trio (LeCun, Hinton, Bengio) kept advancing through the academic winter, waiting for hardware and data to mature."
+      },
+      "category": "key-insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "勒丘恩教授把那份泛黄的论文复印件小心地放回包里。他看了一眼屏幕上还在循环播放的手写数字图片，轻声说了一句：「那个小网络等了十五年才等到属于它的时代。有时候，最重要的品质是耐心。」他关上了屏幕，安静地走了出去。",
+        "en": "Prof. LeCun carefully places the yellowed paper reprint back in his bag. He glances at the handwritten digits still cycling on the screen and says quietly: 「That little network waited fifteen years for its era to arrive. Sometimes the most important quality isn't cleverness — it's patience」. He turns off the screen and walks out quietly."
+      }
+    }
+  ]
+}

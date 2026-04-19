@@ -1,0 +1,53 @@
+{
+  "id": "convolutional-networks",
+  "name": {
+    "zh": "CNN：从LeNet到视觉革命",
+    "en": "CNN: From LeNet to the Vision Revolution"
+  },
+  "description": {
+    "zh": "卷积神经网络的故事始于1980年代的生物视觉研究，经过1998年LeNet的实用突破，最终在2012年AlexNet的ImageNet胜利中引爆了深度学习革命。勒丘恩教授将带你走过这段横跨三十年的架构演进之路——从Hubel与Wiesel的猫实验到ResNet的152层残差网络，见证计算机视觉如何从玩具实验走向超越人类的识别精度。",
+    "en": "The story of convolutional neural networks begins with 1980s biological vision research, through LeNet's practical breakthrough in 1998, to the deep learning explosion triggered by AlexNet's ImageNet victory in 2012. Prof. LeCun will guide you through this thirty-year architectural evolution — from Hubel and Wiesel's cat experiments to ResNet's 152-layer residual networks, witnessing how computer vision went from toy experiments to superhuman recognition accuracy."
+  },
+  "grade": "grade-4",
+  "teacher": "prof-lecun",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06",
+    "lesson-07"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-convolution",
+      "description": {
+        "zh": "理解卷积运算、特征图和参数共享的原理",
+        "en": "Understand convolution operations, feature maps, and parameter sharing"
+      }
+    },
+    {
+      "id": "obj-cnn-architecture",
+      "description": {
+        "zh": "掌握CNN架构的核心组件：卷积层、池化层、全连接层",
+        "en": "Master core CNN components: convolutional layers, pooling layers, fully connected layers"
+      }
+    },
+    {
+      "id": "obj-arch-evolution",
+      "description": {
+        "zh": "追踪从LeNet到AlexNet、VGGNet、ResNet的架构演进",
+        "en": "Trace the architectural evolution from LeNet to AlexNet, VGGNet, and ResNet"
+      }
+    },
+    {
+      "id": "obj-residual",
+      "description": {
+        "zh": "理解残差连接如何解决深层网络的退化问题",
+        "en": "Understand how residual connections solve the degradation problem in deep networks"
+      }
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "id": "lesson-05",
+  "course": "ai-winter",
+  "title": {
+    "zh": "寒冬中的种子",
+    "en": "Seeds Beneath the Frost"
+  },
+  "knowledgePoint": {
+    "zh": "AI寒冬中幸存的研究方向和从中汲取的教训——以及对未来的谨慎希望",
+    "en": "Research directions that survived the AI winter, lessons learned, and cautious hope for the future"
+  },
+  "teacher": "prof-minsky",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你翻到笔记本的最后几页，看到自己写的一行字：「寒冬中的种子。」窗外的光线似乎比之前的几节课明亮了一些。你最后一次回到那间教室，明斯基教授今天站得很直，像是有话要做最后的交代……",
+    "en": "You flip to the last pages of your notebook and see a line you wrote: 「Seeds beneath the frost」. The light outside seems slightly brighter than in previous lessons. You return to that classroom one last time. Professor Minsky is standing straight today, as if he has something final to say..."
+  },
+  "recallOutro": {
+    "zh": "你永远地合上了这本笔记。明斯基教授的身影渐渐模糊，但他最后那句话却无比清晰——一个经历过寒冬的人，依然相信春天会来。这种信念本身，也许就是他留给你最珍贵的东西。",
+    "en": "You close this notebook for the last time. Professor Minsky's figure gradually blurs, but his final words remain perfectly clear — a man who has lived through winter, still believing spring will come. That belief itself may be the most precious thing he's left you."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一次走进这间教室。今天有些不同——明斯基教授拉开了窗帘，让外面的光透了进来。教室不再那么压抑了。他靠在讲台边，手里没有拿任何东西，表情比之前任何一节课都平和。",
+        "en": "You walk into this classroom for the last time. Today something is different — Professor Minsky has drawn back the curtains, letting light in from outside. The room no longer feels so oppressive. He leans against the edge of the podium, holding nothing, his expression more peaceful than in any previous lesson."
+      },
+      "leadsTo": "intro-dialog"
+    },
+    {
+      "id": "intro-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这是最后一节课了。前面四节课，我讲了太多失败、太多失望、太多寒冷。但今天我想告诉你——在冰层之下，有些东西还活着。寒冬杀死了很多虚浮的承诺，但也有一些真正坚实的东西幸存了下来。",
+        "en": "This is our last lesson. In the past four sessions, I've told you too much about failure, disappointment, and cold. But today I want to tell you — beneath the ice, some things are still alive. The winter killed many hollow promises, but some truly solid things survived."
+      },
+      "leadsTo": "expert-systems"
+    },
+    {
+      "id": "expert-systems",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一颗种子：{专家系统}。这个想法很简单——与其让计算机理解整个世界，不如让它精通一个很窄的领域。把人类专家的知识编码成规则，让计算机按规则推理。斯坦福的MYCIN系统能诊断血液感染，准确率跟医学专家差不多。",
+        "en": "The first seed: {expert systems}. The idea is simple — instead of making a computer understand the entire world, make it an expert in one narrow domain. Encode human expert knowledge into rules, and let the computer reason by those rules. Stanford's MYCIN system could diagnose blood infections with accuracy comparable to medical experts."
+      },
+      "terms": {
+        "专家系统": "term-expert-system",
+        "expert systems": "term-expert-system"
+      },
+      "leadsTo": "xcon"
+    },
+    {
+      "id": "xcon",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "而最成功的案例是{XCON}——DEC公司用来配置VAX计算机的专家系统。它真的在生产环境中工作了！每年为公司省下数千万美元。终于，AI做出了一个能赚钱的东西。虽然离「通用智能」差了十万八千里，但至少证明了AI的方法有实际商业价值。",
+        "en": "And the most successful case is {XCON} — an expert system DEC uses to configure VAX computers. It actually works in a production environment! It saves the company tens of millions of dollars each year. Finally, AI produced something that makes money. It's a far cry from 「general intelligence, but it at least proves that AI methods have real commercial value."
+      },
+      "terms": {
+        "XCON": "term-xcon"
+      },
+      "leadsTo": "expert-system-limits"
+    },
+    {
+      "id": "expert-system-limits",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但我对专家系统的热潮保持警惕。它们有一个根本问题——{知识瓶颈}。所有的知识都必须由人类专家手动编写成规则。当领域变得复杂，规则的数量爆炸式增长，互相之间的冲突难以管理。而且专家的知识很多是直觉性的，他们自己都说不清楚自己是怎么判断的。你怎么把说不清楚的东西写成规则？",
+        "en": "But I'm wary of the expert systems craze. They have a fundamental problem — the {knowledge bottleneck}. All knowledge must be manually encoded as rules by human experts. When a domain gets complex, the number of rules explodes and conflicts between them become unmanageable. Moreover, much expert knowledge is intuitive — experts themselves can't articulate how they make judgments. How do you encode into rules something that can't be articulated?"
+      },
+      "terms": {
+        "知识瓶颈": "term-knowledge-bottleneck",
+        "knowledge bottleneck": "term-knowledge-bottleneck"
+      },
+      "leadsTo": "quiet-research"
+    },
+    {
+      "id": "quiet-research",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二颗种子更安静，几乎没有人注意到。在角落里，有一些固执的研究者还在偷偷摸摸地研究神经网络。辛顿、鲁梅尔哈特，还有几个人——他们相信多层网络有前途，尽管主流学界认为这条路已经被我和帕珀特封死了。他们拿不到多少经费，发论文也困难重重，但他们没有放弃。",
+        "en": "The second seed is quieter — almost no one notices it. In the corners, a few stubborn researchers are still quietly working on neural networks. Hinton, Rumelhart, and a handful of others — they believe multi-layer networks have a future, even though the mainstream considers this path sealed off by Papert and me. They can barely get funding, publishing papers is an ordeal, but they haven't given up."
+      },
+      "leadsTo": "society-of-mind"
+    },
+    {
+      "id": "society-of-mind",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "至于我自己，我正在写一本新书，叫《心智社会》。我的想法是：也许智能源于许多简单的小机制，我称之为「代理」，它们在互相合作和竞争中涌现出来。这里没有单一的中央控制，也没有统一的学习算法。就像一个社会里的每个人都很简单，但社会整体却能做出极其复杂的事情。",
+        "en": "As for me — I'm writing a new book called The Society of Mind. My idea is this: perhaps intelligence isn't a unified thing, but something that emerges from many, many simple mechanisms — I call them 「agents」 — cooperating and competing with each other. No single central control, no unified learning algorithm. Like how every individual in a society is simple, yet the society as a whole can accomplish extraordinarily complex things."
+      },
+      "leadsTo": "frame-problem"
+    },
+    {
+      "id": "frame-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有一个我一直在思考的问题，那就是{框架问题}。当一件事情发生时，什么改变了，什么没有改变？你推倒一张桌子，杯子会掉下来，但墙的颜色不会变。这种判断对人类来说不费吹灰之力，但对计算机来说却是一个噩梦。它必须明确地推理每一件事物的状态，而世界上有无穷多的事物。",
+        "en": "There's also a problem I've been thinking about constantly — the {frame problem}. When something happens, what changes and what stays the same? You knock over a table — the cup falls, but the color of the wall doesn't change. This kind of judgment is effortless for humans, but it's a nightmare for computers — they must explicitly reason about the state of every single thing, and there are infinitely many things in the world."
+      },
+      "terms": {
+        "框架问题": "term-frame-problem",
+        "frame problem": "term-frame-problem"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "寒冬中幸存下来的种子，包括专家系统、悄悄继续的神经网络研究，以及新的理论框架。你觉得AI能从这场寒冬中恢复吗？如果能，你猜会是怎样的形式？",
+        "en": "Among the seeds that survived the winter — expert systems, quiet neural network research, new theoretical frameworks — do you think AI can recover from this winter? If so, what form do you think it might take?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "能恢复——也许神经网络那边会有意想不到的突破",
+            "en": "It will recover — perhaps there will be unexpected breakthroughs in neural networks"
+          },
+          "tag": "visionary",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（长叹了一口气）\n\n有意思的猜测。那几个还在做神经网络的人确实在尝试一些新方法——用多层网络和新的训练技巧。如果他们真的找到了一种可靠的方法来训练多层网络……那整个局面会被彻底改写。但以目前的进展来看，我不确定。不过，如果我在这二十年里学到了什么，那就是永远不要低估固执的人。",
+              "en": "(Sighs deeply)\n\nAn interesting guess. Those few people still working on neural networks are indeed trying some new approaches — multi-layer networks with new training techniques. If they actually find a reliable way to train multi-layer networks... the entire landscape would be rewritten. But given current progress, I'm not sure. Then again, if I've learned anything in these twenty years, it's to never underestimate stubborn people."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "能恢复——但需要找到真实的应用场景，而非追求通用智能",
+            "en": "It will recover — but it needs to find real application scenarios rather than chase general intelligence"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "XCON的成功证明你的方向是对的。当AI停止承诺「万能」，开始专注于「有用」，事情就会好转。也许AI的未来是一千个各自擅长一件事的专门系统。听起来没那么浪漫，但也许这才是通往智能的现实道路。",
+              "en": "XCON's success proves your direction is right. When AI stops promising 「everything」 and starts focusing on 「something useful, things will improve. Maybe AI's future isn't a single super-machine that does everything, but a thousand specialized systems each excelling at one thing. It sounds less romantic, but perhaps that's the realistic path to intelligence."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "也许需要等待计算能力的飞跃——当前的硬件可能限制了AI的潜力",
+            "en": "Perhaps it needs to wait for a leap in computing power — current hardware may be limiting AI's potential"
+          },
+          "tag": "technological",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "你说到了一个我们经常忽略的因素。六十年代的计算机内存只有几千字节，处理速度慢得令人抓狂。也许，仅仅是也许，我们的一些想法并没有错，只是生得太早了。就像达·芬奇画了直升机的草图，但要等到发动机发明之后才能实现。如果计算机的速度继续按摩尔定律增长，二十年后的机器能力可能是现在的一千倍。到那时候，也许很多事情都会不同。",
+              "en": "You've hit on a factor we often overlook. In the sixties, computers had only a few kilobytes of memory, processing speeds that were maddeningly slow. Perhaps — just perhaps — some of our ideas weren't wrong, they were just born too early. Like da Vinci sketching a helicopter, but having to wait for the engine to be invented. If computer speeds keep growing according to Moore's Law, machines twenty years from now could be a thousand times more powerful than today. By then, perhaps many things will be different."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我能确定的是一点：不管AI以什么方式回来，下一波浪潮的人必须从我们的错误中学习。不要过度承诺。不要轻视问题的复杂性。不要让一种方法的成功遮蔽你对其他可能性的视野。",
+        "en": "One thing I can say for certain: however AI comes back, the next wave must learn from our mistakes. Don't overpromise. Don't underestimate the complexity of problems. Don't let the success of one approach blind you to other possibilities."
+      },
+      "leadsTo": "lessons-learned"
+    },
+    {
+      "id": "lessons-learned",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "回顾这二十多年，我总结了几条教训。第一：「简单」的问题往往最难——{常识推理}、语言理解、视觉感知，这些人类不费力气就能做到的事情，恰恰是机器最束手无策的。第二：科学进步没有捷径，乐观可以激励人心，但诚实才能维持信任。第三：一个领域最需要的是坚持。",
+        "en": "Looking back on these twenty-plus years, I've distilled a few lessons. First: 「simple」 problems are often the hardest — {common sense reasoning}, language understanding, visual perception — the things humans do effortlessly are precisely what machines struggle with most. Second: there are no shortcuts in scientific progress; optimism inspires, but honesty sustains trust. Third: what a field needs most isn't genius — it's persistence."
+      },
+      "terms": {
+        "常识推理": "term-common-sense",
+        "common sense reasoning": "term-common-sense"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "从达特茅斯的热情到寒冬的萧条，AI走过了跌宕起伏的二十多年。你认为这段历史中最重要的教训是什么？",
+        "en": "From Dartmouth's fervor to the winter's desolation, AI has had a tumultuous twenty-plus years. What do you think is the most important lesson from this history?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "谦逊——面对「智能」这样的问题，我们知道的远比不知道的少",
+            "en": "Humility — when facing a problem like 「intelligence, what we know is far less than what we don't"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这也许是最深刻的教训。1956年，我们以为「智能」只是一些聪明算法的组合。现在我们知道，智能涉及感知、记忆、推理、情感、创造力、社会理解……每一项都是一个深渊般的难题。谦逊不等于放弃——它意味着在探索未知时保持敬畏。我花了二十年才真正学会这一课。",
+              "en": "Perhaps the most profound lesson. In 1956, we thought 「intelligence」 was just a combination of clever algorithms. Now we know that intelligence involves perception, memory, reasoning, emotion, creativity, social understanding... each one an abyss of difficulty. Humility doesn't mean giving up — it means maintaining awe while exploring the unknown. It took me twenty years to truly learn this lesson."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "韧性——最重要的是在低谷中不放弃",
+            "en": "Resilience — what matters most is not giving up during the low points"
+          },
+          "tag": "perseverance",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "想想那些在寒冬中还在坚持研究神经网络的人。想想那些被嘲笑、被拒绝、被孤立，却依然相信自己方向的人。也许他们才是这个故事中真正的英雄——是在寒冬中默默耕耘的人。历史往往公正：那些在黑暗中坚持的人，最终会被光照到。",
+              "en": "Think about those people still researching neural networks through the winter. Think about those who were mocked, rejected, isolated, yet still believed in their direction. Perhaps they are the true heroes of this story — not us who made declarations at Dartmouth, but those who quietly labored through the winter. History tends to be fair: those who persist in the dark eventually find the light."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "诚实——科学最终只能建立在真实的基础上",
+            "en": "Honesty — science can only be built on a foundation of truth"
+          },
+          "tag": "integrity",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微笑了）\n\n如果二十年前有人对我说这句话，我可能会不以为然。但现在，我把它当作第一原则。我们在达特茅斯说了太多漂亮话，在经费申请书里写了太多夸大的承诺。每一句不诚实的话都是在借未来的信用。总有一天你要还债——我们就是在七十年代还了那笔债。利息很重。",
+              "en": "(Smiles faintly)\n\nIf someone had said that to me twenty years ago, I might have dismissed it. But now I hold it as the first principle. We said too many beautiful words at Dartmouth, wrote too many inflated promises in funding proposals. Every dishonest word is borrowing against future trust. Someday you have to repay — and we repaid that debt in the seventies. The interest was steep."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好了。让我做最后一件事，给你一个诚实的评估。AI会回来吗？我相信会。因为这个问题太重要了。理解智能是什么，可能是人类面临的最根本的问题之一。只要有人还在问这个问题，这个领域就不会真正死去。",
+        "en": "All right. Let me do one last thing — give you an honest assessment. Will AI come back? I believe so. Not out of optimism, but because the question is too important — understanding what intelligence is may be one of the most fundamental questions humanity faces. As long as someone is still asking that question, this field will never truly die."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI寒冬的教训：第一是谦逊。我们意识到，「智能」远比任何人预想的都要复杂。第二是诚实。过度承诺会消耗信任，而信任一旦失去，便极难恢复。第三是多样性。单一方法的失败，不应否定整个领域。第四是坚持。那些在寒冬中保持信念的少数人，往往为未来的突破埋下了种子。",
+        "en": "Lessons from the AI winter: (1) Humility — 「intelligence」 is far more complex than anyone expected; (2) Honesty — overpromising erodes trust, and trust once lost is extremely hard to regain; (3) Diversity — the failure of one approach should not condemn the entire field; (4) Persistence — the few who kept faith through the winter often planted seeds for future breakthroughs."
+      },
+      "category": "core-concept",
+      "leadsTo": "farewell-begin"
+    },
+    {
+      "id": "farewell-begin",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（走到窗边，看着外面）\n\n1956年，我二十九岁，站在达特茅斯学院的草坪上，觉得世界就在脚下。麦卡锡在我左边，西蒙在我右边，我们三个觉得自己就要解开宇宙的秘密。现在我五十五了。那些秘密一个也没解开。但你知道吗？我不后悔。一刻也不后悔。",
+        "en": "(Walks to the window, looking outside)\n\nIn 1956, I was twenty-nine, standing on the lawn at Dartmouth College, feeling the world at my feet. McCarthy was on my left, Simon on my right. The three of us felt we were about to unlock the secrets of the universe. Now I'm fifty-five. Not one of those secrets has been unlocked. But you know what? I don't regret it. Not for a single moment."
+      },
+      "leadsTo": "farewell-middle"
+    },
+    {
+      "id": "farewell-middle",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我不知道AI的春天什么时候会来，也不知道它会以什么面貌出现。也许是一种我们完全没有想到的方法。也许是一个我们从未听说过的年轻人，在某个我们看不到的角落里，正在安静地改变一切。这个故事没有结局——因为它还在继续。",
+        "en": "I don't know when AI's spring will come, or what face it will wear. Perhaps it'll be a method we've never imagined. Perhaps some young person we've never heard of, in some corner we can't see, is quietly changing everything right now. This story has no ending — because it's still being written."
+      },
+      "leadsTo": "farewell-end"
+    },
+    {
+      "id": "farewell-end",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（转向你）\n\n记住我说过的话：如果你觉得一个问题很简单，那多半是因为你还没真正理解它。但也请记住另一面——如果你觉得一个问题无法解决，也许只是因为答案还没有到来。去做那个在寒冬中播种的人吧。",
+        "en": "(Turns to you)\n\nRemember what I've said: if a problem seems simple, it's probably because you haven't truly understood it. But remember the other side too — if a problem seems unsolvable, perhaps the answer simply hasn't arrived yet. Be the one who plants seeds in winter."
+      },
+      "leadsTo": "closing-narration"
+    },
+    {
+      "id": "closing-narration",
+      "type": "narration",
+      "text": {
+        "zh": "明斯基教授向你点了点头——不是老师对学生的点头，更像是一个同行对另一个同行的致意。他走向门口，在门框处停了一秒钟，手指轻轻敲了敲门框，然后头也不回地走了。",
+        "en": "Professor Minsky nods at you — not the nod of a teacher to a student, but more like one colleague acknowledging another. He walks toward the door, pauses for a second at the door frame, taps it lightly with his fingers, then walks away without looking back."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "窗外的光照进教室，在墙上投下长长的影子。你独自坐了一会儿，回想着这五节课——从达特茅斯的承诺到莱特希尔的审判，从感知机的争议到寒冬的降临，再到冰层之下那些顽强的种子。明斯基教授走了，但他的故事在你心中留下了深深的印记。你感觉到一种奇特的使命感：这些先驱们未能完成的事业，也许正在等待下一代人去继续。你站起身，走出教室，走向一个尚未书写的未来。",
+        "en": "Light from outside streams into the classroom, casting long shadows on the walls. You sit alone for a while, replaying these five lessons — from Dartmouth's promises to Lighthill's verdict, from the Perceptron controversy to winter's descent, and finally to those tenacious seeds beneath the ice. Professor Minsky is gone, but his story has left a deep imprint on your heart. You feel a strange sense of mission: the work these pioneers couldn't finish may be waiting for the next generation to carry on. You stand up, leave the classroom, and walk toward a future yet to be written."
+      }
+    }
+  ]
+}

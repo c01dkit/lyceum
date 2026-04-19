@@ -1,0 +1,409 @@
+{
+  "id": "lesson-02",
+  "course": "deep-learning-foundations",
+  "title": {
+    "zh": "受限玻尔兹曼机",
+    "en": "Restricted Boltzmann Machines"
+  },
+  "knowledgePoint": {
+    "zh": "受限玻尔兹曼机作为构建模块——学习隐藏变量上的概率分布",
+    "en": "RBMs as building blocks — learning probability distributions over hidden variables"
+  },
+  "teacher": "prof-hinton",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪回到那间深蓝色灯光的教室。辛顿教授在白板上画着两排圆圈和它们之间的连线，兴致勃勃地讲解着一种来自物理学的灵感。那些看似简单的节点和连接背后，竟然隐藏着一种理解数据的深刻方式。",
+    "en": "You close your eyes and drift back to that classroom bathed in deep blue light. Prof. Hinton is drawing two rows of circles and the lines connecting them on the whiteboard, enthusiastically explaining an inspiration from physics. Behind those seemingly simple nodes and connections lay a profound way of understanding data."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。能量、概率、隐藏变量——这些概念在脑海中逐渐清晰。受限玻尔兹曼机的优雅之处在于：它不直接告诉你答案，而是学会了数据背后的规律。",
+    "en": "You return to the present. Energy, probability, hidden variables — these concepts are gradually becoming clear. The elegance of restricted Boltzmann machines lies in this: they don't directly tell you the answer, but learn the patterns behind the data."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的大屏幕上正播放着一段动画：无数个小球在一个起伏的能量地形上滚动，寻找最低的山谷。辛顿教授站在白板前，手里拿着一支红色马克笔，白板上已经画了两排整齐的圆圈。他看到你们进来，笑着指了指屏幕。",
+        "en": "The large screen in the classroom is playing an animation: countless small balls rolling across an undulating energy landscape, seeking the lowest valley. Prof. Hinton stands at the whiteboard, red marker in hand, with two neat rows of circles already drawn. He sees you enter and points at the screen with a smile."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "看到屏幕上那些小球了吗？它们在寻找能量最低的位置。今天我要介绍的模型，灵感就来自这个物理学概念。它叫做{受限玻尔兹曼机}，简称RBM。名字听起来很吓人，但核心思想其实很直觉。",
+        "en": "See those balls on the screen? They're searching for the lowest energy position. The model I'm introducing today is inspired by this physics concept. It's called a {restricted Boltzmann machine}, or RBM for short. The name sounds intimidating, but the core idea is actually quite intuitive."
+      },
+      "terms": {
+        "受限玻尔兹曼机": "term-rbm",
+        "restricted Boltzmann machine": "term-rbm"
+      },
+      "leadsTo": "energy-intro"
+    },
+    {
+      "id": "energy-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "先说说{基于能量的模型}这个概念。在物理学中，一个系统总是倾向于处在能量最低的状态——水往低处流，球滚向谷底。我们借用了这个直觉：给网络的每一种状态分配一个「能量值」。能量越低，这种状态就越「合理」，出现的概率越高。",
+        "en": "First, let me explain the concept of {energy-based models}. In physics, a system always tends toward its lowest energy state — water flows downhill, balls roll to the valley floor. We borrow this intuition: assign an 「energy value」 to every possible state of the network. The lower the energy, the more 「reasonable」 that state is, and the higher its probability of occurring."
+      },
+      "terms": {
+        "基于能量的模型": "term-energy-based-model",
+        "energy-based models": "term-energy-based-model"
+      },
+      "leadsTo": "two-layers"
+    },
+    {
+      "id": "two-layers",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "RBM的结构非常简洁。（指向白板）看这里，只有两层。下面这一排叫「可见层」，对应你能观察到的数据，比如图像的像素。上面这一排叫「隐藏层」，代表数据背后的潜在因素。你看不见它们，但它们确实存在。",
+        "en": "The structure of an RBM is remarkably clean. (Points to whiteboard) Look here — just two layers. The bottom row is called the 「visible layer」, corresponding to observable data, like the pixels of an image. The top row is the 「hidden layer, representing latent factors behind the data — you can't see them, but they're definitely there."
+      },
+      "leadsTo": "restriction-explained"
+    },
+    {
+      "id": "restriction-explained",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "「受限」这个词是关键。在原始的玻尔兹曼机里，所有节点之间都可以互相连接，训练起来极其复杂。但在RBM里，我们加了一个限制：同一层内部的节点之间没有连接。可见节点只跟隐藏节点连，隐藏节点也只跟可见节点连。这个限制让数学变得漂亮了很多。",
+        "en": "The word 「restricted」 is key. In the original Boltzmann machine, all nodes could connect to each other, making training extremely complex. But in an RBM, we add a restriction: no connections between nodes within the same layer. Visible nodes only connect to hidden nodes, and hidden nodes only connect to visible nodes. This restriction makes the mathematics much more elegant."
+      },
+      "leadsTo": "why-it-matters"
+    },
+    {
+      "id": "why-it-matters",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这意味着什么呢？意味着给定可见层的状态，所有隐藏节点是条件独立的！反过来也一样。这让我们可以一次性地并行更新整个隐藏层，而不是一个一个节点地来。从计算上说，这是一个巨大的简化。",
+        "en": "What does this mean? It means that given the state of the visible layer, all hidden nodes are conditionally independent! And vice versa. This lets us update the entire hidden layer in parallel at once, instead of node by node. Computationally, this is an enormous simplification."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "RBM有可见层和隐藏层，但隐藏层代表的是什么？你怎么理解「隐藏变量」这个概念？",
+        "en": "An RBM has visible and hidden layers, but what does the hidden layer represent? How do you understand the concept of 「hidden variables」?"
+      },
+      "choices": [
+        {
+          "id": "hidden-as-features",
+          "text": {
+            "zh": "隐藏变量是数据的内在特征，比如一张脸的照片，隐藏变量可能代表「有没有戴眼镜」「是否在微笑」",
+            "en": "Hidden variables are inherent features of the data — for a face photo, they might represent 「wearing glasses or not」 or 「smiling or not」"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的直觉！隐藏变量确实可以被理解为数据的潜在特征。一张人脸照片有成千上万个像素，但决定这张脸长什么样的因素可能只有几十个——发型、肤色、表情、角度等等。隐藏层试图捕捉的就是这些潜在因素。从高维的像素空间到低维的特征空间，这就是表示学习的本质。",
+              "en": "Excellent intuition! Hidden variables can indeed be understood as latent features of the data. A face photo has thousands of pixels, but the factors determining what the face looks like might only number a few dozen — hairstyle, skin tone, expression, angle, and so on. The hidden layer tries to capture these latent factors. From high-dimensional pixel space to low-dimensional feature space — that's the essence of representation learning."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "hidden-as-causes",
+          "text": {
+            "zh": "隐藏变量是产生数据的原因——我们看到的数据是表象，隐藏变量是背后的机制",
+            "en": "Hidden variables are causes that generate the data — what we see is the surface, hidden variables are the underlying mechanism"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你的理解很有深度。从生成模型的角度看，确实可以这样理解——世界上存在一些潜在的因素（原因），它们通过某种过程生成了我们观察到的数据（结果）。RBM试图反向推断：给定观察到的数据，那些隐藏的原因最可能是什么？这种思维方式和贝叶斯推断有异曲同工之妙。",
+              "en": "Your understanding has real depth. From a generative model perspective, that's exactly right — there are latent factors (causes) in the world that generate the data we observe (effects) through some process. The RBM tries to reason backwards: given the observed data, what are the most likely hidden causes? This way of thinking is strikingly similar to Bayesian inference."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "hidden-as-compression",
+          "text": {
+            "zh": "隐藏变量是数据的压缩表示——用更少的维度来概括数据的核心信息",
+            "en": "Hidden variables are a compressed representation of data — summarizing core information in fewer dimensions"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常实用的理解方式。如果你有一千个像素的图片，你不可能对每个像素都进行独立分析。你需要找到一种更紧凑的表示方式。隐藏层做的事情本质上就是信息压缩——保留最重要的结构，丢弃细节噪声。好的压缩表示能让后续的学习任务变得容易得多。",
+              "en": "That's a very practical way to understand it. If you have an image with a thousand pixels, you can't analyze each pixel independently. You need a more compact representation. What the hidden layer does is essentially information compression — retaining the most important structure while discarding noise in the details. A good compressed representation makes subsequent learning tasks much easier."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管从哪个角度理解，关键点是一样的：隐藏层学习的是数据的内在结构，是你直接观察不到但确实存在的东西。现在问题来了——我们怎么训练这个东西？",
+        "en": "No matter which angle you take, the key point is the same: the hidden layer learns the intrinsic structure of the data — something you can't directly observe but definitely exists. Now the question is — how do we train this thing?"
+      },
+      "leadsTo": "training-challenge"
+    },
+    {
+      "id": "training-challenge",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "理论上，我们想让RBM学会一个概率分布，让它能够给真实数据分配高概率，给随机噪声分配低概率。但计算这个概率分布需要对所有可能的状态求和——如果你有一千个二值隐藏节点，那就是2的1000次方种状态。这个数字比宇宙中的原子还多。直接计算？不可能。",
+        "en": "In theory, we want the RBM to learn a probability distribution that assigns high probability to real data and low probability to random noise. But computing this probability distribution requires summing over all possible states — if you have a thousand binary hidden nodes, that's 2 to the power of 1000 possible states. That number exceeds the atoms in the universe. Direct computation? Impossible."
+      },
+      "leadsTo": "cd-intro"
+    },
+    {
+      "id": "cd-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{对比散度}算法登场的地方。这是我在2002年提出的一个训练方法，也是我最自豪的技巧之一。核心思想是这样的——",
+        "en": "This is where the {contrastive divergence} algorithm enters the picture. This is a training method I proposed in 2002, and one of the tricks I'm most proud of. The core idea goes like this —"
+      },
+      "terms": {
+        "对比散度": "term-contrastive-divergence",
+        "contrastive divergence": "term-contrastive-divergence"
+      },
+      "leadsTo": "cd-explain-1"
+    },
+    {
+      "id": "cd-explain-1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一步，拿一个真实数据样本，比如一张手写数字的图片。把它放到可见层，然后根据当前的权重，计算隐藏层应该长什么样——这叫「正向传播」。你得到了隐藏层的一个状态。",
+        "en": "Step one: take a real data sample, say a handwritten digit image. Place it on the visible layer, then based on the current weights, compute what the hidden layer should look like — this is called the 「positive phase」. You get a state for the hidden layer."
+      },
+      "leadsTo": "cd-explain-2"
+    },
+    {
+      "id": "cd-explain-2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二步，从这个隐藏层的状态出发，反向重建可见层——根据隐藏层，生成一个「网络认为数据应该长什么样」的重建版本。如果网络学得好，重建出来的应该和原始数据很像。如果学得不好，重建出来的就是乱码。",
+        "en": "Step two: from this hidden layer state, reconstruct the visible layer in reverse — based on the hidden layer, generate a 「reconstructed」 version of what the network thinks the data should look like. If the network has learned well, the reconstruction should closely resemble the original data. If not, the reconstruction is gibberish."
+      },
+      "leadsTo": "cd-explain-3"
+    },
+    {
+      "id": "cd-explain-3",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第三步，比较「真实数据和隐藏层之间的相关性」与「重建数据和隐藏层之间的相关性」。两者的差异就是我们调整权重的依据。这就是「对比」的含义——我们在对比真实数据和模型幻想之间的差距。妙就妙在，我们不需要计算那个天文数字般的归一化常数！",
+        "en": "Step three: compare the 「correlations between real data and the hidden layer」 with the 「correlations between reconstructed data and the hidden layer」. The difference between the two is our basis for adjusting weights. That's what 「contrastive」 means — we're contrasting the gap between real data and the model's fantasy. The beauty is that we don't need to compute that astronomically large normalization constant!"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "对比散度跳过了精确计算概率分布的步骤。你觉得这种「近似」方法可靠吗？",
+        "en": "Contrastive divergence skips the step of precisely computing the probability distribution. Do you think this kind of 「approximation」 is reliable?"
+      },
+      "choices": [
+        {
+          "id": "approximation-ok",
+          "text": {
+            "zh": "近似就够了——只要能让模型朝正确方向改进，不需要精确值",
+            "en": "Approximation is enough — as long as it moves the model in the right direction, we don't need exact values"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我的想法！在机器学习中，精确往往是奢侈品。我们需要的是一个足够好的方向指引，而不是完美的计算。对比散度给我们的梯度估计有偏差，但实践证明它工作得非常好。有时候，一个快速但近似的方法比一个精确但无法计算的方法有用得多。",
+              "en": "That's exactly my thinking! In machine learning, precision is often a luxury. What we need is a good enough directional guide, not a perfect computation. The gradient estimate from contrastive divergence is biased, but practice has shown it works remarkably well. Sometimes a fast approximate method is far more useful than a precise but uncomputable one."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "approximation-risky",
+          "text": {
+            "zh": "有风险——近似可能导致模型学到错误的模式",
+            "en": "Risky — approximation might cause the model to learn incorrect patterns"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你的谨慎是对的。理论上说，对比散度给出的梯度是有偏的，而且我们无法严格保证它收敛到正确的解。这个问题困扰了理论家们很多年。但现实是——它在实践中工作得出奇地好。科学有时候就是这样：实践跑在理论前面。我们先用它，理论上的完善以后再补。",
+              "en": "Your caution is warranted. Theoretically, the gradient from contrastive divergence is biased, and we can't rigorously guarantee convergence to the correct solution. This bothered theorists for years. But reality is — it works surprisingly well in practice. Science is sometimes like this: practice runs ahead of theory. We use it first and fill in the theoretical gaps later."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "approximation-nature",
+          "text": {
+            "zh": "也许大脑也是用近似方法学习的——生物系统不需要精确计算",
+            "en": "Maybe the brain learns through approximation too — biological systems don't need exact computation"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "哦，这是我最爱的论点之一！大脑的突触传递充满了噪声，神经元的放电是随机性的，但我们照样能学会极其复杂的东西。如果生物系统能用嘈杂的、近似的计算来实现学习，我们的模型为什么非要追求数学上的完美呢？也许「足够好」的近似才是学习的本质。",
+              "en": "Oh, that's one of my favorite arguments! Synaptic transmission in the brain is full of noise, neural firing is stochastic, yet we still learn incredibly complex things. If biological systems can achieve learning with noisy, approximate computation, why must our models pursue mathematical perfection? Perhaps 「good enough」 approximation is the essence of learning."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "对比散度让RBM变得可以实际训练了。在此之前，玻尔兹曼机是一个漂亮的理论模型，但没人能在合理的时间内训练好它。对比散度把训练时间从几周缩短到几小时。",
+        "en": "Contrastive divergence made RBMs practically trainable. Before that, Boltzmann machines were a beautiful theoretical model, but nobody could train them in a reasonable time. Contrastive divergence reduced training time from weeks to hours."
+      },
+      "leadsTo": "generative-power"
+    },
+    {
+      "id": "generative-power",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "训练好的RBM有一个非常酷的能力——它可以生成数据。你让隐藏层随机产生一个状态，然后用它来重建可见层，出来的东西看起来就像是训练数据中的真实样本。如果你用手写数字训练它，它就能「凭空」画出像模像样的手写数字。这说明它真的学到了数据的内在结构。",
+        "en": "A trained RBM has a very cool ability — it can generate data. You let the hidden layer randomly produce a state, then use it to reconstruct the visible layer, and what comes out looks like a genuine sample from the training data. If you train it on handwritten digits, it can draw convincing handwritten digits 「from nothing」. This proves it has truly learned the intrinsic structure of the data."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "受限玻尔兹曼机（RBM）是一种两层结构的能量模型：可见层对应观测数据，隐藏层捕捉潜在特征。「受限」指同层内无连接。对比散度算法通过比较真实数据和重建数据的相关性来近似计算梯度，避免了计算天文数字的归一化常数。",
+        "en": "A Restricted Boltzmann Machine (RBM) is a two-layer energy model: the visible layer corresponds to observed data, the hidden layer captures latent features. 「Restricted」 means no within-layer connections. Contrastive divergence approximates gradients by comparing correlations of real vs. reconstructed data, avoiding computation of the astronomically large normalization constant."
+      },
+      "category": "core-concept",
+      "leadsTo": "building-block"
+    },
+    {
+      "id": "building-block",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但单个RBM只有两层——它能学到的东西是有限的。就像你只能看到数据表面一层的特征。如果我们想让网络理解更抽象的概念，我们需要更多层。那么问题来了：能不能把多个RBM叠加起来？",
+        "en": "But a single RBM only has two layers — what it can learn is limited. It's like you can only see one layer of features on the data's surface. If we want the network to understand more abstract concepts, we need more layers. So the question is: can we stack multiple RBMs together?"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "如果把一个RBM的隐藏层当作下一个RBM的可见层，你觉得会发生什么？",
+        "en": "If you treat the hidden layer of one RBM as the visible layer of the next RBM, what do you think would happen?"
+      },
+      "choices": [
+        {
+          "id": "hierarchy-features",
+          "text": {
+            "zh": "每一层会学到越来越抽象的特征——就像从像素到边缘到形状到物体",
+            "en": "Each layer would learn increasingly abstract features — like going from pixels to edges to shapes to objects"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "完全正确！第一层可能学会检测边缘，第二层把边缘组合成角和轮廓，第三层识别出眼睛、鼻子这样的部件，再往上就能识别整张脸。每一层在上一层的基础上构建更高级的抽象。这种层次化的特征学习正是深度网络的核心优势。这也正是我下节课要讲的——深度信念网络。",
+              "en": "Exactly right! The first layer might learn to detect edges, the second combines edges into corners and contours, the third recognizes parts like eyes and noses, and higher up it can recognize whole faces. Each layer builds higher-level abstractions on top of the previous one. This hierarchical feature learning is the core advantage of deep networks. And that's precisely what I'll cover next lesson — deep belief networks."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "deeper-patterns",
+          "text": {
+            "zh": "第二层的RBM会学到「特征之间的模式」，比如哪些低级特征总是一起出现",
+            "en": "The second RBM would learn 「patterns among features」 — like which low-level features tend to co-occur"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的思路非常对。第一层学习像素之间的相关性，第二层学习的是第一层特征之间的相关性，也就是「特征的特征」。比如，如果第一层发现了「水平边缘」和「垂直边缘」经常在特定位置同时出现，第二层就可能学会「这是一个直角」。这种递归式的特征提取正是深度信念网络的精髓。",
+              "en": "Your thinking is spot on. The first layer learns correlations among pixels; the second layer learns correlations among first-layer features — in other words, 「features of features」. For example, if the first layer discovers that 「horizontal edges」 and 「vertical edges」 frequently co-occur at specific positions, the second layer might learn 「this is a right angle」. This recursive feature extraction is the essence of deep belief networks."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "collapse-concern",
+          "text": {
+            "zh": "可能会出问题——误差会逐层累积，高层学到的可能是噪声",
+            "en": "It might go wrong — errors could accumulate layer by layer, and higher layers might learn noise"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你提出了一个非常合理的担忧。确实，如果低层学得不好，高层就是在垃圾上面建大厦。这也是为什么逐层训练的每一步都很重要——每一层都必须先把自己的任务做好，再给上一层提供可靠的输入。我在2006年的论文里证明了，只要每一层的训练足够好，叠加起来整体表现只会越来越好。但你的直觉是对的，这确实需要小心处理。",
+              "en": "You've raised a very reasonable concern. Indeed, if lower layers learn poorly, higher layers are building a mansion on garbage. That's why every step of layer-wise training matters — each layer must do its job well first before providing reliable input to the next. In my 2006 paper, I proved that as long as each layer is trained well enough, stacking them only improves overall performance. But your intuition is right — it does require careful handling."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "把RBM叠加起来，一层一层地训练。这就是深度信念网络的基本思路。我们下节课会详细展开这个想法。它在2006年彻底改变了人们对深层网络的看法。",
+        "en": "Stacking RBMs and training them layer by layer — that's the basic idea behind deep belief networks. We'll explore this in detail next lesson. In 2006, it completely changed how people thought about deep networks."
+      },
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我想让你们记住一件事：RBM的优雅之处在于它学习的是「数据是什么样子」，而不是「数据属于哪个类别」。它不需要标签，不需要人告诉它正确答案。它只是观察数据，然后自己发现其中的规律。这种无监督的学习方式更接近我们人类的学习过程——没有人一出生就给你贴标签告诉你什么是猫什么是狗，你自己观察，自己总结。",
+        "en": "Here's what I want you to remember today: the elegance of the RBM is that it learns 「what the data looks like」, not 「what category the data belongs to」. It doesn't need labels, doesn't need anyone to tell it the right answer. It just observes data and discovers patterns on its own. This unsupervised learning approach is closer to how humans learn — nobody labels everything for you at birth telling you what's a cat and what's a dog. You observe, you summarize."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "RBM学习的是数据的概率分布（无监督），能够从随机状态生成逼真数据。训练好的RBM可以叠加——一个RBM的隐藏层作为下一个RBM的输入。每一层学到越来越抽象的特征，构成深度信念网络的基础。",
+        "en": "RBMs learn the probability distribution of data (unsupervised) and can generate realistic data from random states. Trained RBMs can be stacked — one RBM's hidden layer becomes the next RBM's input. Each layer learns increasingly abstract features, forming the foundation of deep belief networks."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "辛顿教授放下马克笔，轻轻拍了拍白板上那两排整齐的圆圈。屏幕上的能量地形动画还在播放——那些小球已经找到了谷底，安静地停在那里。他拿起一杯茶，吹了口气，自言自语道：「两层很好，但我总觉得，越深越有趣。下次见。」",
+        "en": "Prof. Hinton puts down the marker and gently pats the two neat rows of circles on the whiteboard. The energy landscape animation still plays on screen — the balls have found the valley floor and rest there quietly. He picks up a cup of tea, blows on it, and mutters to himself: 「Two layers are nice, but I've always felt that deeper is more interesting. See you next time」."
+      }
+    }
+  ]
+}

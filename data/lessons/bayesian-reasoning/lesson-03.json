@@ -1,0 +1,315 @@
+{
+  "id": "lesson-03",
+  "course": "bayesian-reasoning",
+  "title": {
+    "zh": "信念的传播",
+    "en": "The Propagation of Belief"
+  },
+  "knowledgePoint": {
+    "zh": "信念传播算法——证据如何在贝叶斯网络中传递并更新所有节点的信念",
+    "en": "The belief propagation algorithm — how evidence propagates through a Bayesian network to update beliefs at every node"
+  },
+  "teacher": "prof-pearl",
+  "estimatedMinutes": 15,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你翻到笔记本上画的那张侦探推理图——线索、嫌疑人、动机之间的箭头层层传递。Pearl教授那个侦探故事的开头又浮现在你脑海中……",
+    "en": "You turn to the detective reasoning diagram in your notebook — arrows cascading between clues, suspects, and motives. The opening of Prof. Pearl's detective story surfaces in your mind again..."
+  },
+  "recallOutro": {
+    "zh": "你放下笔记本，脑中回荡着一个画面：信念像水流一样在网络的管道中流动，每经过一个节点就改变方向和强度。一条线索，就能搅动整张网络。",
+    "en": "You set down your notebook, a vivid image echoing in your mind: beliefs flowing like water through the network's channels, changing direction and intensity at every node. A single clue can stir the entire network."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "Pearl教授今天走进教室时，手里拿着一本旧版的阿加莎·克里斯蒂小说。他把书放在讲台上，封面朝向大家——《东方快车谋杀案》。",
+        "en": "Prof. Pearl walks into the classroom today holding a worn copy of an Agatha Christie novel. He places it on the lectern, cover facing the class — Murder on the Orient Express."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（拍了拍书的封面）\n\n你们读过这本书吗？一个密闭的车厢里发生了谋杀案。大侦探波洛找到了一把刀、一张手帕、一封烧了一半的信。每条线索都在改变他对每个嫌疑人的判断。一条线索指向某个人，但另一条线索又把怀疑转移到别人身上。今天我要讲的，就是线索如何在你的脑中流动。",
+        "en": "(Tapping the book cover)\n\nHave you read this? A murder in a sealed train car. Detective Poirot finds a knife, a handkerchief, a half-burned letter. Each clue shifts his judgment about every suspect. One clue points to someone, but another redirects suspicion elsewhere. What I want to talk about today is how clues flow through your mind."
+      },
+      "leadsTo": "detective-network"
+    },
+    {
+      "id": "detective-network",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把波洛的推理画成一个{贝叶斯网络}。嫌疑人有三个：A、B、C。动机、机会、物证各有关联。嫌疑人A有动机，这增加了他作案的可能性；他作案的可能性又影响了在他房间发现凶器的概率。每一个变量都与其他变量通过箭头相连。",
+        "en": "Let me draw Poirot's reasoning as a {Bayesian network}. Three suspects: A, B, C. Motive, opportunity, and physical evidence are all interconnected. Suspect A has a motive, which increases the probability of him committing the crime; that probability in turn affects the chance of finding the weapon in his room. Every variable is linked to others through arrows."
+      },
+      "terms": {
+        "贝叶斯网络": "term-bayesian-network",
+        "Bayesian network": "term-bayesian-network"
+      },
+      "leadsTo": "evidence-enters"
+    },
+    {
+      "id": "evidence-enters",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在，波洛发现了第一条线索：凶器上有A的指纹。这条证据进入了网络的一个节点。但它的影响不会停留在那里——它会沿着箭头传播。凶器指纹让「A作案」的概率升高，而如果A更可能是凶手，那么B和C就更可能无辜。一条线索，撼动了整张网络。",
+        "en": "Now Poirot discovers the first clue: A's fingerprints on the weapon. This evidence enters one node of the network. But its impact doesn't stay there — it propagates along the arrows. The fingerprint raises the probability of 「A committed the crime, and if A is more likely the culprit, then B and C are more likely innocent. One clue shakes the entire network."
+      },
+      "leadsTo": "propagation-concept"
+    },
+    {
+      "id": "propagation-concept",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "问题来了——在一个有几十个甚至几百个节点的网络中，当一条新证据进入时，我们如何高效地更新每个节点的信念？总不能每次都把所有可能性重新算一遍吧？我设计了一种算法，叫做{信念传播}。它的灵感很直观：让信息像消息一样在网络中传递。",
+        "en": "Here's the problem — in a network with dozens or even hundreds of nodes, when new evidence arrives, how do we efficiently update beliefs at every node? We can't recalculate all possibilities from scratch each time. I designed an algorithm called {belief propagation}. Its inspiration is quite intuitive: let information pass through the network like messages."
+      },
+      "terms": {
+        "信念传播": "term-belief-propagation",
+        "belief propagation": "term-belief-propagation"
+      },
+      "leadsTo": "message-passing"
+    },
+    {
+      "id": "message-passing",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "想象网络中的每个节点都是一个人，他们只能跟直接相连的邻居交谈。当某个节点收到了新的证据，它会向每个邻居发送一条「消息」，告诉他们：「我的信念发生了变化，你可能也需要调整。」邻居收到消息后，更新自己的信念，然后再向自己的邻居发送新的消息。就这样，信息像涟漪一样从证据的源头扩散到整个网络。",
+        "en": "Imagine every node in the network as a person who can only talk to their directly connected neighbors. When a node receives new evidence, it sends a 「message」 to each neighbor saying: 「My belief has changed — you might need to adjust too」. The neighbor, upon receiving the message, updates its own belief and sends new messages to its own neighbors. Like ripples spreading from where a stone hits the water, information propagates from the source of evidence across the entire network."
+      },
+      "leadsTo": "chain-example"
+    },
+    {
+      "id": "chain-example",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我用一个简单的例子来说明。三个变量排成一条链：天气→路面状况→交通事故。如果你听到广播说今天发生了一起交通事故，你对路面状况的信念会怎样变化？你可能会想，也许路面很湿滑。而如果路面湿滑，那么天气可能在下雨。观察到链条末端的一个变量，改变了你对整条链上所有变量的信念。",
+        "en": "Let me illustrate with a simple example. Three variables form a chain: weather -> road conditions -> traffic accident. If you hear on the radio that a traffic accident happened today, how does your belief about road conditions change? You might think the road was probably slippery. And if the road was slippery, then it was probably raining. Observing one variable at the end of the chain changes your beliefs about every variable along the entire chain."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在这条链 A→B→C 中，你观察到了A的值。这会改变你对C的信念吗？",
+        "en": "In the chain A -> B -> C, you observe the value of A. Does this change your belief about C?"
+      },
+      "choices": [
+        {
+          "id": "yes-propagates",
+          "text": {
+            "zh": "会，A的信息会通过B传递到C",
+            "en": "Yes, information about A propagates through B to reach C"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确。即使A和C之间没有直接的箭头，A的信息可以沿着链条经由B传递到C。这就像一条河流——上游的水位变化会影响下游。{信念传播}算法正是这样工作的：消息沿着边一步步传递，每一步都更新局部的信念。",
+              "en": "Exactly right. Even though there's no direct arrow between A and C, information about A can travel along the chain through B to reach C. It's like a river — changes in water level upstream affect the flow downstream. The {belief propagation} algorithm works just like this: messages pass along edges step by step, updating local beliefs at each step."
+            }
+          },
+          "leadsTo": "explaining-away"
+        },
+        {
+          "id": "no-too-far",
+          "text": {
+            "zh": "不会，A和C离得太远了",
+            "en": "No, A and C are too far apart"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个自然的直觉，但在概率网络中，距离并不能阻挡信息的传播。A的信息会先更新你对B的信念，然后B的变化又会更新你对C的信念。只要这条链没有被中间某个已知的节点「截断」，信息就能传遍整个网络。这正是{信念传播}的工作原理。",
+              "en": "That's a natural intuition, but in a probability network, distance doesn't block the flow of information. Information about A first updates your belief about B, and then the change in B updates your belief about C. As long as the chain isn't 「blocked」 by a known intermediate node, information can reach the entire network. This is exactly how {belief propagation} works."
+            }
+          },
+          "leadsTo": "explaining-away"
+        },
+        {
+          "id": "depends-on-b",
+          "text": {
+            "zh": "取决于B是否已知——如果B的值已知，A的信息就传不过去了",
+            "en": "It depends on whether B is known — if B's value is known, A's information can't pass through"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "太出色了！你抓住了一个微妙而关键的细节。如果B的值已经确定，它就像一道墙，把A和C隔开了。这正是我们上节课讲的{条件独立}。但如果B是未知的，A的信息确实能穿过B影响C。{信念传播}算法正是利用这些规则来决定消息往哪里传递。",
+              "en": "Brilliant! You've grasped a subtle yet crucial detail. If B's value is already determined, it acts like a wall separating A and C — that's the {conditional independence} we discussed last time. But if B is unknown, information about A can indeed pass through B to affect C. The {belief propagation} algorithm uses precisely these rules to decide where messages travel."
+            }
+          },
+          "leadsTo": "explaining-away"
+        }
+      ]
+    },
+    {
+      "id": "explaining-away",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "现在让我讲一个更有趣的现象。回到侦探的例子。假设我们知道受害者只可能被A或B杀害——两人中必有一个是凶手。一开始，两人的嫌疑各为百分之五十。现在，如果我们发现了强烈的证据指向A……你对B的判断会如何变化？",
+        "en": "Now let me describe a more interesting phenomenon. Back to the detective example. Suppose we know the victim could only have been killed by A or B — one of them must be the culprit. Initially, suspicion is split fifty-fifty. Now, if we discover strong evidence pointing to A... how does your assessment of B change?"
+      },
+      "leadsTo": "explaining-away-detail"
+    },
+    {
+      "id": "explaining-away-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "直觉告诉我们：如果A更可能是凶手，那B就更可能无辜。A的证据「解释掉」了B的嫌疑。这在概率论中叫做「解释消除」效应。两个原因竞争同一个结果——一旦其中一个被证实，另一个的可能性就降低了。",
+        "en": "Intuition tells us: if A is more likely the culprit, then B is more likely innocent. Evidence for A 「explains away」 the suspicion on B. In probability theory this is called the 「explaining away」 effect. Two causes compete for the same effect — once one is confirmed, the other's probability decreases."
+      },
+      "leadsTo": "explaining-away-network"
+    },
+    {
+      "id": "explaining-away-network",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "在网络结构中，这对应一种特殊的图案：两个原因节点都指向同一个结果节点，但原因之间没有直接箭头。有趣的是，在你不知道结果的时候，两个原因是独立的。但一旦你观察到了结果，它们就变成了竞争关系！观察结果节点「激活」了原因之间的关联。这是{信念传播}中最微妙的情况之一。",
+        "en": "In network structure, this corresponds to a special pattern: two cause nodes both point to the same effect node, but there's no direct arrow between the causes. Interestingly, when you don't know the effect, the two causes are independent. But once you observe the effect, they become competitors! Observing the effect node 「activates」 a connection between the causes. This is one of the most subtle aspects of {belief propagation}."
+      },
+      "terms": {
+        "信念传播": "term-belief-propagation",
+        "belief propagation": "term-belief-propagation"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "一个病人咳嗽了。咳嗽可能由感冒引起，也可能由过敏引起。如果医生已经确诊病人感冒了，这会如何影响医生对「过敏」的判断？",
+        "en": "A patient is coughing. The cough could be caused by a cold or by allergies. If the doctor has confirmed the patient has a cold, how does this affect the doctor's assessment of 「allergies」?"
+      },
+      "choices": [
+        {
+          "id": "allergy-less-likely",
+          "text": {
+            "zh": "过敏的可能性降低了——感冒已经可以解释咳嗽",
+            "en": "Allergies become less likely — the cold already explains the cough"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "正是如此。感冒「解释掉」了咳嗽，所以过敏的必要性降低了。这就是解释消除效应在医学诊断中的体现。有趣的是，波洛在破案时也在做同样的事情——每一个被排除的嫌疑人，都因为另一个嫌疑人的证据变得更强。",
+              "en": "Exactly. The cold 「explains away」 the cough, so the need for allergies as an explanation decreases. This is the explaining away effect at work in medical diagnosis. Interestingly, Poirot does the same thing when solving cases — every suspect who gets cleared is cleared because the evidence for another suspect grows stronger."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "allergy-same",
+          "text": {
+            "zh": "没有影响——过敏和感冒是独立的",
+            "en": "No effect — allergies and a cold are independent"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "在你不知道病人是否咳嗽的情况下，过敏和感冒确实可能是独立的。但关键在于我们已经观察到了咳嗽——这个共同的结果把两个原因关联了起来。既然感冒已经能解释咳嗽，我们就不太需要用过敏来解释了。观察结果节点改变了原因之间的关系。",
+              "en": "If you didn't know whether the patient was coughing, allergies and a cold might indeed be independent. But the key is that we've already observed the cough — this shared effect links the two causes together. Since the cold already explains the cough, we don't need allergies to explain it as much. Observing the effect node changes the relationship between the causes."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "allergy-more-likely",
+          "text": {
+            "zh": "过敏的可能性反而升高——感冒可能让身体更敏感",
+            "en": "Allergies actually become more likely — the cold might make the body more sensitive"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "你在想一种不同的因果结构——感冒导致过敏更容易发作。这在某些医学情境中确实可能。但在我们讨论的模型中，感冒和过敏是两个独立的原因共同导致咳嗽。这时候，确认其中一个原因会降低另一个原因的可能性。你的想法提醒我们：选择正确的图结构至关重要。",
+              "en": "You're imagining a different causal structure — where a cold makes allergies more likely to flare up. In some medical contexts, that could be true. But in the model we're discussing, a cold and allergies are two independent causes both leading to a cough. In that case, confirming one cause reduces the probability of the other. Your thinking reminds us: choosing the right graph structure is critical."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "{信念传播}算法把这些直觉性的推理，比如链式传播和解释消除，统一在一个数学框架里。每个节点只需要跟邻居交换消息，整个网络就能自动达到全局一致的信念状态。在树状的网络中，这个过程只需要两轮消息传递就能完成，非常高效。",
+        "en": "The {belief propagation} algorithm unifies these intuitive forms of reasoning — chain propagation, explaining away — within a single mathematical framework. Each node only needs to exchange messages with its neighbors, and the entire network automatically reaches a globally consistent belief state. In tree-structured networks, this process completes in just two rounds of message passing — remarkably efficient."
+      },
+      "terms": {
+        "信念传播": "term-belief-propagation",
+        "belief propagation": "term-belief-propagation"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "信念传播算法：网络中的节点通过向邻居发送「消息」来传播证据的影响。关键现象——链式传播（观察A通过B影响C）和解释消除（两个原因竞争同一个结果，确认一个会降低另一个的可能性）。在树形网络中只需两轮消息传递即可收敛。",
+        "en": "Belief propagation algorithm: nodes in the network propagate evidence by sending 「messages」 to neighbors. Key phenomena — chain propagation (observing A affects C through B) and explaining away (two causes compete for the same effect; confirming one reduces the other's probability). Converges in just two rounds of message passing on tree-structured networks."
+      },
+      "category": "core-concept",
+      "leadsTo": "broader-impact"
+    },
+    {
+      "id": "broader-impact",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我有时候会想，人类的大脑是不是也在做类似的事情。当你看到乌云，你的大脑几乎瞬间就更新了对下雨的预期，然后你不自觉地去找伞。这些信念的更新和传播，发生得如此自然，以至于我们根本察觉不到。也许{信念传播}捕捉到了智能的某种本质。",
+        "en": "I sometimes wonder whether the human brain does something similar. When you see dark clouds, your brain almost instantly updates its expectation of rain, and you reach for an umbrella without thinking. These updates and propagations of belief happen so naturally that we don't even notice them. Perhaps {belief propagation} captures something essential about intelligence."
+      },
+      "terms": {
+        "信念传播": "term-belief-propagation",
+        "belief propagation": "term-belief-propagation"
+      },
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "到目前为止，我们学会了如何用概率描述不确定性，如何用网络表达依赖关系，如何让信念在网络中传播。但有一个深刻的问题我们还没有碰触：{相关性}和{因果性}是一回事吗？冰淇淋销量和溺水事故率同时上升——难道冰淇淋导致了溺水？下一课，我们来挑战这个危险的误区。",
+        "en": "So far, we've learned how to describe uncertainty with probability, express dependencies with networks, and propagate beliefs through networks. But there's a profound question we haven't touched yet: are {correlation} and {causation} the same thing? Ice cream sales and drowning rates rise together — does ice cream cause drowning? Next class, we'll challenge this dangerous misconception."
+      },
+      "terms": {
+        "相关性": "term-correlation",
+        "correlation": "term-correlation",
+        "因果性": "term-causation",
+        "causation": "term-causation"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "Pearl教授合上那本阿加莎·克里斯蒂的小说，若有所思地看着黑板上那张满是消息箭头的网络图。你的笔记本上也画满了类似的图案。走出教室时，你发现自己在不自觉地思考：当你做出任何判断时，你脑中的「信念网络」是什么样子的？",
+        "en": "Prof. Pearl closes the Agatha Christie novel, gazing thoughtfully at the blackboard covered with the network of message arrows. Your notebook is filled with similar diagrams. As you leave the classroom, you find yourself wondering: whenever you make any judgment, what does the 「belief network」 in your mind look like?"
+      }
+    }
+  ]
+}

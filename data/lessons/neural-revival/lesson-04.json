@@ -1,0 +1,369 @@
+{
+  "id": "lesson-04",
+  "course": "neural-revival",
+  "title": {
+    "zh": "多层网络的力量",
+    "en": "The Power of Multi-layer Networks"
+  },
+  "knowledgePoint": {
+    "zh": "多层网络为何能解决单层网络无法解决的问题——XOR问题与万能近似定理",
+    "en": "Why multi-layer networks can solve what single-layer networks cannot — the XOR problem and the universal approximation theorem"
+  },
+  "teacher": "prof-rumelhart",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间教室。鲁梅尔哈特教授在白板上画了四个点——两黑两白，它们的排列方式让你无论怎么画一条直线，都无法把黑点和白点分开。他放下笔，看着你们说：「这就是让明斯基教授宣判感知机死刑的那个问题。」",
+    "en": "You close your eyes, and your thoughts drift back to that classroom. Prof. Rumelhart draws four dots on the whiteboard — two black, two white — arranged so that no matter how you draw a straight line, you can't separate the black dots from the white ones. He puts down the marker and looks at you: 「This is the very problem that led Prof. Minsky to pronounce the death sentence on perceptrons」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那四个点仍在脑海中——但现在你知道了秘密。增加一个隐藏层，就像给网络一副新的眼镜，让它看到原来看不到的结构。多层网络的力量，远比你最初想象的强大。",
+    "en": "You return to the present. Those four dots still linger in your mind — but now you know the secret. Adding a hidden layer is like giving the network a new pair of glasses, letting it see structure that was previously invisible. The power of multi-layer networks is far greater than you first imagined."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "鲁梅尔哈特教授今天一进门就直奔白板。他拿起黑色和红色两支笔，在白板的坐标系上标了四个点。左下角和右上角的是黑色实心圆，左上角和右下角的是红色空心圆。他退后一步，打量着这四个点，像在端详一位老对手。",
+        "en": "Prof. Rumelhart heads straight for the whiteboard today. He picks up a black marker and a red one, plotting four dots on a coordinate system. The lower-left and upper-right dots are solid black circles; the upper-left and lower-right are hollow red circles. He steps back and studies the four dots, as if sizing up an old adversary."
+      },
+      "leadsTo": "xor-intro"
+    },
+    {
+      "id": "xor-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这四个点代表XOR，也就是异或运算。规则很简单：两个输入相同时输出0（红色），不同时输出1（黑色）。看起来简单吧？但是，试着画一条直线把黑点和红点分开，你会发现根本做不到。",
+        "en": "These four dots represent XOR — the exclusive-or operation. The rule is simple: when both inputs are the same, output 0 (red); when they differ, output 1 (black). Looks simple, right? But try drawing a straight line to separate the black dots from the red ones — you'll find it can't be done."
+      },
+      "leadsTo": "minsky-context"
+    },
+    {
+      "id": "minsky-context",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这就是明斯基教授在1969年证明的核心问题。单层{感知机}能做的事情，本质上就是画一条直线（或者在高维空间中画一个平面）来分类。如果数据不能被一条直线分开，也就是数学上所说的「线性不可分」，那么单层感知机就无能为力了。XOR问题正是一个典型的线性不可分案例。",
+        "en": "This is the core problem Prof. Minsky proved in 1969. What a single-layer {perceptron} can do is essentially draw a straight line (or a hyperplane in higher dimensions) to classify data. If the data can't be separated by a straight line — mathematically called 「linearly inseparable」 — the single-layer perceptron is powerless. XOR is precisely such a linearly inseparable problem."
+      },
+      "terms": {
+        "感知机": "term-perceptron",
+        "perceptron": "term-perceptron"
+      },
+      "leadsTo": "hidden-layer-solution"
+    },
+    {
+      "id": "hidden-layer-solution",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但如果我们加上一个{隐藏层}呢？让我来展示魔法。隐藏层中的每个神经元可以画一条自己的线。一个神经元画一条，另一个神经元画另一条。这两条线把空间切成了几个区域。然后输出层来决定：哪些区域是黑色，哪些是红色。",
+        "en": "But what if we add a {hidden layer}? Let me show you the magic. Each neuron in the hidden layer can draw its own line. One neuron draws one line, another draws a different line. These two lines divide the space into several regions. Then the output layer decides: which regions are black, which are red."
+      },
+      "terms": {
+        "隐藏层": "term-hidden-layer",
+        "hidden layer": "term-hidden-layer"
+      },
+      "leadsTo": "two-lines"
+    },
+    {
+      "id": "two-lines",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "具体来说：隐藏层的第一个神经元画一条对角线，把左上和右下的点与其他两个点分开。第二个神经元画另一条对角线，把左下和右上的点与其他两个点分开。现在，输出层只需要做一件事——当且仅当两个隐藏神经元的输出不同时，输出1。这在两条线的帮助下是一个线性可分的问题！",
+        "en": "Specifically: the first hidden neuron draws one diagonal line, separating the upper-left and lower-right dots from the other two. The second hidden neuron draws another diagonal, separating the lower-left and upper-right dots from the other two. Now the output layer only needs to do one thing — output 1 if and only if the two hidden neurons' outputs differ. With the help of those two lines, this becomes a linearly separable problem!"
+      },
+      "leadsTo": "feature-creation"
+    },
+    {
+      "id": "feature-creation",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你注意到发生了什么吗？隐藏层做了一件非常关键的事，它创造了新的「特征」。原始输入空间里，这个问题无解。但隐藏层把数据变换到了一个新的空间，在那个新空间里，问题变得简单了。隐藏层就像一个翻译官，把一种难以理解的语言翻译成了容易理解的语言。",
+        "en": "Did you notice what just happened? The hidden layer did something crucial — it created new 「features」. In the original input space, this problem has no solution. But the hidden layer transformed the data into a new space where the problem becomes simple. The hidden layer is like a translator — converting a hard-to-understand language into an easy-to-understand one."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么增加一个隐藏层就能解决XOR问题？关键在于什么？",
+        "en": "Why does adding a hidden layer solve the XOR problem? What is the key?"
+      },
+      "choices": [
+        {
+          "id": "space-transform",
+          "text": {
+            "zh": "隐藏层把数据变换到了一个新的空间，在那里数据变成了线性可分的",
+            "en": "The hidden layer transforms data into a new space where it becomes linearly separable"
+          },
+          "tag": "geometric",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是最核心的理解。隐藏层的本质功能就是空间变换——它把在原始空间中纠缠在一起的数据，映射到一个新的空间里，使它们变得容易区分。每一个隐藏层神经元定义了一种新的观察数据的方式。多个神经元合在一起，就构建了一个全新的坐标系。",
+              "en": "That's precisely the core understanding. The essential function of a hidden layer is spatial transformation — it maps data that's tangled together in the original space into a new space where they become easy to distinguish. Each hidden neuron defines a new way of looking at the data. Multiple neurons together construct an entirely new coordinate system."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "more-lines",
+          "text": {
+            "zh": "更多神经元可以画更多的线，组合起来形成复杂的分类边界",
+            "en": "More neurons can draw more lines, combining to form complex classification boundaries"
+          },
+          "tag": "combinatorial",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你看到了关键的机制。单层网络只能画一条线，但多层网络可以画很多条线，然后把这些线的结果组合起来。两条线能切出区域，三条线能切出更复杂的形状，很多条线几乎能逼近任何你想要的边界。量变引起了质变。",
+              "en": "You've spotted the key mechanism. A single-layer network can only draw one line, but a multi-layer network can draw many lines and then combine their results. Two lines can carve out regions, three lines can create more complex shapes, and many lines can approximate almost any boundary you want. Quantitative change leads to qualitative change."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "more-parameters",
+          "text": {
+            "zh": "增加了隐藏层就有了更多的权重参数，让网络更灵活",
+            "en": "Adding a hidden layer gives more weight parameters, making the network more flexible"
+          },
+          "tag": "parametric",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "更多参数确实让网络更灵活，但这只是表面。参数多少本身不是关键——一个拥有很多参数的单层网络仍然只能画一条线。关键在于隐藏层引入的非线性变换：它可以把数据重新组织到一个新的空间中。灵活性来自空间变换的能力，而非仅仅是参数数量。",
+              "en": "More parameters do make the network more flexible, but that's just the surface. The number of parameters isn't the key — a single-layer network with many parameters can still only draw one line. The key is the nonlinear transformation introduced by the hidden layer: it can reorganize data into a new space. Flexibility comes from the ability to transform space, not just from parameter count."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这里面有一个至关重要的角色——{激活函数}。如果隐藏层的神经元只做线性运算（加法和乘法），那么不管你叠多少层，整个网络的效果等价于一个单层网络。非线性的激活函数才是让多层网络真正「多层」的原因。",
+        "en": "There's a crucial player here — the {activation function}. If hidden layer neurons only performed linear operations (addition and multiplication), then no matter how many layers you stack, the entire network would be equivalent to a single-layer network. It's the nonlinear activation function that makes multi-layer networks truly 「multi-layered」."
+      },
+      "terms": {
+        "激活函数": "term-activation-function",
+        "activation function": "term-activation-function"
+      },
+      "leadsTo": "nonlinearity-analogy"
+    },
+    {
+      "id": "nonlinearity-analogy",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "打个比方：线性运算就像一块透明玻璃。你叠再多层透明玻璃，光线穿过去仍然是直的。但非线性激活函数就像棱镜，它能弯折光线的方向。一层棱镜只能做出简单的折射，而多层棱镜组合在一起，就能创造出万花筒般的复杂图案。",
+        "en": "An analogy: linear operations are like a sheet of clear glass — no matter how many layers of clear glass you stack, light still passes through straight. But a nonlinear activation function is like a prism — it bends the direction of light. One prism creates simple refraction; multiple prisms combined can create kaleidoscope-like complex patterns."
+      },
+      "leadsTo": "universal-approx"
+    },
+    {
+      "id": "universal-approx",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这引出了一个令人振奋的理论结果——{万能近似}定理。它说：只要给一个{多层感知机}足够多的隐藏神经元和适当的非线性激活函数，它就能以任意精度逼近任何连续函数。换句话说，多层网络在理论上可以学会任何平滑的输入-输出映射关系。",
+        "en": "This leads to an exhilarating theoretical result — the {universal approximation} theorem. It states: given enough hidden neurons and an appropriate nonlinear activation function, a {multi-layer perceptron} can approximate any continuous function to arbitrary precision. In other words, multi-layer networks can theoretically learn any smooth input-output mapping."
+      },
+      "terms": {
+        "万能近似": "term-universal-approximation",
+        "多层感知机": "term-multi-layer-perceptron",
+        "universal approximation": "term-universal-approximation",
+        "multi-layer perceptron": "term-multi-layer-perceptron"
+      },
+      "leadsTo": "caveat"
+    },
+    {
+      "id": "caveat",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但请注意，「能逼近」和「一定能学会」之间存在着巨大的鸿沟。定理只告诉我们存在一组权重可以完成任务，却没有保证梯度下降一定能找到那组权重。这就像我告诉你「地球上某个地方埋着宝藏」，但这并不意味着你就能找到它。",
+        "en": "But note this — there's an enormous gap between 「can approximate」 and 「will definitely learn」. The theorem tells us there exists a set of weights that can do the job, but it doesn't tell us that gradient descent will necessarily find those weights. It's like me telling you 「there's treasure buried somewhere on Earth」 — that doesn't mean you can find it."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "万能近似定理说多层网络「能逼近任何连续函数」。这是否意味着神经网络可以做到任何事情？",
+        "en": "The universal approximation theorem says multi-layer networks 「can approximate any continuous function」. Does this mean neural networks can do anything?"
+      },
+      "choices": [
+        {
+          "id": "no-practical-limits",
+          "text": {
+            "zh": "理论上可以，但实际中受限于训练方法、数据量和计算能力",
+            "en": "Theoretically yes, but in practice limited by training methods, data, and computing power"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个区分非常重要。理论上的「存在性」和实际中的「可达性」完全是两回事。定理说权重存在，但找到它们需要合适的训练数据、足够的计算时间、合理的学习率，还需要避免局部最小值的陷阱。目前我们能训练的网络规模还非常有限。",
+              "en": "This distinction is extremely important. Theoretical 「existence」 and practical 「attainability」 are completely different things. The theorem says the weights exist, but finding them requires suitable training data, enough computation time, a reasonable learning rate, and avoiding local minima traps. The scale of networks we can currently train is still very limited."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "continuous-only",
+          "text": {
+            "zh": "不能——定理只针对「连续函数」，不是所有问题都能表达为连续函数",
+            "en": "No — the theorem only applies to 「continuous functions, and not all problems can be expressed as continuous functions"
+          },
+          "tag": "precise",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你注意到了一个很多人忽视的限定条件！定理的适用范围是连续函数。离散的逻辑推理、需要精确符号操作的任务，不一定能自然地表达为连续映射。而且，即使一个问题可以表达为连续函数，定理也没有告诉我们需要多少个隐藏神经元——可能需要的数量大到不切实际。",
+              "en": "You've noticed a qualifying condition that many people overlook! The theorem applies to continuous functions. Discrete logical reasoning, tasks requiring precise symbolic manipulation — these may not naturally be expressible as continuous mappings. Moreover, even if a problem can be expressed as a continuous function, the theorem doesn't tell us how many hidden neurons we need — the number might be impractically large."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "yes-anything",
+          "text": {
+            "zh": "是的。这说明神经网络在原则上可以学会任何东西",
+            "en": "Yes — this means neural networks can in principle learn anything"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "我理解这种兴奋，万能近似听起来确实很诱人。但我们需要谨慎。定理的条件是「足够多的隐藏神经元」，但多少才算足够？对于某些问题，可能需要的神经元数量超乎想象。而且定理只保证了存在性，没有保证我们的训练算法能找到那个解。理论上的可能和实践中的可行之间，往往隔着一段很长的路。",
+              "en": "I understand the excitement — universal approximation does sound enticing. But we must be cautious. The theorem's condition is 「enough hidden neurons」 — but how many is enough? For some problems, the required number might be beyond imagination. And the theorem only guarantees existence, not that our training algorithm can find the solution. Between theoretical possibility and practical feasibility, there's often a very long road."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "万能近似定理给了我们信心：多层网络的表达能力足够强。但它也提醒我们保持谦虚：能力的上限和实际能力之间，还有大量工程和科学问题需要解决。",
+        "en": "The universal approximation theorem gives us confidence: multi-layer networks are expressive enough. But it also reminds us to stay humble: between the upper bound of capability and actual capability, there are still many engineering and scientific problems to solve."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "多层网络解决XOR的关键：隐藏层将数据变换到新空间，使线性不可分问题变为线性可分。激活函数的非线性至关重要——没有它，多层等于单层。万能近似定理：多层网络理论上能逼近任何连续函数，但「能逼近」不等于「能学会」。",
+        "en": "Key to multi-layer networks solving XOR: hidden layers transform data into a new space, making linearly inseparable problems separable. Nonlinearity of activation functions is crucial — without it, multiple layers equal one. Universal approximation theorem: multi-layer networks can theoretically approximate any continuous function, but 「can approximate」 doesn't mean 「will learn」."
+      },
+      "category": "core-concept",
+      "leadsTo": "looking-forward"
+    },
+    {
+      "id": "looking-forward",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "今天我们看到了多层网络的力量，从解决XOR这样的小问题，到万能近似定理带来的理论保证。但多层网络还有一个我认为更加深刻的特性：它们表示知识的方式和传统计算机完全不同。下节课，我要跟你们聊一聊{分布式表示}，探讨为什么神经网络「记住」事物的方式，可能更接近我们的大脑。",
+        "en": "Today we saw the power of multi-layer networks — from solving small problems like XOR to the theoretical guarantees of the universal approximation theorem. But multi-layer networks have another property I consider even more profound: the way they represent knowledge is completely different from traditional computers. Next lesson, I want to talk about {distributed representations} — why the way neural networks 「remember」 things might be closer to how our brains work."
+      },
+      "terms": {
+        "分布式表示": "term-distributed-representation",
+        "distributed representations": "term-distributed-representation"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾今天学到的内容——如果你能设计一个隐藏层来解决某个分类问题，你会怎么思考隐藏层的角色？",
+        "en": "Reflecting on what we learned today — if you could design a hidden layer to solve a classification problem, how would you think about the hidden layer's role?"
+      },
+      "choices": [
+        {
+          "id": "feature-detector",
+          "text": {
+            "zh": "隐藏层是特征检测器——它从原始数据中提取有用的模式",
+            "en": "The hidden layer is a feature detector — it extracts useful patterns from raw data"
+          },
+          "tag": "pattern-focused",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的直觉。这正是我们PDP小组对隐藏层的理解之一。每个隐藏神经元学会检测输入中的某种模式或特征。多个特征组合在一起，就形成了对输入数据的丰富描述。当你需要区分猫和狗时，也许一个神经元检测耳朵的形状，另一个检测鼻子的大小——它们各自看到了数据的一个侧面。",
+              "en": "Excellent intuition. This is precisely one of our PDP group's interpretations of hidden layers. Each hidden neuron learns to detect a certain pattern or feature in the input. Multiple features combined form a rich description of the input data. When you need to distinguish cats from dogs, maybe one neuron detects ear shape, another detects nose size — each sees one aspect of the data."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "space-warper",
+          "text": {
+            "zh": "隐藏层是空间变形器——它扭曲数据空间让分类变简单",
+            "en": "The hidden layer is a space warper — it distorts the data space to make classification easy"
+          },
+          "tag": "geometric-thinker",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一种非常深刻的几何直觉。隐藏层确实在做一种空间变形——把弯曲的分类边界「拉直」了。就像你拿着一张画着复杂图案的橡皮布，通过拉伸和扭曲，让原本交织在一起的线条变得互相远离。每一层都在对空间做一次变形，层层叠加后，最终的空间变得清晰可分。",
+              "en": "That's a very deep geometric intuition. The hidden layer is indeed performing spatial deformation — 「straightening」 curved classification boundaries. Imagine holding a rubber sheet with complex patterns drawn on it, and through stretching and warping, making originally intertwined lines move apart. Each layer performs one deformation of space, and after stacking multiple layers, the final space becomes clearly separable."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "translator",
+          "text": {
+            "zh": "隐藏层是翻译官——把网络「看不懂」的输入翻译成它「能理解」的语言",
+            "en": "The hidden layer is a translator — converting input the network 「can't read」 into a language it 「understands」"
+          },
+          "tag": "metaphorical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）我很喜欢这个比喻。确实，你可以把隐藏层看作一个翻译系统。原始输入数据像是外语，输出层听不懂。隐藏层把这些「外语」翻译成了输出层能理解的「中间表达」。翻译的质量取决于训练，网络通过反向传播学会了最佳的翻译方式。",
+              "en": "(Laughs) I really like that analogy. Indeed, you can think of the hidden layer as a translation system. The raw input data is like a foreign language — the output layer can't understand it. The hidden layer translates this 「foreign language」 into an 「intermediate representation」 the output layer can understand. The quality of translation depends on training — the network learns the best way to translate through backpropagation."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我们亲手解决了XOR——这个曾经让整个领域陷入寒冬的问题。一个隐藏层就够了。但真正的启示在于：隐藏层不仅仅是「多了一层」，它从根本上改变了网络看待数据的方式。这种改变意味着什么？我们下节课来深入探讨。",
+        "en": "Today we solved XOR with our own hands — the problem that once plunged the entire field into winter. A single hidden layer was enough. But the real insight is: a hidden layer isn't just 「one more layer」 — it fundamentally changes how the network sees data. What does this change mean? We'll explore that in depth next lesson."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "鲁梅尔哈特教授回到白板前，在那四个点旁边加了一句话：「一条直线不够？那就让网络自己学会弯曲空间。」他盖上笔帽，带着满足的微笑走向门口。你看着白板上的四个点和那两条交叉的线——寒冬的死结，就这样被解开了。",
+        "en": "Prof. Rumelhart returns to the whiteboard and writes next to those four dots: 「One line not enough? Let the network learn to bend space itself」. He caps his marker and heads for the door with a satisfied smile. You stare at the four dots and the two crossing lines on the whiteboard — the deadlock of winter, undone just like that."
+      }
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "id": "lesson-03",
+  "course": "multimodal-intelligence",
+  "title": {
+    "zh": "多模态大模型",
+    "en": "Multimodal Large Models"
+  },
+  "knowledgePoint": {
+    "zh": "GPT-4V、Gemini等能同时理解图像与语言的多模态大模型",
+    "en": "GPT-4V, Gemini, and other multimodal large models that understand both images and language"
+  },
+  "teacher": "prof-li",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你闭上眼，那间明亮的教室再次浮现。全息投影中，一张照片被送入一个发光的模型框架——几秒后，模型开始用流畅的语言描述画面中的每一个细节。李飞飞教授站在旁边，表情中夹杂着惊叹与审慎：「它看见了，但它真的理解了吗？」",
+    "en": "You close your eyes, and that bright classroom reappears. In the holographic projection, a photograph is fed into a glowing model framework — seconds later, the model begins describing every detail in the image with fluent language. Prof. Li stands beside it, her expression mixing wonder with caution: 「It sees, but does it truly understand?」"
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那些令人惊叹的图像描述还在脑海中回响，但同时你也记得那些荒谬的错误——模型把镜中倒影当成了真实的人。能力与局限并存，这就是多模态大模型的现状。",
+    "en": "You return to the present. Those astonishing image descriptions still echo in your mind, yet you also remember the absurd mistakes — the model mistaking a mirror reflection for a real person. Capability and limitation coexist — that is the current state of multimodal large models."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "走进教室时，你注意到今天的全息投影特别壮观：一个巨大的模型架构图悬浮在教室中央，左侧是一只「眼睛」形状的视觉编码器，右侧是一个庞大的语言模型核心，两者之间有无数光线相互交织。李飞飞教授站在这个投影下方，金色的光线从窗外洒入，在她身上投下温暖的光影。",
+        "en": "As you enter the classroom, you notice today's holographic projection is particularly spectacular: a massive model architecture diagram floats in the center of the room, with an 「eye」-shaped visual encoder on the left, a vast language model core on the right, and countless beams of light interweaving between them. Prof. Li stands beneath this projection, golden light streaming from the windows, casting warm patterns across her figure."
+      },
+      "leadsTo": "recap-bridge"
+    },
+    {
+      "id": "recap-bridge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们学习了CLIP如何在视觉和语言之间架起桥梁。CLIP证明了图像和文字可以在同一个空间里对齐。但CLIP有一个关键的局限：它只能做匹配和检索，却无法「看着一张图片然后谈论它」。今天，我要带你们认识一类全新的AI，它们能做到这一点。",
+        "en": "Last lesson we learned how CLIP bridges vision and language. CLIP proved that images and text can be aligned in the same space. But CLIP has a key limitation — it can only match and retrieve, it cannot 「look at an image and talk about it」. Today, I want you to meet a entirely new class of AI — ones that can do exactly that."
+      },
+      "leadsTo": "vlm-intro"
+    },
+    {
+      "id": "vlm-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "它们叫做{视觉语言模型}。（全息投影中模型架构亮了起来）2023年到2024年间，几个重磅模型相继问世——OpenAI的GPT-4V、Google的Gemini、还有Meta和许多其他团队的开源模型。这些模型能够接收一张图片和一段文字提问，然后生成详细的文字回答。你可以给它一张照片问「这张照片里发生了什么？」，它会给你一段生动的描述。",
+        "en": "They are called {vision-language models}. (The model architecture lights up in the holographic projection) Between 2023 and 2024, several heavyweight models emerged in succession — OpenAI's GPT-4V, Google's Gemini, plus open-source models from Meta and many other teams. These models can take an image and a text question, then generate a detailed text response. You can give it a photo and ask 「What's happening in this photo?」 and it will give you a vivid description."
+      },
+      "terms": {
+        "视觉语言模型": "term-vision-language-model",
+        "vision-language models": "term-vision-language-model"
+      },
+      "leadsTo": "architecture-overview"
+    },
+    {
+      "id": "architecture-overview",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "那它们是怎么做到的呢？（指向全息投影中的架构图）核心思路其实不复杂：取一个强大的{视觉编码器}，通常是经过大量图像训练的视觉模型，让它把图片转换成一组特征向量。然后把这些特征向量「翻译」成语言模型能理解的格式，送入一个大型语言模型。语言模型在处理这些视觉特征时，就好像在阅读一段特殊的「文字」。",
+        "en": "How do they do it? (Points to the architecture diagram in the holographic projection) The core approach is actually not complicated: take a powerful {visual encoder} — typically a vision model trained on massive amounts of images — and have it convert a picture into a set of feature vectors. Then 「translate」 these feature vectors into a format the language model can understand, and feed them into a large language model. When the language model processes these visual features, it's as if reading a special kind of 「text」."
+      },
+      "terms": {
+        "视觉编码器": "term-visual-encoder",
+        "visual encoder": "term-visual-encoder"
+      },
+      "leadsTo": "fusion-explain"
+    },
+    {
+      "id": "fusion-explain",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "关键在于{多模态融合}，也就是视觉信息和语言信息如何在模型内部交互。（投影中的光线交织得更加复杂）最简单的方法是把视觉特征当成一种特殊的「词」，直接拼接在文字输入前面。更高级的方法是让视觉和语言在模型的每一层都相互注意、相互影响。Google的Gemini选择了后者，它从设计之初就是一个原生的多模态模型，视觉和语言在每一层都深度交融。",
+        "en": "The key lies in {multimodal fusion} — how visual and linguistic information interact inside the model. (The light beams in the projection interweave more intricately) The simplest approach is treating visual features as special 「words」 and concatenating them before the text input. A more advanced approach lets vision and language attend to and influence each other at every layer of the model. Google's Gemini chose the latter — it was designed from the ground up as a natively multimodal model, with vision and language deeply fused at every layer."
+      },
+      "terms": {
+        "多模态融合": "term-multimodal-fusion",
+        "multimodal fusion": "term-multimodal-fusion"
+      },
+      "leadsTo": "demo-impressive"
+    },
+    {
+      "id": "demo-impressive",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（全息投影切换到一系列演示案例）让我给你们看看这些模型能做什么。（展示一张复杂的图表）你可以给GPT-4V一张科学论文里的数据图，问它「这张图的主要结论是什么？」它不仅能读懂坐标轴、数据点和图例，还能给出一个合理的分析。（展示一张手写数学题的照片）你甚至可以给它一张手写数学题的照片，它能读出题目并解答。",
+        "en": "(The holographic projection switches to a series of demo cases) Let me show you what these models can do. (Displays a complex chart) You can give GPT-4V a data figure from a scientific paper and ask 「What is the main conclusion of this chart?」 It can not only read the axes, data points, and legend, but provide a reasonable analysis. (Shows a photo of a handwritten math problem) You can even give it a photo of a handwritten math problem, and it can read the problem and solve it."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "这些多模态大模型能读图表、描述照片、解答视觉问题。你觉得这意味着它们真正「理解」了图像中的内容吗？",
+        "en": "These multimodal large models can read charts, describe photos, and answer visual questions. Do you think this means they truly 「understand」 the content of the images?"
+      },
+      "choices": [
+        {
+          "id": "yes-understand",
+          "text": {
+            "zh": "是的——这种能力已经超越了简单的模式匹配",
+            "en": "Yes — this capability goes beyond simple pattern matching"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "我理解你为什么这么想。当模型能分析一张复杂图表并给出正确的结论时，确实让人感觉它「理解」了。但我要提醒你一个关键的区别：能力和理解之间存在差距。一个模型也许能正确描述一百张图片，但在第一百零一张上犯一个人类不可能犯的低级错误。这种「脆弱的能力」暗示底层的机制可能和真正的理解有本质不同。",
+              "en": "I understand why you might think so. When a model can analyze a complex chart and draw correct conclusions, it certainly feels like it 「understands」. But I need to highlight a key distinction: there is a gap between capability and understanding. A model might correctly describe a hundred images, then make a basic error on the hundred-and-first that no human would ever make. This 「brittle capability」 suggests the underlying mechanism may be fundamentally different from true understanding."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "no-understand",
+          "text": {
+            "zh": "不——它们只是学会了视觉模式和语言描述之间的统计关联",
+            "en": "No — they have only learned statistical correlations between visual patterns and language descriptions"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个谨慎的立场。如果你在三年级学过Pearl教授的课，你会记得他对因果推理的强调——统计关联和因果理解之间有根本的区别。这些模型确实是在巨大的统计关联上运作的。但我想给你一点思考空间：也许人类大脑的某些「理解」在底层也是统计性的？这个问题的答案并不简单。",
+              "en": "That's a cautious stance. If you took Prof. Pearl's course in Grade 3, you'll remember his emphasis on causal reasoning — there's a fundamental difference between statistical correlation and causal understanding. These models do operate on vast statistical associations. But let me offer some food for thought: perhaps some of the human brain's 「understanding」 is also statistical at its core? The answer to this question isn't simple."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "maybe-partial",
+          "text": {
+            "zh": "也许它们有某种「浅层理解」——在某些方面惊人地好，但缺少深层的认知",
+            "en": "Perhaps they have a kind of 「shallow understanding」 — astonishingly good in some ways, yet lacking deep cognition"
+          },
+          "tag": "balanced",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（微笑）这是我自己倾向的看法。这些模型展现了一种我们从未在机器上见过的视觉认知能力——它们能把握整体构图、识别物体、理解场景的大致语义。但一旦涉及到精确的空间推理、物理因果、或者需要世界知识的深层判断，它们就会暴露出弱点。它们的「理解」是真实的，但不完整。",
+              "en": "(Smiles) That's actually the view I myself tend toward. These models demonstrate a kind of visual cognition we've never seen in machines before — they grasp overall composition, recognize objects, understand the general semantics of a scene. But once you get into precise spatial reasoning, physical causality, or deep judgments requiring world knowledge, their weaknesses emerge. Their 「understanding」 is real, but incomplete."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们看看这些模型哪些地方还做不好。（全息投影切换到一系列「失败案例」）",
+        "en": "Let me show you where these models still fall short. (The holographic projection switches to a series of 「failure cases」)"
+      },
+      "leadsTo": "failures"
+    },
+    {
+      "id": "failures",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（展示一张镜子前的照片）如果你问模型「图中有几个人？」它经常会把镜子中的倒影也算成真人。（展示一张物理题的示意图）如果你问它一个需要理解重力方向的物理问题，它的分析经常是错的。（展示一张讽刺漫画）如果你给它一幅政治讽刺画，让它解释讽刺的对象，它有时会完全理解反了。",
+        "en": "(Shows a photo in front of a mirror) If you ask the model 「How many people are in the image?」 it often counts mirror reflections as real people. (Shows a physics problem diagram) If you ask it a physics question requiring understanding of gravitational direction, its analysis is often wrong. (Shows a satirical cartoon) If you give it a political satire and ask it to explain the target of the satire, it sometimes completely misinterprets it."
+      },
+      "leadsTo": "pattern-gap"
+    },
+    {
+      "id": "pattern-gap",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这些失败揭示了一个共同的模式：这些模型擅长「表面识别」——它们能认出物体、读出文字、理解大致的场景布局。但一旦需要深层的物理理解、空间推理、或者需要从画面中推断出没有直接显示的信息，它们就力不从心了。",
+        "en": "These failures reveal a common pattern: these models excel at 「surface recognition」 — they can identify objects, read text, understand the general layout of a scene. But once they need deep physical understanding, spatial reasoning, or must infer information not directly shown in the image, they struggle."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么这些多模态大模型在「表面识别」上表现出色，但在物理推理和空间理解上却频频出错？你觉得根本原因是什么？",
+        "en": "Why do these multimodal large models excel at 「surface recognition」 but frequently fail at physical reasoning and spatial understanding? What do you think is the root cause?"
+      },
+      "choices": [
+        {
+          "id": "training-data",
+          "text": {
+            "zh": "训练数据的局限——互联网上的图文配对缺少物理和空间信息",
+            "en": "Training data limitations — image-text pairs on the internet lack physical and spatial information"
+          },
+          "tag": "data-perspective",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你指出了一个关键问题。互联网上的图片描述通常是「一只猫在公园里」，很少会写「这只猫距离长椅大约两米远，位于树的左边」。训练数据缺乏空间和物理信息，模型自然学不到这些能力。但即使我们给它更多这样的数据，恐怕也只能部分解决问题——因为真正的物理直觉可能需要不同于统计学习的机制。",
+              "en": "You've pointed out a crucial issue. Image descriptions on the internet typically say 「a cat in a park」, rarely specifying 「the cat is about two meters from the bench, to the left of the tree」. Training data lacks spatial and physical information, so the model naturally can't learn these abilities. But even if we gave it more such data, it would probably only partially solve the problem — because true physical intuition may require a mechanism different from statistical learning."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "architecture-limit",
+          "text": {
+            "zh": "架构问题——把图像转成「特殊文字」的方式丢失了太多空间信息",
+            "en": "Architecture problem — converting images into 「special text」 loses too much spatial information"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的技术洞察！当视觉编码器把一张图片压缩成几十个或几百个特征向量时，大量的空间细节被丢弃了。这些向量保留了「是什么」的信息，但「在哪里」「多大」「什么方向」这些精确的空间信息往往丢失了。就像把一幅画的内容浓缩成一段短短的摘要——主题保留了，但空间布局的精妙之处消失了。这也是为什么我一直在推动空间智能的研究。",
+              "en": "Excellent technical insight! When the visual encoder compresses an image into dozens or hundreds of feature vectors, a great deal of spatial detail is discarded. These vectors preserve 「what is it」 information, but 「where」, 「how large」, and 「in what direction」 — this precise spatial information is often lost. Like condensing a painting's content into a brief summary — the theme survives, but the subtlety of spatial arrangement vanishes. This is also why I've been pushing for research in spatial intelligence."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "embodiment-lack",
+          "text": {
+            "zh": "缺少身体经验——它们只看过图片，从未在物理世界中行动过",
+            "en": "Lack of embodied experience — they have only seen images, never acted in the physical world"
+          },
+          "tag": "embodiment",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（停顿了一会儿）你的思路又回到了我们第一节课讨论的符号接地问题。一个孩子之所以理解重力，是因为他无数次看到东西掉下去，自己也摔倒过。这种理解是在身体与物理世界的交互中形成的。纯粹从图片中学习的模型缺少这种具身经验。这也正是为什么「具身AI」成了一个越来越重要的研究方向——下节课我们会深入讨论。",
+              "en": "(Pauses for a moment) Your thinking circles back to the grounding problem we discussed in the first lesson. A child understands gravity because they've watched things fall countless times and have fallen down themselves. This understanding forms through bodily interaction with the physical world. Models that learn purely from images lack this embodied experience. This is exactly why 「embodied AI」 has become an increasingly important research direction — we'll discuss it in depth next lesson."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "尽管有这些局限，我仍然认为多模态大模型是AI发展中的一个里程碑。它们第一次让机器具备了同时「看见」和「说话」的能力。这就像AI从一个只会读书的学者，变成了一个至少能睁开眼睛看世界的学习者。",
+        "en": "Despite these limitations, I still consider multimodal large models a milestone in AI development. For the first time, they give machines the ability to simultaneously 「see」 and 「speak」. It's as if AI has gone from a scholar who only reads books to a learner who can at least open their eyes and look at the world."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "视觉语言模型的核心架构：视觉编码器（将图片转为特征向量）+ 大型语言模型（融合视觉和语言信息生成回答）。GPT-4V采用视觉特征拼接方式，Gemini采用原生多模态融合。它们擅长表面识别，但在空间推理、物理理解、深层语义判断上仍有明显局限。",
+        "en": "Core architecture of vision-language models: visual encoder (converts images to feature vectors) + large language model (fuses visual and linguistic info to generate answers). GPT-4V uses feature concatenation; Gemini uses native multimodal fusion. They excel at surface recognition but still have clear limitations in spatial reasoning, physical understanding, and deep semantic judgment."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview"
+    },
+    {
+      "id": "preview",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "今天的多模态大模型学会了「看见」世界。它们能识别物体、描述场景、回答视觉问题。但「看见」和「理解」之间还有很长的路。下一步是什么？我认为答案在于空间智能。关键不仅在于知道「是什么」，更要理解「在哪里」「怎么动」「为什么」。下节课，我会带你们进入一个让我最兴奋的领域。",
+        "en": "Today's multimodal large models have learned to 「see」 the world — they can recognize objects, describe scenes, answer visual questions. But between 「seeing」 and 「understanding」, there is still a long road. What's next? I believe the answer lies in spatial intelligence — not just knowing 「what」, but understanding 「where」, 「how it moves」, and 「why」. Next lesson, I'll take you into the field that excites me most."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "李飞飞教授关闭了全息投影，那些绚丽的模型架构图在空气中渐渐暗淡。金色的阳光重新占据了整个空间。她拿起一个小小的三维模型，那是一个机器人的手臂，在手中转动着，若有所思。「能认出照片里的猫，和能在一个房间里找到那只猫、绕过障碍物走到它身边、轻轻抚摸它，这中间的差距，比你们想象的要大得多。」她把模型放在桌上，微笑着走出了教室。",
+        "en": "Prof. Li shuts off the holographic projection, and those dazzling model architecture diagrams gradually dim in the air. Golden sunlight reclaims the entire space. She picks up a small 3D model — a robotic arm — and turns it in her hands, lost in thought. 「Being able to recognize a cat in a photo, and being able to find that cat in a room, navigate around obstacles to reach it, and gently pet it — the gap between these two things is far larger than you might imagine」. She sets the model on the desk and walks out of the classroom with a smile."
+      }
+    }
+  ]
+}

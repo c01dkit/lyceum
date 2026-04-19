@@ -1,0 +1,67 @@
+{
+  "common": {
+    "appName": "Lyceum",
+    "continue": "Continue",
+    "back": "Back",
+    "home": "Home"
+  },
+  "navigation": {
+    "school": "School",
+    "notebook": "Notebook",
+    "about": "About",
+    "settings": "Settings"
+  },
+  "lesson": {
+    "clickToContinue": "Click to continue",
+    "raiseHand": "Raise hand",
+    "takeNote": "Take a note",
+    "nextLesson": "Next lesson",
+    "previousLesson": "Previous lesson",
+    "lessonComplete": "Lesson complete!",
+    "chooseAnswer": "Choose your answer",
+    "startLesson": "Start lesson"
+  },
+  "notebook": {
+    "title": "My Notebook",
+    "empty": "No notes yet — jot down your thoughts during class!",
+    "categories": {
+      "core-concept": "Core Concept",
+      "historical-fact": "Historical Fact",
+      "technique": "Technique",
+      "reflection": "Reflection",
+      "custom": "Custom"
+    },
+    "starred": "Starred notes",
+    "addAnnotation": "Add annotation",
+    "deleteNote": "Delete note",
+    "source": "Source"
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "textSpeed": "Text speed",
+    "fontSize": "Font size",
+    "themes": {
+      "light": "Light",
+      "dark": "Dark",
+      "sepia": "Sepia"
+    },
+    "speeds": {
+      "instant": "Instant",
+      "fast": "Fast",
+      "medium": "Medium",
+      "slow": "Slow"
+    },
+    "sizes": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    }
+  },
+  "landing": {
+    "welcome": "Welcome to Lyceum",
+    "tagline": "Walk through time and explore the mysteries of intelligence with AI pioneers",
+    "enterSchool": "Enter school",
+    "learnMore": "Learn more"
+  }
+}

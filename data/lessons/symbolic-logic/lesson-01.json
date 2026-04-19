@@ -1,0 +1,381 @@
+{
+  "id": "lesson-01",
+  "course": "symbolic-logic",
+  "title": {
+    "zh": "什么是符号？",
+    "en": "What Are Symbols?"
+  },
+  "knowledgePoint": {
+    "zh": "符号表示——用形式化的记号来代表概念和关系",
+    "en": "Symbolic representation — using formal tokens to represent concepts and relationships"
+  },
+  "teacher": "prof-mccarthy",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，脑海中浮现出那间洒满午后阳光的教室。麦卡锡教授把一叠画满奇怪符号的卡片摊在讲台上，眼中闪烁着孩子般的光芒——那堂关于符号的启蒙课，正从记忆深处缓缓苏醒。",
+    "en": "You close your eyes, and a sunlit classroom materializes in your mind. Professor McCarthy is spreading his cards of strange symbols across the lectern, his eyes gleaming like a child's — that first lesson on symbols slowly stirs awake from the depths of your memory."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，指尖仿佛还残留着那张LISP卡片的触感。原来智能的起点，就藏在这些不起眼的符号之中。",
+    "en": "You come back to the present, your fingertips still tingling as if holding that LISP card he left behind. So the origin of intelligence was hiding in these unassuming symbols all along."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "上课铃响了。教室门被推开，一位头发略显凌乱的中年教授大步走了进来。他的手里攥着一叠卡片，上面画满了奇怪的符号。他把卡片往讲台上一摊，转身面向你们，眼睛里闪着光。",
+        "en": "The bell rings. The classroom door swings open and a middle-aged professor with slightly disheveled hair strides in. He's clutching a stack of cards covered in strange symbols. He spreads them across the lectern, turns to face you, eyes gleaming."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "同学们好！我是麦卡锡。今天，我们来聊一个看起来简单、但其实深刻得不得了的东西——{符号}。",
+        "en": "Hello, everyone! I'm McCarthy. Today, we're going to talk about something that seems simple but is actually profoundly deep — {symbols}."
+      },
+      "terms": {
+        "符号": "term-symbol",
+        "symbols": "term-symbol"
+      },
+      "leadsTo": "look-around"
+    },
+    {
+      "id": "look-around",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们看看周围——黑板上的字、课本里的公式、门牌上的数字……全都是符号。我们人类每天都在用符号思考，只是自己很少意识到。",
+        "en": "Look around you — the words on the blackboard, the formulas in your textbooks, the numbers on the door signs... they're all symbols. We humans think with symbols every single day, we just rarely realize it."
+      },
+      "leadsTo": "fundamental-question"
+    },
+    {
+      "id": "fundamental-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但是……机器能理解符号吗？这是一个根本性的问题。如果机器能像我们一样操纵符号，它是不是就能……思考？",
+        "en": "But... can machines understand symbols? That's the fundamental question. If a machine could manipulate symbols the way we do, could it... think?"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "假设你要教一台机器理解「猫是动物」，你会怎么做？",
+        "en": "If you had to teach a machine that 「a cat is an animal, how would you do it?"
+      },
+      "choices": [
+        {
+          "id": "show-pictures",
+          "text": {
+            "zh": "给它看很多猫和动物的图片",
+            "en": "Show it lots of pictures of cats and animals"
+          },
+          "tag": "data-driven-intuition",
+          "response": {
+            "text": {
+              "zh": "哈！有意思。用图片来教——这个思路其实很超前。几十年后确实有人这么干了，效果还挺好。但在1950年代，我们还没有那么多数据，也没有足够强大的计算机来处理图像。所以我们得想别的办法。",
+              "en": "Ha! Interesting. Teaching through pictures — that's actually a very forward-thinking idea. Decades later, people did exactly that, and it worked quite well. But in the 1950s, we didn't have that much data, nor computers powerful enough to process images. So we had to think of another way."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "write-rule",
+          "text": {
+            "zh": "写一条规则：猫 → 动物",
+            "en": "Write a rule: cat → animal"
+          },
+          "tag": "symbolic-intuition",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "对！就是这样！你天生就有符号思维的直觉。把知识写成明确的规则——猫是动物，动物是生物。这正是我们要走的路。简洁、精确、机器可以直接处理。",
+              "en": "Yes! Exactly! You have a natural instinct for symbolic thinking. Writing knowledge as explicit rules — cat is an animal, animal is a living thing — that's precisely the path we're going down. Clean, precise, and directly processable by machines."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "give-dictionary",
+          "text": {
+            "zh": "给它一本字典，让它查「猫」的定义",
+            "en": "Give it a dictionary and let it look up 「cat」"
+          },
+          "tag": "knowledge-base-intuition",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "字典……嗯，方向不错。你想到了给机器提供结构化的知识。但字典是给人看的，里面全是自然语言，模糊又含混。我们需要一种比字典更精确的东西，一种机器能直接读懂的形式化表示。",
+              "en": "A dictionary... hmm, not a bad direction. You're thinking of providing the machine with structured knowledge. But dictionaries are written for humans — full of natural language, vague and ambiguous. We need something more precise than a dictionary — a formalized representation that machines can read directly."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "关键在这里——我们需要一种{形式化语言}。一种没有歧义、规则严格、机器能直接处理的语言。这就是我发明{LISP}的原因！",
+        "en": "Here's the key insight — we need a {formal language}. A language with no ambiguity, strict rules, that machines can process directly. That's exactly why I invented {LISP}!"
+      },
+      "terms": {
+        "形式化语言": "term-formal-language",
+        "formal language": "term-formal-language",
+        "LISP": "term-lisp"
+      },
+      "leadsTo": "core-idea"
+    },
+    {
+      "id": "core-idea",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "核心思路是这样的：把知识表示成符号，然后写出规则来操纵这些符号。符号就是我们的积木块，规则就是组装说明书。",
+        "en": "The core idea is this: represent knowledge as symbols, then write rules to manipulate those symbols. Symbols are our building blocks, and rules are the assembly instructions."
+      },
+      "leadsTo": "example-intro"
+    },
+    {
+      "id": "example-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "来，看一个简单的例子。我们可以这样写：is_a(cat, animal)，意思是「猫是动物」；has(cat, fur)，意思是「猫有毛」。看到了吗？这就是{知识表示}——用符号把知识写下来。",
+        "en": "Here, look at a simple example. We can write: is_a(cat, animal), meaning 「a cat is an animal」; has(cat, fur), meaning 「a cat has fur」. See? This is {knowledge representation} — writing down knowledge using symbols."
+      },
+      "terms": {
+        "知识表示": "term-knowledge-representation",
+        "knowledge representation": "term-knowledge-representation"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "符号AI的核心：用形式化的符号和规则来表示知识、进行推理。",
+        "en": "Core of symbolic AI: use formal symbols and rules to represent and reason about knowledge."
+      },
+      "category": "core-concept",
+      "leadsTo": "transition-to-inference"
+    },
+    {
+      "id": "transition-to-inference",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在让我给你们看一个更有意思的东西……",
+        "en": "Now let me show you something even more interesting..."
+      },
+      "leadsTo": "inference-setup"
+    },
+    {
+      "id": "inference-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "如果我们知道 is_a(cat, animal)——猫是动物，又知道 is_a(animal, living_thing)——动物是生物。那我们能推导出什么？",
+        "en": "If we know is_a(cat, animal) — a cat is an animal — and we also know is_a(animal, living_thing) — an animal is a living thing — what can we deduce?"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "从这两条事实出发，我们能推导出什么？",
+        "en": "What can we deduce from these two facts?"
+      },
+      "choices": [
+        {
+          "id": "cats-are-living",
+          "text": {
+            "zh": "猫是生物",
+            "en": "Cats are living things"
+          },
+          "tag": "logical-deduction",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！猫是动物，动物是生物，所以——猫是生物。这就是逻辑{推理}！从已知的规则出发，一步一步推导出新的结论。机器也可以做到这一点！",
+              "en": "Exactly right! A cat is an animal, an animal is a living thing, therefore — a cat is a living thing. This is logical {inference}! Starting from known rules, deriving new conclusions step by step. Machines can do this too!"
+            },
+            "terms": {
+              "推理": "term-inference",
+              "inference": "term-inference"
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "cats-have-fur",
+          "text": {
+            "zh": "猫有毛",
+            "en": "Cats have fur"
+          },
+          "tag": "empirical-thinking",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "猫确实有毛。但仅从这两条规则出发，我们推不出这个结论。我们刚才说的是 is_a 关系，不是 has 关系。推理必须严格遵循逻辑链条，不能凭直觉「跳步」。再想想看——猫和生物之间有什么关系？",
+              "en": "Cats do have fur — but from just these two rules alone, we can't derive that conclusion. We're talking about is_a relationships here, not has relationships. Reasoning must strictly follow the logical chain; you can't 「skip steps」 on intuition. Think again — what's the relationship between cats and living things?"
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "need-more-info",
+          "text": {
+            "zh": "什么都推不出来，信息不够",
+            "en": "Nothing — we need more information"
+          },
+          "tag": "cautious-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "谨慎是好品质，但其实我们能推出东西！看这个链条：猫 → 动物 → 生物。is_a 关系是可以传递的。如果A是B的一种，B又是C的一种，那么A也是C的一种。这就是逻辑推理的力量。",
+              "en": "Caution is a good quality, but actually we CAN deduce something! Look at the chain: cat → animal → living thing. The is_a relationship is transitive. If A is a kind of B, and B is a kind of C, then A is also a kind of C. That's the power of logical reasoning."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个推理链条，从已有的事实出发，按照逻辑规则推导出新知识，就叫做{推理}。它是符号AI最强大的能力之一。机器不需要「看见」猫，只要有规则，就能得出新的结论。",
+        "en": "This chain of reasoning — starting from existing facts and deriving new knowledge by following logical rules — is called {inference}. It's one of the most powerful capabilities of symbolic AI. The machine doesn't need to 「see」 a cat; as long as it has the rules, it can reach new conclusions."
+      },
+      "terms": {
+        "推理": "term-inference",
+        "inference": "term-inference"
+      },
+      "leadsTo": "beauty-of-symbolic"
+    },
+    {
+      "id": "beauty-of-symbolic",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "这就是符号AI的美妙之处——机器不需要像人类一样去「理解」，它只需要精确地遵循规则。规则是我们写的，推理是机器做的。人机合作，各施所长。",
+        "en": "This is the beauty of symbolic AI — the machine doesn't need to 「understand」 the way humans do. It just needs to follow the rules precisely. We write the rules, the machine does the reasoning. Human-machine collaboration, each playing to their strengths."
+      },
+      "leadsTo": "but-problem"
+    },
+    {
+      "id": "but-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但是……（停顿）这个方法有一个问题。你们能想到是什么吗？",
+        "en": "But... (pause) there's a problem with this approach. Can you think of what it might be?"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "这种基于规则的方法，可能有什么局限？",
+        "en": "What might be the limitation of this rule-based approach?"
+      },
+      "choices": [
+        {
+          "id": "too-many-rules",
+          "text": {
+            "zh": "规则太多了，写不过来",
+            "en": "There are too many rules to write"
+          },
+          "tag": "scalability-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说到点子上了！现实世界的知识浩如烟海，要把所有常识都写成规则？那简直是不可能完成的任务。这就是所谓的{知识获取瓶颈}——知识太多，人手太少，规则永远写不完。",
+              "en": "You've hit the nail on the head! Real-world knowledge is vast beyond measure. Writing ALL common sense as rules? That's an almost impossible task. This is what we call the {knowledge acquisition bottleneck} — too much knowledge, too few hands, and the rules can never be exhaustively written."
+            },
+            "terms": {
+              "知识获取瓶颈": "term-knowledge-representation",
+              "knowledge acquisition bottleneck": "term-knowledge-representation"
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "cant-handle-uncertainty",
+          "text": {
+            "zh": "规则处理不了不确定的情况",
+            "en": "Rules can't handle uncertainty"
+          },
+          "tag": "probabilistic-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常有洞察力！现实世界充满了模糊和不确定。「这只动物大概是猫」——大概？逻辑规则不擅长处理「大概」「可能」「有时候」这样的概念。真或假，是或否，非黑即白……但真实世界往往是灰色的。",
+              "en": "Very insightful! The real world is full of fuzziness and uncertainty. 「This animal is probably a cat」 — probably? Logical rules aren't good at handling concepts like 「probably」, 「maybe」, or 「sometimes」. True or false, yes or no, black or white... but the real world is often grey."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "no-true-understanding",
+          "text": {
+            "zh": "机器始终不是真正在「理解」",
+            "en": "Machines still don't truly 「understand」"
+          },
+          "tag": "philosophical-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个深刻的哲学问题。机器在操纵符号，但它「知道」自己在做什么吗？有位叫塞尔的哲学家后来提出了「中文房间」论证——一个人在房间里按规则翻译中文，但他并不懂中文。机器的「推理」是不是也一样？这个问题至今没有定论。",
+              "en": "That's a profound philosophical question. The machine manipulates symbols, but does it 「know」 what it's doing? A philosopher named Searle later proposed the 「Chinese Room」 argument — a person in a room translates Chinese by following rules, but doesn't understand Chinese. Is machine 「reasoning」 the same? This question remains unresolved to this day."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你们提出的观察都非常出色。规则写不完、处理不了不确定性、机器是否真正理解……这些局限最终推动人们去探索全新的方法。不过，那是以后课程的内容了。",
+        "en": "All excellent observations. Rules that can never be fully written, inability to handle uncertainty, whether machines truly understand... These limitations eventually drove people to explore entirely new approaches. But that's material for future classes."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "符号AI的局限：知识获取瓶颈（规则写不完）、无法处理不确定性、没有真正的「理解」。",
+        "en": "Symbolic AI limitations: knowledge acquisition bottleneck (rules can never be exhaustively written), inability to handle uncertainty, no true 「understanding」."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "下课铃响了。麦卡锡教授挥了挥手，嘴里已经在念叨着明天的课要准备什么。他走出教室时，你注意到他随手把一张写满LISP代码的卡片留在了你的桌上。你感到一颗理解的种子在心中发芽——原来，智能的故事，是从这些小小的符号开始的。",
+        "en": "The bell rings. Professor McCarthy waves goodbye, already muttering about what to prepare for tomorrow's class. As he leaves, you notice he's left a card covered in LISP code on your desk. You feel the first spark of understanding take root — so the story of intelligence begins with these humble little symbols."
+      }
+    }
+  ]
+}

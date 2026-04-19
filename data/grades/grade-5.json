@@ -1,0 +1,29 @@
+{
+  "id": "grade-5",
+  "name": {
+    "zh": "五年级：基础模型与AGI探索",
+    "en": "Grade 5: Foundation Models & the Quest for AGI"
+  },
+  "subtitle": {
+    "zh": "2017-至今：Transformer主导时代与通用智能的曙光",
+    "en": "2017-Present: The Transformer Era and the Dawn of General Intelligence"
+  },
+  "description": {
+    "zh": "Transformer架构改写了AI的底层逻辑，大语言模型展现出令人震惊的涌现能力——它们学会了推理、创作、甚至自我反思。但随之而来的是前所未有的问题：如何让AI与人类价值观对齐？幻觉和偏见能否克服？从提示工程到驾驭工程，从多模态感知到AI智能体，你将站在人工智能最前沿，思考通向通用智能之路上那些尚无答案的问题。",
+    "en": "The Transformer architecture rewrote the fundamental logic of AI, and large language models displayed stunning emergent abilities — they learned to reason, create, and even self-reflect. But unprecedented questions followed: How do we align AI with human values? Can hallucination and bias be overcome? From prompt engineering to harness engineering, from multimodal perception to AI agents, you will stand at the frontier of artificial intelligence, contemplating questions on the road to general intelligence that remain unanswered."
+  },
+  "era": "2017-Present",
+  "theme": {
+    "name": "luminous-gold",
+    "primaryColor": "#D4A843",
+    "secondaryColor": "#F0D68A"
+  },
+  "courses": [
+    "transformer-architecture",
+    "large-language-models",
+    "alignment-safety",
+    "multimodal-intelligence",
+    "ai-agents-future"
+  ],
+  "unlockCondition": null
+}

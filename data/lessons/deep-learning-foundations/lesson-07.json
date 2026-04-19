@@ -1,0 +1,435 @@
+{
+  "id": "lesson-07",
+  "course": "deep-learning-foundations",
+  "title": {
+    "zh": "深度学习的爆发",
+    "en": "The Deep Learning Explosion"
+  },
+  "knowledgePoint": {
+    "zh": "ImageNet 2012竞赛——深度学习从边缘走向中心的转折点",
+    "en": "ImageNet 2012 — the turning point when deep learning moved from the margins to center stage"
+  },
+  "teacher": "prof-hinton",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-06",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你闭上眼，回到那间科技感十足的教室。辛顿教授站在巨大的屏幕前，屏幕上显示着一张排行榜——2012年ImageNet大规模视觉识别挑战赛的结果。他的眼神里有一种很少见的光芒，介于自豪和如释重负之间。几十年的坚持，终于在这一刻得到了回答。",
+    "en": "You close your eyes and return to that tech-filled classroom. Prof. Hinton stands before the giant screen displaying a leaderboard — the 2012 ImageNet Large Scale Visual Recognition Challenge results. There's a rare gleam in his eyes, somewhere between pride and relief. Decades of persistence finally found their answer in this moment."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。2012年的那场比赛改变了一切——从那以后，深度学习不再是少数人的信仰，而成为了整个AI领域的主流范式。辛顿教授用几十年的坚持证明了一件事：有时候，正确的方向比聪明的方法更重要。",
+    "en": "You return to the present. That 2012 competition changed everything — from then on, deep learning was no longer a fringe belief but the mainstream paradigm of the entire AI field. Prof. Hinton proved something with decades of persistence: sometimes the right direction matters more than clever methods."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室气氛不同寻常。大屏幕上投影着一张柱状图，横轴是年份，纵轴是错误率。从2010年到2011年，柱子几乎一样高——大约26%。然后是2012年，一根明显矮了一大截的柱子，标注着「SuperVision」和「16.4%」。辛顿教授走进来的时候，脚步比平时都要轻快。他看了一眼屏幕，嘴角微微上扬。",
+        "en": "The classroom atmosphere feels different today. The large screen projects a bar chart — years on the x-axis, error rates on the y-axis. From 2010 to 2011, the bars are nearly identical — around 26%. Then 2012, a bar dramatically shorter than the rest, labeled 「SuperVision」 and 「16.4%」. Prof. Hinton walks in with a lighter step than usual. He glances at the screen, the corner of his mouth curling upward."
+      },
+      "leadsTo": "hinton-opening"
+    },
+    {
+      "id": "hinton-opening",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "你们看到这张图了吗？2012年10月，我的两个学生Alex Krizhevsky和Ilya Sutskever，带着一个叫{AlexNet}的模型参加了ImageNet竞赛。我们的错误率是16.4%，第二名是26.2%。差距将近10个百分点。在计算机视觉的历史上，还从来没有人在一年之内把错误率降低这么多。",
+        "en": "Do you see this chart? In October 2012, two of my students — Alex Krizhevsky and Ilya Sutskever — entered the ImageNet competition with a model called {AlexNet}. Our error rate was 16.4%, and second place was 26.2%. A gap of nearly 10 percentage points. In the history of computer vision, nobody had ever reduced the error rate by that much in a single year."
+      },
+      "terms": {
+        "AlexNet": "term-alexnet"
+      },
+      "leadsTo": "imagenet-context"
+    },
+    {
+      "id": "imagenet-context",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先说说{ImageNet}是什么。这是斯坦福大学李飞飞教授团队创建的一个巨大的图像数据库，包含超过一百万张图片，分成一千个类别。每年的竞赛要求参赛者建立模型来正确分类这些图片。在我们之前，最好的方法都依赖于手工设计的特征，比如SIFT、HOG这些精心设计的图像描述算法，然后再用传统的分类器来做最后的判断。",
+        "en": "Let me first explain what {ImageNet} is. It's a massive image database created by Prof. Fei-Fei Li's team at Stanford — over one million images across one thousand categories. The annual competition asks participants to build models that correctly classify these images. Before us, the best methods all relied on hand-crafted features — carefully designed image descriptors like SIFT and HOG, followed by traditional classifiers for the final judgment."
+      },
+      "terms": {
+        "ImageNet": "term-imagenet"
+      },
+      "leadsTo": "why-different"
+    },
+    {
+      "id": "why-different",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "而我们做了一件完全不同的事。我们没有设计任何手工特征。我们把原始像素直接输入一个八层的深度卷积神经网络，让网络自己学习应该提取什么特征。从边缘到纹理，从纹理到局部结构，从局部结构到物体部件——每一层都自动学到了越来越抽象的表示。",
+        "en": "What we did was something entirely different. We didn't design any hand-crafted features. We fed raw pixels directly into an eight-layer deep convolutional neural network and let the network learn what features to extract by itself. From edges to textures, from textures to local structures, from local structures to object parts — each layer automatically learned increasingly abstract representations."
+      },
+      "leadsTo": "gpu-key"
+    },
+    {
+      "id": "gpu-key",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "当然，这个想法本身并不完全是新的，我们之前讨论的那些技术都是关键要素。真正的转折点在于三样东西的结合：足够的数据、足够的计算力、以及正确的训练技巧。ImageNet提供了海量数据，而Alex找到了一个绝妙的方法，用{GPU}来训练网络。",
+        "en": "Of course, the idea itself wasn't entirely new — all the techniques we discussed before were key ingredients. The real turning point was the combination of three things: enough data, enough computing power, and the right training tricks. ImageNet provided massive data, and Alex found a brilliant approach — using {GPUs} to train the network."
+      },
+      "terms": {
+        "GPU": "term-gpu-computing",
+        "GPUs": "term-gpu-computing"
+      },
+      "leadsTo": "gpu-detail"
+    },
+    {
+      "id": "gpu-detail",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（笑了一下）GPU原本是给游戏玩家设计的——用来渲染3D图形。但Alex发现，GPU擅长的那种大规模并行计算恰好是训练神经网络所需要的。我们用了两块NVIDIA GTX 580显卡，每块只有3GB显存。以今天的标准来看这简直像是玩具，但在2012年，它让我们的训练速度比CPU快了将近十倍。",
+        "en": "(Laughs) GPUs were originally designed for gamers — for rendering 3D graphics. But Alex discovered that the massive parallel computation GPUs excel at was exactly what neural network training needed. We used two NVIDIA GTX 580 graphics cards, each with only 3GB of memory. By today's standards that sounds like a toy, but in 2012, it made our training nearly ten times faster than CPUs."
+      },
+      "leadsTo": "architecture-brief"
+    },
+    {
+      "id": "architecture-brief",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "AlexNet的架构包含五个卷积层和三个全连接层，总共大约六千万个参数。我们用了{ReLU}作为激活函数来避免梯度消失，用了{Dropout}来防止过拟合，用数据增强来扩展训练集。这些技巧你们已经学过了——但关键是，当它们组合在一起并在足够大的数据集上运行时，效果是爆炸性的。",
+        "en": "AlexNet's architecture contained five convolutional layers and three fully connected layers, with roughly sixty million parameters total. We used {ReLU} as the activation function to avoid vanishing gradients, {Dropout} to prevent overfitting, and data augmentation to expand the training set. You've already learned about these techniques — but the key is that when combined and run on a sufficiently large dataset, the effect was explosive."
+      },
+      "terms": {
+        "ReLU": "term-relu",
+        "Dropout": "term-dropout"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "AlexNet的成功要素中，你觉得哪个最关键？",
+        "en": "Among the factors behind AlexNet's success, which do you think was most crucial?"
+      },
+      "choices": [
+        {
+          "id": "data-scale",
+          "text": {
+            "zh": "大规模数据——没有ImageNet那样的数据量，再好的模型也无法充分学习",
+            "en": "Large-scale data — without ImageNet's data volume, even the best model couldn't learn enough"
+          },
+          "tag": "empirical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "数据确实是基础。我们的前辈们用几百张图片训练网络时，效果自然有限。ImageNet提供了一百多万张标注图片，这让深层网络终于有了足够的「食粮」来展现它的能力。没有大数据，深度学习的潜力就像一台没有燃料的发动机。",
+              "en": "Data is indeed the foundation. When our predecessors trained networks on a few hundred images, results were naturally limited. ImageNet provided over a million labeled images, finally giving deep networks enough 「food」 to demonstrate their capabilities. Without big data, deep learning's potential is like an engine without fuel."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "gpu-power",
+          "text": {
+            "zh": "GPU计算——算力的突破让以前不可能的大模型变得可训练了",
+            "en": "GPU computing — the computing breakthrough made previously impossible large models trainable"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了一个很实际的关键点。反向传播算法1986年就有了，但在CPU上训练大型网络需要几个月甚至几年。GPU把这个时间缩短到了几天。这意味着我们终于可以快速实验、快速迭代。很多伟大的想法之所以没能更早实现，纯粹是因为算力不够。技术的进步有时候等待的只是硬件跟上来。",
+              "en": "You've identified a very practical key point. The backpropagation algorithm existed since 1986, but training large networks on CPUs took months or even years. GPUs shortened this to days. This meant we could finally experiment quickly and iterate rapidly. Many great ideas failed to materialize earlier purely because computing power was insufficient. Sometimes technological progress is simply waiting for hardware to catch up."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "architecture-tricks",
+          "text": {
+            "zh": "架构和训练技巧的组合——ReLU、Dropout、数据增强缺一不可",
+            "en": "The combination of architecture and training tricks — ReLU, Dropout, data augmentation were all indispensable"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个很有洞察力的回答。单独拿出任何一项技术，效果都是有限的。ReLU解决梯度消失，Dropout防止过拟合，数据增强扩大训练集的有效规模——它们像拼图一样组合在一起。科学突破往往如此：是多个小创新在正确的时机汇聚到一起。",
+              "en": "That's a very insightful answer. Any single technique in isolation has limited effect. ReLU addresses vanishing gradients, Dropout prevents overfitting, data augmentation expands effective training set size — they fit together like puzzle pieces. Scientific breakthroughs often work this way: not one earth-shattering invention, but multiple small innovations converging at the right moment."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "事实上，这三者缺一不可。但我想强调一点——所有这些要素之所以能发挥作用，是因为背后有一个正确的核心假设：让机器自己学习特征表示，比人工设计特征要好得多。这个假设，我们坚持了三十年。",
+        "en": "In reality, all three are indispensable. But I want to emphasize one point — all these elements worked because behind them lay a correct core assumption: letting machines learn their own feature representations works far better than hand-designing features. This assumption, we held onto for thirty years."
+      },
+      "leadsTo": "reaction-world"
+    },
+    {
+      "id": "reaction-world",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "比赛结果公布后，反应是立竿见影的。计算机视觉社区首先震惊了——十年来，错误率每年只能降低一两个百分点，而我们一下子降了将近十个点。接着是工业界的反应：谷歌立刻找上了我们。",
+        "en": "After the results were announced, the reaction was immediate. The computer vision community was stunned first — for a decade, error rates had dropped only one or two percentage points per year, and we had slashed nearly ten points at once. Then came the industry reaction: Google approached us right away."
+      },
+      "leadsTo": "auction-story"
+    },
+    {
+      "id": "auction-story",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（笑了起来）后来发生了一件很戏剧性的事。我和Alex、Ilya成立了一家小公司叫DNNresearch，然后谷歌、微软、百度等几家大公司开始竞价收购。最后谷歌赢了——具体数字我就不说了。从那以后，每家大型科技公司都开始组建自己的深度学习团队。这个领域一夜之间从冷门变成了最热门的方向。",
+        "en": "(Laughing) What happened next was quite dramatic. Alex, Ilya, and I formed a small company called DNNresearch, and then Google, Microsoft, Baidu, and several other big companies started bidding to acquire it. Google won in the end — I won't mention the specific numbers. After that, every major tech company began building their own deep learning teams. The field went from obscure to the hottest direction overnight."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AlexNet在2012年ImageNet竞赛中以16.4%错误率大幅领先第二名(26.2%)，标志深度学习时代的开启。成功三要素：大规模数据(ImageNet)、GPU并行计算、正确的训练技巧(ReLU+Dropout+数据增强)。核心突破在于端到端学习——让网络自己学习特征表示。",
+        "en": "AlexNet won ImageNet 2012 with 16.4% error rate, far ahead of second place (26.2%), marking the dawn of the deep learning era. Three success factors: large-scale data (ImageNet), GPU parallel computing, and correct training techniques (ReLU + Dropout + data augmentation). The core breakthrough was end-to-end learning — letting networks learn feature representations themselves."
+      },
+      "category": "core-concept",
+      "leadsTo": "reflection-decades"
+    },
+    {
+      "id": "reflection-decades",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你们知道吗，从我开始研究神经网络到AlexNet的那一天，过了将近三十年。三十年里，我去了加拿大，因为那里比较容易拿到研究经费——北美和欧洲的大多数资助机构都不愿意支持神经网络研究。我的同事勒丘恩在贝尔实验室默默做了十几年的卷积网络。本吉奥在蒙特利尔坚守阵地。我们三个人，后来被人叫做「深度学习三巨头」。",
+        "en": "You know, from when I started researching neural networks to the day of AlexNet, nearly thirty years passed. During those thirty years, I went to Canada because it was easier to get research funding there — most funding agencies in North America and Europe wouldn't support neural network research. My colleague LeCun quietly worked on convolutional networks at Bell Labs for over a decade. Bengio held his ground in Montreal. The three of us were later called the 「Godfathers of Deep Learning」."
+      },
+      "leadsTo": "reflection-belief"
+    },
+    {
+      "id": "reflection-belief",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "有人问我为什么能坚持这么久。答案很简单——大脑并不是这么工作的……但也许我们可以从它那里借点灵感。大脑用的就是神经元和连接，而不是符号规则。只要大脑能工作，我就相信我们的方向没有错。剩下的只是时间和技术细节的问题。",
+        "en": "People ask me why I could persist so long. The answer is simple — the brain doesn't work quite like this… but maybe we can borrow some inspiration from it. The brain uses neurons and connections, not symbolic rules. As long as the brain works, I believed our direction wasn't wrong. Everything else was just a matter of time and technical details."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "AlexNet之后，深度学习迅速成为主流。你觉得为什么一次比赛就能改变整个领域的方向？",
+        "en": "After AlexNet, deep learning quickly became mainstream. Why do you think a single competition could change the direction of an entire field?"
+      },
+      "choices": [
+        {
+          "id": "undeniable-evidence",
+          "text": {
+            "zh": "数据说话——10个百分点的差距太大了，任何人都无法忽视",
+            "en": "The data speaks — a 10-percentage-point gap is too large for anyone to ignore"
+          },
+          "tag": "empirical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "没错。科学家可以争论理论，可以质疑方法论，但面对这样的实验结果，很难找到反驳的理由。以前人们说「神经网络在实际问题上没有优势」，现在这个论点被彻底推翻了。用布雷曼教授的话说，最终重要的是预测精度——而我们的预测精度把所有人都甩在了后面。",
+              "en": "Exactly. Scientists can debate theory and question methodology, but faced with experimental results like these, it's hard to find reasons to object. Previously people said 「neural networks have no advantage on practical problems」 — now that argument was thoroughly refuted. As Prof. Breiman would say, what ultimately matters is prediction accuracy — and our prediction accuracy left everyone behind."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "industry-money",
+          "text": {
+            "zh": "工业界看到了商业价值——图像识别有巨大的应用前景和利润空间",
+            "en": "Industry saw commercial value — image recognition has enormous application potential and profit space"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微一笑）你很现实。确实，当谷歌、Facebook这些公司意识到深度学习可以改善搜索结果、识别照片中的人脸、理解用户意图的时候，钱就涌进来了。有了资金，就有了人才、有了算力、有了更多的研究突破。学术界和工业界之间形成了一个正向循环。有时候，科学进步需要商业动力来加速。",
+              "en": "(Smiles slightly) You're quite practical. Indeed, when Google, Facebook, and other companies realized deep learning could improve search results, recognize faces in photos, and understand user intent, the money poured in. With funding came talent, computing power, and more research breakthroughs. A positive feedback loop formed between academia and industry. Sometimes scientific progress needs commercial momentum to accelerate."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "paradigm-ready",
+          "text": {
+            "zh": "时机成熟了——数据、算力、算法三者同时到位，爆发只需要一个引爆点",
+            "en": "The timing was right — data, computing power, and algorithms all converged, the explosion just needed a trigger"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是最深刻的观察。科学革命往往有一个积蓄期——各种条件慢慢成熟，然后在某个时刻突然爆发。反向传播算法已经存在了二十多年，GPU计算能力每年都在增长，互联网产生了海量的可用数据。这三条河流终于在2012年汇合了。AlexNet只是这条汇流的第一朵浪花。",
+              "en": "That's the most profound observation. Scientific revolutions often have an accumulation period — conditions gradually ripen, then suddenly erupt at a certain moment. Backpropagation had existed for over twenty years, GPU computing power grew every year, and the internet generated massive amounts of usable data. These three rivers finally converged in 2012. AlexNet was merely the first splash at that confluence."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2012年之后的事情发展得非常快。2013年，几乎所有ImageNet的参赛队伍都用上了深度神经网络。2014年，VGGNet和GoogLeNet把错误率压到了7%以下。2015年，ResNet达到了3.6%——已经超过了人类在同样任务上的平均表现。只用了三年。",
+        "en": "Things moved incredibly fast after 2012. In 2013, nearly every ImageNet competitor used deep neural networks. In 2014, VGGNet and GoogLeNet pushed the error rate below 7%. In 2015, ResNet reached 3.6% — already surpassing average human performance on the same task. It took just three years."
+      },
+      "leadsTo": "beyond-vision"
+    },
+    {
+      "id": "beyond-vision",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "而且{深度学习}的影响远远不止于计算机视觉。语音识别、自然语言处理、机器翻译、药物发现——几乎每个涉及到模式识别的领域都被深度学习重新定义了。这就像当年电力革命一样：一种通用技术改变了所有行业。",
+        "en": "And the impact of {deep learning} extends far beyond computer vision. Speech recognition, natural language processing, machine translation, drug discovery — nearly every field involving pattern recognition has been redefined by deep learning. It's like the electricity revolution: a general-purpose technology transforming every industry."
+      },
+      "terms": {
+        "深度学习": "term-deep-learning",
+        "deep learning": "term-deep-learning"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "深度学习已经在图像识别上超过了人类。你觉得这意味着什么？",
+        "en": "Deep learning has already surpassed humans in image recognition. What do you think this means?"
+      },
+      "choices": [
+        {
+          "id": "narrow-success",
+          "text": {
+            "zh": "只是在特定任务上超越——机器识别照片和真正「理解」图像还差得远",
+            "en": "Only surpassed on a specific task — recognizing photos and truly 「understanding」 images are very different things"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是非常清醒的观察。你说得对——我们的网络在分类1000个类别时比人类准确，但它不理解为什么一只猫是猫。它看到的是统计模式，而非语义概念。加一点精心设计的噪声，它就可能把熊猫识别成烤面包机。我们还有很长的路要走。",
+              "en": "That's a very sober observation. You're right — our network is more accurate than humans at classifying 1000 categories, but it doesn't understand why a cat is a cat. It sees statistical patterns, not semantic concepts. Add a bit of carefully crafted noise, and it might classify a panda as a toaster. We still have a very long way to go."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "beginning-of-revolution",
+          "text": {
+            "zh": "这只是开始——如果机器能学会看，下一步也许能学会听、说、思考",
+            "en": "This is just the beginning — if machines can learn to see, perhaps next they can learn to hear, speak, and think"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是让我最兴奋的事情。如果同样的原理，也就是从数据中自动学习表示，可以推广到其他领域呢？视觉、听觉、语言……也许最终所有这些能力可以统一在一个框架里。我不确定这是否能通向真正的通用智能，但这条路上一定还有许多令人惊叹的发现等着我们。",
+              "en": "That's exactly what excites me most. What if the same principle — automatically learning representations from data — can be extended to other domains? Vision, hearing, language… perhaps eventually all these capabilities can be unified in a single framework. I'm not sure if this leads to true general intelligence, but there are certainly many more astounding discoveries waiting for us along this path."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "data-dependency",
+          "text": {
+            "zh": "同时也暴露了依赖——我们需要更多的数据和算力，代价越来越高",
+            "en": "It also exposes a dependency — we need ever more data and computing power, at an ever higher cost"
+          },
+          "tag": "critical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了一个我也经常思考的问题。AlexNet用了两块GPU，但后来的模型用几十块、上百块。每一代模型都比上一代贵得多。这种趋势能持续多久？也许我们需要找到更高效的训练方法，或者从根本上重新思考学习的范式。大脑只消耗20瓦的电力，但它学习新事物并不需要一百万个例子。",
+              "en": "You've touched on something I think about often. AlexNet used two GPUs, but later models use dozens, even hundreds. Each generation of models is far more expensive than the last. How long can this trend continue? Perhaps we need to find more efficient training methods, or fundamentally rethink the learning paradigm. The brain consumes only 20 watts, yet it doesn't need a million examples to learn something new."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "无论如何，2012年是一个分水岭。在那之前，相信神经网络的人屈指可数。在那之后，不用深度学习的研究者反倒成了少数。整个AI领域的范式发生了根本性的转变。",
+        "en": "Regardless, 2012 was a watershed moment. Before it, believers in neural networks could be counted on one hand. After it, researchers who didn't use deep learning became the minority. The entire AI field underwent a fundamental paradigm shift."
+      },
+      "leadsTo": "personal-reflection"
+    },
+    {
+      "id": "personal-reflection",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "我有时候回想，如果当年我放弃了会怎样？如果我在1990年代听了同行的建议去做别的方向呢？也许别人最终也会走到同样的终点——科学进步有它自己的惯性。但我很庆幸，我没有错过亲手推动这个时刻的机会。",
+        "en": "I sometimes reflect — what if I had given up back then? What if I'd taken my peers' advice in the 1990s and switched directions? Perhaps others would have eventually reached the same endpoint — scientific progress has its own momentum. But I'm grateful that I didn't miss the chance to push this moment forward with my own hands."
+      },
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但我要警告你们一件事——不要因为深度学习现在很成功就觉得我们已经解决了AI问题。我们对深层网络为什么如此有效的理论理解仍然很薄弱。为什么加更多层就能学到更好的表示？为什么数百万维的优化问题不会陷入糟糕的局部最小值？这些问题我们还没有好的答案。",
+        "en": "But I want to warn you about something — don't think that because deep learning is successful now, we've solved the AI problem. Our theoretical understanding of why deep networks work so well remains weak. Why does adding more layers lead to better representations? Why don't optimization problems with millions of dimensions get stuck in terrible local minima? We still don't have good answers to these questions."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "2012年ImageNet竞赛是AI范式转换的分水岭。此后三年内，错误率从26%降到3.6%，超越人类水平。深度学习从边缘走向中心，影响了几乎所有AI应用领域。但理论理解仍然落后于实践——我们知道深层网络有效，但对其「为什么有效」的理解仍不完善。",
+        "en": "The 2012 ImageNet competition was a watershed in AI paradigm shift. Within three years, error rates dropped from 26% to 3.6%, surpassing human level. Deep learning moved from fringe to center, impacting nearly every AI application field. But theoretical understanding still lags behind practice — we know deep networks work, but our understanding of 「why they work」 remains incomplete."
+      },
+      "category": "core-concept",
+      "leadsTo": "course-closing"
+    },
+    {
+      "id": "course-closing",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这门课到这里就结束了。我们从神经网络的寒冬讲到了深度学习的爆发——从受限玻尔兹曼机到深度信念网络，从梯度消失到预训练与微调，从Dropout到AlexNet。你们已经走过了我三十年的研究之路的浓缩版。",
+        "en": "This course ends here. We've journeyed from the neural network winter to the deep learning explosion — from restricted Boltzmann machines to deep belief networks, from vanishing gradients to pretraining and fine-tuning, from Dropout to AlexNet. You've walked through a condensed version of my thirty-year research journey."
+      },
+      "leadsTo": "final-words"
+    },
+    {
+      "id": "final-words",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我想用一句话来总结：在科学研究中，坚持一个正确但不被主流认可的方向，也许是最困难的事情之一。但如果你有充分的理由相信自己的判断，比如拥有像大脑这样活生生的证据，那就值得坚持。寒冬终会过去，但只有在冬天播种的人才能最先迎来春天。",
+        "en": "Let me summarize with one thought: in scientific research, persisting in a correct direction that isn't recognized by the mainstream may be one of the hardest things. But if you have sufficient reason to trust your judgment — if you have living evidence like the brain — then it's worth persisting. Winter always passes, but only those who plant seeds in winter get to welcome spring first."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "辛顿教授关掉了屏幕上的排行榜，教室里一下子安静了下来。他看着窗外，阳光透过蓝色的灯光打在他的脸上。然后他转过身，朝你们点了点头，轻声说：「接下来的路，你们会看到更多不可思议的事情——深层网络能做到的事，远比我们今天看到的要多得多。」他拿起外套，推开教室的门，走进了走廊的光里。",
+        "en": "Prof. Hinton turns off the leaderboard on the screen, and the classroom falls quiet. He looks out the window, sunlight mingling with the blue glow on his face. Then he turns, nods at you, and says softly: 「On the road ahead, you'll see even more incredible things — what deep networks can do goes far beyond what we've seen today」. He picks up his jacket, pushes open the classroom door, and walks into the light of the corridor."
+      }
+    }
+  ]
+}

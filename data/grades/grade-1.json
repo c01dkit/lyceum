@@ -1,0 +1,27 @@
+{
+  "id": "grade-1",
+  "name": {
+    "zh": "一年级：AI的诞生",
+    "en": "Grade 1: The Birth of AI"
+  },
+  "subtitle": {
+    "zh": "1950s-1960s：机器能思考吗？",
+    "en": "1950s-1960s: Can Machines Think?"
+  },
+  "description": {
+    "zh": "探索人工智能的起源——从图灵的思想实验到达特茅斯会议，从符号推理到第一批AI程序。这是一切开始的地方。",
+    "en": "Explore the origins of artificial intelligence — from Turing's thought experiments to the Dartmouth Conference, from symbolic reasoning to the first AI programs. This is where it all began."
+  },
+  "era": "1950s-1960s",
+  "theme": {
+    "name": "vintage-sepia",
+    "primaryColor": "#8B7355",
+    "secondaryColor": "#D4C5A9"
+  },
+  "courses": [
+    "turing-test",
+    "symbolic-logic",
+    "early-programs"
+  ],
+  "unlockCondition": null
+}

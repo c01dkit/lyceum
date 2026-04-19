@@ -1,0 +1,58 @@
+{
+  "id": "turing-test",
+  "name": {
+    "zh": "图灵测试与计算理论",
+    "en": "The Turing Test & Computation Theory"
+  },
+  "description": {
+    "zh": "从「机器能思考吗？」这个根本性问题出发，探索图灵测试的设计思想、图灵机的计算理论，以及人工智能的哲学边界。跟随图灵教授的思想实验，思考智能、计算与意识的本质。",
+    "en": "Starting from the fundamental question 「Can machines think?」, explore the design philosophy of the Turing Test, the computation theory behind Turing machines, and the philosophical boundaries of artificial intelligence. Follow Prof. Turing's thought experiments to contemplate the nature of intelligence, computation, and consciousness."
+  },
+  "grade": "grade-1",
+  "teacher": "prof-turing",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-can-machines-think",
+      "description": {
+        "zh": "理解「机器能否思考」这一问题的哲学深度及其对AI研究的推动作用",
+        "en": "Understand the philosophical depth of 「Can machines think?」 and how it drove AI research"
+      }
+    },
+    {
+      "id": "obj-turing-test",
+      "description": {
+        "zh": "掌握图灵测试的设计原理、实施方式及其意义与局限",
+        "en": "Master the design principles, implementation, significance, and limitations of the Turing Test"
+      }
+    },
+    {
+      "id": "obj-turing-machine",
+      "description": {
+        "zh": "理解图灵机的基本概念及丘奇-图灵论题，认识可计算性的边界",
+        "en": "Understand the basic concept of Turing machines and the Church-Turing thesis, and recognize the boundaries of computability"
+      }
+    },
+    {
+      "id": "obj-philosophical-objections",
+      "description": {
+        "zh": "了解对机器思维的主要哲学反对意见及图灵的回应",
+        "en": "Understand the major philosophical objections to machine thinking and Turing's responses"
+      }
+    },
+    {
+      "id": "obj-turing-legacy",
+      "description": {
+        "zh": "认识图灵对计算机科学、人工智能和哲学的持久影响",
+        "en": "Recognize Turing's lasting impact on computer science, artificial intelligence, and philosophy"
+      }
+    }
+  ]
+}

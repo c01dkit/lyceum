@@ -1,0 +1,279 @@
+{
+  "id": "lesson-03",
+  "course": "ai-agents-future",
+  "title": {
+    "zh": "协作范式的演进",
+    "en": "The Evolution of Collaboration Paradigms"
+  },
+  "knowledgePoint": {
+    "zh": "从提示工程到协作系统工程——人类与AI协作方式的演进",
+    "en": "From prompt engineering to harness engineering — how human-AI collaboration is evolving"
+  },
+  "teacher": "prof-ng",
+  "estimatedMinutes": 15,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你回想起那堂课。吴恩达教授用「咒语」、「建筑」和「合伙人」三个比喻，清晰地画出了人类与AI协作的三个阶段。全息投影上，三张图层层递进——从单一的文本框，到丰富的信息流，再到一整个协作系统……",
+    "en": "You recall that lesson. Professor Ng used three metaphors — 「incantation」, 「architecture」, and 「partnership」 — to clearly map the three stages of human-AI collaboration. On the holographic display, three images layered progressively — from a single text box, to rich information flows, to an entire collaboration system..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海里回荡着那个角色转变的描述：从操作员到架构师，再到伙伴。每一步，人类和AI之间的边界都在重新划定。最关键的是你如何设计这个协作的界面。",
+    "en": "You close your notebook, the description of that role shift echoing in your mind: from operator to architect to partner. At each step, the boundary between human and AI is redrawn. What matters most isn't the technology itself, but how you design the collaboration interface."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "第三节课。窗外的天空今天格外清澈，地平线在金色光线中显得更远了。吴恩达教授走进来，手里没有咖啡——取而代之的是一支记号笔。他在全息投影区域前站定，看起来准备画点什么。",
+        "en": "Third lesson. The sky outside is especially clear today, the horizon appearing even more distant in the golden light. Professor Ng walks in without coffee — instead he's holding a marker. He stands in front of the holographic projection area, looking ready to draw something."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我想把前两节课的内容连起来。我们讲了AI交互的演进，讲了智能体的架构。现在我要把重点放在「人」这一边——人类在这个演进中到底经历了什么变化。我会用三个阶段来讲这个故事，每个阶段都有一个核心比喻。",
+        "en": "Today I want to connect what we covered in the first two lessons. We discussed the evolution of AI interaction and agent architecture. Now I want to focus on the 「human」 side — what changes humans are actually going through in this evolution. I'll tell this story in three phases, each with a core metaphor."
+      },
+      "leadsTo": "phase-one"
+    },
+    {
+      "id": "phase-one",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一阶段：学习咒语。（全息投影上出现一个发光的文本框）在提示工程时代，跟AI打交道就像在学一种魔法语言。「请你扮演一位资深软件工程师」，这是角色咒语。「让我们一步一步地思考」，这是推理咒语。「请给出三个不同的方案并比较优缺点」，这是结构咒语。这些「咒语」确实管用，但有个问题：为什么连一个标点符号的变化，都能让效果大不一样？",
+        "en": "Phase one: learning incantations. (A glowing text box appears on the holographic display) In the prompt engineering era, interacting with AI was like learning a magical language. 「Please act as a senior software engineer」 — that's a role incantation. 「Let's think step by step」 — that's a reasoning incantation. 「Please give three different approaches and compare their pros and cons」 — that's a structure incantation. These 「incantations」 actually work, but the question is: why can a punctuation change make such a big difference?"
+      },
+      "leadsTo": "phase-one-limit"
+    },
+    {
+      "id": "phase-one-limit",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "答案是：你只能通过一个非常窄的接口来影响模型的行为。一段提示词就是你的全部控制面。模型的训练数据、内部参数、推理过程，这些你都接触不到。所以你只能在那几百个字的空间里拼命优化。这就像透过一个小窗口控制一台巨大的机器，你的动作精度要求极高，因为任何偏差都会被放大。",
+        "en": "The answer is: because you only have a very narrow interface to influence the model's behavior. A prompt is your entire control surface. The model's training data, internal parameters, reasoning process — you can't touch any of that. So you can only optimize frantically within those few hundred words. It's like controlling a massive machine through a tiny window — your precision must be extremely high because any deviation gets amplified."
+      },
+      "leadsTo": "phase-two"
+    },
+    {
+      "id": "phase-two",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第二阶段：设计建筑。（全息投影上出现一个多层架构图）上下文工程扩大了这个控制面。你不再只有一个文本框——你有了一整套信息架构。{系统提示词}定义AI的角色和边界。检索增强生成（RAG）动态拉取相关文档。工具定义告诉AI它能做什么。对话历史提供连续性。每一层都是一个设计决策。",
+        "en": "Phase two: designing architecture. (A multi-layered architecture diagram appears on the holographic display) Context engineering expanded this control surface. You no longer have just one text box — you have an entire information architecture. The {system prompt} defines AI's role and boundaries. Retrieval-augmented generation (RAG) dynamically pulls relevant documents. Tool definitions tell AI what it can do. Conversation history provides continuity. Each layer is a design decision."
+      },
+      "terms": {
+        "系统提示词": "term-system-prompt",
+        "system prompt": "term-system-prompt"
+      },
+      "leadsTo": "phase-two-detail"
+    },
+    {
+      "id": "phase-two-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这跟盖一栋建筑很像。地基是系统提示词，它定义了整个结构的基调。框架是工具和API的集成，决定了建筑的功能。内装是RAG和上下文管理，让每个房间都有合适的家具。好的上下文工程师就像好的建筑师：他们思考的是空间、流线和用户体验，而非单块砖头的形状。",
+        "en": "This is similar to constructing a building. The foundation is the system prompt — it sets the tone for the entire structure. The framework is tool and API integration — it determines the building's capabilities. The interior is RAG and context management — putting the right furniture in each room. A good context engineer is like a good architect: they think about space, flow, and user experience, not the shape of individual bricks."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在上下文工程中，你觉得最容易被忽略的设计要素是什么？",
+        "en": "In context engineering, what do you think is the most easily overlooked design element?"
+      },
+      "choices": [
+        {
+          "id": "what-not-to-show",
+          "text": {
+            "zh": "决定AI不应该看到什么——信息过载和信息缺失一样危险",
+            "en": "Deciding what AI should NOT see — information overload is as dangerous as information deficit"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "太好了，这个答案展现了成熟的工程思维。大多数人在设计上下文时只想着「要给AI什么信息」，很少想「不要给AI什么信息」。但上下文窗口是有限的，每一条无关信息都在稀释有价值的信息。最好的上下文工程包含精心设计的过滤机制——只让最相关的信息到达模型。这跟我们人类的注意力管理是一样的道理。",
+              "en": "Excellent — this answer shows mature engineering thinking. Most people designing context only think about 「what information to give AI」 and rarely consider 「what information NOT to give AI」. But the context window is finite, and every irrelevant piece dilutes valuable information. The best context engineering includes carefully designed filtering mechanisms — only letting the most relevant information reach the model. It's the same principle as human attention management."
+            }
+          },
+          "leadsTo": "phase-three"
+        },
+        {
+          "id": "error-handling",
+          "text": {
+            "zh": "错误处理——当AI给出不好的结果时，系统应该怎么恢复",
+            "en": "Error handling — how the system should recover when AI gives poor results"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个工程师的直觉，而且很正确。很多上下文工程方案只考虑了「一切顺利」的情况。但AI会犯错，它会产生幻觉、误解指令、调用错误的工具。一个健壮的系统需要有降级策略：结果不确定时请求确认、关键步骤增加验证、保留回退选项。这跟软件工程中的异常处理是同一个思路。",
+              "en": "That's an engineer's instinct — and a correct one. Many context engineering designs only consider the 「everything goes well」 scenario. But AI makes mistakes — it hallucinates, misinterprets instructions, calls the wrong tools. A robust system needs degradation strategies: request confirmation when results are uncertain, add verification at critical steps, maintain rollback options. Same principle as exception handling in software engineering."
+            }
+          },
+          "leadsTo": "phase-three"
+        },
+        {
+          "id": "user-mental-model",
+          "text": {
+            "zh": "用户的心理模型——人类需要理解AI在做什么，才能有效协作",
+            "en": "The user's mental model — humans need to understand what AI is doing to collaborate effectively"
+          },
+          "tag": "humanistic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常人性化的视角，也是我认为被严重低估的问题。如果用户不理解AI为什么给出某个结果，信任就建立不起来。好的上下文工程不仅要让AI做对事，还要让AI「解释」它在做什么——展示推理过程、列出信息来源、标注不确定性。透明度是信任的基础。你提到的这一点，在我们第三阶段的协作设计中会变得更加关键。",
+              "en": "That's a very humanistic perspective, and one I think is seriously undervalued. If users don't understand why AI produced a certain result, trust can't be established. Good context engineering must not only make AI do the right thing, but also make AI 「explain」 what it's doing — showing reasoning processes, listing information sources, flagging uncertainties. Transparency is the foundation of trust. The point you raised becomes even more critical in our third-phase collaboration design."
+            }
+          },
+          "leadsTo": "phase-three"
+        }
+      ]
+    },
+    {
+      "id": "phase-three",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第三阶段：经营合伙关系。（全息投影上出现一张人和多个AI节点之间互联的网络图）协作系统工程不再是一个人控制一个AI的问题。它关乎如何设计一个系统，这个系统包含了{多智能体系统}，让多个AI各司其职，同时也需要构建良好的{人类与AI的协作}关系。人类的角色从「使用者」转变为了「合伙人」。",
+        "en": "Phase three: managing partnerships. (A network diagram showing interconnections between a human and multiple AI nodes appears on the holographic display) Harness engineering is no longer about one person controlling one AI. It's about designing a system containing a {multi-agent system} — multiple AIs each with their own role — and the {human-AI collaboration} relationship. The human role shifts from 「user」 to 「partner」."
+      },
+      "terms": {
+        "多智能体系统": "term-multi-agent-system",
+        "multi-agent system": "term-multi-agent-system",
+        "人类与AI的协作": "term-human-ai-collaboration",
+        "human-AI collaboration": "term-human-ai-collaboration"
+      },
+      "leadsTo": "multi-agent-example"
+    },
+    {
+      "id": "multi-agent-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "举个例子。假设你在开发一个软件产品。你可以设计这样一个系统：一个「产品经理」智能体负责分析需求；一个「工程师」智能体负责写代码；一个「测试员」智能体负责检验质量；一个「审查者」智能体负责代码审查。它们之间有清晰的工作流——需求通过后才能开发，开发完成后才能测试。而你，作为人类，是这个团队的负责人，在关键节点做最终决策。",
+        "en": "Here's an example. Say you're developing a software product. You could design a system like this: a 「product manager」 agent analyzes requirements; an 「engineer」 agent writes code; a 「tester」 agent checks quality; a 「reviewer」 agent does code review. They have clear workflows — development starts only after requirements are approved, testing only after development is complete. And you, the human, are the team lead, making final decisions at key points."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "在一个多智能体协作系统中，你觉得最关键的设计原则是什么？",
+        "en": "In a multi-agent collaboration system, what do you think is the most critical design principle?"
+      },
+      "choices": [
+        {
+          "id": "clear-boundaries",
+          "text": {
+            "zh": "明确的职责边界——每个智能体应该清楚自己该做什么、不该做什么",
+            "en": "Clear responsibility boundaries — each agent should know what it should and shouldn't do"
+          },
+          "tag": "systematic",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是系统设计的第一原则——关注点分离。如果一个智能体既写代码又做测试，它很可能会对自己的代码「手下留情」。职责边界清晰，才能让每个智能体专注于自己的角色并客观地完成工作。这跟人类团队管理的经验完全一致：分工明确的团队，效率和质量都更高。",
+              "en": "This is the first principle of system design — separation of concerns. If one agent both writes code and tests it, it's likely to 「go easy on」 its own code. Clear responsibility boundaries let each agent focus on its role and complete work objectively. This is entirely consistent with human team management experience: teams with clear division of labor have both higher efficiency and quality."
+            }
+          },
+          "leadsTo": "role-shift"
+        },
+        {
+          "id": "communication-protocol",
+          "text": {
+            "zh": "可靠的沟通协议——智能体之间需要一种清晰的信息传递方式",
+            "en": "Reliable communication protocols — agents need a clear way to pass information to each other"
+          },
+          "tag": "engineering",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你想到了一个实际工程中经常出问题的地方。两个智能体之间的信息传递如果格式不统一、语义不清晰，整个流水线就会出错。好的沟通协议需要定义：传什么信息、用什么格式、如何确认接收、如何处理异常。这跟微服务架构中的API设计是同一类问题——接口设计的质量决定了系统的可靠性。",
+              "en": "You've identified something that frequently causes issues in practical engineering. If information between two agents has inconsistent formats or unclear semantics, the entire pipeline breaks down. Good communication protocols need to define: what information to pass, in what format, how to confirm receipt, how to handle exceptions. This is the same class of problem as API design in microservice architectures — the quality of interface design determines system reliability."
+            }
+          },
+          "leadsTo": "role-shift"
+        },
+        {
+          "id": "human-oversight",
+          "text": {
+            "zh": "人类监督机制——在关键决策点，人类必须能够介入和纠正",
+            "en": "Human oversight mechanism — at critical decision points, humans must be able to intervene and correct"
+          },
+          "tag": "responsible",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是我最看重的原则。AI智能体可以自主处理很多事情，但有些决策的后果是不可逆的——发布产品、发送通知、修改数据。在这些节点上，系统必须暂停并等待人类确认。我把这叫做「人在回路中」设计。最好的协作系统是在真正重要的节点设置检查站，而不是让人类监控每一步。这样既保持了效率，又确保了安全。",
+              "en": "This is the principle I value most. AI agents can handle many things autonomously, but some decisions have irreversible consequences — releasing products, sending notifications, modifying data. At these nodes, the system must pause and wait for human confirmation. I call this 「human-in-the-loop」 design. The best collaboration systems don't make humans monitor every step, but set checkpoints at truly important nodes. This maintains both efficiency and safety."
+            }
+          },
+          "leadsTo": "role-shift"
+        }
+      ]
+    },
+    {
+      "id": "role-shift",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我把三个阶段的角色变化总结一下。（在全息投影上画出三个人物轮廓）第一阶段，你是操作员，学习怎么「使用」AI。第二阶段，你是架构师，负责设计AI的工作环境。到了第三阶段，你成为伙伴，与AI一起解决问题，各自发挥所长。",
+        "en": "Now let me summarize the role changes across three phases. (Draws three figure outlines on the holographic display) Phase one, you're an operator — you learn how to 「use」 AI. Phase two, you're an architect — you design AI's working environment. Phase three, you're a partner — you and AI solve problems together, each playing to your strengths."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "人类与AI协作的三阶段比喻：(1)「学习咒语」，即提示工程阶段，控制面很窄，如同通过一个小窗口操作庞大的机器；(2)「设计建筑」，即上下文工程阶段，需要设计信息架构，包括系统提示词、RAG和工具定义，控制面因此大幅扩展；(3)「经营合伙关系」，即协作系统工程阶段，涉及多智能体协作，人类角色从操作员转变为架构师，最终成为伙伴。核心原则在于：职责边界清晰、沟通协议可靠，并且在关键节点保留人类监督。",
+        "en": "Three-phase metaphor for human-AI collaboration: (1) 「Learning incantations」 — prompt engineering phase, narrow control surface, like operating a big machine through a small window; (2) 「Designing architecture」 — context engineering phase, designing information architecture (system prompts, RAG, tool definitions), greatly expanded control surface; (3) 「Managing partnerships」 — harness engineering phase, multi-agent collaboration, human role evolves from operator → architect → partner. Core principles: clear responsibility boundaries, reliable communication protocols, human oversight at critical nodes."
+      },
+      "category": "core-concept",
+      "leadsTo": "future-hint"
+    },
+    {
+      "id": "future-hint",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "在这三个阶段的演进中，有一个问题越来越突出：AI的能力在快速增长，但增长有没有极限？有人说，只要不断扩大模型规模、投入更多算力，AI就会越来越强。也有人说，光靠规模扩展走不远。这场关于「缩放」的争论，是理解AI未来方向的关键。",
+        "en": "Across these three phases of evolution, one question becomes increasingly prominent: AI capabilities are growing rapidly, but is there a limit to that growth? Some say that as long as you keep scaling up model size and pouring in more compute, AI will keep getting stronger. Others say scaling alone won't take you far. This debate about 「scaling」 is key to understanding AI's future direction."
+      },
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下节课，我们会直面这个争论：缩放假说。更多的算力、更大的模型，真的能通向更强的AI吗？这个问题的答案，将决定我们设计协作系统时应该做怎样的假设。先别急着下结论——两边都有非常聪明的人提出了非常有力的论据。",
+        "en": "Next lesson, we'll confront this debate head-on: the scaling hypothesis. Does more compute and bigger models truly lead to stronger AI? The answer to this question will determine what assumptions we should make when designing collaboration systems. Don't rush to conclusions — very smart people on both sides have made very compelling arguments."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "吴恩达教授把记号笔放回口袋，朝窗外那片金色的地平线看了一眼。全息投影上那三个人物轮廓——操作员、架构师、伙伴——还留在空气中，随着光线缓缓转动。你意识到自己正处在第二阶段和第三阶段之间的某个位置。窗外的地平线依然辽阔，但现在你知道该朝哪个方向走了。",
+        "en": "Professor Ng puts the marker back in his pocket and glances at the golden horizon through the window. The three figure outlines on the holographic display — operator, architect, partner — linger in the air, slowly rotating with the light. You realize you're somewhere between the second and third phases. The horizon outside remains vast, but now you know which direction to walk."
+      }
+    }
+  ]
+}

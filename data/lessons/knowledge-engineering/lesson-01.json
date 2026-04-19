@@ -1,0 +1,286 @@
+{
+  "id": "lesson-01",
+  "course": "knowledge-engineering",
+  "title": {
+    "zh": "当AI遇见医学",
+    "en": "When AI Meets Medicine"
+  },
+  "knowledgePoint": {
+    "zh": "为什么医学是AI专家系统的理想试验场",
+    "en": "Why medicine is an ideal testing ground for AI expert systems"
+  },
+  "teacher": "prof-shortliffe",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，记忆将你带回那间弥漫着消毒水气息的教室。肖特利夫教授走进来时，手里捧着一叠病历和一卷从计算机终端打出的厚厚纸带——那堂关于AI与医学的第一课，正在脑海中重新浮现。",
+    "en": "You close your eyes, and memory carries you back to that classroom tinged with the faint smell of antiseptic. Professor Shortliffe walked in carrying a stack of patient records and a thick roll of printout from a computer terminal — that first lesson on AI and medicine is resurfacing in your mind."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，仿佛还能听到那台计算机终端嗡嗡运转的声音。原来，拯救生命的第一步，是把医生脑中的知识变成机器能理解的规则。",
+    "en": "You come back to the present, as if you can still hear the hum of that computer terminal. So the first step toward saving lives was turning the knowledge in a doctor's mind into rules a machine could understand."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室里飘着一股淡淡的消毒水味。墙上挂着人体解剖图和一张细菌分类表，旁边是一块写满化学式的黑板。门开了，一位穿着白大褂的年轻教授走了进来，手里抱着一叠病历档案，腋下还夹着一卷从计算机终端打出的长长纸带。他把东西放在讲台上，对你微微一笑。",
+        "en": "The classroom carries a faint smell of antiseptic. Anatomical charts and a bacterial classification table hang on the walls, next to a blackboard covered in chemical formulas. The door opens, and a young professor in a white lab coat walks in, carrying a stack of patient records under one arm and a long roll of computer printout under the other. He sets everything on the lectern and gives you a gentle smile."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "同学们好。我是爱德华·肖特利夫，你们可以叫我肖特利夫教授。我有点特殊——我既是一名医生，也是一名计算机科学家。在过去几年里，我一直在斯坦福大学做一件大胆的尝试：教计算机看病。",
+        "en": "Hello, everyone. I'm Edward Shortliffe — you can call me Professor Shortliffe. I'm a bit unusual — I'm both a physician and a computer scientist. For the past few years at Stanford, I've been working on something ambitious: teaching a computer to diagnose diseases."
+      },
+      "leadsTo": "why-medicine"
+    },
+    {
+      "id": "why-medicine",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你们可能会问，为什么是医学？为什么不从更简单的领域开始？（他拿起一份病历翻了翻）因为医学诊断对我来说既是最紧迫的问题，也是最好的试验场。每天都有病人在等待正确的诊断，时间就是生命。",
+        "en": "You might wonder — why medicine? Why not start with something simpler? (He flips through a patient record.) Because medical diagnosis is both the most urgent problem I know and the best testing ground. Every day, patients are waiting for the right diagnosis. Time is life."
+      },
+      "leadsTo": "diagnosis-challenge"
+    },
+    {
+      "id": "diagnosis-challenge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我描述一下一位医生每天面对的情况。一个病人走进诊室，发着高烧，血压偏低。可能的原因有几十种——细菌感染、病毒感染、药物反应、自身免疫疾病……而化验结果要等几天才能出来。你必须在信息不完整的情况下做出判断。",
+        "en": "Let me describe what a doctor faces every day. A patient walks into the clinic with a high fever and low blood pressure. There could be dozens of possible causes — bacterial infection, viral infection, drug reaction, autoimmune disease... And the lab results won't come back for days. You have to make a judgment with incomplete information."
+      },
+      "leadsTo": "three-challenges"
+    },
+    {
+      "id": "three-challenges",
+      "type": "dialog",
+      "mood": "serious",
+      "text": {
+        "zh": "医学诊断之所以困难，有三个核心原因。第一，数据永远是不完整的，你不可能对每个病人做所有检查。第二，可能性太多，同样的症状可能指向完全不同的疾病。第三，时间紧迫，感染性疾病每耽误一个小时，病人的存活率都在下降。",
+        "en": "Medical diagnosis is difficult for three core reasons. First, the data is always incomplete — you can't run every possible test on every patient. Second, there are too many possibilities — the same symptoms can point to entirely different diseases. Third, time pressure is immense — with infectious diseases, every hour of delay reduces the patient's chance of survival."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "在你看来，医学诊断最大的挑战是什么？",
+        "en": "In your view, what is the biggest challenge in medical diagnosis?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "信息不完整——你永远无法掌握全部事实",
+            "en": "Incomplete information — you can never know all the facts"
+          },
+          "tag": "epistemic-awareness",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "说得好。在医学中，我们总是在迷雾中做决定。化验报告还在路上，病人的病史可能记忆不准确，有些症状还没有表现出来。这种不确定性是医学的常态，也正是让计算机诊断系统如此难以构建的原因之一。",
+              "en": "Well said. In medicine, we're always making decisions in the fog. Lab reports are still on the way, the patient's medical history may be inaccurate, and some symptoms haven't manifested yet. This uncertainty is the norm in medicine, and it's one of the reasons computer diagnostic systems are so hard to build."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "可能性太多——同一组症状背后有太多不同的解释",
+            "en": "Too many possibilities — the same symptoms can have so many different explanations"
+          },
+          "tag": "complexity-awareness",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "正是如此！一个发烧的病人，可能的病因从普通感冒到致命的败血症，跨度极大。有经验的医生通过多年实践学会了缩小范围，但这种经验很难传授。而如果我们能把这些经验编码成规则，一台机器也许能帮助年轻医生更快地找到方向。",
+              "en": "Exactly! A patient with a fever could have anything from a common cold to lethal sepsis — the range is enormous. Experienced doctors learn to narrow it down through years of practice, but that expertise is hard to teach. If we could encode that experience as rules, a machine might help young doctors find their way faster."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "时间紧迫——必须在有限时间内做出生死攸关的决定",
+            "en": "Time pressure — life-or-death decisions must be made within limited time"
+          },
+          "tag": "urgency-awareness",
+          "response": {
+            "mood": "serious",
+            "text": {
+              "zh": "你说到了关键。在医学中，一个错误的诊断可能要人命。所以我们的系统必须知道自己有多不确定。时间压力意味着医生不能无限期地收集信息。有时候你必须根据手头现有的证据做出最佳判断。计算机的一个优势就是速度——它可以在几秒钟内检索数百条规则。",
+              "en": "You've hit on something crucial. In medicine, a wrong diagnosis can cost a life — so our system must know how uncertain it is. Time pressure means doctors can't collect information indefinitely. Sometimes you must make the best judgment based on whatever evidence you have. One advantage of computers is speed — they can check hundreds of rules in seconds."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们提到的这些难题，比如信息不全、选项太多、时间不够，恰恰是医学成为AI理想试验场的原因。这些问题足够困难，也足够有代表性。最重要的是，解决它们能真正帮助到人。",
+        "en": "The difficulties you've identified — incomplete information, too many options, too little time — are actually what makes medicine an ideal testing ground for AI. The problems are hard enough, representative enough, and most importantly, solving them can genuinely help people."
+      },
+      "leadsTo": "expert-system-intro"
+    },
+    {
+      "id": "expert-system-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "所以我们的想法是：如果我们能把优秀医生的诊断知识提取出来，转化成一套严格的规则，再让计算机执行这些规则——我们就能建造一个{专家系统}。它的角色是一个不知疲倦的顾问，帮助医生（尤其是经验不足的医生）做出更好的判断，而非取代医生本身。",
+        "en": "So here's our idea: if we can extract the diagnostic knowledge of excellent doctors, transform it into a rigorous set of rules, and have a computer execute those rules — we can build an {expert system}. It's meant to serve as a tireless consultant, helping doctors — especially less experienced ones — make better judgments."
+      },
+      "terms": {
+        "专家系统": "term-expert-system",
+        "expert system": "term-expert-system"
+      },
+      "leadsTo": "encoding-knowledge"
+    },
+    {
+      "id": "encoding-knowledge",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（他拿起那卷纸带展开）看，这就是我们正在建造的系统输出的一部分。系统叫{MYCIN}，专门处理血液感染的诊断。它的核心思路很直接：把医生的知识写成一条一条的{产生式规则}，像这样——「如果病人的感染部位是血液，而且培养结果呈革兰氏阴性，那么有较高的可能性是大肠杆菌感染。」",
+        "en": "(He unrolls the printout.) Look, this is part of the output from a system we're building. It's called {MYCIN}, and it specializes in diagnosing blood infections. The core idea is straightforward: encode a doctor's knowledge as individual {production rules}, like this — 「If the patient's infection site is blood, and the culture stain is gram-negative, then there is a high likelihood of E. coli infection」."
+      },
+      "terms": {
+        "MYCIN": "term-mycin",
+        "产生式规则": "term-production-rule",
+        "production rules": "term-production-rule"
+      },
+      "leadsTo": "knowledge-base-explain"
+    },
+    {
+      "id": "knowledge-base-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这些规则的集合，我们把它叫做{知识库}。它是整个系统的核心。一个好的知识库里可能有几百条规则，每一条都是从经验丰富的传染病专家那里提取出来的。",
+        "en": "The collection of these rules is what we call the {knowledge base}. It's the heart of the entire system. A good knowledge base might contain hundreds of rules, each one extracted from experienced infectious disease specialists."
+      },
+      "terms": {
+        "知识库": "term-knowledge-base",
+        "knowledge base": "term-knowledge-base"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "你觉得，一台计算机可以怎样帮助医生做诊断？",
+        "en": "How do you think a computer could help a doctor make a diagnosis?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "帮医生快速检查所有可能的病因，不遗漏任何一种",
+            "en": "Help the doctor quickly check all possible causes, without overlooking any"
+          },
+          "tag": "systematic-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好！这正是计算机擅长的事情。人类医生可能因为疲劳或偏见忽略某些可能性，但计算机会忠实地检查知识库里的每一条规则。它就像一个永远不会累、永远不会忘事的助手。",
+              "en": "Excellent! That's precisely what computers excel at. A human doctor might overlook certain possibilities due to fatigue or bias, but a computer faithfully checks every rule in its knowledge base. It's like an assistant that never gets tired and never forgets."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "让计算机提出建议，但最终决定权留给医生",
+            "en": "Have the computer suggest options, but leave the final decision to the doctor"
+          },
+          "tag": "collaborative-thinking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说到了一个极其重要的设计原则。我们从来没想让MYCIN替代医生。计算机给出建议和置信度，医生做最终决定。这种人机协作才是正确的方向。毕竟，面对病人的是医生，承担责任的也是医生。",
+              "en": "You've touched on an extremely important design principle. We never intended MYCIN to replace doctors. The computer provides suggestions and confidence levels; the doctor makes the final call. This kind of human-machine collaboration is the right approach. After all, it's the doctor who faces the patient and bears the responsibility."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "让计算机帮助处理大量的医学文献和数据",
+            "en": "Let the computer help process vast amounts of medical literature and data"
+          },
+          "tag": "information-processing",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这个想法很有远见。医学文献每年都在爆炸式增长，一个医生不可能读完所有论文。如果计算机能把这些知识消化吸收，变成可以应用的规则，那确实是巨大的帮助。不过目前我们还在更基础的阶段——先让计算机学会用好一个特定领域的规则。",
+              "en": "That's a forward-looking idea. Medical literature is growing explosively every year, and no single doctor can read everything. If a computer could digest all that knowledge and turn it into applicable rules, that would be enormously helpful. For now, though, we're at a more fundamental stage — first teaching the computer to work well with rules in one specific domain."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "无论哪种方式，关键的第一步都是一样的——我们必须把医生头脑中的知识提取出来，转化成计算机可以处理的形式。这个过程，就叫做{知识工程}。",
+        "en": "Regardless of the approach, the crucial first step is the same — we must extract the knowledge from doctors' minds and transform it into a form that computers can process. This process is called {knowledge engineering}."
+      },
+      "terms": {
+        "知识工程": "term-knowledge-engineering",
+        "knowledge engineering": "term-knowledge-engineering"
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "医学是AI专家系统的理想试验场：诊断问题具有信息不完整、可能性多、时间紧迫三大特征。知识工程的核心是将医学专家的经验转化为计算机可处理的规则。",
+        "en": "Medicine is an ideal testing ground for AI expert systems: diagnosis involves incomplete information, numerous possibilities, and time pressure. The core of knowledge engineering is converting medical experts' experience into rules a computer can process."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "今天我们先到这里。下一次课，我会带你们走进MYCIN的诊断室，亲眼看看这个系统是怎么一步步推理的。（他拍了拍那卷纸带）相信我，这会比你想象的更有趣。",
+        "en": "Let's stop here for today. Next time, I'll take you inside MYCIN's consulting room to watch the system reason step by step. (He pats the printout.) Trust me, it'll be more fascinating than you might expect."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "肖特利夫教授收拾好病历和纸带，向你点了点头。你注意到他走出教室时步伐轻快，像是一个同时热爱着医学和计算机的人才会有的那种急切——急着回去继续他的研究。你低头看了看桌面，发现他留下了一张纸条，上面写着：「IF patient has fever AND culture is positive THEN consider infection」. 一条简单的规则，却仿佛打开了一扇新世界的门。",
+        "en": "Professor Shortliffe gathers his records and printout, and nods to you. You notice his brisk pace as he leaves — the kind of eagerness only someone who loves both medicine and computers could have — hurrying back to his research. You glance down at your desk and find a note he left behind: 「IF patient has fever AND culture is positive THEN consider infection」. A simple rule, yet it feels like a door to a new world has just opened."
+      }
+    }
+  ]
+}

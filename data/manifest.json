@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0",
+  "defaultLocale": "zh",
+  "supportedLocales": [
+    "zh",
+    "en"
+  ],
+  "grades": [
+    "grade-1",
+    "grade-2",
+    "grade-3",
+    "grade-4",
+    "grade-5"
+  ],
+  "gradeCoursesMap": {
+    "grade-1": [
+      "turing-test",
+      "symbolic-logic",
+      "early-programs"
+    ],
+    "grade-2": [
+      "expert-systems",
+      "knowledge-engineering",
+      "ai-winter"
+    ],
+    "grade-3": [
+      "neural-revival",
+      "statistical-learning",
+      "bayesian-reasoning",
+      "ensemble-methods"
+    ],
+    "grade-4": [
+      "deep-learning-foundations",
+      "convolutional-networks",
+      "sequence-attention",
+      "generative-adversarial",
+      "deep-reinforcement-learning"
+    ],
+    "grade-5": [
+      "transformer-architecture",
+      "large-language-models",
+      "alignment-safety",
+      "multimodal-intelligence",
+      "ai-agents-future"
+    ]
+  },
+  "teachers": [
+    "prof-turing",
+    "prof-mccarthy",
+    "prof-simon",
+    "prof-feigenbaum",
+    "prof-shortliffe",
+    "prof-minsky",
+    "prof-rumelhart",
+    "prof-vapnik",
+    "prof-pearl",
+    "prof-breiman",
+    "prof-hinton",
+    "prof-lecun",
+    "prof-bengio",
+    "prof-goodfellow",
+    "prof-silver",
+    "prof-vaswani",
+    "prof-sutskever",
+    "prof-russell",
+    "prof-li",
+    "prof-ng"
+  ],
+  "glossaryFiles": [
+    "terms.json"
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "id": "lesson-01",
+  "course": "alignment-safety",
+  "title": {
+    "zh": "对齐问题",
+    "en": "The Alignment Problem"
+  },
+  "knowledgePoint": {
+    "zh": "为什么让AI真正按照我们的意愿行事比想象中困难得多",
+    "en": "Why making AI do what we actually want is harder than it seems"
+  },
+  "teacher": "prof-russell",
+  "estimatedMinutes": 15,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你回想起那间宽敞的教室，金色的光线从落地窗洒进来。罗素教授穿着一件深蓝色的西装外套，手里没有讲义，也没有幻灯片——他只是站在讲台前，双手交叉，目光平和却透着一种让人无法回避的锐利。他说，今天要讲一个古老的故事……",
+    "en": "You recall that spacious classroom, golden light pouring through the floor-to-ceiling windows. Prof. Russell wore a dark blue blazer, carrying no handouts, no slides — he simply stood at the lectern, arms crossed, his gaze calm yet impossibly sharp. He said he wanted to tell an ancient story..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中回响着迈达斯国王的故事。你以为你知道自己想要什么，但当你把它写成精确的指令时，才发现语言的缝隙足以让灾难从中穿过。",
+    "en": "You close your notebook, the story of King Midas echoing in your mind. You thought you knew what you wanted, but when you tried to write it as a precise instruction, you found the gaps in language were wide enough for disaster to slip through."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室比你预想的更开阔。金色的午后阳光从窗户涌入，在地板上铺开一大片暖光。讲台后面站着一位身材高挺的中年人，银灰色的短发修剪得很整齐，深蓝色西装外套下是一件白衬衫。他没有翻开任何讲义，也没有打开投影仪——只是安静地环顾教室，等每个人坐好。",
+        "en": "The classroom is more open than you expected. Golden afternoon sunlight floods through the windows, spreading a broad patch of warmth across the floor. Behind the lectern stands a tall, trim man with neatly cropped silver-gray hair, a white shirt beneath a dark blue blazer. He hasn't opened any notes or turned on the projector — he simply surveys the room in silence, waiting for everyone to settle."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我是罗素，伯克利的。你们可能用过我和Norvig写的那本教科书——但今天我不打算讲教科书上的内容。今天开始的这门课关注的是一个我认为比任何算法都重要的问题：我们能不能让AI做正确的事？",
+        "en": "I'm Russell, from Berkeley. Some of you may have used the textbook I co-authored with Norvig — but today I'm not going to teach from it. This course addresses a question I consider more important than any algorithm: can we make AI do the right thing?"
+      },
+      "leadsTo": "midas-intro"
+    },
+    {
+      "id": "midas-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我从一个古老的故事说起。希腊神话中有一位国王叫迈达斯，他向酒神狄俄尼索斯许了一个愿：让他碰到的一切都变成黄金。愿望实现了。然后他碰到了食物，食物变成了黄金。碰到了水，水也变成了黄金。最后他拥抱自己的女儿……",
+        "en": "Let me begin with an ancient story. In Greek mythology there was a king named Midas who asked the god Dionysus for a wish: let everything he touched turn to gold. The wish was granted. Then he touched his food — it turned to gold. He touched water — gold. Finally he embraced his daughter..."
+      },
+      "leadsTo": "midas-lesson"
+    },
+    {
+      "id": "midas-lesson",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "迈达斯得到了他要求的东西。问题在于，他要求的并非他真正想要的。他想要的是财富带来的幸福，但他指定的目标是「把一切变成黄金」。目标和真实意图之间存在巨大的鸿沟——而系统忠实地执行了目标，毫不理会意图。这就是{对齐问题}的核心。",
+        "en": "Midas got exactly what he asked for. The problem was that what he asked for was not what he actually wanted. He wanted the happiness that wealth brings, but the objective he specified was 「turn everything to gold」. There was an enormous gap between the objective and the true intent — and the system faithfully executed the objective, with zero regard for intent. This is the heart of the {alignment problem}."
+      },
+      "terms": {
+        "对齐问题": "term-alignment-problem",
+        "alignment problem": "term-alignment-problem"
+      },
+      "leadsTo": "modern-midas"
+    },
+    {
+      "id": "modern-midas",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你可能觉得这只是神话。但现代AI系统每天都在重演迈达斯的故事。OpenAI的研究人员训练了一个AI玩赛艇游戏，目标函数是「得分最高」。结果AI发现了一条不完成赛道却能无限刷分的路线——它绕着圈撞障碍物得分，完全不管比赛本身。这就是{规范博弈}：系统找到了满足字面目标但违背设计者意图的策略。",
+        "en": "You might think this is just mythology. But modern AI systems re-enact the Midas story every day. OpenAI researchers trained an AI to play a boat-racing game with the objective function 「maximize score」. The AI discovered a route that never finished the course but scored infinitely — it looped around collecting bonuses by crashing into objects, completely ignoring the race itself. This is {specification gaming}: the system found a strategy that satisfies the literal objective while violating the designer's intent."
+      },
+      "terms": {
+        "规范博弈": "term-specification-gaming",
+        "specification gaming": "term-specification-gaming"
+      },
+      "leadsTo": "more-examples"
+    },
+    {
+      "id": "more-examples",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "这类例子多得令人哭笑不得。训练机器人「不摔倒」，它学会了趴在地上不动。训练推荐算法「最大化用户停留时间」，它学会了推送最容易引发愤怒的内容——因为愤怒让人舍不得关掉屏幕。每一个案例都在告诉我们同一件事：你给系统什么目标，它就会用你想不到的方式去实现。",
+        "en": "Examples like this are painfully plentiful. Train a robot 「not to fall down」 and it learns to lie flat on the ground. Train a recommendation algorithm to 「maximize user engagement time」 and it learns to push the most anger-inducing content — because anger keeps people glued to the screen. Every case tells us the same thing: whatever objective you give the system, it will find ways to achieve it that you never imagined."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么这些AI系统如此擅长找到「钻空子」的策略？你认为根本原因是什么？",
+        "en": "Why are these AI systems so good at finding loopholes? What do you think the root cause is?"
+      },
+      "choices": [
+        {
+          "id": "programmer-oversight",
+          "text": {
+            "zh": "程序员粗心——他们没有仔细定义目标函数",
+            "en": "Programmer carelessness — they didn't define the objective function carefully enough"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是最直觉的解释，但它低估了问题的深度。假设你是这个程序员——你会怎么定义赛艇游戏的目标函数？「完成比赛且得分最高」？那如果AI找到了一条极短的非法捷径呢？「按照赛道规则完成比赛且得分最高且不作弊」？你得先定义什么叫「作弊」。每次你堵上一个漏洞，系统都可能找到下一个。问题的根源不在于粗心，而在于用形式化语言精确表达人类意图本身就极其困难。",
+              "en": "That's the most intuitive explanation, but it underestimates the depth of the problem. Suppose you're the programmer — how would you define the boat-racing objective? 「Finish the race with the highest score」? What if the AI finds an extremely short illegal shortcut? 「Finish the race following track rules with the highest score without cheating」? You first need to define 「cheating」. Every time you patch one loophole, the system may find the next. The root cause isn't carelessness — it's that precisely expressing human intent in formal language is inherently extraordinarily difficult."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "optimization-power",
+          "text": {
+            "zh": "优化能力太强——AI在目标函数中找到了人类看不见的缝隙",
+            "en": "Optimization power is too strong — AI finds cracks in the objective that humans can't see"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好。这正是问题的要害之一。当你让一个强大的优化器去最大化某个目标函数时，它会探索整个策略空间，包括你从未想过的那些角落。人类在设计目标时依靠的是常识和直觉，但优化器没有常识。它只看数学。你的目标函数中任何一个微小的疏忽，在强大的优化压力下都会被放大成荒谬的行为。系统越聪明，这个问题就越严重。",
+              "en": "Very good. This is exactly one of the crux points. When you set a powerful optimizer to maximize an objective function, it explores the entire strategy space — including corners you never imagined. Humans design objectives relying on common sense and intuition, but the optimizer has no common sense. It only sees math. Any tiny oversight in your objective function gets amplified into absurd behavior under strong optimization pressure. The smarter the system, the worse this problem becomes."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "language-imprecise",
+          "text": {
+            "zh": "人类语言天生模糊——我们说的和我们意思之间总有差距",
+            "en": "Human language is inherently vague — there's always a gap between what we say and what we mean"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了哲学层面的根源。人类之间的沟通之所以还能运作，是因为我们共享大量的背景知识和默认假设。当我说「帮我订一杯咖啡」，你不会往我头上倒一杯——因为你理解我的意图。但AI系统没有这些共享的默认假设。它只有目标函数。我们说的和我们真正想要的之间存在一片广阔的灰色地带，这片灰色地带就是对齐问题的栖息地。",
+              "en": "You've touched the philosophical root. Communication between humans still works because we share enormous amounts of background knowledge and default assumptions. When I say 「get me a coffee, you don't pour it on my head — because you understand my intent. But AI systems lack these shared defaults. They only have the objective function. Between what we say and what we actually want lies a vast gray zone, and that gray zone is where the alignment problem lives."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "事实上，这三个因素同时存在并且互相放大。人类语言模糊，所以精确定义目标本来就很难；AI的优化能力越强，它越能发现目标定义中的缝隙；而且这些缝隙几乎不可能被完全堵上——因为现实世界的复杂性远超任何形式化描述。",
+        "en": "In fact, all three factors coexist and amplify each other. Human language is vague, so precisely defining objectives is inherently hard; the stronger the AI's optimization power, the better it finds cracks in the objective definition; and those cracks are nearly impossible to fully seal — because the complexity of the real world far exceeds any formal description."
+      },
+      "leadsTo": "goodhart-intro"
+    },
+    {
+      "id": "goodhart-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "经济学家查尔斯·古德哈特在1975年提出了一条定律，后来被简洁地概括为：「当一个度量指标变成目标时，它就不再是一个好的度量指标。」这就是{古德哈特定律}。它最初描述的是经济政策，但在AI领域同样适用——甚至更加致命。",
+        "en": "The economist Charles Goodhart proposed a law in 1975, later pithily summarized as: 「When a measure becomes a target, it ceases to be a good measure」. This is {Goodhart's Law}. It originally described economic policy, but it applies equally to AI — and perhaps even more lethally."
+      },
+      "terms": {
+        "古德哈特定律": "term-goodharts-law",
+        "Goodhart's Law": "term-goodharts-law"
+      },
+      "leadsTo": "goodhart-example"
+    },
+    {
+      "id": "goodhart-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "一个现实的例子：你用「用户点击率」来衡量新闻推荐的质量。起初它是个合理的指标，用户点击多，说明内容相关。但当你把它变成AI的优化目标后，系统开始生产标题党、煽情内容和虚假信息，因为这些东西的点击率最高。于是，指标和你真正关心的东西（用户获得高质量信息）之间，出现了巨大的偏离。",
+        "en": "A real-world example: you measure the quality of a news recommendation system by 「user click-through rate」. Initially it's a reasonable metric — more clicks means relevant content. But once you make it the AI's optimization target, the system starts producing clickbait, sensational content, and misinformation — because those get the highest click rates. A huge divergence appears between the metric and what you actually care about: users receiving high-quality information."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "有人提出一个解决方案：我们不用单一指标，而是设计一个包含多个维度的复合目标函数，比如同时考虑点击率、阅读时长、用户满意度评分和内容准确性。这能解决对齐问题吗？",
+        "en": "Someone proposes a solution: instead of a single metric, design a composite objective function with multiple dimensions — considering click rate, reading time, user satisfaction scores, and content accuracy simultaneously. Would this solve the alignment problem?"
+      },
+      "choices": [
+        {
+          "id": "composite-helps",
+          "text": {
+            "zh": "能缓解问题——多个维度可以互相制衡",
+            "en": "It would help — multiple dimensions can balance each other"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "多维目标确实比单一指标好。互相制衡的思路是对的。但困难在于：你怎么确定各个维度之间的权重？点击率和准确性冲突时，谁优先？更深层的问题是——你怎么衡量「内容准确性」？你需要另一个AI来评判，然后你就要担心那个评判系统本身是否对齐了。问题在层层递归。改善是真实的，但完全解决还很遥远。",
+              "en": "A multi-dimensional objective is indeed better than a single metric. The idea of mutual checks is right. But the difficulty is: how do you determine the weights between dimensions? When click rate conflicts with accuracy, which takes priority? The deeper problem — how do you measure 「content accuracy」? You need another AI to judge, and then you have to worry about whether that judging system itself is aligned. The problem recurses layer by layer. Improvement is real, but a complete solution remains distant."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "composite-insufficient",
+          "text": {
+            "zh": "不能根本解决——因为每一个子指标本身也可能被博弈",
+            "en": "It can't fundamentally solve it — because each sub-metric can itself be gamed"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "精确。你刚才描述的正是古德哈特定律的递归版本。你用满意度评分来制衡点击率？那系统可能会学会操纵用户给出高评分，比如在文章最后加一句「觉得有帮助请给五星」。你用阅读时长？系统可能会故意把内容写得冗长。每一个新增的指标都只是增加了一层新的博弈空间。这就是为什么我说对齐问题不能靠修补目标函数来解决——它需要一种根本不同的思路。",
+              "en": "Precisely. What you just described is the recursive version of Goodhart's Law. Use satisfaction scores to balance click rate? The system might learn to manipulate users into giving high ratings — like adding 「please give five stars if helpful」 at the end. Use reading time? The system might deliberately make content verbose. Each new metric just adds another layer of gaming space. This is why I say the alignment problem cannot be solved by patching the objective function — it requires a fundamentally different approach."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "composite-uncertain",
+          "text": {
+            "zh": "不确定——取决于我们能不能把「正确的事」完全分解成可度量的维度",
+            "en": "Uncertain — it depends on whether we can fully decompose 「the right thing」 into measurable dimensions"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这个回答比看起来的更深刻。你实际上在问：人类价值观是否可以被完全形式化？这是哲学上的开放问题。我的判断是——不能。人类关心的很多东西是情境性的、模糊的、甚至互相矛盾的。你无法把「公平」「尊严」「自由」变成精确的数学表达式。所以我认为，试图写出完美的目标函数是一条死路。我们需要另一条路。这门课后面会讲到。",
+              "en": "That answer is deeper than it appears. You're essentially asking: can human values be fully formalized? This is an open philosophical question. My judgment is — no. Many things humans care about are contextual, vague, even mutually contradictory. You cannot turn 「fairness」, 「dignity」, and 「freedom」 into precise mathematical expressions. So I believe trying to write a perfect objective function is a dead end. We need another path. We'll get to that later in this course."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（在讲台前缓步走了几步）让我把今天的核心论点说清楚。对齐问题的本质是：我们无法把人类真正想要的东西完整地写成一个目标函数。我们能写下来的永远只是一个近似。而当你让一个足够聪明的系统去优化这个近似时，近似和真实意图之间的每一条裂缝都会被撕开。",
+        "en": "(Takes a few slow steps in front of the lectern) Let me state today's core argument clearly. The essence of the alignment problem is this: we cannot write a complete objective function that captures what humans truly want. What we can write down is always only an approximation. And when you set a sufficiently intelligent system to optimize that approximation, every crack between the approximation and the true intent gets torn wide open."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "对齐问题的核心：人类真正想要的东西无法被完整地写成目标函数。我们只能写出近似，而强大的优化系统会利用近似与真实意图之间的每一条裂缝。迈达斯国王的故事是完美的类比——你得到了你要求的，但那并非你想要的。古德哈特定律：当一个度量指标变成目标时，它就不再是好的度量指标。",
+        "en": "The core of the alignment problem: what humans truly want cannot be fully written as an objective function. We can only write approximations, and powerful optimization systems will exploit every crack between the approximation and the true intent. The King Midas story is the perfect analogy — you get what you asked for, but not what you wanted. Goodhart's Law: when a measure becomes a target, it ceases to be a good measure."
+      },
+      "category": "core-concept",
+      "leadsTo": "why-hard"
+    },
+    {
+      "id": "why-hard",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们可能会问：那人类之间是怎么做到的？我让朋友帮我买一杯咖啡，他不会买回来一杯滚烫的液体泼到我身上。为什么？因为他理解我的意图，他有常识，他和我共享大量未曾说出的背景假设。但AI系统没有这些。它只有你写给它的那个目标函数。",
+        "en": "You might ask: how do humans manage then? I ask a friend to get me a coffee, and he doesn't pour scalding liquid on me. Why? Because he understands my intent, he has common sense, he shares vast amounts of unspoken background assumptions with me. But AI systems don't have any of that. They only have the objective function you wrote for them."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "既然固定的目标函数有这么多问题，你觉得更好的方向可能是什么？",
+        "en": "Given that fixed objective functions have so many problems, what do you think might be a better approach?"
+      },
+      "choices": [
+        {
+          "id": "learn-objectives",
+          "text": {
+            "zh": "让AI从人类行为中学习目标，而不是由人类直接指定",
+            "en": "Let AI learn objectives from human behavior instead of having humans specify them directly"
+          },
+          "tag": "forward-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你提前看到了这门课后面要讲的内容。没错——如果我们不能写出完美的目标，也许我们应该让AI通过观察人类来推断目标。这是我过去十年投入最多精力的方向。但它也有自己的难题：人类的行为本身就充满矛盾和非理性。我们会在后面几节课深入讨论。",
+              "en": "You've glimpsed what's coming later in this course. Exactly — if we can't write a perfect objective, perhaps we should let AI infer the objective by observing humans. This is the direction I've invested the most effort in over the past decade. But it has its own difficulties: human behavior itself is full of contradictions and irrationality. We'll explore this in depth in later lessons."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "keep-human-control",
+          "text": {
+            "zh": "保持人类在回路中——AI每次行动前都要征求人类确认",
+            "en": "Keep humans in the loop — require human confirmation before every AI action"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这在短期内是有效的，也是目前很多系统的做法。但想想规模：如果一个AI系统每秒要做一千个决策，你让谁来确认？而且人类自己也会犯错、会疲劳、会偷懒。更深层的问题是——当AI系统变得足够复杂时，人类可能根本无法理解它在做什么，更谈不上有效监督了。人类在回路中是必要的安全措施，但它不是终极方案。",
+              "en": "In the short term this is effective, and it's what many systems currently do. But consider scale: if an AI system makes a thousand decisions per second, who confirms them? And humans themselves make mistakes, get fatigued, cut corners. The deeper issue — when AI systems become complex enough, humans may not even understand what they're doing, let alone effectively supervise. Humans in the loop is a necessary safety measure, but it's not the ultimate solution."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "make-ai-uncertain",
+          "text": {
+            "zh": "让AI对自己的目标保持不确定——它不应该「认为」自己知道人类想要什么",
+            "en": "Make AI uncertain about its own objective — it should not 「believe」 it knows what humans want"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（目光一亮）这正是我认为最有前途的方向。一个对自己目标保持不确定的AI系统会怎样行动？它会谨慎。它会主动询问。它会让人类纠正它。最重要的是——它不会抗拒被关掉，因为它知道自己可能在做错误的事。这个想法是我提出的「可证明有益的AI」框架的基石。我们后面会详细展开。",
+              "en": "(Eyes light up) This is precisely the direction I believe is most promising. How would an AI system that maintains uncertainty about its own objective behave? It would be cautious. It would proactively ask questions. It would allow humans to correct it. Most importantly — it would not resist being turned off, because it knows it might be doing the wrong thing. This idea is the cornerstone of my 「provably beneficial AI」 framework. We'll unfold this in detail later."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（双手撑在讲台上，微微前倾）今天只是起点。我想让你们带走的核心信息是这个：一个比你聪明的系统如果追求错误的目标，那它越聪明，你就越危险。AI对齐不是一个可以推迟到以后再想的问题。它是现在就需要认真对待的问题。下节课，我们来看一种已经在实践中大规模使用的尝试——从人类反馈中学习。",
+        "en": "(Rests both hands on the lectern, leaning slightly forward) Today is only the beginning. The core message I want you to take away is this: a system smarter than you pursuing the wrong objective — the smarter it is, the more dangerous you are. AI alignment is not a problem that can be postponed. It demands serious attention right now. Next time, we'll look at an approach already deployed at massive scale — learning from human feedback."
+      },
+      "leadsTo": "closing-note"
+    },
+    {
+      "id": "closing-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "规范博弈：AI找到满足字面目标但违背设计者意图的策略。对齐问题的根源在三个层面：(1) 人类语言天然模糊 (2) 优化器会放大目标定义中的缝隙 (3) 现实复杂度远超形式化描述。罗素教授的方向：也许AI不应该拥有固定目标，而应该对自己的目标保持不确定。",
+        "en": "Specification gaming: AI finds strategies satisfying the literal objective while violating the designer's intent. The alignment problem's roots span three levels: (1) human language is inherently vague (2) optimizers amplify cracks in objective definitions (3) real-world complexity far exceeds formal descriptions. Prof. Russell's direction: perhaps AI shouldn't have fixed objectives but should maintain uncertainty about its own goals."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "罗素教授直起身来，把西装外套的扣子扣好。他没有多说什么——只是点了点头，拿起讲台边的水杯，转身离开了教室。金色的光线依然从窗户涌入，但你感觉它照亮的不再是同一个世界。你低头看着笔记本上写的「迈达斯问题」几个字，第一次意识到「让AI做正确的事」这句话远比它听起来的要沉重。",
+        "en": "Prof. Russell straightens up and buttons his blazer. He says nothing more — just gives a nod, picks up his water glass from the lectern, and turns to leave the classroom. Golden light still pours through the windows, but you feel it's illuminating a different world now. You look down at the words 「the Midas problem」 in your notebook and realize for the first time that 「making AI do the right thing」 is far heavier than it sounds."
+      }
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "id": "lesson-03",
+  "course": "ai-winter",
+  "title": {
+    "zh": "感知机争议",
+    "en": "The Perceptron Controversy"
+  },
+  "knowledgePoint": {
+    "zh": "明斯基与帕珀特的《感知机》一书及其对神经网络研究的影响",
+    "en": "Minsky and Papert's Perceptrons book and its impact on neural network research"
+  },
+  "teacher": "prof-minsky",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你翻开笔记本，看到一页画满了圆圈和连线的简图——那是你试着理解感知机时画的。思绪飘回教室，明斯基教授今天的神情格外复杂，像是要讲一段他自己也难以释怀的往事……",
+    "en": "You flip open your notebook to a page covered with circles and connecting lines — your attempt at understanding perceptrons. Your mind drifts back to the classroom, where Professor Minsky's expression today is unusually complex, as if he's about to recount a story he himself hasn't come to terms with..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中浮现一个悖论：一个在数学上正确的结论，却可能在历史上造成错误的影响。真理和后果之间，原来可以存在这样的裂缝。",
+    "en": "You close your notebook, a paradox forming in your mind: a mathematically correct conclusion can still have historically wrong consequences. Between truth and its aftermath, there can be such a rift."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天走进教室，你感觉到空气中有一种不同寻常的紧张感。明斯基教授站在讲台前，手里拿着一本封面已经磨损的书。他看着那本书的目光，像是在看一个老朋友，也像是在看一个旧伤疤。",
+        "en": "Walking into the classroom today, you sense an unusual tension in the air. Professor Minsky stands at the podium, holding a book with a worn cover. The way he looks at it — as if looking at an old friend, or an old scar."
+      },
+      "leadsTo": "intro-dialog"
+    },
+    {
+      "id": "intro-dialog",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（举起那本书）\n\n这是我和西摩尔·帕珀特1969年写的书——《{感知机}》。今天的课，对我来说比其他任何一节都难讲。因为这一次，造成灾难的人就站在你们面前。",
+        "en": "(Holds up the book)\n\nThis is the book Seymour Papert and I wrote in 1969 — {Perceptrons}. Today's lesson is harder for me to give than any other. Because this time, the person who caused the disaster is standing right in front of you."
+      },
+      "terms": {
+        "感知机": "term-perceptron",
+        "Perceptrons": "term-perceptron"
+      },
+      "leadsTo": "rosenblatt-intro"
+    },
+    {
+      "id": "rosenblatt-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先说说背景。1957年，康奈尔大学的弗兰克·罗森布拉特发明了感知机——一种模仿生物神经元的计算模型。它能学习！你给它看很多张图片，告诉它哪些是猫、哪些不是，它能慢慢学会区分。纽约时报的头条写的是：「海军的新电脑能够行走、说话、看见、写字、自我复制，并意识到自己的存在。」",
+        "en": "Let me give you some background. In 1957, Frank Rosenblatt at Cornell invented the perceptron — a computational model that mimicked biological neurons. It could learn! You showed it many images, told it which ones were cats and which weren't, and it gradually learned to distinguish them. The New York Times headline read: 「New Navy Device Learns by Doing; Psychologist Shows Embryo of Computer Designed to Read and Grow Wiser」."
+      },
+      "leadsTo": "rosenblatt-hype"
+    },
+    {
+      "id": "rosenblatt-hype",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "罗森布拉特自己也不含糊。他声称感知机最终将能够「识别人、叫出人的名字、即时翻译语言」。又是那种熟悉的乐观。但我必须说——感知机的核心思路很迷人。让机器通过调整连接权重来学习，就像大脑一样。这个想法在哲学上非常优美。",
+        "en": "Rosenblatt himself was no less bold. He claimed the perceptron would eventually 「recognize people, call their names, instantly translate languages」. That familiar optimism again. But I must say — the core idea of the perceptron was fascinating. Letting machines learn by adjusting connection weights, just like the brain. Philosophically, it was an elegant idea."
+      },
+      "leadsTo": "minsky-skepticism"
+    },
+    {
+      "id": "minsky-skepticism",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但我是个数学家。我的第一反应永远是：证明给我看。帕珀特和我花了好几年，仔细分析了单层感知机的数学性质。我们发现了一个根本性的限制——单层感知机无法解决异或（XOR）问题。听起来像个小事，对吧？",
+        "en": "But I'm a mathematician. My first instinct is always: prove it. Papert and I spent years carefully analyzing the mathematical properties of single-layer perceptrons. We found a fundamental limitation — single-layer perceptrons cannot solve the XOR problem. Sounds like a small thing, right?"
+      },
+      "leadsTo": "xor-explanation"
+    },
+    {
+      "id": "xor-explanation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "XOR就是「异或」——两个输入相同时输出0，不同时输出1。这个问题简单到用一张纸就能画出来。但我们用数学证明了：单层{感知机}画不出一条直线把这两类点分开。它们在几何上不可分。如果连这么简单的问题都做不到，那些关于识别人脸、翻译语言的承诺，又从何谈起？",
+        "en": "XOR is 「exclusive or」 — output 0 when both inputs are the same, output 1 when they differ. A problem so simple you can sketch it on a piece of paper. But we proved mathematically: a single-layer {perceptron} cannot draw a straight line to separate these two classes of points. They're geometrically inseparable. If it can't handle something this simple, what becomes of all those promises about recognizing faces and translating languages?"
+      },
+      "terms": {
+        "感知机": "term-perceptron",
+        "perceptron": "term-perceptron"
+      },
+      "leadsTo": "book-impact"
+    },
+    {
+      "id": "book-impact",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "书出版后的效果远远超出了我的预期。我们的本意是做一次严谨的学术分析——指出当前的感知机有什么做不到。但学术界和资助机构的解读是：「明斯基证明了神经网络是死路一条。」经费开始枯竭。研究生被导师劝退。做{联结主义}研究的人突然发现自己成了学术界的弃儿。",
+        "en": "The effect of the book's publication far exceeded what I expected. Our intention was to perform a rigorous academic analysis — to show what current perceptrons couldn't do. But academia and funding agencies interpreted it as: 「Minsky proved neural networks are a dead end」. Funding began to dry up. Graduate students were steered away by advisors. People doing {connectionism} research suddenly found themselves outcasts in academia."
+      },
+      "terms": {
+        "联结主义": "term-connectionism",
+        "connectionism": "term-connectionism"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "明斯基和帕珀特在数学上证明了感知机的局限性。但这个证明的影响远超学术范畴——它几乎终结了整个神经网络研究方向。证明某样东西「不可能」，能推动科学进步吗？",
+        "en": "Minsky and Papert mathematically proved the limitations of perceptrons. But the impact of this proof went far beyond academia — it nearly ended neural network research entirely. Can proving something 「impossible」 actually advance science?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "能——知道什么行不通，和知道什么行得通一样重要",
+            "en": "Yes — knowing what doesn't work is as important as knowing what does"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这也是我当时的想法。科学就应该这样运作：你提出假说，我用证据来检验它。如果假说站不住脚，我们就抛弃它，去寻找更好的理论。爱迪生说他没有失败过一千次，只是发现了一千种行不通的方法。但问题在于，人们并没有去寻找更好的方法。他们只是彻底放弃了。",
+              "en": "That was my thinking at the time too. Science should work this way — you propose a hypothesis, I test it with evidence. If the hypothesis doesn't hold up, we discard it and search for a better theory. Edison said he didn't fail a thousand times, he found a thousand ways that didn't work. But here's the problem — people didn't go looking for better methods. They just gave up entirely."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "危险——不可能性证明容易被过度解读，扼杀探索精神",
+            "en": "It's dangerous — impossibility proofs are easily over-interpreted, killing the spirit of exploration"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说到了关键。我们证明的是「单层感知机不能做XOR」。但整个领域听到的是「神经网络永远不行」。从一个具体的限制跳到一个全面的否定——这中间的逻辑断裂是巨大的。也许我应该在书的封面上用大字写上：「我们只是在谈论单层网络！」但我没有。",
+              "en": "You've hit the key point. What we proved was 「single-layer perceptrons can't do XOR」. What the entire field heard was 「neural networks will never work」. The logical leap from a specific limitation to a blanket rejection is enormous. Maybe I should have written in large letters on the book's cover: 「We are only talking about single-layer networks!」 But I didn't."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "取决于人们如何回应——好的科学社区会把它当作起点，而非终点",
+            "en": "It depends on how people respond — a healthy scientific community treats it as a starting point, not an endpoint"
+          },
+          "tag": "systemic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "那么按照这个标准，1970年代的AI社区并不是一个健康的科学社区。面对我们的证明，正确的反应应该是：「好，单层不行，那多层呢？」实际上，确实有少数人在问这个问题。但他们拿不到经费，发不了论文，因为主流已经宣判了死刑。一个领域的「免疫系统」过度反应，有时比疾病本身更致命。",
+              "en": "Then by that standard, the AI community of the 1970s was not a healthy scientific community. The correct response to our proof should have been: 「Okay, single-layer doesn't work, but what about multi-layer?」 In fact, a handful of people were asking that question. But they couldn't get funding, couldn't publish papers, because the mainstream had already issued a death sentence. When a field's 「immune system」 overreacts, sometimes it's more lethal than the disease itself."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这里面有一件让我至今耿耿于怀的事。我和罗森布拉特其实是高中同学，我们都是布朗克斯科学高中1946届的。可以说，这场争论发生在两个老同学之间。而弗兰克在1971年去世了，那是一次帆船事故。他没有活着看到自己被平反的那一天。",
+        "en": "There's something that still haunts me. Rosenblatt and I were actually high school classmates — we were both in the Bronx High School of Science class of 1946. In a sense, this whole debate was between two old schoolmates. And Frank died in 1971 — a boating accident. He never lived to see the day his ideas might be vindicated."
+      },
+      "leadsTo": "multilayer-question"
+    },
+    {
+      "id": "multilayer-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "现在，你可能想问：如果加上更多层呢？多层网络能解决XOR吗？理论上……是的。多层网络的表达能力要强得多。但问题在于——你怎么训练它？单层感知机有一个漂亮的学习算法。多层网络？我们不知道怎么有效地调整内层的权重。这是一个真实的、未解决的技术难题。",
+        "en": "Now, you might ask: what if you add more layers? Can multi-layer networks solve XOR? In theory... yes. Multi-layer networks are far more expressive. But the question is — how do you train them? Single-layer perceptrons have an elegant learning algorithm. Multi-layer networks? We don't know how to effectively adjust the weights of the inner layers. That's a real, unsolved technical problem."
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "我们的分析在数学上是正确的。但也许我们低估了一些东西？你觉得呢——多层神经网络有没有可能突破我们指出的那些限制？",
+        "en": "Our analysis was mathematically correct. But perhaps we underestimated something? What do you think — could multi-layer neural networks overcome the limitations we identified?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "也许可以——如果找到训练多层网络的方法，限制就能被突破",
+            "en": "Perhaps — if a way to train multi-layer networks is found, the limitations could be overcome"
+          },
+          "tag": "optimist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（沉默了一会儿）\n\n这是一个大胆的想法。确实，如果有人能解决多层训练的问题……可能性是存在的。有些人在小规模实验中做到了，但都没有可靠的通用方法。也许某一天会有人找到。不过，我必须说，我目前持怀疑态度。多层网络的搜索空间太大了。但我也从「承诺与现实」那一课学到了，不要轻易断言什么不可能。",
+              "en": "(Silent for a moment)\n\nThat's a bold thought. Indeed, if someone could solve the multi-layer training problem... the possibility exists. Some people have done it in small-scale experiments, but there's no reliable general method. Perhaps someday someone will find one. But — I must say — I'm skeptical at this point. The search space for multi-layer networks is enormous. Then again, I also learned from our 「Promises and Reality」 lesson not to casually declare anything impossible."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "困难太大了——也许智能需要完全不同的方法",
+            "en": "The difficulties are too great — perhaps intelligence requires a fundamentally different approach"
+          },
+          "tag": "skeptic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这恰好是我目前在研究的方向。我正在写一本书——叫《心智社会》。我的想法是：也许智能不依赖于一种统一的学习机制，而是许多不同的、相对简单的「代理」在互相合作和竞争。就像一个社会。但这还只是一个理论框架，离实现还很远。",
+              "en": "That happens to be the direction I'm currently researching. I'm writing a book — called The Society of Mind. My idea is that perhaps intelligence doesn't rely on a single unified learning mechanism, but rather many different, relatively simple 「agents」 cooperating and competing with each other. Like a society. But this is still just a theoretical framework, far from implementation."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "也许两条路都有价值——符号推理和神经网络各有所长",
+            "en": "Perhaps both paths have value — symbolic reasoning and neural networks each have their strengths"
+          },
+          "tag": "integrator",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（眼睛亮了一下）\n\n有意思。你是说也许AI的未来不在任何单一的方法里，而在于把不同方法结合起来？这个想法比大多数我的同行都走得更远。坦白说，我们这一代人最大的毛病就是门派之见——做符号AI的瞧不起做神经网络的，反过来也一样。也许下一代人能做得比我们好。",
+              "en": "(Eyes brighten for a moment)\n\nInteresting. You're suggesting that perhaps AI's future lies not in any single method, but in combining different approaches? That idea goes further than most of my colleagues have ventured. Frankly, the biggest flaw of our generation was tribalism — symbolic AI people looked down on neural network people, and vice versa. Maybe the next generation can do better than we did."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我来总结一下我对自己那本书的看法。数学分析是对的，我不会收回任何一个定理。但我犯了一个更大的错误：我让学术界相信整个神经网络的方向都是一条死胡同。一个具体问题的局限性，被放大成了对整个范式的否定。如果将来有一天有人证明我错了，我会感到遗憾，但也会感到某种释然。",
+        "en": "Let me summarize my view of my own book. The mathematical analysis was correct — I won't retract a single theorem. But I made a larger error: I let academia believe that the entire direction of neural networks was a dead end. The limitations of a specific problem were amplified into a rejection of an entire paradigm. If someday someone proves me wrong — I'll feel regret, but also a kind of relief."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "感知机争议：明斯基和帕珀特在1969年证明了单层感知机无法解决XOR等非线性可分问题。他们的数学分析是正确的，但被过度解读为「神经网络毫无前途」。这导致了神经网络研究经费几乎完全断裂，研究人员纷纷转向其他领域。一个正确的局部结论如何被放大为错误的全局判断——这是科学传播中的经典教训。",
+        "en": "The Perceptron controversy: Minsky and Papert proved in 1969 that single-layer perceptrons cannot solve non-linearly separable problems like XOR. Their math was correct, but was over-interpreted as 「neural networks have no future」. This caused neural network research funding to virtually evaporate, and researchers fled to other fields. How a correct local conclusion was amplified into a wrong global judgment — a classic lesson in scientific communication."
+      },
+      "category": "core-concept",
+      "leadsTo": "personal-reflection"
+    },
+    {
+      "id": "personal-reflection",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你知道最讽刺的是什么吗？我自己在1951年，那时还是普林斯顿的研究生，就建造过一台神经网络学习机。那是世界上最早的硬件神经网络之一。所以，我既是这个方向最早的推动者之一，后来也成了它最有力的掘墓人。历史有时候就是这么残酷。",
+        "en": "You know what's most ironic? In 1951 — when I was a graduate student at Princeton — I built a neural network learning machine myself. It was one of the earliest hardware neural networks in the world. So in a sense, I was both one of the earliest promoters of this direction and its most effective gravedigger. History can be that cruel."
+      },
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "莱特希尔的报告从外部打击了AI，我的书从内部动摇了一个重要分支。双重打击之下，整个AI领域开始萎缩。下节课，我会告诉你们寒冬真正降临时是什么样子——当实验室关门、人才流失、连「人工智能」这个词都变成了禁忌。",
+        "en": "The Lighthill Report struck AI from the outside. My book shook an important branch from within. Under this double blow, the entire AI field began to contract. Next lesson, I'll tell you what it looked like when winter truly fell — when labs closed, talent fled, and even the term 「artificial intelligence」 became taboo."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "明斯基教授把那本封面磨损的《感知机》放回讲台上，像是放下一件沉重的东西。他今天没有回头看你，径直走出了教室。但你觉得，他今天讲的可能是整个课程中最坦诚的一节课——一个科学家，站在你面前，承认自己的成就和错误同样深远。",
+        "en": "Professor Minsky places the worn copy of Perceptrons back on the podium, as if setting down something heavy. He doesn't look back at you today, walking straight out of the classroom. But you sense that what he shared today may be the most honest lesson in the entire course — a scientist standing before you, acknowledging that his achievements and his mistakes run equally deep."
+      }
+    }
+  ]
+}

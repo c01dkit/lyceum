@@ -1,0 +1,53 @@
+{
+  "id": "statistical-learning",
+  "name": {
+    "zh": "统计学习理论",
+    "en": "Statistical Learning Theory"
+  },
+  "description": {
+    "zh": "机器从数据中学到的东西可靠吗？瓦普尼克教授用严密的数学回答了这个问题。从VC维度到支持向量机，从泛化理论到核方法——统计学习理论为机器学习奠定了坚实的数学基石。",
+    "en": "Can we trust what machines learn from data? Prof. Vapnik answered this with rigorous mathematics. From VC dimension to SVMs, from generalization theory to kernel methods — statistical learning theory laid the solid mathematical foundation for machine learning."
+  },
+  "grade": "grade-3",
+  "teacher": "prof-vapnik",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06",
+    "lesson-07"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-generalization",
+      "description": {
+        "zh": "理解泛化问题——为什么训练集上表现好不代表测试集上也好",
+        "en": "Understand generalization — why good training performance doesn't guarantee good test performance"
+      }
+    },
+    {
+      "id": "obj-vc-dimension",
+      "description": {
+        "zh": "理解VC维度的含义及其对模型复杂度的度量",
+        "en": "Understand VC dimension and its measurement of model complexity"
+      }
+    },
+    {
+      "id": "obj-svm",
+      "description": {
+        "zh": "掌握支持向量机的核心原理：最大间隔与核技巧",
+        "en": "Master the core principles of SVMs: maximum margin and the kernel trick"
+      }
+    },
+    {
+      "id": "obj-srm",
+      "description": {
+        "zh": "理解结构风险最小化原则及其对模型选择的指导意义",
+        "en": "Understand structural risk minimization and its guidance for model selection"
+      }
+    }
+  ]
+}

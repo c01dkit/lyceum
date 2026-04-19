@@ -1,0 +1,411 @@
+{
+  "id": "lesson-01",
+  "course": "deep-reinforcement-learning",
+  "title": {
+    "zh": "从经验中学习",
+    "en": "Learning from Experience"
+  },
+  "knowledgePoint": {
+    "zh": "强化学习范式——智能体、环境与奖励",
+    "en": "The reinforcement learning paradigm — agent, environment, and reward"
+  },
+  "teacher": "prof-silver",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间特别的教室。巨大的屏幕上闪烁着游戏画面，蓝色的灯光映在每个人的脸上。西尔弗教授站在讲台前，冷静而专注，开始讲述一个关于「如何从经验中学习」的故事——没有老师告诉你答案，你只能自己去尝试、去犯错、去发现。",
+    "en": "You close your eyes, and your thoughts drift back to that special classroom. Game visuals flicker on the giant screen, blue light reflecting on every face. Prof. Silver stands at the podium, composed and focused, beginning a story about 「learning from experience」 — no teacher tells you the answer; you can only try, make mistakes, and discover on your own."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那个循环仍在脑海中转动——观察状态、采取行动、获得奖励、再观察新的状态。你忽然意识到，生活中的每一次决策何尝不是如此。",
+    "en": "You return to the present. That loop still turns in your mind — observe state, take action, receive reward, observe new state. You suddenly realize that every decision in life works much the same way."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这间教室的灯光偏冷，带着一种深蓝色的科技感。正前方的巨型屏幕上，一段Atari游戏的录像正在循环播放——一个小方块灵活地弹着球，击碎一排排彩色砖块。两侧的副屏上滚动着实时数据曲线。门打开了，一位面容清瘦的教授走了进来，步伐不紧不慢。他看了一眼屏幕上的游戏画面，嘴角微微上扬。",
+        "en": "The classroom lighting runs cool, casting a deep blue, high-tech glow. On the giant screen up front, a looping Atari game recording plays — a small paddle deftly bouncing a ball, smashing rows of colored bricks. Side screens scroll real-time data curves. The door opens and a lean-faced professor walks in at an unhurried pace. He glances at the game footage on screen, the corner of his mouth lifting slightly."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "大家好，我是大卫·西尔弗，来自DeepMind。在我们开始之前，我想问你们一个问题：你们是怎么学会骑自行车的？",
+        "en": "Hello everyone, I'm David Silver, from DeepMind. Before we begin, I want to ask you a question: how did you learn to ride a bicycle?"
+      },
+      "leadsTo": "bicycle-analogy"
+    },
+    {
+      "id": "bicycle-analogy",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "没有人给过你一本「骑自行车操作手册」，上面写着：「左转时向左倾斜3.7度，同时以每分钟72转的速度踩踏板。」你是怎么学会的？你爬上去，摔倒了，爬起来，再试一次。每一次摔倒都在告诉你一些东西——身体的倾斜角度不对、速度太慢、转弯太急。你的大脑在不知不觉中学会了调整。",
+        "en": "Nobody ever gave you a 「bicycle operation manual」 that says: 「When turning left, lean 3.7 degrees to the left while pedaling at 72 revolutions per minute」. So how did you learn? You climbed on, fell down, got back up, and tried again. Each fall told you something — your lean angle was wrong, your speed too slow, the turn too sharp. Your brain learned to adjust without you even noticing."
+      },
+      "leadsTo": "rl-intro"
+    },
+    {
+      "id": "rl-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这种学习方式有一个正式的名字，叫做{强化学习}。它的核心思想非常简洁：一个{智能体}不需要被告知答案，它只需要知道什么是好的结果，然后自己去探索。",
+        "en": "This way of learning has a formal name — {reinforcement learning}. Its core idea is beautifully concise: an {agent} doesn't need to be told the answer — it just needs to know what a good outcome looks like, and explore on its own."
+      },
+      "terms": {
+        "强化学习": "term-reinforcement-learning",
+        "智能体": "term-agent",
+        "reinforcement learning": "term-reinforcement-learning",
+        "agent": "term-agent"
+      },
+      "leadsTo": "framework-setup"
+    },
+    {
+      "id": "framework-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把这个框架画清楚。（在屏幕上展示一张图）强化学习有三个核心要素。第一个：{智能体}——做决策的主体。在游戏里，它是玩家；在围棋里，它是棋手；骑自行车的时候，它就是你的大脑。",
+        "en": "Let me draw this framework clearly. (Displays a diagram on screen) Reinforcement learning has three core elements. First: the {agent} — the decision-maker. In a game, it's the player; in Go, it's the player; when riding a bicycle, it's your brain."
+      },
+      "terms": {
+        "智能体": "term-agent",
+        "agent": "term-agent"
+      },
+      "leadsTo": "environment-explain"
+    },
+    {
+      "id": "environment-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二个要素：环境。环境就是智能体所处的世界——棋盘、游戏屏幕、或者你骑车时的马路。智能体观察环境的状态，做出一个动作，环境会因此发生变化，进入一个新的状态。",
+        "en": "The second element: the environment. The environment is the world the agent inhabits — the game board, the game screen, or the road when you're cycling. The agent observes the environment's state, takes an action, and the environment changes accordingly, entering a new state."
+      },
+      "leadsTo": "reward-explain"
+    },
+    {
+      "id": "reward-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第三个要素，也是最关键的：{奖励信号}。每当智能体执行一个动作，环境会返回一个数值——奖励。正的奖励代表好的结果，负的奖励代表坏的结果。在Atari打砖块里，击碎一块砖就加一分；球掉出去就扣分。在骑自行车的时候，保持平衡就是正奖励，摔倒就是负奖励。",
+        "en": "The third element, and the most crucial: the {reward signal}. Every time the agent takes an action, the environment returns a number — the reward. A positive reward means a good outcome; a negative reward means a bad one. In Atari Breakout, smashing a brick adds a point; losing the ball costs points. When riding a bicycle, staying balanced is a positive reward; falling is a negative one."
+      },
+      "terms": {
+        "奖励信号": "term-reward-signal",
+        "reward signal": "term-reward-signal"
+      },
+      "leadsTo": "loop-summary"
+    },
+    {
+      "id": "loop-summary",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指着屏幕上的循环图）这就是强化学习的基本循环：智能体观察状态，选择动作，获得奖励，观察新的状态——然后重复。整个学习过程就是一遍又一遍地重复这个循环，逐渐弄清楚：在什么状态下，做什么动作，能获得最多的奖励。",
+        "en": "(Pointing to the loop diagram on screen) This is the basic cycle of reinforcement learning: the agent observes a state, selects an action, receives a reward, observes a new state — then repeats. The entire learning process is this cycle running over and over, gradually figuring out: in what state, which action yields the most reward."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "强化学习和传统的监督学习有一个很大的不同。你觉得最关键的区别是什么？",
+        "en": "Reinforcement learning differs significantly from traditional supervised learning. What do you think is the most critical difference?"
+      },
+      "choices": [
+        {
+          "id": "no-labels",
+          "text": {
+            "zh": "监督学习有标注好的正确答案，强化学习没有——只有奖励信号",
+            "en": "Supervised learning has labeled correct answers; reinforcement learning doesn't — only reward signals"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "抓住了要点。在监督学习中，你有一个老师，明确告诉你每道题的正确答案。但在强化学习中，没有这样的老师。智能体只知道结果好还是坏——它必须自己去发现哪些动作导致了好的结果。这就像学下棋，没有人告诉你每一步该怎么走，你只知道最后赢了还是输了。",
+              "en": "You've hit the key point. In supervised learning, you have a teacher who explicitly tells you the correct answer for each problem. But in reinforcement learning, there's no such teacher. The agent only knows whether the outcome was good or bad — it must discover on its own which actions led to good outcomes. It's like learning chess: nobody tells you what move to make each turn; you only know whether you won or lost at the end."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "delayed-reward",
+          "text": {
+            "zh": "奖励往往是延迟的——你现在做的动作，可能很久以后才知道好不好",
+            "en": "Rewards are often delayed — an action you take now might not show its value until much later"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常深刻的观察。这正是强化学习最难的地方之一。在围棋中，一步棋的好坏可能要到几十手之后才能显现。你现在牺牲一个子，可能是为了五十手之后的一次致命攻击。这种「延迟奖励」让强化学习比监督学习困难得多——因为你必须学会把长远的后果和当前的动作联系起来。",
+              "en": "A very profound observation. This is one of the hardest aspects of reinforcement learning. In Go, a move's quality might not become apparent until dozens of moves later. Sacrificing a stone now might set up a lethal attack fifty moves ahead. This 「delayed reward」 makes reinforcement learning much harder than supervised learning — because you must learn to connect long-term consequences with current actions."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "agent-influences",
+          "text": {
+            "zh": "智能体的动作会影响它接下来看到的数据——数据不是固定的",
+            "en": "The agent's actions affect the data it sees next — the data isn't fixed"
+          },
+          "tag": "systems-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个角度很多人忽略了，但它非常关键。在监督学习里，训练数据是预先收集好的，不会因为模型的预测而改变。但在强化学习里，智能体的每一个动作都会改变环境，从而改变它接下来看到的数据。这是一个动态的过程——智能体既是学习者，也是数据的生成者。这让问题变得非常有趣，也非常复杂。",
+              "en": "This angle is overlooked by many, but it's absolutely crucial. In supervised learning, training data is collected in advance and doesn't change based on the model's predictions. But in reinforcement learning, every action the agent takes changes the environment, thereby changing the data it sees next. It's a dynamic process — the agent is both learner and data generator. This makes the problem extremely interesting and extremely complex."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这三点区别，包括没有标注数据、延迟奖励和动态数据，让强化学习成了机器学习中最有挑战性的分支之一。但也正因为如此，它是最接近人类真实学习方式的一种范式。",
+        "en": "These three differences — no labeled data, delayed rewards, dynamic data — make reinforcement learning one of the most challenging branches of machine learning. But precisely because of that, it's the paradigm closest to how humans actually learn."
+      },
+      "leadsTo": "explore-exploit-intro"
+    },
+    {
+      "id": "explore-exploit-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "现在我要说一个让所有强化学习研究者都头疼的问题。假设你来到一座新城市，想找一家好餐厅吃晚饭。你已经发现了一家还不错的意大利餐厅，每次去都能打7分。现在你面临一个选择——",
+        "en": "Now I want to talk about a problem that gives every reinforcement learning researcher a headache. Suppose you arrive in a new city and want to find a good restaurant for dinner. You've found a decent Italian place that scores a 7 out of 10 every time. Now you face a choice —"
+      },
+      "leadsTo": "explore-exploit-dilemma"
+    },
+    {
+      "id": "explore-exploit-dilemma",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你是继续去那家意大利餐厅，确保能吃到7分的晚餐？还是冒险尝试一家没去过的泰国餐厅，可能是9分，也可能是3分？这就是强化学习中的「探索与利用」困境。利用你已有的知识，还是探索未知的可能性——智能体在每一步都要做出这个权衡。",
+        "en": "Do you keep going to the Italian place, guaranteed a 7-point dinner? Or do you risk trying an unfamiliar Thai restaurant that might be a 9 but could also be a 3? This is the 「exploration vs. exploitation」 dilemma in reinforcement learning. Exploit what you already know, or explore unknown possibilities — the agent must make this trade-off at every step."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "如果你是那个智能体，在一个完全陌生的环境里，你会更倾向于探索还是利用？",
+        "en": "If you were the agent in a completely unfamiliar environment, would you lean more toward exploration or exploitation?"
+      },
+      "choices": [
+        {
+          "id": "explore-first",
+          "text": {
+            "zh": "先大量探索——在不了解环境的时候，信息比眼前的奖励更有价值",
+            "en": "Explore extensively first — when you don't know the environment, information is more valuable than immediate reward"
+          },
+          "tag": "strategic",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "很有策略眼光。在强化学习的早期阶段，探索确实更加重要。如果你一开始就固定在一个还不错的策略上，你可能永远发现不了更好的方案。很多成功的强化学习算法都采用这个策略：一开始几乎随机行动，然后逐渐减少探索的比例，越来越多地利用已经学到的知识。",
+              "en": "Very strategic thinking. In the early stages of reinforcement learning, exploration is indeed more important. If you lock in on a decent strategy from the start, you might never discover a better one. Many successful RL algorithms follow this approach: act almost randomly at first, then gradually reduce the exploration rate, increasingly exploiting what's been learned."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "exploit-safe",
+          "text": {
+            "zh": "尽量利用已知的好策略——冒险的代价可能很高",
+            "en": "Exploit known good strategies as much as possible — the cost of risk-taking might be too high"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "在某些场景下你是对的。如果失败的代价非常高，比如自动驾驶、医疗决策——你确实不能随意探索。但如果你从不探索，你就永远不知道有没有更好的选择。关键在于找到平衡：在能承受风险的时候多探索，在风险高的时候多利用。这是一个至今没有完美解答的问题。",
+              "en": "In some scenarios you're right. If the cost of failure is very high — like autonomous driving or medical decisions — you really can't explore carelessly. But if you never explore, you'll never know if there's a better option. The key is finding a balance: explore more when the risk is bearable, exploit more when the stakes are high. This remains a problem without a perfect answer."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "balance-both",
+          "text": {
+            "zh": "应该根据当前的不确定性动态调整——不确定的地方多探索，已经了解的地方就利用",
+            "en": "Dynamically adjust based on current uncertainty — explore where uncertain, exploit where well-understood"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是最先进的方法所追求的平衡。有一类叫做「乐观面对不确定性」的方法——智能体会优先去探索那些它最不确定的区域，因为那里最可能隐藏着意外的高奖励。你对不确定性的量化越准确，你的探索就越高效。这是强化学习理论中最优雅的思想之一。",
+              "en": "That's precisely the balance the most advanced methods strive for. There's a class of methods called 「optimism in the face of uncertainty」 — the agent prioritizes exploring the areas it's most uncertain about, because those are most likely to hide surprisingly high rewards. The more accurately you quantify uncertainty, the more efficient your exploration. It's one of the most elegant ideas in RL theory."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "探索与利用的平衡贯穿了强化学习的每一个角落。从最简单的多臂老虎机问题到最复杂的围棋，智能体都在不断地做出这个选择：是坚持我知道的，还是尝试我不知道的？",
+        "en": "The exploration-exploitation balance pervades every corner of reinforcement learning. From the simplest multi-armed bandit problem to the most complex game of Go, the agent continuously makes this choice: stick with what I know, or try what I don't?"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "强化学习的基本框架：智能体观察环境状态→选择动作→获得奖励→观察新状态，循环往复。与监督学习的关键区别：没有标注的正确答案、奖励可能延迟、智能体的动作会改变后续数据。核心困境：探索（尝试新动作获取信息）与利用（选择已知最优动作获取奖励）的平衡。",
+        "en": "Basic RL framework: agent observes environment state → selects action → receives reward → observes new state, in a loop. Key differences from supervised learning: no labeled correct answers, rewards may be delayed, agent's actions change subsequent data. Core dilemma: balancing exploration (trying new actions for information) vs. exploitation (choosing known best actions for reward)."
+      },
+      "category": "core-concept",
+      "leadsTo": "game-connection"
+    },
+    {
+      "id": "game-connection",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（转向屏幕上的Atari游戏画面）你们看到屏幕上这个打砖块的游戏了吗？这是Atari公司1976年发布的经典游戏Breakout。对一个人类来说，学会玩这个游戏大概需要几分钟。但对于传统的AI方法来说，这曾经是一个几乎不可能的挑战。",
+        "en": "(Turning to the Atari game footage on screen) See this brick-breaking game on the screen? This is Breakout, a classic game released by Atari in 1976. For a human, learning to play takes just a few minutes. But for traditional AI methods, this was once a nearly impossible challenge."
+      },
+      "leadsTo": "why-games"
+    },
+    {
+      "id": "why-games",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么我们用游戏来研究强化学习？因为游戏是完美的实验环境——规则清晰、状态可观测、奖励明确（分数）、而且可以无限次重复。一个智能体可以在几个小时内玩上百万局游戏，积累人类一辈子都无法获得的经验量。",
+        "en": "Why do we use games to study reinforcement learning? Because games are perfect experimental environments — the rules are clear, states are observable, rewards are explicit (the score), and you can repeat infinitely. An agent can play millions of games in a few hours, accumulating more experience than a human could in an entire lifetime."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "想象你要设计一个强化学习系统来玩打砖块游戏。你觉得最难设计的部分是什么？",
+        "en": "Imagine you're designing a reinforcement learning system to play Breakout. What do you think would be the hardest part to design?"
+      },
+      "choices": [
+        {
+          "id": "state-representation",
+          "text": {
+            "zh": "如何让智能体「看懂」游戏画面——从像素中提取有用的信息",
+            "en": "How to make the agent 「understand」 the game screen — extracting useful information from pixels"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你触碰到了一个关键问题。游戏画面就是一堆像素——几万个数字。智能体如何从中理解「球在哪里」「挡板在哪里」「砖块还剩多少」？这个从原始感知到有用表示的转换，曾经是强化学习的最大瓶颈之一。后面我们讲深度Q网络的时候，你会看到深度学习如何解决了这个问题。",
+              "en": "You've touched on a crucial issue. A game screen is just a pile of pixels — tens of thousands of numbers. How does the agent understand 「where the ball is」, 「where the paddle is」, 「how many bricks remain」? This transformation from raw perception to useful representation was once one of RL's biggest bottlenecks. When we discuss deep Q-networks later, you'll see how deep learning solved this."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "reward-shaping",
+          "text": {
+            "zh": "如何设计合适的奖励——分数增加是好的，但什么行为应该被鼓励？",
+            "en": "How to design appropriate rewards — score increases are good, but what behaviors should be encouraged?"
+          },
+          "tag": "design-thinking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "奖励设计是一门艺术。在打砖块里，用游戏分数作为奖励是最自然的选择。但在更复杂的场景中，奖励设计可以决定成败。如果奖励设计得不好，智能体可能会找到一些「作弊」的方式来获得高分，却完全不是你想要的行为。这在强化学习中是一个经典的问题，我们称之为「奖励黑客」。",
+              "en": "Reward design is an art. In Breakout, using the game score as the reward is the most natural choice. But in more complex scenarios, reward design can make or break the system. If rewards are poorly designed, the agent might find 「cheating」 ways to score high that aren't the behaviors you wanted at all. This is a classic problem in RL, which we call 「reward hacking」."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "long-term-planning",
+          "text": {
+            "zh": "如何让智能体学会长期规划——不只是看眼前的一两步",
+            "en": "How to make the agent learn long-term planning — not just the next one or two steps"
+          },
+          "tag": "strategic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这正是强化学习最迷人的挑战。在打砖块里，一个高手会学会把球打到砖墙上方，让球在顶部自动弹跳消除大量砖块。这个策略需要前瞻好几步——暂时不去追求眼前的得分，而是布局一个更大的回报。如何让智能体学会这种长远的思考？这就是我们下节课要讨论的「价值函数」的精髓。",
+              "en": "This is exactly RL's most fascinating challenge. In Breakout, a skilled player learns to send the ball above the brick wall, letting it bounce around the top to clear massive chunks of bricks. This strategy requires looking several steps ahead — forgoing immediate points to set up a much bigger payoff. How do we teach an agent this kind of long-term thinking? That's the essence of the 「value function」 we'll discuss next lesson."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这些挑战，比如状态表示、奖励设计和长期规划，它们交织在一起，让强化学习成为一个极其丰富的研究领域。在接下来的几节课里，我们会逐一攻克这些难题。",
+        "en": "These challenges — state representation, reward design, long-term planning — they intertwine, making reinforcement learning an extraordinarily rich research field. Over the next few lessons, we'll tackle these problems one by one."
+      },
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但在解决这些问题之前，我们需要先回答一个更基本的问题：智能体如何评估一个状态的好坏？如果我告诉你，在围棋的某个局面下，你有60%的概率赢——这个「60%」是怎么算出来的？这就需要引入「价值函数」的概念，也是我们下节课的主题。",
+        "en": "But before solving these problems, we need to answer a more fundamental question: how does an agent evaluate whether a state is good or bad? If I tell you that in a certain Go position, you have a 60% chance of winning — how is that 「60%」 calculated? That requires introducing the concept of a 「value function, which is the topic of our next lesson."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "强化学习用游戏作为理想实验平台：规则清晰、状态可观测、奖励明确、可无限重复。核心挑战包括：从原始像素提取状态信息、设计合理的奖励函数（避免奖励黑客）、以及学会长期规划。下一步：通过「价值函数」来评估状态的长期价值。",
+        "en": "RL uses games as ideal experimental platforms: clear rules, observable states, explicit rewards, infinite repeatability. Core challenges include: extracting state info from raw pixels, designing proper reward functions (avoiding reward hacking), and learning long-term planning. Next step: evaluating a state's long-term value through 「value functions」."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我们只是打开了一扇门。强化学习的世界很大——从简单的游戏到复杂的棋类，从机器人控制到……（停顿了一下，看向远处）到一些你们现在可能还无法想象的应用。但一切的起点都是同一个简单的循环：观察、行动、奖励、学习。记住这个循环，它是我们后面一切内容的根基。",
+        "en": "Today we've only opened a door. The world of reinforcement learning is vast — from simple games to complex board games, from robot control to... (pauses, gazing into the distance) ...to applications you probably can't yet imagine. But everything starts from the same simple loop: observe, act, reward, learn. Remember this loop — it's the foundation for everything that follows."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "西尔弗教授在屏幕上留下那张循环图——智能体、环境、状态、动作、奖励，五个箭头首尾相连。他轻轻点了一下遥控器，Atari游戏的录像停在了一个高分画面上。他朝你们点了点头，平静地说：「下次课，我们来聊聊什么叫做『有远见的决策』。」然后他走出了教室，蓝色的灯光仍然闪烁着，屏幕上的分数静静地发着光。",
+        "en": "Prof. Silver leaves the loop diagram on screen — agent, environment, state, action, reward, five arrows connected end to end. He taps the remote, and the Atari game recording freezes on a high-score frame. He nods at you and says calmly: 「Next time, we'll talk about what it means to make decisions with foresight」. Then he walks out of the classroom, the blue light still flickering, the score on screen glowing quietly."
+      }
+    }
+  ]
+}

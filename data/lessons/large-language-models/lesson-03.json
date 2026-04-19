@@ -1,0 +1,365 @@
+{
+  "id": "lesson-03",
+  "course": "large-language-models",
+  "title": {
+    "zh": "规模的力量",
+    "en": "The Power of Scale"
+  },
+  "knowledgePoint": {
+    "zh": "缩放定律——计算量、数据、参数与性能之间的可预测关系",
+    "en": "Scaling laws — the predictable relationship between compute, data, parameters, and performance"
+  },
+  "teacher": "prof-sutskever",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回那片金色的开放空间。全息投影上，一条优美的曲线从左下角延伸到右上角——横轴标着「参数量」，纵轴标着「能力」。苏茨克维教授站在那条曲线旁边，眼中燃烧着一种近乎信仰般的光芒。「我相信规模会带来质变。」他说，语气平静，但每个字都像是钢铁。",
+    "en": "You close your eyes, and your thoughts drift back to that golden open space. On the holographic projection, an elegant curve stretches from the lower left to the upper right — the horizontal axis labeled 「Parameters」, the vertical axis labeled 「Capability」. Prof. Sutskever stands beside that curve, a near-religious light burning in his eyes. 「I believe scale will bring qualitative change, he says, his tone calm, but every word like steel."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那条幂律曲线仍在脑海中延伸——平滑、可预测、却隐藏着惊人的力量。从1亿到1750亿参数的跨越，是量变到质变的故事。而Chinchilla的教训提醒你：盲目追求大模型不够，数据同样重要。",
+    "en": "You return to the present. That power-law curve still extends in your mind — smooth, predictable, yet concealing astonishing power. The leap from 100 million to 175 billion parameters is a story of quantitative change becoming qualitative. And Chinchilla's lesson reminds you: blindly pursuing larger models isn't enough — data matters equally."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的开放空间里，金色的全息投影变成了深蓝色，像是宇宙的底色。空中悬浮着大大小小的光球，最小的如玻璃弹珠，最大的如篮球，每个光球内部都涌动着密密麻麻的数字。苏茨克维教授走进来时，目光扫过这些光球，直接走向那个最大的。他站在它面前，凝视了片刻。",
+        "en": "Today the open space is different — the golden holographic projections have turned deep blue, like the backdrop of the universe. Spheres of light float in the air, the smallest like marbles, the largest like basketballs, each churning with dense clusters of numbers inside. When Prof. Sutskever walks in, his gaze sweeps over these spheres, heading straight for the largest one. He stands before it, gazing for a moment."
+      },
+      "leadsTo": "gpt2-intro"
+    },
+    {
+      "id": "gpt2-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2019年，我们发布了GPT-2。它和GPT-1使用了完全相同的架构，也就是Transformer解码器和下一个词预测。唯一的区别是什么？规模。GPT-1有1.17亿个参数，而GPT-2达到了15亿个参数，足足大了13倍。训练数据也大幅增加，我们用了一个名为WebText的数据集，其中包含了数百万个网页。",
+        "en": "In 2019, we released GPT-2. It used the exact same architecture as GPT-1 — Transformer decoder, next-token prediction. The only difference? Scale. GPT-1 had 117 million parameters, GPT-2 had 1.5 billion — 13 times larger. The training data was also much bigger — we used a dataset called WebText, containing millions of web pages."
+      },
+      "leadsTo": "gpt2-surprise"
+    },
+    {
+      "id": "gpt2-surprise",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "结果让我们自己都感到惊讶。GPT-2不需要微调，你只需要给它一个开头，它就能自己续写出连贯、有逻辑、甚至有创造力的文本。它能写新闻报道、编故事、回答问题、做翻译。所有这些，它都没有在这些任务上专门训练过。我们只是把模型做大了，它就自动获得了这些能力。",
+        "en": "The results surprised even us. GPT-2 didn't need fine-tuning — you just give it a beginning, and it can continue writing coherent, logical, even creative text. It could write news articles, compose stories, answer questions, do translation — all without being specifically trained on these tasks. We just made the model bigger, and it automatically acquired these abilities."
+      },
+      "leadsTo": "scale-intuition"
+    },
+    {
+      "id": "scale-intuition",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这让我开始认真思考一个问题：规模和能力之间到底是什么关系？是线性的——模型大一倍，能力强一倍？还是有某种更深刻的规律？2020年，Kaplan和他的同事们在OpenAI做了一个系统性的研究，得出了一个令人震撼的结论。",
+        "en": "This made me seriously think about a question: what exactly is the relationship between scale and capability? Is it linear — double the model, double the capability? Or is there some deeper law? In 2020, Kaplan and his colleagues at OpenAI conducted a systematic study and reached a stunning conclusion."
+      },
+      "leadsTo": "scaling-laws"
+    },
+    {
+      "id": "scaling-laws",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "他们发现了{缩放定律}。语言模型的性能，通常用预测下一个词的准确度来衡量，与三个因素之间存在幂律关系：模型参数的数量、训练数据的规模，以及用于训练的计算量。这种关系平滑且可预测。你可以用一个简单的数学公式来预测，如果把计算量增加十倍，模型性能会提升多少。",
+        "en": "They discovered the {scaling laws}. Language model performance — measured by accuracy of next-token prediction — follows a power-law relationship with three factors: the number of model parameters, the amount of training data, and the compute used for training. This relationship is smooth and predictable. You can use a simple mathematical formula to predict: if you increase compute tenfold, how much will model performance improve."
+      },
+      "terms": {
+        "缩放定律": "term-scaling-law",
+        "scaling laws": "term-scaling-law"
+      },
+      "leadsTo": "power-law-explain"
+    },
+    {
+      "id": "power-law-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我解释一下幂律关系意味着什么。如果你在对数坐标上画一张图，横轴是计算量的对数，纵轴是性能的对数，你会得到一条近乎完美的直线。这意味着性能随计算量呈现出稳定的、可预测的增长。没有突然的拐点，也没有到了某个规模就停止进步的「天花板」，至少在我们测试过的范围内没有。",
+        "en": "Let me explain what a power-law relationship means. If you plot a graph on logarithmic axes — the log of compute on the horizontal axis, the log of performance on the vertical — you get a nearly perfect straight line. This means performance grows steadily and predictably with compute. No sudden inflection points, no 「ceiling」 where progress stops at some scale — at least not within the range we've tested."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "缩放定律告诉我们，更多的计算量带来更好的性能——而且是可预测的。你觉得这个发现为什么如此重要？",
+        "en": "Scaling laws tell us that more compute brings better performance — and predictably so. Why do you think this discovery is so important?"
+      },
+      "choices": [
+        {
+          "id": "predictability",
+          "text": {
+            "zh": "它让AI研究变得可预测——你可以提前知道投入多少资源能得到多少回报",
+            "en": "It makes AI research predictable — you can know in advance how much return you'll get for a given investment"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这正是缩放定律改变游戏规则的地方。在此之前，AI研究像是在黑暗中摸索——你不知道投入更多资源会不会有回报。但有了缩放定律，你可以做出精确的预测：「如果我们花十倍的计算资源，模型的困惑度（一种衡量预测准确度的指标）会下降多少。」这让AI研究从一门艺术变成了一门工程学。",
+              "en": "That's exactly where scaling laws changed the game. Before this, AI research was like groping in the dark — you didn't know if investing more resources would pay off. But with scaling laws, you can make precise predictions: 「If we spend ten times the compute, how much will the model's perplexity — a measure of prediction accuracy — decrease」. This turned AI research from an art into an engineering discipline."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "no-ceiling",
+          "text": {
+            "zh": "它暗示也许没有上限——只要继续增加规模，模型就会继续变强",
+            "en": "It suggests there may be no ceiling — as long as you keep scaling up, the model keeps getting stronger"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是让我最兴奋的部分。在测试过的所有范围内，从几百万到几十亿参数，幂律关系都没有任何放缓的迹象。这意味着如果我们继续增加规模，性能应该会继续提升。当然，也许在某个更大的规模上确实存在天花板，但我们还没有看到它。这给了我们一个惊人的方向：只要继续投入计算，进步就会持续。",
+              "en": "That's what excites me most. Across the entire range tested — from millions to billions of parameters — the power-law relationship shows no sign of slowing down. This means if we keep scaling, performance should keep improving. Of course, perhaps a ceiling does exist at some even larger scale, but we haven't seen it yet. This gives us an astonishing direction: as long as we keep investing in compute, progress will continue."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "resource-allocation",
+          "text": {
+            "zh": "它能帮助我们决定资源应该花在哪里——是更大的模型、更多的数据、还是更多的训练时间",
+            "en": "It helps us decide where to invest resources — a bigger model, more data, or more training time"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常精准的实用观点。缩放定律不仅告诉你「更多计算带来更好性能」，还告诉你怎样分配计算资源最高效。应该把计算预算花在增加模型参数上？还是增加训练数据上？还是训练更多步？这个问题的答案，后来引发了一场关于「计算最优训练」的重要讨论。",
+              "en": "A very precise practical point. Scaling laws don't just tell you 「more compute means better performance」 — they also tell you how to allocate compute most efficiently. Should you spend your compute budget on more model parameters? More training data? More training steps? The answer to this question later triggered an important discussion about 「compute-optimal training」."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2020年，在缩放定律的启发下，我们训练了GPT-3。1750亿个参数——比GPT-2大了100多倍。训练数据规模也大幅增加。这一次的结果，再次超出了所有人的预期。",
+        "en": "In 2020, inspired by scaling laws, we trained GPT-3. 175 billion parameters — over 100 times larger than GPT-2. Training data scale also increased dramatically. The results, once again, exceeded everyone's expectations."
+      },
+      "leadsTo": "gpt3-abilities"
+    },
+    {
+      "id": "gpt3-abilities",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "GPT-3展示了一种前所未有的能力：你不需要给它任何训练样本，只需要用自然语言描述你想让它做什么，它就能做到。你说「把以下英文翻译成法文」，它就翻译。你说「总结以下文章」，它就总结。你给它几个例子再提问，它的回答更加准确。这个能力让整个领域震惊了。",
+        "en": "GPT-3 demonstrated an unprecedented ability: you didn't need to give it any training examples — just describe what you wanted in natural language, and it could do it. Say 「translate the following English to French」, and it translates. Say 「summarize the following article, and it summarizes. Give it a few examples before asking, and its answers become even more accurate. This ability stunned the entire field."
+      },
+      "leadsTo": "scale-reflection"
+    },
+    {
+      "id": "scale-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我经常想：GPT-1、GPT-2、GPT-3之间，架构几乎没有变化。改变的只是规模。同样的设计理念，同样的训练目标，但规模从1亿扩展到1750亿——结果是从「还不错」到「令人震惊」的飞跃。这让我更加确信一件事：也许智能的秘密不在于精巧的设计，而在于足够的规模。",
+        "en": "I often think: between GPT-1, GPT-2, and GPT-3, the architecture barely changed. Only the scale changed. The same design philosophy, the same training objective, but scale expanded from 100 million to 175 billion — the result was a leap from 「decent」 to 「astonishing」. This made me even more convinced of one thing: perhaps the secret of intelligence lies not in clever design, but in sufficient scale."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "GPT-1到GPT-3的进步主要来自规模的增大，架构几乎没有变化。这说明了什么？",
+        "en": "The progress from GPT-1 to GPT-3 came mainly from scaling up, with almost no architectural changes. What does this suggest?"
+      },
+      "choices": [
+        {
+          "id": "architecture-sufficient",
+          "text": {
+            "zh": "Transformer架构本身已经足够好——瓶颈从来都是规模，而非设计",
+            "en": "The Transformer architecture itself is already good enough — the bottleneck was always scale, not design"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "我相信你抓住了核心。Transformer是一个非常好的基础——自注意力机制让它能高效地处理长程依赖关系。在这个基础之上，规模就是一切。很多研究者花大量时间设计新的架构，试图做得比Transformer更好。但GPT系列的成功说明：也许我们需要的是更多的计算、更多的数据、更多的参数。",
+              "en": "I believe you've grasped the core. The Transformer is an excellent foundation — self-attention lets it efficiently handle long-range dependencies. On top of this foundation, scale is everything. Many researchers spend enormous effort designing new architectures, trying to outdo the Transformer. But GPT's success suggests: perhaps what we need isn't a better architecture, but more compute, more data, more parameters."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "data-matters",
+          "text": {
+            "zh": "不仅是模型变大了——训练数据也变多了。也许数据的规模同样关键",
+            "en": "It's not just that the model got bigger — the training data also grew. Perhaps data scale is equally critical"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你提出了一个非常关键的观察，而它将引出一个重要的发现。Kaplan的原始缩放定律建议：给定固定的计算预算，应该把更多资源分配给更大的模型。但2022年，DeepMind的Chinchilla论文提出了不同的看法——他们发现数据量可能比模型大小更重要。这个争论至今仍在继续。",
+              "en": "You've raised a very crucial observation, and it will lead to an important discovery. Kaplan's original scaling laws suggested: given a fixed compute budget, allocate more resources to a larger model. But in 2022, DeepMind's Chinchilla paper offered a different view — they found that data volume might be more important than model size. This debate continues to this day."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "emergent-properties",
+          "text": {
+            "zh": "也许量变引起了质变——规模增大到某个临界点后，新能力会突然出现",
+            "en": "Perhaps quantitative change leads to qualitative change — after scale reaches a critical point, new abilities suddenly appear"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你预见了我们下节课要讨论的核心主题。缩放定律描述的是平滑的、可预测的进步。但在这种平滑进步的表面之下，确实隐藏着一些令人惊讶的突变——某些能力在小规模模型中完全不存在，但在模型达到某个规模后突然涌现。这种「涌现」现象是最近几年最引人入胜的发现之一。",
+              "en": "You've anticipated the core topic of our next lesson. Scaling laws describe smooth, predictable progress. But beneath the surface of this smooth progress, some surprising mutations are indeed hidden — certain abilities are completely absent in small models but suddenly emerge when the model reaches a certain scale. This 「emergence」 phenomenon is one of the most fascinating discoveries of recent years."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我谈谈一个重要的修正。Kaplan的缩放定律有一个建议：在给定计算预算时，应该优先增大模型，可以用相对较少的数据来训练。但2022年，DeepMind的团队发表了Chinchilla的研究，提出了一个不同的结论。",
+        "en": "Now let me discuss an important correction. Kaplan's scaling laws suggested that given a fixed compute budget, you should prioritize making the model larger, training with relatively less data. But in 2022, a team at DeepMind published the Chinchilla study, which reached a different conclusion."
+      },
+      "leadsTo": "chinchilla"
+    },
+    {
+      "id": "chinchilla",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "Chinchilla的发现是：之前的很多大模型，包括GPT-3，其实都处于「训练不足」的状态。它们的模型规模很大，但喂给它们的数据量相对不够。{计算最优训练}的正确做法，是让模型大小和数据量同步增长。如果你有十倍的计算预算，正确的做法是把模型做大到大约三倍，数据也增加到大约三倍，而不是把所有资源都投入到更大的模型上。",
+        "en": "Chinchilla's finding was: many previous large models — including GPT-3 — were actually 「undertrained」. Their models were large, but the data fed to them was relatively insufficient. The correct approach to {compute-optimal training} is: model size and data volume need to grow in tandem. If you have ten times the compute budget, the right move is to make the model roughly three times larger and the data roughly three times larger — rather than investing everything in a bigger model."
+      },
+      "terms": {
+        "计算最优训练": "term-compute-optimal",
+        "compute-optimal training": "term-compute-optimal"
+      },
+      "leadsTo": "chinchilla-impact"
+    },
+    {
+      "id": "chinchilla-impact",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "Chinchilla用了700亿个参数，只有GPT-3的一半，却训练了四倍的数据，最终达到了和GPT-3相当甚至更好的性能。这个发现影响了后来几乎所有大模型的设计。它告诉我们：规模很重要，但规模的分配方式同样重要。重点不在于「更大」，而在于「更平衡」。",
+        "en": "Chinchilla, with 70 billion parameters — only half of GPT-3 — but trained on four times the data, achieved performance comparable to or even better than GPT-3. This finding influenced the design of virtually all large models that followed. It tells us: scale matters, but how you distribute that scale matters equally. Not just 「bigger」, but 「more balanced」."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "缩放定律（Kaplan et al., 2020）：模型性能与参数量、数据量、计算量之间呈幂律关系，在对数坐标上表现为直线。GPT-2（15亿参数）到GPT-3（1750亿参数）的进步主要来自规模增大。Chinchilla修正（2022）：模型大小和数据量应同步增长，之前的模型多数「训练不足」。关键启示：规模很重要，但规模的分配方式同样重要。",
+        "en": "Scaling laws (Kaplan et al., 2020): model performance follows a power-law relationship with parameters, data, and compute — appears as a straight line on log-log axes. Progress from GPT-2 (1.5B params) to GPT-3 (175B) came mainly from scale. Chinchilla correction (2022): model size and data volume should grow in tandem; previous models were mostly 「undertrained」. Key insight: scale matters, but how you allocate scale matters equally."
+      },
+      "category": "core-concept",
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "缩放定律给出了一个清晰的方向：继续增大规模。但你觉得这种「规模至上」的策略有什么潜在的问题或局限？",
+        "en": "Scaling laws give a clear direction: keep scaling up. But what potential problems or limitations do you see with this 「scale above all」 strategy?"
+      },
+      "choices": [
+        {
+          "id": "resource-cost",
+          "text": {
+            "zh": "训练巨大模型需要的计算资源和能源消耗是惊人的——只有少数机构负担得起",
+            "en": "Training enormous models requires astonishing compute and energy — only a few institutions can afford it"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常现实的担忧。GPT-3的训练据估计花费了数百万美元的计算资源。GPT-4的成本更是数量级地增长。这意味着最前沿的AI研究正在变成只有少数大公司和顶尖实验室才能参与的游戏。这种集中化趋势引发了很多关于公平性和开放性的讨论。",
+              "en": "That's a very realistic concern. GPT-3's training reportedly cost millions of dollars in compute. GPT-4's cost grew by orders of magnitude. This means cutting-edge AI research is becoming a game only a few large companies and top labs can play. This concentration trend has sparked much discussion about fairness and openness."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "data-limit",
+          "text": {
+            "zh": "互联网上高质量的文本数据是有限的——总有一天会用完可训练的数据",
+            "en": "High-quality text data on the internet is finite — eventually we'll run out of data to train on"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你指出了缩放定律最严峻的挑战之一。模型可以继续变大，理论上没有上限。计算资源也可以持续投入，只要资金充足。但数据是有限的。有人估计，按照当前的训练速度，我们可能在几年内就会「耗尽」互联网上高质量的文本数据。这个根本性的约束，正迫使研究者们寻找新的数据来源和训练方法。",
+              "en": "You've pointed to one of the most severe challenges for scaling laws. Models can keep getting bigger — no theoretical limit. Compute can keep being invested — as long as there's money. But data is finite. Some estimate that at current training rates, we may 「exhaust」 high-quality text data on the internet within a few years. This is a fundamental constraint, forcing researchers to think about new data sources and training methods."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "diminishing-returns",
+          "text": {
+            "zh": "幂律意味着每一步的进步越来越小——要获得同样的提升，需要投入指数级增长的资源",
+            "en": "Power law means each step of progress gets smaller — achieving the same improvement requires exponentially more resources"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微点头）你看到了幂律的另一面。幂律告诉你性能会持续提升，但它也告诉你提升的速度在放缓。从90分到95分容易，从99分到99.5分则需要十倍的投入。这意味着到某个阶段，纯粹依靠规模来获取进步会变得越来越不经济。也许到那时，我们确实需要新的突破——新的训练方法、新的架构、或者新的理念。",
+              "en": "(Nods slightly) You've seen the other side of the power law. It tells you performance will keep improving, but it also tells you the rate of improvement is slowing. Going from 90 to 95 points is easy; going from 99 to 99.5 requires ten times the investment. This means at some point, relying purely on scale for progress becomes increasingly uneconomical. Perhaps then we'll truly need new breakthroughs — new training methods, new architectures, or new ideas."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "缩放定律给了我们一张地图，它指明了前进的方向和每一步能走多远。GPT-3的成功是这张地图的一次壮观验证。Chinchilla则提醒我们注意路线的细节。然而，这张地图上还有一些东西，是缩放定律本身无法预测的。那便是在规模达到某个临界点后，突然出现的能力。这些意外的、跳跃式的变化，正是我们下节课的主题。",
+        "en": "Scaling laws gave us a map — telling us which direction to go and how far each step takes us. GPT-3's success was a spectacular validation of this map. Chinchilla reminded us to pay attention to the route's details. But there are things on this map that scaling laws themselves cannot predict — abilities that suddenly appear when scale reaches a certain critical point. These unexpected, discontinuous changes are the topic of our next lesson."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "GPT-2（15亿参数）展示了零样本能力，无需微调就能完成多种任务。GPT-3（1750亿参数）进一步证明了规模的威力。然而，缩放定律有其局限：资源集中化、数据有限性、边际收益递减。规模策略面临的最深层问题在于，缩放定律描述的是一种平滑的进步，但真正令人惊讶的，是那些突然涌现、无法被定律预测的能力。",
+        "en": "GPT-2 (1.5B params) demonstrated zero-shot abilities — performing tasks without fine-tuning. GPT-3 (175B) further proved the power of scale. Scaling law limitations: resource concentration, data finiteness, diminishing returns. Deepest challenge: scaling laws describe smooth progress, but what's truly surprising are the abilities that suddenly emerge — these are what scaling laws cannot predict."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "苏茨克维教授走到那些悬浮的光球中间，从最小的开始，依次触碰每一个。随着他的触碰，光球一个一个亮起来，从微弱到耀眼：GPT-1、GPT-2、GPT-3……最大的那颗光球在他手中绽放出夺目的光芒，照亮了整个空间。但他的目光越过了这颗最大的光球，看向更远的黑暗中。那里似乎还有更大的、尚未被点亮的球体在等待着。「规模的故事还没有结束。」他轻声说道。金色的光影在深蓝色的宇宙中缓缓流动，像是一条还在延伸的幂律曲线。",
+        "en": "Prof. Sutskever walks among the floating spheres of light, starting from the smallest, touching each in turn. As he touches them, the spheres light up one by one, from faint to dazzling — GPT-1, GPT-2, GPT-3... The largest sphere blazes with brilliant light in his hand, illuminating the entire space. But his gaze passes beyond this largest sphere, looking into the darkness further out — where even larger, not yet illuminated spheres seem to be waiting. 「The story of scale isn't over, he says softly. Golden light drifts slowly through the deep blue universe, like a power-law curve still extending."
+      }
+    }
+  ]
+}

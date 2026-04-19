@@ -1,0 +1,365 @@
+{
+  "id": "lesson-06",
+  "course": "ensemble-methods",
+  "title": {
+    "zh": "两种文化",
+    "en": "Two Cultures"
+  },
+  "knowledgePoint": {
+    "zh": "布雷曼的「两种文化」论——数据模型与算法模型的分歧",
+    "en": "Breiman's 「Two Cultures」 thesis — the divide between data models and algorithmic models"
+  },
+  "teacher": "prof-breiman",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-05",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你还记得布雷曼教授那天走进教室时的表情——少了几分轻松，多了几分严肃。他说，这是他这辈子最想说的一堂课。关于统计学界的两条路，关于预测与理解的取舍……",
+    "en": "You still remember Professor Breiman's expression as he walked in that day — less relaxed, more serious than usual. He said this was the lecture he'd wanted to give his whole life. About two paths in statistics, about the choice between prediction and understanding..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记，想起布雷曼教授最后那个意味深长的微笑。他没有说谁对谁错——他只是说，让数据来当裁判。也许这就是他一生最坚定的信念：预测能力，是检验一切的最终标准。",
+    "en": "You close your notes, remembering Professor Breiman's meaningful smile at the end. He didn't say who was right or wrong — he just said, let the data be the judge. Perhaps this was his lifelong conviction: predictive power is the ultimate test of everything."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "布雷曼教授今天没有带打印的数据表，也没有带笔记本电脑。他只拿了一份学术期刊的复印件，封面上的标题是《Statistical Modeling: The Two Cultures》。他把复印件轻轻放在讲台上，在黑板上画了一条竖线，把黑板分成了左右两半。",
+        "en": "Professor Breiman doesn't bring printed data sheets today, nor his laptop. He carries only a photocopy of an academic journal, the cover reading 「Statistical Modeling: The Two Cultures」. He sets it gently on the lectern and draws a vertical line on the blackboard, dividing it into two halves."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这是我们最后一节课。前面五节课我们学了具体的方法——决策树、偏差方差、bagging、随机森林、特征工程。今天我想退后一步，聊一个更大的问题：统计学和机器学习这个领域，到底应该走哪条路？",
+        "en": "This is our last class. In the previous five lessons we learned specific methods — decision trees, bias-variance, bagging, random forests, feature engineering. Today I want to step back and talk about a bigger question: which path should the field of statistics and machine learning take?"
+      },
+      "leadsTo": "two-cultures-intro"
+    },
+    {
+      "id": "two-cultures-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（在黑板左边写下「数据模型」，右边写下「算法模型」）我认为统计学界存在{两种文化}。绝大多数统计学教授属于左边，也就是数据模型文化。少数人，包括我自己，则属于右边的算法模型文化。这两种文化对同一个根本问题，给出了截然不同的回答。",
+        "en": "(Writes 「Data Models」 on the left side of the board, 「Algorithmic Models」 on the right) I believe the statistics community has {two cultures}. The vast majority of statistics professors belong to the left — the data modeling culture. A minority, including myself, belong to the right — the algorithmic modeling culture. These two cultures give fundamentally different answers to the same basic question."
+      },
+      "terms": {
+        "两种文化": "term-two-cultures",
+        "two cultures": "term-two-cultures"
+      },
+      "leadsTo": "data-model-culture"
+    },
+    {
+      "id": "data-model-culture",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "数据模型文化是这样思考的：自然界有一个产生数据的机制，我们假设这个机制的形式，比如线性回归：y等于a乘以x加上b再加一个随机误差。然后我们用数据来估计参数a和b。目标是理解数据产生的过程——a代表什么意义？哪些变量是显著的？因果关系是什么？",
+        "en": "The data modeling culture thinks like this: nature has a mechanism that generates data, and we assume a form for that mechanism — say, linear regression: y equals a times x plus b plus random error. Then we use data to estimate parameters a and b. The goal is to understand the data-generating process — what does a mean? Which variables are significant? What's the causal relationship?"
+      },
+      "leadsTo": "algorithmic-culture"
+    },
+    {
+      "id": "algorithmic-culture",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "算法模型文化不做这种假设。我们说，里面的机制是一个黑箱，我们不知道也不需要知道它的具体形式。我们的目标是找到一个函数，任何函数都行，只要能准确地把输入映射到输出，让预测尽可能准确。决策树、神经网络、随机森林、支持向量机……都是这个思路。我们不在乎模型长什么样，只在乎它预测得好不好。",
+        "en": "The algorithmic modeling culture makes no such assumption. We say: the mechanism inside is a black box, and we don't know — and don't need to know — its form. Our goal is to find a function — any function — that maps inputs to outputs with predictions as accurate as possible. Decision trees, neural networks, random forests, SVMs... all follow this approach. We don't care what the model looks like, only whether it predicts well."
+      },
+      "leadsTo": "the-problem"
+    },
+    {
+      "id": "the-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "问题出在哪里呢？数据模型文化在学术界占了98%以上的份额。翻开任何一本统计学教材，几乎全是线性回归、逻辑回归、方差分析。学生们被训练去拟合模型、解读参数、做显著性检验。但在我做了十三年咨询的真实世界里，数据几乎从来不是线性回归能描述的。",
+        "en": "Where's the problem? The data modeling culture commands over 98% of academia. Open any statistics textbook and it's almost entirely linear regression, logistic regression, analysis of variance. Students are trained to fit models, interpret parameters, run significance tests. But in the real world — the real world where I consulted for thirteen years — data almost never follows what linear regression can describe."
+      },
+      "leadsTo": "real-world-complex"
+    },
+    {
+      "id": "real-world-complex",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "真实数据是高维的、非线性的、充满交互效应的。当你只有两三个变量的时候，线性回归也许够用。但当你有五十个变量、十万个样本、变量之间存在复杂的交互关系——线性模型就像试图用一条直线去描述一片山脉。它能告诉你「平均来说地势是上升的」，但它完全忽略了山谷、悬崖和溪流。",
+        "en": "Real data is high-dimensional, nonlinear, full of interaction effects. When you have only two or three variables, linear regression might suffice. But when you have fifty variables, a hundred thousand samples, complex interactions between variables — a linear model is like trying to describe a mountain range with a straight line. It can tell you 「on average the terrain rises, but it completely misses the valleys, cliffs, and streams."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "你更倾向于哪种文化？是追求理解数据背后的机制，还是追求尽可能准确的预测？",
+        "en": "Which culture do you lean toward? Pursuing understanding of the mechanism behind data, or pursuing the most accurate predictions possible?"
+      },
+      "choices": [
+        {
+          "id": "understanding",
+          "text": {
+            "zh": "理解更重要——如果你不知道为什么，预测再准也可能会失效",
+            "en": "Understanding is more important — without knowing why, even accurate predictions might fail"
+          },
+          "tag": "theorist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "我理解你的立场。很多优秀的统计学家都这么想：理解因果关系让你能在条件变化时做出调整。但我要问你：你真的能理解吗？当你面对的是五十个变量之间错综复杂的交互关系，任何你假设的「理解」都可能是错的。况且，一个「可理解」但预测很差的模型，在实际应用中有什么用？医院不需要你解释为什么你的模型预测得不准。",
+              "en": "I understand your position. Many excellent statisticians think this way — understanding causal relationships lets you adjust when conditions change. But I have to ask: can you truly understand? When you're facing complex interactions among fifty variables, any 「understanding」 you assume might be wrong. And — what use is an 「understandable」 model that predicts poorly? The hospital doesn't need you to explain why your model's predictions are inaccurate."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "prediction",
+          "text": {
+            "zh": "预测更重要——在实际应用中，结果才是最终标准",
+            "en": "Prediction is more important — in real applications, results are the ultimate standard"
+          },
+          "tag": "pragmatist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这跟我的立场一样。如果一个模型预测得好，我不在乎它长什么样。黑箱？没关系。不可解释？可以接受——只要它在新数据上持续预测得好。当然，在某些领域（比如医学、法律），可解释性有特殊的重要性。但作为评判一个模型好不好的标准，预测准确率应该排在第一位。",
+              "en": "That's the same position I hold. If a model predicts well, I don't care what it looks like. Black box? Fine. Not interpretable? Acceptable — as long as it keeps predicting well on new data. Of course, in certain domains (like medicine and law), interpretability has special importance. But as the criterion for judging whether a model is good, prediction accuracy should come first."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "both-matter",
+          "text": {
+            "zh": "两者都重要——理想的模型应该既准确又可理解",
+            "en": "Both matter — the ideal model should be both accurate and interpretable"
+          },
+          "tag": "balanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "在理想世界里，你说得对。但在现实中，这两个目标经常是矛盾的。最准确的模型往往最不可解释，神经网络、随机森林都是如此。反过来，最可解释的模型，比如线性回归，准确率往往一般。当现实迫使你必须在两者之间做出选择时，你站在哪一边？我站在预测这一边。",
+              "en": "In an ideal world, you're right. But in reality, these two goals often conflict. The most accurate models tend to be the least interpretable — neural networks and random forests are like that. The most interpretable models tend to have mediocre accuracy — linear regression, for example. When you're forced to choose between the two — and reality will force you to choose — which side are you on? I'm on the side of prediction."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我要声明一点：我不是说数据模型毫无价值。在变量少、关系简单的情况下，线性回归非常好用。而且理解因果关系在科学研究中确实是核心目标。我批评的是学术界的狭隘——他们把数据模型当成唯一正确的方法，对算法模型视而不见。",
+        "en": "Let me be clear: I'm not saying data models have no value. When variables are few and relationships are simple, linear regression works beautifully. And understanding causal relationships is indeed a core goal in scientific research. What I'm criticizing is academia's narrowness — treating data models as the only correct approach while ignoring algorithmic models."
+      },
+      "leadsTo": "vapnik-respect"
+    },
+    {
+      "id": "vapnik-respect",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "说到算法模型文化，我得提到瓦普尼克和他的支持向量机。他从非常严格的理论出发，比如VC维和结构风险最小化，构建了一套漂亮的框架。我尊重他的工作。但你知道让我更佩服的是什么吗？SVM在实际数据上的预测表现确实很好。理论再优美，如果预测不行，对我来说就只是纸上的风景。",
+        "en": "Speaking of the algorithmic modeling culture, I should mention Vapnik and his support vector machines. He starts from very rigorous theory — VC dimension, structural risk minimization — and builds an elegant framework. I respect his work. But you know what impresses me even more? SVMs actually perform well on real data. No matter how beautiful the theory, if the predictions don't work, it's just scenery on paper to me."
+      },
+      "leadsTo": "two-cultures-note"
+    },
+    {
+      "id": "two-cultures-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "两种文化：数据模型文化假设数据的产生机制（如线性回归），追求理解参数含义和因果关系。算法模型文化不假设机制形式，追求预测准确率。布雷曼认为学术界过度偏向数据模型，忽视了算法模型在真实世界中的优越表现。核心信念：预测能力是检验模型的最终标准。",
+        "en": "Two Cultures: the data modeling culture assumes a data-generating mechanism (e.g., linear regression), seeking to understand parameters and causality. The algorithmic modeling culture assumes no mechanism, pursuing prediction accuracy. Breiman argues academia is excessively biased toward data models, ignoring algorithmic models' superior real-world performance. Core belief: predictive power is the ultimate test of a model."
+      },
+      "category": "core-concept",
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "布雷曼说「如果一个模型预测得好，我不在乎它长什么样」。但有人反驳说：如果你不理解模型，怎么知道它在新的环境下还会继续有效？你怎么看？",
+        "en": "Breiman says 「if a model predicts well, I don't care what it looks like」. But critics argue: if you don't understand the model, how do you know it will keep working in a new environment? What do you think?"
+      },
+      "choices": [
+        {
+          "id": "critics-right",
+          "text": {
+            "zh": "批评者说得有道理——盲目信任预测可能会在环境变化时翻车",
+            "en": "The critics have a point — blindly trusting predictions can fail when conditions change"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个合理的担忧。环境变化，统计学家称之为「分布偏移」，确实是所有模型的敌人。但我想反问一句：一个基于错误假设的「可理解」模型，在环境变化时就一定更可靠吗？如果你假设关系是线性的，但实际是非线性的，那么你的「理解」本身就是错的。我宁愿用交叉验证持续监控一个黑箱模型的表现，也不愿盲目信任一个「可理解」却可能完全错误的模型。",
+              "en": "That's a legitimate concern. Distribution shift — what statisticians call it when conditions change — is indeed the enemy of all models. But my counter-question is: is an 「interpretable」 model based on wrong assumptions necessarily more reliable when conditions change? If you assume the relationship is linear but it's actually nonlinear, then your 「understanding」 itself is wrong. I'd rather use cross-validation to continuously monitor a black-box model's performance than blindly trust an 「interpretable」 model that might be completely wrong."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "breiman-right",
+          "text": {
+            "zh": "布雷曼说得对——交叉验证可以持续检验模型，不需要理解内部机制",
+            "en": "Breiman is right — cross-validation can continuously verify the model without understanding its internals"
+          },
+          "tag": "empiricist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了关键。交叉验证就是我们的保险机制。你不需要理解模型的内部结构，只需要定期在新数据上测试它。如果表现开始下降，就重新训练或换模型。这是一种实证主义的态度：不要问「为什么它应该有效」，而是问「它在实际中是否有效」。让数据当裁判。",
+              "en": "You've grasped the key point. Cross-validation is our insurance mechanism. You don't need to understand the model's internal structure; you just need to regularly test it on new data. If performance starts declining, retrain or switch models. This is an empiricist attitude: don't ask 「why should it work」, ask 「does it actually work」. Let the data be the judge."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "false-dilemma",
+          "text": {
+            "zh": "这可能是一个伪二选一——我们可以用可解释的方法来审查黑箱模型",
+            "en": "This might be a false dilemma — we can use interpretable methods to audit black-box models"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（眼睛一亮）有意思的想法。用简单的可解释模型来近似一个复杂模型的行为，比如看看随机森林在局部区域的预测是否接近线性——这是一个有前途的方向。你可以享受黑箱模型的预测能力，同时用可解释的工具去理解它在做什么。也许未来这两种文化真的能找到一个交汇点。",
+              "en": "(Eyes light up) Interesting idea. Using simple interpretable models to approximate a complex model's behavior — like checking whether a random forest's local predictions are approximately linear — that's a promising direction. You can enjoy the black box's predictive power while using interpretable tools to understand what it's doing. Maybe someday these two cultures really can find a meeting point."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我写《两种文化》这篇文章的时候，很多同事不高兴。有人说我在攻击整个统计学的传统。但我不后悔。如果一个领域固守一种方法论，不愿意看到更广阔的可能性，那它就会被时代淘汰。我看到了数据时代的到来——数据越来越多，维度越来越高，传统的数据模型越来越力不从心。",
+        "en": "When I wrote 「Two Cultures, many colleagues were unhappy. Some said I was attacking the entire tradition of statistics. But I don't regret it. If a field clings to one methodology and refuses to see broader possibilities, it will be left behind by the times. I can see the data age coming — more data, higher dimensions, and traditional data models increasingly struggling to keep up."
+      },
+      "leadsTo": "looking-forward"
+    },
+    {
+      "id": "looking-forward",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我有一种预感，也许只是一个老人的直觉：未来属于那些能处理海量数据的算法。计算能力在飞速增长，数据量也在爆炸。在这样的世界里，「让数据说话」的方法会越来越有优势。神经网络、随机森林，还有一些我们今天还想不到的方法，它们的时代可能才刚刚开始。",
+        "en": "I have a hunch — maybe just an old man's intuition — that the future belongs to algorithms that can handle massive data. Computing power is growing rapidly, data volumes are exploding. In that kind of world, methods that 「let the data speak」 will have an ever-greater advantage. Neural networks, random forests, and methods we can't even imagine today — their era may be just beginning."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾这几节课学到的所有内容，你觉得「理解」一个模型的预测过程是不是做出好预测的必要条件？",
+        "en": "Looking back on everything we've learned, do you think 「understanding」 a model's prediction process is a necessary condition for making good predictions?"
+      },
+      "choices": [
+        {
+          "id": "yes-necessary",
+          "text": {
+            "zh": "是的——不理解就无法信任，无法信任就无法应用",
+            "en": "Yes — without understanding there's no trust, and without trust there's no application"
+          },
+          "tag": "traditionalist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "在某些高风险领域，比如医疗和司法，你的观点有很强的现实意义。{模型可解释性}在这些领域确实是刚需。但我想给你留一个问题：你每天坐的飞机，你真的理解飞行的每一个物理细节吗？你信任飞机，是因为它有可靠的安全记录，大量的飞行数据证明了这一点。模型也可以通过同样的方式赢得信任。",
+              "en": "In certain high-stakes domains — medicine, justice — your view has strong practical relevance. {Model interpretability} is indeed essential in these areas. But let me leave you with a thought: the plane you fly on every day — do you truly understand every physical detail of flight? You trust the plane because of its safety record — massive flight data proving its reliability. Models can earn trust the same way."
+            }
+          },
+          "terms": {
+            "模型可解释性": "term-model-interpretability",
+            "Model interpretability": "term-model-interpretability"
+          },
+          "leadsTo": "farewell"
+        },
+        {
+          "id": "no-not-necessary",
+          "text": {
+            "zh": "不是——预测准确率本身就是最好的信任基础",
+            "en": "No — prediction accuracy itself is the best foundation for trust"
+          },
+          "tag": "empiricist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "如果一个模型预测得好，我不在乎它长什么样。你已经理解了我的核心观点。但我也要提醒你，这个立场需要一个前提：你必须用严格的交叉验证来支撑你的信心。没有诚实的评估，任何关于「准确率」的说法都是空话。坚持用数据说话，而不是用信仰。",
+              "en": "If a model predicts well, I don't care what it looks like — you've understood my core position. But I should also remind you: this stance requires a prerequisite — you must back your confidence with rigorous cross-validation. Without honest evaluation, any claim about 「accuracy」 is empty talk. Insist on letting data speak, not faith."
+            }
+          },
+          "leadsTo": "farewell"
+        },
+        {
+          "id": "depends-context",
+          "text": {
+            "zh": "取决于应用场景——有时需要理解，有时只需要结果",
+            "en": "It depends on context — sometimes you need understanding, sometimes just results"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这可能是最成熟的回答。做咨询的时候我学到，不同的问题需要不同的思维方式。给银行做风控，他们需要知道为什么拒绝一个客户。给电商做推荐，没人在乎为什么推荐了这个商品，只要用户买了就行。灵活切换两种文化的视角，可能比死守任何一种都更有智慧。",
+              "en": "That's probably the most mature answer. In consulting I learned: different problems require different mindsets. Building risk models for a bank — they need to know why a customer was rejected. Building recommendations for e-commerce — nobody cares why this product was recommended, as long as the user buys it. Flexibly switching between the two cultures' perspectives might be wiser than rigidly holding to either one."
+            }
+          },
+          "leadsTo": "farewell"
+        }
+      ]
+    },
+    {
+      "id": "farewell",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "（放下粉笔，擦了擦手）好了，六节课讲完了。让我总结一下这门课的核心。一棵决策树简单但脆弱。理解了偏差和方差，你就知道了为什么。Bagging用平均来降低方差。随机森林用随机性来打破相关性。特征工程和交叉验证是实战中不可或缺的技能。而两种文化的争论提醒我们：永远不要让方法论限制了你的想象力。",
+        "en": "(Puts down the chalk, wipes his hands) Alright, six classes done. Let me summarize the core of this course. A single decision tree is simple but fragile. Understanding bias and variance tells you why. Bagging uses averaging to reduce variance. Random forests use randomness to break correlation. Feature engineering and cross-validation are indispensable practical skills. And the two cultures debate reminds us: never let methodology limit your imagination."
+      },
+      "leadsTo": "final-words"
+    },
+    {
+      "id": "final-words",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "最后一件事。我这辈子最骄傲的成就是随机森林在实际问题中帮助了多少人。医生用它诊断疾病，生态学家用它预测物种分布，工程师用它检测故障。一个好的算法应该像一个好的工具，拿起来就能用，而且管用。如果你将来做研究，记住这一点：让你的工作对真实世界有用。",
+        "en": "One last thing. The achievement I'm proudest of in my life isn't how many papers I published, but how many people random forests have helped on real problems — doctors using it to diagnose diseases, ecologists using it to predict species distributions, engineers using it to detect faults. A good algorithm should be like a good tool — pick it up and it works. If you do research in the future, remember this: make your work useful to the real world."
+      },
+      "leadsTo": "final-note"
+    },
+    {
+      "id": "final-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "布雷曼课程总结：决策树→偏差方差→装袋法→随机森林→特征工程与交叉验证→两种文化。核心信念：预测能力是检验模型的最终标准。多样性是集成方法的力量源泉。让数据说话，让实践检验理论。好的算法应该像好的工具——拿起来就能用，而且管用。",
+        "en": "Breiman course summary: Decision trees → Bias-variance → Bagging → Random forests → Feature engineering & cross-validation → Two cultures. Core belief: predictive power is the ultimate test of models. Diversity is the source of ensemble methods' strength. Let data speak, let practice test theory. A good algorithm should be like a good tool — pick it up and it works."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "布雷曼教授擦去了黑板上的竖线，留下「数据模型」和「算法模型」两个词并排站在一起。他拿起那份期刊复印件，朝大家挥了挥手，走向门口。在门口他停了一下，回头说：「记住，别怕当少数派。」然后他走了，留下一间充满思考的教室。你低头看着自己的笔记——从决策树到两种文化，六堂课，一个统计学家的一生信念浓缩在里面。窗外的阳光照在纸上，你忽然觉得，好的学问就应该像好的工具：朴素、实在、管用。",
+        "en": "Professor Breiman erases the dividing line on the blackboard, leaving 「Data Models」 and 「Algorithmic Models」 standing side by side. He picks up the journal photocopy, waves at the class, and heads for the door. At the doorway he pauses, looks back, and says: 「Remember, don't be afraid to be in the minority」. Then he's gone, leaving behind a classroom full of thought. You look down at your notes — from decision trees to two cultures, six lessons, a statistician's lifelong convictions condensed within. Sunlight from the window falls on the pages, and you suddenly feel that good scholarship should be like a good tool: simple, solid, and useful."
+      }
+    }
+  ]
+}

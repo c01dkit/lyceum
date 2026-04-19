@@ -1,0 +1,27 @@
+{
+  "id": "grade-2",
+  "name": {
+    "zh": "二年级：专家系统与AI寒冬",
+    "en": "Grade 2: Expert Systems & AI Winter"
+  },
+  "subtitle": {
+    "zh": "1970s-1980s：从狂热到幻灭",
+    "en": "1970s-1980s: From Euphoria to Disillusionment"
+  },
+  "description": {
+    "zh": "AI的第一批实用系统诞生了——专家系统试图将人类知识装进机器。然而，知识的获取远比想象中困难，过高的承诺最终引发了一场漫长的寒冬。在这里，你将见证希望与失落交织的年代。",
+    "en": "AI's first practical systems were born — expert systems attempted to encode human knowledge into machines. Yet acquiring knowledge proved far harder than imagined, and overblown promises eventually triggered a long winter. Here, you will witness an era where hope and disillusionment intertwined."
+  },
+  "era": "1970s-1980s",
+  "theme": {
+    "name": "muted-steel-blue",
+    "primaryColor": "#4A6B8A",
+    "secondaryColor": "#7A8FA3"
+  },
+  "courses": [
+    "expert-systems",
+    "knowledge-engineering",
+    "ai-winter"
+  ],
+  "unlockCondition": null
+}

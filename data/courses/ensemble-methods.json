@@ -1,0 +1,52 @@
+{
+  "id": "ensemble-methods",
+  "name": {
+    "zh": "集成方法与机器学习实践",
+    "en": "Ensemble Methods & ML in Practice"
+  },
+  "description": {
+    "zh": "三个臭皮匠赛过诸葛亮——集成方法的核心思想就是这么朴素。布雷曼教授不写太多公式，而是直接打开数据集，用决策树、装袋法和随机森林告诉你：理论再漂亮，也得经得起数据的检验。",
+    "en": "Three heads are better than one — the core idea of ensemble methods is just that simple. Prof. Breiman doesn't write many formulas. Instead, he opens datasets directly, using decision trees, bagging, and random forests to show you: no matter how beautiful the theory, it must withstand the test of data."
+  },
+  "grade": "grade-3",
+  "teacher": "prof-breiman",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-decision-tree",
+      "description": {
+        "zh": "理解决策树的构建原理和信息增益的概念",
+        "en": "Understand how decision trees are built and the concept of information gain"
+      }
+    },
+    {
+      "id": "obj-bias-variance",
+      "description": {
+        "zh": "深入理解偏差-方差权衡及其对模型选择的影响",
+        "en": "Deeply understand the bias-variance tradeoff and its impact on model selection"
+      }
+    },
+    {
+      "id": "obj-random-forest",
+      "description": {
+        "zh": "掌握随机森林的原理：为什么随机性和多样性能提升预测能力",
+        "en": "Master random forest principles: why randomness and diversity improve prediction"
+      }
+    },
+    {
+      "id": "obj-two-cultures",
+      "description": {
+        "zh": "理解布雷曼「两种文化」论述的核心观点及其影响",
+        "en": "Understand the core argument and impact of Breiman's 「Two Cultures」 paper"
+      }
+    }
+  ]
+}

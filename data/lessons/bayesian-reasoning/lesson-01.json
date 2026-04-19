@@ -1,0 +1,345 @@
+{
+  "id": "lesson-01",
+  "course": "bayesian-reasoning",
+  "title": {
+    "zh": "不确定性的数学",
+    "en": "The Mathematics of Uncertainty"
+  },
+  "knowledgePoint": {
+    "zh": "贝叶斯定理与概率推理在人工智能中的核心地位",
+    "en": "Bayes' theorem and why probabilistic reasoning is central to AI"
+  },
+  "teacher": "prof-pearl",
+  "estimatedMinutes": 14,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你翻开笔记本，看到自己写下的一行公式，思绪渐渐飘回了那间弥漫着粉笔灰的教室。Pearl教授正从口袋里掏出一枚硬币，嘴角带着意味深长的微笑……",
+    "en": "You flip open your notebook and see a formula you jotted down. Your mind drifts back to that chalk-dusted classroom. Prof. Pearl is pulling a coin from his pocket, a knowing smile playing at the corners of his mouth..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中仍然回响着那个令人惊讶的答案——百分之九十九的准确率，却只有百分之五十的把握。直觉与数学之间的鸿沟，原来如此之深。",
+    "en": "You close your notebook, the surprising answer still echoing in your mind — ninety-nine percent accuracy, yet only fifty percent certainty. The gap between intuition and mathematics runs deeper than you ever imagined."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室里弥漫着一股老旧木头和粉笔灰的气息。门轻轻推开，一位目光锐利却带着温和笑意的中年教授走了进来。他没有带课本，只是从口袋里掏出一枚硬币和一副扑克牌，随手放在了讲台上。",
+        "en": "The classroom smells of old wood and chalk dust. The door opens gently, and a middle-aged professor with sharp eyes and a warm smile walks in. He carries no textbook — just a coin and a deck of cards, which he casually sets on the lectern."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（把硬币在指间翻转）\n\n让我问你一个看似简单的问题。这枚硬币，抛出去，正面朝上的概率是多少？你大概会说百分之五十。但如果我告诉你，这枚硬币是我特制的呢？你还会这么确定吗？我是Pearl，教你们概率与因果推理。",
+        "en": "(Flipping the coin between his fingers)\n\nLet me ask you a seemingly simple question. This coin — if I flip it, what's the probability of heads? You'd probably say fifty percent. But what if I told you this coin is specially made? Would you still be so sure? I'm Pearl. I'll be teaching you probability and causal reasoning."
+      },
+      "leadsTo": "uncertainty-intro"
+    },
+    {
+      "id": "uncertainty-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我们生活在一个充满不确定性的世界里。今天会不会下雨？这个病人的症状意味着什么？被告是否有罪？我们每时每刻都在做判断，而几乎每一个判断都建立在不完整的信息之上。问题在于——我们该如何在不确定中做出理性的决策？",
+        "en": "We live in a world saturated with uncertainty. Will it rain today? What do this patient's symptoms mean? Is the defendant guilty? We make judgments every moment, and nearly every judgment rests on incomplete information. The question is — how should we make rational decisions amid uncertainty?"
+      },
+      "leadsTo": "bayes-history"
+    },
+    {
+      "id": "bayes-history",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "两百多年前，一位英国牧师托马斯·贝叶斯提出了一个简洁而深刻的公式。他想回答的问题很朴素：当我们获得新的证据时，应该如何更新我们的信念？这个问题看起来平平无奇，但它的答案改变了我们理解世界的方式。",
+        "en": "Over two centuries ago, an English minister named Thomas Bayes proposed an elegant and profound formula. The question he wanted to answer was modest: when we receive new evidence, how should we update our beliefs? The question seems unremarkable, but its answer transformed how we understand the world."
+      },
+      "leadsTo": "medical-setup"
+    },
+    {
+      "id": "medical-setup",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我用一个真实的例子来说明。假设有一种罕见疾病，每一百个人中只有一个人会患上。现在有一种检测方法，准确率高达百分之九十九，也就是说，有病的人做检测，百分之九十九会显示阳性；没病的人做检测，百分之九十九会显示阴性。",
+        "en": "Let me illustrate with a real example. Suppose there's a rare disease that affects one in every hundred people. Now there's a test for it that's ninety-nine percent accurate — meaning if you have the disease, the test shows positive ninety-nine percent of the time, and if you don't have it, the test shows negative ninety-nine percent of the time."
+      },
+      "leadsTo": "medical-question"
+    },
+    {
+      "id": "medical-question",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在，你去做了检测，结果是阳性。问题来了——你实际上患有这种疾病的概率是多少？",
+        "en": "Now, you take the test, and the result comes back positive. Here's the question — what's the actual probability that you have the disease?"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "检测准确率百分之九十九，你的结果是阳性。你觉得自己真正患病的概率大约是多少？",
+        "en": "The test is ninety-nine percent accurate and your result is positive. What do you think the actual probability of you having the disease is?"
+      },
+      "choices": [
+        {
+          "id": "high-probability",
+          "text": {
+            "zh": "应该很高，大概百分之九十九左右",
+            "en": "It should be very high, around ninety-nine percent"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "这正是大多数人的直觉反应！包括许多医生也会这么想。但答案会让你吃惊——实际概率大约只有百分之五十。是的，你没有听错。一个百分之九十九准确的测试，结果阳性，你有病的概率只有一半。让我来解释为什么。",
+              "en": "That's exactly what most people's intuition tells them! Even many doctors think this way. But the answer will surprise you — the actual probability is only about fifty percent. Yes, you heard me right. A ninety-nine percent accurate test, a positive result, and your probability of having the disease is only half. Let me explain why."
+            }
+          },
+          "leadsTo": "bayes-explanation"
+        },
+        {
+          "id": "medium-probability",
+          "text": {
+            "zh": "可能没那么高？大概百分之五十？",
+            "en": "Maybe not that high? Perhaps around fifty percent?"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的直觉！你说对了——大约百分之五十。大多数人会猜百分之九十九，但你感觉到了其中有什么不对劲。这种直觉非常珍贵。让我来告诉你，为什么一个如此准确的测试，给出的信心却如此有限。",
+              "en": "Excellent intuition! You got it right — roughly fifty percent. Most people would guess ninety-nine percent, but you sensed something was off. That instinct is very valuable. Let me show you exactly why such an accurate test gives such limited confidence."
+            }
+          },
+          "leadsTo": "bayes-explanation"
+        },
+        {
+          "id": "low-probability",
+          "text": {
+            "zh": "应该比较低，因为这种病本身很罕见",
+            "en": "It should be fairly low, because the disease itself is rare"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你抓住了关键所在——疾病本身的罕见程度至关重要。答案确实比大多数人想象的低很多，大约百分之五十。你已经触摸到了{贝叶斯定理}最核心的思想：新证据的意义取决于你的起点在哪里。让我来详细解释。",
+              "en": "You've grasped the crucial point — the rarity of the disease itself matters enormously. The answer is indeed much lower than most people think, about fifty percent. You've already touched the core idea of {Bayes' theorem}: the meaning of new evidence depends on where you started. Let me explain in detail."
+            }
+          },
+          "leadsTo": "bayes-explanation"
+        }
+      ]
+    },
+    {
+      "id": "bayes-explanation",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "想象一万个人去做检测。按照百分之一的患病率，其中一百人有病，九千九百人没病。一百个病人做检测，百分之九十九准确，所以九十九人测出阳性。九千九百个健康人做检测，百分之一的误报率，所以九十九人也会测出阳性。",
+        "en": "Imagine ten thousand people taking the test. At a one percent disease rate, one hundred have the disease, nine thousand nine hundred don't. Of the hundred sick people, with ninety-nine percent accuracy, ninety-nine test positive. Of the nine thousand nine hundred healthy people, with a one percent false positive rate, ninety-nine also test positive."
+      },
+      "leadsTo": "bayes-punchline"
+    },
+    {
+      "id": "bayes-punchline",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "所以总共有一百九十八人测出阳性。其中只有九十九人真的有病。九十九除以一百九十八，恰好是百分之五十。这就是{贝叶斯定理}告诉我们的：你不能只看测试的准确率，还必须考虑{先验概率}。在拿到检测结果之前，事情本身的可能性有多大，这才是关键。",
+        "en": "So a total of one hundred ninety-eight people test positive. Only ninety-nine of them actually have the disease. Ninety-nine divided by one hundred ninety-eight — exactly fifty percent. This is what {Bayes' theorem} tells us: you can't just look at the test's accuracy. You must also consider the {prior probability} — how likely the thing was to be true before you saw the evidence."
+      },
+      "terms": {
+        "贝叶斯定理": "term-bayes-theorem",
+        "Bayes' theorem": "term-bayes-theorem",
+        "先验概率": "term-prior",
+        "prior probability": "term-prior"
+      },
+      "leadsTo": "prior-importance"
+    },
+    {
+      "id": "prior-importance",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这就是{先验概率}的力量。因为这种病只影响百分之一的人，你在做检测之前就有百分之九十九的概率是健康的。一个阳性结果确实提高了你患病的可能性，从百分之一提升到百分之五十，但它远远没有达到百分之九十九。证据改变信念，但起点同样重要。",
+        "en": "This is the power of {prior probability}. Because the disease only affects one percent of people, you had a ninety-nine percent chance of being healthy before taking the test. A positive result does increase your probability of being sick — from one percent to fifty percent — but it's far from ninety-nine percent. Evidence changes beliefs, but the starting point matters just as much."
+      },
+      "terms": {
+        "先验概率": "term-prior",
+        "prior probability": "term-prior"
+      },
+      "leadsTo": "posterior-intro"
+    },
+    {
+      "id": "posterior-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在贝叶斯的框架里，检测之前你对患病概率的估计叫做{先验概率}，检测之后更新的估计叫做{后验概率}。而连接这两者的桥梁是{似然}，它代表在你确实患病的条件下，观察到阳性结果的可能性。先验、似然、后验，这三者构成了贝叶斯推理的完整链条。",
+        "en": "In the Bayesian framework, your estimate of the disease probability before testing is called the {prior probability}. The updated estimate after testing is the {posterior probability}. And the bridge between them is the {likelihood} — the probability of observing a positive result given that you do have the disease. Prior, likelihood, posterior — these three form the complete chain of Bayesian reasoning."
+      },
+      "terms": {
+        "先验概率": "term-prior",
+        "prior probability": "term-prior",
+        "后验概率": "term-posterior",
+        "posterior probability": "term-posterior",
+        "似然": "term-likelihood",
+        "likelihood": "term-likelihood"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "贝叶斯定理的核心：后验概率 = 先验概率 × 似然 / 证据概率。关键洞察——新证据的意义取决于先验概率。医学检测例子：99%准确的测试，1%患病率，阳性结果只意味着50%的患病概率。",
+        "en": "Core of Bayes' theorem: posterior = prior × likelihood / evidence. Key insight — the significance of new evidence depends on the prior probability. Medical test example: 99% accurate test, 1% disease rate, a positive result means only 50% probability of actually having the disease."
+      },
+      "category": "core-concept",
+      "leadsTo": "ai-connection"
+    },
+    {
+      "id": "ai-connection",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "你也许会问，这跟人工智能有什么关系？关系太大了。智能的本质之一就是在不确定性中做判断。一个医生看到症状要判断疾病，一辆自动驾驶的汽车看到传感器数据要判断前方是行人还是路灯——它们都需要在不完整的信息下做出最佳推断。",
+        "en": "You might ask, what does this have to do with artificial intelligence? Everything. One essence of intelligence is making judgments amid uncertainty. A doctor sees symptoms and must diagnose a disease. A self-driving car reads sensor data and must determine whether what's ahead is a pedestrian or a streetlight — they all need to make the best inference from incomplete information."
+      },
+      "leadsTo": "updating-beliefs"
+    },
+    {
+      "id": "updating-beliefs",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "而贝叶斯方法给了我们一个优雅的框架：从一个初始信念出发，每当获得新的证据，就按照一个明确的规则更新你的信念。证据越多，你的信念就越接近真相。这是一种学习——从经验中学习的数学。",
+        "en": "And the Bayesian approach gives us an elegant framework: start from an initial belief, and every time you receive new evidence, update your belief according to a precise rule. The more evidence you accumulate, the closer your belief gets to the truth. This is learning — the mathematics of learning from experience."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "在医学检测的例子中，先验概率如此重要。你觉得为什么很多人，甚至医生，都会忽略先验概率？",
+        "en": "In the medical test example, the prior probability is critically important. Why do you think so many people — even doctors — overlook the prior probability?"
+      },
+      "choices": [
+        {
+          "id": "focus-on-test",
+          "text": {
+            "zh": "人们本能地关注眼前的证据，忽略了背景信息",
+            "en": "People instinctively focus on the immediate evidence and ignore background information"
+          },
+          "tag": "psychological",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "说得很好。心理学家把这种现象叫做「基率忽略」。我们的大脑天生擅长处理生动的、具体的信息，比如一个阳性结果——却很容易忽略抽象的统计背景。这正是为什么我们需要数学工具来纠正直觉的偏差。",
+              "en": "Well put. Psychologists call this phenomenon 「base rate neglect」. Our brains are naturally good at processing vivid, concrete information — like a positive test result — but easily overlook abstract statistical context. This is precisely why we need mathematical tools to correct intuitive biases."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "math-hard",
+          "text": {
+            "zh": "贝叶斯计算并不直观，需要专门训练才能正确运用",
+            "en": "Bayesian calculations aren't intuitive — they require specific training to apply correctly"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你点到了一个实际的问题。贝叶斯推理的逻辑并不复杂，但它要求你同时在脑中保持多个数字并进行组合——先验、似然、边际概率。这对人类的工作记忆是一个挑战。所以我们才要把这种推理交给计算机来做。",
+              "en": "You've touched on a practical issue. The logic of Bayesian reasoning isn't complex, but it requires you to hold multiple numbers in your head simultaneously and combine them — prior, likelihood, marginal probability. That challenges human working memory. Which is exactly why we want computers to handle this kind of reasoning."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "confidence-trap",
+          "text": {
+            "zh": "百分之九十九的准确率听起来太可靠了，让人放松了警惕",
+            "en": "Ninety-nine percent accuracy sounds so reliable that it lulls people into false confidence"
+          },
+          "tag": "critical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "正是如此！「百分之九十九准确」这个数字有一种魔力，让人觉得万无一失。但准确率只是故事的一半。另一半是：在这个检测应用的人群中，有多少人本来就有病？当罕见事件遇上高准确率测试，直觉就会严重失灵。",
+              "en": "Exactly! The number 「ninety-nine percent accurate」 has a kind of magic that makes people feel infallible. But accuracy is only half the story. The other half is: in the population being tested, how many people actually have the disease? When a rare event meets a highly accurate test, intuition goes seriously astray."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "贝叶斯方法的美妙之处在于，它承认我们的认知总是不完美的。没有人能够全知全能。但只要你愿意从已有的信念出发，并且在看到新证据时诚实地更新它，你就能一步步逼近真相。这种谦逊而坚定的推理方式，正是智能系统最需要的品质。",
+        "en": "The beauty of the Bayesian approach is that it acknowledges our knowledge is always imperfect. No one can be omniscient. But as long as you're willing to start from your current beliefs and honestly update them when you see new evidence, you can approach the truth step by step. This humble yet resolute way of reasoning is exactly the quality intelligent systems need most."
+      },
+      "leadsTo": "coin-callback"
+    },
+    {
+      "id": "coin-callback",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（拿起讲台上的硬币）\n\n回到这枚硬币。我一开始问你正面朝上的概率是多少。如果你说百分之五十——那是你的先验。但如果我连续抛了十次，每次都是正面呢？你的{后验概率}会怎样变化？你会开始怀疑这枚硬币有问题。这就是贝叶斯推理：用证据不断修正你的信念。",
+        "en": "(Picks up the coin from the lectern)\n\nBack to this coin. I asked you at the start what the probability of heads was. If you said fifty percent — that's your prior. But what if I flip it ten times and it lands on heads every time? How would your {posterior probability} change? You'd start suspecting something's wrong with this coin. That's Bayesian reasoning: continuously revising your beliefs with evidence."
+      },
+      "terms": {
+        "后验概率": "term-posterior",
+        "posterior probability": "term-posterior"
+      },
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我们认识了{贝叶斯定理}的基本思想。但一个变量的推理只是开始。现实世界中，变量之间彼此纠缠，症状影响诊断，诊断影响治疗，治疗又影响预后。如何用数学来表达这种复杂的依赖关系？这就是下一课的内容。我将带你们认识一种强大的工具。",
+        "en": "Today we've met the basic idea of {Bayes' theorem}. But reasoning about a single variable is just the beginning. In the real world, variables are entangled with each other — symptoms influence diagnosis, diagnosis influences treatment, treatment influences prognosis. How do we express these complex dependencies mathematically? That's the subject of our next class — I'll introduce you to a powerful tool."
+      },
+      "terms": {
+        "贝叶斯定理": "term-bayes-theorem",
+        "Bayes' theorem": "term-bayes-theorem"
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "贝叶斯推理是一种在不确定性中学习的数学框架：从先验信念出发，用新证据更新为后验信念。它承认认知的不完美，但通过持续更新逼近真相。这种方式是构建智能系统的核心思路之一。",
+        "en": "Bayesian reasoning is a mathematical framework for learning amid uncertainty: start from prior beliefs and update them into posterior beliefs with new evidence. It acknowledges imperfect knowledge but approaches truth through continuous updating. This approach is one of the core ideas for building intelligent systems."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "Pearl教授把那枚硬币收回口袋，目光中闪烁着对下一课的期待。你低头看着笔记本上潦草写下的数字：1%、99%、50%。这些简单的算术背后，藏着一种全新的思维方式。走出教室时，你忍不住想：我们日常生活中有多少判断，其实都忽略了先验概率？",
+        "en": "Prof. Pearl slips the coin back into his pocket, his eyes glinting with anticipation for the next lesson. You look down at the numbers scrawled in your notebook — 1%, 99%, 50% — behind the simple arithmetic lies an entirely new way of thinking. As you leave the classroom, you can't help wondering: how many of our everyday judgments actually neglect the prior probability?"
+      }
+    }
+  ]
+}

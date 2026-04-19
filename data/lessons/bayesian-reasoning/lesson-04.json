@@ -1,0 +1,307 @@
+{
+  "id": "lesson-04",
+  "course": "bayesian-reasoning",
+  "title": {
+    "zh": "从相关到因果",
+    "en": "From Correlation to Causation"
+  },
+  "knowledgePoint": {
+    "zh": "相关性与因果性的区别，混杂因素与辛普森悖论——为什么AI需要超越相关性",
+    "en": "The distinction between correlation and causation, confounding variables and Simpson's paradox — why AI must go beyond correlation"
+  },
+  "teacher": "prof-pearl",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你翻开笔记本，看到自己画的那幅冰淇淋和溺水的图表，旁边写着一个大大的问号。Pearl教授那天走进教室时的激昂语气又回到了你耳边……",
+    "en": "You flip open your notebook to the ice cream and drowning chart you drew, with a large question mark beside it. Prof. Pearl's impassioned tone as he walked into the classroom that day echoes in your ears again..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，心中有一种被唤醒的感觉。从前那些理所当然的「因为所以」，现在都需要重新审视。相关的表象之下，到底藏着怎样的因果结构？",
+    "en": "You close your notebook with a feeling of awakening. All those 「cause and effect」 claims you once took for granted now demand re-examination. Beneath the surface of correlation, what causal structures truly lie hidden?"
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "Pearl教授今天几乎是大步走进教室的。他的眼中燃烧着一种少见的热情，像是要分享一个压在心底多年的秘密。他在黑板上写下了一行大字：「相关性 ≠ 因果性」。",
+        "en": "Prof. Pearl almost strides into the classroom today. His eyes burn with an unusual intensity, as if he's about to share a secret he's carried for years. He writes in large letters on the blackboard: 「Correlation ≠ Causation」."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指着黑板上的不等号）\n\n你们一定听过这句话：{相关性}不意味着{因果性}。每个统计学入门课都会提到这一点。但我要问你们：如果相关性不能告诉我们因果关系，那什么能？这个问题，困扰了整个统计学界将近一个世纪。而我认为，它也是人工智能面临的最深刻的挑战之一。",
+        "en": "(Pointing at the not-equals sign on the blackboard)\n\nYou've surely heard this phrase: {correlation} does not imply {causation}. Every introductory statistics course mentions it. But let me ask you: if correlation can't tell us about causation, what can? This question has haunted the entire field of statistics for nearly a century. And I believe it's one of the most profound challenges facing artificial intelligence."
+      },
+      "terms": {
+        "相关性": "term-correlation",
+        "correlation": "term-correlation",
+        "因果性": "term-causation",
+        "causation": "term-causation"
+      },
+      "leadsTo": "ice-cream-example"
+    },
+    {
+      "id": "ice-cream-example",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "先讲一个经典的例子。统计数据表明，冰淇淋销量和溺水事故率之间有很强的正相关。冰淇淋卖得越多的月份，溺水的人也越多。那么——我们是否应该禁止卖冰淇淋来减少溺水？",
+        "en": "Let me start with a classic example. Statistical data shows a strong positive correlation between ice cream sales and drowning rates. In months when more ice cream is sold, more people drown. So — should we ban ice cream sales to reduce drowning?"
+      },
+      "leadsTo": "confounding-reveal"
+    },
+    {
+      "id": "confounding-reveal",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "当然不应该。因为这两者之间有一个隐藏的{混杂因素}——温度。夏天天气炎热，人们买更多冰淇淋，同时也有更多人去游泳。冰淇淋和溺水都是高温的结果，它们之间没有因果关系。消除了温度的影响之后，冰淇淋和溺水之间的相关性就消失了。",
+        "en": "Of course not. Because there's a hidden {confounding} variable — temperature. In summer the weather is hot, people buy more ice cream, and more people go swimming. Both ice cream sales and drowning are consequences of high temperature — there's no causal relationship between them. Once you account for temperature, the correlation between ice cream and drowning vanishes."
+      },
+      "terms": {
+        "混杂因素": "term-confounding",
+        "confounding": "term-confounding"
+      },
+      "leadsTo": "confounding-deeper"
+    },
+    {
+      "id": "confounding-deeper",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "冰淇淋的例子很容易看穿。但在更复杂的场景中，{混杂因素}往往隐藏得很深。一项研究发现，喝咖啡的人患心脏病的比例更高。这是否意味着咖啡有害心脏？也许不是——也许喝咖啡的人同时也更容易吸烟，而吸烟才是真正的原因。如何在纷繁复杂的数据中辨别真正的因果关系？这正是我毕生研究的核心问题。",
+        "en": "The ice cream example is easy to see through. But in more complex scenarios, {confounding} variables are often deeply hidden. A study finds that coffee drinkers have higher rates of heart disease. Does this mean coffee is bad for the heart? Perhaps not — perhaps coffee drinkers also tend to smoke, and smoking is the real cause. How do we discern true causal relationships in complex data? This is the core question of my life's research."
+      },
+      "terms": {
+        "混杂因素": "term-confounding",
+        "confounding": "term-confounding"
+      },
+      "leadsTo": "simpson-intro"
+    },
+    {
+      "id": "simpson-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在让我讲一个更令人震惊的例子。这个例子会动摇你对数据的信心。假设一家医院试验了一种新药。总体数据显示：服药组的康复率是40%，不服药组的康复率是50%。新药似乎有害！",
+        "en": "Now let me tell you a more shocking example — one that will shake your trust in data. Suppose a hospital tests a new drug. The overall data shows: the recovery rate for the drug group is forty percent, while the no-drug group's recovery rate is fifty percent. The drug seems harmful!"
+      },
+      "leadsTo": "simpson-twist"
+    },
+    {
+      "id": "simpson-twist",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但如果把数据按性别分开看呢？男性服药组康复率60%，男性不服药组只有50%。女性服药组康复率30%，女性不服药组只有20%。无论男女，服药组都优于不服药组！可是合并数据后，服药组反而看起来更差。这就是著名的辛普森悖论。",
+        "en": "But what if we split the data by gender? Male drug group: sixty percent recovery. Male no-drug group: only fifty percent. Female drug group: thirty percent. Female no-drug group: only twenty percent. In both men and women, the drug group outperforms the no-drug group! Yet when the data is combined, the drug group looks worse. This is the famous Simpson's paradox."
+      },
+      "leadsTo": "simpson-explanation"
+    },
+    {
+      "id": "simpson-explanation",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么会出现这种矛盾？因为性别既影响了谁服药（也许女性更愿意尝试新药），又影响了康复率（也许女性的这种病更严重）。性别就是一个{混杂因素}。合并数据时，这个混杂效应扭曲了真实的因果关系。",
+        "en": "Why does this contradiction arise? Because gender affects both who takes the drug (perhaps women are more willing to try the new drug) and the recovery rate (perhaps the disease is more severe in women). Gender is a {confounding} variable. When data is combined, this confounding effect distorts the true causal relationship."
+      },
+      "terms": {
+        "混杂因素": "term-confounding",
+        "confounding": "term-confounding"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "面对辛普森悖论，你会相信哪个结论——合并数据说药物有害，还是分组数据说药物有益？",
+        "en": "Faced with Simpson's paradox, which conclusion would you trust — the combined data saying the drug is harmful, or the grouped data saying the drug is beneficial?"
+      },
+      "choices": [
+        {
+          "id": "trust-grouped",
+          "text": {
+            "zh": "相信分组数据——因为它排除了性别这个混杂因素",
+            "en": "Trust the grouped data — because it accounts for the confounding factor of gender"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "在这个例子中，你是对的。如果性别确实是一个混杂因素，那么分组数据更接近真实的因果效应。但我要告诉你一个令人不安的事实：仅凭数据本身，你无法判断应该合并还是分组。你需要的是因果结构的知识——哪个变量是混杂因素，哪个不是。数据不会自己告诉你这一点。",
+              "en": "In this example, you're right. If gender is indeed a confounding factor, then the grouped data is closer to the true causal effect. But here's an unsettling truth: from the data alone, you cannot determine whether to combine or split. What you need is knowledge of the causal structure — which variable is a confounder and which isn't. The data won't tell you that on its own."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "trust-combined",
+          "text": {
+            "zh": "相信合并数据——样本量更大，应该更可靠",
+            "en": "Trust the combined data — larger sample size should be more reliable"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "样本量大通常确实更好，但在存在{混杂因素}的情况下，更大的样本量只会让你更精确地得到一个错误的结论。如果性别既影响了服药选择又影响了康复率，那么合并数据就把两种效应混在了一起。更多的数据并不能解决结构性的问题——你需要理解变量之间的因果关系。",
+              "en": "Larger sample sizes are usually better, but in the presence of {confounding}, a larger sample just gives you a more precise wrong answer. If gender affects both drug choice and recovery rate, combined data mixes two different effects. More data doesn't solve a structural problem — you need to understand the causal relationships between variables."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "cant-decide",
+          "text": {
+            "zh": "仅凭这些数据无法决定——需要了解背后的因果机制",
+            "en": "Can't decide from this data alone — we need to understand the underlying causal mechanism"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我想让你们得出的结论！辛普森悖论最深刻的教训在于：纯粹的数据分析无法回答因果问题。你需要一个因果模型，一张告诉你变量之间因果关系的图，才能判断应该怎样处理数据。统计学告诉你数据「是什么」，但数据「意味着什么」，只有因果推理能告诉你。",
+              "en": "That's exactly the conclusion I want you to reach! The deepest lesson of Simpson's paradox is this: pure data analysis cannot answer causal questions. You need a causal model — a graph that tells you the causal relationships between variables — to determine how the data should be handled. Statistics tells you what the data 「is」, but only causal reasoning tells you what the data 「means」."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "你们看到了吗？这就是为什么我说{相关性}只能告诉你世界的表面，{因果性}才揭示它的结构。我们的整个统计学传统，从回归分析到机器学习，绝大部分只处理相关性。它们擅长发现模式，但无法回答最关键的问题：如果我采取某个行动，结果会怎样？",
+        "en": "Do you see? This is why I say {correlation} can only tell you the surface of the world — {causation} reveals its structure. Our entire statistical tradition — from regression analysis to machine learning — mostly deals only with correlation. They're good at finding patterns, but they cannot answer the most critical question: if I take a certain action, what will the outcome be?"
+      },
+      "terms": {
+        "相关性": "term-correlation",
+        "correlation": "term-correlation",
+        "因果性": "term-causation",
+        "causation": "term-causation"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "辛普森悖论：当数据中存在混杂因素时，合并数据的结论可能与分组数据完全相反。核心教训——纯粹的数据分析无法回答因果问题，必须借助因果模型（因果图）才能正确解读数据。相关性告诉你数据「是什么」，因果推理才能告诉你「意味着什么」。",
+        "en": "Simpson's paradox: when confounding variables exist in data, conclusions from combined data can be the exact opposite of grouped data. Core lesson — pure data analysis cannot answer causal questions; a causal model (causal graph) is required to correctly interpret data. Correlation tells you what data 「is」; causal reasoning tells you what it 「means」."
+      },
+      "category": "core-concept",
+      "leadsTo": "ai-blind-spot"
+    },
+    {
+      "id": "ai-blind-spot",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这对人工智能意味着什么？想想看——今天大多数的学习算法都是在寻找数据中的相关模式。一个图像识别系统学会了「草地上的动物通常是牛」，但它真正理解了「牛」吗？如果有一天它看到一只站在草地上的猫，它可能会说那是一头牛。因为它学到的是{相关性}，而非因果结构。",
+        "en": "What does this mean for artificial intelligence? Think about it — most learning algorithms today search for correlation patterns in data. An image recognition system learns that 「animals on grass are usually cows」, but does it truly understand 「cow」? If one day it sees a cat standing on grass, it might call it a cow. Because what it learned is {correlation}, not causal structure."
+      },
+      "terms": {
+        "相关性": "term-correlation",
+        "correlation": "term-correlation"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得，仅仅通过观察更多数据，有没有可能最终推断出因果关系？",
+        "en": "Do you think it's possible to eventually infer causation purely by observing more data?"
+      },
+      "choices": [
+        {
+          "id": "yes-enough-data",
+          "text": {
+            "zh": "有可能——如果数据量足够大，因果关系应该能浮现出来",
+            "en": "Possibly — with enough data, causal relationships should emerge"
+          },
+          "tag": "optimist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是许多人的直觉，我能理解。但让我给你一个反例：无论你收集多少关于冰淇淋销量和溺水率的数据，如果你不知道温度的存在，你永远无法仅从这些数据中发现真正的因果结构。在某些特殊条件下，观察数据可以提供因果线索——但一般来说，观察和干预是两种根本不同的操作。",
+              "en": "That's many people's intuition, and I understand it. But let me give you a counterexample: no matter how much data you collect on ice cream sales and drowning rates, if you don't know about temperature, you can never discover the true causal structure from that data alone. Under certain special conditions, observational data can provide causal clues — but in general, observation and intervention are fundamentally different operations."
+            }
+          },
+          "leadsTo": "closing-bridge"
+        },
+        {
+          "id": "no-need-experiments",
+          "text": {
+            "zh": "不太可能——因果关系需要通过实验或干预才能确定",
+            "en": "Unlikely — causation requires experiments or interventions to establish"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你触及了一个关键点。随机对照实验确实是确定因果关系的黄金标准——你随机分配谁服药、谁不服药，这样就消除了混杂因素的影响。但问题是，很多情况下我们无法做实验。你不能让人随机吸烟来研究吸烟是否致癌。那么，有没有一种方法，让我们在无法实验的情况下也能推断因果？这正是我正在发展的理论要回答的问题。",
+              "en": "You've touched on a crucial point. Randomized controlled experiments are indeed the gold standard for establishing causation — you randomly assign who takes the drug and who doesn't, eliminating confounding effects. But the problem is, in many situations we can't run experiments. You can't randomly make people smoke to study whether smoking causes cancer. So, is there a way to infer causation even when we can't experiment? That's exactly the question the theory I'm developing aims to answer."
+            }
+          },
+          "leadsTo": "closing-bridge"
+        },
+        {
+          "id": "maybe-with-structure",
+          "text": {
+            "zh": "也许——如果我们能从数据中推断出因果图的结构",
+            "en": "Perhaps — if we could infer the causal graph structure from the data"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常有洞察力的想法，而且确实有人在朝这个方向努力。在某些条件下，数据中的条件独立关系可以帮助我们推断图的部分结构。但通常，仅凭观察数据只能确定一组「等价」的因果图，无法精确到唯一的因果结构。要区分等价图中的哪一个才是真实的，我们需要额外的假设或{干预}数据。",
+              "en": "That's a very insightful idea, and people are indeed working in this direction. Under certain conditions, conditional independence relationships in data can help us infer parts of the graph structure. But usually, observational data alone can only determine a set of 「equivalent」 causal graphs — it can't pinpoint the unique causal structure. To distinguish which equivalent graph is the real one, we need additional assumptions or {intervention} data."
+            }
+          },
+          "leadsTo": "closing-bridge"
+        }
+      ]
+    },
+    {
+      "id": "closing-bridge",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "今天我们看到了一道深刻的鸿沟，它横亘在观察到的数据模式与隐藏在数据背后的因果机制之间。跨越这道鸿沟，我认为是科学和人工智能面临的最重要任务之一。下一课，我将向你们展示一种思考因果关系的新框架，一个拥有三个层次的阶梯。每一层都揭示了一种更深层次的推理能力。",
+        "en": "Today we've seen a profound gap — between observed data patterns and the causal mechanisms hidden behind the data. Bridging this gap is, I believe, one of the most important tasks facing science and artificial intelligence. Next class, I'll show you an entirely new framework for thinking about causation — a ladder with three levels. Each level reveals a deeper form of reasoning."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "相关性 vs 因果性：冰淇淋/溺水的例子说明混杂因素可以制造虚假的相关性。辛普森悖论更进一步——合并数据的结论可以与分组数据完全相反。当前大多数AI/ML方法只处理相关性，无法回答「如果我采取行动X会怎样」这类因果问题。要跨越这道鸿沟，需要因果模型。",
+        "en": "Correlation vs causation: the ice cream/drowning example shows how confounders create spurious correlations. Simpson's paradox goes further — combined data conclusions can be the exact opposite of grouped data. Most current AI/ML methods only handle correlation, unable to answer causal questions like 「what happens if I take action X?」 Bridging this gap requires causal models."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "Pearl教授凝视着黑板上那个大大的不等号，眼神中既有对问题的严肃，也有对答案的热切期待。你走出教室时回头看了一眼——那行字「相关性 ≠ 因果性」仿佛在提醒你：表面上的联系，往往掩盖着更深层的真相。而通往真相的路，才刚刚开始。",
+        "en": "Prof. Pearl stares at the bold not-equals sign on the blackboard, his gaze carrying both the gravity of the problem and eager anticipation of the answer. As you leave the classroom, you glance back — the words 「Correlation ≠ Causation」 seem to remind you: surface connections often conceal deeper truths. And the road to those truths has only just begun."
+      }
+    }
+  ]
+}

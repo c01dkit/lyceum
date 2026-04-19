@@ -1,0 +1,369 @@
+{
+  "id": "lesson-05",
+  "course": "neural-revival",
+  "title": {
+    "zh": "分布式表示",
+    "en": "Distributed Representations"
+  },
+  "knowledgePoint": {
+    "zh": "神经网络如何以分布式方式表示知识——与符号AI的根本区别",
+    "en": "How neural networks represent knowledge in a distributed way — the fundamental difference from symbolic AI"
+  },
+  "teacher": "prof-rumelhart",
+  "estimatedMinutes": 11,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你闭上眼，又回到了那间教室。鲁梅尔哈特教授在白板左边写了一个大大的汉字——「猫」。然后他走到白板右边，画了一排小圆圈，其中有些被涂黑了，有些留白。他在两边之间画了一个大大的不等号。",
+    "en": "You close your eyes and find yourself back in that classroom. Prof. Rumelhart writes a large word on the left side of the whiteboard — 「CAT」. Then he walks to the right side and draws a row of small circles, some filled in black, some left white. He draws a large not-equal sign between the two sides."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那排小圆圈仍在脑海中——黑白相间的模式，每一个代表一个神经元的激活。没有一个单独的圆圈代表「猫」，但整个模式就是「猫」。分布式表示，原来如此深刻。",
+    "en": "You return to the present. That row of small circles still lingers in your mind — a pattern of black and white, each representing a neuron's activation. No single circle represents 「cat」, yet the entire pattern is 「cat」. Distributed representation, so profound."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "鲁梅尔哈特教授今天带来了两样东西：一本字典和一个脑部结构的塑料模型。他把字典放在讲台的一边，脑模型放在另一边，然后站在中间，看看左边，又看看右边，像是在比较两个完全不同的世界。",
+        "en": "Prof. Rumelhart brings two things today: a dictionary and a plastic model of the brain. He places the dictionary on one side of the lectern and the brain model on the other, then stands between them, looking left, then right, as if comparing two entirely different worlds."
+      },
+      "leadsTo": "two-worlds"
+    },
+    {
+      "id": "two-worlds",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（拿起字典）在传统的符号AI中，知识的存储方式和这本字典类似。「猫」是一个符号，它有固定的定义，存储在特定的位置。如果你想找「猫」，你翻到C开头的那一页。如果那一页被撕掉了，「猫」这个概念就完全丢失了。",
+        "en": "(Picks up the dictionary) In traditional symbolic AI, knowledge is stored much like this dictionary. 「Cat」 is a symbol with a fixed definition, stored at a specific location. If you want to find 「cat」, you turn to the page starting with C. If that page is torn out, the concept of 「cat」 is completely lost."
+      },
+      "leadsTo": "brain-contrast"
+    },
+    {
+      "id": "brain-contrast",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（拿起脑模型）但大脑不是这样工作的。你的大脑里没有一个标着「猫」的专属神经元。「猫」这个概念分散在成千上万个神经元的激活模式中——有些神经元编码了「毛茸茸」，有些编码了「四条腿」，有些编码了「会发出呼噜声」。这些特征组合在一起，形成了你对「猫」的认知。",
+        "en": "(Picks up the brain model) But the brain doesn't work this way. There isn't a dedicated neuron labeled 「cat」 in your brain. The concept of 「cat」 is spread across the activation pattern of thousands of neurons — some encode 「furry」, some encode 「four legs」, some encode 「makes purring sounds」. These features combined form your understanding of 「cat」."
+      },
+      "leadsTo": "distributed-intro"
+    },
+    {
+      "id": "distributed-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{分布式表示}的核心思想。在我们的神经网络中，没有一个特定的{权重}或神经元代表一个完整的概念。每个概念是由一组神经元的激活模式共同表达的。而且，同一个神经元可以参与多个不同概念的表示——「毛茸茸」这个特征既出现在「猫」中，也出现在「兔子」中。",
+        "en": "This is the core idea of {distributed representation}. In our neural networks, no specific {weight} or neuron represents a complete concept. Each concept is expressed collectively by the activation pattern of a group of neurons. Moreover, the same neuron can participate in representing multiple different concepts — the feature 「furry」 appears in both 「cat」 and 「rabbit」."
+      },
+      "terms": {
+        "分布式表示": "term-distributed-representation",
+        "权重": "term-weight",
+        "distributed representation": "term-distributed-representation",
+        "weight": "term-weight"
+      },
+      "leadsTo": "local-vs-distributed"
+    },
+    {
+      "id": "local-vs-distributed",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我对比一下两种方式。在「局部表示」中，一个概念对应一个节点——就像字典里一个词条。这很清晰，但也很脆弱：删掉那个节点，概念就没了。在「分布式表示」中，一个概念散布在很多节点上。每个节点只承载一小部分信息。这看起来混乱，但实际上有三个巨大的优势。",
+        "en": "Let me contrast the two approaches. In 「local representation」, one concept maps to one node — like a dictionary entry. It's clear, but fragile: delete that node, and the concept is gone. In 「distributed representation, one concept is spread across many nodes. Each node carries only a small piece of information. This looks messy, but it actually has three enormous advantages."
+      },
+      "leadsTo": "advantage-similarity"
+    },
+    {
+      "id": "advantage-similarity",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第一个优势：相似性是自动的。因为「猫」和「狗」共享许多特征，比如都有四条腿、都是宠物、都有毛，所以它们的激活模式自然就很相似。网络不需要被明确告知「猫和狗是相似的」，这种相似性会从数据中自动涌现出来。而在符号系统里，你必须手动编写规则，才能说明两个概念之间的关系。",
+        "en": "First advantage: similarity is automatic. Because 「cat」 and 「dog」 share many features — both have four legs, both are pets, both have fur — their activation patterns are naturally similar. The network doesn't need to be explicitly told 「cat and dog are similar」 — this similarity emerges automatically from the data. In a symbolic system, you must manually write rules to specify the relationship between two concepts."
+      },
+      "leadsTo": "advantage-generalization"
+    },
+    {
+      "id": "advantage-generalization",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二个优势：泛化能力。如果网络学会了「狗能跑」，而「猫」的模式和「狗」很相似，那么网络会自然地推测「猫也能跑」，即使它从未见过奔跑的猫。知识通过共享特征自动迁移。这在符号系统中是做不到的，除非你为每个推断写一条规则。",
+        "en": "Second advantage: generalization. If the network learns 「dogs can run」, and 「cat」 has a pattern similar to 「dog」, then the network will naturally infer 「cats can probably run too」 — even if it has never seen a running cat. Knowledge transfers automatically through shared features. This is impossible in a symbolic system — unless you write a rule for every inference."
+      },
+      "leadsTo": "advantage-robustness"
+    },
+    {
+      "id": "advantage-robustness",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "第三个优势：鲁棒性。如果你破坏了分布式表示中的一些神经元，概念不会突然消失——只是变得稍微模糊一些。就像你的记忆：即使你忘了猫的某些细节，你仍然知道什么是猫。但在符号系统中，如果你删掉了「猫」的词条，这个概念就彻底不存在了。",
+        "en": "Third advantage: robustness. If you damage some neurons in a distributed representation, the concept doesn't suddenly disappear — it just becomes slightly fuzzier. Like your own memory: even if you forget some details about cats, you still know what a cat is. But in a symbolic system, if you delete the 「cat」 entry, the concept ceases to exist entirely."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "和符号表示相比，分布式表示最关键的优势是什么？",
+        "en": "Compared to symbolic representation, what is the most critical advantage of distributed representation?"
+      },
+      "choices": [
+        {
+          "id": "auto-similarity",
+          "text": {
+            "zh": "相似的概念自动获得相似的表示——不需要手动定义关系",
+            "en": "Similar concepts automatically get similar representations — no need to manually define relationships"
+          },
+          "tag": "emergent",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这确实是分布式表示最深刻的特性之一。在符号系统中，「猫」和「狗」只是两个不同的符号——系统看不出它们之间的联系，除非你明确编码。但在分布式表示中，相似性是天然的，是从数据的统计规律中自动浮现的。这意味着网络能够「理解」它从未明确被教过的关系。",
+              "en": "This is indeed one of the most profound characteristics of distributed representations. In a symbolic system, 「cat」 and 「dog」 are just two different symbols — the system sees no connection unless you explicitly encode it. But in distributed representation, similarity is innate, emerging automatically from statistical patterns in the data. This means the network can 「understand」 relationships it was never explicitly taught."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "graceful-degradation",
+          "text": {
+            "zh": "知识不会因为少量损坏而完全丢失——系统自带容错能力",
+            "en": "Knowledge isn't completely lost from small damage — the system has built-in fault tolerance"
+          },
+          "tag": "resilient",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "鲁棒性确实是分布式表示一个非常吸引人的特质。大脑每天都在失去一些神经元，但你不会突然忘记什么是猫。这种「优雅降级」在符号系统中几乎不可能实现。丢失一个关键符号，整条推理链都会断裂。分布式表示让知识像一幅画，而非一本目录。刮掉几笔，画面或许会模糊，但你仍然能认出它。",
+              "en": "Robustness is indeed a very attractive quality of distributed representations. The brain loses neurons every day, but you don't suddenly forget what a cat is. This 「graceful degradation」 is nearly impossible to achieve in symbolic systems — lose one key symbol, and the entire reasoning chain breaks. Distributed representation makes knowledge like a painting, not an index — scratch off a few strokes, the image blurs, but you can still recognize it."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "generalize-unseen",
+          "text": {
+            "zh": "能对从未见过的情况做合理推断——泛化能力远超符号系统",
+            "en": "Can make reasonable inferences about never-seen situations — generalization far exceeds symbolic systems"
+          },
+          "tag": "generalization",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "泛化能力可能是分布式表示最具实用价值的优势。符号系统只能处理它明确编程过的情况，一旦遇到新情况就束手无策。但分布式表示允许网络在「相似空间」中做插值。如果A和B的表示相近，A的性质很可能也适用于B。这让网络能够处理训练中从未出现过的新组合。",
+              "en": "Generalization may be the most practically valuable advantage of distributed representations. A symbolic system can only handle situations it was explicitly programmed for — facing new situations, it's helpless. But distributed representations allow the network to interpolate in 「similarity space」 — if A and B have similar representations, A's properties likely apply to B too. This lets the network handle novel combinations never seen in training."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我用一个更生活化的比喻。符号表示就像把东西放进带标签的抽屉——每样东西都有自己的位置，井井有条，但如果你要找两样东西之间的联系，你得打开两个抽屉然后自己去比较。分布式表示更像是……一首和弦。不同的音符同时响起，它们的组合方式就是意义本身。",
+        "en": "Let me use a more everyday analogy. Symbolic representation is like putting things in labeled drawers — everything has its place, neat and tidy, but if you want to find connections between two things, you need to open two drawers and compare manually. Distributed representation is more like... a chord. Different notes sounding simultaneously, and their combination itself is the meaning."
+      },
+      "leadsTo": "connectionism-link"
+    },
+    {
+      "id": "connectionism-link",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "分布式表示是{联结主义}的核心哲学。我们PDP研究小组相信，智能不在于操纵符号，而在于连接的模式。每一个连接的{权重}、每一个神经元的激活程度，共同编码了网络所学到的全部知识。知识不存在于任何单一的地方——它弥漫在整个网络之中。",
+        "en": "Distributed representation is the core philosophy of {connectionism}. Our PDP research group believes that intelligence lies not in manipulating symbols, but in patterns of connections. Every connection's {weight}, every neuron's activation level, collectively encodes everything the network has learned. Knowledge doesn't reside in any single place — it permeates the entire network."
+      },
+      "terms": {
+        "联结主义": "term-connectionism",
+        "权重": "term-weight",
+        "connectionism": "term-connectionism",
+        "weight": "term-weight"
+      },
+      "leadsTo": "human-memory-comparison"
+    },
+    {
+      "id": "human-memory-comparison",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你知道人类的记忆为什么如此灵活吗？为什么你能从一首歌联想到十年前的某个夏天？因为你的记忆也是分布式的。那首歌激活了一组神经元模式，那个夏天的记忆也激活了类似的模式——共享的神经元把它们联系在了一起。计算机内存做不到这一点：内存地址100和内存地址200之间没有任何「相似性」。",
+        "en": "Do you know why human memory is so flexible? Why a single song can remind you of a summer ten years ago? Because your memory is also distributed. That song activates a pattern of neurons, and the memory of that summer activates a similar pattern — shared neurons link them together. Computer memory can't do this: memory address 100 and memory address 200 have no inherent 「similarity」."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "一个神经网络学会了识别「猫在沙发上」和「狗在草地上」。现在给它一张从未见过的照片：「猫在草地上」。网络能正确识别吗？为什么？",
+        "en": "A neural network has learned to recognize 「cat on sofa」 and 「dog on grass」. Now you show it a never-before-seen photo: 「cat on grass」. Can the network correctly identify it? Why?"
+      },
+      "choices": [
+        {
+          "id": "yes-shared-features",
+          "text": {
+            "zh": "很可能可以——「猫」的特征和「草地」的特征在分布式表示中可以自由组合",
+            "en": "Very likely yes — the features for 「cat」 and 「grass」 can freely combine in distributed representation"
+          },
+          "tag": "compositional",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是分布式表示最强大的地方：组合泛化。网络分别学到了「猫长什么样」和「草地长什么样」，这些特征可以在新的组合中重新出现。你不需要见过世界上所有可能的组合，只要学会了基本的特征，新的组合就是自然的推论。这是符号系统梦寐以求但很难实现的能力。",
+              "en": "This is exactly where distributed representations are most powerful — compositional generalization. The network separately learned 「what a cat looks like」 and 「what grass looks like, and these features can reappear in new combinations. You don't need to see every possible combination in the world — once you've learned the basic features, new combinations are natural inferences. This is an ability symbolic systems aspire to but find very hard to achieve."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "maybe-depends",
+          "text": {
+            "zh": "不一定——要看网络是否真的把「猫」和「背景」的特征分开学习了",
+            "en": "Not necessarily — it depends on whether the network truly learned 「cat」 and 「background」 features separately"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常深思熟虑的回答。你提出了一个重要的前提条件：分布式表示的泛化能力依赖于网络是否学到了「正确」的特征分解。如果网络把「猫+沙发」当作一个整体来记忆，而非分别学习「猫」和「沙发」，那它在新组合面前确实会困惑。好的训练数据多样性有助于网络学到更独立的特征。",
+              "en": "That's a very thoughtful answer. You've raised an important prerequisite: the generalization ability of distributed representations depends on whether the network learned the 「correct」 feature decomposition. If the network memorized 「cat+sofa」 as a whole rather than learning 「cat」 and 「sofa」 separately, it would indeed be confused by new combinations. Good training data diversity helps the network learn more independent features."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "no-never-seen",
+          "text": {
+            "zh": "可能不行——网络从没见过这种组合，怎么知道是对的？",
+            "en": "Probably not — the network has never seen this combination, how would it know it's correct?"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你的疑虑在符号系统中完全成立。符号系统确实无法处理从未编程过的情况。但分布式表示的精妙之处在于，它不需要见过每一种组合。只要「猫」和「草地」各自被充分学习，它们的特征就可以在新的上下文中被自动「拼装」。因为这些特征是独立存储的，而非和特定场景捆绑在一起。当然，这种能力的程度取决于训练数据的多样性和网络的结构。",
+              "en": "Your concern is entirely valid in symbolic systems — they truly cannot handle situations they weren't programmed for. But the elegance of distributed representations is that they don't need to see every combination. As long as 「cat」 and 「grass」 are each sufficiently learned, their features can be automatically 「assembled」 in new contexts — because these features are stored independently, not bundled with specific scenarios. Of course, the extent of this ability depends on training data diversity and network architecture."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "分布式表示给了我们一种全新的思考「知识」的方式。在传统计算机中，知识是精确的、局部的、脆弱的。在神经网络中，知识是近似的、分散的、鲁棒的。两种方式各有优劣——但对于处理感知、模式识别这类任务，分布式表示展现出了强大的潜力。",
+        "en": "Distributed representation gives us an entirely new way of thinking about 「knowledge」. In traditional computers, knowledge is precise, local, and fragile. In neural networks, knowledge is approximate, distributed, and robust. Both approaches have strengths and weaknesses — but for tasks like perception and pattern recognition, distributed representation shows tremendous potential."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "分布式表示的三大优势：(1) 相似概念自动获得相似表示 (2) 能泛化到从未见过的新组合 (3) 部分损坏不会导致知识完全丢失。核心区别：符号系统中知识是局部精确的，神经网络中知识弥漫在整个连接模式中。",
+        "en": "Three advantages of distributed representation: (1) Similar concepts automatically get similar representations (2) Can generalize to never-seen combinations (3) Partial damage doesn't cause complete knowledge loss. Core distinction: in symbolic systems knowledge is locally precise; in neural networks knowledge permeates the entire connection pattern."
+      },
+      "category": "core-concept",
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "下节课是我们这门课的最后一节。我想和你们聊聊我们目前已经做到了什么，以及未来可能会走向哪里。反向传播、梯度下降、多层网络、分布式表示——这些工具结合在一起，已经创造出了一些令人惊喜的成果。但我们面前的路还很长。",
+        "en": "Next lesson is our final class. I want to discuss what we've achieved so far and where the future might lead. Backpropagation, gradient descent, multi-layer networks, distributed representations — these tools combined have already produced some surprising results. But the road ahead is still long."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得分布式表示有没有什么不足之处？有什么是符号系统做得到、但神经网络目前做不好的？",
+        "en": "Do you think distributed representation has any shortcomings? Is there anything symbolic systems can do that neural networks currently struggle with?"
+      },
+      "choices": [
+        {
+          "id": "no-explanation",
+          "text": {
+            "zh": "神经网络很难解释自己的决策——分布式的知识无法被直接阅读和理解",
+            "en": "Neural networks struggle to explain their decisions — distributed knowledge can't be directly read and understood"
+          },
+          "tag": "interpretability",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说到了一个非常重要的问题。符号系统的推理过程是透明的——你可以一步步追溯它是怎么得出结论的。但神经网络的知识分散在成千上万个权重中，即使我们能看到每一个数字，也很难从中提取出人类可理解的「原因」。这种不可解释性确实让很多人对神经网络持保留态度。",
+              "en": "You've raised a very important issue. The reasoning process of symbolic systems is transparent — you can trace step by step how it reached its conclusion. But neural network knowledge is scattered across thousands of weights, and even if we can see every number, it's hard to extract a human-understandable 「reason」. This lack of interpretability does make many people skeptical of neural networks."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "no-logic",
+          "text": {
+            "zh": "精确的逻辑推理——神经网络擅长模式但不擅长严密的逻辑链条",
+            "en": "Precise logical reasoning — neural networks are good at patterns but poor at rigorous logical chains"
+          },
+          "tag": "logic-aware",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常中肯的观察。符号系统天生擅长形式逻辑：如果A则B，如果B则C，所以如果A则C。这种精确的推理链条在符号系统中是可靠的。但神经网络处理的是近似值和模式——它可能在大部分情况下给出正确答案，但偶尔会犯令人费解的错误。也许未来我们需要找到方法把两种优势结合起来。",
+              "en": "That's a very fair observation. Symbolic systems are naturally good at formal logic: if A then B, if B then C, therefore if A then C. This precise reasoning chain is reliable in symbolic systems. But neural networks deal with approximations and patterns — they may give correct answers most of the time but occasionally make baffling errors. Perhaps in the future we need to find ways to combine the strengths of both."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "both-needed",
+          "text": {
+            "zh": "两种方式各有擅长的领域——也许未来需要把它们结合起来",
+            "en": "Both approaches have their strengths — perhaps the future requires combining them"
+          },
+          "tag": "integrative",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微笑）我个人也有类似的直觉。符号系统擅长精确推理和可解释的知识表示，神经网络擅长感知、模式识别和泛化。也许最终的智能系统需要兼具两者的优点——但目前我们还不清楚该如何优雅地融合它们。这也许是下一代研究者的课题。",
+              "en": "(Smiles) I personally have a similar intuition. Symbolic systems excel at precise reasoning and interpretable knowledge representation; neural networks excel at perception, pattern recognition, and generalization. Perhaps the ultimate intelligent system needs the strengths of both — but right now we don't know how to elegantly merge them. This may be a challenge for the next generation of researchers."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我们探讨了神经网络最深层的哲学：知识是弥漫在整个网络的连接模式中。这种分布式的智慧让网络具备了泛化、容错和自动发现相似性的能力。下节课，也是最后一节，我想和你们一起展望未来。",
+        "en": "Today we explored the deepest philosophy of neural networks: knowledge isn't stored at any fixed location, but permeates the entire network's connection patterns. This distributed wisdom gives networks the ability to generalize, tolerate faults, and automatically discover similarities. Next class — our last one — I want to look toward the future together with you."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "鲁梅尔哈特教授把字典和脑模型并排放在讲台上。他站在那里看了它们一会儿，然后轻声说：「也许有一天，我们能造出一种系统，既有字典的精确，又有大脑的灵活。但今天，我们先为这些连接模式中涌现的智慧感到惊叹吧。」他合上字典，拿起脑模型，缓缓走出了教室。",
+        "en": "Prof. Rumelhart places the dictionary and brain model side by side on the lectern. He stands there looking at them for a moment, then says softly: 「Perhaps one day we'll build a system that has both the precision of a dictionary and the flexibility of a brain. But today, let's marvel at the intelligence that emerges from these connection patterns」. He closes the dictionary, picks up the brain model, and slowly walks out of the classroom."
+      }
+    }
+  ]
+}

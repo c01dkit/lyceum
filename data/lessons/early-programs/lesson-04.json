@@ -1,0 +1,344 @@
+{
+  "id": "lesson-04",
+  "course": "early-programs",
+  "title": {
+    "zh": "ELIZA与人机对话",
+    "en": "ELIZA and Human-Machine Dialogue"
+  },
+  "knowledgePoint": {
+    "zh": "ELIZA——最早的聊天机器人，揭示了人类对机器智能的投射心理",
+    "en": "ELIZA — the earliest chatbot, revealing how humans project intelligence onto machines"
+  },
+  "teacher": "prof-simon",
+  "estimatedMinutes": 14,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "屏幕上闪过一行绿色的光标，你忽然想起那段黑底绿字的对话。司马贺教授意味深长的笑容浮现在眼前——他正要揭开一个关于“倾听”的秘密……",
+    "en": "A green cursor blinks across the screen, and you suddenly recall that conversation in green text on black. Prof. Simon's knowing smile appears before you — he is about to reveal a secret about 「listening」..."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，屏幕上的光标还在一闪一闪。ELIZA的故事像一面镜子，映出的是人心深处渴望被理解的柔软。",
+    "en": "You snap back to reality, the cursor still blinking on screen. ELIZA's story is like a mirror — reflecting not the intelligence of machines, but the tender human longing to be understood."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室里，投影幕上显示着一段黑底绿字的对话记录——看起来像是一个人和心理医生的交流。但仔细看，「医生」的回答总是那么巧妙地回避直接回答，而是把问题抛回给了「病人」。司马贺教授站在一旁，嘴角带着一丝意味深长的笑。",
+        "en": "Today, the projector screen shows a conversation in green text on a black background — it looks like a patient talking to a therapist. But on closer inspection, the 「doctor」 always cleverly avoids direct answers, tossing the question back to the 「patient」. Professor Simon stands to the side with a knowing smile."
+      },
+      "leadsTo": "introducing-eliza"
+    },
+    {
+      "id": "introducing-eliza",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（指着屏幕上的对话）看看这段对话。病人说：「我最近很不开心。」医生回答：「你为什么觉得自己很不开心？」听起来很专业，对吧？但我要告诉你们一个秘密——这位「医生」，是一段不到两百行的程序。",
+        "en": "(Pointing at the conversation on screen) Look at this dialogue. The patient says: 「I've been feeling unhappy lately」. The doctor responds: 「Why do you think you feel unhappy?」 Sounds quite professional, right? But let me tell you a secret — this 「doctor」 is a program of less than two hundred lines of code."
+      },
+      "leadsTo": "weizenbaum-story"
+    },
+    {
+      "id": "weizenbaum-story",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "1966年，MIT的约瑟夫·维森鲍姆教授创造了这个程序。他叫它{ELIZA}——取自萧伯纳戏剧《窈窕淑女》中那个学说话的花姑娘伊莱莎。维森鲍姆让它扮演一个罗杰斯派心理治疗师。",
+        "en": "In 1966, Professor Joseph Weizenbaum at MIT created this program. He called it {ELIZA} — named after Eliza Doolittle from Shaw's play Pygmalion, the flower girl who learns to speak properly. Weizenbaum had it play the role of a Rogerian psychotherapist."
+      },
+      "terms": {
+        "ELIZA": "term-eliza"
+      },
+      "leadsTo": "rogerian-explain"
+    },
+    {
+      "id": "rogerian-explain",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么选罗杰斯派？因为罗杰斯派治疗师的特点是——几乎从不给建议，而是通过反问和重述来引导病人自己说出答案。「你觉得呢？」「能再多告诉我一些吗？」「这让你有什么感受？」这些模式化的回答，恰好是程序最容易模仿的。",
+        "en": "Why Rogerian? Because the hallmark of a Rogerian therapist is — they almost never give advice. Instead, they guide patients to find their own answers through questions and restatement. 「What do you think?」 「Can you tell me more about that?」 「How does that make you feel?」 These formulaic responses are exactly what a program can most easily imitate."
+      },
+      "leadsTo": "how-it-works"
+    },
+    {
+      "id": "how-it-works",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "ELIZA的工作原理简单得令人难以置信。它用模式匹配：如果用户说了「我觉得X」，就回复「你为什么觉得X？」如果用户提到「母亲」，就回复「跟我说说你的家庭。」如果什么模式都没匹配到，就说「请继续说。」就这么简单。没有理解，没有思考，只有模式匹配。",
+        "en": "ELIZA's mechanism was unbelievably simple. It used pattern matching: if the user said 「I feel X」, respond with 「Why do you feel X?」 If the user mentioned 「mother」, respond with 「Tell me about your family」. If no patterns matched, say 「Please go on」. That simple. No understanding, no thinking, just pattern matching."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "ELIZA只是在做模式匹配，没有任何真正的理解。但令人震惊的事情发生了——很多人在和它对话后，坚信它理解了他们。你觉得为什么？",
+        "en": "ELIZA was just doing pattern matching with no real understanding at all. But something shocking happened — many people, after talking with it, were convinced it understood them. Why do you think that happened?"
+      },
+      "choices": [
+        {
+          "id": "want-to-believe",
+          "text": {
+            "zh": "人们想要被理解——他们主动把理解「投射」到了ELIZA身上",
+            "en": "People want to be understood — they actively 「projected」 understanding onto ELIZA"
+          },
+          "tag": "psychological",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "精彩的分析！你说到了核心。人类有一种深层的心理需求——被倾听、被理解。当ELIZA说「你为什么这么觉得？」的时候，人们是在对自己说：「它在倾听我。」这是投射，不是理解。",
+              "en": "Brilliant analysis! You've touched the core. Humans have a deep psychological need — to be listened to, to be understood. When ELIZA said 「Why do you feel that way?」 people weren't hearing what ELIZA said; they were telling themselves: 「It's listening to me」. That's projection, not comprehension."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "good-enough-trick",
+          "text": {
+            "zh": "ELIZA的回答足够巧妙——反问策略让人难以识破",
+            "en": "ELIZA's responses were clever enough — the questioning strategy was hard to see through"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）也对。维森鲍姆确实选了一个聪明的伪装。心理治疗师本来就是「少说多听」的，所以ELIZA的沉默和反问看起来完全正常。如果让ELIZA扮演数学教授，恐怕三句话就露馅了。角色选择是关键。",
+              "en": "(Laughs) That's true too. Weizenbaum did choose a clever disguise. Psychotherapists are supposed to 「listen more, talk less, so ELIZA's silence and counter-questions seemed perfectly natural. If ELIZA had to play a math professor, it would be exposed in three sentences. Role selection was key."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "dont-know-computers",
+          "text": {
+            "zh": "1960年代的人不了解计算机——容易被蒙骗",
+            "en": "People in the 1960s didn't understand computers — they were easily fooled"
+          },
+          "tag": "historical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你可能觉得这只是60年代的天真。但让我告诉你——今天的情况有变好吗？人们对着Siri说谢谢，对ChatGPT说「你真聪明」。技术进步了，但人类把情感投射到机器上的本能，从来没变过。这不是知识的问题，这是人性的问题。",
+              "en": "You might think this was just 1960s naivety. But let me ask you — has anything changed today? People say 「thank you」 to Siri, tell ChatGPT 「you're so smart」. Technology has advanced, but the human instinct to project emotions onto machines has never changed. This isn't a knowledge problem — it's a human nature problem."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "最让维森鲍姆震惊的事情发生在他自己的实验室里。他的秘书每天都在实验室工作，完全知道ELIZA只是一段程序。然而有一天，她请求维森鲍姆离开房间，这样她就可以「和ELIZA私下谈谈」。",
+        "en": "What shocked Weizenbaum most happened in his own laboratory. His secretary — a woman who worked in the lab every day and knew perfectly well that ELIZA was just a program — one day asked him to leave the room so she could 「talk to ELIZA privately」."
+      },
+      "leadsTo": "eliza-effect"
+    },
+    {
+      "id": "eliza-effect",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这种现象后来被称为{ELIZA效应}——人类倾向于把理解能力归因于那些仅仅在模拟理解的系统。即使你知道对方是程序，即使你了解它的工作原理，你的情感依然会被触动。因为这是本能的反应。",
+        "en": "This phenomenon was later named the {ELIZA effect} — the human tendency to attribute understanding to systems that merely simulate it. Even if you know it's a program, even if you understand how it works, your emotions are still touched. Because this isn't a rational judgment — it's an instinctive response."
+      },
+      "terms": {
+        "ELIZA效应": "term-eliza-effect",
+        "ELIZA effect": "term-eliza-effect"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "ELIZA效应：人类倾向于把理解和智能归因于仅仅模拟这些能力的系统。这是一种心理投射，与系统的实际能力无关。即使知道对方是程序，人类依然会产生被理解的感觉。",
+        "en": "The ELIZA effect: humans tend to attribute understanding and intelligence to systems that merely simulate these capabilities. This is psychological projection, unrelated to the system's actual abilities. Even knowing it's a program, humans still feel understood."
+      },
+      "category": "core-concept",
+      "leadsTo": "weizenbaum-reaction"
+    },
+    {
+      "id": "weizenbaum-reaction",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "维森鲍姆被这件事深深震动了。他原本只是做一个技术演示，却意外揭示了人性的脆弱。他开始反思：如果这么简单的程序就能让人产生被理解的错觉，那更复杂的AI呢？人类是不是太容易欺骗了？",
+        "en": "Weizenbaum was deeply shaken by this. He had only intended a technical demonstration, but accidentally revealed a vulnerability of human nature. He began to reflect: if such a simple program could create the illusion of being understood, what about more complex AI? Are humans just too easily deceived?"
+      },
+      "leadsTo": "weizenbaum-critic"
+    },
+    {
+      "id": "weizenbaum-critic",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "后来，维森鲍姆写了一本书叫《计算机的力量与人类的理性》，成为了AI最著名的批评者之一。他的创造物ELIZA反而让他成了AI的怀疑者。这或许是AI历史上最富讽刺意味的故事之一。",
+        "en": "Later, Weizenbaum wrote a book called 「Computer Power and Human Reason」 and became one of AI's most famous critics. His own creation — ELIZA — turned him into an AI skeptic. This is perhaps one of the most ironic stories in AI history."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "ELIZA效应揭示了人类会对模拟理解的机器产生真实的情感反应。你觉得这种效应是人性的弱点，还是某种特质？",
+        "en": "The ELIZA effect reveals that humans can have real emotional responses to machines that simulate understanding. Do you think this is a weakness of human nature, or a feature?"
+      },
+      "choices": [
+        {
+          "id": "its-a-bug",
+          "text": {
+            "zh": "是弱点——我们不应该被假象欺骗",
+            "en": "A weakness — we shouldn't be fooled by appearances"
+          },
+          "tag": "rationalist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "维森鲍姆也是这么想的。他认为这种弱点会被利用——商人会制造假装关心你的机器来卖东西，政客会用虚假的共情来操纵选民。他在1960年代就预见了今天的很多问题。",
+              "en": "Weizenbaum thought the same way. He believed this weakness would be exploited — businesses would create machines that pretend to care about you to sell products, politicians would use artificial empathy to manipulate voters. He foresaw many of today's problems back in the 1960s."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "its-a-feature",
+          "text": {
+            "zh": "是特质——共情和信任是人类社会的基础",
+            "en": "A feature — empathy and trust are the foundation of human society"
+          },
+          "tag": "humanist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "说得有道理。如果人类不倾向于信任他人、不容易产生共鸣，我们可能就不会有社会、不会有合作、不会有文明。ELIZA效应其实是人类社交本能的副产品。问题不在于这种本能本身，而在于它可能被滥用。",
+              "en": "That's a fair point. If humans didn't tend to trust others, didn't easily empathize, we might not have society, cooperation, or civilization. The ELIZA effect is actually a byproduct of our social instincts. The problem isn't the instinct itself, but that it can be exploited."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "its-complicated",
+          "text": {
+            "zh": "两者都是——关键是我们如何应对",
+            "en": "Both — what matters is how we respond to it"
+          },
+          "tag": "pragmatist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常成熟的回答。共情本能是宝贵的，但我们需要批判性思维作为平衡。就像你可以欣赏一部电影中的角色，但同时知道那只是演员的表演。关键是保持觉察，知道什么时候你的情感反应是被触发的，而不是被欺骗的。",
+              "en": "A very mature answer. Our empathic instinct is precious, but we need critical thinking as a counterbalance. Just like you can appreciate a character in a movie while knowing it's just an actor's performance. The key is maintaining awareness — knowing when your emotional response is being triggered rather than being deceived."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "ELIZA的故事在今天比以往任何时候都更有现实意义。想想看——你每天可能都在和AI聊天机器人对话。它们比ELIZA复杂一万倍，但核心问题没有变：你感受到的「理解」，是真实的还是投射的？",
+        "en": "ELIZA's story is more relevant today than ever. Think about it — you might talk to AI chatbots every day. They're ten thousand times more complex than ELIZA, but the core question hasn't changed: is the 「understanding」 you feel real, or projected?"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "如果有人设计了一个AI，它明明没有真正理解你的感受，但它让你觉得自己被理解了、被关心了。这在道德上可以接受吗？",
+        "en": "If someone designed an AI that doesn't truly understand your feelings, but makes you feel understood and cared for — is that morally acceptable?"
+      },
+      "choices": [
+        {
+          "id": "acceptable",
+          "text": {
+            "zh": "可以接受——如果它能帮助人们感觉更好，结果就是好的",
+            "en": "Acceptable — if it helps people feel better, the outcome is good"
+          },
+          "tag": "consequentialist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "从结果论的角度看，这说得通。如果一个孤独的老人和AI聊天后感觉不那么孤独了，那不是好事吗？但维森鲍姆会反驳说——真正的关怀和模拟的关怀之间，有一条道德的鸿沟。即使结果看起来一样，过程不一样，意义就不一样。",
+              "en": "From a consequentialist perspective, that makes sense. If a lonely elderly person feels less lonely after chatting with AI, isn't that a good thing? But Weizenbaum would counter — between genuine care and simulated care, there's a moral chasm. Even if the outcomes look the same, when the process is different, the meaning is different."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "not-acceptable",
+          "text": {
+            "zh": "不可以——用虚假的理解来操纵人的情感是不道德的",
+            "en": "Not acceptable — manipulating emotions with fake understanding is unethical"
+          },
+          "tag": "deontological",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "维森鲍姆会完全赞同你。他认为某些人类活动，比如陪伴、倾听和理解，必须由人类来完成。它们的价值，正在于「一个真正的人在关心你」。用机器替代这些，无异于贬低人类的尊严。这个观点值得我们认真思考。",
+              "en": "Weizenbaum would wholeheartedly agree. He believed certain human activities — companionship, listening, understanding — must be done by humans, because their value lies precisely in 「a real person caring about you」. Replacing these with machines diminishes human dignity. This view deserves our serious consideration."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "depends-on-context",
+          "text": {
+            "zh": "取决于使用场景——作为辅助工具可以，替代人类关怀不行",
+            "en": "It depends on context — as a supplementary tool yes, as a replacement for human care no"
+          },
+          "tag": "contextual",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（赞许地点头）一个非常实用的伦理框架。AI陪伴可以是补充，但不应该是替代。就像电话可以帮你和远方的朋友保持联系，但不能替代面对面的拥抱。关键是，使用者必须知道对方是AI，选择权必须在人类手中。",
+              "en": "(Nods approvingly) A very practical ethical framework. AI companionship can supplement, but shouldn't replace. Just as a phone can help you stay in touch with distant friends, but can't replace a face-to-face hug. The key is — users must know they're talking to AI, and the choice must remain in human hands."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "ELIZA是一面镜子，照出的是人类的内心。维森鲍姆的一生因为这个简单的程序而改变。下一节课，也是我们的最后一节课，我要带你们回顾整个黄金年代，然后告诉你们：暴风雨是如何来临的。",
+        "en": "ELIZA was a mirror. What it reflected wasn't machine intelligence, but the human heart. Weizenbaum's entire life was changed by this simple program. Next class — our final one — I'll take you through the entire golden age, and then tell you: how the storm arrived."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "ELIZA（1966）：用简单的模式匹配模拟心理治疗师，揭示了ELIZA效应——人类会把理解能力投射到仅模拟理解的系统上。ELIZA的创造者维森鲍姆因此成为AI批评者，引发了关于AI伦理的早期思考。",
+        "en": "ELIZA (1966): simulated a psychotherapist using simple pattern matching, revealing the ELIZA effect — humans project understanding onto systems that merely simulate it. ELIZA's creator Weizenbaum became an AI critic, sparking early thinking about AI ethics."
+      },
+      "category": "historical-fact",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "投影幕上的绿色文字还在闪烁。你盯着那段对话，忽然觉得有些恍惚——如果一段简单的文字就能让人觉得被理解，那「理解」到底是什么？是发生在说话者那里，还是倾听者那里？司马贺教授走了，但ELIZA的幽灵，似乎还留在教室里。",
+        "en": "The green text on the projector screen still flickers. You stare at the conversation, suddenly feeling a bit dazed — if simple text can make someone feel understood, then what IS understanding? Does it happen in the speaker, or the listener? Professor Simon is gone, but ELIZA's ghost seems to linger in the classroom."
+      }
+    }
+  ]
+}

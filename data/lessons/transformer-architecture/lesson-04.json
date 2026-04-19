@@ -1,0 +1,349 @@
+{
+  "id": "lesson-04",
+  "course": "transformer-architecture",
+  "title": {
+    "zh": "编码器与解码器",
+    "en": "The Encoder and Decoder"
+  },
+  "knowledgePoint": {
+    "zh": "完整的Transformer架构——编码器栈、解码器栈与交叉注意力",
+    "en": "The full Transformer architecture — encoder stack, decoder stack, and cross-attention"
+  },
+  "teacher": "prof-vaswani",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间金色教室。全息显示上浮着一座精巧的塔状结构，左侧六层编码器整齐堆叠，右侧六层解码器与之对称，中间有淡蓝色的光线连接着两侧。瓦斯瓦尼教授站在这座「建筑」旁边，像一位解说建筑蓝图的设计师。每一层都在做同样的事情：注意、变换、传递。但信息每经过一层都变得更丰富。",
+    "en": "You close your eyes, and your thoughts drift back to that golden classroom. A delicate tower-like structure floats on the holographic display — six encoder layers stacked neatly on the left, six decoder layers symmetrically on the right, with pale blue beams connecting the two sides. Prof. Vaswani stands beside this 「building」 like an architect explaining a blueprint: each layer does the same thing — attend, transform, pass — but information grows richer with every layer."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。Transformer的完整蓝图在脑海中展开：编码器用自注意力加前馈网络，逐层提取源语言的深层表示；解码器用掩码自注意力保证自回归生成的因果性，用交叉注意力从编码器获取源语言信息，再用前馈网络变换。层归一化和残差连接保证了深层堆叠的稳定性。六层编码器，六层解码器——简单模块的重复堆叠，构成了一个强大而优美的整体。",
+    "en": "You return to the present. The complete Transformer blueprint unfolds in your mind: the encoder uses self-attention plus feed-forward networks, extracting deep representations of the source language layer by layer; the decoder uses masked self-attention to ensure causal autoregressive generation, cross-attention to access source-language information from the encoder, then feed-forward networks for transformation. Layer normalization and residual connections ensure stability in deep stacking. Six encoder layers, six decoder layers — simple modules repeated, forming a powerful and elegant whole."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "瓦斯瓦尼教授今天走进教室时步伐比平时快了一些。他轻点讲台边缘，全息显示区域立刻展开了一幅建筑蓝图般的图案——左侧是一个标注着「Encoder」的竖直结构，右侧是「Decoder」，两者之间有细线相连。这是Transformer的全貌。",
+        "en": "Prof. Vaswani walks into the classroom a bit faster than usual today. He taps the edge of the lectern, and the holographic display immediately unfolds a blueprint-like diagram — a vertical structure labeled 「Encoder」 on the left, 「Decoder」 on the right, with thin lines connecting them. This is the full picture of the Transformer."
+      },
+      "leadsTo": "assembly-intro"
+    },
+    {
+      "id": "assembly-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "前三节课我们学了所有的零件：自注意力、多头注意力、位置编码。今天我们把它们组装起来。一个完整的Transformer由两个主要部分组成：编码器和解码器。在我们的论文中，编码器有6层，解码器也有6层。每一层的结构非常规律——这种规律性正是Transformer的美学之一。",
+        "en": "In the previous three lessons we learned all the components: self-attention, multi-head attention, positional encoding. Today we assemble them. A complete Transformer consists of two main parts: the encoder and the decoder. In our paper, the encoder has 6 layers, and the decoder also has 6 layers. Each layer's structure is very regular — this regularity is part of the Transformer's aesthetic."
+      },
+      "leadsTo": "encoder-layer"
+    },
+    {
+      "id": "encoder-layer",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先看编码器。每一层编码器包含两个子层：第一个是多头自注意力，它让序列中的每个位置关注所有其他位置，从而捕捉上下文关系。第二个是一个简单的前馈网络，对每个位置独立地做一次非线性变换。自注意力负责「交流」，前馈网络负责「思考」。两者交替进行，层层深入。",
+        "en": "Let's start with the encoder. Each encoder layer contains two sublayers: the first is multi-head self-attention — letting each position attend to all others, capturing contextual relationships. The second is a simple feed-forward network — performing a nonlinear transformation independently at each position. Self-attention handles 「communication」, the feed-forward network handles 「thinking」. Alternating and deepening layer by layer."
+      },
+      "leadsTo": "residual-connection"
+    },
+    {
+      "id": "residual-connection",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "每个子层都包裹着两个关键的辅助结构。第一个是残差连接，它把子层的输入直接加到输出上。如果你学过何恺明的ResNet课程，你会认出这个设计：它允许梯度直接回流，让深层网络的训练变得可能。第二个是{层归一化}，它在每个子层之后归一化激活值，以稳定训练过程。",
+        "en": "Each sublayer is wrapped with two key auxiliary structures. The first is a residual connection — adding the sublayer's input directly to its output. If you've studied He Kaiming's ResNet course, you'll recognize this design: it allows gradients to flow back directly, making deep network training possible. The second is {layer normalization} — normalizing activation values after each sublayer, stabilizing the training process."
+      },
+      "terms": {
+        "层归一化": "term-layer-normalization",
+        "layer normalization": "term-layer-normalization"
+      },
+      "leadsTo": "encoder-formula"
+    },
+    {
+      "id": "encoder-formula",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "所以一个编码器层的完整计算是：先做多头自注意力，加上残差连接，做层归一化；然后做前馈网络，再加残差连接，再做层归一化。把这样的层堆叠6次——每一层的输出成为下一层的输入。最底层接收的是词嵌入加位置编码，最顶层输出的是对整个源语句子的深层理解。",
+        "en": "So the full computation of one encoder layer is: multi-head self-attention, add residual connection, apply layer normalization; then feed-forward network, add residual connection, apply layer normalization. Stack 6 such layers — each layer's output becomes the next layer's input. The bottom layer receives word embeddings plus positional encoding; the top layer outputs a deep understanding of the entire source sentence."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "编码器的每一层都做同样的操作——自注意力加前馈网络。你觉得堆叠多层的意义是什么？一层不够吗？",
+        "en": "Every encoder layer performs the same operations — self-attention plus feed-forward. What do you think is the point of stacking multiple layers? Isn't one layer enough?"
+      },
+      "choices": [
+        {
+          "id": "choice-abstraction",
+          "text": {
+            "zh": "每一层提取不同层次的抽象——底层捕捉局部模式，高层捕捉全局语义",
+            "en": "Each layer extracts a different level of abstraction — lower layers capture local patterns, higher layers capture global semantics"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "正是如此。这和深度学习的核心直觉一致——深度带来抽象层级。在Transformer中，底层的注意力头可能关注相邻词的语法关系，中间层开始捕捉短语和从句的结构，顶层则理解整个句子的语义。每一层站在前一层的肩膀上，看到更高层次的模式。",
+              "en": "Exactly. This aligns with the core intuition of deep learning: depth brings hierarchical abstraction. In a Transformer, lower-layer attention heads may attend to syntactic relationships between adjacent words; middle layers begin to capture phrase and clause structure; the top layers understand the semantics of the whole sentence. Each layer stands on the shoulders of the previous one and sees patterns at a higher level."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-iterative",
+          "text": {
+            "zh": "一层注意力可能不足以建立所有需要的间接联系——多层允许信息通过中间节点传递",
+            "en": "One layer of attention might not establish all needed indirect connections — multiple layers allow information to propagate through intermediate nodes"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个非常精到的观察。考虑这样一个场景：词A和词C之间没有直接的强注意力，但A强烈关注B，B又强烈关注C。第一层建立了A→B和B→C的联系，第二层就可以通过B建立A到C的间接联系。多层堆叠让注意力可以通过多跳传递信息，大大增加了模型的表达能力。",
+              "en": "A very sharp observation. Consider this scenario: words A and C have no direct strong attention between them, but A attends strongly to B, and B attends strongly to C. The first layer establishes the A→B and B→C connections; the second layer can then build an indirect link from A to C through B. Stacking layers lets attention transmit information through multiple hops, greatly increasing the model's expressive power."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-capacity",
+          "text": {
+            "zh": "更多层意味着更多参数——模型有更大的容量来拟合复杂的翻译模式",
+            "en": "More layers mean more parameters — the model has greater capacity to fit complex translation patterns"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "参数容量确实是一个因素，但更深层的原因是：即使给一个单层Transformer和一个六层Transformer相同的总参数量，六层的版本通常表现更好。深度提供的是计算的「层次性」——每一层都可以在前一层的基础上做进一步的推理。这种层次化的计算比单一的大规模计算更高效。",
+              "en": "Parameter capacity is one factor, but a deeper reason is this: even given the same total parameter count, a six-layer Transformer typically outperforms a single-layer one. What depth provides is the 'hierarchy' of computation. Each layer can perform further reasoning on top of the previous one. Hierarchical computation is more efficient than a single massive computation."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在来看解码器。解码器的任务更复杂——它不仅要理解源语言，还要一个词一个词地生成目标语言。因此解码器的每一层有三个子层，比编码器多了一个。",
+        "en": "Now let's look at the decoder. The decoder's task is more complex — it must not only understand the source language but also generate the target language word by word. Therefore, each decoder layer has three sublayers, one more than the encoder."
+      },
+      "leadsTo": "masked-attention"
+    },
+    {
+      "id": "masked-attention",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "解码器的第一个子层是{掩码自注意力}。在翻译时，解码器是自回归的——它一个词一个词地生成输出。生成第五个词时，它只能看到前四个已经生成的词，不能「偷看」后面的词。掩码的作用就是把未来位置的注意力权重强制设为零。在注意力分数上加一个负无穷的掩码，经过softmax之后这些位置的权重就变成了零。",
+        "en": "The decoder's first sublayer is {masked self-attention}. During translation, the decoder is autoregressive — it generates output one word at a time. When generating the fifth word, it can only see the first four words already generated, not 「peek」 at future words. The mask forces attention weights for future positions to zero. By adding a negative infinity mask to attention scores, those positions' weights become zero after softmax."
+      },
+      "terms": {
+        "掩码自注意力": "term-masked-attention",
+        "masked self-attention": "term-masked-attention"
+      },
+      "leadsTo": "cross-attention"
+    },
+    {
+      "id": "cross-attention",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "解码器的第二个子层是{交叉注意力}——这是连接编码器和解码器的桥梁。在这一层中，Query来自解码器的前一个子层（代表「我在翻译到这个位置，我需要什么信息？」），而Key和Value来自编码器的输出（代表源语言的完整理解）。这样，解码器在生成每一个目标词时，都可以「回头看」整个源语句子。",
+        "en": "The decoder's second sublayer is {cross-attention} — the bridge connecting encoder and decoder. In this layer, the Query comes from the decoder's previous sublayer (representing 「I'm translating at this position, what information do I need?」), while Key and Value come from the encoder's output (representing the complete understanding of the source language). This way, when generating each target word, the decoder can 「look back」 at the entire source sentence."
+      },
+      "terms": {
+        "交叉注意力": "term-cross-attention",
+        "cross-attention": "term-cross-attention"
+      },
+      "leadsTo": "decoder-ffn"
+    },
+    {
+      "id": "decoder-ffn",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第三个子层是和编码器一样的前馈网络。同样地，每个子层都有残差连接和层归一化。把这三个子层堆叠6次，就是完整的解码器。解码器最后的输出经过一个线性层和softmax，生成下一个词的概率分布。",
+        "en": "The third sublayer is a feed-forward network identical to the encoder's. Likewise, each sublayer has residual connections and layer normalization. Stack these three sublayers 6 times, and you have the complete decoder. The decoder's final output passes through a linear layer and softmax to produce a probability distribution over the next word."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "在交叉注意力中，Key和Value都来自编码器，Query来自解码器。为什么是这样的分配，而不是反过来？",
+        "en": "In cross-attention, Key and Value both come from the encoder, while Query comes from the decoder. Why this arrangement, and not the reverse?"
+      },
+      "choices": [
+        {
+          "id": "choice-decoder-asks",
+          "text": {
+            "zh": "因为解码器是「提问者」——它需要知道源语言的哪些部分和当前要生成的词相关",
+            "en": "Because the decoder is the 「questioner」 — it needs to know which parts of the source language are relevant to the word it's currently generating"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "完全正确。Query代表「需求」，Key代表「供给」，Value代表「内容」。解码器在生成每个词时，都有特定的信息需求，这个需求就用Query来表达。编码器的输出包含了源语言的全部信息，这些信息通过Key被索引，通过Value被检索。解码器的Query，正是去编码器的「图书馆」里寻找所需的信息。",
+              "en": "Exactly right. Query represents 'demand', Key represents 'supply', and Value represents 'content'. When generating each word, the decoder has a specific information need, expressed by Query. The encoder's output contains the full information of the source language, indexed via Keys and retrieved via Values. The decoder's Query goes into the encoder's 'library' to look up the information it needs."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-attention-original",
+          "text": {
+            "zh": "这与最初注意力机制的设计一致——本吉奥教授的注意力也是用解码器状态去查询编码器输出",
+            "en": "This is consistent with the original attention mechanism — Bengio's attention also used decoder states to query encoder outputs"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你的历史关联很好。本吉奥教授在序列到序列框架中引入的注意力，确实就是用解码器的当前隐藏状态作为查询，去计算与编码器各位置输出的相关性。Transformer的交叉注意力是这个思想的自然推广——用Q/K/V的形式化框架取代了原来的加性或乘性注意力计算。核心直觉是一致的：让译者（解码器）主动查阅原文（编码器）。",
+              "en": "A nice historical link. The attention mechanism Professor Bengio introduced in the sequence-to-sequence framework did use the decoder's current hidden state as the query to compute relevance against the encoder's per-position outputs. Transformer's cross-attention is the natural generalization of that idea, replacing the additive or multiplicative attention computation with the formal Q/K/V framework. The core intuition is the same: let the translator (decoder) actively consult the source text (encoder)."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-info-flow",
+          "text": {
+            "zh": "这保证了信息从编码器流向解码器的单向性——解码器从编码器获取信息，但不改变编码器的表示",
+            "en": "This ensures unidirectional information flow from encoder to decoder — the decoder retrieves from the encoder without modifying the encoder's representations"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个架构层面的深刻观察。编码器的K和V在解码器的每一层都被重复使用，但它们本身不会被修改。这意味着编码器只需要运行一次，它的输出就可以被解码器的所有层和所有生成步骤共享。这种设计在计算效率上非常巧妙——编码一次，解码多次查阅。",
+              "en": "An architectural observation with depth. The encoder's K and V are reused at every layer of the decoder, but they themselves are never modified. This means the encoder only needs to run once, and its output can be shared by every layer and every generation step of the decoder. This design is computationally elegant: encode once, consult many times during decoding."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我总结一下完整的信息流动路径。源语言输入经过词嵌入和位置编码，进入编码器的6层堆叠。每一层都要做自注意力和前馈变换。编码器的最终输出作为K和V，被送入解码器的每一层交叉注意力中。解码器同时处理已生成的目标语言，它通过掩码自注意力和前馈网络，然后在交叉注意力中融合源语言信息，最终输出下一个词的概率。",
+        "en": "Let me summarize the complete information flow. Source language input passes through word embedding and positional encoding, entering the encoder's 6-layer stack — each layer performing self-attention and feed-forward transformation. The encoder's final output becomes K and V, fed into the cross-attention of every decoder layer. The decoder simultaneously processes already-generated target language — through masked self-attention and feed-forward networks — then integrates source language information in cross-attention. The final output is a probability distribution over the next word."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "Transformer完整架构：编码器每层=多头自注意力+前馈网络（各带残差连接+层归一化），堆叠6层。解码器每层=掩码自注意力+交叉注意力+前馈网络（各带残差+层归一化），堆叠6层。掩码自注意力防止解码器偷看未来词。交叉注意力Q来自解码器，K和V来自编码器——解码器向编码器「查询」源语言信息。",
+        "en": "Full Transformer architecture: each encoder layer = multi-head self-attention + feed-forward (each with residual + layer norm), stacked 6 times. Each decoder layer = masked self-attention + cross-attention + feed-forward (each with residual + layer norm), stacked 6 times. Masked self-attention prevents decoder from peeking at future words. Cross-attention: Q from decoder, K and V from encoder — decoder 「queries」 encoder for source language info."
+      },
+      "category": "core-concept",
+      "leadsTo": "elegance"
+    },
+    {
+      "id": "elegance",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "整个架构只用了三种基本模块：多头注意力、前馈网络、层归一化加残差连接。通过不同的组合方式，比如自注意力、掩码自注意力和交叉注意力，这三种模块就构成了一个能做机器翻译的完整系统。没有循环，没有卷积，只有注意力和简单的变换。我认为这就是好的架构设计：用最少的概念，解决最复杂的问题。",
+        "en": "The entire architecture uses only three basic building blocks: multi-head attention, feed-forward networks, and layer normalization with residual connections. Through different combinations — self-attention, masked self-attention, cross-attention — these three blocks form a complete machine translation system. No recurrence, no convolution, only attention and simple transformations. I believe this is what good architecture design looks like: solving the most complex problems with the fewest concepts."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "残差连接和层归一化在Transformer中无处不在。如果去掉它们，你觉得会发生什么？",
+        "en": "Residual connections and layer normalization are everywhere in the Transformer. What do you think would happen if we removed them?"
+      },
+      "choices": [
+        {
+          "id": "choice-gradient-vanish",
+          "text": {
+            "zh": "深层网络的梯度会消失或爆炸，6层堆叠根本训练不起来",
+            "en": "Gradients in the deep network would vanish or explode — 6 stacked layers simply wouldn't train"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "正确。没有残差连接，梯度必须经过6层注意力和6层前馈网络才能传回输入层——信号衰减是灾难性的。残差连接提供了一条「高速公路」，让梯度可以直接回传。层归一化则保证了每一层的输入分布相对稳定，避免了内部协变量偏移。两者结合，是深层Transformer能够训练的基础。",
+              "en": "Correct. Without residual connections, the gradient must travel back through six attention layers and six feed-forward layers to reach the input. The signal decay is catastrophic. Residual connections provide a 'highway' that lets the gradient flow back directly. Layer normalization ensures the input distribution at each layer stays relatively stable, avoiding internal covariate shift. Together they form the foundation that makes deep Transformers trainable."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-overwrite",
+          "text": {
+            "zh": "每一层的变换会完全覆盖之前的信息——低层学到的特征被高层「洗掉」了",
+            "en": "Each layer's transformation would completely overwrite previous information — features learned by lower layers get 「washed away」 by higher ones"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个很好的直觉。残差连接的另一个重要作用是保留原始信息。如果没有残差，每一层都必须学会传递所有前面层的信息，这对参数施加了极大的压力。有了残差连接，每一层只需要学习「增量」，也就是在已有信息的基础上添加新的、有用的变换。这让每一层的学习任务变得简单得多。",
+              "en": "A nice intuition. Another important role of residual connections is preserving the original information. Without residuals, every layer would have to learn to pass through everything from the previous layers, placing enormous pressure on the parameters. With residual connections, each layer only needs to learn an 'increment', a useful addition on top of the existing information. That makes the learning task at each layer much easier."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-slow-converge",
+          "text": {
+            "zh": "也许能训练，但收敛会极其缓慢，需要非常精细的学习率调整",
+            "en": "It might still train, but convergence would be extremely slow, requiring very careful learning rate tuning"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "对于浅层网络你可能是对的，但对于6层的Transformer，去掉这些辅助结构几乎等同于训练失败。层归一化特别重要，它让模型对学习率的选择不那么敏感。我们使用了一个特殊的学习率预热策略，先线性增加学习率，然后逐渐衰减。层归一化和残差连接的组合，是这个策略能够奏效的前提。",
+              "en": "For shallow networks you might be right, but for a six-layer Transformer, removing these auxiliary structures is essentially equivalent to a training failure. Layer normalization is especially important, because it makes the model less sensitive to learning-rate choices. We used a special learning-rate warm-up strategy: linearly increase the learning rate first, then gradually decay it. The combination of layer normalization and residual connections is what makes that strategy work."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我们组装了完整的Transformer。下节课，我想和你们讨论一个更宏观的问题：为什么这个架构如此适合大规模训练？为什么它能利用GPU的并行能力？这将引出一个改变了整个领域的洞察——规模的力量。",
+        "en": "Today we assembled the complete Transformer. Next lesson, I want to discuss a more macro question with you: why is this architecture so well-suited for large-scale training? Why can it leverage GPU parallelism? This will lead to an insight that changed the entire field — the power of scale."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "全息显示上，完整的Transformer架构图缓缓旋转。六层编码器和六层解码器像两座对称的塔楼，交叉注意力的连线在它们之间架起桥梁。数据从底部流入，在编码器中被层层提炼，越过桥梁进入解码器，最终从顶部流出一个个词。瓦斯瓦尼教授注视着这座结构良久，轻声说：「好的设计应该看起来理所当然。当你看到它时，会觉得它本来就应该是这样的。」他安静地离开了教室。全息图继续缓缓旋转，散发着柔和的金光。",
+        "en": "On the holographic display, the complete Transformer architecture diagram slowly rotates — six encoder layers and six decoder layers like two symmetrical towers, cross-attention connections bridging them. Data flows in from the bottom, refined layer by layer in the encoder, crosses the bridge into the decoder, and finally flows out as words from the top. Prof. Vaswani gazes at this structure for a long time and says softly: 「Good design should look inevitable — when you see it, you feel it was always meant to be this way」. He quietly leaves the classroom. The hologram continues its slow rotation, emitting a soft golden glow."
+      }
+    }
+  ]
+}

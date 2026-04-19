@@ -1,0 +1,415 @@
+{
+  "id": "lesson-02",
+  "course": "neural-revival",
+  "title": {
+    "zh": "误差的反向之旅",
+    "en": "The Backward Journey of Errors"
+  },
+  "knowledgePoint": {
+    "zh": "反向传播算法的核心思想——通过链式法则将误差从输出层传回每一层",
+    "en": "The core idea of the backpropagation algorithm — propagating errors back through every layer using the chain rule"
+  },
+  "teacher": "prof-rumelhart",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间阳光充沛的教室。鲁梅尔哈特教授把一张透明胶片放上投影仪——上面画着一个简单的网络图，从左到右，一层一层的圆圈用箭头相连。然后他拿起一支红色记号笔，在输出端画了一个大大的叉。",
+    "en": "You close your eyes, and your thoughts drift back to that sunlit classroom. Prof. Rumelhart places a transparency on the projector — a simple network diagram, circles connected by arrows from left to right, layer by layer. Then he picks up a red marker and draws a big X at the output end."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那条红色的误差信号仿佛仍在脑海中闪烁——从输出端出发，一路倒流，沿着每一条连接追溯责任。反向传播，原来如此简洁。",
+    "en": "You return to the present. That red error signal seems to still flicker in your mind — starting from the output, flowing backward, tracing responsibility along every connection. Backpropagation, so elegant in its simplicity."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "鲁梅尔哈特教授走进教室时，手上多了一个道具——一台小型投影仪。他小心地把它放在讲台上，从胶片堆里抽出第一张，上面画着三列圆圈，圆圈之间用箭头相连。他对着投影上的图形看了一眼，满意地点了点头。",
+        "en": "Prof. Rumelhart enters the classroom carrying an extra prop today — a small overhead projector. He carefully places it on the lectern, pulls out the first transparency from his stack, showing three columns of circles connected by arrows. He glances at the projected image and nods with satisfaction."
+      },
+      "leadsTo": "recap-start"
+    },
+    {
+      "id": "recap-start",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们说到，多层网络的潜力从未被真正否定——问题一直是「如何训练」。今天，我要带你们走进这个问题的答案。让我们从误差开始，倒着走一遍。",
+        "en": "Last time we discussed how the potential of multi-layer networks was never truly disproven — the problem was always 「how to train them」. Today, I'm going to walk you through the answer. Let's start from the error and work our way backward."
+      },
+      "leadsTo": "factory-analogy"
+    },
+    {
+      "id": "factory-analogy",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "想象一个工厂的流水线。原材料从一端进入，经过多个工位的加工，最后在另一端输出成品。有一天，你发现最终的产品有缺陷。你会怎么做？",
+        "en": "Imagine a factory assembly line. Raw materials enter at one end, pass through multiple workstations for processing, and the finished product comes out the other end. One day, you discover the final product is defective. What would you do?"
+      },
+      "leadsTo": "factory-analogy-2"
+    },
+    {
+      "id": "factory-analogy-2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你不会只站在出口抱怨——你会沿着流水线往回走。检查最后一个工位：它收到的半成品是好的吗？如果是好的，问题出在这一步；如果半成品就有问题，那要继续往前追溯。一直追到你找出真正的源头。",
+        "en": "You wouldn't just stand at the exit and complain — you'd walk backward along the line. Check the last workstation: was the semi-finished product it received good? If so, the problem is at this step; if the semi-finished product was already flawed, you need to trace further back. All the way until you find the true source."
+      },
+      "leadsTo": "network-as-factory"
+    },
+    {
+      "id": "network-as-factory",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "神经网络就是这样一条流水线。输入数据从第一层进入，经过{隐藏层}的一系列变换。每个神经元接收输入、乘以{权重}、再通过{激活函数}产生输出，最终到达输出层，给出预测结果。这个从前到后的过程叫做{前向传播}。",
+        "en": "A neural network is exactly this kind of assembly line. Input data enters at the first layer, goes through a series of transformations in the {hidden layers} — each neuron receives input, multiplies by {weights}, passes through an {activation function} to produce output — and finally reaches the output layer, which gives a prediction. This front-to-back process is called {forward propagation}."
+      },
+      "terms": {
+        "隐藏层": "term-hidden-layer",
+        "权重": "term-weight",
+        "激活函数": "term-activation-function",
+        "前向传播": "term-forward-propagation",
+        "hidden layers": "term-hidden-layer",
+        "weights": "term-weight",
+        "activation function": "term-activation-function",
+        "forward propagation": "term-forward-propagation"
+      },
+      "leadsTo": "error-intro"
+    },
+    {
+      "id": "error-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在，预测结果出来了，我们拿它跟正确答案比较。两者之间的差距就是「误差」——更正式的说法是{损失函数}的值。损失函数就像一个裁判，给网络的表现打分：分数越高，表现越差。",
+        "en": "Now, the prediction is out, and we compare it with the correct answer. The gap between them is the 「error」 — more formally, the value of the {loss function}. The loss function is like a referee, scoring the network's performance: the higher the score, the worse the performance."
+      },
+      "terms": {
+        "损失函数": "term-loss-function",
+        "loss function": "term-loss-function"
+      },
+      "leadsTo": "the-key-question"
+    },
+    {
+      "id": "the-key-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "关键的问题来了：我们知道最终的误差有多大，但网络内部有成百上千个权重。每个权重对最终误差的贡献有多大？该增大还是该减小？增减多少？如果我们能回答这些问题，我们就能调整权重让网络做得更好。",
+        "en": "Here comes the crucial question: we know how large the final error is, but the network has hundreds or thousands of weights inside. How much did each weight contribute to the final error? Should it be increased or decreased? By how much? If we can answer these questions, we can adjust the weights to make the network perform better."
+      },
+      "leadsTo": "chain-rule-intro"
+    },
+    {
+      "id": "chain-rule-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "答案藏在微积分的一个基本工具里——链式法则。如果y依赖于x，z依赖于y，那么z对x的变化率等于z对y的变化率乘以y对x的变化率。就是这个简单的连乘关系，让我们能够追踪误差通过每一层的影响。",
+        "en": "The answer is hidden in a fundamental tool of calculus — the chain rule. If y depends on x, and z depends on y, then the rate of change of z with respect to x equals the rate of change of z with respect to y, multiplied by the rate of change of y with respect to x. It's this simple multiplication chain that lets us trace the influence of the error through every layer."
+      },
+      "leadsTo": "backprop-walkthrough"
+    },
+    {
+      "id": "backprop-walkthrough",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我用一个最简单的例子来演示。假设我们有一个两层网络：一个输入，经过隐藏层的一个神经元，到达输出层的一个神经元。输出应该是1，但网络输出了0.7，误差是0.3。现在我们要问：隐藏层到输出层之间的那个权重，对这个0.3的误差贡献了多少？",
+        "en": "Let me demonstrate with the simplest possible example. Suppose we have a two-layer network: one input, through one neuron in the hidden layer, to one neuron in the output layer. The output should be 1, but the network outputs 0.7 — the error is 0.3. Now we ask: how much did the weight between the hidden layer and output layer contribute to this 0.3 error?"
+      },
+      "leadsTo": "backprop-walkthrough-2"
+    },
+    {
+      "id": "backprop-walkthrough-2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "通过链式法则，我们可以计算出损失函数对这个权重的偏导数，也就是说，如果我们稍微增大这个权重，误差会增大还是减小，变化有多快。这个偏导数就像一个指南针，告诉我们调整的方向和幅度。",
+        "en": "Through the chain rule, we can compute the partial derivative of the loss function with respect to this weight — meaning, if we slightly increase this weight, will the error grow or shrink, and how fast? This partial derivative is like a compass, telling us the direction and magnitude of the adjustment."
+      },
+      "leadsTo": "backward-pass"
+    },
+    {
+      "id": "backward-pass",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "然后我们继续往前追溯。输入层到隐藏层的权重呢？同样用链式法则，把误差的影响从输出层经过隐藏层一直传到输入层。误差信号就像水流，从终点倒流回起点，经过的每一条管道都被标记上「你该承担多少责任」。这就是{反向传播}，也就是Backpropagation。",
+        "en": "Then we keep tracing backward — what about the weight between the input and hidden layer? Again using the chain rule, we propagate the error's influence from the output layer through the hidden layer all the way back to the input. The error signal flows like water, backward from the endpoint to the starting point, and every pipe it passes through gets marked with 「how much responsibility you should bear」. This is {backpropagation} — Backpropagation."
+      },
+      "terms": {
+        "反向传播": "term-backpropagation",
+        "backpropagation": "term-backpropagation"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在反向传播中，我们计算损失函数对每个权重的偏导数。这个偏导数告诉我们什么？",
+        "en": "In backpropagation, we compute the partial derivative of the loss function with respect to each weight. What does this partial derivative tell us?"
+      },
+      "choices": [
+        {
+          "id": "direction-magnitude",
+          "text": {
+            "zh": "权重应该往哪个方向调整，以及调整多少才能减小误差",
+            "en": "Which direction the weight should be adjusted, and by how much, to reduce the error"
+          },
+          "tag": "precise",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确。偏导数的符号告诉我们方向：正的意味着增大权重会增大误差，所以应该减小；负的则相反。偏导数的大小则揭示了误差对这个权重的敏感程度，敏感度高的权重自然需要重点调整。",
+              "en": "Exactly right. The sign of the partial derivative tells us direction — positive means increasing the weight increases the error, so we should decrease it; negative means the opposite. The magnitude tells us how sensitive the error is to this weight — highly sensitive weights need more attention."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "weight-importance",
+          "text": {
+            "zh": "这个权重对最终误差有多大的影响力",
+            "en": "How much influence this weight has on the final error"
+          },
+          "tag": "conceptual",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个理解的方向是对的——偏导数确实反映了权重对误差的影响程度。更准确地说，它不仅告诉我们影响有多大，还告诉我们影响的方向。如果偏导数是正的，说明增大权重会让误差增大；反之则让误差减小。方向加上幅度，就是我们调整权重的完整依据。",
+              "en": "That understanding is in the right direction — the partial derivative does reflect how much a weight influences the error. More precisely, it tells us not just how much influence, but also the direction. If the derivative is positive, increasing the weight increases the error; vice versa. Direction plus magnitude together give us the complete basis for adjusting the weight."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "error-source",
+          "text": {
+            "zh": "误差是从网络的哪一部分产生的",
+            "en": "Which part of the network the error originates from"
+          },
+          "tag": "diagnostic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这个想法很有趣，但偏导数的含义稍有不同。与其说它告诉我们误差「来自」哪里，不如说它衡量了每个权重对误差的影响程度。偏导数真正揭示的是：如果我们微调这个特定的权重，误差会如何变化。它更像一个「敏感度指标」，指明了调整的方向和力度。",
+              "en": "That's an interesting idea, but the partial derivative means something slightly different. It doesn't tell us where the error 「comes from」 — in a sense, every weight participated in producing the error. What it tells us is: if we slightly adjust this specific weight, how will the error change? It's more like a 「sensitivity indicator」 — telling us the direction and intensity of the adjustment."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "有了每个权重的偏导数，接下来的事情就顺理成章了——我们按照偏导数指示的方向来更新权重。每个权重都朝着减小误差的方向微调一小步。这个过程重复成千上万次，网络的表现就会越来越好。",
+        "en": "Once we have the partial derivative for every weight, what follows is straightforward — we update each weight in the direction indicated by its derivative. Every weight takes a small step in the direction that reduces the error. Repeat this process thousands of times, and the network's performance keeps improving."
+      },
+      "leadsTo": "why-backward"
+    },
+    {
+      "id": "why-backward",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "也许你在想：为什么叫「反向」传播？为什么不从前往后算？原因很精妙。链式法则要求我们从最终的损失开始，逐层往回计算。每一层的导数依赖于它后面那一层的导数——就像拆洋葱，必须从外层开始，你无法跳过外层直接拆内层。",
+        "en": "Perhaps you're wondering: why is it called 「backward」 propagation? Why not compute from front to back? The reason is elegant. The chain rule requires us to start from the final loss and compute layer by layer going backward. Each layer's derivative depends on the derivative of the layer after it — like peeling an onion, you must start from the outer layer; you can't skip to the inner layers directly."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "反向传播为什么要从输出层开始「倒着算」，而不是从输入层开始「正着算」？",
+        "en": "Why does backpropagation compute 「backward」 starting from the output layer, instead of 「forward」 from the input layer?"
+      },
+      "choices": [
+        {
+          "id": "chain-rule-order",
+          "text": {
+            "zh": "因为链式法则要求从结果往原因追溯——每一层的梯度依赖于后一层的梯度",
+            "en": "Because the chain rule requires tracing from result to cause — each layer's gradient depends on the next layer's gradient"
+          },
+          "tag": "mathematical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常精确！链式法则在数学上决定了计算的顺序。要知道隐藏层某个权重对最终误差的贡献，你必须先知道输出层的误差是什么。然后一层层往回传递。这个计算顺序不是我们选择的，是数学本身决定的。",
+              "en": "Very precise! The chain rule mathematically determines the order of computation. To know how much a hidden layer weight contributes to the final error, you must first know what the output layer error is. Then propagate layer by layer backward. This computation order isn't our choice — it's determined by the mathematics itself."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "error-at-output",
+          "text": {
+            "zh": "因为我们只在输出层知道「正确答案」——误差只能从那里开始",
+            "en": "Because we only know the 「correct answer」 at the output layer — error can only start from there"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个直觉很好。我们确实只能在输出层直接衡量误差，因为只有那里有「正确答案」可以对照。隐藏层没有独立的「正确答案」——它们的作用是间接的。所以我们必须先确定最终的误差，然后通过链式法则一层一层地把责任分配回去。",
+              "en": "Good intuition. We can indeed only directly measure error at the output layer, because that's the only place with a 「correct answer」 to compare against. Hidden layers don't have independent 「correct answers」 — their role is indirect. So we must first determine the final error, then use the chain rule to distribute responsibility layer by layer backward."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "efficiency",
+          "text": {
+            "zh": "反着算效率更高——可以复用中间计算结果",
+            "en": "Computing backward is more efficient — intermediate results can be reused"
+          },
+          "tag": "computational",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你提到了一个非常重要的实际优势。反向传播的计算效率确实很高——每一层算出的梯度可以直接被前一层复用，而不需要重新计算。但更根本的原因在于数学结构本身：链式法则要求我们从结果追溯到原因。效率是一个幸运的副产品，但因果方向才是根本驱动力。",
+              "en": "You've touched on a very important practical advantage. Backpropagation is indeed computationally efficient — the gradient computed at each layer can be directly reused by the preceding layer, without recomputing. But the more fundamental reason lies in the mathematical structure itself: the chain rule requires us to trace from result to cause. Efficiency is a fortunate byproduct, but the causal direction is the fundamental driver."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把整个过程再梳理一遍。第一步是{前向传播}：数据从输入层流向输出层，每个神经元做加权求和，通过激活函数，然后传递给下一层。第二步是计算损失，拿输出和正确答案比较，得到误差。第三步是{反向传播}，用链式法则计算每个权重的偏导数。第四步是更新权重，让每个权重沿着减小误差的方向调整一小步。",
+        "en": "Let me summarize the entire process. Step one: {forward propagation} — data flows from input to output layer, each neuron computes a weighted sum, passes it through an activation function, and sends it to the next layer. Step two: compute the loss — compare the output with the correct answer to get the error. Step three: {backpropagation} — use the chain rule to compute partial derivatives for every weight. Step four: update weights — each weight adjusts a small step in the direction that reduces error."
+      },
+      "terms": {
+        "前向传播": "term-forward-propagation",
+        "反向传播": "term-backpropagation",
+        "forward propagation": "term-forward-propagation",
+        "backpropagation": "term-backpropagation"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "反向传播的核心流程：(1) 前向传播得到预测 (2) 计算损失函数 (3) 用链式法则从输出层反向计算每个权重的偏导数 (4) 按偏导数方向更新权重。关键在于链式法则——每一层的梯度依赖于后一层。",
+        "en": "The core flow of backpropagation: (1) forward pass to get prediction (2) compute loss function (3) use chain rule to compute partial derivatives for each weight backward from output (4) update weights in the direction indicated by derivatives. The key is the chain rule — each layer's gradient depends on the layer after it."
+      },
+      "category": "core-concept",
+      "leadsTo": "elegance"
+    },
+    {
+      "id": "elegance",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "1986年我们发表这篇论文的时候，很多同行的第一反应是：「就这么简单？」是的，就这么简单。链式法则是微积分入门的内容。但有时候，最深刻的突破来自于把已知的工具用到新的问题上。反向传播不是发明了新数学——它是把旧数学用在了对的地方。",
+        "en": "When we published this paper in 1986, many colleagues' first reaction was: 「That's it? That simple?」 Yes, that simple. The chain rule is introductory calculus material. But sometimes, the most profound breakthroughs come from applying known tools to new problems. Backpropagation didn't invent new mathematics — it applied old mathematics in the right place."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "反向传播让我们能训练多层网络了。但这个算法有没有什么局限或隐忧？",
+        "en": "Backpropagation allows us to train multi-layer networks. But does this algorithm have any limitations or concerns?"
+      },
+      "choices": [
+        {
+          "id": "local-minima",
+          "text": {
+            "zh": "它可能会困在局部最优解——找不到真正最好的解",
+            "en": "It might get stuck in local optima — unable to find the truly best solution"
+          },
+          "tag": "optimization-aware",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常好的洞察。反向传播沿着梯度方向走，但误差曲面上可能有很多「山谷」——你可能掉进一个浅谷就以为到了最低点。这个问题我们确实还没有完美的解决方案。下节课我们会深入讨论梯度下降的这些挑战。",
+              "en": "A very good insight. Backpropagation follows the gradient direction, but the error surface might have many 「valleys」 — you could fall into a shallow one and think you've reached the lowest point. We indeed don't have a perfect solution to this yet. We'll dive deeper into these challenges of gradient descent next lesson."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "slow-training",
+          "text": {
+            "zh": "对于大型网络，反复前向和反向传播可能非常耗时",
+            "en": "For large networks, repeated forward and backward passes could be very time-consuming"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是我们目前面临的现实问题。即使是几百个神经元的网络，训练也需要很长时间。每一次更新都要完成一次前向传播和一次反向传播——如果数据量大、网络层数多，计算量会成倍增长。现在的计算机还远远不够快。也许未来会有更强大的硬件来帮助我们。",
+              "en": "This is a real problem we face right now. Even networks with just a few hundred neurons take a long time to train. Each update requires one forward pass and one backward pass — if the data is large or the network has many layers, the computation grows enormously. Current computers are far from fast enough. Perhaps future hardware will help us."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "bio-plausibility",
+          "text": {
+            "zh": "大脑里真的有这样的反向传播机制吗？感觉不太像生物现实",
+            "en": "Does the brain really have this kind of backpropagation mechanism? It doesn't seem biologically realistic"
+          },
+          "tag": "biological",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了一下）你戳到了一个我们经常被问到的问题。坦白说，大脑中可能没有严格意义上的反向传播，神经信号在突触间主要是单向传递的。但反向传播在工程上有效，它让网络能够学习。也许大脑用了某种类似但不完全相同的机制。我们不需要完美模拟大脑，我们需要的是能工作的算法。",
+              "en": "(Laughs) You've touched on a question we're frequently asked. Honestly, the brain probably doesn't have strict backpropagation — neural signals at synapses primarily travel in one direction. But backpropagation works in engineering — it lets networks learn. Perhaps the brain uses some mechanism that's similar but not identical. We don't need to perfectly simulate the brain; we need algorithms that work."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "反向传播给了我们一把钥匙，但使用这把钥匙还需要技巧。下节课，我们要讨论一个反向传播的核心搭档——{梯度下降}。它决定了我们每一步「走多远」和「怎么走」。如果反向传播是指南针，梯度下降就是你的双脚。",
+        "en": "Backpropagation gave us a key, but using that key still requires skill. Next lesson, we'll discuss a core partner of backpropagation — {gradient descent}. It determines 「how far」 and 「how」 we step each time. If backpropagation is the compass, gradient descent is your feet."
+      },
+      "terms": {
+        "梯度下降": "term-gradient-descent",
+        "gradient descent": "term-gradient-descent"
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "反向传播的精妙之处：它没有发明新数学，只是把微积分的链式法则应用到了多层网络中。工厂流水线类比——从缺陷产品倒推到每个工位的责任，这就是反向传播做的事情。",
+        "en": "The elegance of backpropagation: it didn't invent new mathematics, it just applied the calculus chain rule to multi-layer networks. The factory assembly line analogy — tracing from the defective product back to each workstation's responsibility is exactly what backpropagation does."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "鲁梅尔哈特教授关掉投影仪，把胶片整齐地叠好。教室里安静了一会儿，你还在消化刚才的一切。从误差出发，沿着网络倒流，链式法则串起了每一层的责任。他在门口停了一下，回头说：「记住，最好的想法往往不在于有多复杂，关键在于把简单的工具用对了地方。」",
+        "en": "Prof. Rumelhart turns off the projector and neatly stacks his transparencies. The classroom falls quiet for a moment — you're still digesting everything. Starting from the error, flowing backward through the network, the chain rule linking every layer's responsibility. He pauses at the door and looks back: 「Remember, the best ideas are often not the most complex — they're about applying simple tools in the right place」."
+      }
+    }
+  ]
+}

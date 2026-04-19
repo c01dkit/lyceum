@@ -1,0 +1,29 @@
+{
+  "id": "grade-4",
+  "name": {
+    "zh": "四年级：深度学习革命",
+    "en": "Grade 4: The Deep Learning Revolution"
+  },
+  "subtitle": {
+    "zh": "2006-2020：当神经网络学会「深度思考」",
+    "en": "2006-2020: When Neural Networks Learned to Think Deep"
+  },
+  "description": {
+    "zh": "几十年的坚持终于迎来了爆发。深度信念网络打开了预训练的大门，卷积网络让计算机学会了「看」，循环网络让机器开始理解序列与语言，对抗网络让AI拥有了创造力，而强化学习则让程序在围棋盘上击败了人类冠军。你将见证深度学习如何在短短十余年间重塑了整个人工智能版图。",
+    "en": "Decades of persistence finally erupted into a revolution. Deep belief networks opened the door to pretraining, convolutional networks taught computers to 「see, recurrent networks enabled machines to understand sequences and language, adversarial networks gave AI creativity, and reinforcement learning let programs defeat human champions at Go. You will witness how deep learning reshaped the entire AI landscape in just over a decade."
+  },
+  "era": "2006-2020",
+  "theme": {
+    "name": "electric-blue",
+    "primaryColor": "#1E90FF",
+    "secondaryColor": "#63B3ED"
+  },
+  "courses": [
+    "deep-learning-foundations",
+    "convolutional-networks",
+    "sequence-attention",
+    "generative-adversarial",
+    "deep-reinforcement-learning"
+  ],
+  "unlockCondition": null
+}

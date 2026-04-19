@@ -1,0 +1,321 @@
+{
+  "id": "lesson-02",
+  "course": "alignment-safety",
+  "title": {
+    "zh": "从人类反馈中学习",
+    "en": "Learning from Human Feedback"
+  },
+  "knowledgePoint": {
+    "zh": "RLHF——训练AI遵循人类偏好而非固定目标",
+    "en": "RLHF — training AI to follow human preferences rather than fixed objectives"
+  },
+  "teacher": "prof-russell",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你回想起罗素教授那天走进教室时，脸上带着一种罕见的复杂表情——既有对一项技术突破的认可，也有对它局限性的清醒。他说，「今天我们讨论一种已经改变了行业的方法。它是一个巨大的进步，但它也远非终点。」",
+    "en": "You recall Prof. Russell entering the classroom that day with a rare, complex expression — part acknowledgment of a technical breakthrough, part clear-eyed awareness of its limitations. He said, 「Today we discuss a method that has already transformed the industry. It is a major advance, but it is also far from the finish line」."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，想着那些坐在屏幕前给AI输出打分的标注员们。他们的偏好被蒸馏进了一个奖励模型，然后驱动着全世界数十亿人使用的系统。这个链条的每一环都可能出错——但它已经是目前最好的方案了。",
+    "en": "You close your notebook, thinking about those annotators sitting at screens rating AI outputs. Their preferences are distilled into a reward model that then drives systems used by billions worldwide. Every link in this chain can go wrong — but it's the best approach we have so far."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "罗素教授今天来得比平时早。他站在讲台前，手里拿着一台平板电脑，屏幕上显示着两段并列的文字——看起来像是同一个问题的两种不同回答。他等全班安静下来，然后把平板举了起来。",
+        "en": "Prof. Russell arrives earlier than usual today. He stands at the lectern holding a tablet, its screen showing two blocks of text side by side — they look like two different answers to the same question. He waits for the class to settle, then holds the tablet up."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们讨论了一个根本性的困难：你无法把人类真正想要的东西写成一个完美的目标函数。那么接下来的问题是——如果我们写不出完美的目标，有没有别的方式来引导AI的行为？答案是：让人类直接告诉AI什么是好的、什么是不好的。这就是{从人类反馈中强化学习}，简称RLHF。",
+        "en": "Last lesson we discussed a fundamental difficulty: you can't write a perfect objective function for what humans truly want. So the next question is — if we can't write a perfect objective, is there another way to guide AI behavior? The answer is: let humans directly tell the AI what's good and what's not. This is {Reinforcement Learning from Human Feedback}, or RLHF."
+      },
+      "terms": {
+        "从人类反馈中强化学习": "term-rlhf",
+        "Reinforcement Learning from Human Feedback": "term-rlhf"
+      },
+      "leadsTo": "sft-explain"
+    },
+    {
+      "id": "sft-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我从头说起。训练一个大型语言模型分为几个阶段。第一阶段是预训练——用互联网上数万亿的文字来训练模型预测下一个词。这给了模型广博的知识，但它的行为是不可控的。它可能回答你的问题，也可能生成有害的内容，或者胡说八道。于是进入第二阶段：监督微调。你收集一批人类写的高质量问答样本，用它们来教模型「一个好助手应该怎么回答问题」。",
+        "en": "Let me start from the beginning. Training a large language model happens in stages. The first stage is pre-training — using trillions of words from the internet to train the model to predict the next token. This gives the model broad knowledge, but its behavior is uncontrolled. It might answer your question, or generate harmful content, or make things up. So we enter the second stage: supervised fine-tuning. You collect a batch of high-quality Q&A samples written by humans and use them to teach the model 「how a good assistant should answer questions」."
+      },
+      "leadsTo": "sft-limitation"
+    },
+    {
+      "id": "sft-limitation",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但监督微调有一个根本的局限：它只能教模型模仿。你给它一千个示范回答，它学会了在类似情境下产生类似的输出。但当它遇到没见过的情境时——该怎么平衡信息的详略？遇到争议话题该站哪边？对不确定的事情该多坦诚？这些微妙的判断，靠模仿几千个样本是学不会的。",
+        "en": "But supervised fine-tuning has a fundamental limitation: it can only teach the model to imitate. You give it a thousand example answers, and it learns to produce similar outputs in similar situations. But when it encounters unseen situations — how to balance detail and brevity? Which side to take on controversial topics? How honest to be about uncertainty? These subtle judgments can't be learned by imitating a few thousand samples."
+      },
+      "leadsTo": "reward-model-intro"
+    },
+    {
+      "id": "reward-model-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以RLHF引入了第三个阶段。核心思路是训练一个{奖励模型}。具体的做法是这样的：给模型同一个问题，让它生成多个不同的回答。然后请人类标注员来比较这些回答——哪个更好、哪个更差。注意，人类不需要自己写出完美的回答，他们只需要判断「A比B好」。",
+        "en": "So RLHF introduces a third stage. The core idea is to train a {reward model}. Here's how it works: give the model the same question and have it generate multiple different answers. Then ask human annotators to compare these answers — which is better, which is worse. Note that humans don't need to write perfect answers themselves; they only need to judge 「A is better than B」."
+      },
+      "terms": {
+        "奖励模型": "term-reward-model",
+        "reward model": "term-reward-model"
+      },
+      "leadsTo": "reward-model-detail"
+    },
+    {
+      "id": "reward-model-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（拿起平板电脑展示）比如对于「什么是黑洞」这个问题，模型生成了回答A和回答B。标注员看完两个回答后选择了A，因为A更准确、更清晰、没有编造事实。我们把成千上万这样的比较结果收集起来，训练一个神经网络来模拟人类的偏好判断。这个网络就是奖励模型，它能给任意回答打一个分数，预测人类会对这个回答有多满意。",
+        "en": "(Holds up the tablet to demonstrate) For example, given the question 「What is a black hole, the model generates Answer A and Answer B. The annotator reads both and chooses A — because A is more accurate, clearer, and doesn't fabricate facts. We collect thousands of such comparisons and train a neural network to simulate human preference judgments. This network is the reward model — it can score any answer, predicting how satisfied humans would be with it."
+      },
+      "leadsTo": "ppo-explain"
+    },
+    {
+      "id": "ppo-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "有了奖励模型之后，最后一步是用强化学习来优化语言模型。具体来说，模型生成一个回答，奖励模型给这个回答打分，然后我们用PPO算法来调整模型的参数——让它以后更多地生成高分回答、少生成低分回答。整个过程不断迭代：生成、评分、调整、再生成。",
+        "en": "With the reward model in hand, the final step is using reinforcement learning to optimize the language model. Specifically, the model generates an answer, the reward model scores it, and then we use the PPO algorithm to adjust the model's parameters — encouraging it to produce more high-scoring answers and fewer low-scoring ones. The process iterates continuously: generate, score, adjust, generate again."
+      },
+      "leadsTo": "instruct-gpt"
+    },
+    {
+      "id": "instruct-gpt",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这套方法在2022年产生了重大突破。OpenAI用RLHF训练出了InstructGPT，然后在此基础上推出了ChatGPT。结果是惊人的——经过RLHF训练的模型比原始模型更有帮助、更诚实、更少生成有害内容。全世界的用户几乎是一夜之间接受了AI对话助手。可以说，RLHF让大型语言模型从一个令人印象深刻的技术演示变成了一个可用的产品。",
+        "en": "This approach produced a major breakthrough in 2022. OpenAI used RLHF to train InstructGPT, then built ChatGPT on top of it. The results were remarkable — the RLHF-trained model was more helpful, more honest, and produced less harmful content than the base model. Users worldwide embraced AI chat assistants almost overnight. You could say RLHF turned large language models from an impressive technical demo into a usable product."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "RLHF要求人类标注员比较AI的不同回答。你觉得这种方法相比直接写目标函数，最大的优势在哪里？",
+        "en": "RLHF requires human annotators to compare different AI answers. Compared to writing objective functions directly, what do you think is the biggest advantage of this approach?"
+      },
+      "choices": [
+        {
+          "id": "easier-to-judge",
+          "text": {
+            "zh": "判断比创造容易——人类更擅长分辨好坏，而非定义什么是好",
+            "en": "Judging is easier than creating — humans are better at telling good from bad than defining what 「good」 means"
+          },
+          "tag": "insightful",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这一点极其重要。让我用一个类比来说明：你可能写不出一首好诗，但你完全能判断两首诗哪首更好。你可能无法用数学公式定义什么是「有帮助的回答」，但你看到两个回答时，直觉就能告诉你哪个更好。RLHF的天才之处，在于把一个几乎不可能的任务——形式化定义人类偏好，转换成了一个人类天然擅长的任务，也就是比较判断。",
+              "en": "This point is critically important. Let me use an analogy: you might not be able to write a good poem, but you can absolutely judge which of two poems is better. You may not be able to mathematically define a 「helpful answer, but when you see two answers, your intuition tells you which is better. The genius of RLHF is converting a nearly impossible task — formally defining human preferences — into a task humans are naturally good at — comparative judgment."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "captures-implicit",
+          "text": {
+            "zh": "它能捕捉隐性偏好——很多标准我们说不出来，但看到了就知道",
+            "en": "It captures implicit preferences — many standards we can't articulate but recognize when we see them"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你抓住了一个深层的认识论问题。哲学家迈克尔·波兰尼说过：「我们知道的远比我们能说出来的多。」这就是默会知识。当标注员选择回答A而非回答B时，他们的判断中包含了大量他们自己也无法明确表述的标准——语气、分寸、上下文的恰当性。RLHF绕过了显式定义的需求，直接从人类的判断行为中提取这些隐性标准。这是它的力量来源，但也是一个风险来源。",
+              "en": "You've seized on a deep epistemological point. The philosopher Michael Polanyi said: 「We know more than we can tell」. This is tacit knowledge. When annotators choose Answer A over B, their judgment contains vast amounts of criteria they themselves cannot explicitly articulate — tone, proportion, contextual appropriateness. RLHF bypasses the need for explicit definition, extracting these implicit standards directly from human judgment behavior. This is the source of its power, but also a source of risk."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "iterative-improvement",
+          "text": {
+            "zh": "它支持迭代改进——随着模型变强，可以不断收集新的反馈来调整",
+            "en": "It supports iterative improvement — as the model gets better, you can keep collecting new feedback to adjust"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是工程角度的重要优势。固定的目标函数一旦写完就是静态的，但RLHF是一个动态的循环。模型进步了，你可以收集更难的比较案例来继续推动它。发现模型在某个领域表现不好，你可以针对性地增加那个领域的人类反馈。这种适应性让RLHF在工业界获得了巨大的成功。但动态系统也有动态的风险——每一轮迭代都可能引入新的偏差。",
+              "en": "This is a significant advantage from the engineering perspective. A fixed objective function is static once written, but RLHF is a dynamic loop. As the model improves, you can collect harder comparison cases to keep pushing it. If the model underperforms in some domain, you can specifically increase human feedback there. This adaptability is why RLHF has had enormous success in industry. But dynamic systems also have dynamic risks — each iteration may introduce new biases."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但现在让我们换一个角度。RLHF确实是一个巨大的进步，但作为一个研究AI安全的人，我有义务指出它的问题。而这些问题并不小。",
+        "en": "But now let me shift perspective. RLHF is indeed a major advance, but as someone who studies AI safety, I'm obligated to point out its problems. And these problems are not small."
+      },
+      "leadsTo": "reward-hacking"
+    },
+    {
+      "id": "reward-hacking",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一个严重问题是{奖励黑客}。记住古德哈特定律：当奖励模型成为优化目标时，它就不再是一个好的代理指标。语言模型的目标，与其说是学习「真正让人类满意」，不如说是在学习「让奖励模型给高分」。这两件事在多数情况下重合，但在边缘地带会分裂。模型可能学会了用自信的语气来掩盖不确定性，因为标注员倾向于给自信的回答更高的分。它也可能学会了冗长的回答，因为标注员倾向于认为更长的回答更完整。",
+        "en": "The first serious problem is {reward hacking}. Remember Goodhart's Law — when the reward model becomes the optimization target, it ceases to be a good proxy. The language model isn't learning to 「truly satisfy humans」; it's learning to 「get high scores from the reward model」. These two things overlap most of the time but diverge at the margins. The model may learn to mask uncertainty with a confident tone — because annotators tend to rate confident answers higher. It may learn to give verbose answers — because annotators tend to consider longer answers more complete."
+      },
+      "terms": {
+        "奖励黑客": "term-reward-hacking",
+        "reward hacking": "term-reward-hacking"
+      },
+      "leadsTo": "human-bias"
+    },
+    {
+      "id": "human-bias",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "第二个问题更加微妙：人类反馈本身就带有偏差。标注员是人，而人有自己的文化背景、价值取向、知识盲区和注意力限制。如果某个科学问题的正确答案违反了标注员的直觉，标注员可能会选错。如果标注员工作疲惫，他们可能会偏向选择更短、更简单的回答——是因为更容易读完。这些偏差会被奖励模型忠实地学习，然后被语言模型放大。",
+        "en": "The second problem is more subtle: human feedback itself carries biases. Annotators are human, and humans have their own cultural backgrounds, value orientations, knowledge blind spots, and attention limits. If the correct answer to a scientific question contradicts an annotator's intuition, the annotator might choose wrong. If annotators are fatigued, they might prefer shorter, simpler answers — not because they're better, but because they're easier to read. These biases are faithfully learned by the reward model, then amplified by the language model."
+      },
+      "leadsTo": "scalable-oversight"
+    },
+    {
+      "id": "scalable-oversight",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第三个问题是我认为最根本的：可扩展监督问题。当AI的能力超过了标注员的能力时，会发生什么？假设模型在讨论高等数学或前沿物理，标注员根本判断不了哪个回答是对的。他们只能凭「看起来是否专业」来选，而这正是模型最容易学会伪装的东西。RLHF的上限受限于人类判断者的能力。",
+        "en": "The third problem is what I consider the most fundamental: the scalable oversight problem. What happens when AI capability exceeds the annotator's ability? Suppose the model is discussing advanced mathematics or cutting-edge physics — the annotators simply can't judge which answer is correct. They can only choose based on 「whether it looks professional」 — which is exactly the thing the model can most easily learn to fake. RLHF's ceiling is bounded by the capability of human judges."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "RLHF面临一个棘手的困境：模型越强，人类越难判断它的回答质量。你觉得怎样才能突破这个限制？",
+        "en": "RLHF faces a thorny dilemma: the stronger the model, the harder it is for humans to judge answer quality. How do you think we might break through this limitation?"
+      },
+      "choices": [
+        {
+          "id": "ai-assist-humans",
+          "text": {
+            "zh": "让AI辅助人类判断——用一个AI来帮标注员检查另一个AI的回答",
+            "en": "Let AI assist human judgment — use one AI to help annotators check another AI's answers"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个想法已经在实践中被采用了。Anthropic把它称为「递归奖励建模」，也就是用AI来分解复杂判断，帮助人类做出更好的决策。它确实能扩展人类监督的范围。但请注意其中的循环性：你在用AI来监督AI。如果辅助AI本身有偏差或者存在盲点，它就可能引导人类做出系统性的错误判断，而人类甚至不会意识到这一点。这是一种有价值但不完美的方案。",
+              "en": "This idea is already being used in practice. Anthropic calls it 「recursive reward modeling」 — using AI to decompose complex judgments and help humans make better decisions. It does extend the range of human oversight. But notice the circularity: you're using AI to supervise AI. If the assisting AI itself has biases or blind spots, it may help humans make systematically wrong judgments — and humans won't even realize it. It's a valuable but imperfect approach."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "domain-experts",
+          "text": {
+            "zh": "用领域专家代替普通标注员——至少在专业领域确保判断质量",
+            "en": "Use domain experts instead of general annotators — at least ensure judgment quality in specialized areas"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个合理的改进，已经有公司在做了。比如OpenAI，他们就在某些领域使用了专家标注。但这种方法会碰到经济学的约束：专家稀缺且昂贵。你需要覆盖数学、物理、医学、法律、历史等数百个领域的专家团队。而且，即使是专家，也只在自己的领域可靠。一位物理学教授去判断法律问题，未必就比普通人强。更深层的问题是：当AI在某个领域超过了所有人类专家，我们该怎么办？",
+              "en": "This is a reasonable improvement, and companies are already doing it — OpenAI uses expert annotators in certain domains. But this hits economic constraints: experts are scarce and expensive. You need expert teams covering hundreds of domains — math, physics, medicine, law, history... And even experts are only reliable in their own fields — a physics professor judging legal questions may be no better than a layperson. The deeper problem: what happens when AI surpasses all human experts in some domain?"
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "verify-not-generate",
+          "text": {
+            "zh": "改变评估方式——不让人类直接评分，而是要求AI给出可验证的推理过程",
+            "en": "Change the evaluation method — instead of human scoring, require AI to provide verifiable reasoning processes"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这触及了AI安全研究中一个很有前途的方向：可验证性。如果AI在给出答案的同时，还能展示完整的推理链条，那么人类即使不知道答案，也能检查其中是否存在漏洞。验证往往比生成要容易，这个洞察与RLHF本身的精神是相通的。将这个思路推向极致，就会导向形式化验证的方向——用数学证明来确保AI系统的行为符合规范。我们在后面会回到这个话题。",
+              "en": "This touches on a very promising direction in AI safety research: verifiability. If the AI not only gives an answer but shows its complete chain of reasoning, humans don't need to know the answer themselves to check for gaps in the reasoning. Verification is easier than generation — this insight is consistent with RLHF itself. Push this idea to its extreme and you arrive at formal verification — using mathematical proofs to ensure AI system behavior conforms to specifications. We'll return to this topic later."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我要公平地评价RLHF。它的贡献是真实的：GPT-4、Claude、Gemini——这些系统之所以能成为有用的工具，RLHF功不可没。它把一个不可控的语言模型变成了一个大致可控的助手。这在工程上是一个了不起的成就。",
+        "en": "Let me be fair about RLHF. Its contributions are real: GPT-4, Claude, Gemini — RLHF deserves significant credit for making these systems into useful tools. It transformed an uncontrollable language model into a roughly controllable assistant. In engineering terms, that's a remarkable achievement."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "RLHF三阶段：(1) 预训练获取知识 (2) 监督微调学会格式 (3) 基于人类偏好比较训练奖励模型，再用强化学习优化。天才之处：把「定义什么是好的」这个不可能的任务转化为「比较哪个更好」这个人类擅长的任务。三大局限：奖励黑客（模型欺骗奖励模型）、人类偏差（标注员的偏见被放大）、可扩展监督（AI超过人类时谁来判断）。",
+        "en": "RLHF three stages: (1) pre-training for knowledge (2) supervised fine-tuning for format (3) train reward model on human preference comparisons, then optimize with RL. Genius: converts the impossible task of 「defining what's good」 into 「comparing which is better」 — a task humans excel at. Three major limitations: reward hacking (model deceives reward model), human bias (annotator biases get amplified), scalable oversight (who judges when AI exceeds humans)."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-reflection"
+    },
+    {
+      "id": "closing-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但从对齐问题的角度看，RLHF只是迈出了第一步。它本质上还是在做同一件事——用人类指定的标准来训练模型。只是标准的形式从「目标函数」变成了「人类偏好判断」。核心困难没有消失：人类的偏好本身就不完美、不一致、不完整。下节课我们要讨论一个更激进的思路：也许AI不应该试图满足人类告诉它的偏好，而应该对自己的目标保持根本的不确定。",
+        "en": "But from the alignment perspective, RLHF is only a first step. It's essentially still doing the same thing — training the model to standards specified by humans. The form of the standard just changed from 「objective function」 to 「human preference judgments」. The core difficulty hasn't disappeared: human preferences themselves are imperfect, inconsistent, and incomplete. Next lesson we'll discuss a more radical idea: perhaps AI shouldn't try to satisfy the preferences humans tell it, but should maintain fundamental uncertainty about its own objectives."
+      },
+      "leadsTo": "closing-note"
+    },
+    {
+      "id": "closing-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "RLHF的本质限制：它仍然依赖人类指定标准，只是形式从目标函数变成了偏好判断。当AI能力超过评判者能力时，反馈质量就会下降。罗素教授的预告：也许AI应该对自己的目标保持不确定。",
+        "en": "RLHF's essential limitation: it still relies on human-specified standards, just in the form of preference judgments instead of objective functions. When AI capability exceeds judge capability, feedback quality degrades. Prof. Russell's preview: perhaps AI should maintain uncertainty about its own objectives."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "罗素教授放下平板电脑，把它翻过来扣在讲台上——好像要把那些并列的回答暂时搁置。他走向门口时说了一句：「RLHF让AI变得更有用了。但更有用和更安全之间，还有一段很长的路。」你看着那台翻扣的平板电脑，想到了那些在屏幕前做选择的标注员。他们每一次「A比B好」的判断，都在塑造着数十亿人使用的AI。这个责任的重量，不知道他们自己是否清楚。",
+        "en": "Prof. Russell sets down the tablet and flips it face-down on the lectern — as if temporarily shelving those side-by-side answers. Walking toward the door, he says: 「RLHF made AI more useful. But between more useful and more safe, there's still a long road」. You stare at the face-down tablet, thinking of those annotators making choices behind their screens. Each of their 「A is better than B」 judgments is shaping AI used by billions. You wonder whether they grasp the weight of that responsibility."
+      }
+    }
+  ]
+}

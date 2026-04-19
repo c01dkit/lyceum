@@ -1,0 +1,378 @@
+{
+  "id": "lesson-03",
+  "course": "generative-adversarial",
+  "title": {
+    "zh": "训练的艺术",
+    "en": "The Art of Training GANs"
+  },
+  "knowledgePoint": {
+    "zh": "GAN训练中的核心困难——模式崩塌、训练不稳定性与解决方案",
+    "en": "Core difficulties in GAN training — mode collapse, training instability, and solutions"
+  },
+  "teacher": "prof-goodfellow",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你再次推开那扇深蓝色灯光映照的教室门。白板上还留着上次的痕迹——两个方框，生成器和判别器，中间的箭头画得密密麻麻。古德费洛教授今天表情严肃了几分，正在白板角落里画着一组歪歪扭扭的曲线图。他头也不回地说：「今天我们聊聊痛苦的部分。」",
+    "en": "You push open the door to that blue-lit classroom once again. The whiteboard still bears traces from last time — two boxes, generator and discriminator, with arrows drawn densely between them. Prof. Goodfellow looks a bit more serious today, sketching a set of wobbly curves in the corner of the whiteboard. Without turning around, he says: 「Today we talk about the painful part」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，脑海中浮现着那些挣扎的训练曲线——生成器只会画一张脸，判别器的梯度消失殆尽，两个网络互相折磨。但Wasserstein距离像一盏灯，照亮了前行的方向。训练GAN像是一门手艺，需要耐心、技巧，和一点点运气。",
+    "en": "You return to the present, those struggling training curves in your mind — the generator only drawing one face, the discriminator's gradients vanishing to nothing, two networks tormenting each other. But the Wasserstein distance shines like a lamp, illuminating the path forward. Training GANs is a craft, requiring patience, technique, and a little luck."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室屏幕上显示着几组训练记录。有的图像从模糊逐渐变清晰，像延时摄影一样令人满足；但更多的记录半途而废——图像突然变成了一团重复的色块，或者在两种状态之间疯狂闪烁。古德费洛教授站在屏幕前，双臂交叉，看着那些失败的记录，表情复杂。",
+        "en": "Today the classroom screen displays several training logs. Some show images gradually sharpening from blur, satisfying like a time-lapse; but more logs are abandoned halfway — images suddenly collapse into repeated color patches, or flicker wildly between two states. Prof. Goodfellow stands before the screen, arms crossed, watching those failed logs with a complicated expression."
+      },
+      "leadsTo": "honest-opening"
+    },
+    {
+      "id": "honest-opening",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好，上两节课我把GAN说得很酷。今天我得对你们坦诚——训练GAN简直是一场噩梦。我的研究生同学们有个玩笑：GAN的G也可以代表「Grief」，悲伤。因为你会花大量时间盯着训练崩溃的曲线，怀疑人生。",
+        "en": "Alright, the last two lessons I made GANs sound really cool. Today I need to be honest with you — training GANs is an absolute nightmare. My grad school friends have a joke: the G in GAN also stands for 「Grief」. Because you'll spend hours staring at collapsing training curves, questioning your life choices."
+      },
+      "leadsTo": "mode-collapse-intro"
+    },
+    {
+      "id": "mode-collapse-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "第一个大问题叫{模式崩塌}。还记得我们说生成器要学习整个数据分布吗？比如说训练数据里有猫、有狗、有鸟。理想情况下，生成器应该能生成这三种动物。但模式崩塌发生时，生成器会走一条捷径——它发现只要把猫画得特别逼真，判别器就很难识破。于是它干脆放弃了狗和鸟，所有输出都是猫。",
+        "en": "The first big problem is called {mode collapse}. Remember how we said the generator needs to learn the entire data distribution? Say the training data has cats, dogs, and birds. Ideally, the generator should produce all three. But when mode collapse happens, the generator takes a shortcut — it discovers that if it draws cats really well, the discriminator can barely tell. So it simply abandons dogs and birds, and all outputs become cats."
+      },
+      "terms": {
+        "模式崩塌": "term-mode-collapse",
+        "mode collapse": "term-mode-collapse"
+      },
+      "leadsTo": "mode-collapse-why"
+    },
+    {
+      "id": "mode-collapse-why",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "为什么会这样？因为生成器的目标是「骗过判别器」，而不是「生成多样的数据」。从博弈的角度看，只要判别器被骗了，生成器就赢了——它没有动力去探索其他可能性。就像一个学生发现考试只考选择题A，那他只复习A就好了，为什么要学B和C呢？",
+        "en": "Why does this happen? Because the generator's goal is 「fool the discriminator」, not 「generate diverse data」. From a game theory perspective, as long as the discriminator is fooled, the generator wins — it has no incentive to explore other possibilities. Like a student who discovers the exam only tests topic A — why bother studying B and C?"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "模式崩塌的本质是生成器找到了一种「作弊」策略。你觉得该怎么解决这个问题？",
+        "en": "Mode collapse is essentially the generator finding a 「cheating」 strategy. How do you think this problem should be solved?"
+      },
+      "choices": [
+        {
+          "id": "choice-punish",
+          "text": {
+            "zh": "在损失函数中加入多样性惩罚，让生成器不能总是输出同样的东西",
+            "en": "Add a diversity penalty to the loss function so the generator can't keep producing the same thing"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个直觉上很合理的思路，而且确实有人这么做了。比如mini-batch discrimination——在判别器中加入一个模块，让它能够检测一批生成图像之间是否过于相似。如果所有生成图看起来都一样，判别器就打低分。这样生成器就被迫要输出不同的东西。",
+              "en": "An intuitively sound approach, and people have indeed done this. For example, mini-batch discrimination — adding a module to the discriminator that detects whether a batch of generated images looks too similar. If all generated images look alike, the discriminator gives a low score. This forces the generator to produce variety."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-better-d",
+          "text": {
+            "zh": "让判别器更聪明，让它不仅判断真假，还能判断多样性",
+            "en": "Make the discriminator smarter — let it judge not just authenticity but also diversity"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "好想法！判别器越聪明，生成器的「作弊」空间就越小。如果判别器能察觉到「最近看到的假图全都长一个样」，生成器就骗不了它了。这正是mini-batch discrimination的思路——让判别器同时看一批图像，而非单张判断。",
+              "en": "Great idea! The smarter the discriminator, the less room the generator has to cheat. If the discriminator can notice that 「all the fake images I've seen recently look identical, the generator can't fool it anymore. That's exactly the idea behind mini-batch discrimination — let the discriminator see a batch of images at once rather than judging one at a time."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-change-game",
+          "text": {
+            "zh": "也许应该改变博弈规则本身——换一种衡量「生成好坏」的方式",
+            "en": "Maybe we should change the rules of the game itself — use a different way to measure generation quality"
+          },
+          "tag": "paradigm-shift",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这个思路非常有前瞻性。事实上，后来Wasserstein GAN正是沿着这条路走的——它没有在原有框架上打补丁，而是从根本上换了一种衡量生成分布和真实分布差异的数学工具。我们一会儿就会讲到它。有时候问题出在游戏规则，而非玩家。",
+              "en": "That's a very forward-thinking approach. In fact, the Wasserstein GAN later followed exactly this path — rather than patching the existing framework, it fundamentally changed the mathematical tool for measuring the difference between generated and real distributions. We'll get to it shortly. Sometimes the problem is the rules of the game, not the players."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "模式崩塌只是第一个坑。第二个问题更加隐蔽——梯度消失。",
+        "en": "Mode collapse is just the first pitfall. The second problem is even more insidious — vanishing gradients."
+      },
+      "leadsTo": "vanishing-gradient"
+    },
+    {
+      "id": "vanishing-gradient",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "想象一下：如果判别器训练得太好，它能百分之百准确地区分真图和假图。听起来不错对吧？但这对生成器来说是灾难。因为判别器对假图的输出全是0，对真图全是1——梯度接近于零。没有梯度，生成器就没有方向，不知道该怎么改进自己。就像考试得了零分，老师只说「你全错了」但不告诉你哪里错了。",
+        "en": "Imagine this: what if the discriminator trains too well and can distinguish real from fake with 100% accuracy? Sounds great, right? But it's a disaster for the generator. Because the discriminator outputs 0 for all fakes and 1 for all reals — the gradients approach zero. With no gradients, the generator has no direction, no idea how to improve. It's like getting zero on an exam and the teacher only says 「you got everything wrong」 without telling you what's wrong."
+      },
+      "leadsTo": "instability"
+    },
+    {
+      "id": "instability",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第三个问题是训练振荡。两个网络互相对抗，参数在不断变化。有时候它们会陷入一种恶性循环——生成器学会了骗术A，判别器适应了A就学会了识破A，然后生成器切换到骗术B，判别器再适应B……两个网络是在兜圈子。",
+        "en": "The third problem is training oscillation. Two networks competing, parameters constantly changing. Sometimes they fall into a vicious cycle — the generator learns trick A, the discriminator adapts and breaks A, then the generator switches to trick B, the discriminator adapts to B... The two networks aren't improving; they're going in circles."
+      },
+      "leadsTo": "dcgan-intro"
+    },
+    {
+      "id": "dcgan-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "好消息是，2015年Radford他们做了一件很聪明的事——他们发现用特定的网络架构可以大幅提高训练稳定性。这就是{DCGAN}，深度卷积生成对抗网络。它确立了一组「秘方」：用卷积层代替全连接层、使用批量归一化、去掉池化层、在生成器中用转置卷积做上采样。",
+        "en": "The good news is that in 2015, Radford and team did something clever — they discovered that specific network architectures can dramatically improve training stability. This is {DCGAN}, Deep Convolutional Generative Adversarial Network. It established a set of 「recipes」: replace fully connected layers with convolutional layers, use batch normalization, remove pooling layers, use transposed convolutions for upsampling in the generator."
+      },
+      "terms": {
+        "DCGAN": "term-dcgan"
+      },
+      "leadsTo": "dcgan-impact"
+    },
+    {
+      "id": "dcgan-impact",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "DCGAN之前，训练GAN需要大量的试错和炼丹般的超参数调优。DCGAN之后，大家终于有了一套相对可靠的起步配方。它生成的卧室图像在当时惊艳了整个社区——你能清晰地看到床、窗户、灯具，虽然细节还有些奇怪，但整体已经相当逼真了。",
+        "en": "Before DCGAN, training GANs required massive trial and error and alchemical hyperparameter tuning. After DCGAN, everyone finally had a relatively reliable starting recipe. The bedroom images it generated amazed the whole community — you could clearly see beds, windows, lamps. The details were still a bit odd, but the overall results were remarkably realistic."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "DCGAN的成功很大程度上来自架构设计上的「经验法则」。你怎么看这种依赖经验而非理论的做法？",
+        "en": "DCGAN's success came largely from architectural 「rules of thumb」. What do you think about this reliance on empirical tricks rather than theory?"
+      },
+      "choices": [
+        {
+          "id": "choice-pragmatic",
+          "text": {
+            "zh": "管用就行——深度学习本来就有很多经验性的东西，理论可以后补",
+            "en": "If it works, it works — deep learning is full of empirical findings, and theory can catch up later"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "哈，你说出了我们很多人的心声。在深度学习这个领域，实践确实经常跑在理论前面。我们先发现「这样做有效」，再去解释「为什么有效」。这让一些数学家很不舒服，但这就是现实——有时候工程直觉比定理证明更先抵达真相。",
+              "en": "Ha, you're voicing what many of us feel. In deep learning, practice genuinely runs ahead of theory. We discover 「this works」 first, then explain 「why it works」 later. This makes some mathematicians uncomfortable, but that's reality — sometimes engineering intuition reaches the truth before theorem proofs do."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-theory",
+          "text": {
+            "zh": "没有理论支撑的经验法则很脆弱——换个数据集可能就不管用了",
+            "en": "Rules of thumb without theoretical backing are fragile — they might not work on a different dataset"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常中肯的批评。DCGAN的「秘方」确实不是万能的，换到别的数据域，有时候就失灵了。缺少理论指导意味着每次遇到新问题都要重新摸索。后来Wasserstein GAN之所以那么重要，正是因为它第一次从理论层面解释了GAN训练不稳定的原因，并提出了有数学保障的改进方案。",
+              "en": "A very fair criticism. DCGAN's 「recipes」 are indeed not universal — they sometimes fail when applied to other data domains. Lack of theoretical guidance means re-exploring for each new problem. That's why the Wasserstein GAN was so important later — it was the first to theoretically explain why GAN training is unstable and proposed mathematically grounded improvements."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-both",
+          "text": {
+            "zh": "应该两条腿走路——先用经验法则快速推进，同时发展理论来巩固成果",
+            "en": "We should walk on both legs — use empirical rules for quick progress while developing theory to solidify results"
+          },
+          "tag": "balanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这可能是最成熟的答案。科学的进步往往是这样的——先有经验发现，再有理论解释，然后理论又反过来指导更好的实践。DCGAN是经验的胜利，而Wasserstein GAN是理论的回击。两者缺一不可。",
+              "en": "That's probably the most mature answer. Scientific progress often works this way — empirical discoveries first, theoretical explanations next, then theory guides better practice in return. DCGAN was an empirical triumph; Wasserstein GAN was theory striking back. You need both."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "说到理论，2017年有一篇论文彻底改变了我们理解GAN训练的方式。Arjovsky和他的合作者提出了Wasserstein GAN。",
+        "en": "Speaking of theory, in 2017 a paper fundamentally changed how we understand GAN training. Arjovsky and his collaborators proposed the Wasserstein GAN."
+      },
+      "leadsTo": "wgan-idea"
+    },
+    {
+      "id": "wgan-idea",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "WGAN的核心想法是：原始GAN使用的距离度量是JS散度，但在两个分布没有重叠的情况下，它会变成一个常数，无法提供有效的梯度信息。这正是判别器过于强大时，生成器会迷失方向的原因。相比之下，{Wasserstein距离}则不同。即便两个分布完全没有重叠，它依然能给出一个有意义的度量，告诉你「这两个分布差多远」。",
+        "en": "WGAN's core idea: the distance metric used by the original GAN — JS divergence — becomes a constant when the two distributions don't overlap, providing no useful gradient information. That's why the generator loses its way when the discriminator is too strong. But the {Wasserstein distance} is different — even when two distributions have zero overlap, it still gives a meaningful measure of 「how far apart these distributions are」."
+      },
+      "terms": {
+        "Wasserstein距离": "term-wasserstein-distance",
+        "Wasserstein distance": "term-wasserstein-distance"
+      },
+      "leadsTo": "wgan-analogy"
+    },
+    {
+      "id": "wgan-analogy",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "打个比方：JS散度像一个脾气暴躁的导航。当你偏离路线太远的时候，它直接说「你迷路了」就关机了。而Wasserstein距离像一个耐心的导航，不管你偏了多远，它都会说「往左转500米」「再走200米」，一直给你指引方向。",
+        "en": "An analogy: JS divergence is like a temperamental GPS — when you're too far off route, it just says 「you're lost」 and shuts down. The Wasserstein distance is like a patient GPS — no matter how far off you are, it keeps saying 「turn left in 500 meters」, 「continue for 200 meters」, always guiding you."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "GAN训练面临三大难题：第一是模式崩塌，生成器只学会一种输出，放弃了多样性。第二是梯度消失，当判别器太强时，生成器会失去学习信号。第三是训练振荡，两个网络只是在兜圈子，无法共同进步。解决方案方面，DCGAN提供了一套架构经验法则，比如使用卷积层和批归一化。而Wasserstein距离则提供了理论基础，即使分布不重叠，梯度依然存在。",
+        "en": "Three major GAN training difficulties: (1) Mode collapse — generator learns only one output, abandoning diversity; (2) Vanishing gradients — generator loses learning signal when discriminator is too strong; (3) Training oscillation — networks go in circles instead of improving. Solutions: DCGAN provides architectural rules of thumb (convolutions + batch norm); Wasserstein distance provides theoretical foundation (gradients exist even when distributions don't overlap)."
+      },
+      "category": "core-concept",
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "训练GAN的这些困难，归根结底反映了一个什么样的深层问题？",
+        "en": "All these GAN training difficulties ultimately reflect what kind of deeper problem?"
+      },
+      "choices": [
+        {
+          "id": "choice-optimization",
+          "text": {
+            "zh": "两个网络同时优化不同目标，比优化单一目标要难得多",
+            "en": "Simultaneously optimizing two networks with different objectives is much harder than optimizing a single one"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这说到了根子上。传统深度学习是单一目标优化——你有一个损失函数，一路向下走就行。但GAN是一个双人博弈，两个目标互相矛盾。当一方改变了策略，另一方的最优解也跟着变。这种动态优化比静态优化难了一个数量级。博弈论中很多问题至今都没有好的一般性解法。",
+              "en": "That gets to the root. Traditional deep learning is single-objective optimization — you have one loss function, just follow it downhill. But GANs are a two-player game with contradictory objectives. When one side changes strategy, the other's optimal solution shifts too. This dynamic optimization is an order of magnitude harder than static optimization. Many game theory problems still lack good general solutions."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-balance",
+          "text": {
+            "zh": "平衡两个对抗者的能力极其微妙——稍有偏差整个系统就崩溃",
+            "en": "Balancing two adversaries' capabilities is extremely delicate — the slightest imbalance crashes the whole system"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常好的直觉。GAN的训练就像在走钢丝——判别器太强，生成器学不到东西；判别器太弱，生成器学到的都是错误的信号。你需要两者始终保持在一个微妙的平衡点上。这就是为什么很多训练技巧都是关于「如何控制两个网络的相对强度」。",
+              "en": "Excellent intuition. GAN training is like walking a tightrope — if the discriminator is too strong, the generator learns nothing; too weak, and the generator learns from wrong signals. You need both to stay at a delicate balance point. That's why so many training tricks are about 「how to control the relative strength of both networks」."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-measure",
+          "text": {
+            "zh": "我们缺少一个好的标准来衡量「生成器到底学得怎么样了」",
+            "en": "We lack a good metric to measure 「how well the generator is actually learning」"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个经常被忽视但极其重要的问题！在分类任务中，准确率一目了然。但在生成任务中——你怎么衡量「这张生成的脸有多好」？判别器的loss不能直接反映生成质量。这也是后来FID、IS这些指标被提出的原因。衡量生成质量本身就是一个开放的研究问题。",
+              "en": "That's an often-overlooked but critically important issue! In classification, accuracy is clear-cut. But in generation — how do you measure 「how good is this generated face」? The discriminator's loss doesn't directly reflect generation quality. That's why metrics like FID and IS were later proposed. Measuring generation quality is itself an open research problem."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "尽管训练很痛苦，但社区已经积累了越来越多的经验和工具。DCGAN给了我们架构指南，WGAN给了我们理论基础，还有很多其他的技巧——标签平滑、谱归一化、渐进式训练。训练GAN正在从「炼金术」变成「工程学」。",
+        "en": "Despite the pain, the community has accumulated more and more experience and tools. DCGAN gave us architectural guidelines, WGAN gave us theoretical foundations, plus many other tricks — label smoothing, spectral normalization, progressive training. Training GANs is evolving from 「alchemy」 to 「engineering」."
+      },
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "到目前为止，我们的GAN都是无条件生成。你给它随机噪声，它生成随机的图像，你控制不了它生成什么。但如果你想指定「给我一只橘猫」或者「把这张素描变成照片」呢？下节课，我们来聊聊怎么让GAN听话，也就是条件生成与图像翻译。",
+        "en": "So far, our GANs have been unconditional — you feed in random noise, it generates random images, and you have no control over what comes out. But what if you want to specify 「give me an orange tabby」 or 「turn this sketch into a photo」? Next lesson, we'll talk about making GANs listen — conditional generation and image translation."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "训练GAN的核心挑战是双人博弈的动态优化，比单目标优化难得多。关键里程碑：DCGAN (2015) 提出架构最佳实践（卷积+批归一化），WGAN (2017) 用Wasserstein距离替代JS散度，从理论上解决了梯度消失问题。训练GAN正在从「炼金术」走向「工程学」。",
+        "en": "The core challenge of training GANs is the dynamic optimization of a two-player game, far harder than single-objective optimization. Key milestones: DCGAN (2015) established architectural best practices (convolutions + batch norm); WGAN (2017) replaced JS divergence with Wasserstein distance, theoretically solving the vanishing gradient problem. Training GANs is evolving from 「alchemy」 to 「engineering」."
+      },
+      "category": "historical-context",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "古德费洛教授转过身，在白板上那些歪歪扭扭的训练曲线旁边画了一个向上的箭头，写了三个字母：「W-G-A-N」。他放下笔，拍了拍手上的粉笔灰，朝你点点头说：「训练GAN很折磨人，但每一次崩溃都教会了我们一些新东西。痛苦是最好的老师——只要你没被它打倒。」他拎起背包，走出了教室。屏幕上那个模糊的人脸似乎比上节课清晰了一点点。",
+        "en": "Prof. Goodfellow turns and draws an upward arrow beside those wobbly training curves on the whiteboard, writing four letters: 「W-G-A-N」. He puts down the marker, dusts the chalk off his hands, and nods at you: 「Training GANs is torturous, but every collapse teaches us something new. Pain is the best teacher — as long as it doesn't break you」. He grabs his backpack and walks out. The blurry face on screen seems just a tiny bit sharper than last lesson."
+      }
+    }
+  ]
+}

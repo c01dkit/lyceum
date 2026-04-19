@@ -1,0 +1,241 @@
+{
+  "id": "lesson-06",
+  "course": "large-language-models",
+  "title": {
+    "zh": "幻觉与知识边界",
+    "en": "Hallucination and Knowledge Boundaries"
+  },
+  "knowledgePoint": {
+    "zh": "大语言模型的幻觉问题——为什么模型会自信地生成错误信息",
+    "en": "The hallucination problem in LLMs — why models confidently generate false information"
+  },
+  "teacher": "prof-sutskever",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-05",
+  "nextLesson": "lesson-07",
+  "recallIntro": {
+    "zh": "你闭上眼，回到那片金色空间。苏茨克维教授在全息屏上展示了两段模型输出：一段关于二战历史，事实准确、叙述流畅；另一段关于一位并不存在的科学家的生平，同样写得头头是道、令人信服。教授的表情很复杂——骄傲中夹杂着忧虑。",
+    "en": "You close your eyes and return to that golden space. Prof. Sutskever displays two model outputs on the holographic screen: one about WWII history, factually accurate and fluently narrated; another about the life of a scientist who never existed, equally convincing and well-written. The professor's expression is complex — pride mixed with concern."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。幻觉问题在脑海中清晰起来——语言模型并不「知道」什么是真的，它只知道什么听起来像是真的。这是下一个词预测本质带来的根本局限。模型生成的是统计上合理的文本，而非经过验证的事实。认识到这一点，也许是使用AI最重要的前提。",
+    "en": "You return to the present. The hallucination problem crystallizes — language models don't 「know」 what's true; they only know what sounds true. This is a fundamental limitation inherent in next-token prediction. Models generate statistically plausible text, not verified facts. Recognizing this may be the most important prerequisite for using AI."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "全息屏上显示着两段文字。第一段描述了阿兰·图灵在1950年发表「Computing Machinery and Intelligence」的经过，每个细节都可以查证。第二段以同样自信的语气描述了一位名叫「Marcus Holliday」的物理学家如何在1967年推导出「信息守恒定理」，但这个人和这个定理都不存在。苏茨克维教授站在两段文字之间，表情严肃。",
+        "en": "The holographic screen shows two passages. The first describes Alan Turing publishing 「Computing Machinery and Intelligence」 in 1950 — every detail verifiable. The second describes with equal confidence how a physicist named 「Marcus Holliday」 derived the 「Information Conservation Theorem」 in 1967 — but neither this person nor this theorem exists. Prof. Sutskever stands between the two passages, expression grave."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我要跟你们讨论一个让我非常困扰的问题。大语言模型有一种令人不安的倾向——它们会以完全相同的自信语气，同时陈述真实的事实和完全虚构的内容。这种现象被称为{幻觉}。",
+        "en": "Today I want to discuss a problem that deeply troubles me. Large language models have an unsettling tendency — they state real facts and completely fabricated content with exactly the same confident tone. This phenomenon is called {hallucination}."
+      },
+      "terms": {
+        "幻觉": "term-hallucination",
+        "hallucination": "term-hallucination"
+      },
+      "leadsTo": "why-hallucinate"
+    },
+    {
+      "id": "why-hallucinate",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "要理解幻觉，你必须回到语言模型的根本原理。我们在第一节课说过：模型的目标是预测下一个最可能的词。注意——是最「可能」的，不是最「正确」的。模型从来没有被训练去区分真假，它被训练的是：给定前面的文字，什么词在训练数据中最常出现在后面。",
+        "en": "To understand hallucination, you must return to the fundamental principle of language models. As we said in the first lesson: the model's goal is to predict the most probable next token. Note — most 「probable」, not most 「correct」. The model was never trained to distinguish truth from falsehood; it was trained on: given preceding text, which token most commonly followed in the training data."
+      },
+      "leadsTo": "plausible-vs-true"
+    },
+    {
+      "id": "plausible-vs-true",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这意味着模型生成的文本追求的是「统计上的合理性」，听起来像是对的，而非「事实上的准确性」。当模型被问到它的训练数据中有充分覆盖的话题时，这两者通常一致。但当它被问到不确定的事情时，它不会说「我不知道」，而是会生成一个听起来最像正确答案的回答。",
+        "en": "This means the text models generate pursues 「statistical plausibility」 — sounding right — rather than 「factual accuracy」. When asked about topics well-covered in training data, the two usually align. But when asked about uncertain things, the model won't say 「I don't know」 — it generates what sounds most like a correct answer."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "语言模型会自信地编造不存在的事实。你觉得这是一个可以修复的「bug」，还是这种架构的根本特征？",
+        "en": "Language models confidently fabricate nonexistent facts. Do you think this is a fixable 「bug」 or a fundamental feature of the architecture?"
+      },
+      "choices": [
+        {
+          "id": "fixable-bug",
+          "text": {
+            "zh": "可以修复——通过更好的训练数据、更强的监督和验证机制可以大幅减少幻觉",
+            "en": "Fixable — better training data, stronger supervision and verification can greatly reduce hallucination"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一种务实的乐观。确实，通过RLHF（从人类反馈中强化学习）和更好的训练策略，我们已经大幅减少了幻觉的频率。模型可以被训练得更加谨慎，在不确定时倾向于说「我不确定」。但我要诚实地说——在目前的架构下，完全消除幻觉可能是不可能的。因为模型的核心机制就是预测「最可能的」续写，而非检索「已验证的」事实。",
+              "en": "That's pragmatic optimism. Indeed, through RLHF (Reinforcement Learning from Human Feedback) and better training strategies, we've significantly reduced hallucination frequency. Models can be trained to be more cautious, leaning toward 「I'm not sure」 when uncertain. But I must be honest — completely eliminating hallucination under the current architecture may be impossible. Because the model's core mechanism predicts the 「most probable」 continuation, not retrieves 「verified」 facts."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "fundamental-feature",
+          "text": {
+            "zh": "根本特征——预测下一个词的模型天然无法区分真实与虚构",
+            "en": "Fundamental feature — a next-token prediction model inherently cannot distinguish reality from fiction"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "我倾向于同意你的分析。语言模型学到了「什么样的文本在统计上是合理的」，但它没有一个独立于语言之外的「事实数据库」可以交叉验证。当你读一本物理教科书时，你可以通过做实验来验证书中的说法。模型无法做到这一点——它唯一的世界就是文本本身。所以幻觉可能是这种架构付出的一种根本性代价。我们可以缓解它，但在不从根本上改变架构的前提下，也许无法消除它。",
+              "en": "I tend to agree with your analysis. Language models learn 「what text is statistically plausible」, but they don't have a 「fact database」 independent of language for cross-verification. When you read a physics textbook, you can verify claims through experiments. Models can't do this — their only world is text itself. So hallucination may be a fundamental cost of this architecture. We can mitigate it, but without fundamentally changing the architecture, perhaps not eliminate it."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "both-aspects",
+          "text": {
+            "zh": "两者都有——一部分可以修复，但「编造听起来合理的内容」是生成模型的天性",
+            "en": "Both — some can be fixed, but 「fabricating plausible content」 is the nature of generative models"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这种细致的区分很重要。确实，有些幻觉是「低级错误」，比如简单算术错误或日期混淆。这些可以通过更好的训练和外部工具来解决。但还有一类更深层的幻觉，模型会「创造性地」合成听起来合理但不存在的信息。这与生成能力本身相互纠缠。让模型既能流畅地生成新文本、又完全不编造任何内容，可能是一个内在矛盾。",
+              "en": "That nuanced distinction is important. Indeed, some hallucinations are 「low-level errors」 — like simple arithmetic mistakes or date confusion — fixable through better training and external tools. But there's a deeper class of hallucination — the model 「creatively」 synthesizing plausible but nonexistent information — intertwined with generative capability itself. Making models both fluently generate new text and never fabricate anything may be an inherent contradiction."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有一个相关的问题，那就是{知识截止}。模型只知道训练数据中包含的信息。如果你问它2024年发生的事，而它只训练到2023年的数据，它要么坦白说不知道，要么更常见的情况是，它会编造一个听起来合理的答案。它不知道自己不知道什么。",
+        "en": "There's a related issue — {knowledge cutoff}. Models only know information contained in their training data. If you ask about events in 2024 but the model was only trained on data through 2023, it either honestly says it doesn't know, or — more commonly — fabricates a plausible-sounding answer. It doesn't know what it doesn't know."
+      },
+      "terms": {
+        "知识截止": "term-knowledge-cutoff",
+        "knowledge cutoff": "term-knowledge-cutoff"
+      },
+      "leadsTo": "rag-solution"
+    },
+    {
+      "id": "rag-solution",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "目前最有前景的缓解策略之一是{检索增强}——让模型在回答问题之前，先从外部知识库中检索相关信息，然后基于检索到的内容来生成回答。这样模型就不完全依赖自己「记住」的内容，而是参考了实时的、可验证的来源。",
+        "en": "One of the most promising mitigation strategies is {retrieval augmentation} — before answering, the model first retrieves relevant information from external knowledge bases, then generates its answer based on the retrieved content. This way the model doesn't rely entirely on what it 「remembers」 but references real-time, verifiable sources."
+      },
+      "terms": {
+        "检索增强": "term-retrieval-augmentation",
+        "retrieval augmentation": "term-retrieval-augmentation"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "如果语言模型无法完全消除幻觉，我们应该如何看待和使用它们？",
+        "en": "If language models can't completely eliminate hallucination, how should we view and use them?"
+      },
+      "choices": [
+        {
+          "id": "tool-not-oracle",
+          "text": {
+            "zh": "把它们当作「助手」而非「权威」——生成初稿而非最终答案，人类负责验证",
+            "en": "Treat them as 「assistants」 not 「authorities」 — generating drafts not final answers, humans verify"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是目前最负责任的使用方式。把模型当作一个极其博学但偶尔会编造的助手——它能帮你起草、头脑风暴、总结，但你需要验证关键事实。问题在于，当模型的输出越来越流畅、越来越自信时，人类会越来越倾向于不加验证地信任它。这种信任偏差可能是幻觉带来的最大风险。",
+              "en": "That's currently the most responsible usage. Treat the model as an extremely knowledgeable but occasionally confabulating assistant — it can help you draft, brainstorm, and summarize, but you need to verify key facts. The problem is, as model output becomes increasingly fluent and confident, humans tend to trust it without verification. This trust bias may be the greatest risk hallucination poses."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "build-guardrails",
+          "text": {
+            "zh": "开发更好的检测和防护机制——让系统自己能标记不确定的内容",
+            "en": "Develop better detection and guardrails — let systems flag uncertain content themselves"
+          },
+          "tag": "engineering",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是工程上非常重要的方向。一个理想的系统应该具备「校准」能力，当它知道自己不确定的时候，就主动标记出来。目前我们在研究让模型给自己的回答附加置信度评分，或者在输出中标注「此信息需要验证」。检索增强也是一种防护机制，如果回答必须基于检索到的来源，编造的空间就大大减小了。",
+              "en": "That's an extremely important engineering direction. An ideal system should have 「calibration」 capability — when it's uncertain, it proactively flags it. We're currently researching ways to have models attach confidence scores to their answers, or mark 「this information needs verification」 in outputs. Retrieval augmentation is also a guardrail — when answers must be based on retrieved sources, the space for fabrication shrinks dramatically."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "philosophical-limit",
+          "text": {
+            "zh": "接受这是当前AI的根本局限——这提醒我们，「听起来聪明」和「真正理解」之间有巨大的鸿沟",
+            "en": "Accept this as a fundamental current AI limitation — a reminder of the vast gap between 「sounding smart」 and 「truly understanding」"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了一个我日夜思考的问题。幻觉也许是我们理解语言模型本质的最重要线索。如果模型真的「理解」了世界，它就不应该编造不存在的事实。它编造这些事实，恰恰说明它操纵的是语言的形式，而非语言背后的意义。这是否意味着下一个词预测永远不足以达到真正的理解？还是说我们只需要更多的规模和更好的训练？这是我们时代最深刻的开放问题之一。",
+              "en": "You've touched on something I think about day and night. Hallucination may be the most important clue to understanding language models' true nature. If models truly 「understood」 the world, they shouldn't fabricate nonexistent facts. That they do suggests they manipulate the form of language, not the meaning behind it. Does this mean next-token prediction can never achieve true understanding? Or do we just need more scale and better training? This is one of the most profound open questions of our time."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "幻觉问题让我们不得不重新思考语言模型的能力边界。它们在语言层面展现出了惊人的能力，比如流畅、博学、善于推理。然而，在「事实性」这个看似基本的维度上，它们却存在根本的脆弱性。下节课，我们将把所有这些线索汇集在一起，正面回答那个最大的问题：语言模型究竟「理解」了什么？",
+        "en": "The hallucination problem forces us to rethink the capability boundaries of language models. They exhibit stunning abilities at the language level — fluent, knowledgeable, capable of reasoning — yet display fundamental fragility in 「factuality」, a seemingly basic dimension. Next lesson, we'll bring all these threads together and directly address the biggest question: what do language models actually 「understand」?"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "幻觉是语言模型的根本特征而非单纯的bug。根源：模型预测「最可能的」续写而非「最正确的」事实，它操纵语言的形式而非意义。知识截止进一步限制了模型的时效性。缓解策略：RLHF训练模型谨慎回答、检索增强(RAG)引入外部可验证来源、校准机制标注不确定内容。核心警示：「听起来合理」≠「事实准确」。",
+        "en": "Hallucination is a fundamental feature of language models, not merely a bug. Root cause: models predict the 「most probable」 continuation, not the 「most correct」 fact — manipulating language form, not meaning. Knowledge cutoff further limits model timeliness. Mitigations: RLHF trains cautious responses, RAG introduces verifiable external sources, calibration flags uncertain content. Core warning: 「sounds plausible」 ≠ 「factually accurate」."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "苏茨克维教授沉默了几秒，看着全息屏上那两段文字——一真一假，却同样流畅。他轻声说：「最好的骗子从不知道自己在说谎。模型也一样。」然后他擦掉了那段虚构的文字，留下了一个空白的框和一个问号：「下节课，我们来聊聊这些模型到底『知道』些什么。」",
+        "en": "Prof. Sutskever is silent for a few seconds, looking at the two passages on screen — one true, one false, both equally fluent. He says softly: 「The best liars never know they're lying. Models are the same」. Then he erases the fictional passage, leaving an empty box and a question mark: 「Next lesson, let's discuss what these models actually 「know」."
+      }
+    }
+  ]
+}

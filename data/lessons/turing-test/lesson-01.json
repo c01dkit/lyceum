@@ -1,0 +1,337 @@
+{
+  "id": "lesson-01",
+  "course": "turing-test",
+  "title": {
+    "zh": "机器能思考吗？",
+    "en": "Can Machines Think?"
+  },
+  "knowledgePoint": {
+    "zh": "一切的起点——机器能否思考这一根本性问题",
+    "en": "The question that started everything — whether machines can think"
+  },
+  "teacher": "prof-turing",
+  "estimatedMinutes": 10,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间异常安静的教室。图灵教授瘦削的身影走向黑板，粉笔落下的声音清脆而果断——三个英文单词渐渐浮现在你眼前。",
+    "en": "You close your eyes, and your thoughts drift back to that unusually quiet classroom. Prof. Turing's slender figure approaches the blackboard, the crisp sound of chalk striking slate — three English words slowly materialize before you."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那三个词——Can machines think?——仍然悬在脑海中，像一颗尚未发芽却已扎根的种子。",
+    "en": "You return to the present. Those three words — Can machines think? — still hang in your mind, a seed that has taken root even before it has sprouted."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室里安静得出奇。门轻轻开了，一位身材瘦削、神情专注的年轻教授走了进来。他没有寒暄，径直走到黑板前，拿起粉笔，写下了一行字。然后他转过身，安静地看着你们。",
+        "en": "The classroom is unusually quiet. The door opens softly, and a slender, intensely focused young professor walks in. Without any pleasantries, he goes straight to the blackboard, picks up a piece of chalk, and writes a single line. Then he turns around and looks at you in silence."
+      },
+      "leadsTo": "the-question"
+    },
+    {
+      "id": "the-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指向黑板上的字「Can machines think? 」）整个人工智能领域的故事，都从这三个词开始。我是图灵。今天，我们不急着给答案——我们先来想清楚，这个问题到底在问什么。",
+        "en": "(Points to the words on the blackboard 「Can machines think?」) The entire story of artificial intelligence begins with these three words. I'm Turing. Today, we won't rush to find answers — let us first think clearly about what this question is truly asking."
+      },
+      "leadsTo": "unpack-think"
+    },
+    {
+      "id": "unpack-think",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我们从根本上思考这个问题……「思考」这个词，我们每天都在用，但它到底意味着什么？当你说「我在思考」的时候，你怎么确定自己真的在思考，而不只是在执行某种复杂的生物化学反应？",
+        "en": "Let us think about this from first principles... The word 「think」 — we use it every day, but what does it actually mean? When you say 「I am thinking, how do you know you are truly thinking, and not merely executing some complex biochemical reaction?"
+      },
+      "leadsTo": "descartes"
+    },
+    {
+      "id": "descartes",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "三百年前，笛卡尔说过一句著名的话：「我思故我在。」他认为思考是存在的唯一确证。但请注意——他只能确认自己在思考。他无法打开别人的脑袋，确认别人也在思考。",
+        "en": "Three hundred years ago, Descartes said something famous: 「I think, therefore I am」. He believed thinking was the only certain proof of existence. But note this carefully — he could only confirm that he himself was thinking. He could never open another person's head and confirm they were thinking too."
+      },
+      "leadsTo": "other-minds"
+    },
+    {
+      "id": "other-minds",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这在哲学上叫做「他心问题」。你怎么知道坐在你旁边的同学是在思考，而不是一个非常精密的、模仿思考行为的自动装置？……你其实无法百分之百确认。你只是根据他们的行为来推测。",
+        "en": "In philosophy, this is called the 「problem of other minds」. How do you know the classmate sitting next to you is thinking, rather than being a very sophisticated automaton mimicking thinking behavior? ... You actually cannot confirm this with absolute certainty. You merely infer it from their behavior."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在你看来，「思考」的最低要求是什么？",
+        "en": "In your view, what is the minimum requirement for 「thinking」?"
+      },
+      "choices": [
+        {
+          "id": "consciousness",
+          "text": {
+            "zh": "必须有意识——知道自己在思考",
+            "en": "Must have consciousness — awareness of one's own thinking"
+          },
+          "tag": "consciousness-view",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "意识……这是一个非常高的标准。但问题是——我们甚至无法给「意识」下一个精确的定义。如果我们把标准定在一个连定义都没有的东西上，这个问题恐怕永远也回答不了。这正是困境所在。",
+              "en": "Consciousness... that is a very high bar. But here's the problem — we cannot even give a precise definition of 「consciousness」. If we set the standard at something we can't even define, this question may never be answerable. That is precisely the dilemma."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "problem-solving",
+          "text": {
+            "zh": "能够解决新问题——不只是执行预设指令",
+            "en": "Ability to solve new problems — not just executing preset instructions"
+          },
+          "tag": "functional-view",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "一个务实的标准。如果一个系统能处理它从未遇到过的问题，这是否就意味着它在「思考」？有趣的是，这个标准可以被客观地测试。你已经在朝一个重要的方向靠近了。",
+              "en": "A pragmatic standard. If a system can handle problems it has never encountered before, does that mean it is 「thinking」? Interestingly, this standard can be objectively tested. You're already moving toward an important direction."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "behavior-only",
+          "text": {
+            "zh": "只要行为上与思考者无法区分就够了",
+            "en": "As long as the behavior is indistinguishable from a thinker, that's enough"
+          },
+          "tag": "behaviorist-view",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微一笑）你的想法和我不谋而合。如果从外部观察，一个实体的行为与思考者完全一致，那么坚持说它「没有在思考」，也许只是我们的偏见。这个思路，我们稍后会展开。",
+              "en": "(A slight smile) Your thinking aligns with mine. If, observed from outside, an entity's behavior is entirely consistent with that of a thinker, then insisting it is 「not thinking」 may simply be our prejudice. We will develop this line of thought shortly."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们看到了，光是定义「思考」就已经如此困难。不同的定义会导向完全不同的答案。这是一个哲学问题。",
+        "en": "You see — merely defining 「thinking」 is already this difficult. Different definitions lead to entirely different answers. This is not a technical question, but a philosophical one."
+      },
+      "leadsTo": "behavioral-turn"
+    },
+    {
+      "id": "behavioral-turn",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "那么让我换一个角度来提问。暂时不管机器内部发生了什么——如果一台机器的外在表现和一个思考者完全一样，我们有理由说它不在思考吗？",
+        "en": "So let me reframe the question. Setting aside what happens inside the machine — if a machine's external behavior is exactly the same as a thinker's, do we have any reason to say it is not thinking?"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "如果一台机器的行为与人类思考者完全无法区分，你认为它是否在「思考」？",
+        "en": "If a machine's behavior is completely indistinguishable from a human thinker, do you believe it is 「thinking」?"
+      },
+      "choices": [
+        {
+          "id": "yes-thinking",
+          "text": {
+            "zh": "是的——行为等同于思考就足够了",
+            "en": "Yes — behavioral equivalence is sufficient"
+          },
+          "tag": "functionalist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一种功能主义的立场。你关注的是功能和输出，而非底层的实现机制。按照这个逻辑，用硅还是用碳来实现「思考」并不重要——重要的是结果。",
+              "en": "This is a functionalist stance. You focus on function and output, not the underlying implementation. By this logic, whether 「thinking」 is implemented in silicon or carbon doesn't matter — what matters is the result."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "no-appearance",
+          "text": {
+            "zh": "不是——它只是在模仿，没有真正的理解",
+            "en": "No — it's merely imitating, without genuine understanding"
+          },
+          "tag": "essentialist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "那我追问一句——你怎么证明它「没有真正理解」？如果它的每一个回答、每一次推理、每一个创造性想法都与人类无异，你凭什么说它是「模仿」而非「理解」？这个区分本身可能比你想象的更困难。",
+              "en": "Then let me press you — how do you prove it 「doesn't truly understand」? If every answer, every inference, every creative idea it produces is indistinguishable from a human's, on what basis do you call it 「imitation」 rather than 「understanding」? That distinction itself may be harder than you imagine."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "cannot-tell",
+          "text": {
+            "zh": "说不好——也许这个问题本身就无法回答",
+            "en": "Hard to say — perhaps this question is inherently unanswerable"
+          },
+          "tag": "agnostic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微微点头）坦诚。也许你是对的——也许这个问题用目前的框架确实无法回答。但这并不意味着我们无事可做。也许……我们应该把一个无法回答的问题，替换成一个可以回答的问题。",
+              "en": "(Nods slightly) Honest. Perhaps you are right — perhaps this question is indeed unanswerable within our current framework. But that doesn't mean we have nothing to do. Perhaps... we should replace an unanswerable question with one that can be answered."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我在1950年发表了一篇论文。论文的开头就是这三个字——Can machines think? 但我随即指出，这个问题如果不重新定义，就无法得到有意义的回答。",
+        "en": "In 1950, I published a paper. It opened with these three words — Can machines think? But I immediately pointed out that unless we redefine this question, it cannot receive a meaningful answer."
+      },
+      "leadsTo": "replacement"
+    },
+    {
+      "id": "replacement",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "所以我提出了一个替代方案：不要问「机器能不能思考」——改问「机器能不能做到某件具体的事情，而这件事通常需要思考才能完成」。把哲学问题变成实验问题。这就是下节课的主题。",
+        "en": "So I proposed an alternative: don't ask 「Can machines think?」 — instead ask 「Can machines do something specific, something that normally requires thinking?」 Turn a philosophical question into an experimental one. That is the subject of our next lesson."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "「机器能思考吗」这一问题难以回答，因为「思考」本身缺乏精确定义。图灵的策略：将哲学问题转化为可操作的实验问题。",
+        "en": "The question 「Can machines think?」 is hard to answer because 「thinking」 itself lacks a precise definition. Turing's strategy: transform the philosophical question into an operationally testable experimental question."
+      },
+      "category": "core-concept",
+      "leadsTo": "foreshadow"
+    },
+    {
+      "id": "foreshadow",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "下一次课，我会给你们描述一个游戏。一个非常简单的游戏。但这个游戏改变了我们思考智能的方式。",
+        "en": "Next time, I will describe a game to you. A very simple game. But this game changed the way we think about intelligence."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "在下节课之前，思考一下：如果你要设计一个测试来判断机器是否「智能」，你会怎么设计？",
+        "en": "Before next class, think about this: if you had to design a test to determine whether a machine is 「intelligent, how would you design it?"
+      },
+      "choices": [
+        {
+          "id": "math-test",
+          "text": {
+            "zh": "给它做数学题——看它能不能解决复杂问题",
+            "en": "Give it math problems — see if it can solve complex ones"
+          },
+          "tag": "task-based",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "数学能力确实令人印象深刻。但计算器也能做数学——你会说计算器是智能的吗？也许「智能」不仅仅是解题能力。我们需要一个更全面的测试。",
+              "en": "Mathematical ability is certainly impressive. But a calculator can do math — would you say a calculator is intelligent? Perhaps 「intelligence」 is more than just problem-solving ability. We need a more comprehensive test."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "conversation-test",
+          "text": {
+            "zh": "和它对话——看它能不能像人一样交谈",
+            "en": "Have a conversation — see if it can talk like a human"
+          },
+          "tag": "conversational",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（眼中闪过一丝光）对话……自然语言对话……你的直觉很好。对话涵盖了推理、知识、创造力、幽默……几乎所有我们认为「智能」的东西。下节课，你会发现你的想法和我不谋而合。",
+              "en": "(A glint in his eyes) Conversation... natural language conversation... your instinct is good. Conversation encompasses reasoning, knowledge, creativity, humor... almost everything we consider 「intelligent」. Next class, you'll find your thinking aligns closely with mine."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "creative-test",
+          "text": {
+            "zh": "让它创作——写诗、画画、作曲",
+            "en": "Have it create — write poetry, paint, compose music"
+          },
+          "tag": "creativity-based",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "创造力……这是一个有趣的标准。阿达·洛芙莱斯曾说机器永远无法「创造」。但什么是创造？如果机器写出了一首让你感动的诗，你会因为作者是机器就否认那首诗的价值吗？这个问题我们以后还会回来讨论。",
+              "en": "Creativity... that's an interesting criterion. Ada Lovelace once said machines can never 「create」. But what is creation? If a machine writes a poem that moves you, would you deny the poem's value because its author is a machine? We will return to this question later."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "记住今天的核心问题：我们如何判断一台机器是否在思考？答案不在于窥探它的内部，而在于观察它的行为。带着这个想法来上下一节课。",
+        "en": "Remember today's core question: how do we determine whether a machine is thinking? The answer lies not in peering into its internals, but in observing its behavior. Bring this idea with you to the next class."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "他心问题：我们无法直接确认他人是否在思考，只能通过行为推断。这同样适用于机器——也许「行为等价」就是我们能达到的最好标准。",
+        "en": "The problem of other minds: we cannot directly confirm whether others are thinking; we can only infer from behavior. This applies equally to machines — perhaps 「behavioral equivalence」 is the best standard we can achieve."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "图灵教授轻轻放下粉笔，没有擦去黑板上那行字。他走出教室时，你发现自己还在盯着那三个词出神——Can machines think? 这个看似简单的问题，像一颗种子，已经在你的脑海中扎下了根。",
+        "en": "Professor Turing gently sets down the chalk, leaving those words on the blackboard. As he walks out of the classroom, you find yourself still staring at those three words in a daze — Can machines think? This seemingly simple question, like a seed, has already taken root in your mind."
+      }
+    }
+  ]
+}

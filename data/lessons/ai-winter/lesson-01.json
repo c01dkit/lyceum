@@ -1,0 +1,301 @@
+{
+  "id": "lesson-01",
+  "course": "ai-winter",
+  "title": {
+    "zh": "承诺与现实",
+    "en": "Promises and Reality"
+  },
+  "knowledgePoint": {
+    "zh": "AI的宏大承诺与实际成就之间的鸿沟",
+    "en": "The gap between AI's grand promises and actual achievements"
+  },
+  "teacher": "prof-minsky",
+  "estimatedMinutes": 10,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你翻开笔记本，看到自己写下的一行字：「承诺越宏大，失望越深重。」记忆将你拉回那间灯光昏暗的教室，明斯基教授正站在讲台前，没有道具，没有幻灯片，只有一双看透了太多的眼睛……",
+    "en": "You flip open your notebook and see a line you wrote: 「The grander the promise, the deeper the disappointment」. Memory pulls you back to that dimly lit classroom, where Professor Minsky stands at the podium — no props, no slides, just a pair of eyes that have seen too much..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，心中浮现一个问题：当一个领域的先驱们开始反思自己的错误，这究竟是衰落的征兆，还是成熟的开端？",
+    "en": "You close your notebook, a question lingering in your mind: when a field's pioneers begin reflecting on their own mistakes, is that a sign of decline — or the beginning of maturity?"
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "你走进一间与之前截然不同的教室。灯光不再温暖明亮，而是偏暗的冷调。墙上没有挂任何海报或照片。讲台上空空荡荡——没有投影仪，没有演示道具。一位身材不高但目光锐利的中年男人已经站在那里，双手插在口袋里，似乎在等你很久了。",
+        "en": "You walk into a classroom unlike any you've seen before. The lighting is dim and cool, not the warm glow you're used to. No posters or photographs on the walls. The podium is bare — no projector, no demonstration props. A man of medium build with sharp eyes is already standing there, hands in his pockets, as if he's been waiting for you for a long time."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "坐吧。我是马文·明斯基。你们可能听说过{达特茅斯会议}。我就在那儿。1956年，我和麦卡锡、西蒙他们一起，立下了一个宏大的目标——让机器思考。那年我二十九岁，觉得什么都有可能。",
+        "en": "Sit down. I'm Marvin Minsky. You may have heard of the {Dartmouth Conference}. I was there. In 1956, McCarthy, Simon, and I set an ambitious goal together — making machines think. I was twenty-nine that year, and I believed anything was possible."
+      },
+      "terms": {
+        "达特茅斯会议": "term-dartmouth-conference",
+        "Dartmouth Conference": "term-dartmouth-conference"
+      },
+      "leadsTo": "tone-setting"
+    },
+    {
+      "id": "tone-setting",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（停顿了一下）\n\n但今天我要讲的，不是成功的故事。我要讲的，是我们怎样失败的——以及更重要的，我们怎样自己给自己挖了坑。如果你觉得一个问题很简单，那多半是因为你还没真正理解它。",
+        "en": "(Pauses)\n\nBut what I'm going to tell you today isn't a success story. I'm going to tell you how we failed — and more importantly, how we dug our own graves. If a problem seems simple to you, it's probably because you haven't truly understood it yet."
+      },
+      "leadsTo": "the-promises"
+    },
+    {
+      "id": "the-promises",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "先说说那些承诺吧。1958年，西蒙和纽厄尔宣称：十年之内，计算机将成为国际象棋冠军，能证明重要的数学定理，还能谱写高质量的音乐。你知道这些预言怎么样了？",
+        "en": "Let's start with the promises. In 1958, Simon and Newell declared that within ten years, a computer would be world chess champion, would prove important mathematical theorems, and would compose music of high quality. Do you know what happened to those predictions?"
+      },
+      "leadsTo": "predictions-result"
+    },
+    {
+      "id": "predictions-result",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "（苦笑）\n\n到1968年？什么都没实现。国际象棋程序还在被业余棋手打败。定理证明有了一些进展，但离「重要的数学定理」差得远。至于音乐——别提了。而西蒙是我的朋友，一个聪明绝顶的人。连他都错得这么离谱。",
+        "en": "(Bitter smile)\n\nBy 1968? None of it came true. Chess programs were still losing to amateur players. Theorem proving had made some progress, but was far from 「important mathematical theorems」. As for music — let's not go there. And Simon is my friend, a man of extraordinary brilliance. Even he was that far off."
+      },
+      "leadsTo": "minsky-own-promises"
+    },
+    {
+      "id": "minsky-own-promises",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "别以为我在推卸责任。1967年，我自己对一个记者说过——三到八年之内，我们将拥有和人类一般智能的机器。三到八年！现在是1982年，十五年过去了。那台机器在哪里？不在任何地方。",
+        "en": "Don't think I'm shifting the blame. In 1967, I told a reporter myself — within three to eight years, we would have a machine with the general intelligence of a human being. Three to eight years! It's 1982 now, fifteen years later. Where is that machine? Nowhere."
+      },
+      "leadsTo": "why-we-believed"
+    },
+    {
+      "id": "why-we-believed",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你可能想问——你们为什么会那么天真？答案很简单：早期的成功太容易了。我们写了一个程序能下跳棋，写了一个程序能证明逻辑定理，写了一个程序能做简单的英语对话。每一个小成功都让我们觉得，通往真正智能的道路是一条直线。",
+        "en": "You might want to ask — why were you all so naive? The answer is simple: the early successes came too easily. We wrote a program that could play checkers, a program that could prove logic theorems, a program that could hold simple English conversations. Each small success made us feel the road to real intelligence was a straight line."
+      },
+      "leadsTo": "straight-line-illusion"
+    },
+    {
+      "id": "straight-line-illusion",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但实际上那条路根本不是直线。解决一个玩具问题和解决一个真实世界的问题之间，隔着一个巨大的深渊。我们把{启发式搜索}用在小规模问题上效果很好，但一旦问题变大，比如真正的语言理解、真正的视觉识别——搜索空间就爆炸了。",
+        "en": "But that road was anything but straight. Between solving a toy problem and solving a real-world problem lies an enormous chasm. Our {heuristic search} methods worked beautifully on small-scale problems, but the moment problems grew larger — real language understanding, real visual recognition — the search space exploded."
+      },
+      "terms": {
+        "启发式搜索": "term-heuristic-search",
+        "heuristic search": "term-heuristic-search"
+      },
+      "leadsTo": "machine-translation"
+    },
+    {
+      "id": "machine-translation",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "最经典的例子是机器翻译。1954年，乔治城大学做了一个演示——让计算机把俄语翻译成英语。他们声称，三到五年内，机器翻译问题将被完全解决。政府投了大笔经费。结果呢？到了1966年，一个政府委员会评估后得出结论：机器翻译在可预见的未来没有实用价值。经费全部砍掉。",
+        "en": "The classic example is machine translation. In 1954, Georgetown University did a demonstration — having a computer translate Russian into English. They claimed that within three to five years, machine translation would be completely solved. The government poured in massive funding. The result? By 1966, a government committee concluded that machine translation had no practical value in the foreseeable future. All funding was cut."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "AI的承诺和现实之间出现了巨大的差距。你认为谁该为此负更大的责任？",
+        "en": "A huge gap emerged between AI's promises and reality. Who do you think bears greater responsibility for this?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "研究者——他们不该做出不切实际的承诺",
+            "en": "The researchers — they shouldn't have made unrealistic promises"
+          },
+          "tag": "accountability",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（点头）\n\n你说得对，我承认。我们确实有责任。我们是专家，我们应该比任何人都清楚问题的难度。但我要为自己辩解一句——当你在实验室里看到一个程序第一次做出「聪明」的举动时，那种兴奋感会让你暂时忘记所有的困难。这不是借口，但这是人性。",
+              "en": "(Nods)\n\nYou're right, I admit it. We do bear responsibility. We were the experts — we should have understood the difficulty better than anyone. But let me say one thing in our defense — when you see a program make a 「clever」 move for the first time in your lab, that excitement makes you momentarily forget all the difficulties. That's not an excuse, but it is human nature."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "资助方——他们只想听好消息，助长了过度承诺",
+            "en": "The funders — they only wanted good news, which encouraged overpromising"
+          },
+          "tag": "systemic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "你触到了一个结构性的问题。DARPA的项目官员来我们实验室参观，他们想看到的是进步、突破、成果。如果你说「这个问题比我们想象的难一百倍，我们需要再研究五十年」——你觉得下一年的经费还会有吗？整个资助体系在奖励乐观、惩罚诚实。",
+              "en": "You've touched on a structural problem. When DARPA program officers visited our labs, they wanted to see progress, breakthroughs, results. If you said 「this problem is a hundred times harder than we thought, we need another fifty years」 — do you think next year's funding would come through? The entire funding system rewarded optimism and punished honesty."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "双方都有责任——这是一个相互强化的循环",
+            "en": "Both sides share responsibility — it was a mutually reinforcing cycle"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "最准确的回答。研究者需要经费，资助方需要成果，媒体需要头条，公众需要梦想。每一方都在推动另一方走得更远。最终，泡沫膨胀到了无法维持的地步。这个循环在科学史上一再重演——AI只是其中一个特别戏剧化的例子。",
+              "en": "The most accurate answer. Researchers needed funding, funders needed results, the media needed headlines, the public needed dreams. Each side pushed the other further. Eventually the bubble expanded beyond what could be sustained. This cycle has repeated throughout the history of science — AI is just a particularly dramatic example."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "问题的核心在于——我们低估了什么叫「智能」。下棋看起来需要很高的智能，对吧？但实际上，让计算机下棋的难度远远低于让它理解一个三岁小孩都能理解的句子。这就是{常识推理}的可怕之处。",
+        "en": "The core of the problem was this — we underestimated what 「intelligence」 actually means. Playing chess seems to require high intelligence, right? But in reality, making a computer play chess is far easier than making it understand a sentence that any three-year-old can grasp. That's the terrifying thing about {common sense reasoning}."
+      },
+      "terms": {
+        "常识推理": "term-common-sense",
+        "common sense reasoning": "term-common-sense"
+      },
+      "leadsTo": "common-sense-example"
+    },
+    {
+      "id": "common-sense-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "举个例子：「约翰把书放在桌子上，因为它太重了。」这里的「它」指什么？你不用想就知道，指书。但计算机怎么知道？它需要理解重力、物体的重量、人会因为东西太重而放下。这些知识我们从不需要被教，却无法告诉机器。",
+        "en": "Here's an example: 「John put the book on the table because it was too heavy」. What does 「it」 refer to? You know instantly — the book. But how does a computer know? It needs to understand gravity, the weight of objects, that people put things down when they're too heavy — knowledge we never needed to be taught, yet cannot tell a machine."
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "明斯基和他的同事们做出了过于乐观的预测。但假如他们更保守，也许AI研究根本不会得到足够的关注和资源。你怎么看——科学家应该保持乐观，即使可能带来失望吗？",
+        "en": "Minsky and his colleagues made overly optimistic predictions. But had they been more conservative, AI research might never have received enough attention or resources. What do you think — should scientists be optimistic, even if it risks disappointment?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "应该乐观——大胆的愿景是科学进步的驱动力",
+            "en": "Yes — bold visions are the driving force of scientific progress"
+          },
+          "tag": "optimist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "我年轻时就是这么想的。也许你是对的。但我现在会加一个条件——乐观可以，但你必须同时诚实地告诉人们：我们在赌，我们可能会输。不要让别人把你的热情当成了保证。",
+              "en": "That's exactly what I thought when I was young. Perhaps you're right. But now I'd add a condition — be optimistic, sure, but you must also honestly tell people: we're making a bet, and we might lose. Don't let others mistake your enthusiasm for a guarantee."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "应该诚实——长期信任比短期资金更重要",
+            "en": "Honesty is better — long-term trust matters more than short-term funding"
+          },
+          "tag": "principled",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "如果我能回到1960年，我希望我有勇气这样做。说实话：「这个问题很难，可能需要几十年。但它值得研究，因为……」也许我们会拿到更少的钱，但不会有后来那么深的信任危机。当你失去了信任，要挣回来比什么都难。",
+              "en": "If I could go back to 1960, I wish I'd had the courage to do just that. To say honestly: 「This problem is hard. It may take decades. But it's worth studying because..」. Maybe we'd have gotten less money, but there wouldn't have been such a deep crisis of trust later. Once you lose trust, earning it back is harder than anything."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "关键在于区分愿景和承诺——可以描绘远景，但不该许诺时间表",
+            "en": "The key is distinguishing vision from promises — paint the big picture, but don't commit to timelines"
+          },
+          "tag": "strategic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（指了指你）\n\n说得精准。如果我们当年只说「我们相信机器最终能够思考」，没有人会责怪我们。伤害我们的是那些具体的时间表——五年，十年，一代人。愿景激励人心，时间表制造失望。记住这一点。",
+              "en": "(Points at you)\n\nPrecisely put. If we had only said 「we believe machines will eventually think, no one would have blamed us. What hurt us were the specific timelines — five years, ten years, a generation. Vision inspires; timelines create disappointment. Remember that."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我和麦卡锡在MIT创建了AI实验室的时候，我们真心以为自己在为一场即将到来的革命做准备。结果，我们准备的是一场漫长的马拉松。而我们连跑鞋都穿错了。",
+        "en": "When McCarthy and I founded the AI lab at MIT, we truly believed we were preparing for an imminent revolution. As it turned out, we were preparing for a long marathon. And we'd put on the wrong shoes."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "技术领域过度承诺的危险：早期AI先驱们给出了过于乐观的时间表（如「十年内实现通用智能」），早期小规模的成功制造了一种可以线性外推的错觉。当承诺无法兑现，信任崩溃，整个领域都为此付出了代价。",
+        "en": "The danger of overpromising in technology: Early AI pioneers gave overly optimistic timelines (e.g., 「general intelligence within ten years」). Early small-scale successes created an illusion of linear extrapolation. When promises couldn't be kept, trust collapsed, and the entire field paid the price."
+      },
+      "category": "core-concept",
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下一节课，我要告诉你们一个具体的转折点——一份来自英国的报告，几乎以一己之力摧毁了整个欧洲的AI研究。那份报告的作者甚至不是AI领域的人。但他说的话，我们无法反驳。",
+        "en": "Next time, I'll tell you about a specific turning point — a report from Britain that almost single-handedly destroyed AI research across all of Europe. The report's author wasn't even from the AI field. But what he said, we couldn't refute."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "明斯基教授转身走向门口，走了两步又停下来，回头看了你一眼。那目光里没有自怜，没有怨恨——只有一种经历过幻灭之后，依然保持清醒的坦然。教室重新安静下来，但他的话还在你脑海中回荡：如果一个问题看起来很简单……",
+        "en": "Professor Minsky turns toward the door, takes two steps, then stops and looks back at you. There's no self-pity in that gaze, no resentment — just the composure of someone who has lived through disillusionment and remained clear-eyed. The classroom falls quiet again, but his words still echo in your mind: if a problem seems simple..."
+      }
+    }
+  ]
+}

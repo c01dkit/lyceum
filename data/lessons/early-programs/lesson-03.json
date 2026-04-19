@@ -1,0 +1,354 @@
+{
+  "id": "lesson-03",
+  "course": "early-programs",
+  "title": {
+    "zh": "通用问题求解器",
+    "en": "The General Problem Solver"
+  },
+  "knowledgePoint": {
+    "zh": "GPS——试图模拟人类解决问题的通用方法",
+    "en": "GPS — an attempt to simulate a general method for human problem-solving"
+  },
+  "teacher": "prof-simon",
+  "estimatedMinutes": 13,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "桌上摆着一座小小的汉诺塔模型，你不自觉地拨动了一个圆盘。指尖的触感让你想起司马贺教授那天的课——他也是这样，一边移动着圆盘，一边讲述一个关于“通用”的野心……",
+    "en": "A small Tower of Hanoi model sits on the desk, and you absent-mindedly slide one of the discs. The touch brings back Prof. Simon's class that day — he did the same thing, moving discs while telling the story of an ambition called 「General」..."
+  },
+  "recallOutro": {
+    "zh": "你放下手中的圆盘，思绪渐渐回到现实。那个试图解决一切问题的梦想，虽未完全实现，却照亮了前方的路。",
+    "en": "You set down the disc, your thoughts slowly returning to the present. That dream of solving every problem — though never fully realized — lit the way forward."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "司马贺教授今天带来了一个小木盒，里面装着一套汉诺塔拼图——三根柱子，几个大小不同的圆盘。他把它摆在讲台上，慢慢地移动着圆盘，像是在回忆什么。然后他抬起头，微笑着看向你们。",
+        "en": "Today Professor Simon has brought a small wooden box containing a Tower of Hanoi puzzle — three pegs and several discs of different sizes. He sets it up on the lectern, slowly moving the discs, as if reminiscing. Then he looks up and smiles at you."
+      },
+      "leadsTo": "the-next-step"
+    },
+    {
+      "id": "the-next-step",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们说到，逻辑理论家能证明数学定理。这很了不起，但它只会做一件事——证明定理。纽厄尔和我想要更多。我们问自己：人类解决问题有没有一种通用的方法？如果有，我们能不能把它教给机器？",
+        "en": "Last class we talked about how the Logic Theorist could prove mathematical theorems. That was remarkable, but it could only do one thing — prove theorems. Newell and I wanted more. We asked ourselves: is there a general method that humans use to solve problems? If so, could we teach it to a machine?"
+      },
+      "leadsTo": "gps-intro"
+    },
+    {
+      "id": "gps-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "于是我们创造了{通用问题求解器}，也就是General Problem Solver，简称GPS。注意这个名字里的「通用」二字，它暴露了我们的野心：我们想造一个能解决任何问题的程序，它不该局限于数学或逻辑，而应适用于所有领域。",
+        "en": "So we created the {General Problem Solver} — GPS for short. Notice the word 「General」 in the name — our ambition was to build a program that could solve any problem, not limited to mathematics, not limited to logic, but any domain."
+      },
+      "terms": {
+        "通用问题求解器": "term-gps",
+        "General Problem Solver": "term-gps"
+      },
+      "leadsTo": "observe-humans"
+    },
+    {
+      "id": "observe-humans",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但是在写程序之前，我们先做了一件事——观察人类。我们请人在解决问题的时候大声说出自己在想什么，然后仔细分析他们的思维过程。这叫做「出声思维法」。我们发现了一个惊人的规律。",
+        "en": "But before writing the program, we did something first — we observed humans. We asked people to think aloud while solving problems, then carefully analyzed their thought processes. This is called 「think-aloud protocol」. We discovered a striking pattern."
+      },
+      "leadsTo": "means-ends"
+    },
+    {
+      "id": "means-ends",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这个规律叫做{手段-目的分析}。简单来说就是三步：第一，看看你现在在哪里；第二，看看你要去哪里；第三，找到最大的差距，想办法缩小它。就这么简单，但它几乎能描述人类解决问题的大部分过程。",
+        "en": "This pattern is called {means-ends analysis}. Simply put, it's three steps: first, see where you are now; second, see where you want to be; third, find the biggest gap and figure out how to reduce it. That simple, yet it can describe most of how humans solve problems."
+      },
+      "terms": {
+        "手段-目的分析": "term-means-ends-analysis",
+        "means-ends analysis": "term-means-ends-analysis"
+      },
+      "leadsTo": "hanoi-example"
+    },
+    {
+      "id": "hanoi-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（拿起汉诺塔）让我用这个来演示。汉诺塔的目标是把所有圆盘从左边的柱子移到右边。规则是：一次只能移动一个圆盘，大的不能放在小的上面。",
+        "en": "(Picks up the Tower of Hanoi) Let me demonstrate with this. The goal of the Tower of Hanoi is to move all discs from the left peg to the right peg. The rules: you can only move one disc at a time, and a larger disc can never be placed on a smaller one."
+      },
+      "leadsTo": "hanoi-mea"
+    },
+    {
+      "id": "hanoi-mea",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "用手段-目的分析来想：当前状态是所有圆盘在左边，目标状态是所有圆盘在右边。最大的差距是什么？最大的圆盘还没移动。要移动最大的圆盘，就必须先把上面的所有圆盘移走。所以，我们先解决一个子问题：把小圆盘们移到中间的柱子。",
+        "en": "Think about it using means-ends analysis: current state — all discs on the left; goal state — all discs on the right. What's the biggest gap? The largest disc hasn't moved yet. To move the largest disc, we must first move all discs above it. So — we first solve a subproblem: move the smaller discs to the middle peg."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "手段-目的分析的核心思想是「找到当前状态与目标之间的最大差距，然后设法缩小它」。你觉得这种方法能解决所有问题吗？",
+        "en": "The core idea of means-ends analysis is 「find the biggest gap between current state and goal, then try to reduce it」. Do you think this approach can solve all problems?"
+      },
+      "choices": [
+        {
+          "id": "yes-universal",
+          "text": {
+            "zh": "可以——只要能定义清楚状态和目标，就能用这个方法",
+            "en": "Yes — as long as the state and goal can be clearly defined, this method works"
+          },
+          "tag": "optimist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说到了关键——「如果能定义清楚」。对于汉诺塔、逻辑谜题，状态和目标很容易定义。但如果问题是「写一首好诗」或者「做一个有创意的设计」呢？什么是「当前状态」？什么是「目标」？这些问题很难形式化。",
+              "en": "You've hit the key point — 「as long as they can be clearly defined」. For Tower of Hanoi, logic puzzles, states and goals are easy to define. But what if the problem is 「write a good poem」 or 「create an innovative design」? What's the 「current state」? What's the 「goal」? These problems are very hard to formalize."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "no-limited",
+          "text": {
+            "zh": "不能——有些问题没有清晰的目标或状态",
+            "en": "No — some problems don't have clear goals or states"
+          },
+          "tag": "realist",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你很敏锐！确实如此。日常生活中的大部分问题，比如理解一个笑话、认出朋友的脸，或是在复杂的社交场合做出恰当的反应，都很难用清晰的「状态」和「目标」来描述。这正是GPS最大的局限所在。",
+              "en": "Very perceptive! That's exactly right. Most problems in daily life — understanding a joke, recognizing a friend's face, responding appropriately in a complex social situation — are very difficult to describe with clear 「states」 and 「goals」. That was precisely GPS's greatest limitation."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "sometimes",
+          "text": {
+            "zh": "有时候可以——结构化的问题适用，开放性的问题不适用",
+            "en": "Sometimes — it works for structured problems but not open-ended ones"
+          },
+          "tag": "balanced",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微笑）非常好的区分。你自发地把问题分成了「结构化」和「开放性」两类。这个区分在AI研究中非常重要。GPS擅长前者，但面对后者时几乎无能为力。这也是为什么AI在很长一段时间里只能做一些「玩具问题」。",
+              "en": "(Smiles) An excellent distinction. You've spontaneously divided problems into 「structured」 and 「open-ended」 categories. This distinction is extremely important in AI research. GPS excelled at the former but was nearly helpless with the latter. That's why AI could only handle 「toy problems」 for a very long time."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "GPS确实能做很多事。它能解汉诺塔、逻辑谜题，甚至能做简单的规划，比如安排一系列行动来达成目标。在当时，这已经是了不起的成就了。",
+        "en": "GPS could indeed do many things. It could solve the Tower of Hanoi, logic puzzles, and even do simple planning — like arranging a sequence of actions to achieve a goal. At the time, this was already a remarkable achievement."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "手段-目的分析（GPS的核心方法）：比较当前状态与目标状态，找到最大差距，选择合适的操作来缩小差距。可以递归地将大问题分解为子问题。",
+        "en": "Means-ends analysis (core method of GPS): compare current state with goal state, find the biggest gap, select an appropriate operator to reduce it. Can recursively decompose large problems into subproblems."
+      },
+      "category": "core-concept",
+      "leadsTo": "but-limitations"
+    },
+    {
+      "id": "but-limitations",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但是……（叹了口气）GPS也遇到了严重的困难。让我给你们列举几个它做不到的事情：理解自然语言、识别人脸、使用常识推理。为什么？",
+        "en": "But — (sighs) — GPS also ran into serious difficulties. Let me list a few things it could NOT do: understand natural language, recognize faces, use common sense reasoning. Why?"
+      },
+      "leadsTo": "why-hard"
+    },
+    {
+      "id": "why-hard",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "因为这些能力需要的知识量太大了。你之所以能听懂中文，是因为你知道成千上万的词汇、语法规则、文化背景、常识……这些知识，我们不知道怎么形式化地写成规则交给GPS。",
+        "en": "Because these capabilities require an enormous amount of knowledge. You can understand Chinese because you know tens of thousands of words, grammar rules, cultural context, common sense... We didn't know how to formalize all this knowledge into rules for GPS."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "GPS既是一个巨大的成功，也是一个重要的失败。你认为GPS最大的贡献是什么？",
+        "en": "GPS was both a great success and an important failure. What do you think was GPS's greatest contribution?"
+      },
+      "choices": [
+        {
+          "id": "proved-general",
+          "text": {
+            "zh": "证明了「通用方法」的可能性——即使不完美",
+            "en": "Proved the possibility of a 「general method」 — even if imperfect"
+          },
+          "tag": "method-focused",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "我赞同。GPS最大的价值是它展示了一种思路：也许存在一种通用的问题求解架构。今天的很多AI系统，包括规划系统、搜索算法——都能追溯到GPS的思想遗产。",
+              "en": "I agree. GPS's greatest value wasn't how many problems it solved, but that it demonstrated an approach: perhaps there exists a general problem-solving architecture. Many AI systems today — including planning systems, search algorithms — can trace their intellectual heritage back to GPS."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "showed-limits",
+          "text": {
+            "zh": "暴露了符号方法的局限——让人们知道什么路走不通",
+            "en": "Exposed the limitations of symbolic methods — showed people what doesn't work"
+          },
+          "tag": "lesson-focused",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这也是一种深刻的贡献。科学不仅仅是发现什么行得通，更重要的是发现什么行不通。GPS告诉我们：纯粹的符号操作和搜索，不足以产生通用智能。这个教训推动了后来的范式转变。",
+              "en": "That's also a profound contribution. Science isn't just about discovering what works — it's even more about discovering what doesn't. GPS told us: pure symbol manipulation and search are not sufficient for general intelligence. This lesson drove later paradigm shifts."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "bridged-psych-cs",
+          "text": {
+            "zh": "连接了心理学和计算机科学——第一次用程序模拟人类思维",
+            "en": "Bridged psychology and computer science — simulated human thinking with a program for the first time"
+          },
+          "tag": "interdisciplinary",
+          "response": {
+            "mood": "nostalgic",
+            "text": {
+              "zh": "（眼中闪过光芒）你说到我心里去了。这恰恰是我最引以为傲的地方。GPS不仅仅是一个AI程序——它也是一个认知心理学模型。我们试图用程序来回答一个根本性的问题：人类的大脑是如何解决问题的？AI和认知科学，从一开始就是双生子。",
+              "en": "(Eyes light up) You've touched my heart. That's precisely what I'm most proud of. GPS wasn't just an AI program — it was also a cognitive psychology model. We tried to use a program to answer a fundamental question: how does the human brain solve problems? AI and cognitive science have been twins from the very beginning."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "GPS的故事告诉我们一个深刻的道理：人类解决问题也许确实遵循某些通用原则，但把这些原则变成程序，要比我们想象的困难得多。简单的方法可以解决简单的问题，但现实世界的复杂性是另一个量级。",
+        "en": "The story of GPS teaches us a profound lesson: human problem-solving may indeed follow certain general principles, but turning those principles into programs is far harder than we imagined. Simple methods can solve simple problems, but the complexity of the real world is on an entirely different scale."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "GPS试图用一种通用方法解决所有问题，但遇到了巨大的困难。这给了我们什么启示？",
+        "en": "GPS tried to solve all problems with one general method but encountered enormous difficulties. What lesson does this give us?"
+      },
+      "choices": [
+        {
+          "id": "need-specialization",
+          "text": {
+            "zh": "也许我们需要针对不同问题开发专门的方法",
+            "en": "Perhaps we need specialized methods for different problems"
+          },
+          "tag": "specialist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "没错，后来的AI研究确实走向了这个方向——「专家系统」就是一个例子，为特定领域量身定做规则。但这又引出了另一个问题：如果每个问题都需要专门的系统，那通用智能还能实现吗？这个问题至今困扰着AI研究者。",
+              "en": "Exactly, later AI research did go in that direction — 「expert systems」 are one example, custom-built rules for specific domains. But this raises another question: if every problem needs a specialized system, can general intelligence ever be achieved? This question still haunts AI researchers today."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "need-more-knowledge",
+          "text": {
+            "zh": "通用方法没错，但需要更多的知识作为基础",
+            "en": "The general approach isn't wrong, but it needs more knowledge as a foundation"
+          },
+          "tag": "knowledge-focused",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常有洞见。也许GPS的问题不在于方法本身，而在于它拥有的知识太少。如果它知道的和人类一样多呢？后来的Cyc项目就试图把所有人类常识都输入计算机——他们花了三十多年，至今还没完成。知识的海洋太浩瀚了。",
+              "en": "Very insightful. Perhaps GPS's problem wasn't the method itself, but that it had too little knowledge. What if it knew as much as humans? The later Cyc project tried to input all human common sense into a computer — they've been working for over thirty years and still haven't finished. The ocean of knowledge is too vast."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "need-learning",
+          "text": {
+            "zh": "也许机器不应该被「教」，而应该自己「学」",
+            "en": "Perhaps machines shouldn't be 「taught」 but should 「learn」 on their own"
+          },
+          "tag": "learning-advocate",
+          "response": {
+            "text": {
+              "zh": "你的直觉非常超前！这正是后来AI研究的重大转向——从手工编写规则转向让机器从数据中学习。当然，那是几十年以后的事了。但你已经看到了问题的核心：人类手写规则的能力是有限的，而世界的复杂性是无限的。",
+              "en": "Your intuition is remarkably ahead of its time! That's exactly the major pivot AI research would later take — from hand-coding rules to letting machines learn from data. Of course, that came decades later. But you've already seen the core of the problem: human ability to write rules is limited, while the world's complexity is limitless."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "GPS是我和纽厄尔的第二个孩子。逻辑理论家是第一个。GPS更雄心勃勃，但也更让我们认识到人类智慧的深不可测。下一节课，我要给你们讲一个不是我和纽厄尔做的程序——但它揭示了一个令人不安的真相：人类对机器智能的看法，也许比机器智能本身更有趣。",
+        "en": "GPS was our second child — mine and Newell's. The Logic Theorist was the first. GPS was more ambitious, but it also made us realize how unfathomably deep human intelligence truly is. Next class, I'll tell you about a program not made by Newell and me — but it revealed an unsettling truth: how humans perceive machine intelligence may be even more fascinating than machine intelligence itself."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "GPS的成就与局限：成功解决了汉诺塔、逻辑谜题等结构化问题，但在语言理解、人脸识别、常识推理等方面完全失败。关键教训：通用原则容易提出，但实现通用智能需要远超想象的知识量。",
+        "en": "GPS achievements and limitations: successfully solved structured problems like Tower of Hanoi and logic puzzles, but completely failed at language understanding, face recognition, and common sense reasoning. Key lesson: general principles are easy to propose, but achieving general intelligence requires far more knowledge than imagined."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "司马贺教授把汉诺塔小心地放回木盒里，像是在安置一位老朋友。走出教室时，他的脚步带着些许感慨。你看着那个小木盒，心想：一个看似简单的拼图，背后竟然藏着对人类智慧本质的深刻追问。通用问题求解——多么美丽，又多么遥远的梦想。",
+        "en": "Professor Simon carefully places the Tower of Hanoi back in its wooden box, as if settling an old friend. As he leaves the classroom, his steps carry a hint of wistfulness. You gaze at that small wooden box, thinking: behind a seemingly simple puzzle lies a profound inquiry into the very nature of human intelligence. General problem solving — what a beautiful, yet distant dream."
+      }
+    }
+  ]
+}

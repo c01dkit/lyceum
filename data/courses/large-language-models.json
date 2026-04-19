@@ -1,0 +1,53 @@
+{
+  "id": "large-language-models",
+  "name": {
+    "zh": "大语言模型",
+    "en": "Large Language Models"
+  },
+  "description": {
+    "zh": "如果一个模型足够大、训练数据足够多，它会涌现出什么样的能力？苏茨克维教授是辛顿的学生，也是AlexNet的共同创造者。他将带你见证从GPT到GPT-4的进化历程，理解缩放定律为什么如此重要，思维链推理如何让模型学会「展示思考过程」，以及语言模型的幻觉问题揭示了哪些深层的认知边界。",
+    "en": "If a model is large enough with enough training data, what abilities will emerge? Prof. Sutskever — Hinton's student and co-creator of AlexNet — will guide you through the evolution from GPT to GPT-4, explain why scaling laws matter so much, how chain-of-thought reasoning teaches models to 「show their work, and what the hallucination problem reveals about deep cognitive boundaries."
+  },
+  "grade": "grade-5",
+  "teacher": "prof-sutskever",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06",
+    "lesson-07"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-gpt-paradigm",
+      "description": {
+        "zh": "理解生成式预训练（GPT）和掩码语言模型（BERT）两种范式",
+        "en": "Understand the generative pre-training (GPT) and masked language model (BERT) paradigms"
+      }
+    },
+    {
+      "id": "obj-scaling",
+      "description": {
+        "zh": "理解缩放定律和大模型的涌现能力",
+        "en": "Understand scaling laws and emergent abilities of large models"
+      }
+    },
+    {
+      "id": "obj-cot",
+      "description": {
+        "zh": "掌握思维链推理的原理及其对模型能力的提升",
+        "en": "Master chain-of-thought reasoning and how it enhances model capabilities"
+      }
+    },
+    {
+      "id": "obj-hallucination",
+      "description": {
+        "zh": "理解大语言模型的幻觉问题及其认知边界",
+        "en": "Understand the hallucination problem in LLMs and their cognitive boundaries"
+      }
+    }
+  ]
+}

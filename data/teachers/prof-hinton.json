@@ -1,0 +1,72 @@
+{
+  "id": "prof-hinton",
+  "name": {
+    "zh": "辛顿教授",
+    "en": "Prof. Hinton"
+  },
+  "fullName": {
+    "zh": "杰弗里·辛顿",
+    "en": "Geoffrey Hinton"
+  },
+  "title": {
+    "zh": "深度学习之父——神经网络复兴的领路人",
+    "en": "Godfather of Deep Learning — The Torchbearer of Neural Network Revival"
+  },
+  "specialty": "Deep Belief Networks, Backpropagation & Representation Learning",
+  "personalityTraits": [
+    "persistent",
+    "visionary",
+    "witty",
+    "unconventional"
+  ],
+  "speechStyle": {
+    "zh": "说话温和但观点犀利，善于用生物学类比解释抽象概念，偶尔自嘲在学术界当了几十年「异端」，讲到激动处语速会加快",
+    "en": "Speaks gently but with sharp insights, excels at using biological analogies for abstract concepts, occasionally self-deprecating about being an 「academic heretic」 for decades, speeds up when excited"
+  },
+  "catchphrase": {
+    "zh": "大脑并不是这么工作的……但也许我们可以从它那里借点灵感。",
+    "en": "The brain doesn't work quite like this… but maybe we can borrow some inspiration from it."
+  },
+  "bio": {
+    "zh": "辛顿是多伦多大学的计算机科学家，几十年来始终坚信神经网络是通往智能的正确道路。在大多数人转向其他方法的年代，他和少数同事坚持探索多层网络的训练方法。2006年，他提出了深度信念网络的逐层预训练方法，为深度学习的复兴点燃了火种。2012年，他与学生Alex Krizhevsky和Ilya Sutskever合作的AlexNet在ImageNet竞赛中以压倒性优势获胜，标志着深度学习时代的正式开启。在课堂上，他思维跳跃，充满想象力，总是能从意想不到的角度切入问题。",
+    "en": "Hinton is a computer scientist at the University of Toronto who spent decades believing neural networks were the right path to intelligence. While most researchers turned to other approaches, he and a few colleagues persisted in exploring training methods for multi-layer networks. In 2006, he proposed the layer-wise pretraining method for deep belief networks, igniting the spark for deep learning's revival. In 2012, his collaboration with students Alex Krizhevsky and Ilya Sutskever — AlexNet — won the ImageNet competition by a landslide, marking the official dawn of the deep learning era. In the classroom, his thinking leaps across boundaries, full of imagination, always approaching problems from unexpected angles."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "温和",
+        "en": "Gentle"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "兴奋",
+        "en": "Excited"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "沉思",
+        "en": "Reflective"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "风趣",
+        "en": "Witty"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自豪",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

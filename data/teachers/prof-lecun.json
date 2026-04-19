@@ -1,0 +1,72 @@
+{
+  "id": "prof-lecun",
+  "name": {
+    "zh": "勒丘恩教授",
+    "en": "Prof. LeCun"
+  },
+  "fullName": {
+    "zh": "扬·勒丘恩",
+    "en": "Yann LeCun"
+  },
+  "title": {
+    "zh": "卷积神经网络之父——让机器学会看世界",
+    "en": "Father of Convolutional Networks — Teaching Machines to See the World"
+  },
+  "specialty": "Convolutional Neural Networks, Computer Vision & Self-supervised Learning",
+  "personalityTraits": [
+    "direct",
+    "passionate",
+    "competitive",
+    "practical"
+  ],
+  "speechStyle": {
+    "zh": "说话直接果断，带着法国人的骄傲和幽默感，喜欢用生动的视觉例子来解释概念，对自己的工作充满自信但会公正地肯定他人的贡献",
+    "en": "Speaks directly and decisively, with French pride and humor, loves using vivid visual examples to explain concepts, confident in his own work but fair in acknowledging others' contributions"
+  },
+  "catchphrase": {
+    "zh": "如果你想让机器理解世界，先教它用眼睛看。",
+    "en": "If you want machines to understand the world, first teach them to see with their eyes."
+  },
+  "bio": {
+    "zh": "勒丘恩是法国出生的计算机科学家，在贝尔实验室工作期间开发了卷积神经网络（CNN）的早期架构LeNet，用于手写数字识别。他的工作直接启发了后来的AlexNet、VGGNet和ResNet等突破性架构。他坚信视觉是理解智能的关键入口——大脑皮层的大部分面积都用于处理视觉信息，这绝非偶然。在课堂上，他充满激情，总是随手在白板上画出卷积操作的过程，让抽象的数学变得直观可见。",
+    "en": "LeCun is a French-born computer scientist who developed the early convolutional neural network (CNN) architecture LeNet at Bell Labs for handwritten digit recognition. His work directly inspired later breakthrough architectures like AlexNet, VGGNet, and ResNet. He firmly believes vision is the key gateway to understanding intelligence — it's no coincidence that most of the cerebral cortex is devoted to visual processing. In the classroom, he is full of passion, always sketching convolution operations on the whiteboard, making abstract mathematics visually intuitive."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "自信",
+        "en": "Confident"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "激动",
+        "en": "Excited"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "思索",
+        "en": "Pondering"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "得意",
+        "en": "Amused"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "骄傲",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

@@ -1,0 +1,293 @@
+{
+  "id": "lesson-05",
+  "course": "knowledge-engineering",
+  "title": {
+    "zh": "从实验室到现实",
+    "en": "From Lab to Reality"
+  },
+  "knowledgePoint": {
+    "zh": "研究成果与现实部署之间的鸿沟；伦理考量",
+    "en": "The gap between research success and real-world deployment; ethical considerations"
+  },
+  "teacher": "prof-shortliffe",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你闭上眼，回忆带你回到最后一堂课。肖特利夫教授那天难得地脱下了白大褂，穿着一件普通的衬衫，语气比以往更加坦诚。他谈到了MYCIN的未来——充满希望，也充满未知。那堂关于理想与现实的课，正在记忆中最后一次展开。",
+    "en": "You close your eyes, and memory takes you to the final lesson. Professor Shortliffe had, unusually, left his white coat behind that day, wearing a plain shirt, his tone more candid than ever. He spoke about MYCIN's future — full of hope, yet full of unknowns. That lesson on ideals and reality is unfolding in your memory one last time."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，手中似乎还握着他最后递给你的那张成绩单——MYCIN在测试中的表现超过了大多数专科医生。然而他的眼神告诉你，从实验到现实之间，隔着的远远不只是技术。",
+    "en": "You come back to the present, as if still holding the scorecard he handed you at the end — MYCIN's test performance exceeded that of most specialists. Yet his eyes told you that between experiment and reality lies far more than technology."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这是知识工程课程的最后一堂课。教室里安静了几分，肖特利夫教授走进来时没有穿白大褂，手里也没有那些堆积如山的病历。他只拿着一张纸，像是一份测试报告——和一个牛皮纸信封。他把信封放在讲台上，深吸一口气。",
+        "en": "This is the final lesson of the knowledge engineering course. The classroom falls quiet for a moment. Professor Shortliffe walks in without his white coat, without his usual mountain of patient records. He carries only a sheet of paper — what appears to be a test report — and a manila envelope. He places the envelope on the lectern and takes a deep breath."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天是我们最后一堂课了。这几周来，你们跟我一起走过了MYCIN的内部世界——规则、推理、确定性因子、知识获取。今天我想和你们坦诚地聊一聊：MYCIN做得怎么样？它能走出实验室吗？",
+        "en": "This is our final lesson. Over these past weeks, you've journeyed with me through MYCIN's inner workings — rules, reasoning, certainty factors, knowledge acquisition. Today I want to have an honest conversation: how well does MYCIN actually perform? Can it leave the laboratory?"
+      },
+      "leadsTo": "test-results"
+    },
+    {
+      "id": "test-results",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "先说好消息。（他展开那张纸）我们最近做了一个严格的盲评测试。让MYCIN诊断了一批真实的血液感染病例，同时让斯坦福的传染病专家和非专科医生也分别做诊断。结果由另一组独立评审来打分。",
+        "en": "The good news first. (He unfolds the paper.) We recently conducted a rigorous blind evaluation. We had MYCIN diagnose a batch of real blood infection cases, while Stanford's infectious disease specialists and non-specialist physicians independently made their diagnoses too. An independent panel of evaluators scored the results."
+      },
+      "leadsTo": "mycin-performance"
+    },
+    {
+      "id": "mycin-performance",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "MYCIN的诊断准确率达到了大约65%——这个数字看起来不高？但是让我告诉你们背景：参与测试的传染病专家的平均准确率在60%到80%之间，而非专科医生只有大约20%到50%。也就是说，MYCIN的表现和专家处于同一水平。对一个只有六百条规则的计算机程序来说，这是相当了不起的。",
+        "en": "MYCIN's diagnostic accuracy reached approximately 65%. That number might not sound impressive, but let me give you context: the infectious disease specialists who participated scored between 60% and 80%, while non-specialists scored only about 20% to 50%. In other words, MYCIN performs at the same level as the experts. For a computer program with just six hundred rules, that's quite remarkable."
+      },
+      "leadsTo": "but-reality"
+    },
+    {
+      "id": "but-reality",
+      "type": "dialog",
+      "mood": "serious",
+      "text": {
+        "zh": "但是……（他停顿了一下，表情变得凝重）测试成绩好，就代表它能在真正的医院里使用吗？想象一下，你是一个住院病人，正躺在病床上发着高烧。这时护士告诉你：“我们用一台计算机来帮您诊断。”你会怎么想？",
+        "en": "But — (he pauses, his expression turning grave) — do good test scores mean it can be used in a real hospital? If you were a patient, lying in a hospital bed with a high fever, and the nurse told you: 「We're using a computer to help with your diagnosis」. What would you think?"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "如果你是一名患者，你愿意让AI系统参与你的诊断吗？",
+        "en": "If you were a patient, would you be willing to have an AI system involved in your diagnosis?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "愿意——只要它能提高诊断的准确性，多一个帮手总是好的",
+            "en": "Yes — as long as it improves diagnostic accuracy, an extra helper is always welcome"
+          },
+          "tag": "pragmatic-acceptance",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一种理性的态度。如果最终目标是让病人得到更好的治疗，那么工具的形式，无论是听诊器还是计算机程序，其实没那么重要。但并非所有人都能这样理性地看待。很多人对「机器诊断」有本能的抗拒，尤其是在涉及生命的问题上。信任的建立需要时间，也需要透明度。",
+              "en": "That's a rational perspective. If the ultimate goal is better treatment for the patient, the form of the tool — whether stethoscope or computer program — doesn't really matter. But not everyone can view it so rationally. Many people have an instinctive resistance to 「machine diagnosis, especially when lives are at stake. Building trust takes time, and it requires transparency."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "取决于情况——如果有医生监督和把关，我可以接受",
+            "en": "It depends — if a doctor oversees and validates it, I can accept it"
+          },
+          "tag": "conditional-trust",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这恰好是我们的设计初衷。MYCIN从来就不是要独立运作的。它是一个咨询工具——医生向它提问，它给出建议和理由，然后医生自己做最终决定。就像你会听取一位同事的意见，但不会把决定权完全交给同事一样。关键是让医生保持主导权。",
+              "en": "That's exactly our design intent. MYCIN was never meant to operate independently. It's a consultation tool — the doctor asks it questions, it provides recommendations and reasoning, and the doctor makes the final decision. Just as you might seek a colleague's opinion without handing over full decision-making authority. The key is keeping the doctor in charge."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "不太愿意——我更信任有经验的医生的判断",
+            "en": "I'd rather not — I trust an experienced doctor's judgment more"
+          },
+          "tag": "human-preference",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这种感受完全可以理解，也是我们面对的最大挑战之一。很多医生本身也有同样的想法：「我行医二十年了，为什么要听一台机器的？」人与人之间的信任是几千年演化出来的，人对机器的信任还非常脆弱。正因如此，{解释机制}才显得格外重要。如果系统能清楚地说明「我为什么这么判断」，或许能慢慢建立起信任。",
+              "en": "That feeling is completely understandable, and it's one of our biggest challenges. Many doctors feel the same way — 「I've practiced medicine for twenty years, why should I listen to a machine?」 Trust between humans evolved over thousands of years; trust between humans and machines is still fragile. That's why the {explanation facility} is so crucial — if the system can clearly explain 「why I reached this conclusion, perhaps trust can be built gradually."
+            },
+            "terms": {
+              "解释机制": "term-explanation-facility",
+              "explanation facility": "term-explanation-facility"
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "信任只是挑战之一。还有法律和责任的问题：如果MYCIN推荐了一种抗生素，病人用了之后出现严重的过敏反应——该谁负责？是设计系统的我？是使用系统的医生？还是系统本身？目前法律上完全没有先例来处理这种情况。",
+        "en": "Trust is only one of the challenges. There are also legal and liability issues: if MYCIN recommends an antibiotic and the patient has a severe allergic reaction — who's responsible? Me, the system designer? The doctor who used the system? Or the system itself? There's currently no legal precedent for handling this."
+      },
+      "leadsTo": "explanation-importance"
+    },
+    {
+      "id": "explanation-importance",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这也是为什么我们在{解释机制}上投入了那么多精力。当医生问MYCIN：「你为什么推荐庆大霉素？」系统会回答：「因为根据规则156，病人的血培养显示革兰氏阴性杆菌，形态符合假单胞菌，而庆大霉素对假单胞菌有效。」每一步推理都有据可查。",
+        "en": "This is why we've invested so much effort in the {explanation facility}. When the doctor asks MYCIN: 「Why do you recommend gentamicin?」 the system responds: 「Because according to Rule 156, the patient's blood culture shows gram-negative rods consistent with Pseudomonas morphology, and gentamicin is effective against Pseudomonas」. Every reasoning step is traceable."
+      },
+      "terms": {
+        "解释机制": "term-explanation-facility",
+        "explanation facility": "term-explanation-facility"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "对于医学AI来说，你觉得哪个更重要？",
+        "en": "For medical AI, which do you think is more important?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "准确性——诊断正确才是最关键的",
+            "en": "Accuracy — getting the diagnosis right is what matters most"
+          },
+          "tag": "accuracy-first",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "准确性当然至关重要——错误的诊断可能带来灾难性的后果。但让我提一个反面的例子：假设一个系统的准确率高达95%，但它无法解释自己是怎么得出结论的。当它恰好落在那5%的错误区间时，没有人能检查哪里出了问题。一个准确但不透明的系统，可能在关键时刻让人束手无策。",
+              "en": "Accuracy is certainly vital — wrong diagnoses can have catastrophic consequences. But let me offer a counterpoint: imagine a system with 95% accuracy that can't explain how it reaches its conclusions. When it happens to fall in that 5% error zone, nobody can check what went wrong. An accurate but opaque system can leave people helpless at critical moments."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "可解释性——医生必须能理解和检验AI的推理",
+            "en": "Explainability — doctors must be able to understand and verify the AI's reasoning"
+          },
+          "tag": "explainability-first",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这也是我倾向的答案。一个能解释自己推理过程的系统，即使偶尔出错，医生也能发现问题出在哪里，然后介入纠正。更重要的是，通过检查系统的推理，医生自己也可能学到新的知识。MYCIN不只是一个诊断工具，它还可以成为一个教学工具。",
+              "en": "That's where I lean as well. A system that can explain its reasoning, even when it occasionally errs, allows doctors to spot where things went wrong and intervene. More importantly, by examining the system's reasoning, doctors themselves might learn something new. MYCIN isn't just a diagnostic tool — it can also serve as a teaching tool."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "两者同等重要——少了任何一个都不行",
+            "en": "Both are equally important — you can't do without either"
+          },
+          "tag": "balanced-view",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说得对，在理想情况下两者缺一不可。但在现实中，资源有限，有时候你必须权衡。如果一个系统只能在两者之间偏重一个——我个人会选择可解释性。因为一个可解释的系统即使出了错，你也知道如何改进它。一个不透明的黑箱，即使今天表现很好，明天出了问题你可能完全无从下手。",
+              "en": "You're right, ideally both are indispensable. But in reality, resources are limited, and sometimes you must make trade-offs. If a system can only emphasize one over the other — I personally would choose explainability. Because with an explainable system, even when it errs, you know how to improve it. An opaque black box, no matter how well it performs today, may leave you completely lost when problems arise tomorrow."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "关于MYCIN是否会被真正部署到临床中——坦白说，我不知道。目前还有太多非技术性的障碍：法律框架、医院的保守态度、医学界对计算机的不熟悉。这些都需要时间来慢慢改变。",
+        "en": "As for whether MYCIN will actually be deployed in clinical settings — honestly, I don't know. There are still too many non-technical barriers: the legal framework, hospitals' conservative attitudes, the medical community's unfamiliarity with computers. These will all take time to change gradually."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "MYCIN的测试准确率与专家水平相当，但从实验室到临床部署面临信任、法律责任、可解释性等非技术障碍。解释机制让AI的每一步推理可追溯，是建立信任的关键。",
+        "en": "MYCIN's test accuracy rivaled expert levels, but deploying from lab to clinic faces non-technical barriers: trust, legal liability, and explainability. The explanation facility makes every reasoning step traceable and is key to building trust."
+      },
+      "category": "core-concept",
+      "leadsTo": "broader-vision"
+    },
+    {
+      "id": "broader-vision",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但让我退一步，从更大的视角来看。MYCIN已经证明了一个重要的原则：人类专家的知识是可以被系统化、形式化、并由计算机执行的。也许MYCIN本身不会成为改变医学的那个产品，但它所开创的方法，也就是{知识工程}和{专家系统}，我相信会在未来找到属于它们的位置。",
+        "en": "But let me step back and take the broader view. MYCIN has proven an important principle: human expert knowledge can be systematized, formalized, and executed by computers. Perhaps MYCIN itself won't be the product that changes medicine, but the methods it pioneered — {knowledge engineering}, {expert systems} — I believe they will find their place in the future."
+      },
+      "terms": {
+        "知识工程": "term-knowledge-engineering",
+        "knowledge engineering": "term-knowledge-engineering",
+        "专家系统": "term-expert-system",
+        "expert systems": "term-expert-system"
+      },
+      "leadsTo": "personal-reflection"
+    },
+    {
+      "id": "personal-reflection",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我选择同时做医生和计算机科学家，因为我相信这两个领域的交汇点有着巨大的潜力。医学给了我动力，每一个等待诊断的病人都在提醒我，为什么这项研究如此重要。计算机给了我工具，让我可以尝试那些人力无法完成的事情。",
+        "en": "I chose to be both a doctor and a computer scientist because I believe the intersection of these two fields holds enormous potential. Medicine gives me motivation — every patient waiting for a diagnosis reminds me why this research matters. Computers give me tools — letting me attempt things that human effort alone cannot accomplish."
+      },
+      "leadsTo": "farewell"
+    },
+    {
+      "id": "farewell",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（他拿起那个牛皮纸信封）最后送给你们一样东西。（他打开信封，取出一份MYCIN测试评估的复印件）这是MYCIN在盲评测试中的完整评分报告。我希望你们记住：我们已经证明了计算机可以在一个复杂的专业领域达到专家水平。接下来的问题，比如信任、责任、伦理，这些同样值得我们认真对待。也许你们中的某个人，将来会帮助回答这些问题。",
+        "en": "(He picks up the manila envelope.) One last thing for you. (He opens it and takes out a copy of MYCIN's evaluation report.) This is the complete scoring report from MYCIN's blind evaluation. I want you to remember: we've proven that a computer can reach expert level in a complex professional domain. The remaining questions — trust, liability, ethics — deserve just as much serious attention. Perhaps one of you will someday help answer them."
+      },
+      "leadsTo": "note2"
+    },
+    {
+      "id": "note2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "将AI系统从实验室推向现实世界，面临的挑战远超技术本身：信任（病人和医生是否接受）、责任归属（出错时谁负责）、伦理问题（AI参与生死决策的正当性）。可解释性是连接技术与信任的桥梁。",
+        "en": "Deploying AI from lab to reality faces challenges far beyond technology: trust (will patients and doctors accept it), liability (who is responsible when errors occur), ethics (the legitimacy of AI in life-or-death decisions). Explainability is the bridge between technology and trust."
+      },
+      "category": "reflection",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "肖特利夫教授把那份评估报告轻轻放在你桌上，对你微微一笑。他走向门口，在门框前驻足片刻，回头望着教室说：「记住，在医学中，一个错误的诊断可能要人命。所以我们的系统必须知道自己有多不确定。这句话对人也一样。」门关上了。教室里安静下来，只有墙上那张细菌分类表还在静静地注视着你。你翻开那份报告，上面密密麻麻的数字和评语之间，似乎藏着一个更大的故事——关于知识、关于信任、关于人类与机器之间漫长的对话。",
+        "en": "Professor Shortliffe gently places the evaluation report on your desk and gives you a quiet smile. He walks to the door, pauses at the threshold, looks back at the classroom and says: 「Remember, in medicine, a wrong diagnosis can cost a life — so our system must know how uncertain it is. The same goes for people」. The door closes. The classroom falls silent, with only the bacterial classification chart on the wall still gazing at you. You open the report, and between the dense columns of numbers and comments, a larger story seems to hide — about knowledge, about trust, about the long conversation between humans and machines."
+      }
+    }
+  ]
+}

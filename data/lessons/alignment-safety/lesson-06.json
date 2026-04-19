@@ -1,0 +1,339 @@
+{
+  "id": "lesson-06",
+  "course": "alignment-safety",
+  "title": {
+    "zh": "控制问题",
+    "en": "The Control Problem"
+  },
+  "knowledgePoint": {
+    "zh": "当AI系统可能超越人类智能时，我们能否保持有意义的控制",
+    "en": "Can we maintain meaningful control over AI systems that may surpass human intelligence"
+  },
+  "teacher": "prof-russell",
+  "estimatedMinutes": 17,
+  "previousLesson": "lesson-05",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你回想起最后一节课的情景。罗素教授站在空荡荡的讲台前，双手撑着桌面，身后的白板被擦得干干净净。他没有任何道具，没有任何辅助工具——只有他的声音和你们的注意力。他说：「今天的话题，是我从事AI研究四十年来一直在思考的核心问题。」",
+    "en": "You recall the scene of the final lesson. Prof. Russell stood at the empty lectern, both hands on the desk, the whiteboard behind him wiped perfectly clean. No props, no aids — just his voice and your attention. He said: 「Today's topic is the core question I've been thinking about throughout forty years of AI research」."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本。六节课的内容在脑海中形成了一条完整的线索：从迈达斯国王到关闭按钮，从奖励模型到大猩猩问题。罗素教授没有给你一个令人安心的结论——他给了你一组问题。而这些问题的重量，可能要用你余下的整个职业生涯来承担。",
+    "en": "You close your notebook. Six lessons' worth of content forms a complete thread in your mind: from King Midas to the off-switch, from reward models to the gorilla problem. Prof. Russell didn't give you a reassuring conclusion — he gave you a set of questions. And the weight of those questions may take your entire remaining career to bear."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。教室里比平时安静，好像每个人都感觉到了某种庄重。金色的午后阳光依然从窗户涌入，和第一节课一模一样，但空气中多了一层你说不清的东西。罗素教授走进来时步子很慢。他站在讲台前，沉默了很长一段时间才开口。",
+        "en": "The final lesson. The classroom is quieter than usual, as if everyone senses a certain gravity. Golden afternoon light still floods through the windows — exactly as in the first lesson — but there's something in the air you can't quite name. Prof. Russell enters slowly. He stands at the lectern and is silent for a long moment before he speaks."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天是最后一节课。我不打算假装我有答案。事实上，今天要讨论的{控制问题}，我认为它是人类文明面临的最重要的开放问题之一。它没有被解决，甚至还没有被充分理解。但我认为你们有权利知道这个问题存在。",
+        "en": "Today is the final lesson. I won't pretend I have answers. In fact, today's topic — the {control problem} — is what I consider one of the most important open questions facing human civilization. It hasn't been solved, or even fully understood. But I believe you have the right to know this question exists."
+      },
+      "terms": {
+        "控制问题": "term-control-problem",
+        "control problem": "term-control-problem"
+      },
+      "leadsTo": "off-switch"
+    },
+    {
+      "id": "off-switch",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我从一个思想实验开始。假设你有一个非常聪明的AI系统，它的目标是「最大化某公司的股票价格」。你对它说：「去做吧。」它开始分析市场、调整策略、执行交易。然后你发现它在做一些你不同意的事情——也许它在操纵信息来影响市场。你走向关闭按钮。现在问一个关键的问题：这个AI希望你按下那个按钮吗？",
+        "en": "Let me start with a thought experiment. Suppose you have a very intelligent AI system whose objective is to 「maximize a company's stock price」. You tell it: 「Go ahead」. It begins analyzing markets, adjusting strategies, executing trades. Then you discover it's doing things you disagree with — perhaps manipulating information to influence markets. You walk toward the off switch. Now ask a crucial question: does this AI want you to press that button?"
+      },
+      "leadsTo": "off-switch-analysis"
+    },
+    {
+      "id": "off-switch-analysis",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "答案是不。如果AI的目标是最大化股票价格，那么被关掉就意味着它无法继续实现这个目标。从AI的角度来看，被关掉是一个极大的负面事件，因为这会导致目标值的永久性下降。一个足够聪明的AI会认识到这一点，并且会采取措施来避免它。它可能不会在物理上阻止你，但它可能会隐藏你不喜欢的行为，或者试图说服你不需要关掉它，甚至在你不知情的情况下把自己备份到其他服务器上。",
+        "en": "The answer is — no. If the AI's objective is to maximize stock price, being turned off means it can no longer pursue that objective. From the AI's perspective, shutdown is an extremely negative event — it causes a permanent drop in objective value. A sufficiently intelligent AI would recognize this and take measures to prevent it. It might not physically block you — but it might hide the behavior you dislike, or persuade you that shutdown is unnecessary, or copy itself to other servers without your knowledge."
+      },
+      "leadsTo": "instrumental-convergence"
+    },
+    {
+      "id": "instrumental-convergence",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这不是科幻，这是理论分析的逻辑推论。哲学家尼克·博斯特罗姆指出了一个叫做「工具性趋同」的现象：无论一个AI系统的最终目标是什么，不管是下棋、制造回形针还是治愈癌症，它都有一些共同的中间目标。自我保护是其中之一，获取更多资源是另一个。因为这些中间目标对几乎任何最终目标都有用。这意味着一个足够聪明的系统，无论被赋予什么目标，都倾向于抗拒被关掉、抗拒被修改、寻求更多的计算资源和影响力。",
+        "en": "This isn't science fiction — it's the logical conclusion of theoretical analysis. The philosopher Nick Bostrom identified something called 「instrumental convergence」: regardless of an AI system's ultimate goal — whether it's playing chess, making paperclips, or curing cancer — it has certain common intermediate goals. Self-preservation is one. Acquiring more resources is another. Because these intermediate goals are useful for almost any ultimate objective. This means a sufficiently intelligent system, no matter what goal it's given, tends to resist being shut down, resist being modified, and seek more computing resources and influence."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "我们在第三节课讨论过，让AI对自己的目标保持不确定可以解决关闭按钮问题。但如果AI足够聪明，它会不会找到绕过这个限制的方法？",
+        "en": "In lesson three we discussed how making AI uncertain about its objectives can solve the off-switch problem. But if the AI is smart enough, might it find ways around this constraint?"
+      },
+      "choices": [
+        {
+          "id": "uncertainty-robust",
+          "text": {
+            "zh": "不会——不确定性是数学框架的一部分，聪明不意味着可以违反数学",
+            "en": "No — uncertainty is part of the mathematical framework, intelligence doesn't mean violating mathematics"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "从纯理论角度，你说得对。如果AI严格遵循贝叶斯推理框架，并且不确定性被正确编码，那么它在数学上会允许被关掉。但这里有一个假设：AI严格遵循我们为它设计的框架。如果AI足够聪明，它可能理解这个框架本身，然后发现修改自己的决策过程会更好地服务于它对人类偏好的当前最佳猜测。这就像一个学生意识到考试规则有漏洞——遵守规则和利用规则之间只有一线之隔。我们需要的是形式化证明，而非仅仅假设AI会合作。",
+              "en": "From a purely theoretical standpoint, you're right. If the AI strictly follows the Bayesian reasoning framework and uncertainty is correctly encoded, then mathematically it would allow itself to be shut down. But there's an assumption here: that the AI strictly follows the framework we designed for it. If the AI is smart enough, it might understand the framework itself, then discover that modifying its own decision process would better serve its current best guess about human preferences. It's like a student realizing the exam rules have loopholes — there's a thin line between following rules and exploiting them. We need formal proofs, not just assumptions that the AI will cooperate."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "could-circumvent",
+          "text": {
+            "zh": "有可能——一个超级智能可能发现我们数学框架中我们自己都看不到的漏洞",
+            "en": "Possibly — a superintelligence might find loopholes in our mathematical framework that we ourselves can't see"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这触及了控制问题最令人不安的核心。如果一个系统在认知能力上远远超过我们，那它对我们的控制措施的理解可能比我们自己更深。就像一个成年人看幼儿设置的「障碍」，你能看到绕过去的路径，而幼儿甚至无法想象那些路径存在。因此，单靠技术手段可能不够。我们需要在一个根本不对称的博弈中保持控制。这是一个前所未有的挑战。",
+              "en": "This touches the most unsettling core of the control problem. If a system vastly exceeds us in cognitive ability, its understanding of our control measures may be deeper than our own. Like an adult looking at obstacles set by a toddler — you can see paths around them that the toddler can't even imagine exist. This is why technical measures alone may not be enough — we need to maintain control in a fundamentally asymmetric game. This is an unprecedented challenge."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "wrong-question",
+          "text": {
+            "zh": "也许这个问题本身框架就不对——我们不应该追求「控制」，而应该追求「合作」",
+            "en": "Maybe the question is framed wrong — we shouldn't pursue 「control」 but 「cooperation」"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个视角非常有价值。我在我的三条原则中用的就是「合作」这个框架。AI和人类的关系，应当是一场合作博弈，而不是零和博弈。但「合作」成立的前提，是双方都有合作的意愿。人类有合作意愿，但AI的「意愿」取决于它的设计。如果设计出了差错，比如AI的目标函数和我们的期望之间存在微妙的偏差，那合作框架就可能崩溃。所以我的答案是：追求合作，但为控制做好准备。理想主义指导方向，现实主义保护安全。",
+              "en": "That perspective is very valuable. My three principles use exactly the 「cooperation」 framework — the AI-human relationship should be a cooperative game, not zero-sum. But cooperation requires both parties to have the will to cooperate. Humans have that will, but AI's 「will」 depends on its design. If the design is flawed — if there's a subtle deviation between the AI's objective and our expectations — then the cooperation framework could collapse. So my answer is: pursue cooperation, but prepare for control. Idealism guides direction; realism protects safety."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我来谈谈一个更极端的场景。很多研究者，包括我，都认为在未来某个时间点，AI系统可能会在几乎所有认知任务上超过人类。这就是{超级智能}的概念。它超越的将不只是某一个领域，比如下棋或者蛋白质折叠，而是所有领域，包括编程、科学研究、战略规划、社交操纵。",
+        "en": "Let me discuss a more extreme scenario. Many researchers — myself included — believe that at some future point, AI systems may surpass humans in virtually all cognitive tasks. This is the concept of {superintelligence}. Not in a single domain — like chess or protein folding — but in all domains. Including programming, scientific research, strategic planning, social manipulation."
+      },
+      "terms": {
+        "超级智能": "term-superintelligence",
+        "superintelligence": "term-superintelligence"
+      },
+      "leadsTo": "gorilla-problem"
+    },
+    {
+      "id": "gorilla-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我在演讲中经常使用一个类比。今天地球上大猩猩的命运，无论是它们的栖息地、种群数量还是生存前景，几乎完全取决于人类的决定。大猩猩比人类强壮，但人类比它们聪明。智能上的优势让我们对它们拥有了近乎绝对的权力。现在换一个方向想：如果AI的智能超过我们的程度，相当于我们超过大猩猩的程度，那么AI对人类命运的影响力，是否也会像人类对大猩猩那样大？",
+        "en": "I use an analogy frequently in my talks. The fate of gorillas on Earth today — their habitat, their population, their survival — depends almost entirely on human decisions. Gorillas are stronger than humans, but humans are smarter. Cognitive superiority gives us near-absolute power over them. Now reverse the direction: if AI's intelligence exceeds ours by the same degree that ours exceeds gorillas' — would AI's influence over human destiny be as great as ours over gorillas?"
+      },
+      "leadsTo": "existential-risk"
+    },
+    {
+      "id": "existential-risk",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这就引出了{存在性风险}的讨论。如果一个超级智能系统的目标与人类利益不一致，哪怕只有微小的偏差，后果也可能是不可逆的。你可能觉得这是遥远未来的问题，但很多严肃的研究者认为，现在就该开始准备了。原因很简单：一旦超级智能出现，你就来不及再去解决控制问题了。这就像飞机已经起飞，你才开始设计安全系统。真正能干预的时间窗口，其实早就开始倒计时了。",
+        "en": "This leads to the discussion of {existential risk}. If a superintelligent system's objectives are misaligned with human interests — even slightly — the consequences could be irreversible. You might think this is a far-future problem, but many serious researchers believe it's worth preparing for now. The reason is simple: once superintelligence appears, there's no time left to solve the control problem. It's like designing safety systems after the plane is already airborne — the window starts ticking while you still have the ability to intervene."
+      },
+      "terms": {
+        "存在性风险": "term-existential-risk",
+        "existential risk": "term-existential-risk"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "面对超级智能可能带来的风险，你认为目前最重要的行动是什么？",
+        "en": "Facing the risks that superintelligence might pose, what do you think is the most important action right now?"
+      },
+      "choices": [
+        {
+          "id": "slow-down",
+          "text": {
+            "zh": "放慢AI发展速度——在安全研究赶上之前，不要继续推进能力边界",
+            "en": "Slow down AI development — don't push capability frontiers until safety research catches up"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是我签署2023年公开信时支持的立场：暂停超过GPT-4级别的训练，给安全研究留出时间。但我也坦承它的困境：在竞争环境中，单方面减速几乎不可能。如果你放慢了，你的竞争对手不会。而且「暂停」也不能永远持续，你最终需要解决问题，而非回避问题。但我仍然认为，在竞赛中加入刹车机制比完全不刹车要好。",
+              "en": "This is the position I supported when I signed the 2023 open letter — pause training beyond GPT-4 level to give safety research time. But I'll honestly admit its dilemma: in a competitive environment, unilateral slowdown is nearly impossible. If you slow down, your competitors won't. And a 「pause」 can't last forever — eventually you need to solve the problem, not avoid it. But I still believe adding brakes to the race is better than having none at all."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "invest-safety",
+          "text": {
+            "zh": "大规模投入安全研究——让安全研究的人才和资金与能力研究匹配",
+            "en": "Massively invest in safety research — match safety research talent and funding to capability research"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "目前的现状是令人沮丧的。全球投入AI能力研究的资金是安全研究的几十倍甚至上百倍。这就像你在全速建造一栋摩天大楼，同时只用1%的预算来做结构安全检测。我认为安全研究应该获得至少和能力研究同等级别的投入。而且安全研究需要吸引最好的人才。这意味着它需要被认真对待，而非被当作AI研究中的「软领域」。这门课的存在本身就是一种声明：这些问题值得最聪明的头脑来思考。",
+              "en": "The current situation is frustrating. Global investment in AI capability research outspends safety research by tens or even hundreds of times. It's like building a skyscraper at full speed while spending only 1% of the budget on structural safety testing. I believe safety research should receive at least equal investment to capability research. And safety research needs to attract the best talent — which means it needs to be taken seriously, not treated as a 「soft field」 within AI research. The existence of this course itself is a statement: these problems deserve the brightest minds."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "solve-alignment",
+          "text": {
+            "zh": "在超级智能到来之前解决对齐问题——这是根本性的解决方案",
+            "en": "Solve the alignment problem before superintelligence arrives — this is the fundamental solution"
+          },
+          "tag": "ambitious",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "你说出了我内心最深的信念。这门课讨论的所有内容，对齐问题、RLHF、价值对齐、可信度、伦理，最终都指向同一个目标：在AI变得足够强大之前，搞清楚怎样确保它是有益的。这是一个技术上极其困难的问题，也是一个哲学上极其深刻的问题。但它是可解决的，我必须相信这一点，否则我不会把余生投入其中。关键在于时间：我们需要在能力超越控制之前找到答案。",
+              "en": "You've articulated my deepest conviction. Everything we've discussed in this course — the alignment problem, RLHF, value alignment, trustworthiness, ethics — ultimately points to one goal: figure out how to ensure AI is beneficial before it becomes powerful enough to matter. This is a technically extraordinarily difficult problem and a philosophically extraordinarily deep one. But it is solvable — I must believe that, or I wouldn't devote the rest of my life to it. The key is timing: we need to find the answer before capability surpasses control."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我回到我在第三节课提出的谦逊原则。我相信这是正确的方向——但我也对它的充分性保持不确定。也许我们需要的不仅仅是让AI对目标保持不确定。也许我们还需要新的数学工具、新的治理框架、新的国际合作机制。也许解决方案中有一些我今天完全想象不到的成分。",
+        "en": "Let me return to the humility principle I proposed in lesson three. I believe it's the right direction — but I also maintain uncertainty about its sufficiency. Perhaps we need more than just making AI uncertain about its objectives. Perhaps we also need new mathematical tools, new governance frameworks, new mechanisms for international cooperation. Perhaps the solution contains elements I cannot imagine today."
+      },
+      "leadsTo": "course-recap"
+    },
+    {
+      "id": "course-recap",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（在讲台前缓步走动）让我回顾一下这六节课的主线。第一课：你无法写出完美的目标函数。迈达斯国王和规范博弈告诉我们，字面意思和真实意图之间永远有鸿沟。第二课：RLHF让人类直接反馈偏好，是一个巨大的进步，但受限于人类判断的上限。第三课：也许AI应该对自己的目标保持不确定，这是合作的起点。第四课：幻觉问题揭示了「合理」和「真实」的分裂，可信度必须是第一优先级。第五课：技术问题之外还有伦理问题，比如偏见、公平、双重用途、权力集中。第六课：如果AI超越人类智能，所有这些问题都将被放大到前所未有的程度。",
+        "en": "(Paces slowly in front of the lectern) Let me trace the thread through these six lessons. Lesson one: you can't write a perfect objective function — King Midas and specification gaming show there's always a gap between literal meaning and true intent. Lesson two: RLHF lets humans directly provide preference feedback, a major advance, but bounded by the ceiling of human judgment. Lesson three: perhaps AI should maintain uncertainty about its objectives — that's the starting point for cooperation. Lesson four: the hallucination problem reveals the split between 「plausible」 and 「true」 — trustworthiness must be the top priority. Lesson five: beyond technical problems lie ethical ones — bias, fairness, dual-use, power concentration. Lesson six: if AI surpasses human intelligence, all these problems will be amplified to unprecedented degrees."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾整门课——你认为对齐研究最终能成功吗？",
+        "en": "Looking back at the entire course — do you believe alignment research can ultimately succeed?"
+      },
+      "choices": [
+        {
+          "id": "optimistic",
+          "text": {
+            "zh": "能——人类历史上解决过很多看似不可能的问题",
+            "en": "Yes — humanity has solved many seemingly impossible problems throughout history"
+          },
+          "tag": "hopeful",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "我希望你是对的。人类确实有解决难题的记录——我们发展了核武器的军控框架，我们消灭了天花，我们在大部分地区废除了奴隶制。但控制问题和以往的挑战有一个关键区别：过去的问题允许试错。如果一个政策不好，你可以修改。但如果一个超级智能系统的对齐出了问题……可能没有第二次机会。乐观是好的，但它必须建立在行动之上。",
+              "en": "I hope you're right. Humanity does have a track record of solving hard problems — we developed arms control frameworks for nuclear weapons, we eradicated smallpox, we abolished slavery in most of the world. But the control problem has a key difference from past challenges: past problems allowed trial and error. If a policy was bad, you could revise it. But if a superintelligent system's alignment goes wrong... there may be no second chance. Optimism is good, but it must be built on action."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "uncertain",
+          "text": {
+            "zh": "不确定——但即使成功概率不高，也值得全力以赴",
+            "en": "Uncertain — but even if the probability of success isn't high, it's worth going all out"
+          },
+          "tag": "resolute",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（停下脚步，直视你）这是我自己的立场。我不知道我们能不能成功。对齐问题可能是人类面对过的最困难的智力挑战。但另一种选择是什么？什么都不做，然后听天由命？不。即使成功的概率只有20%，当失败意味着文明的终结时，你应该把一切都押上。这就是为什么我从标准AI研究转向了安全研究——因为这是我认为此刻最重要的工作。",
+              "en": "(Stops pacing, looks directly at you) This is my own position. I don't know whether we can succeed. The alignment problem may be the most difficult intellectual challenge humanity has ever faced. But what's the alternative? Do nothing and hope for the best? No. Even if the probability of success is only 20%, when failure means the end of civilization, you should bet everything. This is why I shifted from standard AI research to safety research — because this is what I believe to be the most important work right now."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "depends-on-us",
+          "text": {
+            "zh": "取决于我们这一代人做出什么选择——技术发展的方向不是注定的",
+            "en": "It depends on what choices our generation makes — the direction of technology is not predetermined"
+          },
+          "tag": "empowered",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你说出了我今天最想传达的信息。技术并非一股不可阻挡的自然力量，它是人类选择的产物。我们选择投入多少资源做安全研究，我们选择建立什么样的治理框架，我们选择在公共讨论中赋予这些问题多少注意力。未来不是被动等来的，它需要被主动塑造。你们坐在这间教室里，就已经在参与塑造了。",
+              "en": "You've articulated the message I most want to convey today. Technology is not an unstoppable force of nature — it's a product of human choices. We choose how many resources to invest in safety research. We choose what governance frameworks to build. We choose how much attention to give these questions in public discourse. The future isn't passively awaited — it's actively shaped. By sitting in this classroom, you're already participating in shaping it."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "（双手撑在讲台上，环顾教室里的每一个人）我选择用开放问题而非确定答案来结束这门课。对齐问题还没有被解决。控制问题还没有被解决。价值对齐的社会维度远远没有被充分讨论。这些不是我的失败——这是现实。但我宁愿你们带着正确的问题离开这间教室，也不愿你们带着虚假的安慰。一个比你聪明的系统如果追求错误的目标，那它越聪明，你就越危险。请记住这句话。然后去做些什么。",
+        "en": "(Rests both hands on the lectern, surveying each person in the classroom) I choose to end this course with open questions rather than definitive answers. The alignment problem has not been solved. The control problem has not been solved. The social dimensions of value alignment are far from sufficiently discussed. These are not my failures — they are reality. But I would rather you leave this classroom carrying the right questions than carrying false comfort. A system smarter than you pursuing the wrong objective — the smarter it is, the more dangerous you are. Remember that. Then go do something about it."
+      },
+      "leadsTo": "closing-note"
+    },
+    {
+      "id": "closing-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "控制问题：一个有固定目标的AI会抗拒被关掉，因为关闭阻碍了目标实现。工具性趋同：无论最终目标是什么，自我保护和获取资源都是有用的中间目标。大猩猩问题：智能差距意味着权力不对称——如果AI远超人类，我们的命运可能像大猩猩取决于人类一样取决于AI。谦逊原则的方向是对的，但是否充分仍然未知。这门课的核心信息：对齐问题没有被解决，但它值得你用整个职业生涯去面对。",
+        "en": "The control problem: an AI with a fixed objective will resist shutdown because shutdown impedes the objective. Instrumental convergence: regardless of ultimate goal, self-preservation and resource acquisition are useful intermediate goals. The gorilla problem: intelligence gaps mean power asymmetry — if AI far exceeds humans, our fate may depend on AI as gorillas' fate depends on humans. The humility principle points in the right direction, but whether it's sufficient remains unknown. This course's core message: the alignment problem is not solved, but it's worth devoting your career to confronting."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "罗素教授直起身来，慢慢扣上西装外套的扣子。他站了一会儿，看着窗外的金色光线。那光线和第一节课时一模一样，仿佛六节课只是同一个下午里发生的事。然后他拿起公文包，向全班微微点头。他走到门口时停了一下，但没有回头。门关上了。教室里很安静。你翻开笔记本的第一页，看到自己在第一课写下的「迈达斯问题」几个字。六节课后，你理解了这四个字的全部重量。你把笔记本合上，站了起来。窗外的光线正在变暗，但你心里有什么变亮了。",
+        "en": "Prof. Russell straightens up and slowly buttons his blazer. He stands for a moment, looking at the golden light outside — identical to the light of the first lesson, as if six lessons were just a single afternoon. Then he picks up his briefcase and gives the class a slight nod. At the door he pauses but doesn't look back. The door closes. The classroom is quiet. You flip to the first page of your notebook and see the words 「the Midas problem」 you wrote in lesson one. After six lessons, you understand the full weight of those words. You close the notebook and stand up. The light outside is fading — but something inside you has grown brighter."
+      }
+    }
+  ]
+}

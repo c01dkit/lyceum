@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>打开的书本图标</title>
+  <desc>一本打开的书，褐色封面，淡黄色纸张</desc>
+
+  <!-- 褐色封面背景 (Back Cover & Spine) -->
+  <path d="M32 58 C 20 58, 4 52, 4 48 L 4 16 C 4 12, 20 18, 32 18 C 44 18, 60 12, 60 16 L 60 48 C 60 52, 44 58, 32 58 Z" fill="#8B4513" stroke="#5e2f0d" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- 左侧页面 (Left Pages - Pale Yellow) -->
+  <path d="M32 54 C 20 54, 8 49, 8 46 L 8 14 C 8 11, 20 16, 32 16 L 32 54 Z" fill="#FFFACD" stroke="#E3DAC9" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- 右侧页面 (Right Pages - Pale Yellow) -->
+  <path d="M32 54 C 44 54, 56 49, 56 46 L 56 14 C 56 11, 44 16, 32 16 L 32 54 Z" fill="#FFFACD" stroke="#E3DAC9" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- 中间装订线细节 (Binding crease detail) -->
+  <line x1="32" y1="16" x2="32" y2="54" stroke="#D4C496" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- 页面纹理细节（可选，增加一点立体感） -->
+  <path d="M10 18 C 20 21, 30 18, 30 18" stroke="#E3DAC9" stroke-width="1" fill="none"/>
+  <path d="M54 18 C 44 21, 34 18, 34 18" stroke="#E3DAC9" stroke-width="1" fill="none"/>
+  <path d="M10 42 C 20 45, 30 42, 30 42" stroke="#E3DAC9" stroke-width="1" fill="none"/>
+  <path d="M54 42 C 44 45, 34 42, 34 42" stroke="#E3DAC9" stroke-width="1" fill="none"/>
+
+</svg>

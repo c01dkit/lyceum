@@ -1,0 +1,280 @@
+{
+  "id": "lesson-05",
+  "course": "transformer-architecture",
+  "title": {
+    "zh": "为什么Transformer能扩展",
+    "en": "Why Transformers Scale"
+  },
+  "knowledgePoint": {
+    "zh": "Transformer相比RNN的并行化优势、GPU友好性与规模化潜力",
+    "en": "Transformer's parallelization advantages over RNNs, GPU-friendliness, and scaling potential"
+  },
+  "teacher": "prof-vaswani",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间金色教室。全息显示上出现了两幅对比图：左边是一条缓慢前进的光链，那是RNN的顺序计算；右边是一片同时闪烁的光网，那是Transformer的并行计算。瓦斯瓦尼教授站在两幅图中间，语气平静但带着一丝兴奋：速度只是表面的优势，真正的意义在于，并行化打开了规模化的大门。",
+    "en": "You close your eyes, and your thoughts drift back to that golden classroom. Two contrasting images appear on the holographic display: on the left, a slowly advancing chain of light — RNN's sequential computation; on the right, a simultaneously flickering mesh of light — Transformer's parallel computation. Prof. Vaswani stands between them, his tone calm but with a hint of excitement: speed is just the surface advantage — the real significance is that parallelization opens the door to scale."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。Transformer能扩展的核心原因已经清晰了：自注意力的计算天然是并行的，所有位置的QKV计算可以同时进行，注意力权重矩阵可以用一次矩阵乘法完成。矩阵乘法恰好是GPU最擅长的运算。当并行化消除了训练时间的瓶颈，你就可以用更多的数据、更大的模型。结果表明，更多的数据和更大的模型几乎总是带来更好的性能。规模即力量。",
+    "en": "You return to the present. The core reason Transformers scale is now clear: self-attention computation is inherently parallel — QKV computation for all positions can happen simultaneously, and the attention weight matrix can be computed with a single matrix multiplication. Matrix multiplication is precisely what GPUs excel at. When parallelization removes the training time bottleneck, you can use more data and larger models — and it turns out that more data and larger models almost always bring better performance. Scale is power."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "瓦斯瓦尼教授走进教室时，全息显示上已经出现了一组数字——训练时间的对比表格。左列是各种RNN模型在WMT翻译任务上的训练天数，右列是Transformer的训练时间。差距一目了然：Transformer在更短的时间内达到了更好的结果。他指了指这个表格，微微一笑。",
+        "en": "When Prof. Vaswani walks in, a set of numbers already appears on the holographic display — a comparison table of training times. The left column shows training days for various RNN models on the WMT translation task, the right column shows Transformer's training time. The gap is unmistakable: Transformer achieves better results in less time. He points at the table and smiles slightly."
+      },
+      "leadsTo": "speed-matters"
+    },
+    {
+      "id": "speed-matters",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这张表格说明了一个重要的事实：在我们的翻译实验中，Transformer的训练时间大约是最好的RNN模型的几分之一，而翻译质量更高。但我今天想聊的不仅仅是「更快」——我想聊的是「为什么更快」，以及这个「更快」意味着什么。",
+        "en": "This table illustrates an important fact: in our translation experiments, Transformer's training time was roughly a fraction of the best RNN models', with higher translation quality. But what I want to discuss today is not just 「faster」 — I want to discuss 「why faster」, and what this 「faster」 implies."
+      },
+      "leadsTo": "rnn-sequential"
+    },
+    {
+      "id": "rnn-sequential",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "回顾一下RNN的计算方式。处理一个长度为n的序列，RNN需要n个顺序步骤，因为第t步的隐藏状态h(t)依赖h(t-1)。这是一个严格的顺序依赖链。即使你有一万个GPU核心，这n步也必须一步一步执行。你的硬件有多快并不重要，瓶颈在于计算的逻辑结构，而不是硬件的物理速度。",
+        "en": "Let's revisit how RNNs compute. Processing a sequence of length n, an RNN needs n sequential steps — the hidden state h(t) at step t depends on h(t-1). This is a strict sequential dependency chain. Even if you have ten thousand GPU cores, these n steps must execute one by one. How fast your hardware is doesn't matter — the bottleneck is in the logical structure of computation, not the physical speed of hardware."
+      },
+      "leadsTo": "transformer-parallel"
+    },
+    {
+      "id": "transformer-parallel",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在看Transformer。{并行化}是它的核心优势。自注意力的计算中，所有位置的Q、K、V向量可以同时生成，因为它们只依赖各自位置的输入，不依赖其他位置的计算结果。注意力权重矩阵Q乘以K的转置，是一次矩阵乘法，所有位置对之间的相关性同时计算。加权求和也是一次矩阵乘法。从头到尾，没有顺序依赖。",
+        "en": "{Parallelization} is its core advantage. In self-attention computation, Q, K, V vectors for all positions can be generated simultaneously — because they depend only on each position's own input, not on other positions' computation results. The attention weight matrix Q times K-transpose is a single matrix multiplication — all pairwise correlations computed at once. The weighted sum is another matrix multiplication. From start to finish, no sequential dependency."
+      },
+      "terms": {
+        "并行化": "term-parallelization",
+        "Parallelization": "term-parallelization"
+      },
+      "leadsTo": "gpu-match"
+    },
+    {
+      "id": "gpu-match",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "而矩阵乘法恰好是{GPU}最擅长的运算。GPU有成千上万个计算核心，每个核心相对简单，但它们可以同时执行相同的操作。矩阵乘法是一种大规模的数据并行运算，完美地映射到GPU的架构上。Transformer的每一步核心运算都可以用矩阵乘法表达，这使它能够充分利用现代GPU的算力。",
+        "en": "And matrix multiplication happens to be what {GPUs} excel at. A GPU has thousands of compute cores, each relatively simple, but they can all execute the same operation simultaneously. Matrix multiplication — large-scale data-parallel computation — maps perfectly onto GPU architecture. Every core operation in Transformer can be expressed as matrix multiplication — this lets it fully exploit the power of modern GPUs."
+      },
+      "terms": {
+        "GPU": "term-gpu-computing",
+        "GPUs": "term-gpu-computing"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "RNN在理论上的时间复杂度是O(n)，Transformer是O(n²)。但实际训练中Transformer更快。你觉得这个「理论更慢但实际更快」的矛盾怎么解释？",
+        "en": "RNN has theoretical time complexity O(n), Transformer has O(n²). But in practice, Transformer trains faster. How do you explain this 「theoretically slower but practically faster」 contradiction?"
+      },
+      "choices": [
+        {
+          "id": "choice-parallel-wins",
+          "text": {
+            "zh": "O(n)是顺序的n步，O(n²)是并行的n²次运算——并行的墙钟时间可以远小于顺序执行",
+            "en": "O(n) means n sequential steps, O(n²) means n² parallel operations — the wall-clock time of parallel execution can be far less than sequential"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是最核心的解释。时间复杂度衡量的是总运算量，但实际训练时间取决于「关键路径」，也就是最长的顺序依赖链。RNN的关键路径是O(n)，而Transformer的关键路径只有O(1)，因为所有注意力计算可以同时完成。在拥有足够并行能力的GPU上，Transformer的实际训练时间远低于RNN。这是一个经典的「用计算量换时间」的权衡。",
+              "en": "This is the most central explanation. Time complexity measures the total amount of computation, but actual training time depends on the 'critical path', the longest chain of sequential dependencies. The critical path of an RNN is O(n), while the critical path of a Transformer is just O(1): all attention computations can finish at the same time. On a GPU with enough parallelism, a Transformer's actual training time is far less than an RNN's. It is a classic 'trade computation for time' bargain."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-hardware-trend",
+          "text": {
+            "zh": "GPU的并行能力在飞速发展，而CPU的单核速度增长已经放缓——Transformer押对了硬件趋势",
+            "en": "GPU parallel capability is advancing rapidly while CPU single-core speed growth has slowed — Transformer bet on the right hardware trend"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个非常有远见的观察。摩尔定律在单核性能上已经接近极限，但并行计算的规模仍在快速增长——GPU的核心数量和内存带宽每年都在提升。Transformer的设计恰好踩在了这个硬件趋势上：它需要的并行度越高，现代GPU就越能满足它。可以说，Transformer和GPU是彼此的「天作之合」。",
+              "en": "A very forward-looking observation. Moore's law for single-core performance has nearly hit its ceiling, but the scale of parallel computing is still growing fast. The number of GPU cores and the memory bandwidth keep improving every year. Transformer's design happens to ride this hardware trend exactly. The more parallelism it needs, the more modern GPUs can supply. You could say Transformers and GPUs are made for each other."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-batch-efficiency",
+          "text": {
+            "zh": "Transformer可以更高效地处理批次数据——多个样本可以打包成大矩阵一起计算",
+            "en": "Transformer can process batched data more efficiently — multiple samples can be packed into large matrices for joint computation"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说到了另一个重要的实际优势。RNN处理批次时，不同样本的序列长度可能不同，需要填充到相同长度——浪费了很多计算。而且由于顺序依赖，批处理的加速效果有限。Transformer天然适合批处理：把多个序列拼成一个大矩阵，所有的注意力计算一次完成。这在实际的GPU吞吐量上带来了巨大的差异。",
+              "en": "You've identified another important practical advantage. When an RNN processes a batch, samples may have different sequence lengths and need to be padded to the same length, which wastes a lot of computation. And because of sequential dependencies, the speedup from batching is limited. Transformers are naturally suited to batching: stacking multiple sequences into a large matrix lets all attention computations finish in one pass. That makes a huge difference in real GPU throughput."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "并行化带来的不仅仅是速度。它打开了一扇更重要的门——规模化。当训练时间不再是瓶颈，你就可以用更多的数据、更大的模型来训练。而我们正在看到一个令人振奋的趋势。",
+        "en": "Parallelization brings more than just speed. It opens a more important door — scaling. When training time is no longer a bottleneck, you can train with more data and larger models. And we're seeing an exciting trend."
+      },
+      "leadsTo": "scaling-insight"
+    },
+    {
+      "id": "scaling-insight",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "在我们的实验中，增加模型的大小，比如更多的层、更宽的隐藏维度、更多的注意力头，几乎总是带来更好的翻译质量。增加训练数据量也是如此。{计算效率}上的优势意味着Transformer可以在合理的时间和成本内训练到前所未有的规模。这暗示了一种可能性：也许好的性能并不依赖于多么精巧的算法，关键在于一个足够好的架构，加上充足的数据和计算。",
+        "en": "In our experiments, increasing model size — more layers, wider hidden dimensions, more attention heads — almost always brings better translation quality. The same goes for training data volume. The advantage in {computational efficiency} means Transformer can be trained to unprecedented scales within reasonable time and cost. This hints at a possibility — perhaps good performance doesn't require extremely clever algorithms, just a good enough architecture with sufficient data and compute."
+      },
+      "terms": {
+        "计算效率": "term-computational-efficiency",
+        "computational efficiency": "term-computational-efficiency"
+      },
+      "leadsTo": "scale-comparison"
+    },
+    {
+      "id": "scale-comparison",
+      "type": "narration",
+      "text": {
+        "zh": "全息显示上出现了两条曲线。横轴是模型参数量（从数百万到数亿），纵轴是翻译质量评分。一条标记为「RNN」的曲线很快趋于平缓——增加参数不再带来显著提升。另一条标记为「Transformer」的曲线持续上升，还没有显出减速的迹象。两条曲线之间的差距随着参数量的增加而不断扩大。",
+        "en": "Two curves appear on the holographic display. The x-axis is model parameter count (from millions to hundreds of millions), the y-axis is translation quality score. A curve labeled 「RNN」 quickly flattens — adding parameters no longer brings significant improvement. Another curve labeled 「Transformer」 keeps rising, showing no signs of slowing. The gap between the two curves widens as parameter count increases."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "Transformer似乎能从更大的规模中获得更多的收益。你觉得是什么让它比RNN更「可扩展」？",
+        "en": "Transformer seems to benefit more from larger scale. What do you think makes it more 「scalable」 than RNNs?"
+      },
+      "choices": [
+        {
+          "id": "choice-information-flow",
+          "text": {
+            "zh": "Transformer的直接连接消除了信息瓶颈——更大的模型可以利用更丰富的上下文",
+            "en": "Transformer's direct connections eliminate information bottlenecks — larger models can leverage richer context"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "很好的分析。RNN通过一个固定大小的隐藏状态传递信息——这个状态就是一个瓶颈。无论你把模型做多大，信息仍然要挤过这个瓶颈。Transformer中每一对位置都有直接通路，增加模型的宽度和深度可以直接增加每条通路的容量。更大的模型能编码更复杂的关系，而这些关系可以被直接利用。",
+              "en": "A good analysis. RNNs pass information through a fixed-size hidden state, and that state is a bottleneck. No matter how big you make the model, the information still has to squeeze through it. In a Transformer, every pair of positions has a direct path, and increasing the model's width and depth directly increases the capacity of every path. A larger model can encode more complex relationships, and those relationships can be exploited directly."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-optimization",
+          "text": {
+            "zh": "残差连接和层归一化让深层Transformer的优化更稳定——更容易把深度转化为能力",
+            "en": "Residual connections and layer normalization make deep Transformer optimization more stable — easier to convert depth into capability"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个重要的工程层面的原因。理论上，更深的RNN也可以更强大，但训练深层RNN是出了名的困难——梯度消失和爆炸问题在循环结构中更加严重。Transformer的残差连接和层归一化让梯度流动更加顺畅，使得增加深度成为一种「安全」的提升策略。好的架构设计让规模化成为了一条可行的路径。",
+              "en": "An important engineering reason. Theoretically, deeper RNNs could also be more powerful, but training deep RNNs is notoriously difficult: vanishing and exploding gradients are even worse in recurrent structures. Transformer's residual connections and layer normalization make gradient flow smoother, so adding depth becomes a 'safe' way to improve the model. Good architectural design makes scaling a feasible path."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-data-utilization",
+          "text": {
+            "zh": "RNN的顺序处理限制了它在大数据集上的训练速度——Transformer可以更快地消化更多数据",
+            "en": "RNN's sequential processing limits its training speed on large datasets — Transformer can digest more data faster"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你触及了规模化的实际条件。模型的性能不仅取决于它的大小，还取决于它「看过」多少数据。RNN的训练速度限制意味着在相同时间内，它能消化的数据远少于Transformer。Transformer的并行训练速度让它可以在合理的时间内遍历海量数据集。数据、模型、计算——这三者的协同增长才是规模化的真正含义。",
+              "en": "You've touched on the practical conditions for scaling. A model's performance depends not only on its size but also on how much data it has 'seen'. The training-speed limitations of RNNs mean that, in the same wall-clock time, they can ingest far less data than a Transformer. The parallel training speed of Transformers lets them traverse massive datasets in a reasonable amount of time. Data, model, and compute: the coordinated growth of all three is what scaling really means."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我需要坦诚地说，当我们提交那篇论文的时候，我们并没有完全预见到规模化会走到多远。我们知道Transformer比RNN更快、更好。但「规模即力量」这个洞察，也就是更大的模型加更多的数据几乎总是带来更好的结果，是后来的研究者们逐步发现的。我们建造了一个适合扩展的架构，但规模化的全部潜力还在不断被揭示。",
+        "en": "I need to be honest — when we submitted that paper, we didn't fully foresee how far scaling would go. We knew Transformer was faster and better than RNNs. But the insight that 「scale is power」 — bigger models plus more data almost always yield better results — was gradually discovered by later researchers. We built an architecture suited for scaling, but the full potential of scale is still being revealed."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "Transformer的可扩展性来源：(1) 自注意力的所有运算无顺序依赖，可完全并行；(2) 核心计算是矩阵乘法，完美匹配GPU架构；(3) 残差连接+层归一化让深层堆叠稳定可训；(4) 直接连接消除了RNN的信息瓶颈。并行化带来的速度优势让Transformer能在合理时间内训练到前所未有的规模——模型越大、数据越多，效果越好。",
+        "en": "Transformer scalability sources: (1) all self-attention operations have no sequential dependency, fully parallelizable; (2) core computation is matrix multiplication, perfectly matching GPU architecture; (3) residual connections + layer norm enable stable deep stacking; (4) direct connections eliminate RNN's information bottleneck. Speed from parallelization lets Transformer train to unprecedented scales — larger models + more data = better results."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下节课是最后一课。我想和你们聊聊Transformer的未来——它最初是为了机器翻译而设计的，但它的影响远远超出了翻译。已经有研究者开始尝试把它用在语言理解、文本生成、甚至其他模态上。我想和你们分享一些我对未来的思考。",
+        "en": "Next lesson is our last. I want to talk with you about the future of Transformer — it was originally designed for machine translation, but its impact extends far beyond translation. Researchers are already trying to apply it to language understanding, text generation, and even other modalities. I want to share some of my thoughts about the future."
+      },
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "有时候我在想——Transformer之所以成功，也许是因为它恰好满足了这个时代最重要的条件：它可以并行，它可以扩展。在一个数据和计算都在指数增长的时代，能够利用规模的架构自然会脱颖而出。也许最好的架构，是最能利用你所拥有的资源的架构。",
+        "en": "Sometimes I think — perhaps Transformer succeeded not because self-attention as a specific mechanism is so perfect, but because it happened to satisfy the most important condition of our era: it can parallelize, it can scale. In an age where data and computation grow exponentially, an architecture that can leverage scale will naturally stand out. Perhaps the best architecture is the one that best utilizes the resources you have."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "全息显示上，那两条曲线渐渐淡去，只留下Transformer那条仍在上升的线——它延伸到显示区域的边缘，似乎还要继续向上。瓦斯瓦尼教授站在那里，看着那条线消失在金光之中。他没有说话，只是轻轻点了点头，像是在确认一个自己很早就感觉到、但此刻才完全清晰的事实。然后他转身离开，教室重归宁静。那条向上延伸的曲线留在你的脑海中，带着一个问题：如果规模继续增长，尽头会在哪里？",
+        "en": "On the holographic display, the two curves gradually fade, leaving only Transformer's still-rising line — it extends to the edge of the display area, seeming to want to continue upward. Prof. Vaswani stands there, watching that line disappear into the golden light. He doesn't speak, just nods slightly — as if confirming a fact he sensed long ago but can only now see with full clarity. Then he turns and leaves, and the classroom returns to stillness. That upward-extending curve lingers in your mind, carrying a question: if scale continues to grow, where is the end?"
+      }
+    }
+  ]
+}

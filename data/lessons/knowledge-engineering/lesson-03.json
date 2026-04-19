@@ -1,0 +1,287 @@
+{
+  "id": "lesson-03",
+  "course": "knowledge-engineering",
+  "title": {
+    "zh": "不确定的世界",
+    "en": "A World of Uncertainty"
+  },
+  "knowledgePoint": {
+    "zh": "不确定性推理与确定性因子",
+    "en": "Reasoning under uncertainty and certainty factors"
+  },
+  "teacher": "prof-shortliffe",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你闭上眼，脑海中浮现出肖特利夫教授在黑板上写下一串数字的画面。0.7、-0.3、0.85——那些代表着确信与怀疑的数值，像脉搏一样在记忆中跳动。那堂关于不确定性的课，正缓缓展开。",
+    "en": "You close your eyes, and an image surfaces: Professor Shortliffe writing a series of numbers on the blackboard. 0.7, -0.3, 0.85 — those values representing confidence and doubt pulse in your memory like a heartbeat. That lesson on uncertainty is slowly unfolding again."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，仿佛还能看到黑板上那个确定性因子的组合公式。在充满不确定的世界里，承认自己不确定——这本身就是一种智慧。",
+    "en": "You come back to the present, as if you can still see that certainty factor combination formula on the blackboard. In a world full of uncertainty, admitting what you don't know — that itself is a form of wisdom."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的黑板上画着一条数轴，从-1延伸到+1，零点用红色粉笔标注。肖特利夫教授走进来时，手里拿着一叠化验报告，其中几份用铅笔画了问号。他看起来若有所思。",
+        "en": "Today's blackboard displays a number line stretching from -1 to +1, the zero point marked in red chalk. Professor Shortliffe walks in holding a stack of lab reports, several marked with penciled question marks. He looks contemplative."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "上次课结束时，我留了一个悬念——MYCIN那些0.75、0.45的数字是怎么来的？今天我们来解决这个问题。但首先，让我问你们一个更根本的问题：医生在做诊断的时候，有多少时候是百分之百确定的？",
+        "en": "Last time, I left you with a mystery — where do MYCIN's numbers like 0.75 and 0.45 come from? Today we'll solve that. But first, let me ask you a more fundamental question: when a doctor makes a diagnosis, how often are they one hundred percent certain?"
+      },
+      "leadsTo": "uncertainty-reality"
+    },
+    {
+      "id": "uncertainty-reality",
+      "type": "dialog",
+      "mood": "serious",
+      "text": {
+        "zh": "答案是：几乎从来没有。（他举起一份化验报告）看这个——血培养阳性，但标本在运输过程中可能被污染了。培养结果说是葡萄球菌，但这到底是真正的感染，还是污染？化验本身就带有不确定性。病人的描述可能不准确，症状可能被药物掩盖。医学中的确定性是一种奢侈品。",
+        "en": "The answer is: almost never. (He holds up a lab report.) Look at this — blood culture positive, but the specimen may have been contaminated during transport. The culture says Staphylococcus, but is this a real infection or contamination? The test itself carries uncertainty. The patient's description may be inaccurate, symptoms may be masked by medication. Certainty in medicine is a luxury."
+      },
+      "leadsTo": "why-not-probability"
+    },
+    {
+      "id": "why-not-probability",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们可能会想：用概率论不就行了吗？在数学上，概率是处理不确定性的标准方法。但实际操作中有一个严重的问题——要准确计算概率，你需要大量的统计数据，还需要知道各种条件之间是否相互独立。在临床实践中，这些数据往往根本不存在。",
+        "en": "You might think: why not just use probability theory? Mathematically, probability is the standard tool for handling uncertainty. But in practice there's a serious problem — to calculate probabilities accurately, you need massive amounts of statistical data, and you need to know whether various conditions are independent of each other. In clinical practice, that data often simply doesn't exist."
+      },
+      "leadsTo": "cf-introduction"
+    },
+    {
+      "id": "cf-introduction",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "所以我们发明了一种新的方法：{确定性因子}，简称CF。它是一个介于-1到+1之间的数值。+1表示绝对确定，-1表示绝对否定，0表示完全不知道。比如，一位专家告诉我：「如果血培养显示革兰氏阴性杆菌，而且病人有免疫抑制，我有70%的把握认为是假单胞菌感染。」我们就给这条规则标注CF等于0.7。",
+        "en": "So we invented a new approach: the {certainty factor}, or CF for short. It's a value between -1 and +1. +1 means absolutely certain, -1 means absolutely ruled out, and 0 means complete ignorance. For example, an expert tells me: 「If the blood culture shows gram-negative rods and the patient is immunocompromised, I'm 70% confident it's Pseudomonas」. We assign this rule a CF of 0.7."
+      },
+      "terms": {
+        "确定性因子": "term-certainty-factor",
+        "certainty factor": "term-certainty-factor"
+      },
+      "leadsTo": "cf-vs-prob"
+    },
+    {
+      "id": "cf-vs-prob",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "确定性因子和概率有一个重要的区别。概率来自统计数据，需要严格的数学基础。而确定性因子来自专家的主观判断——它反映的是一位有经验的医生的信心程度。这更接近医生实际思考的方式。当一位医生说「我觉得可能性很大」的时候，他脑中并没有在做贝叶斯计算。",
+        "en": "There's an important distinction between certainty factors and probability. Probability comes from statistical data and requires rigorous mathematical foundations. Certainty factors come from an expert's subjective judgment — they reflect the confidence level of an experienced doctor. This is closer to how doctors actually think. When a doctor says 「I think it's quite likely, they're not doing Bayesian calculations in their head."
+      },
+      "leadsTo": "combination-intro"
+    },
+    {
+      "id": "combination-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "接下来是关键部分：当多条规则同时指向同一个结论时，我们怎么把它们的确定性因子组合起来？（他转向黑板）假设规则A给假单胞菌的CF是0.7，规则B也支持假单胞菌、CF是0.5。这两个证据应该让我们对假单胞菌更有信心才对。",
+        "en": "Now for the crucial part: when multiple rules point to the same conclusion, how do we combine their certainty factors? (He turns to the blackboard.) Suppose Rule A gives Pseudomonas a CF of 0.7, and Rule B also supports Pseudomonas with a CF of 0.5. These two pieces of evidence should make us more confident about Pseudomonas."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "规则A给出确定性因子0.7，规则B给出确定性因子0.5，两者都支持同一个诊断。你觉得组合后的确定性因子应该是多少？",
+        "en": "Rule A gives a certainty factor of 0.7, Rule B gives 0.5, both supporting the same diagnosis. What do you think the combined certainty factor should be?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "直接相加：0.7 + 0.5 = 1.2",
+            "en": "Simply add them: 0.7 + 0.5 = 1.2"
+          },
+          "tag": "additive-intuition",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "直觉上想要相加是自然的，但CF最高只能到1.0——绝对确定。没有什么比「绝对确定」更确定的了。直接相加会超出范围。我们需要一个既能增强确信度、又不会突破上限的公式。实际上，我们的组合公式是：CF_combined = 0.7 + 0.5 × (1 - 0.7) = 0.7 + 0.15 = 0.85。证据越多，越接近1，但永远到不了1。",
+              "en": "The instinct to add is natural, but CF maxes out at 1.0 — absolute certainty. Nothing is more certain than 「absolutely certain」. Simple addition would exceed the bounds. We need a formula that increases confidence without breaking the ceiling. In practice, our combination formula is: CF_combined = 0.7 + 0.5 × (1 - 0.7) = 0.7 + 0.15 = 0.85. More evidence pushes closer to 1, but never quite reaches it."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "取较高的那个：0.7",
+            "en": "Take the higher one: 0.7"
+          },
+          "tag": "conservative-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "如果只取最高值，那第二条证据就完全被浪费了——你多了一条支持同一结论的规则，信心却没有增加，这不合理。我们确实应该比0.7更确信才对。实际上我们的组合公式是：CF_combined = 0.7 + 0.5 × (1 - 0.7) = 0.85。新的证据在已有确信的基础上进一步提升了信心。",
+              "en": "If we only take the maximum, the second piece of evidence is completely wasted — you have an additional rule supporting the same conclusion, yet your confidence hasn't increased. That doesn't make sense. We should be more confident than 0.7. Our actual combination formula is: CF_combined = 0.7 + 0.5 × (1 - 0.7) = 0.85. New evidence further boosts confidence on top of existing certainty."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "应该比0.7高但比1.0低，比如0.85左右",
+            "en": "It should be higher than 0.7 but lower than 1.0, maybe around 0.85"
+          },
+          "tag": "balanced-intuition",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的直觉非常好！实际结果就是0.85。我们的公式是：CF_combined = CF1 + CF2 × (1 - CF1)，也就是0.7 + 0.5 × (1 - 0.7) = 0.85。妙处在于：每条新的正面证据都能增强确信度，但增量越来越小——因为你已经很确信了，额外的证据带来的提升自然递减。永远接近但达不到绝对确定。",
+              "en": "Your intuition is excellent! The actual result is 0.85. Our formula is: CF_combined = CF1 + CF2 × (1 - CF1), which gives 0.7 + 0.5 × (1 - 0.7) = 0.85. The elegance is this: each new piece of positive evidence increases certainty, but with diminishing returns — since you're already fairly sure, additional evidence brings smaller and smaller gains. Always approaching but never reaching absolute certainty."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（他在黑板上写下公式）当两个正值CF组合时：CF_combined = CF1 + CF2 × (1 - CF1)。当正值与负值冲突时，比如一条规则说「是」，另一条说「不是」——公式会让它们相互抵消。这模拟了医生面对矛盾证据时权衡利弊的过程。",
+        "en": "(He writes the formula on the blackboard.) When two positive CFs combine: CF_combined = CF1 + CF2 × (1 - CF1). When a positive value conflicts with a negative one — one rule says 「yes」, another says 「no」 — the formula lets them partially cancel out. This simulates how a doctor weighs conflicting evidence."
+      },
+      "leadsTo": "real-world-example"
+    },
+    {
+      "id": "real-world-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们举一个具体的例子。病人张某，有发烧和咳嗽的症状。规则一说：发烧加咳嗽，可能是肺炎，确定性因子为0.6。规则二说：白细胞计数升高，支持肺炎，确定性因子为0.4。规则三说：X光片未见明显异常，不支持肺炎，确定性因子为-0.3。最终的确定性因子就是这些证据综合博弈的结果。",
+        "en": "Let me give you a concrete example. Patient Zhang has fever and cough. Rule 1 says: fever plus cough, possible pneumonia — CF 0.6. Rule 2 says: elevated white blood cell count supports pneumonia — CF 0.4. Rule 3 says: X-ray shows no obvious abnormality, argues against pneumonia — CF -0.3. The final certainty factor is the result of all this evidence interacting."
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "在你看来，AI系统在面对不确定性时，应该怎么做？",
+        "en": "In your view, how should an AI system handle uncertainty?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "坦诚地表达不确定性，让使用者自己判断",
+            "en": "Honestly express its uncertainty and let the user decide"
+          },
+          "tag": "transparency-minded",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "我非常赞同。这恰恰是MYCIN的设计哲学。它从来不会说「病人一定得了某某病」。它说「根据已有证据，最可能是某某病，置信度0.85」。把不确定性如实呈现给医生，让医生拥有完整的信息来做最终决策。隐藏不确定性可能比错误本身更危险。",
+              "en": "I agree wholeheartedly. That's precisely MYCIN's design philosophy. It never says 「the patient definitely has such-and-such disease」. It says 「based on available evidence, the most likely diagnosis is such-and-such, with certainty 0.85」. Present uncertainty honestly to the doctor, giving them complete information for the final decision. Hiding uncertainty can be more dangerous than the error itself."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "尽量给出确定的答案，模糊的结论会让人困惑",
+            "en": "Try to give definitive answers — ambiguous conclusions confuse people"
+          },
+          "tag": "decisiveness-minded",
+          "response": {
+            "mood": "serious",
+            "text": {
+              "zh": "我理解这种想法。医生在繁忙的临床环境中确实需要清晰的指引。但在医学中，虚假的确定性非常危险。如果系统声称「一定是大肠杆菌」，医生可能就只针对大肠杆菌开药，而忽略了其他可能性。MYCIN宁愿说「很可能是大肠杆菌，但也要注意假单胞菌的可能」。这样，医生就能做更全面的考量。",
+              "en": "I understand that perspective — doctors in busy clinical settings do need clear guidance. But in medicine, false certainty is extremely dangerous. If the system claims 「it's definitely E. coli」, the doctor might prescribe only for E. coli, ignoring other possibilities. MYCIN would rather say 「E. coli is most likely, but also consider Pseudomonas」 — this allows the doctor to make a more comprehensive judgment."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "在不确定时主动要求更多信息，尽量减少猜测",
+            "en": "Proactively ask for more information when uncertain, minimizing guesswork"
+          },
+          "tag": "information-seeking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这正是后向推理的优势之一！MYCIN在遇到不确定的环节时，会主动追问医生：「病人最近有没有接触过动物？」、「抗生素用药史如何？」每个新信息都可能激活新的规则，改变确定性因子的数值。但也存在一个实际限制——有些信息确实不可得，有些检查太贵或太慢。这时候系统必须在不完美的信息下做出最佳判断。",
+              "en": "That's one of the strengths of backward chaining! When MYCIN encounters uncertainty, it proactively asks the doctor: 「Has the patient had recent animal contact?」 「What's the antibiotic history?」 Each new piece of information can activate new rules and shift the certainty factors. But there's a practical limit — some information truly isn't available, and some tests are too expensive or too slow. At that point, the system must make its best judgment with imperfect information."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我说一句心里话：我认为让AI学会表达不确定性，是我们在MYCIN项目中做的最重要的决定之一。一个「知道自己不知道什么」的系统，比一个「假装什么都知道」的系统可靠得多。",
+        "en": "Let me share something from the heart: I believe teaching AI to express uncertainty was one of the most important decisions we made in the MYCIN project. A system that 「knows what it doesn't know」 is far more reliable than one that 「pretends to know everything」."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "确定性因子（CF）是MYCIN处理不确定性的核心机制，取值-1到+1。多条规则的CF可以通过组合公式合并。CF来自专家主观判断，与基于统计的概率不同。让AI坦诚表达不确定性是关键设计原则。",
+        "en": "Certainty factors (CF) are MYCIN's core mechanism for handling uncertainty, ranging from -1 to +1. CFs from multiple rules are combined using a specific formula. CFs come from expert subjective judgment, unlike statistics-based probability. Having AI honestly express uncertainty is a key design principle."
+      },
+      "category": "core-concept",
+      "leadsTo": "controversy"
+    },
+    {
+      "id": "controversy",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "不过我必须诚实地告诉你们——确定性因子目前也有争议。有些同行认为我们应该用更严格的概率理论。还有人质疑专家给出的主观数值是否可靠。这些批评不无道理，我们也在不断改进。科学就是这样，每一步前进都伴随着质疑和辩论。",
+        "en": "But I must be honest with you — certainty factors are also controversial right now. Some colleagues think we should use more rigorous probability theory. Others question whether the subjective values from experts are reliable. These criticisms have merit, and we're continuously improving. That's how science works — every step forward comes with questioning and debate."
+      },
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "到目前为止，我们讲了MYCIN的规则、推理和确定性因子。但有一个问题我们还没碰——也许是最难的问题：这些规则从哪里来？怎么从医生脑子里把知识「挖」出来？下节课，我们来谈谈{知识获取}的挑战。",
+        "en": "So far we've covered MYCIN's rules, reasoning, and certainty factors. But there's one question we haven't touched — perhaps the hardest of all: where do these rules come from? How do you 「extract」 knowledge from a doctor's mind? Next time, we'll talk about the challenges of {knowledge acquisition}."
+      },
+      "terms": {
+        "知识获取": "term-knowledge-acquisition",
+        "knowledge acquisition": "term-knowledge-acquisition"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "肖特利夫教授擦掉了黑板上的公式，但那条从-1到+1的数轴留了下来。他在零点旁边轻轻写了两个字：「诚实」。你望着那条数轴，忽然觉得它不只是在描述机器的推理——它也在描述人类面对未知时的心态。从完全否定到完全确信，中间那漫长的灰色地带，才是真正的日常。",
+        "en": "Professor Shortliffe erases the formulas from the blackboard, but leaves the number line from -1 to +1. Beside the zero point, he writes two small words: 「Be honest」. You gaze at that number line and suddenly realize it describes more than machine reasoning — it describes the human mind facing the unknown. From total denial to total certainty, the vast gray zone in between is where we actually live."
+      }
+    }
+  ]
+}

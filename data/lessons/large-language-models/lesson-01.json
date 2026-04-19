@@ -1,0 +1,379 @@
+{
+  "id": "lesson-01",
+  "course": "large-language-models",
+  "title": {
+    "zh": "预测下一个词",
+    "en": "Predicting the Next Word"
+  },
+  "knowledgePoint": {
+    "zh": "GPT范式——通过下一个词预测进行生成式预训练",
+    "en": "The GPT paradigm — generative pre-training through next-token prediction"
+  },
+  "teacher": "prof-sutskever",
+  "estimatedMinutes": 9,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回那间被金色光芒笼罩的开放空间。全息投影在半空中浮动，显示着一行行文字依次生成的过程。苏茨克维教授站在光影之中，目光深邃而专注，仿佛在凝视某种他已经看到但别人尚未理解的东西。他缓缓开口：「我相信，这个简单的想法将改变一切。」",
+    "en": "You close your eyes, and your thoughts drift back to that open space bathed in golden light. Holographic projections float in midair, showing lines of text being generated one word at a time. Prof. Sutskever stands amid the light, his gaze deep and focused, as if contemplating something he has already seen but others have yet to understand. He begins slowly: 「I believe this simple idea will change everything」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那个看似简单的问题仍在脑海中回响——预测下一个词。如此朴素的目标，为什么能让模型学到语言的深层结构？也许答案就藏在「预测」与「理解」之间那条模糊的边界上。",
+    "en": "You return to the present. That seemingly simple question still echoes in your mind — predicting the next word. Such a humble objective, yet why does it let a model learn the deep structure of language? Perhaps the answer lies on the blurry boundary between 「prediction」 and 「understanding」."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这间教室和之前的完全不同。没有墙壁，没有课桌，只有一个环形的开放空间，四周悬浮着金色的全息投影。光束在空中交织，勾勒出流动的文字和符号。你感觉自己置身于一个巨大的语言模型内部，词语在你周围诞生和消逝。\n\n一位年轻的教授走入光圈之中。他穿着朴素的深色外套，步伐不快，但每一步都像是在丈量某种看不见的距离。他的眼神既专注又辽远，仿佛同时在看着你和某个更远的地方。",
+        "en": "This classroom is entirely different from the ones before — no walls, no desks, just a circular open space with golden holographic projections floating all around. Beams of light interweave in the air, tracing flowing text and symbols. You feel as though you're inside a vast language model, words being born and fading around you. A young professor steps into the circle of light — wearing a plain dark jacket, walking at an unhurried pace, but each step seems to measure some invisible distance. His gaze is both focused and far-reaching, as if looking at you and somewhere much further away at the same time."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我是苏茨克维，OpenAI的首席科学家。在我们开始之前，我想告诉你们一件事——我的导师辛顿教授在很多年前就相信神经网络能做到不可思议的事情。我从他那里学到的最重要的一课，是关于信念的力量。今天，我要分享一个我深信不疑的想法。",
+        "en": "I'm Sutskever, Chief Scientist at OpenAI. Before we begin, I want to tell you something — my mentor, Prof. Hinton, believed many years ago that neural networks could accomplish incredible things. The most important lesson I learned from him was about the power of conviction. Today, I want to share an idea I believe in with absolute certainty."
+      },
+      "leadsTo": "the-simple-idea"
+    },
+    {
+      "id": "the-simple-idea",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我相信，如果你能足够好地预测下一个词，你可能已经理解了世界。这句话听起来大胆——甚至荒谬。但请你们先不要急着下判断。让我解释为什么{下一个词预测}是一个如此深刻的目标。",
+        "en": "I believe that if you can predict the next word well enough, you might already understand the world. This sounds bold — even absurd. But please don't rush to judgment. Let me explain why {next-token prediction} is such a profound objective."
+      },
+      "terms": {
+        "下一个词预测": "term-next-token-prediction",
+        "next-token prediction": "term-next-token-prediction"
+      },
+      "leadsTo": "prediction-example"
+    },
+    {
+      "id": "prediction-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "想象你正在读一段文字：「太阳从东方升起，到了傍晚，它会在____沉落。」你会填什么？「西方」。但你为什么知道填「西方」？因为你理解了地球自转的方向、太阳的运动规律、日出日落的因果关系。为了准确预测这一个词，你其实调动了关于物理世界的知识。",
+        "en": "Imagine you're reading a passage: 「The sun rises in the east, and by evening, it will set in the ____」. What would you fill in? 「West」. But why do you know to fill in 「west」? Because you understand the direction of Earth's rotation, the pattern of the sun's movement, the causal relationship of sunrise and sunset. To accurately predict this single word, you actually mobilized knowledge about the physical world."
+      },
+      "leadsTo": "deeper-prediction"
+    },
+    {
+      "id": "deeper-prediction",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "再想一个更难的例子：「那位科学家发表了一篇关于量子纠缠的论文之后，学术界____。」你需要填什么？你需要理解科学家发论文的社会影响、学术界对量子研究的态度、甚至可能需要知道这篇论文是否引发了争议。一个词的预测，可能需要对整个世界的理解。",
+        "en": "Now consider a harder example: 「After the scientist published a paper on quantum entanglement, the academic community ____」. What do you need to fill in? You need to understand the social impact of publishing papers, the academic community's attitude toward quantum research, perhaps even whether this paper sparked controversy. Predicting a single word may require understanding the entire world."
+      },
+      "leadsTo": "unsupervised-insight"
+    },
+    {
+      "id": "unsupervised-insight",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{语言模型}的核心思想。我们不需要手动标注数据，也不必告诉模型「这句话的主题是物理学」或「这段话表达了积极情感」。我们只需要让模型阅读海量的文本，然后不断尝试预测下一个词。互联网上有几乎无穷尽的文本数据，这提供了一个巨大且免费的训练信号。",
+        "en": "This is the core idea behind {language models}. We don't need to manually label data — we don't need to tell the model 「this sentence's topic is physics」 or 「this paragraph expresses positive sentiment」. We just need the model to read vast amounts of text and keep trying to predict the next word. The internet has nearly inexhaustible text data — that's an enormous, free training signal."
+      },
+      "terms": {
+        "语言模型": "term-language-model",
+        "language models": "term-language-model"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "预测下一个词看起来只是「填空」，但苏茨克维教授认为它蕴含着更深的意义。你觉得为什么「预测下一个词」能让模型学到这么多？",
+        "en": "Predicting the next word looks like mere 「fill-in-the-blank」, but Prof. Sutskever believes it holds deeper meaning. Why do you think 「predicting the next word」 can teach a model so much?"
+      },
+      "choices": [
+        {
+          "id": "compression-view",
+          "text": {
+            "zh": "为了更好地预测，模型必须压缩和理解文本中隐含的世界知识",
+            "en": "To predict better, the model must compress and understand the world knowledge implicit in the text"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我最核心的直觉。预测不只是模式匹配——如果要真正预测好下一个词，模型需要建立一个内部的世界模型。它需要理解因果关系、物理规律、社会常识、甚至人类的情感和意图。预测迫使模型去学习世界的结构。这就是为什么我相信足够好的预测等价于理解。",
+              "en": "That's precisely my core intuition. Prediction isn't just pattern matching — to truly predict the next word well, the model needs to build an internal world model. It needs to understand causality, physical laws, social common sense, even human emotions and intentions. Prediction forces the model to learn the structure of the world. That's why I believe sufficiently good prediction is equivalent to understanding."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "pattern-view",
+          "text": {
+            "zh": "语言中蕴含着世界的结构——人类把知识编码在了文字里",
+            "en": "Language encodes the structure of the world — humans have encoded their knowledge in text"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了一个非常深刻的观点。人类几千年来一直在用文字记录对世界的理解——科学、历史、哲学、日常经验。文本是人类知识的压缩存储。当模型学习预测文本时，它其实在间接学习所有这些知识。语言是通向世界知识的一扇门。",
+              "en": "You've touched on a very profound point. For thousands of years, humans have recorded their understanding of the world in text — science, history, philosophy, everyday experience. Text is a compressed storage of human knowledge. When a model learns to predict text, it's indirectly learning all of that knowledge. Language is a gateway to world knowledge."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "statistical-view",
+          "text": {
+            "zh": "也许只是统计规律——模型记住了足够多的词语搭配模式",
+            "en": "Maybe it's just statistical patterns — the model memorizes enough word co-occurrence patterns"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个合理的怀疑，也是很多人的直觉反应。确实，简单的统计模型可以学到「太阳」后面经常跟着「升起」。但如果仅仅是记忆搭配模式，模型就无法处理它从未见过的新句子组合。我们会在后面的课程中看到，随着模型规模增大，它表现出的能力远远超越了统计搭配——这恰恰是最让人惊讶的地方。",
+              "en": "That's a reasonable doubt, and the intuitive reaction of many people. Indeed, simple statistical models can learn that 「sun」 is often followed by 「rises」. But if it were merely memorizing co-occurrence patterns, the model couldn't handle novel sentence combinations it has never seen. We'll see in later lessons that as model scale increases, the abilities it demonstrates far exceed statistical co-occurrence — and that's precisely what's most surprising."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2018年，我们在OpenAI做了一件事。我们把这个想法付诸实践：用一个大型的{Transformer}解码器网络，在海量文本上进行预训练，让它学习预测下一个词。然后，我们把预训练好的模型拿去做各种具体任务，比如文本分类、问答、翻译。这个方法，我们叫它{GPT}，全称是Generative Pre-trained Transformer，也就是生成式预训练Transformer。",
+        "en": "In 2018, we did something at OpenAI. We put this idea into practice — using a large {Transformer} decoder network, pre-training it on massive text to learn to predict the next word. Then we took the pre-trained model and applied it to various specific tasks — text classification, question answering, translation. We called this method {GPT} — Generative Pre-trained Transformer."
+      },
+      "terms": {
+        "Transformer": "term-transformer",
+        "GPT": "term-gpt"
+      },
+      "leadsTo": "gpt1-detail"
+    },
+    {
+      "id": "gpt1-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "GPT-1的思路分为两步。第一步是预训练：让模型阅读大量的文本，包括书籍、网页和文章，学习预测下一个词。在这个过程中，模型学会了语法、常识、推理模式，甚至一些世界知识。第二步是微调：把预训练好的模型拿去做一个具体的任务，只需要少量标注数据就能达到很好的效果。",
+        "en": "GPT-1's approach has two steps. The first is pre-training: let the model read enormous amounts of text — books, web pages, articles — learning to predict the next word. In this process, the model learns grammar, common sense, reasoning patterns, even some world knowledge. The second is fine-tuning: take the pre-trained model and apply it to a specific task, needing only a small amount of labeled data to achieve good results."
+      },
+      "leadsTo": "pretrain-revolution"
+    },
+    {
+      "id": "pretrain-revolution",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "你们理解这意味着什么吗？在GPT之前，每做一个新任务都要从零开始训练一个新模型——你需要大量的标注数据。但有了预训练，模型先从无标注的文本中学会了语言的通用知识，然后只需要很少的标注数据就能适应新任务。这就像一个人先学会了阅读和理解语言，然后只需要读几个例子就能学会一个新概念。",
+        "en": "Do you understand what this means? Before GPT, every new task required training a new model from scratch — you needed large amounts of labeled data. But with pre-training, the model first learns general knowledge of language from unlabeled text, then needs only a small amount of labeled data to adapt to new tasks. It's like a person first learning to read and understand language, then needing only a few examples to grasp a new concept."
+      },
+      "leadsTo": "unreasonable-effectiveness"
+    },
+    {
+      "id": "unreasonable-effectiveness",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "有人把这种现象称为「语言建模的不合理有效性」。为什么一个只是预测下一个词的模型，能在情感分析、逻辑推理、知识问答等完全不同的任务上表现出色？这个问题至今没有完美的答案。但我有一个直觉——预测下一个词是一个如此丰富的任务，它隐含地要求模型理解语言的所有层面。",
+        "en": "Some have called this phenomenon 「the unreasonable effectiveness of language modeling」. Why can a model that merely predicts the next word perform well on entirely different tasks like sentiment analysis, logical reasoning, and knowledge-based question answering? There's still no perfect answer to this question. But I have an intuition — predicting the next word is such a rich task that it implicitly requires the model to understand every aspect of language."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "GPT使用「预训练加微调」的两步策略。你觉得这种方法和传统的「从零开始训练」相比，最大的优势是什么？",
+        "en": "GPT uses a two-step strategy of 「pre-train then fine-tune」. Compared to traditional 「train from scratch, what do you think is its greatest advantage?"
+      },
+      "choices": [
+        {
+          "id": "data-efficiency",
+          "text": {
+            "zh": "大幅降低了对标注数据的需求——标注数据昂贵且稀缺",
+            "en": "Dramatically reduces the need for labeled data — which is expensive and scarce"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常实际的观察。标注数据的获取成本极高——你需要人类专家逐条标注。而互联网上的无标注文本几乎是免费的、无限的。预训练让模型从这些免费数据中提取知识，然后只需要少量标注数据就能适应具体任务。这改变了整个领域的经济学。",
+              "en": "A very practical observation. Labeled data is extremely expensive to obtain — you need human experts to annotate each example. But unlabeled text on the internet is essentially free and unlimited. Pre-training lets models extract knowledge from this free data, then adapt to specific tasks with just a small amount of labeled data. This changed the economics of the entire field."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "knowledge-transfer",
+          "text": {
+            "zh": "预训练让模型获得了可迁移的通用语言能力",
+            "en": "Pre-training gives the model transferable, general-purpose language abilities"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是更深层的优势。一个预训练好的模型已经「理解」了语法、语义、常识推理。当你把它迁移到一个新任务，比如判断电影评论的情感——它不需要从零学习语言是什么。它已经知道了。它只需要学习新任务的特殊模式。这种知识迁移，是GPT成功的关键。",
+              "en": "That's the deeper advantage. A pre-trained model has already 「understood」 grammar, semantics, common-sense reasoning. When you transfer it to a new task — say, judging the sentiment of movie reviews — it doesn't need to learn language from scratch. It already knows. It only needs to learn the specific patterns of the new task. This knowledge transfer is the key to GPT's success."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "unified-approach",
+          "text": {
+            "zh": "一个模型可以做很多不同的任务——不再需要为每个任务单独设计架构",
+            "en": "One model can do many different tasks — no longer need to design separate architectures for each task"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "你看到了更宏大的图景。在GPT出现之前，自然语言处理的每个子领域，比如情感分析、命名实体识别、机器翻译，都依赖各自专门的模型架构。GPT开始改变这种局面：一个通用的预训练模型，只需微调就能适应各种任务。我们迈出了通向统一模型的第一步。后面的课程你会看到，这个方向走得比任何人预想的都要远。",
+              "en": "You see the bigger picture. Before GPT, every subfield of NLP — sentiment analysis, named entity recognition, machine translation — had its own specialized model architecture. GPT began changing this: one general pre-trained model that adapts to various tasks through fine-tuning. We took the first step toward a unified model. In later lessons you'll see that this direction went far beyond what anyone anticipated."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "GPT-1发表后，反响是温和的。它在12个任务中的9个上取得了当时的最好成绩，但模型只有1.17亿个参数。很多人认为这只是又一个不错的方法，没什么特别的。他们还不知道，这个「不起眼」的开始，即将引发一场规模的革命。",
+        "en": "After GPT-1 was published, the reaction was modest. It achieved state-of-the-art results on 9 out of 12 tasks, but the model had only 117 million parameters. Many thought it was just another decent method, nothing special. They didn't yet know that this 「unremarkable」 beginning was about to trigger a revolution of scale."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "GPT（2018）的核心思想：用Transformer解码器在海量无标注文本上预训练（预测下一个词），然后在少量标注数据上微调。这种「预训练+微调」范式让模型从免费的文本数据中学习通用语言能力，大幅降低了对标注数据的需求。关键直觉：足够好的下一个词预测可能隐含着对世界的理解。",
+        "en": "GPT (2018) core idea: pre-train a Transformer decoder on massive unlabeled text (predict next token), then fine-tune on small labeled data. This 「pre-train + fine-tune」 paradigm lets the model learn general language abilities from free text data, dramatically reducing labeled data needs. Key intuition: sufficiently good next-token prediction may implicitly require understanding the world."
+      },
+      "category": "core-concept",
+      "leadsTo": "hinton-connection"
+    },
+    {
+      "id": "hinton-connection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "你们有些人可能已经在之前的课程中学过我的导师辛顿教授的工作，比如反向传播、深度信念网络，还有那个改变一切的AlexNet。2012年，我和Alex Krizhevsky一起在辛顿教授的指导下训练了AlexNet。那次经历让我明白了一件事：规模很重要。当你把更大的模型、更多的数据和更强的计算组合在一起时，会产生你预想不到的效果。",
+        "en": "Some of you may have already learned about my mentor Prof. Hinton's work in earlier courses — backpropagation, deep belief networks, and the AlexNet that changed everything. In 2012, I trained AlexNet together with Alex Krizhevsky under Prof. Hinton's guidance. That experience taught me one thing: scale matters. Larger models, more data, more compute — when combined, they produce effects you wouldn't have anticipated."
+      },
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "GPT-1只是一个起点。我当时就有一个强烈的直觉：如果我们把模型做得更大，用更多的数据来训练，会发生什么？这个问题的答案，将在接下来的几年里逐步揭晓，而答案会超出所有人的预期。但在探索规模之前，我们需要先看看另一种完全不同的思路。这是一种从两个方向同时理解语言的方法，而非传统的从左到右。",
+        "en": "GPT-1 was just a starting point. I had a strong intuition at the time: what if we made the model bigger, trained it on more data — what would happen? The answer to this question would be revealed over the coming years — and it would exceed everyone's expectations. But before exploring scale, we need to look at an entirely different approach — one that understands language not just left-to-right, but from both directions simultaneously."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "GPT只能从左到右阅读文本。你觉得这种单向的阅读方式有什么局限性？",
+        "en": "GPT can only read text from left to right. What limitations do you think this unidirectional reading has?"
+      },
+      "choices": [
+        {
+          "id": "missing-context",
+          "text": {
+            "zh": "有时候你需要看到后面的词才能理解前面的词——单向阅读会错过这种信息",
+            "en": "Sometimes you need to see later words to understand earlier ones — unidirectional reading misses this information"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "完全正确。想想这句话：「河的____很窄。」如果你接着读到「只能通过一条小船」，你就知道这里说的是河的宽度；但如果接着读到「只有一公里」，那说的是河的长度。后文完全改变了前文的意思。单向阅读在遇到这种情况时，就像蒙着一只眼走路。下节课我们会看到一个解决这个问题的精妙方法。",
+              "en": "Exactly right. Consider this sentence: 「The ____ of the river is very narrow」. If you then read 「only allowing a small boat to pass」, you know it's about the river's width; but if you read 「only one kilometer, it's about the river's length. The subsequent text completely changes the meaning of what came before. Unidirectional reading in such cases is like walking with one eye covered. Next lesson we'll see an elegant solution to this problem."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "understanding-limit",
+          "text": {
+            "zh": "单向阅读适合生成文本，但理解文本可能需要看到完整的上下文",
+            "en": "Unidirectional reading suits text generation, but understanding text may require seeing the full context"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了一个关键的区分。生成文本确实是从左到右的，你总是在已有文字后面续写。但理解文本则不同。当你读一篇文章时，你的大脑会同时利用上文和下文。这意味着，最好的生成模型和最好的理解模型，可能需要不同的设计。下节课我们就会看到另一位团队是如何解决这个问题的。",
+              "en": "You've grasped a crucial distinction. Text generation is indeed left-to-right — you're always continuing after existing text. But understanding text is different — when you read an article, your brain uses both preceding and following context simultaneously. This means the best generation model and the best understanding model may need different designs. Next lesson we'll see how another team solved this problem."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "ambiguity-problem",
+          "text": {
+            "zh": "语言中的歧义需要全局信息才能消解——单向模型可能理解错误",
+            "en": "Ambiguity in language requires global information to resolve — a unidirectional model may misunderstand"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常深刻的观察。语言充满了歧义——同一个词在不同上下文中含义完全不同。「苹果」可以是水果，也可以是一家公司。要消解歧义，往往需要看到词语两边的上下文。单向模型在处理这种情况时天然处于劣势。但有趣的是，尽管有这个局限，GPT系列模型后来展现出的能力仍然远超预期。这其中的秘密，我们后面会慢慢揭开。",
+              "en": "A very profound observation. Language is full of ambiguity — the same word can mean entirely different things in different contexts. 「Apple」 can be a fruit or a company. Resolving ambiguity often requires seeing context on both sides of a word. Unidirectional models are naturally disadvantaged here. But interestingly, despite this limitation, the GPT series later demonstrated abilities far beyond expectations. We'll gradually uncover the secret behind this in later lessons."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我们只迈出了第一步，理解了为什么「预测下一个词」是一个如此有力的目标，以及GPT如何把这个想法变成现实。但这个故事才刚刚开始。下节课，我们会看到另一种截然不同的方法。它不从左向右读，而是同时从两个方向理解文本。这两种思路之间的竞争与融合，将塑造整个大语言模型的未来。",
+        "en": "Today we've only taken the first step — understanding why 「predicting the next word」 is such a powerful objective, and how GPT turned this idea into reality. But the story is just beginning. Next lesson, we'll see an entirely different approach — one that doesn't read left-to-right, but understands text from both directions simultaneously. The competition and convergence between these two approaches will shape the entire future of large language models."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "语言模型的关键直觉：预测下一个词看似简单，但为了做好预测，模型必须学习语法、语义、常识甚至世界知识。GPT-1用Transformer解码器实现了这个想法，采用单向（从左到右）阅读。它的局限是无法利用右侧的上下文来理解当前词。",
+        "en": "Key intuition of language models: predicting the next word seems simple, but to predict well, the model must learn grammar, semantics, common sense, and even world knowledge. GPT-1 implemented this with a Transformer decoder using unidirectional (left-to-right) reading. Its limitation: it cannot use right-side context to understand the current word."
+      },
+      "category": "insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "苏茨克维教授在金色的光芒中安静地站了片刻。全息投影上，一行行文字还在不断生成，每一个新词都仿佛是对前文的一次微小预言。他低头看了看那些流动的文字，嘴角浮起一丝几乎察觉不到的微笑，然后转身走出光圈。投影继续运转，文字继续生成。你盯着那些一个接一个出现的词语，忽然觉得语言本身就是一个永不停止的预测游戏。每一个词都是一个承诺，承诺着接下来的故事。",
+        "en": "Prof. Sutskever stands quietly amid the golden light for a moment. On the holographic projection, lines of text keep generating — each new word like a tiny prophecy about what came before. He looks down at the flowing text, a barely perceptible smile appearing at the corner of his mouth, then turns and walks out of the circle of light. The projection continues running, text continues generating, and you stare at the words appearing one after another, suddenly realizing that language itself is a never-ending prediction game — each word a promise of the story to come."
+      }
+    }
+  ]
+}

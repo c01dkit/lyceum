@@ -1,0 +1,285 @@
+{
+  "id": "lesson-02",
+  "course": "ai-agents-future",
+  "title": {
+    "zh": "AI智能体架构",
+    "en": "AI Agent Architecture"
+  },
+  "knowledgePoint": {
+    "zh": "AI智能体的核心构件——规划、工具使用、记忆与反思",
+    "en": "The building blocks of AI agents — planning, tool use, memory, and reflection"
+  },
+  "teacher": "prof-ng",
+  "estimatedMinutes": 15,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你回想起那堂关于智能体架构的课。全息投影上浮现出一张循环流程图——思考、行动、观察、再思考。吴恩达教授用搭乐高的比喻，把一个看似复杂的系统拆解成了四个清晰的模块……",
+    "en": "You recall the lesson on agent architecture. A circular flowchart appeared on the holographic display — think, act, observe, think again. Professor Ng used the analogy of building with LEGO bricks, breaking down a seemingly complex system into four clear modules..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海里留下的是那个循环：规划、执行、观察、反思，再规划。简单的循环，却蕴含着让AI从「回答者」变成「行动者」的全部秘密。智能体的力量不在于任何单一能力，而在于这些能力组合在一起形成的闭环。",
+    "en": "You close your notebook, the cycle lingering in your mind: plan, execute, observe, reflect, plan again. A simple loop, yet containing the entire secret of transforming AI from 「answerer」 to 「doer」. An agent's power lies not in any single capability, but in the closed loop formed when these capabilities combine."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "第二节课。教室里的全息粒子今天似乎格外活跃，在空气中缓缓编织出流程图的轮廓。吴恩达教授走进来的时候手里拿着一杯咖啡，看起来像是刚从一个激动人心的项目会议出来。",
+        "en": "Second lesson. The holographic particles in the classroom seem especially active today, slowly weaving the outlines of flowcharts in the air. Professor Ng walks in holding a cup of coffee, looking like he just came from an exciting project meeting."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "上节课我们说到，AI正在从工具变成伙伴。今天我们来拆解这个「伙伴」的内部构造。一个{AI智能体}到底是由什么组成的？（放下咖啡，调出一张全息架构图）答案其实很简洁：一个大语言模型，加上四种关键能力。",
+        "en": "Last time we discussed how AI is transforming from tool to partner. Today let's take apart the internal structure of this 「partner」. What exactly is an {AI agent} made of? (Sets down the coffee, brings up a holographic architecture diagram) The answer is actually quite concise: a large language model, plus four key capabilities."
+      },
+      "terms": {
+        "AI智能体": "term-ai-agent",
+        "AI agent": "term-ai-agent"
+      },
+      "leadsTo": "lego-analogy"
+    },
+    {
+      "id": "lego-analogy",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "想象你在搭乐高。大语言模型是底板——它提供了基础的理解和生成能力。然后你往上加四块积木：规划能力、工具使用、记忆系统、反思机制。每一块积木单独看都不复杂，但组合在一起，就变成了一个能够自主完成任务的系统。让我一个一个讲。",
+        "en": "Imagine you're building with LEGO. The large language model is the baseplate — it provides foundational understanding and generation capabilities. Then you add four bricks on top: planning ability, tool use, memory system, and reflection mechanism. Each brick alone isn't complex, but combined, they become a system capable of completing tasks autonomously. Let me go through them one by one."
+      },
+      "leadsTo": "planning-intro"
+    },
+    {
+      "id": "planning-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一块积木：规划。你让AI帮你组织一场技术会议。它不能直接「组织会议」——这是一个复合任务。它需要把大任务拆成小步骤：确定日期、邀请参会者、准备议程、预订会议室、发送提醒。规划能力就是把「做一件大事」分解成「做很多件小事」的能力。",
+        "en": "First brick: planning. You ask AI to organize a tech conference. It can't just 「organize a conference」 — that's a compound task. It needs to break the big task into small steps: set a date, invite attendees, prepare an agenda, book a room, send reminders. Planning ability is the capacity to decompose 「do one big thing」 into 「do many small things」."
+      },
+      "leadsTo": "tool-use-intro"
+    },
+    {
+      "id": "tool-use-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二块积木：{工具使用}。光有计划不够，还得能执行。AI智能体可以调用外部工具——发送邮件、查数据库、运行代码、搜索网页、调用API。这是智能体和普通聊天机器人的本质区别。聊天机器人只能说话；智能体可以行动。",
+        "en": "Second brick: {tool use}. Having a plan isn't enough — you also need to execute. An AI agent can invoke external tools — send emails, query databases, run code, search the web, call APIs. This is the fundamental difference between an agent and an ordinary chatbot. A chatbot can only talk; an agent can act."
+      },
+      "terms": {
+        "工具使用": "term-tool-use",
+        "tool use": "term-tool-use"
+      },
+      "leadsTo": "memory-intro"
+    },
+    {
+      "id": "memory-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第三块积木：{智能体记忆}。人类做一个复杂项目的时候，会不断积累信息，比如之前试过什么、哪些方法有效、客户说过什么偏好。智能体也需要这种能力。短期记忆就是当前对话的上下文窗口；长期记忆则需要外部存储，比如向量数据库、文件系统、知识图谱。没有记忆的智能体就像一个每天都失忆的员工，每次都得重新交代所有背景。",
+        "en": "Third brick: {agent memory}. When humans work on a complex project, we continuously accumulate information — what we've tried before, which approaches worked, what preferences the client expressed. An agent needs this ability too. Short-term memory is the current conversation's context window; long-term memory requires external storage — vector databases, file systems, knowledge graphs. An agent without memory is like an employee with amnesia — you have to re-explain all the context every single time."
+      },
+      "terms": {
+        "智能体记忆": "term-agent-memory",
+        "agent memory": "term-agent-memory"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "如果一个AI智能体在执行任务时犯了错，比如发送了一封格式不对的邮件——你觉得它应该怎么处理？",
+        "en": "If an AI agent makes a mistake while executing a task — say, sending an email with the wrong format — how do you think it should handle it?"
+      },
+      "choices": [
+        {
+          "id": "ask-human",
+          "text": {
+            "zh": "停下来，向人类报告错误，等待指示",
+            "en": "Stop, report the error to the human, and wait for instructions"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "在很多场景下这是最安全的做法。特别是涉及外部影响的操作，比如发邮件、转账或发布内容，一旦出错就暂停并请求人类介入，这很明智。但如果每一个小错误都要打断人类，智能体的自主性就大打折扣了。好的系统设计会区分「可以自动恢复的小问题」和「必须人类干预的大问题」。这种分级机制，正是协作系统工程的核心课题。",
+              "en": "In many scenarios this is the safest approach. Especially for operations with external impact — sending emails, transferring money, publishing content — pausing and requesting human intervention after an error is wise. But if every small mistake requires interrupting the human, the agent's autonomy is severely diminished. Good system design distinguishes between 「small issues that can be auto-recovered」 and 「big issues requiring human intervention」. This tiered mechanism is a core topic of harness engineering."
+            }
+          },
+          "leadsTo": "reflection-intro"
+        },
+        {
+          "id": "self-correct",
+          "text": {
+            "zh": "检查自己的错误，分析原因，尝试修正后重试",
+            "en": "Check its own error, analyze the cause, try to fix it and retry"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你刚才描述的正是我要讲的第四块积木——反思。一个好的智能体应该有能力回顾自己的输出，判断是否达到预期，如果没有就分析原因并调整策略。这跟我们人类解决问题的过程是一样的：做、检查、改进、再做。这个能力把智能体从「一次性执行者」提升为「迭代优化者」。",
+              "en": "What you just described is exactly the fourth brick I'm about to discuss — reflection. A good agent should be able to review its own output, judge whether it met expectations, and if not, analyze why and adjust its strategy. This mirrors how we humans solve problems: do, check, improve, do again. This capability elevates an agent from a 「one-shot executor」 to an 「iterative optimizer」."
+            }
+          },
+          "leadsTo": "reflection-intro"
+        },
+        {
+          "id": "learn-from-mistake",
+          "text": {
+            "zh": "记住这个错误模式，确保下次不会再犯同样的问题",
+            "en": "Remember this error pattern and ensure it doesn't make the same mistake next time"
+          },
+          "tag": "forward-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的思路把记忆和反思两个能力串联起来了——这非常好。发现错误是反思能力，记住错误是记忆能力，下次避免是规划能力。你看，这四块积木不是独立工作的，它们之间有紧密的协作关系。最好的智能体系统，就是这四种能力形成了一个流畅的闭环。",
+              "en": "Your thinking links memory and reflection together — that's excellent. Detecting the error is reflection, remembering the error is memory, avoiding it next time is planning. See, these four bricks don't work independently — they have tight collaborative relationships. The best agent systems are ones where these four capabilities form a smooth closed loop."
+            }
+          },
+          "leadsTo": "reflection-intro"
+        }
+      ]
+    },
+    {
+      "id": "reflection-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就引出了第四块积木：{反思循环}。（全息投影上出现一个循环箭头图）这是一个简洁的循环：思考、行动、观察结果、反思、然后再思考。学术界有一个框架叫ReAct，全称是Reasoning and Acting，遵循的就是这个思路。智能体正是在这样的循环中不断迭代。",
+        "en": "This brings us to the fourth brick: the {reflection loop}. (A circular arrow diagram appears on the holographic display) It's a concise cycle: think, act, observe the result, reflect, think again. There's an academic framework called ReAct — Reasoning and Acting — that captures this idea. An agent doesn't execute a task in a straight line; it iterates continuously in a loop."
+      },
+      "terms": {
+        "反思循环": "term-reflection-loop",
+        "reflection loop": "term-reflection-loop"
+      },
+      "leadsTo": "react-detail"
+    },
+    {
+      "id": "react-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我用一个具体例子来演示这个循环。假设你让智能体帮你研究一个市场分析报告。第一步，它规划：先搜索行业数据，再分析竞争对手，最后写报告。第二步，它执行：调用搜索工具查找数据。第三步，它观察：搜索结果只有两年前的数据，太旧了。第四步，它反思：数据不够新，需要换一个数据来源。然后回到第一步，调整计划。",
+        "en": "Let me demonstrate this cycle with a concrete example. Say you ask an agent to research a market analysis report. Step one, it plans: first search for industry data, then analyze competitors, then write the report. Step two, it executes: calls the search tool to find data. Step three, it observes: search results only have data from two years ago, too outdated. Step four, it reflects: data isn't recent enough, need a different data source. Then back to step one, adjusting the plan."
+      },
+      "leadsTo": "agent-loop"
+    },
+    {
+      "id": "agent-loop",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这个循环可以执行很多轮——直到任务完成或者智能体判断需要人类介入为止。这就是所谓的「智能体循环」。它跟传统的「输入-输出」模式有本质区别：传统模式是一个回合；智能体循环可以是几十个回合。每一轮都让智能体离目标更近一步。",
+        "en": "This loop can run for many rounds — until the task is done or the agent judges that human intervention is needed. This is the 「agent loop」. It's fundamentally different from the traditional 「input-output」 pattern: the traditional model is one turn; the agent loop can be dozens of turns. Each round brings the agent one step closer to the goal."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "在规划、工具使用、记忆、反思这四种能力中，你觉得哪一种对今天的AI智能体来说是最大的挑战？",
+        "en": "Among planning, tool use, memory, and reflection — which do you think is the biggest challenge for today's AI agents?"
+      },
+      "choices": [
+        {
+          "id": "planning-hard",
+          "text": {
+            "zh": "规划——把复杂任务分解成正确的步骤非常困难",
+            "en": "Planning — decomposing complex tasks into the right steps is extremely difficult"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你选了一个根本性的问题。规划需要对任务有全局理解，需要预见可能出现的困难，需要在多种方案中选择最优路径。现在的大语言模型在简单任务的规划上做得不错，但面对真正复杂的、需要长期推理的任务，比如开发一个完整的软件系统——规划能力仍然是短板。这也是为什么很多智能体系统采用「把大计划拆成小计划」的层级策略。",
+              "en": "You've picked a fundamental issue. Planning requires a global understanding of the task, anticipating potential difficulties, and choosing the optimal path among multiple options. Current LLMs do reasonably well at planning simple tasks, but for truly complex tasks requiring long-horizon reasoning — like developing a complete software system — planning capability is still a weakness. That's why many agent systems use hierarchical strategies of 「breaking big plans into smaller plans」."
+            }
+          },
+          "leadsTo": "architecture-summary"
+        },
+        {
+          "id": "memory-hard",
+          "text": {
+            "zh": "记忆——知道什么时候记住什么、什么时候忘记什么，这比看起来要难得多",
+            "en": "Memory — knowing what to remember and what to forget is much harder than it seems"
+          },
+          "tag": "thoughtful",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个洞察很深刻。记忆的难点不在于存储，毕竟存储很便宜。真正的难点在于检索和组织。当智能体积累了成千上万条记忆时，如何在当前任务的关键时刻找到那条最相关的信息？这跟人类的记忆问题惊人地相似。而且还有一个更微妙的问题：过时的记忆可能会误导决策。智能体需要学会「遗忘」，或者至少学会给记忆加上时效权重。",
+              "en": "That's a deep insight. The hard part of memory isn't storage — storage is cheap. The hard part is retrieval and organization. When an agent has accumulated thousands of memories, how does it find the most relevant one at the critical moment of the current task? This is strikingly similar to human memory problems. And there's an even subtler issue: outdated memories can mislead decisions. An agent needs to learn to 「forget」 — or at least learn to add recency weights to memories."
+            }
+          },
+          "leadsTo": "architecture-summary"
+        },
+        {
+          "id": "reflection-hard",
+          "text": {
+            "zh": "反思——让AI准确判断自己的输出是对是错，这本身就是一个难题",
+            "en": "Reflection — getting AI to accurately judge whether its own output is right or wrong is itself a hard problem"
+          },
+          "tag": "rigorous",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "一针见血。反思能力有一个根本性的悖论：如果AI不够聪明而犯了错，它怎么能够聪明到发现自己的错误？这是一个真实的挑战。目前的解决方案包括：让另一个AI模型来审查、设置明确的成功标准用代码自动验证、或者在关键决策点引入人类判断。完美的自我反思可能需要更强大的推理能力——这也连接到我们后面会讨论的缩放假说。",
+              "en": "Hitting the nail on the head. Reflection has a fundamental paradox: if AI isn't smart enough and makes an error, how can it be smart enough to discover its own error? This is a real challenge. Current solutions include: having another AI model review the output, setting explicit success criteria with automated code verification, or introducing human judgment at critical decision points. Perfect self-reflection may require stronger reasoning capabilities — which connects to the scaling hypothesis we'll discuss later."
+            }
+          },
+          "leadsTo": "architecture-summary"
+        }
+      ]
+    },
+    {
+      "id": "architecture-summary",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（把全息架构图调大）来，让我们把这张图完整地看一遍。中间是大语言模型，它是思考的引擎。上面是规划模块，负责拆解任务。右边是工具接口，用来执行行动。下面是记忆系统，可以积累经验。左边是反思机制，用于纠正方向。这四个模块通过智能体循环连接在一起，形成了一个完整的闭环。",
+        "en": "(Enlarges the holographic architecture diagram) Let's look at this diagram in full. In the center is the large language model — the thinking engine. Above it is the planning module — decomposing tasks. To the right is the tool interface — executing actions. Below is the memory system — accumulating experience. To the left is the reflection mechanism — course correction. These four modules are connected through the agent loop, forming a complete closed loop."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI智能体 = 大语言模型 + 四种能力：(1) 规划：将复杂任务分解为可执行的步骤；(2) 工具使用：调用外部API、代码、搜索引擎等执行行动；(3) 记忆：短期（上下文窗口）+ 长期（外部存储）的信息积累；(4) 反思：评估自身输出、发现错误、调整策略。四种能力通过「智能体循环」（思考→行动→观察→反思→再思考）形成闭环。",
+        "en": "AI Agent = LLM + four capabilities: (1) Planning: decompose complex tasks into executable steps; (2) Tool use: invoke external APIs, code, search engines to execute actions; (3) Memory: short-term (context window) + long-term (external storage) information accumulation; (4) Reflection: evaluate own output, detect errors, adjust strategy. Four capabilities form a closed loop through the 「agent loop」 (think → act → observe → reflect → think again)."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我们讲了一个智能体的内部构造。但一个智能体只是起点。当你有多个智能体协同工作，比如一个负责研究，一个负责编码，一个负责测试，事情就变得更有意思了。而让这些智能体高效协作，需要的就是我们上节课提到的协作系统工程。下节课，我们会探讨这种协作范式是如何一步步演进的。",
+        "en": "Today we covered the internal structure of one agent. But a single agent is just the starting point. When you have multiple agents working together — one for research, one for coding, one for testing — things get much more interesting. And making these agents collaborate efficiently requires the harness engineering we discussed last time. Next lesson, we'll explore how this collaboration paradigm has evolved step by step."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "全息投影上的架构图缓缓收缩成一个光点，然后消散在空气中。吴恩达教授拿起那杯已经凉了的咖啡，朝门口走去。你盯着笔记本上画的那个循环——思考、行动、观察、反思——突然觉得这不仅是AI的工作方式，也是人类解决一切问题的方式。也许，这正是为什么AI智能体感觉如此自然。",
+        "en": "The architecture diagram on the holographic display slowly contracts into a point of light, then dissolves into the air. Professor Ng picks up his now-cold coffee and heads for the door. You stare at the cycle you drew in your notebook — think, act, observe, reflect — and suddenly realize this isn't just how AI works, but how humans solve all problems. Perhaps that's exactly why AI agents feel so natural."
+      }
+    }
+  ]
+}

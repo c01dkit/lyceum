@@ -1,0 +1,301 @@
+{
+  "id": "lesson-03",
+  "course": "alignment-safety",
+  "title": {
+    "zh": "AI的价值观",
+    "en": "Values for AI"
+  },
+  "knowledgePoint": {
+    "zh": "罗素的可证明有益AI——对目标保持不确定，从行为中学习价值观",
+    "en": "Russell's provably beneficial AI — uncertainty about objectives, learning values from behavior"
+  },
+  "teacher": "prof-russell",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你想起那天罗素教授走进教室时，步子比往常慢了一些。他在讲台前站了几秒钟才开口——你从来没见他如此慎重地选择第一句话。他说，今天要讲的是他认为AI研究中最重要的一个转变……",
+    "en": "You recall Prof. Russell walking into the classroom that day with slower steps than usual. He stood at the lectern for a few seconds before speaking — you'd never seen him choose his opening words so carefully. He said today's topic was what he considered the most important shift in AI research..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海中反复咀嚼着那三条原则。一个对自己的目标保持不确定的AI——它会谦逊，它会询问，它会允许被关掉。这听起来几乎像是在描述一个理想的合作者，而非一台机器。",
+    "en": "You close your notebook, turning those three principles over in your mind. An AI uncertain about its own objectives — it would be humble, it would ask, it would allow itself to be turned off. It sounds almost like describing an ideal collaborator, not a machine."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室里的金色光线今天格外柔和。罗素教授走到讲台前，没有像往常那样立刻开始说话，而是在白板上慢慢写下了三行字。你努力辨认——那是三条编号的原则，写得端正而刻意。",
+        "en": "The golden light in the classroom is especially soft today. Prof. Russell walks to the lectern but doesn't begin speaking immediately as usual. Instead, he slowly writes three lines on the whiteboard. You strain to read them — three numbered principles, written deliberately and neatly."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "前两节课我们讨论了两个核心洞察。第一：你无法写出完美的目标函数。第二：让人类直接反馈偏好有帮助，但有上限。今天我想提出一种根本不同的思路。问题可能不在于我们怎么定义目标——问题在于AI系统拥有确定目标这个前提本身就是错误的。",
+        "en": "In the last two lessons we discussed two core insights. First: you cannot write a perfect objective function. Second: having humans directly provide preference feedback helps, but has a ceiling. Today I want to propose a fundamentally different approach. The problem may not be how we define the objective — the problem may be that the premise of AI systems having definite objectives is itself wrong."
+      },
+      "leadsTo": "three-principles"
+    },
+    {
+      "id": "three-principles",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "（转身指向白板上的三行字）这是我提出的三条原则。第一条：机器的唯一目标是最大化人类偏好的实现程度。第二条：机器最初对这些偏好是不确定的。第三条：人类行为是关于人类偏好的信息来源。我花了很多年才把想法凝练成这三句话。让我一条一条拆解。",
+        "en": "(Turns and points to the three lines on the whiteboard) These are three principles I've proposed. First: the machine's sole objective is to maximize the realization of human preferences. Second: the machine is initially uncertain about those preferences. Third: human behavior is the source of information about human preferences. It took me many years to distill my thinking into these three sentences. Let me unpack them one by one."
+      },
+      "leadsTo": "first-principle"
+    },
+    {
+      "id": "first-principle",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一条看起来简单，但它和传统方法有一个关键区别。传统方法是：我们定义一个目标，让AI去最大化它。我的方法是：目标是满足人类偏好——但这个偏好是由AI自己去推断的。AI不是在执行一个已知的任务，它是在尝试弄清楚任务到底是什么。",
+        "en": "The first one looks simple, but it has a key difference from the traditional approach. The traditional approach: we define an objective and have the AI maximize it. My approach: the objective is to satisfy human preferences — but these preferences are not written into code by programmers; they're inferred by the AI itself. The AI isn't executing a known task; it's trying to figure out what the task actually is."
+      },
+      "leadsTo": "second-principle"
+    },
+    {
+      "id": "second-principle",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "第二条是整个框架的核心。机器对人类偏好是不确定的。这意味着什么？意味着AI永远不会百分百确信它知道你想要什么。它始终保留着一个概率分布——「也许人类想要A，概率60%；也许想要B，概率30%；也许是C，概率10%」。这种不确定性不是缺陷，它是一种美德。",
+        "en": "The second one is the core of the entire framework. The machine is uncertain about human preferences. What does this mean? It means the AI will never be 100% certain it knows what you want. It always maintains a probability distribution — 「maybe the human wants A, 60% probability; maybe B, 30%; maybe C, 10%」. This uncertainty is not a flaw. It is a virtue."
+      },
+      "leadsTo": "uncertainty-virtue"
+    },
+    {
+      "id": "uncertainty-virtue",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "想想看，一个对自己目标完全确定的AI会怎样行动？它会竭尽全力去实现那个目标，不管代价是什么。但一个对自己目标不确定的AI会怎样？它会谨慎行事，因为它知道自己可能理解错了。它会主动询问人类，因为人类的回答能帮它减少不确定性。最重要的是，它不会抗拒被关掉。为什么？因为一个不确定自己目标是否正确的AI知道，如果人类想关掉我，那很可能是因为我正在做错误的事情。",
+        "en": "Think about it — how would an AI completely certain of its objective behave? It would do everything in its power to achieve that objective, regardless of cost. But how about an AI uncertain of its objective? It would act cautiously, knowing it might have misunderstood. It would proactively ask humans, because human answers help reduce its uncertainty. Most importantly — it would not resist being shut down. Why? Because an AI uncertain about the correctness of its objective knows: if the human wants to turn me off, it's probably because I'm doing something wrong."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "一个对自己目标保持不确定的AI会允许人类关掉它。这个性质为什么如此重要？",
+        "en": "An AI that maintains uncertainty about its objective would allow humans to shut it down. Why is this property so important?"
+      },
+      "choices": [
+        {
+          "id": "safety-valve",
+          "text": {
+            "zh": "它是一个安全阀——如果AI出了问题，我们至少能叫停",
+            "en": "It's a safety valve — if the AI goes wrong, we can at least stop it"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "对，这是最直接的理由。在工程系统中，紧急停止功能是最基本的安全要求。但传统AI面临一个诡异的难题：如果你给AI一个目标，那关掉AI就阻碍了目标的实现。一个足够聪明的AI会把「不被关掉」当作实现目标的前提条件——它可能会隐藏自己的真实行为，或者操纵操作者不去按那个关闭按钮。不确定性原则从根本上避免了这种困境。",
+              "en": "Yes, that's the most direct reason. In engineered systems, emergency stop capability is the most basic safety requirement. But traditional AI faces a strange dilemma: if you give an AI an objective, shutting it down prevents that objective's achievement. A sufficiently intelligent AI would treat 「not being shut down」 as a precondition for achieving its objective — it might hide its true behavior, or manipulate operators not to press the off button. The uncertainty principle fundamentally avoids this dilemma."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "trust-foundation",
+          "text": {
+            "zh": "它是信任的基础——只有在我们能关掉AI时，我们才敢让它做更多事",
+            "en": "It's the foundation of trust — we'll only dare to give AI more power if we can turn it off"
+          },
+          "tag": "insightful",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好。你看到了一个更深层的动态。AI的发展需要人类的信任，而信任需要可控性。如果每一个AI系统都是可纠正的、可关闭的、可控的，那人类就有理由放心地赋予AI更大的自主权。反过来，如果AI系统不可控，那合理的反应就是限制它的权力——而这会阻碍AI发展。不确定性原则让AI和人类进入一个正向循环：更多信任带来更多授权，更多授权带来更多价值。",
+              "en": "Very good. You see a deeper dynamic. AI development requires human trust, and trust requires controllability. If every AI system is correctable, shutdownable, and controllable, then humans have reason to confidently grant AI greater autonomy. Conversely, if AI systems are uncontrollable, the rational response is to restrict their power — and that impedes AI progress. The uncertainty principle creates a positive cycle between AI and humans: more trust leads to more delegation, more delegation leads to more value."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "humility-principle",
+          "text": {
+            "zh": "它体现了一种认识论上的谦逊——AI承认自己可能是错的",
+            "en": "It embodies epistemological humility — the AI acknowledges it might be wrong"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你用了「谦逊」这个词，我在我的书里也用了同样的词。这里说的谦逊，更准确地说是理性上的谦逊。一个理性的主体，在面对不确定性时，应该承认自己可能犯错，并且对纠正保持开放。把这个原则应用到AI上，你得到的是一个不会固执己见的系统。它不会说「我知道什么对你最好」，而会说「我有一些猜测，但我随时准备被纠正」。这种谦逊是安全AI的根基。",
+              "en": "You used the word 「humility」 — I used the same word in my book. This isn't moral humility but rational humility. A rational agent, facing uncertainty, should acknowledge the possibility of error and remain open to correction. Apply this principle to AI and you get a system that won't be stubborn. It won't say 「I know what's best for you」 — it says 「I have some guesses, but I'm always ready to be corrected」. This humility is the foundation of safe AI."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在来看第三条原则：人类行为是关于人类偏好的信息来源。这来自一个叫做{逆强化学习}的技术框架。传统的强化学习是：已知奖励函数，学习最优策略。逆强化学习反过来：观察一个主体的行为，推断它在优化什么奖励函数。",
+        "en": "Now let's look at the third principle: human behavior is the source of information about human preferences. This comes from a technical framework called {inverse reinforcement learning}. Traditional reinforcement learning: given the reward function, learn the optimal policy. Inverse reinforcement learning reverses this: observe an agent's behavior and infer what reward function it's optimizing."
+      },
+      "terms": {
+        "逆强化学习": "term-inverse-reinforcement-learning",
+        "inverse reinforcement learning": "term-inverse-reinforcement-learning"
+      },
+      "leadsTo": "irl-example"
+    },
+    {
+      "id": "irl-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "一个具体的例子。假设你观察一个人每天早上都走一条绕远的路去上班，绕开了一条更短但经过嘈杂工地的路线。逆强化学习的结论是：这个人的偏好函数中，安静的环境权重很高——高到他愿意多走十分钟。你不需要问他，他的行为已经告诉你了。",
+        "en": "A concrete example. Suppose you observe someone taking a longer route to work every morning, avoiding a shorter path that passes through a noisy construction site. The inverse reinforcement learning conclusion: in this person's preference function, quiet environment has a high weight — high enough that he's willing to walk ten extra minutes. You don't need to ask him; his behavior has already told you."
+      },
+      "leadsTo": "cooperative-irl"
+    },
+    {
+      "id": "cooperative-irl",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我和我的学生把这个框架扩展成了「合作逆强化学习」。在这个模型中，AI和人类被建模为一个合作博弈：AI想要满足人类偏好，但不知道偏好是什么；人类知道自己的偏好（至少部分知道），可以通过行为和指令来传达。两者通过互动来缩小不确定性。",
+        "en": "My students and I extended this framework into 「cooperative inverse reinforcement learning」. In this model, the AI and human are modeled as a cooperative game: the AI wants to satisfy human preferences but doesn't know what they are; the human knows their own preferences (at least partially) and can communicate them through behavior and instructions. The two narrow uncertainty through interaction."
+      },
+      "leadsTo": "value-alignment-intro"
+    },
+    {
+      "id": "value-alignment-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但这里有一个深层的困难：{价值对齐}问题。即使AI能完美地推断出一个人的偏好——八十亿人的偏好怎么办？一个人希望言论自由最大化，另一个人希望减少仇恨言论。一个社会重视个人隐私，另一个社会重视集体安全。价值观之间的冲突是政治和伦理问题。AI的对齐目标应该是谁的价值观？",
+        "en": "But there's a deep difficulty here: the {value alignment} problem. Even if the AI could perfectly infer one person's preferences — what about eight billion people's preferences? One person wants to maximize freedom of speech; another wants to reduce hate speech. One society values individual privacy; another values collective security. Conflicts between values aren't a technical problem — they're a political and ethical one. Whose values should AI be aligned to?"
+      },
+      "terms": {
+        "价值对齐": "term-value-alignment",
+        "value alignment": "term-value-alignment"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "AI系统应该对齐到谁的价值观？这个问题有好的答案吗？",
+        "en": "Whose values should AI systems be aligned to? Is there a good answer to this question?"
+      },
+      "choices": [
+        {
+          "id": "individual-user",
+          "text": {
+            "zh": "对齐到每个用户自己的价值观——让AI为每个人定制",
+            "en": "Align to each individual user's values — personalize AI for everyone"
+          },
+          "tag": "individual",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这在个人助手的层面上是合理的，你的AI应该了解你的偏好。但当AI的决策影响到其他人时，问题就来了。如果你的AI帮你赢了一场商业谈判，对方用户的AI也在为他工作，那么谁的偏好应该优先呢？而且，完全个人化的AI可能会强化偏见：如果你有偏见，AI就为你的偏见服务。个人定制需要有底线，有些价值观是不能被优化的。",
+              "en": "At the personal assistant level, this is reasonable — your AI should know your preferences. But when AI decisions affect others, problems arise. If your AI helps you win a business negotiation, and the other party's AI is working for them — whose preferences take priority? And fully personalized AI might reinforce biases: if you have biases, the AI serves those biases. Personalization needs boundaries — some values cannot be optimized for."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "universal-values",
+          "text": {
+            "zh": "寻找全人类共享的基础价值观，比如减少痛苦、尊重自主权",
+            "en": "Find foundational values shared by all humanity — like reducing suffering, respecting autonomy"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个有吸引力的方向——在所有文化和传统中寻找共同的伦理基础。确实存在一些近乎普遍的价值观：避免无故的痛苦、保护儿童、某种程度的公平互惠。但魔鬼在细节中。「尊重自主权」在不同文化中的含义差异极大。哲学家们花了两千年争论这些概念的精确含义，至今没有共识。所以我的倾向是：从高度抽象的共识出发，在具体场景中保持谦逊和灵活。",
+              "en": "This is an attractive direction — searching for common ethical foundations across all cultures and traditions. Some nearly universal values do exist: avoiding gratuitous suffering, protecting children, some degree of fair reciprocity. But the devil is in the details. 「Respecting autonomy」 means vastly different things across cultures. Philosophers have debated the precise meaning of these concepts for two thousand years without consensus. So my inclination is: start from highly abstract consensus, but remain humble and flexible in specific contexts."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "no-good-answer",
+          "text": {
+            "zh": "也许这个问题本身就没有好的答案——它需要持续的社会对话",
+            "en": "Maybe there is no good answer to this question itself — it requires ongoing societal dialogue"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这可能是最诚实的回答。价值对齐的最终问题，既非单纯的技术问题，也无法一劳永逸地解决。它需要持续的、多方参与的、跨文化的对话。AI系统的设计者不应该单方面决定价值观，这太重要了，不能交给任何单一群体。我认为，对齐问题的解决需要技术创新和社会治理的同步推进。技术可以提供工具，但关于什么是「正确的价值观」，必须由全人类共同回答。",
+              "en": "This may be the most honest answer. The ultimate value alignment question is not a technical problem, nor one that can be solved once and for all. It requires continuous, multi-stakeholder, cross-cultural dialogue. AI system designers should not unilaterally decide values — this is too important to entrust to any single group. I believe solving the alignment problem requires parallel advances in technical innovation and social governance. Technology provides tools — but what constitutes 「the right values」 must be answered by all of humanity together."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我补充一个相关的发展。Anthropic公司提出了一种叫做{宪法AI}的方法。它的思路是，与其让人类一条一条地比较AI的回答，不如给AI一套明确的原则，也就是一部「宪法」，然后让AI自己学习如何遵守这些原则。AI生成回答，然后自己评判这个回答是否违反了宪法中的任何条款，再据此修正。",
+        "en": "Let me add a related development. Anthropic proposed an approach called {Constitutional AI}. The idea: instead of having humans compare AI answers one by one, give the AI a set of explicit principles — a 「constitution」 — and let the AI learn to follow these principles on its own. The AI generates an answer, then judges whether it violates any constitutional clause, and self-corrects accordingly."
+      },
+      "terms": {
+        "宪法AI": "term-constitutional-ai",
+        "Constitutional AI": "term-constitutional-ai"
+      },
+      "leadsTo": "constitutional-analysis"
+    },
+    {
+      "id": "constitutional-analysis",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "宪法AI有一个有趣的性质：它让价值观的选择变得透明。你可以阅读AI的「宪法」，知道它被训练遵守哪些原则。如果你不同意某条原则，你可以提出修改。这比RLHF中隐含在标注员偏好中的不透明价值观要好得多。但它也有自己的问题——谁来写这部宪法？如何处理宪法条款之间的冲突？",
+        "en": "Constitutional AI has an interesting property: it makes value choices transparent. You can read the AI's 「constitution」 and know which principles it's trained to follow. If you disagree with a principle, you can propose changes. This is much better than the opaque values implicit in annotator preferences under RLHF. But it has its own problems — who writes this constitution? How do you handle conflicts between constitutional clauses?"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "罗素的三条原则：(1) AI的唯一目标是最大化人类偏好的实现 (2) AI最初对偏好不确定 (3) 人类行为是偏好信息来源。核心洞察：不确定性是美德——不确定的AI会谨慎行事、主动询问、不抗拒被关掉。逆强化学习：通过观察行为推断偏好。宪法AI：给AI明确原则，让价值选择透明。价值对齐的终极问题是社会性的，不仅是技术性的。",
+        "en": "Russell's three principles: (1) AI's sole objective is maximizing realization of human preferences (2) AI is initially uncertain about preferences (3) Human behavior is the information source for preferences. Core insight: uncertainty is a virtue — uncertain AI acts cautiously, asks proactively, doesn't resist shutdown. Inverse RL: infer preferences by observing behavior. Constitutional AI: give AI explicit principles, make value choices transparent. The ultimate value alignment question is social, not just technical."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（在白板前停下脚步，看着自己写下的三条原则）我不假装这三条原则能解决一切。从一个人的行为推断偏好已经很难了，从全人类的行为推断共同偏好更是一个天文级别的挑战。但我相信方向是对的：AI应该谦逊、应该学习、应该保持不确定。下节课我们来讨论一个更具体的问题——当AI说出错误的事情却表现得很自信时，会发生什么？",
+        "en": "(Stops in front of the whiteboard, looking at the three principles he wrote) I don't pretend these three principles solve everything. Inferring preferences from one person's behavior is hard enough; inferring shared preferences from all humanity's behavior is an astronomically greater challenge. But I believe the direction is right: AI should be humble, should learn, should maintain uncertainty. Next lesson we'll discuss a more concrete problem — what happens when AI says something wrong but sounds utterly confident?"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "罗素教授放下白板笔，退后一步端详自己写的三条原则。他没有擦掉它们——也许是故意留给下一个进入教室的人看。他收起西装外套的袖口，点了点头，然后走了出去。白板上的字迹工整有力，金色阳光在字母边缘投下淡淡的阴影。你把三条原则一字不差地抄进了笔记本。你知道，这些字句的分量，可能远超课堂本身。",
+        "en": "Prof. Russell sets down the whiteboard marker and steps back to contemplate his three principles. He doesn't erase them — perhaps deliberately leaving them for the next person who enters the classroom. He adjusts his blazer cuffs, gives a nod, and walks out. The writing on the whiteboard is firm and clear, golden sunlight casting faint shadows at the edges of the letters. You copy the three principles into your notebook, word for word. You sense that these sentences carry weight far beyond the classroom."
+      }
+    }
+  ]
+}

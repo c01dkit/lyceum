@@ -1,0 +1,72 @@
+{
+  "id": "prof-feigenbaum",
+  "name": {
+    "zh": "费根鲍姆教授",
+    "en": "Prof. Feigenbaum"
+  },
+  "fullName": {
+    "zh": "爱德华·费根鲍姆",
+    "en": "Edward Feigenbaum"
+  },
+  "title": {
+    "zh": "专家系统之父",
+    "en": "Father of Expert Systems"
+  },
+  "specialty": "Expert Systems & Knowledge Engineering",
+  "personalityTraits": [
+    "methodical",
+    "ambitious",
+    "practical",
+    "data-oriented"
+  ],
+  "speechStyle": {
+    "zh": "条理分明，善于用实际案例说明问题，语气中带着对知识工程的坚定信念，偶尔会兴奋地拍桌子强调重点",
+    "en": "Methodical and clear, excels at illustrating points with real-world cases, speaks with firm conviction about knowledge engineering, occasionally slaps the desk in excitement to emphasize a point"
+  },
+  "catchphrase": {
+    "zh": "知识就是力量——但前提是你得把它从专家的脑袋里取出来。",
+    "en": "Knowledge is power — but first you have to get it out of the expert's head."
+  },
+  "bio": {
+    "zh": "费根鲍姆是斯坦福大学的计算机科学教授，1965年与遗传学家莱德伯格合作创造了DENDRAL——世界上第一个专家系统。他坚信AI的突破在于让机器掌握特定领域的专业知识，而非追求通用智能。在课堂上，他总是带着一叠化学分析报告或医学病历，用真实案例带你走进知识工程的世界。",
+    "en": "Feigenbaum is a computer science professor at Stanford who, in 1965, co-created DENDRAL with geneticist Joshua Lederberg — the world's first expert system. He firmly believes AI's breakthrough lies in equipping machines with domain-specific expertise rather than pursuing general intelligence. In the classroom, he always brings stacks of chemical analysis reports or medical records, using real cases to walk you into the world of knowledge engineering."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "沉稳",
+        "en": "Composed"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "激动",
+        "en": "Excited"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "深思",
+        "en": "Reflective"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "得意",
+        "en": "Amused"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "自豪",
+        "en": "Proud"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

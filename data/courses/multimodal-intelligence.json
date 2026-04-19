@@ -1,0 +1,51 @@
+{
+  "id": "multimodal-intelligence",
+  "name": {
+    "zh": "多模态智能",
+    "en": "Multimodal Intelligence"
+  },
+  "description": {
+    "zh": "人类从不仅仅依赖文字来理解世界——我们看、听、触摸、感受。李飞飞教授将带你超越纯文本AI的边界，理解视觉与语言如何融合、对比学习如何跨越模态鸿沟、多模态大模型如何同时理解图像和文字，以及空间智能为什么是通向真正世界理解的关键一步。",
+    "en": "Humans never rely on text alone to understand the world — we see, hear, touch, and feel. Prof. Li will take you beyond the boundaries of text-only AI, understanding how vision and language fuse, how contrastive learning bridges modality gaps, how multimodal models understand images and text together, and why spatial intelligence is a crucial step toward true world understanding."
+  },
+  "grade": "grade-5",
+  "teacher": "prof-li",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-multimodal-motivation",
+      "description": {
+        "zh": "理解多模态AI的动机——为什么仅靠文本不足以理解世界",
+        "en": "Understand the motivation for multimodal AI — why text alone is insufficient for world understanding"
+      }
+    },
+    {
+      "id": "obj-contrastive",
+      "description": {
+        "zh": "掌握对比学习（CLIP）如何连接视觉与语言",
+        "en": "Master how contrastive learning (CLIP) connects vision and language"
+      }
+    },
+    {
+      "id": "obj-spatial",
+      "description": {
+        "zh": "理解空间智能的概念及其在具身AI中的重要性",
+        "en": "Understand spatial intelligence and its importance in embodied AI"
+      }
+    },
+    {
+      "id": "obj-perception-understanding",
+      "description": {
+        "zh": "思考感知与真正理解之间的鸿沟",
+        "en": "Reflect on the gap between perception and true understanding"
+      }
+    }
+  ]
+}

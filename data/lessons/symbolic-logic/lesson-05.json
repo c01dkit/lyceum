@@ -1,0 +1,301 @@
+{
+  "id": "lesson-05",
+  "course": "symbolic-logic",
+  "title": {
+    "zh": "符号主义的遗产",
+    "en": "The Legacy of Symbolism"
+  },
+  "knowledgePoint": {
+    "zh": "符号主义AI的历史地位与对后世的影响",
+    "en": "The historical significance of symbolic AI and its influence on future generations"
+  },
+  "teacher": "prof-mccarthy",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-04",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你想起那天走进教室时，黑板上还留着过去几节课的全部痕迹——符号、代码、图谱、搜索树。麦卡锡教授没有擦去它们，而是静静地站在那面黑板前。最后一课的记忆，带着某种温暖的重量，在心头缓缓铺开。",
+    "en": "You remember walking in that day to find the chalkboard still bearing every trace of the previous lessons — symbols, code, graphs, search trees. Professor McCarthy hadn't erased any of it; he just stood there quietly before the board. The memory of that final lesson unfolds in your heart, carrying a gentle weight."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，手心似乎还留有那次握手的温度。有些门一旦打开，就再也不会关上。",
+    "en": "You come back to the present, your palm still warm from that handshake. Some doors, once opened, never close again."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。麦卡锡教授走进教室的时候，步伐比平时慢了一些。黑板上还留着过去几节课写下的东西——符号、LISP代码、知识图谱、搜索树。他没有擦掉它们，而是静静地站在那面写满了痕迹的黑板前，像在翻阅一本无形的书。终于，他转过身来，眼睛里有一种温柔而坚定的光。",
+        "en": "The final class. Professor McCarthy enters the classroom with steps slower than usual. The chalkboard still bears traces from past lessons — symbols, LISP code, knowledge graphs, search trees. He doesn't erase them. Instead, he stands quietly before the marked-up board, as if leafing through an invisible book. Finally, he turns around, a gentle but resolute light in his eyes."
+      },
+      "leadsTo": "opening-reflection"
+    },
+    {
+      "id": "opening-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我们走了很长一段路。从最简单的符号，到LISP，到知识表示，到搜索……今天，让我们回头看看，符号AI到底做到了什么，又没有做到什么。",
+        "en": "We've come a long way. From the simplest symbols, to LISP, to knowledge representation, to search... Today, let's look back and ask — what has symbolic AI actually achieved, and what has it failed to achieve?"
+      },
+      "leadsTo": "achievements"
+    },
+    {
+      "id": "achievements",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "成就是实实在在的：精确的逻辑推理、结构化的知识表示、能够诊断疾病的专家系统、能下国际象棋的程序。它们真的运行过，真的解决过问题。",
+        "en": "The achievements are real and tangible: precise logical reasoning, structured knowledge representation, expert systems that could diagnose diseases, programs that could play chess. These weren't fantasies — they actually ran, and they actually solved problems."
+      },
+      "leadsTo": "strong-ai"
+    },
+    {
+      "id": "strong-ai",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但我们最初的梦想更大。我们想造的是{强AI}——也叫通用人工智能。是像人类一样，什么问题都能思考、什么领域都能理解的真正智能。",
+        "en": "But our original dream was much bigger. What we wanted to build was {Strong AI} — also called artificial general intelligence. Not a 「narrow」 intelligence that can only play chess or diagnose diseases, but genuine intelligence that, like humans, can think about any problem and understand any domain."
+      },
+      "terms": {
+        "强AI": "term-strong-ai",
+        "Strong AI": "term-strong-ai"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "你认为单靠符号方法能实现强AI吗？",
+        "en": "Do you think the symbolic approach alone can achieve Strong AI?"
+      },
+      "choices": [
+        {
+          "id": "yes-possible",
+          "text": {
+            "zh": "可以——只要有足够多的规则和足够强的推理能力",
+            "en": "Yes — with enough rules and powerful enough reasoning"
+          },
+          "tag": "symbolic-optimism",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "我当年也是这么想的。（微笑）我们以为只要写出足够多的规则，机器就能像人一样聪明。这个信念推动了整整一代人的研究。但几十年的实践告诉我们，「足够多」这三个字，可能比我们想象的要沉重得多。",
+              "en": "That's exactly what I used to think. (smiles) We believed that with enough rules, machines could be as smart as humans. This belief drove an entire generation of research. But decades of practice taught us — 「enough」 might be a far heavier word than we imagined."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "no-missing-something",
+          "text": {
+            "zh": "不能——符号方法缺少了某种关键的东西",
+            "en": "No — the symbolic approach is missing something crucial"
+          },
+          "tag": "symbolic-skepticism",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "直觉很准。符号系统擅长处理清晰、明确、规则化的问题。但人类智能远不止于此，我们能感受情绪、理解隐喻、在模糊中做决策、从几个例子中学会新概念。这些能力似乎需要完全不同的机制。",
+              "en": "Your instinct is sharp. Symbolic systems excel at clear, well-defined, rule-based problems. But human intelligence goes far beyond that — we feel emotions, understand metaphors, make decisions amid ambiguity, learn new concepts from just a few examples. These capabilities seem to require entirely different mechanisms."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "partially",
+          "text": {
+            "zh": "部分可以——符号方法是必要的，但不是充分的",
+            "en": "Partially — the symbolic approach is necessary but not sufficient"
+          },
+          "tag": "balanced-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "我越来越倾向于同意这个观点。符号推理是智能的重要组成部分，我们确实在用逻辑思考、用语言交流、用规则做决策。但智能不仅仅是逻辑。它还包括直觉、感知、学习……真正的AI可能需要把符号方法和其他方法结合起来。",
+              "en": "I'm increasingly inclined to agree. Symbolic reasoning is an important component of intelligence — we do think with logic, communicate with language, make decisions with rules. But intelligence isn't just logic. It also includes intuition, perception, learning... True AI may need to combine symbolic methods with other approaches."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "说实话，符号AI在定义明确的问题上表现很出色。但面对混乱的真实世界，它很脆弱。它有三个根本性的局限，贯穿了我们整个课程。",
+        "en": "Honestly — symbolic AI performed brilliantly on well-defined problems, but when facing the messy real world, it was fragile. It has three fundamental limitations that run through our entire course."
+      },
+      "leadsTo": "three-limits"
+    },
+    {
+      "id": "three-limits",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一，知识获取瓶颈，即规则写不完；第二，脆弱性，即碰到规则没覆盖的情况就崩溃；第三，也是最深层的，也就是常识问题。",
+        "en": "First, the knowledge acquisition bottleneck — rules can never be fully written. Second, brittleness — the system collapses when it encounters situations the rules don't cover. Third, and deepest of all — the common sense problem."
+      },
+      "leadsTo": "common-sense"
+    },
+    {
+      "id": "common-sense",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "举一个简单的{常识问题}，一个三岁小孩知道水是湿的、火是烫的、人有两条腿、杯子掉在地上会碎。这些知识我们从来不需要「学习」，就像呼吸一样自然。但要把这些告诉机器？你需要编码几百万条这样的事实，而且你永远不知道什么时候会缺少哪一条。",
+        "en": "The {common sense problem} — a three-year-old child knows water is wet, fire is hot, people have two legs, and a cup dropped on the floor will break. We never need to 「learn」 this knowledge; it's as natural as breathing. But telling a machine all this? You'd need to encode millions of such facts, and you'd never know when one is missing."
+      },
+      "terms": {
+        "常识问题": "term-common-sense-problem",
+        "common sense problem": "term-common-sense-problem"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "符号AI的成就：精确推理、专家系统、形式化知识表示。三大局限：知识获取瓶颈、脆弱性、常识问题。",
+        "en": "Symbolic AI achievements: precise reasoning, expert systems, formal knowledge representation. Three limitations: knowledge acquisition bottleneck, brittleness, common sense problem."
+      },
+      "category": "core-concept",
+      "leadsTo": "but-dont-think"
+    },
+    {
+      "id": "but-dont-think",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但是！别以为符号AI失败了。恰恰相反，它给世界留下了不可磨灭的遗产。",
+        "en": "But! Don't think symbolic AI failed. Quite the opposite — it left an indelible legacy for the world."
+      },
+      "leadsTo": "legacy-details"
+    },
+    {
+      "id": "legacy-details",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "LISP影响了Python、Ruby、JavaScript。有同学告诉我，知识图谱驱动着谷歌搜索和维基百科。逻辑编程语言Prolog在未来仍在数据库和专家系统中使用。每一次你用搜索引擎，背后都有符号AI的影子。",
+        "en": "LISP influenced Python, Ruby, JavaScript. Some classmates told me that knowledge graphs power Google Search and Wikipedia. The logic programming language Prolog is still used in databases and expert system in the future. Every time you use a search engine, symbolic AI's shadow is there behind it."
+      },
+      "leadsTo": "pss-hypothesis"
+    },
+    {
+      "id": "pss-hypothesis",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "纽厄尔和西蒙提出了{物理符号系统假说}——一个物理符号系统具备智能行为的充分必要条件。换句话说，只要你能操纵符号，你就具备了实现智能的基本能力。这个假说在未来仍在被讨论，虽然它可能太强了，但它第一次把「什么是智能」变成了一个可以科学讨论的问题。",
+        "en": "Newell and Simon proposed the {Physical Symbol System Hypothesis} — a physical symbol system has the necessary and sufficient means for general intelligent action. In other words, if you can manipulate symbols, you have the basic capability for intelligence. This hypothesis is still debated  — it may be too strong, but it was the first to turn 「what is intelligence」 into a question that could be discussed scientifically."
+      },
+      "terms": {
+        "物理符号系统假说": "term-physical-symbol-hypothesis",
+        "Physical Symbol System Hypothesis": "term-physical-symbol-hypothesis"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾你学到的一切，你认为符号AI最重要的贡献是什么？",
+        "en": "Looking back at everything you've learned, what do you think is the most important contribution of symbolic AI?"
+      },
+      "choices": [
+        {
+          "id": "formal-reasoning",
+          "text": {
+            "zh": "形式化推理——证明了机器可以进行逻辑思维",
+            "en": "Formal reasoning — proving that machines can perform logical thinking"
+          },
+          "tag": "reasoning-legacy",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "推理？是的。在符号AI之前，「机器能思考吗」只是一个哲学问题。我们把它变成了工程问题，然后真的造出了能推理的系统。也许那些系统很脆弱，也许它们的「推理」和人类的思考并不一样。但我们证明了一件事：逻辑推理可以被机械化。这个突破是不可逆的。",
+              "en": "Reasoning — yes. Before symbolic AI, 「can machines think」 was merely a philosophical question. We turned it into an engineering problem, and we actually built systems that could reason. Perhaps those systems were fragile, perhaps their 「reasoning」 wasn't the same as human thought. But we proved one thing: logical reasoning can be mechanized. That breakthrough is irreversible."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "kr-legacy",
+          "text": {
+            "zh": "知识表示——为组织和结构化人类知识提供了框架",
+            "en": "Knowledge representation — providing frameworks for organizing human knowledge"
+          },
+          "tag": "knowledge-legacy",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "知识表示！有同学告诉我未来的互联网是建立在结构化知识之上的。数据库、知识图谱、本体论……这些全部起源于符号AI的研究。当你问搜索引擎「巴黎是哪国的首都」它能直接回答时，背后就是知识表示的功劳。我们教会了世界如何组织知识。",
+              "en": "Knowledge representation! Some classmates told me that the internet is built on structured knowledge. Databases, knowledge graphs, ontologies... these all originated from symbolic AI research. When you ask a search engine 「what country is Paris the capital of」 and it answers directly, that's knowledge representation at work. We taught the world how to organize knowledge."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "possibility",
+          "text": {
+            "zh": "证明了AI是可能的——打开了这扇门",
+            "en": "Proving AI is possible — opening the door"
+          },
+          "tag": "inspiration-legacy",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "也许这才是最根本的贡献。在我们之前，让机器「思考」是科幻小说的题材。在我们之后，它变成了一个正在进行的工程项目。我们打开了一扇门。走进去的人可能会选择和我们不同的路，但门是我们打开的。有时候，打开一扇门比走完整条路更重要。",
+              "en": "Perhaps that's the most fundamental contribution of all. Before us, making machines 「think」 was the stuff of science fiction. After us, it became an ongoing engineering project. We opened a door. Those who walk through it may choose different paths than ours, but we opened the door. Sometimes, opening a door matters more than walking the entire road."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "我们证明了机器可以推理。仅仅这一点，就已经改变了世界。",
+        "en": "We proved that machines CAN reason. That alone changed the world."
+      },
+      "leadsTo": "looking-forward"
+    },
+    {
+      "id": "looking-forward",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "也许，下一代人会走一条完全不同的路，比如从数据中学习，而不是手动编写规则。神经网络、统计学习、深度学习……这些名词你们以后会一个个遇到。但请记住：每一场革命都站在前一场革命的肩膀上。",
+        "en": "Perhaps the next generation will take a completely different path — learning from data instead of hand-coding rules. Neural networks, statistical learning, deep learning... you'll encounter these terms one by one. But remember: every revolution stands on the shoulders of the one before it."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "符号AI的遗产：证明了机器可以推理，创造了基础工具（LISP、知识图谱、逻辑编程），定义了驱动AI研究至今的核心问题。",
+        "en": "The legacy: symbolic AI proved machines can reason, created foundational tools (LISP, knowledge graphs, logic programming), and defined the problems that drive AI research to this day."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "麦卡锡教授走到你面前，伸出手来。你和他握了握手——他的手掌温暖而有力。「你已经准备好了，」他微笑着说，「去上下一门课吧。」他最后看了一眼那面写满了符号的黑板，然后转身走了出去。透过窗户，你看到校园的小路延伸向远方，通向一座新的教学楼。阳光很好。你翻开笔记本，发现这些课留下的不仅是知识，还有一种新的看待世界的方式。",
+        "en": "Professor McCarthy walks up to you and extends his hand. You shake it — his palm is warm and firm. 「You're ready」, he says with a smile. 「Go on to the next class」. He takes one last look at the chalkboard covered in symbols, then turns and walks out. Through the window, you see the campus path stretching into the distance, leading to a new building. The sunlight is warm. You open your notebook and realize these lessons have left you with more than knowledge — they've given you a new way of seeing the world."
+      }
+    }
+  ]
+}

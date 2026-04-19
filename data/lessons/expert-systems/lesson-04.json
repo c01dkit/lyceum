@@ -1,0 +1,283 @@
+{
+  "id": "lesson-04",
+  "course": "expert-systems",
+  "title": {
+    "zh": "知识的瓶颈",
+    "en": "The Knowledge Bottleneck"
+  },
+  "knowledgePoint": {
+    "zh": "从人类专家那里提取知识为什么极其困难——知识获取瓶颈",
+    "en": "Why extracting knowledge from human experts is extremely difficult — the knowledge acquisition bottleneck"
+  },
+  "teacher": "prof-feigenbaum",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "教室里的气氛今天似乎有些不同。费根鲍姆教授坐在讲台边缘，手里没有文件夹，没有幻灯片，只是望着你们，神情比往常多了几分沉思。",
+    "en": "The classroom atmosphere feels different today. Professor Feigenbaum sits on the edge of the desk, no folders in hand, no slides — just looking at you with an expression more pensive than usual."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。知识瓶颈——这个问题比你想象的更深刻。专家知道答案，却说不清自己是怎么知道的。这个矛盾让你久久无法释怀。",
+    "en": "You return to the present. The knowledge bottleneck — this problem runs deeper than you imagined. Experts know the answers but can't explain how they know. This paradox lingers in your mind."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "费根鲍姆教授今天没有径直走到黑板前。他搬了一把椅子坐到你们中间，像是要讲一个私人故事。钢制文件柜在荧光灯下泛着冷光，教室安静了下来。",
+        "en": "Professor Feigenbaum doesn't go straight to the blackboard today. He pulls up a chair and sits among you, as if about to share a personal story. The steel filing cabinets gleam coldly under the fluorescent lights as the classroom falls quiet."
+      },
+      "leadsTo": "confession"
+    },
+    {
+      "id": "confession",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我要跟你们说点实话。前几节课我们讲了专家系统的架构，包括知识库、推理引擎和解释机制，听起来井井有条。但在实际工作中，最难的部分我还没有详细说过。那就是{知识获取}：怎么把专家脑子里的知识提取出来。",
+        "en": "Let me be candid with you. Over the past few lessons we covered the architecture of expert systems — knowledge base, inference engine, explanation facility — all very orderly. But in practice, the hardest part is something I haven't discussed in detail. That is {knowledge acquisition}: how to extract the knowledge from an expert's mind."
+      },
+      "terms": {
+        "知识获取": "term-knowledge-acquisition",
+        "knowledge acquisition": "term-knowledge-acquisition"
+      },
+      "leadsTo": "the-story"
+    },
+    {
+      "id": "the-story",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "当年做DENDRAL的时候，我们坐下来和化学家聊。我问他们：「你看到这张质谱图，你是怎么判断的？」一开始他们很配合，说了几条明确的规则。但很快就卡住了——他们看着图，皱着眉头说：「我就是知道啊。这个模式看起来就像某种化合物。你问我为什么……我说不上来。」",
+        "en": "When we were building DENDRAL, we sat down with chemists. I'd ask them: 「When you see this mass spectrum, how do you make your judgment?」 At first they cooperated, stating a few clear rules. But soon they'd get stuck — staring at the chart, brows furrowed, saying: 「I just know. This pattern looks like a certain compound. You ask me why... I can't quite put it into words」."
+      },
+      "leadsTo": "tacit-knowledge"
+    },
+    {
+      "id": "tacit-knowledge",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这是一个深层次的问题。很多专家的知识是「默会」的——他们可以做出准确判断，但无法把自己的推理过程完全用语言表达出来。就像一个经验丰富的面包师，他知道面团「摸起来对了」就可以进烤箱了，但他没法给你一个精确的弹性系数。这种知识藏在肌肉记忆、直觉和多年的模式识别经验里。",
+        "en": "This is a deep problem. Much of an expert's knowledge is 「tacit」 — they can make accurate judgments but cannot fully articulate their reasoning in words. Like an experienced baker who knows the dough 「feels right」 for the oven, but can't give you a precise elasticity coefficient. This knowledge hides in muscle memory, intuition, and years of pattern recognition."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "为什么专家往往无法清晰地说出自己的推理规则？",
+        "en": "Why are experts often unable to clearly articulate their own reasoning rules?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "很多判断已经变成了自动化的直觉，不经过有意识的推理",
+            "en": "Many judgments have become automatic intuition, bypassing conscious reasoning"
+          },
+          "tag": "automaticity",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常准确。当你刚学开车的时候，你会有意识地想每一个动作，比如踩离合、换挡、看后视镜。但开了十年之后，这些全变成了自动反应。化学家也一样，他们的很多判断已经「沉入」了无意识层面，被自动执行了。要把这些自动化的东西重新变成明确的规则，非常困难。",
+              "en": "Very accurate. When you first learn to drive, you consciously think about every action — press the clutch, shift gears, check the mirror. But after ten years, these all become automatic reactions. Chemists are the same — many of their judgments have 「sunk」 to the unconscious level and are executed automatically. Turning these automated processes back into explicit rules is extremely difficult."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "他们的知识太复杂了，涉及太多例外和特殊情况",
+            "en": "Their knowledge is too complex, involving too many exceptions and special cases"
+          },
+          "tag": "complexity",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得对。专家的知识不是一套整齐划一的规则集——它更像一张巨大的、纠缠在一起的网。每条规则都有例外，例外还有例外。当你试图把这些全写下来时，你会发现规则之间互相关联、互相制约，复杂度呈指数增长。",
+              "en": "That's right. An expert's knowledge isn't a neat, uniform set of rules — it's more like a vast, tangled web. Every rule has exceptions, and exceptions have exceptions. When you try to write it all down, you find rules interlinked and constraining each other, with complexity growing exponentially."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "语言本身的局限——有些知识无法用文字精确表达",
+            "en": "The limitations of language itself — some knowledge can't be precisely expressed in words"
+          },
+          "tag": "language-limits",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个哲学层面的观察。语言确实有表达力的极限。一位化学家看到质谱图时的那种「感觉」，可能根本无法用IF-THEN规则完全捕捉。我们编码进去的，永远只是专家知识的一个近似——也许是一个很好的近似，但终究是近似。这个认识让我既谦虚又焦虑。",
+              "en": "That's a philosophical observation. Language does have limits of expressiveness. The 「feeling」 a chemist gets when viewing a spectrum may be fundamentally impossible to capture fully in IF-THEN rules. What we encode is always an approximation of the expert's knowledge — perhaps a very good approximation, but an approximation nonetheless. This realization makes me both humble and anxious."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个问题如此普遍，以至于我们给它取了一个名字——{知识瓶颈}。整个专家系统的开发流程中，最耗时、最昂贵、最容易出错的环节，就是从专家那里获取知识。",
+        "en": "This problem is so pervasive that we gave it a name — the {knowledge bottleneck}. In the entire development process of an expert system, the most time-consuming, most expensive, and most error-prone step is acquiring knowledge from the expert."
+      },
+      "terms": {
+        "知识瓶颈": "term-knowledge-bottleneck",
+        "knowledge bottleneck": "term-knowledge-bottleneck"
+      },
+      "leadsTo": "ke-role"
+    },
+    {
+      "id": "ke-role",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以我们需要一种专门的角色：{知识工程}师。他既不是程序员，也不是{领域专家}，而是两者之间的桥梁。他的工作是坐在专家旁边，用各种技巧引导专家说出隐藏的知识：给他们看案例让他们分析、提出假设的场景让他们评判、观察他们实际工作时的决策过程。",
+        "en": "That's why we need a specialized role — the {knowledge engineering} specialist. They are neither a programmer nor a {domain expert}, but a bridge between the two. Their job is to sit beside the expert and use various techniques to draw out hidden knowledge: show them cases to analyze, propose hypothetical scenarios for evaluation, observe their decision-making process during real work."
+      },
+      "terms": {
+        "知识工程": "term-knowledge-engineering",
+        "knowledge engineering": "term-knowledge-engineering",
+        "领域专家": "term-domain-expert",
+        "domain expert": "term-domain-expert"
+      },
+      "leadsTo": "maintenance"
+    },
+    {
+      "id": "maintenance",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "还有一个问题经常被忽视：维护。假设你辛辛苦苦建了一个有五百条规则的系统。运行了一段时间后，你发现有些规则需要修改——新的研究推翻了旧的认知。你改了规则37，但它会不会和规则153冲突？规则153又会不会影响规则298的结论？",
+        "en": "There's another problem that's often overlooked: maintenance. Suppose you've painstakingly built a system with five hundred rules. After running for a while, you find some rules need modification — new research has overturned old assumptions. You change Rule 37, but could it now conflict with Rule 153? And could Rule 153 in turn affect Rule 298's conclusions?"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "当专家系统中的规则互相冲突时，比如规则A说「应该做X」，规则B说「不应该做X」——系统应该怎么处理？",
+        "en": "When rules in an expert system conflict — say Rule A says 「do X」 and Rule B says 「don't do X」 — how should the system handle it?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "给规则设定优先级，高优先级的规则胜出",
+            "en": "Assign priority levels to rules — higher priority wins"
+          },
+          "tag": "priority-approach",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是目前最常用的策略之一。但谁来决定优先级？还是得靠专家。而且随着规则越来越多，优先级关系变得越来越复杂——A优先于B，B优先于C，但C有时候又要优先于A……管理这些优先级本身就成了一个噩梦。",
+              "en": "That's one of the most commonly used strategies right now. But who decides the priorities? The expert, again. And as rules multiply, priority relationships grow increasingly complex — A over B, B over C, but sometimes C must override A... Managing these priorities becomes a nightmare in itself."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "选择条件更具体的那条规则",
+            "en": "Choose the more specific rule"
+          },
+          "tag": "specificity-approach",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "不错的思路！「特殊规则优先于一般规则」——这确实是一个合理的原则。如果一条规则适用于所有呼吸道疾病，另一条专门适用于肺炎，那在诊断肺炎时应该优先用后者。但问题是，系统怎么判断哪条规则「更具体」？这本身就需要额外的知识。",
+              "en": "Good thinking! 「Specific rules override general rules」 — that is indeed a reasonable principle. If one rule applies to all respiratory diseases and another specifically to pneumonia, then when diagnosing pneumonia, the latter should take precedence. But the question is: how does the system determine which rule is 「more specific」? That itself requires additional knowledge."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "把冲突标记出来，交给人类做最终决定",
+            "en": "Flag the conflict and let a human make the final decision"
+          },
+          "tag": "human-override",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "务实的选择。承认系统有局限性，在关键时刻把决策权交还给人——这在医学这样的高风险领域尤其重要。不过这也说明了一个问题：如果系统经常需要人类介入，它作为「自动化专家」的价值就打了折扣。我们希望系统能独立处理的情况越多越好。",
+              "en": "A pragmatic choice. Acknowledging the system's limitations and returning decision authority to humans at critical moments — this is especially important in high-stakes fields like medicine. But it also reveals a problem: if the system frequently needs human intervention, its value as an 「automated expert」 is diminished. We want the system to handle as many cases independently as possible."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "规则冲突只是维护难题的冰山一角。随着规则数量增长，系统变得越来越难以理解和调试。当一个系统有了上千条规则，没有任何一个人，包括原始的{领域专家}——能完全掌握它的行为。系统开始产生出乎意料的输出，而追查原因变得异常困难。",
+        "en": "Rule conflicts are just the tip of the maintenance iceberg. As the number of rules grows, the system becomes increasingly hard to understand and debug. When a system has thousands of rules, no single person — not even the original {domain expert} — can fully grasp its behavior. The system starts producing unexpected outputs, and tracing the cause becomes extraordinarily difficult."
+      },
+      "terms": {
+        "领域专家": "term-domain-expert",
+        "domain expert": "term-domain-expert"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "知识瓶颈是专家系统开发中最大的挑战：(1) 专家的很多知识是默会的、直觉性的，难以用语言表达；(2) 知识工程师充当专家与系统之间的桥梁；(3) 随着规则增多，维护和调试变得极其困难——规则可能冲突，系统行为难以预测。",
+        "en": "The knowledge bottleneck is the greatest challenge in expert system development: (1) Much of an expert's knowledge is tacit and intuitive, hard to put into words; (2) Knowledge engineers serve as a bridge between experts and the system; (3) As rules multiply, maintenance and debugging become extremely difficult — rules may conflict and system behavior becomes hard to predict."
+      },
+      "category": "core-concept",
+      "leadsTo": "honest-reflection"
+    },
+    {
+      "id": "honest-reflection",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "我不想粉饰这些困难。{知识瓶颈}是真实存在的，目前我们还没有完美的解决办法。每一个专家系统项目都要在这道关卡上花费大量的时间和精力。但我相信——只要我们持续改进{知识获取}的方法，这个瓶颈是可以被逐步拓宽的。",
+        "en": "I don't want to sugarcoat these difficulties. The {knowledge bottleneck} is real, and we don't yet have a perfect solution. Every expert system project spends enormous time and effort at this bottleneck. But I believe — as long as we keep improving our {knowledge acquisition} methods, this bottleneck can be gradually widened."
+      },
+      "terms": {
+        "知识瓶颈": "term-knowledge-bottleneck",
+        "knowledge bottleneck": "term-knowledge-bottleneck",
+        "知识获取": "term-knowledge-acquisition",
+        "knowledge acquisition": "term-knowledge-acquisition"
+      },
+      "leadsTo": "preview"
+    },
+    {
+      "id": "preview",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下一节课是我们这门课的最后一课。我想和你们谈谈，从我的角度看，专家系统的未来在哪里——哪些地方让我充满希望，哪些地方让我担忧。",
+        "en": "Next lesson will be our last. I want to talk with you about where I see the future of expert systems — what gives me hope, and what gives me pause."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "费根鲍姆教授站起身，把椅子推回原位。他今天说的每一句话都带着亲身经历的重量——那种在项目中一次次碰壁、一次次寻找出路的重量。你第一次意识到，建造一个智能系统最难的部分，可能根本是理解「知道」这件事本身到底意味着什么。",
+        "en": "Professor Feigenbaum stands and pushes his chair back. Every word he spoke today carried the weight of lived experience — the weight of hitting walls again and again in projects, searching for ways through. For the first time, you realize that the hardest part of building an intelligent system might not be the programming at all, but understanding what 「knowing」 itself truly means."
+      }
+    }
+  ]
+}

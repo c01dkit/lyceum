@@ -1,0 +1,319 @@
+{
+  "id": "lesson-01",
+  "course": "sequence-attention",
+  "title": {
+    "zh": "时间的维度",
+    "en": "The Dimension of Time"
+  },
+  "knowledgePoint": {
+    "zh": "为什么序列需要特殊处理——时间和顺序的重要性",
+    "en": "Why sequences need special treatment — time and order matter"
+  },
+  "teacher": "prof-bengio",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间深蓝色灯光的教室。本吉奥教授站在讲台前，身后的大屏幕上缓缓滚动着一行行文字、一段段音符、一串串数字。他没有急着开口，而是安静地等了几秒，仿佛在给你时间去感受那些序列中隐藏的节奏。",
+    "en": "You close your eyes, and your thoughts drift back to that classroom bathed in deep blue light. Prof. Bengio stands at the lectern, lines of text, musical notes, and strings of numbers scrolling slowly on the large screen behind him. He doesn't rush to speak, but waits quietly for a few seconds, as if giving you time to feel the rhythm hidden within those sequences."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。本吉奥教授的话仍在耳边回响——语言、音乐、时间序列，它们都有一个共同点：顺序本身承载着意义。传统的前馈网络无法捕捉这种时间维度的信息。要理解序列，机器需要某种形式的「记忆」。",
+    "en": "You return to the present. Prof. Bengio's words still echo — language, music, time series, they all share one thing: order itself carries meaning. Traditional feedforward networks cannot capture this temporal dimension. To understand sequences, machines need some form of 「memory」."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这间教室和之前的不太一样。灯光调成了深蓝色，像一个安静的剧场。讲台两侧各有一块巨大的屏幕，此刻都是暗的。一位留着短须的中年教授走了进来——他穿着深色的高领毛衣，步伐不紧不慢，像是在思考什么。他轻轻把一本厚厚的笔记本放在讲台上，然后环视教室，目光平和而专注。",
+        "en": "This classroom is different from the ones before. The lighting is set to deep blue, like a quiet theater. On either side of the lectern stands a large screen, both dark for now. A middle-aged professor with a short beard walks in — he's wearing a dark turtleneck, his pace unhurried, as if deep in thought. He gently sets a thick notebook on the lectern, then surveys the room with a calm, focused gaze."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们好。我是本吉奥，来自蒙特利尔大学。在我们开始之前，我想请你们做一件事——闭上眼睛，在心里默念一句话。任何一句话都行。",
+        "en": "Hello, everyone. I'm Bengio, from the University of Montreal. Before we begin, I'd like to ask you to do something — close your eyes and silently recite a sentence in your mind. Any sentence will do."
+      },
+      "leadsTo": "pause-moment"
+    },
+    {
+      "id": "pause-moment",
+      "type": "narration",
+      "text": {
+        "zh": "教室安静了几秒。本吉奥教授没有催促，只是耐心地等待着。",
+        "en": "The classroom falls silent for a few seconds. Prof. Bengio doesn't rush, simply waiting patiently."
+      },
+      "leadsTo": "sentence-order"
+    },
+    {
+      "id": "sentence-order",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "好。现在想想，如果我把你刚才那句话里的词全部打乱顺序，意思还一样吗？「我今天去了学校」和「学校去了今天我」，用的是完全相同的词，但含义截然不同。顺序，即时间的维度，本身就承载着意义。",
+        "en": "Good. Now think — if I scrambled all the words in that sentence, would the meaning stay the same? 「I went to school today」 and 「school today went I to」 use the exact same words, but the meanings are entirely different. Order — the dimension of time — itself carries meaning."
+      },
+      "leadsTo": "sequences-everywhere"
+    },
+    {
+      "id": "sequences-everywhere",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这种依赖顺序的数据无处不在。语言是一个{序列}，一个词接着一个词，前面的词会影响后面的含义。音乐也是如此，同样的音符，不同的顺序，就构成了不同的旋律。股票价格、天气变化、心电图信号……这些都是随时间展开的序列。",
+        "en": "This kind of order-dependent data is everywhere. Language is a {sequence} — one word follows another, and earlier words influence the meaning of later ones. Music too — the same notes in different orders create entirely different melodies. Stock prices, weather patterns, heartbeat signals... these are all sequences that unfold over time."
+      },
+      "terms": {
+        "序列": "term-sequence-modeling",
+        "sequence": "term-sequence-modeling"
+      },
+      "leadsTo": "screen-demo"
+    },
+    {
+      "id": "screen-demo",
+      "type": "narration",
+      "text": {
+        "zh": "本吉奥教授按下遥控器，两块大屏幕亮了起来。左边的屏幕上显示着一段法语句子，右边显示着它的英文翻译。两边的词用细线连接着，但连线交错复杂，完全不是简单的一一对应。",
+        "en": "Prof. Bengio presses a remote, and both screens light up. The left screen displays a French sentence, the right shows its English translation. The words on both sides are connected by thin lines, but the connections crisscross in complex patterns — far from a simple one-to-one correspondence."
+      },
+      "leadsTo": "translation-example"
+    },
+    {
+      "id": "translation-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "看这个例子。法语说「Je ne sais pas」，英语说「I don't know」。法语的否定需要两个词「ne」和「pas」包裹动词，英语只用一个「don't」。翻译不仅仅是替换单词——你需要理解整个句子的结构，然后用另一种语言重新组织。这就是序列问题的核心难度。",
+        "en": "Look at this example. In French we say 「Je ne sais pas」, in English 「I don't know」. French negation requires two words — 「ne」 and 「pas」 — wrapping around the verb, while English uses just 「don't」. Translation isn't just word replacement — you need to understand the entire sentence's structure, then reorganize it in another language. This is the core difficulty of sequence problems."
+      },
+      "leadsTo": "feedforward-problem"
+    },
+    {
+      "id": "feedforward-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "现在，让我们想想我的同事辛顿他们研究的那些{前馈神经网络}。它们有一个根本性的限制——输入的大小是固定的。你必须提前决定网络接受多少个输入。但一个句子可能有3个词，也可能有30个词。一段音乐可能持续10秒，也可能持续10分钟。序列的长度是可变的。",
+        "en": "Now, let's think about those {feedforward neural networks} that my colleague Hinton and others have been working on. They have a fundamental limitation — the input size is fixed. You must decide in advance how many inputs the network accepts. But a sentence might have 3 words or 30 words. A piece of music might last 10 seconds or 10 minutes. The length of a sequence is variable."
+      },
+      "terms": {
+        "前馈神经网络": "term-feedforward-network",
+        "feedforward neural networks": "term-feedforward-network"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "如果要用一个固定大小的前馈网络来处理不同长度的句子，你会怎么做？",
+        "en": "If you had to use a fixed-size feedforward network to process sentences of different lengths, what would you try?"
+      },
+      "choices": [
+        {
+          "id": "choice-pad",
+          "text": {
+            "zh": "把所有句子都填充到同样的长度——短的补零，长的截断",
+            "en": "Pad all sentences to the same length — fill short ones with zeros, truncate long ones"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这确实是人们尝试过的方法。但想想看——你补充的那些零并没有任何语义信息，网络却必须处理它们。更严重的是，如果你设定最大长度为20个词，那21个词的句子就会丢失信息。这是一种不够优雅的妥协。",
+              "en": "This is indeed something people have tried. But think about it — those padded zeros carry no semantic information, yet the network must process them. Worse, if you set the maximum length to 20 words, a 21-word sentence loses information. It's an inelegant compromise."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-window",
+          "text": {
+            "zh": "用一个固定大小的窗口滑过句子，每次只看一小部分",
+            "en": "Slide a fixed-size window across the sentence, looking at a small portion at a time"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个想法非常有意思，它已经触及了一个关键直觉——也许我们不需要同时看到整个序列，而是可以一步一步地处理。但滑动窗口有一个问题：窗口之间是独立的，网络在看第三个窗口时，已经「忘记」了第一个窗口里的内容。我们需要某种方式把信息从一步传递到下一步。",
+              "en": "That idea is very interesting — it touches on a key intuition. Maybe we don't need to see the entire sequence at once, but can process it step by step. However, sliding windows have a problem: the windows are independent. When the network looks at the third window, it has already 「forgotten」 what was in the first. We need some way to pass information from one step to the next."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-statistics",
+          "text": {
+            "zh": "统计每个词出现的次数，把句子变成固定长度的词频向量",
+            "en": "Count how often each word appears and turn the sentence into a fixed-length word frequency vector"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "词袋模型——这在信息检索中确实很有用。但它完全忽略了顺序。「狗咬人」和「人咬狗」在词频统计里是一模一样的，但意思天差地别。正如我们一开始说的，顺序本身承载着意义。丢弃顺序信息，就是丢弃了语言最本质的特征之一。",
+              "en": "The bag-of-words model — it's indeed useful in information retrieval. But it completely ignores order. 「Dog bites man」 and 「man bites dog」 look identical in word frequency counts, yet they mean entirely different things. As we said at the start, order itself carries meaning. Discarding order information means discarding one of the most fundamental features of language."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们看到了问题所在。固定大小的网络处理可变长度的序列，总会面临某种妥协。要么丢失信息，要么忽略顺序，要么浪费计算资源。我们需要一种全新的思路。",
+        "en": "You see the problem. A fixed-size network handling variable-length sequences always faces some kind of compromise. Either losing information, ignoring order, or wasting computational resources. We need an entirely new way of thinking."
+      },
+      "leadsTo": "temporal-dependency"
+    },
+    {
+      "id": "temporal-dependency",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我换一个角度来说明这个问题。想象你在读一个故事。故事开头说「小明养了一只猫」，三段之后提到「它跳上了桌子」，你立刻知道「它」指的是那只猫。你的大脑保持着对前文的记忆，并用这个记忆来理解当前的文字。这就是{时间依赖性}：序列中较早的元素会影响较晚元素的含义。",
+        "en": "Let me explain this from a different angle. Imagine you're reading a story. It starts with 「Xiao Ming has a cat」, and three paragraphs later mentions 「it jumped onto the table」 — you immediately know 「it」 refers to the cat. Your brain maintains a memory of earlier text and uses that memory to understand what you're reading now. This is {temporal dependency} — earlier elements in a sequence affect the meaning of later ones."
+      },
+      "terms": {
+        "时间依赖性": "term-temporal-dependency",
+        "temporal dependency": "term-temporal-dependency"
+      },
+      "leadsTo": "memory-need"
+    },
+    {
+      "id": "memory-need",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以我们真正需要的是什么？我们需要一个网络，它能一步一步地处理输入。看到第一个词，就处理它；看到第二个词，就结合对第一个词的记忆来处理；看到第三个词，再结合前两个词的记忆来处理。这就像你读一本书，逐字逐句地读，同时在脑海中积累着对整个故事的理解。",
+        "en": "So what do we truly need? We need a network that can process input step by step — see the first word, process it; see the second word, process it while remembering the first. See the third word, process it while remembering the first two. Just like reading a book — word by word, sentence by sentence, while building an understanding of the whole story in your mind."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "如果你要设计一个能「记住」之前输入的神经网络，最直观的方式是什么？",
+        "en": "If you were to design a neural network that can 「remember」 previous inputs, what would be the most intuitive approach?"
+      },
+      "choices": [
+        {
+          "id": "choice-store-all",
+          "text": {
+            "zh": "把之前所有的输入都存储起来，每次都和当前输入一起送入网络",
+            "en": "Store all previous inputs and feed them all together with the current input each time"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "直觉上这是最直接的方案——但你会遇到我们之前说的问题：输入的数量会不断增长。处理第100个词时，你需要把前99个词全部输入网络，这在计算上是非常昂贵的。我们需要一种更紧凑的方式来总结过去的信息。",
+              "en": "Intuitively this is the most direct approach — but you'd run into the problem we mentioned: the input keeps growing. When processing the 100th word, you'd need to feed all 99 previous words into the network, which is computationally very expensive. We need a more compact way to summarize past information."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-summary",
+          "text": {
+            "zh": "维护一个「摘要」——每一步都更新一个固定大小的状态来总结已经看过的内容",
+            "en": "Maintain a 「summary」 — update a fixed-size state at each step to summarize what has been seen so far"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的直觉非常好，这正是循环神经网络的核心思想。它维护一个固定大小的「隐藏状态」，每处理一个新的输入，就更新这个状态。这个状态就像一个不断被改写的笔记，试图用有限的空间记住所有重要的信息。下节课我们就会详细讨论这个想法。",
+              "en": "Your intuition is excellent — that's precisely the core idea of recurrent neural networks. Maintain a fixed-size 「hidden state」 and update it each time a new input is processed. This state is like a notebook that's constantly being rewritten — it tries to remember all important information within limited space. We'll discuss this idea in detail next lesson."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-connect-back",
+          "text": {
+            "zh": "让网络的输出反过来连接到自己的输入——形成一个循环",
+            "en": "Connect the network's output back to its own input — forming a loop"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "有意思——你想到了「循环」这个关键概念。如果网络的输出能反馈到输入，那它在处理下一步时就自然携带了上一步的信息。这个简单而优美的想法正是循环神经网络的架构基础。我们下节课会把这个想法变成具体的数学公式。",
+              "en": "Interesting — you've hit on the key concept of 「recurrence」. If the network's output can feed back into its input, then it naturally carries information from the previous step when processing the next one. This simple yet elegant idea is precisely the architectural foundation of recurrent neural networks. Next lesson, we'll turn this idea into concrete mathematical formulas."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "语言是思维的窗口。如果我们能教会机器理解语言，也许就离理解思维更近了一步。但要理解语言，首先要理解时间。语言中的每一个词都不是孤立的，它与前后的词都有着千丝万缕的联系。",
+        "en": "Language is a window into thought — if we can teach machines to understand language, perhaps we're one step closer to understanding thinking itself. But to understand language, we must first understand time. No word in language stands alone — each is intricately connected to the words before and after it."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "序列数据（语言、音乐、时间序列）的核心特征是：顺序本身承载着意义。前馈神经网络的固定输入大小无法处理可变长度的序列，也无法捕捉时间依赖性。处理序列需要一种具有「记忆」能力的新型网络架构。",
+        "en": "The core feature of sequential data (language, music, time series) is that order itself carries meaning. Feedforward networks' fixed input size cannot handle variable-length sequences or capture temporal dependencies. Processing sequences requires a new kind of network architecture with 「memory」 capability."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下节课，我会带你们看看一种叫做「循环神经网络」的架构。它的想法非常简洁：在网络中加入一个循环连接，让信息可以从一个时间步流向下一个时间步。这就好像给网络装上了一个记忆装置。我们会一起看看它是如何运作的，以及它究竟能记住多少。",
+        "en": "Next lesson, I'll show you an architecture called the 「recurrent neural network」. The idea is very clean — add a recurrent connection to the network so information can flow from one time step to the next. It's like fitting the network with a memory device. We'll see how it works, and — how much it can remember."
+      },
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我想让你们带走一个想法：时间不仅仅是数据的排列方式，时间本身就是信息。当我们忽略时间，就像是在读一本书的时候把所有页面撕下来打乱。字还是那些字，但故事已经消失了。",
+        "en": "I want you to take away one thought today: time is not merely how data is arranged — time is information itself. Ignoring time is like tearing all the pages out of a book and shuffling them — the words are the same, but the story has vanished."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "时间依赖性：序列中较早的元素会影响较晚元素的含义。例如，「它」的指代需要根据前文来确定。处理序列的关键挑战是：如何在保持固定计算资源的同时，记住任意长度的历史信息。",
+        "en": "Temporal dependency: earlier elements in a sequence affect the meaning of later ones. For example, what 「it」 refers to depends on the preceding context. The key challenge of processing sequences: how to remember arbitrarily long history while maintaining fixed computational resources."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "本吉奥教授合上了他的笔记本，朝你微微点头。走向门口时，他回头看了一眼屏幕上那些交错的连线，轻声说：「语言的美妙之处在于——每一个词都是通向下一个词的桥梁，永远指向前方。」屏幕缓缓暗了下来，教室重新沉入深蓝色的宁静中。",
+        "en": "Prof. Bengio closes his notebook and gives you a slight nod. As he walks toward the door, he glances back at the crisscrossing lines on the screen and says softly: 「The beauty of language is that no word is a destination — each is a bridge to the next」. The screens dim slowly, and the classroom sinks back into its deep blue tranquility."
+      }
+    }
+  ]
+}

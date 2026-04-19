@@ -1,0 +1,281 @@
+{
+  "id": "lesson-05",
+  "course": "alignment-safety",
+  "title": {
+    "zh": "伦理困境",
+    "en": "Ethical Dilemmas"
+  },
+  "knowledgePoint": {
+    "zh": "强大AI面临的伦理困境——偏见、公平、自主与双重用途",
+    "en": "The ethical landscape of powerful AI — bias, fairness, autonomy, dual-use"
+  },
+  "teacher": "prof-russell",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你想起那天罗素教授没有站在讲台后面，而是搬了一把椅子坐到了教室中间。他说今天不是讲座，更像是一场对话。他的第一个问题就让教室沉默了：「如果一个AI系统在招聘中歧视了某个群体，但它从来没有被告知过任何关于群体的信息——这算歧视吗？」",
+    "en": "You recall Prof. Russell not standing behind the lectern that day, but pulling a chair to the center of the classroom. He said today wasn't a lecture, more of a conversation. His very first question silenced the room: 「If an AI system discriminates against a certain group in hiring, but it was never given any information about group membership — is that discrimination?」"
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，但脑海中的问题比上课前更多了。公平有多种定义，而且它们互相矛盾。责任应该归谁？权力在集中。这些问题没有简洁的答案——但罗素教授说，能清楚地提出这些问题，本身就是对齐研究的一部分。",
+    "en": "You close your notebook, but you have more questions in your head than before class. Fairness has multiple definitions, and they contradict each other. Who should be held responsible? Power is concentrating. None of these questions have neat answers — but Prof. Russell said that being able to articulate them clearly is itself part of alignment research."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室布局不太一样。椅子被围成了一个不完整的圆圈，讲台被推到了角落里。罗素教授搬了一把椅子坐在圆圈的缺口处，手上没有平板，也没有白板笔，只有一杯水。他看起来更加放松，但你知道这种放松是刻意的。今天的话题需要对话，而非讲座。",
+        "en": "Today's classroom is arranged differently. Chairs form an incomplete circle, the lectern pushed to a corner. Prof. Russell sits on a chair at the gap of the circle, no tablet, no whiteboard marker — just a glass of water. He looks more relaxed, but you sense the relaxation is deliberate — today's topic calls for dialogue, not lecture."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "前几节课我们讨论的都是技术问题：目标函数、奖励模型、幻觉。今天我想把视角拉远一些。当AI系统足够强大，被部署在影响数十亿人的场景中，比如招聘、贷款、医疗和司法时，技术问题就会扩展成伦理问题。让我从一个真实的案例开始。",
+        "en": "In previous lessons we discussed technical problems: objective functions, reward models, hallucination. Today I want to zoom out. When AI systems are powerful enough to be deployed in scenarios affecting billions — hiring, lending, healthcare, criminal justice — technical problems expand into ethical ones. Let me start with a real case."
+      },
+      "leadsTo": "bias-example"
+    },
+    {
+      "id": "bias-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2018年，亚马逊被曝光了一件事：他们内部开发了一个AI招聘工具，用来筛选简历。这个工具是在过去十年的招聘数据上训练的。问题是，过去十年中，科技行业的大多数被录用者是男性。于是模型学会了一件事：含有「女性」相关词汇的简历得分较低。模型从来没有被告知要歧视女性，但训练数据中隐含的模式被忠实地学到了。这就是{AI偏见}。",
+        "en": "In 2018, Amazon was exposed for something: they had internally developed an AI recruiting tool to screen resumes. This tool was trained on a decade of past hiring data. The problem — over the past decade, the majority of hires in tech were men. So the model learned something: resumes containing words associated with 「women」 scored lower. The model was never told to discriminate against women — but the patterns implicit in the training data were faithfully learned. This is {AI bias}."
+      },
+      "terms": {
+        "AI偏见": "term-ai-bias",
+        "AI bias": "term-ai-bias"
+      },
+      "leadsTo": "bias-depth"
+    },
+    {
+      "id": "bias-depth",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这个案例揭示了一个深层结构。AI模型是从历史数据中学习的，而历史数据反映了历史上的不平等。如果过去的社会有偏见，数据就有偏见；数据有偏见，模型就有偏见；模型有偏见，它做出的决策就会延续甚至放大这些偏见。AI变成了一面镜子——它忠实地映射出社会中已有的不公正，然后把它们固化到算法中。",
+        "en": "This case reveals a deep structure. AI models learn from historical data, and historical data reflects historical inequality. If past society had biases, the data has biases; if the data has biases, the model has biases; if the model has biases, its decisions perpetuate and even amplify those biases. AI becomes a mirror — faithfully reflecting existing social injustices and then cementing them into algorithms."
+      },
+      "leadsTo": "fairness-intro"
+    },
+    {
+      "id": "fairness-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "有人说：「那我们就让AI公平。」好的——什么叫公平？这看起来是个简单的问题，但它可能是整个AI伦理中最复杂的问题之一。因为{公平性}有多种数学定义，而且它们互相矛盾。",
+        "en": "Someone says: 「Then let's just make AI fair」. Alright — what does fair mean? It seems like a simple question, but it may be one of the most complex problems in all of AI ethics. Because {fairness} has multiple mathematical definitions, and they contradict each other."
+      },
+      "terms": {
+        "公平性": "term-fairness",
+        "fairness": "term-fairness"
+      },
+      "leadsTo": "fairness-definitions"
+    },
+    {
+      "id": "fairness-definitions",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们举三种定义。第一种是「每个群体被录用的比例应该相同」，这叫统计平等。第二种是「在同等条件下，不同群体的录用概率应该相同」，这叫条件平等。第三种是「模型的预测准确率在所有群体中应该相同」，这叫均等化的预测准确率。听起来都很合理，对吧？但数学上可以证明，在大多数情况下，这三种定义不可能同时满足。",
+        "en": "Let me give you three definitions. First: 「The proportion hired should be the same across groups」 — that's statistical parity. Second: 「Given equal qualifications, hiring probability should be the same across groups」 — that's conditional parity. Third: 「The model's prediction accuracy should be the same across all groups」 — that's equalized predictive accuracy. They all sound reasonable, right? But mathematically it can be proven that in most cases, these three definitions cannot be simultaneously satisfied."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "公平性有多种互相矛盾的定义。当我们设计AI系统时，应该怎么选择？",
+        "en": "Fairness has multiple contradictory definitions. When designing AI systems, how should we choose?"
+      },
+      "choices": [
+        {
+          "id": "context-dependent",
+          "text": {
+            "zh": "取决于具体场景——不同应用需要不同的公平定义",
+            "en": "It depends on context — different applications need different fairness definitions"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是目前学界和业界的共识。招聘系统可能更强调条件平等，即同等能力应有同等机会。医疗诊断则可能更看重预测准确率的均等，模型不应对某个群体的诊断更不准确。然而，这恰恰意味着公平本身是一个价值判断。那么，谁来做这个判断？是工程师，公司高管，还是被影响的社区？这个问题本身，就构成了一个伦理困境。",
+              "en": "This is the current consensus in academia and industry. A hiring system might emphasize conditional parity — equal ability should mean equal opportunity. Medical diagnosis might emphasize equalized accuracy — the model shouldn't be less accurate for certain groups. But this means fairness isn't a technical decision; it's a value judgment. Who makes that judgment? Engineers? Corporate executives? Affected communities? That question itself is an ethical dilemma."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "prioritize-harm",
+          "text": {
+            "zh": "优先减少伤害——选择那个对弱势群体造成最少伤害的定义",
+            "en": "Prioritize harm reduction — choose the definition that causes least harm to vulnerable groups"
+          },
+          "tag": "ethical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一种受到罗尔斯正义论启发的思路——优先保护最不利的群体。从伦理学角度看，这有很强的吸引力。但在实践中，「减少伤害」本身也是模糊的。降低某个群体的误判率可能意味着提高另一个群体的误判率。你减少了对A群体的伤害，可能增加了对B群体的伤害。而且，谁来定义「弱势群体」？在不同的语境下，同一个群体可能既是优势方也是弱势方。这些判断无法脱离社会语境。",
+              "en": "This is an approach inspired by Rawlsian justice theory — prioritizing protection of the least advantaged group. From an ethics standpoint, it's very compelling. But in practice, 「reducing harm」 is itself ambiguous. Lowering the false judgment rate for one group may mean raising it for another. You reduce harm to Group A, possibly increasing harm to Group B. And who defines 「vulnerable group」? In different contexts, the same group may be both advantaged and disadvantaged. These judgments cannot be separated from social context."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "transparent-tradeoff",
+          "text": {
+            "zh": "把取舍透明化——让公众了解选择了哪种定义以及为什么",
+            "en": "Make tradeoffs transparent — let the public know which definition was chosen and why"
+          },
+          "tag": "institutional",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "我认为这是最有建设性的回答。既然数学已经证明，我们无法同时满足所有公平定义，那么至少要做到透明。我们可以这样说明：「我们选择了定义X，因为在这个场景下Y原因。我们意识到这意味着Z方面的取舍。」这样一来，公众就能监督、讨论甚至提出挑战。这远比假装系统是「公平的」，却隐藏其具体含义要好得多。一个藏在黑箱里的公平判断，算不上真正的公平。",
+              "en": "I think this is the most constructive answer. If we can't satisfy all fairness definitions simultaneously — and math tells us we can't — then at minimum we should be transparent. 「We chose definition X, because in this context, for Y reason. We recognize this means a tradeoff in Z」. This way the public can monitor, discuss, and challenge. This is far better than pretending the system is 「fair」 while hiding the specifics. Fairness judgments inside a black box are not truly fair."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "公平问题之后，让我们谈谈另一个维度：责任。当一辆自动驾驶汽车撞了人，谁负责？开发算法的工程师？做出产品决策的公司高管？审批上路的监管机构？还是那个没有注意到路况变化的——等等，根本没有人类驾驶员。传统的责任框架建立在人类决策者的基础上，而AI正在瓦解这个基础。",
+        "en": "After fairness, let's discuss another dimension: responsibility. When a self-driving car hits someone, who is responsible? The engineer who developed the algorithm? The corporate executive who made the product decision? The regulator who approved it for the road? Or the person who didn't notice the road conditions changing — wait, there is no human driver. Traditional accountability frameworks are built on human decision-makers, and AI is eroding that foundation."
+      },
+      "leadsTo": "dual-use"
+    },
+    {
+      "id": "dual-use",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有一个日益严峻的问题：{双重用途}。同一个AI技术可以被用于善意目的，也可以被用于恶意目的。语言模型可以帮助写作，也可以生成大规模虚假信息。图像生成可以创造艺术，也可以制造深度伪造。蛋白质结构预测可以加速药物研发，也可以被用于设计生物武器。技术本身是中性的——但当它足够强大时，中性已经不够安全。",
+        "en": "There's another increasingly urgent problem: {dual-use}. The same AI technology can be used for benign purposes or malicious ones. Language models can help with writing or generate massive disinformation. Image generation can create art or produce deepfakes. Protein structure prediction can accelerate drug development or be used to design bioweapons. Technology itself is neutral — but when it's powerful enough, neutrality is no longer safe."
+      },
+      "terms": {
+        "双重用途": "term-dual-use",
+        "dual-use": "term-dual-use"
+      },
+      "leadsTo": "power-concentration"
+    },
+    {
+      "id": "power-concentration",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "最后，我想提出一个结构性的担忧。训练最强大的AI模型需要数十亿美元的计算资源，全世界只有少数几家公司有能力做这件事。这意味着AI的权力正在高度集中。而权力集中从来都不是一件安全的事，无论这些公司的意图多么善良。如果少数几家公司的决策塑造了全球数十亿人使用的AI系统的行为，那么这些决策就不仅仅是商业决策了，它们本质上是政治决策。",
+        "en": "Finally, let me point out a structural concern. Training the most powerful AI models requires billions of dollars in computing resources. Only a handful of companies worldwide can afford this. This means AI power is concentrating intensely. And concentrated power is never a safe thing — no matter how benign these companies' intentions. If a few companies' decisions shape the behavior of AI systems used by billions worldwide, then these are not merely business decisions — they are political decisions."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "AI技术的双重用途问题——同一种技术既可以救人也可以害人。你觉得应该如何应对？",
+        "en": "The dual-use problem of AI technology — the same tech can save lives or cause harm. How do you think we should respond?"
+      },
+      "choices": [
+        {
+          "id": "restrict-access",
+          "text": {
+            "zh": "限制访问——不公开发布最强大模型的权重和代码",
+            "en": "Restrict access — don't publicly release weights and code of the most powerful models"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "目前很多前沿实验室都采取这种做法，例如GPT-4的权重就没有公开。但这个策略本身存在争议。限制访问确实能降低恶意使用的风险，却也把权力集中到了少数公司手中。从长远来看，技术扩散几乎是不可避免的；今天最先进的技术，几年后很可能就会成为开源社区的常规工具。所以，限制访问只能算是一种临时措施，无法作为长期的策略。",
+              "en": "This is what many frontier labs currently do — GPT-4's weights weren't released. But this approach is controversial. Restricting access does reduce malicious use risk, but it also concentrates power among a few companies. And in the long run, technology diffusion is nearly inevitable — today's most advanced tech becomes open-source community standard tools within a few years. Access restriction is a temporary measure, not a long-term strategy."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "defense-measures",
+          "text": {
+            "zh": "发展防御技术，比如深伪检测、虚假信息溯源",
+            "en": "Develop defensive technologies — like deepfake detection, misinformation tracing"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "攻防并行确实是务实的策略。如果AI可以生成虚假信息，那AI也应该能检测虚假信息。如果AI可以制造深伪视频，那AI也应该能识别深伪视频。但历史告诉我们，在攻防竞赛中，攻击方通常有先发优势。制造一个假视频比检测它要容易得多。防御技术是必要的，但寄希望于防御永远领先于攻击是天真的。",
+              "en": "Parallel offense-defense development is indeed a pragmatic strategy. If AI can generate misinformation, then AI should also be able to detect it. If AI can create deepfakes, then AI should be able to identify them. But history tells us that in offense-defense races, the attacker usually has first-mover advantage. Creating a fake video is much easier than detecting one. Defensive tech is necessary, but hoping defense will always stay ahead of offense is naive."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "international-governance",
+          "text": {
+            "zh": "需要国际治理框架，像核不扩散条约那样管理AI的危险应用",
+            "en": "Need an international governance framework — manage dangerous AI applications like the Nuclear Non-Proliferation Treaty"
+          },
+          "tag": "institutional",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个类比很有启发性。核技术和AI有很多相似之处：巨大的潜在好处、同样巨大的潜在风险、需要大规模资源所以天然集中在少数行为者手中。核不扩散条约远非完美，但它至少建立了一个讨论框架和一套基本规范。AI也需要类似的东西。2023年已经有了一些尝试——布莱切利宣言等等。但进展太慢了。技术以月为单位进步，而治理以年为单位推进。这个时差是危险的。",
+              "en": "That analogy is very illuminating. Nuclear technology and AI share many parallels: enormous potential benefits, equally enormous potential risks, require massive resources so naturally concentrate among a few actors. The Non-Proliferation Treaty is far from perfect, but it at least established a discussion framework and basic norms. AI needs something similar. 2023 saw some attempts — the Bletchley Declaration and others. But progress is too slow. Technology advances in months; governance advances in years. That time gap is dangerous."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（靠在椅背上，双手交叉）你们注意到了吗——今天我们讨论的每一个问题都没有简洁的答案。公平的定义互相矛盾。责任框架正在崩塌。双重用途无法靠技术手段单独解决。权力正在集中。",
+        "en": "(Leans back in his chair, arms crossed) Did you notice — every question we discussed today has no neat answer. Fairness definitions contradict each other. Accountability frameworks are crumbling. Dual-use can't be solved by technology alone. Power is concentrating."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "AI伦理的四个维度：(1) 偏见：历史数据中的不平等会被AI学习并固化。(2) 公平：多种数学定义互相矛盾，无法同时满足。(3) 双重用途：强大技术同时带来巨大好处和巨大风险。(4) 权力集中：训练成本导致AI权力高度集中于少数公司。核心认识在于，这些伦理问题不能仅靠技术解决，它们需要透明度、社会对话和治理框架。",
+        "en": "Four dimensions of AI ethics: (1) Bias — inequality in historical data is learned and cemented by AI (2) Fairness — multiple mathematical definitions contradict each other, can't be satisfied simultaneously (3) Dual-use — powerful tech brings both huge benefits and huge risks (4) Power concentration — training costs concentrate AI power among a few companies. Core insight: these ethical issues can't be solved by technology alone; they need transparency, social dialogue, and governance frameworks."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "这就是为什么我说对齐问题远不止是技术问题。即使我们解决了所有的技术挑战，写出完美的目标函数，训练出完美校准的模型，消除了所有幻觉，我们仍然要面对这些根本性的伦理困境。技术给了我们能力，但能力本身不会告诉我们该做什么。下节课是最后一课。我们要讨论一个很多人不愿意面对的问题：如果AI真的变得比我们聪明，我们还能控制它吗？",
+        "en": "This is why I say the alignment problem is more than technical. Even if we solved every technical challenge — wrote the perfect objective function, trained a perfectly calibrated model, eliminated all hallucination — we would still face these fundamental ethical dilemmas. Technology gives us capability, but capability alone doesn't tell you what to do. Next lesson is the last. We'll discuss a question many people don't want to face: if AI truly becomes smarter than us — can we still control it?"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "罗素教授站起来，把椅子推回了原来的位置。他离开教室前，在门口转过身来说：「以后每当你使用一个AI系统时，问自己三个问题：谁训练了它？它为谁优化？谁承担后果？」他走了。圆圈形的座位还没有被恢复成原来的排列，你看着那个空出来的缺口，想到了这门课还剩下最后一堂。那个关于控制的问题，你其实已经在心里酝酿了很久。",
+        "en": "Prof. Russell stands and pushes his chair back to its place. Before leaving, he turns at the door and says: 「From now on, every time you use an AI system, ask yourself three questions: Who trained it? Whose interests does it optimize for? Who bears the consequences?」 He leaves. The circle of seats hasn't been rearranged back to rows yet. You look at the empty gap and think about the one lesson remaining. That question — about control — you've been turning it over in your mind for a while now."
+      }
+    }
+  ]
+}

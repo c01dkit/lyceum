@@ -1,0 +1,365 @@
+{
+  "id": "lesson-06",
+  "course": "neural-revival",
+  "title": {
+    "zh": "新的黎明",
+    "en": "A New Dawn"
+  },
+  "knowledgePoint": {
+    "zh": "1988年前后神经网络的现有成就与未来展望",
+    "en": "Neural network achievements and future prospects as of around 1988"
+  },
+  "teacher": "prof-rumelhart",
+  "estimatedMinutes": 11,
+  "previousLesson": "lesson-05",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了最后一节课。鲁梅尔哈特教授那天穿了一件新衬衫，好像是特意的。他站在讲台前，没有胶片，没有道具，双手背在身后，脸上带着一种你之前没见过的神情，既自豪又谦逊。",
+    "en": "You close your eyes, and your thoughts drift back to the final lesson. Prof. Rumelhart wore a new shirt that day — as if on purpose. He stood at the lectern, no transparencies, no props, hands behind his back, with an expression you hadn't seen before — both proud and humble."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。鲁梅尔哈特教授最后的话仍在回响：寒冬已经过去，春天已经到来。但他也说过，前方还有很长的路。你低头看了看笔记本上记满的六节课的内容——从寒冬的坚守到新黎明的希望。这段旅程，才刚刚开始。",
+    "en": "You return to the present. Prof. Rumelhart's final words still echo: the winter has passed, spring has arrived. But he also said the road ahead is long. You look down at your notebook filled with six lessons' worth of notes — from perseverance through the winter to the hope of a new dawn. This journey has only just begun."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "最后一节课。教室里的气氛有些不同——同学们之间多了一种默契，像是一起经历了什么重要的事情。鲁梅尔哈特教授准时走进来，和之前一样微笑着环视了一圈。但今天他没有走向投影仪或白板，而是直接面对你们站定了。",
+        "en": "The final lesson. The atmosphere in the classroom is different — there's an unspoken understanding among the students, as if you've all been through something important together. Prof. Rumelhart walks in right on time, scanning the room with his usual smile. But today he doesn't head for the projector or whiteboard. Instead, he stands facing you directly."
+      },
+      "leadsTo": "opening-dialog"
+    },
+    {
+      "id": "opening-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天是最后一节课。我不想再讲新的理论——我想和你们聊聊我们走到了哪里，以及前方还有什么。过去几节课，我们一起了解了{反向传播}、{梯度下降}、多层网络的力量和{分布式表示}。这些工具已经让我们做出了一些真正令人兴奋的成果。",
+        "en": "Today is our final class. I don't want to introduce new theory — I want to talk with you about where we've arrived and what lies ahead. Over the past few lessons, we've explored {backpropagation}, {gradient descent}, the power of multi-layer networks, and {distributed representations}. These tools have already allowed us to produce some truly exciting results."
+      },
+      "terms": {
+        "反向传播": "term-backpropagation",
+        "梯度下降": "term-gradient-descent",
+        "分布式表示": "term-distributed-representation",
+        "backpropagation": "term-backpropagation",
+        "gradient descent": "term-gradient-descent",
+        "distributed representations": "term-distributed-representation"
+      },
+      "leadsTo": "nettalk"
+    },
+    {
+      "id": "nettalk",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我先说一个让我特别骄傲的例子：NETtalk。这是Sejnowski和Rosenberg在1987年开发的一个神经网络，它能把英文文本转换成语音。你给它一段文字，它就能读出来。这可不是简单的录音回放，而是真正的从文字到声音的映射。而且它学会这件事的方式，并非依赖人类编写发音规则，它是自己从数据中学到的。",
+        "en": "Let me start with an example that makes me particularly proud: NETtalk. This is a neural network developed by Sejnowski and Rosenberg in 1987 — it can convert English text into speech. You give it text, and it reads it aloud. Not recorded playback, but a genuine text-to-sound mapping. And the way it learned to do this wasn't through human-written pronunciation rules — it learned on its own from data."
+      },
+      "leadsTo": "nettalk-learning"
+    },
+    {
+      "id": "nettalk-learning",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "NETtalk刚开始训练的时候，输出的是一堆噪音——就像婴儿的咿呀学语。但随着训练的进行，它的发音越来越清晰，越来越接近正确的英语。看着一个网络从零开始学会「说话」，那种感觉……真的很像看着一个孩子成长。",
+        "en": "When NETtalk first started training, its output was a jumble of noise — like a baby's babbling. But as training progressed, its pronunciation became clearer and closer to correct English. Watching a network learn to 「speak」 from scratch... it really felt like watching a child grow."
+      },
+      "leadsTo": "other-achievements"
+    },
+    {
+      "id": "other-achievements",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "除了NETtalk，我们还看到了其他令人鼓舞的成果。神经网络已经能够识别手写数字，在简单的模式分类任务上表现出色，甚至在一些控制问题上，比如平衡一根倒立的杆子——也取得了成功。这些成果虽然看起来不大，但别忘了，就在几年前，大多数人还认为这个方向是死路一条。",
+        "en": "Besides NETtalk, we've seen other encouraging results. Neural networks can now recognize handwritten digits, perform excellently on simple pattern classification tasks, and have even succeeded in some control problems — like balancing an inverted pendulum. These achievements may seem modest, but don't forget, just a few years ago most people thought this direction was a dead end."
+      },
+      "leadsTo": "honest-assessment"
+    },
+    {
+      "id": "honest-assessment",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但我必须对你们诚实。目前我们面临的局限是真实的。我们使用的网络规模还很小——通常只有几百个神经元，几层。训练一个像NETtalk这样的网络可能需要几个小时甚至几天。现在的计算机还不够强大，无法支撑更大规模的网络。",
+        "en": "But I must be honest with you. The limitations we face right now are real. The networks we use are still very small — usually just a few hundred neurons, a few layers. Training a network like NETtalk can take hours or even days. Current computers aren't powerful enough to support larger-scale networks."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得目前神经网络面临的最大障碍是什么？",
+        "en": "What do you think is the biggest obstacle neural networks face right now?"
+      },
+      "choices": [
+        {
+          "id": "compute-power",
+          "text": {
+            "zh": "计算能力不足——网络太小，训练太慢",
+            "en": "Insufficient computing power — networks are too small, training is too slow"
+          },
+          "tag": "hardware-focused",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这可能是我们最直接的瓶颈。我们的理论工具已经就位，反向传播、梯度下降都在工作。但我们被限制在非常小的网络规模上。如果有一天计算能力提高一千倍、一万倍，我们能训练的网络将完全不同。也许那时候，我们能处理真正复杂的任务，比如图像、语言和推理。这是一个值得期待的未来。",
+              "en": "This may be our most direct bottleneck. Our theoretical tools are in place — backpropagation and gradient descent both work. But we're constrained to very small network sizes. If someday computing power increases a thousandfold, ten thousandfold, the networks we could train would be entirely different. Perhaps then we could tackle truly complex tasks — images, language, reasoning. That's a future worth looking forward to."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "theory-gaps",
+          "text": {
+            "zh": "理论理解不够深——我们还不完全明白为什么反向传播能工作得这么好",
+            "en": "Not enough theoretical understanding — we don't fully understand why backpropagation works so well"
+          },
+          "tag": "theory-focused",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了一个让我夜不能寐的问题。反向传播在实践中效果出人意料地好，但我们的理论解释还远远不够。为什么局部最小值的问题在实际中不那么严重？网络学到的内部表示意味着什么？这些问题的答案将决定我们能走多远。工程上的成功必须有理论的支撑，否则我们只是在黑暗中摸索。",
+              "en": "You've touched on something that keeps me up at night. Backpropagation works surprisingly well in practice, but our theoretical understanding is still far from sufficient. Why is the local minima problem not as severe in practice? What do the internal representations the network learns mean? The answers to these questions will determine how far we can go. Engineering success must be backed by theory, otherwise we're just groping in the dark."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "data-scarcity",
+          "text": {
+            "zh": "训练数据不够丰富——很多任务缺乏大量标注好的数据",
+            "en": "Not enough training data — many tasks lack large amounts of labeled data"
+          },
+          "tag": "data-focused",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常实际的问题。神经网络的学习能力依赖于数据——见的例子越多，学得越好。但收集和标注大量数据是昂贵和耗时的。目前我们能用的训练集通常只有几千到几万个样本。如果未来我们有办法收集数十万、数百万的训练样本，网络的表现一定会有质的飞跃。",
+              "en": "That's a very practical concern. Neural networks' learning ability depends on data — the more examples they see, the better they learn. But collecting and labeling large amounts of data is expensive and time-consuming. Currently, our training sets typically have only thousands to tens of thousands of samples. If in the future we can collect hundreds of thousands or millions of training samples, network performance would surely take a qualitative leap."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "说实话，所有这些障碍都是真实的。计算能力、理论理解、数据规模，它们互相制约。但我乐观的原因在于：我们已经证明了核心思想是可行的。反向传播能训练多层网络，多层网络能学会复杂的模式。剩下的问题是规模和优化，这些是工程问题，而非原理上的障碍。",
+        "en": "Honestly, all these obstacles are real. Computing power, theoretical understanding, data scale — they constrain each other. But the reason I'm optimistic is: we've already proven the core ideas work. Backpropagation can train multi-layer networks, and multi-layer networks can learn complex patterns. The remaining problems are about scale and optimization — these are engineering problems, not fundamental ones."
+      },
+      "leadsTo": "speculation"
+    },
+    {
+      "id": "speculation",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "让我大胆猜测一下未来。如果有一天我们能训练拥有数百万个神经元的网络，如果我们有足够的数据让它们学习，也许神经网络能够理解图像。它们将不只是识别手写数字，而是真正「看懂」一张照片里发生了什么。也许它们能处理自然语言，不只是文本转语音，而是真正理解句子的含义。",
+        "en": "Let me speculate boldly about the future. If someday we could train networks with millions of neurons... if we had enough data for them to learn from... perhaps neural networks could understand images — not just recognizing handwritten digits, but truly 「seeing」 what's happening in a photograph. Perhaps they could process natural language — not just text-to-speech, but truly understanding the meaning of sentences."
+      },
+      "leadsTo": "speculation-2"
+    },
+    {
+      "id": "speculation-2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "甚至……也许有一天，多层网络能做某种形式的推理。我知道这听起来很大胆——推理一直被认为是符号系统的专属领域。但如果我们的网络能学会足够复杂的内部表示，谁说它不能从一组事实中推导出新的结论？我不敢断言，但我觉得这种可能性是存在的。",
+        "en": "Even... perhaps someday multi-layer networks could perform some form of reasoning. I know that sounds bold — reasoning has always been considered the exclusive domain of symbolic systems. But if our networks can learn sufficiently complex internal representations, who's to say they couldn't derive new conclusions from a set of facts? I can't say for certain, but I believe the possibility exists."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "1988年的现状：NETtalk能将文本转为语音，网络能识别手写数字和简单模式。主要瓶颈：计算能力有限（网络只有几百个神经元）、训练数据不足、理论理解欠缺。鲁梅尔哈特的展望：如果规模扩大，神经网络也许能处理图像理解、自然语言，甚至推理。",
+        "en": "State in 1988: NETtalk can convert text to speech, networks can recognize handwritten digits and simple patterns. Main bottlenecks: limited computing power (networks with only hundreds of neurons), insufficient training data, incomplete theoretical understanding. Rumelhart's outlook: if scaled up, neural networks might handle image understanding, natural language, even reasoning."
+      },
+      "category": "core-concept",
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "如果你现在可以用神经网络来尝试解决任何一个问题，你最想做什么？",
+        "en": "If you could use neural networks to try solving any one problem right now, what would you most want to do?"
+      },
+      "choices": [
+        {
+          "id": "vision",
+          "text": {
+            "zh": "让网络学会「看」——识别照片中的物体、场景和动作",
+            "en": "Teach a network to 「see」 — recognize objects, scenes, and actions in photographs"
+          },
+          "tag": "perception",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "视觉是一个令人着迷的方向。人类大脑皮层中有大量区域专门处理视觉信息。这说明「看」是一件极其复杂的事情。目前我们的网络只能处理非常简单的图像，但我相信多层网络特别适合这类任务。也许需要一种特殊的网络结构——让不同的神经元专注于图像的不同局部区域。这还是一个开放的研究问题。",
+              "en": "Vision is a fascinating direction. A huge portion of the human brain cortex is dedicated to processing visual information — which tells you how incredibly complex 「seeing」 really is. Currently our networks can only handle very simple images, but I believe multi-layer networks are especially suited for this kind of task. Perhaps we need a special network architecture — letting different neurons focus on different local regions of an image. That's still an open research question."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "language",
+          "text": {
+            "zh": "让网络理解自然语言——不只是朗读，而是真正理解意思",
+            "en": "Teach a network to understand natural language — not just read aloud, but truly understand meaning"
+          },
+          "tag": "language",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "语言理解是AI的终极挑战之一。NETtalk展示了网络可以处理语言的表面，比如从字母到声音的映射。但从词语到意义的映射要复杂得多。分布式表示也许是关键。如果我们能让词语在网络中获得合适的分布式表达，相似的词就会有相似的表示，这或许是理解意义的第一步。",
+              "en": "Language understanding is one of AI's ultimate challenges. NETtalk showed networks can handle the surface of language — mapping letters to sounds. But mapping words to meaning is far more complex. Distributed representation might be the key — if we can give words appropriate distributed representations in a network, similar words would have similar representations. That might be the first step toward understanding meaning."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "medical",
+          "text": {
+            "zh": "帮助医学诊断——让网络从症状和检查结果中识别疾病",
+            "en": "Assist medical diagnosis — let the network identify diseases from symptoms and test results"
+          },
+          "tag": "applied",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常有社会价值的应用方向。医学诊断涉及复杂的模式识别——从众多症状和指标中找到关联。目前专家系统已经在尝试做这件事，但它们依赖于手工编写的规则。神经网络的优势在于它可以从大量病例数据中自动学习模式。如果我们有足够多的医疗数据和足够大的网络，这个方向非常有潜力。",
+              "en": "That's an application direction with tremendous social value. Medical diagnosis involves complex pattern recognition — finding correlations among numerous symptoms and indicators. Expert systems are already attempting this, but they rely on hand-written rules. The advantage of neural networks is that they can automatically learn patterns from large amounts of case data. With enough medical data and a large enough network, this direction has great potential."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管未来走向哪里，有一件事是确定的：寒冬已经过去了。明斯基教授对单层感知机的批判是对的，但它并不是这个故事的结局。反向传播证明了多层网络可以被有效地训练，分布式表示展示了一种全新的知识编码方式。这扇门已经打开了，不会再关上。",
+        "en": "Whatever the future holds, one thing is certain: the winter is over. Prof. Minsky's critique of single-layer perceptrons was correct, but it wasn't the end of this story. Backpropagation proved that multi-layer networks can be effectively trained, and distributed representations demonstrated an entirely new way of encoding knowledge. This door has been opened, and it won't close again."
+      },
+      "leadsTo": "course-recap"
+    },
+    {
+      "id": "course-recap",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我回顾一下我们一起走过的路。我们从AI的寒冬说起，讲讲明斯基的批判如何冻结了整个领域。然后我们学了反向传播，看它如何从误差开始倒着走一遍。我们理解了梯度下降，那是一种蒙着眼在丘陵中寻找谷底的策略。我们见证了多层网络解决XOR，看到隐藏层如何创造新的特征空间。最后，我们思考了分布式表示，探讨知识弥漫在整个网络中的哲学。",
+        "en": "Let me look back at the path we've walked together. We began with AI's winter — how Minsky's critique froze the entire field. Then we learned backpropagation — starting from the error and working our way backward. We understood gradient descent — the strategy of searching for valleys while blindfolded in hilly terrain. We witnessed multi-layer networks solving XOR — how hidden layers create new feature spaces. We contemplated distributed representations — the philosophy of knowledge permeating the entire network."
+      },
+      "leadsTo": "farewell-message"
+    },
+    {
+      "id": "farewell-message",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这六节课的核心信息只有一个：不要因为眼前的障碍就否定一个方向的可能性。明斯基证明了感知机的局限，但多层网络的大门从未真正关闭。我们需要做的，只是找到正确的钥匙。反向传播就是那把钥匙。而未来还有更多的门等着被打开。",
+        "en": "The core message of these six lessons is just one thing: don't dismiss the potential of a direction because of the obstacles in front of you. Minsky proved the limitations of perceptrons, but the door to multi-layer networks was never truly closed. All we needed was to find the right key. Backpropagation was that key. And there are many more doors waiting to be opened in the future."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾整门课的内容——你觉得神经网络复兴给我们最重要的启示是什么？",
+        "en": "Looking back at the entire course — what do you think is the most important lesson the neural network revival teaches us?"
+      },
+      "choices": [
+        {
+          "id": "persistence-matters",
+          "text": {
+            "zh": "坚持的价值——在所有人放弃的时候，少数人的坚持最终改变了整个领域",
+            "en": "The value of persistence — when everyone else gave up, a few people's perseverance ultimately changed the entire field"
+          },
+          "tag": "perseverance",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "科学的历史不只是由正确的理论写就的，它同样离不开那些不肯放弃的人。如果辛顿、麦克莱兰和我当年也跟着大家一起转向其他领域，也许反向传播的发现还要推迟很多年。当然，坚持需要有依据，我们的信心就来自对大脑工作方式的观察。不过，在有依据的情况下，不随大流，有时候比随大流更需要勇气。",
+              "en": "The history of science isn't written only by correct theories — it's also written by people who refused to give up. If Hinton, McClelland and I had followed everyone else into other fields, the discovery of backpropagation might have been delayed by many years. Of course, persistence needs grounds — our confidence came from observing how the brain works. But when you have grounds, going against the crowd sometimes takes more courage than following it."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "simple-tools",
+          "text": {
+            "zh": "简单工具的力量——反向传播只用了微积分的链式法则，却解锁了整个多层网络",
+            "en": "The power of simple tools — backpropagation only used the calculus chain rule, yet it unlocked the entire multi-layer network"
+          },
+          "tag": "elegance",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（微笑）我很高兴你记住了这一点。链式法则是微积分课本上的基础内容，已经存在了两百多年。但把它应用到多层网络的训练上——这个连接是新的。最深刻的突破往往不来自发明全新的工具，而来自用新的眼光看待已有的工具。保持开放的思维，也许你身边就有一把还未被发现用途的钥匙。",
+              "en": "(Smiles) I'm glad you remembered this. The chain rule is basic textbook calculus, existing for over two hundred years. But applying it to training multi-layer networks — that connection was new. The most profound breakthroughs often don't come from inventing entirely new tools, but from looking at existing tools with new eyes. Keep an open mind — there may be a key right beside you whose purpose hasn't been discovered yet."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "question-assumptions",
+          "text": {
+            "zh": "质疑「定论」的重要性——一个正确的结论被过度解读，耽误了整整一代研究者",
+            "en": "The importance of questioning 「settled conclusions」 — a correct result was over-interpreted, setting back an entire generation of researchers"
+          },
+          "tag": "critical-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这也许是最深层的启示。明斯基的证明是正确的，但「神经网络已死」的结论是推断出来的——而这个推断是错误的。科学中最需要警惕的，是对正确结果的错误解读。任何时候有人告诉你「某个方向已经被证明不可行」，你都应该追问：证明的是什么？条件是什么？是否有被忽略的可能性？",
+              "en": "This may be the deepest insight. Minsky's proof was correct, but the conclusion that 「neural networks are dead」 was an inference — and that inference was wrong. What science should most be wary of isn't wrong experimental results, but wrong interpretations of correct results. Whenever someone tells you 「a direction has been proven infeasible, you should always ask: what exactly was proven? Under what conditions? Are there overlooked possibilities?"
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我不知道未来会怎样。也许有一天，我们的网络会大到超乎想象。也许有一天，它们真的能看、能听、能理解。我能确定的只有一件事：冬天已经过去了，春天已经到来。而你们，下一代的研究者，将在这个春天里种下更多的种子。谢谢你们听我讲了这六节课。",
+        "en": "I don't know what the future holds. Perhaps someday our networks will be unimaginably large. Perhaps someday they'll truly see, hear, and understand. The only thing I can say for certain is: the winter is over, and spring has arrived. And you — the next generation of researchers — will plant even more seeds in this spring. Thank you for listening to these six lessons."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "神经网络复兴的核心启示：(1) 不要因为眼前的障碍否定一个方向的可能性 (2) 最深刻的突破可能来自简单工具的新应用 (3) 正确的结论也可能被过度解读。1988年的展望：核心算法已就位，规模和计算能力是当前瓶颈，未来可期。",
+        "en": "Core lessons from the neural network revival: (1) Don't dismiss a direction's potential because of current obstacles (2) The most profound breakthroughs may come from new applications of simple tools (3) Even correct conclusions can be over-interpreted. 1988 outlook: core algorithms are in place, scale and computing power are current bottlenecks, the future is promising."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "鲁梅尔哈特教授安静了一会儿，然后向全班微微鞠了一躬。他收拾好讲台上的东西，那个跟了他六节课的投影仪，已经不再需要了。走到门口时他回过头，最后说了一句：「别忘了，让我们从误差开始，倒着走一遍。不管面对什么问题，这个方法都管用。」门关上了。教室里，阳光和上第一节课时一样明亮。但你知道，你看世界的方式已经不一样了。",
+        "en": "Prof. Rumelhart is quiet for a moment, then gives a slight bow to the class. He tidies up the lectern — the overhead projector that accompanied him for six lessons is no longer needed. At the door, he turns back one last time: 「Remember — let's start from the error and work our way backward. Whatever problem you face, that approach works」. The door closes. In the classroom, the sunlight is as bright as it was during the first lesson — but you know your way of seeing the world has changed."
+      }
+    }
+  ]
+}

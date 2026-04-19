@@ -1,0 +1,309 @@
+{
+  "id": "lesson-01",
+  "course": "transformer-architecture",
+  "title": {
+    "zh": "注意力就是一切",
+    "en": "Attention Is All You Need"
+  },
+  "knowledgePoint": {
+    "zh": "RNN的顺序瓶颈与纯注意力架构的动机",
+    "en": "The sequential bottleneck of RNNs and the motivation for a purely attention-based architecture"
+  },
+  "teacher": "prof-vaswani",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间沐浴在柔和金光中的教室。瓦斯瓦尼教授站在讲台前，身后的全息投影上缓缓旋转着一组向量。他的声音很轻，但每一个字都异常清晰，像一把手术刀，精准地切入问题的核心。他说：让我们重新思考序列建模的基本假设。",
+    "en": "You close your eyes, and your thoughts drift back to that classroom bathed in soft golden light. Prof. Vaswani stands at the lectern, a set of vectors slowly rotating on the holographic projection behind him. His voice is quiet, but every word is remarkably clear — like a scalpel cutting precisely to the heart of the matter. He said: let us rethink the fundamental assumptions of sequence modeling."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。瓦斯瓦尼教授的核心论点仍在脑海中回响：循环神经网络的顺序处理方式是一个根本性的瓶颈——它既限制了并行计算，又让长距离依赖难以捕捉。注意力机制提供了一条全新的路径：让每个位置同时看到所有其他位置。如果我们把循环完全去掉呢？",
+    "en": "You return to the present. Prof. Vaswani's core argument still echoes in your mind: the sequential processing of recurrent neural networks is a fundamental bottleneck — it limits parallel computation and makes long-range dependencies hard to capture. Attention offers an entirely new path: letting every position see all other positions simultaneously. What if we remove recurrence entirely?"
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这间教室与之前的截然不同。天花板很高，四面墙壁上嵌着半透明的全息显示面板，散发着柔和的金色光芒。讲台上没有黑板，没有投影仪——取而代之的是一个浮在空中的三维显示区域。一位年轻的教授走了进来，步伐从容，目光沉静。他穿着一件简洁的深蓝色西装，手里没有任何讲义或笔记。他环视教室一周，微微点头，然后开口。",
+        "en": "This classroom is entirely different from the ones before. The ceiling is high, and translucent holographic display panels are embedded in all four walls, emitting a soft golden glow. There is no blackboard on the lectern, no projector — instead, a three-dimensional display area floats in mid-air. A young professor walks in, his pace composed, his gaze calm. He wears a clean dark blue suit and carries no handouts or notes. He surveys the room, nods slightly, then begins."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我是瓦斯瓦尼，来自Google Brain。在这门课里，我想和你们分享一个架构——一个我和同事们在2017年提出的架构。但在讲它之前，我们需要先理解一个问题。一个困扰了这个领域很久的问题。",
+        "en": "I'm Vaswani, from Google Brain. In this course, I want to share with you an architecture — one that my colleagues and I proposed in 2017. But before we get to it, we need to understand a problem first. A problem that has troubled this field for a long time."
+      },
+      "leadsTo": "rnn-recap"
+    },
+    {
+      "id": "rnn-recap",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "本吉奥教授在四年级介绍过注意力的概念，也讲过{循环神经网络}。RNN的核心思想很优美：在每个时间步维护一个隐藏状态，让信息从前一步流向下一步。这赋予了网络「记忆」。但这个设计有一个代价——一个根本性的代价。",
+        "en": "Prof. Bengio introduced the concept of attention in Grade 4, and also taught you about {recurrent neural networks}. The core idea of RNNs is elegant: maintain a hidden state at each time step, letting information flow from one step to the next. This gives the network 「memory」. But this design comes at a cost — a fundamental cost."
+      },
+      "terms": {
+        "循环神经网络": "term-rnn",
+        "recurrent neural networks": "term-rnn"
+      },
+      "leadsTo": "sequential-bottleneck"
+    },
+    {
+      "id": "sequential-bottleneck",
+      "type": "narration",
+      "text": {
+        "zh": "全息显示区域亮了起来。一排蓝色的方块从左到右排列，代表一个句子中的词。一个绿色的箭头从第一个方块指向第二个，再从第二个指向第三个——严格地按顺序，一步一步。",
+        "en": "The holographic display area lights up. A row of blue squares is arranged from left to right, representing words in a sentence. A green arrow points from the first square to the second, then from the second to the third — strictly sequential, one step at a time."
+      },
+      "leadsTo": "sequential-problem"
+    },
+    {
+      "id": "sequential-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "看这个过程。要处理第五个词，你必须先处理完前四个。要处理第一百个词，你必须先处理完前九十九个。RNN是严格顺序执行的——第t步的计算依赖第t-1步的结果。这意味着什么？意味着你无法并行。一个有一百个词的句子，需要一百个顺序步骤。不管你的硬件有多快，这个顺序依赖是无法绕过的。",
+        "en": "Watch this process. To process the fifth word, you must finish processing the first four. To process the hundredth word, you must finish the first ninety-nine. RNNs execute strictly sequentially — the computation at step t depends on the result from step t-1. What does this mean? It means you cannot parallelize. A sentence with a hundred words requires a hundred sequential steps. No matter how fast your hardware is, this sequential dependency cannot be bypassed."
+      },
+      "leadsTo": "long-range-problem"
+    },
+    {
+      "id": "long-range-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "还有第二个问题。当信息从第一个词传递到第一百个词时，它经过了九十九次状态更新。每一次更新，信息都会被变换、压缩、部分遗忘。即使有了{LSTM}和门控机制，真正的长距离依赖仍然很难捕捉。信息在传递过程中不可避免地衰减——就像一个人在传话游戏中，经过一百个人之后，原始的信息已经面目全非。",
+        "en": "There is a second problem. When information travels from the first word to the hundredth, it passes through ninety-nine state updates. With each update, information is transformed, compressed, partially forgotten. Even with {LSTM} and gating mechanisms, true long-range dependencies remain very hard to capture. Information inevitably decays during transmission — like a game of telephone where, after a hundred people, the original message is unrecognizable."
+      },
+      "terms": {
+        "LSTM": "term-lstm"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "如果顺序处理是RNN的根本瓶颈，你会怎样尝试打破这个限制？",
+        "en": "If sequential processing is the fundamental bottleneck of RNNs, how would you try to break this limitation?"
+      },
+      "choices": [
+        {
+          "id": "choice-parallel-rnn",
+          "text": {
+            "zh": "把句子分成几段，每段用一个独立的RNN并行处理，最后合并结果",
+            "en": "Split the sentence into segments, process each with an independent RNN in parallel, then merge results"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个直觉上很自然的想法，实践中也有人尝试过。但问题在于段落的边界。如果一个关键的依赖关系恰好跨越了两个段落的边界，你就会丢失它。因此，你需要额外的机制来处理段落之间的信息交换。这个方向是对的，我们确实需要并行，但分段并行还不够彻底。",
+              "en": "An intuitive idea, and people have actually tried it. The problem is the segment boundaries: if a critical dependency happens to span two segments, you lose it. You need extra mechanisms to exchange information between segments. The direction is right (we do need parallelism), but segmented parallelism isn't thorough enough."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-all-at-once",
+          "text": {
+            "zh": "彻底抛弃顺序处理，让模型一次性看到整个序列中的所有位置",
+            "en": "Abandon sequential processing entirely and let the model see all positions in the sequence at once"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "（微微一笑）你说到了我们论文的核心思想。如果每个位置都能直接看到所有其他位置，那就不需要顺序传递信息了——长距离依赖变成了直接连接。这正是注意力机制的优势所在。而我们的问题是：能不能用纯粹的注意力来构建整个模型，完全不依赖循环？",
+              "en": "(A slight smile) You've named the central idea of our paper. If every position can directly see every other position, there's no need to pass information sequentially. Long-distance dependencies become direct connections. That is precisely the strength of the attention mechanism. And our question was: can we build an entire model from pure attention, without any recurrence at all?"
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-cnn-approach",
+          "text": {
+            "zh": "借鉴卷积神经网络的思路，用局部窗口逐层扩大感受野",
+            "en": "Borrow from CNNs — use local windows and gradually expand the receptive field layer by layer"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "有见地。事实上，在我们之前，确实有研究者尝试用一维卷积来处理序列，比如Facebook的团队就做过这方面的工作。卷积可以并行，这解决了速度问题。但要让两个距离很远的词互相「看到」，你需要很多层卷积堆叠。注意力机制不同，它在一层内就能让任意两个位置直接交互，这可以说是一次质的飞跃。",
+              "en": "Insightful. Before our work, researchers did try one-dimensional convolutions for sequence processing. The Facebook team did substantial work in this direction. Convolutions can be parallelized, which solves the speed problem. But to let two distant words 'see' each other, you need many convolutional layers stacked up. Attention can let any two positions interact directly within a single layer. That is a qualitative leap."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2017年之前，几乎所有的序列模型都以循环为核心。注意力机制已经被证明非常有效，本吉奥教授的工作就展示了这一点。但它一直只是RNN的一个辅助组件。没有人认真地想过：如果我们把循环完全去掉，只保留注意力，会发生什么？",
+        "en": "Before 2017, nearly all sequence models had recurrence at their core. The attention mechanism had already been proven highly effective — Prof. Bengio's work demonstrated that — but it was always just an auxiliary component of RNNs. No one had seriously asked: what if we remove recurrence entirely and keep only attention?"
+      },
+      "leadsTo": "the-radical-idea"
+    },
+    {
+      "id": "the-radical-idea",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这正是我们做的事情。我们的论文标题是「Attention Is All You Need」——注意力就是你所需要的一切。这个标题不仅仅是一个口号。它是一个技术声明：我们证明了一个纯粹基于注意力的架构，在机器翻译任务上可以超越所有基于RNN的模型。而且训练速度快得多。",
+        "en": "That is exactly what we did. Our paper is titled 「Attention Is All You Need」 — and the title is not merely a slogan. It is a technical statement: we proved that a purely attention-based architecture can surpass all RNN-based models on machine translation. And it trains much faster."
+      },
+      "leadsTo": "transformer-name"
+    },
+    {
+      "id": "transformer-name",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们把这个架构叫做{Transformer}。它的核心思想可以用一句话概括：让序列中的每一个位置，同时关注所有其他位置。不需要循环，不需要顺序传递。每个词直接和其他所有词建立联系。这就是{自注意力}。",
+        "en": "We call this architecture the {Transformer}. Its core idea can be summarized in one sentence: let every position in a sequence attend to all other positions simultaneously. No recurrence, no sequential passing. Each word directly connects with every other word. This is {self-attention}."
+      },
+      "terms": {
+        "Transformer": "term-transformer",
+        "自注意力": "term-self-attention",
+        "self-attention": "term-self-attention"
+      },
+      "leadsTo": "hologram-demo"
+    },
+    {
+      "id": "hologram-demo",
+      "type": "narration",
+      "text": {
+        "zh": "全息显示区域发生了变化。之前那排按顺序连接的方块消失了，取而代之的是一组均匀分布的光点，每个光点代表一个词。突然，所有光点之间同时出现了连线，形成了一个密集的网络。每条线的亮度不同，有些很亮，有些几乎看不见。整个网络同时闪烁了一下，所有连接都在同一瞬间完成了计算。",
+        "en": "The holographic display changes. The row of sequentially connected squares vanishes, replaced by a set of evenly distributed points of light — each representing a word. Suddenly, connections appear between all points simultaneously, forming a dense network. Each line varies in brightness — some are vivid, others barely visible. The entire network flickers once — all connections computed in the same instant."
+      },
+      "leadsTo": "attention-beauty"
+    },
+    {
+      "id": "attention-beauty",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指向全息图）看这个对比。RNN是一条链，信息只能沿着链条依次传递。而Transformer是一张完全连接的图，任何两个位置之间都有直接的通路。第一个词想知道第一百个词的信息？不需要经过九十九次中转，一步就到。这就是注意力的力量：它让信息自己找到它需要关注的地方。",
+        "en": "(Pointing at the hologram) Look at this contrast. An RNN is a chain — information can only travel along the links one by one. A Transformer is a fully connected graph — there is a direct path between any two positions. The first word wants to know about the hundredth word? No need for ninety-nine intermediary hops — one step and you're there. This is the power of attention: it lets information find where it needs to focus."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "完全去掉循环只保留注意力，你觉得这个设计最大的风险或代价可能是什么？",
+        "en": "Removing recurrence entirely and keeping only attention — what do you think the biggest risk or cost of this design might be?"
+      },
+      "choices": [
+        {
+          "id": "choice-position-lost",
+          "text": {
+            "zh": "没有了循环，模型可能无法知道词的顺序——「猫追狗」和「狗追猫」看起来一样",
+            "en": "Without recurrence, the model might not know word order — 「cat chases dog」 and 「dog chases cat」 would look the same"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常敏锐。这确实是去掉循环后最直接的问题。注意力本身是集合操作，不关心顺序。如果不做特殊处理，模型会把句子当成一个词袋。我们的解决方案叫做「位置编码」，就是在输入中注入位置信息。这个我们后面会详细讨论。你发现了Transformer设计中一个必须解决的核心挑战。",
+              "en": "Very perceptive. This really is the most immediate problem after removing recurrence. Attention itself is a set operation; it doesn't care about order. Without special treatment, the model treats a sentence as a bag of words. Our solution is called 'positional encoding': we inject position information into the input. We will discuss it in detail later. You've spotted one of the core challenges that any Transformer design must solve."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-compute-cost",
+          "text": {
+            "zh": "每个词都要和所有其他词计算注意力，计算量会随序列长度平方增长",
+            "en": "Every word must compute attention with all others — computational cost grows quadratically with sequence length"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你说得对。自注意力的计算复杂度是O(n²)，n是序列长度。对于一个长度为1000的序列，就需要一百万次注意力计算。这确实是一个代价。但有一个关键的权衡：虽然单层计算量更大，但所有这些计算可以完全并行执行。而RNN的O(n)复杂度虽然看起来更低，却必须顺序执行。在现代GPU上，并行的O(n²)往往比顺序的O(n)更快。",
+              "en": "You are correct. The computational complexity of self-attention is O(n²), where n is the sequence length. For a sequence of length 1000, that's a million attention computations. It really is a cost. But there's a key trade-off: although a single layer requires more computation, all of it can be performed fully in parallel. RNNs have lower O(n) complexity on paper, yet they must run sequentially. On modern GPUs, a parallel O(n²) is often faster than a sequential O(n)."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-no-memory",
+          "text": {
+            "zh": "注意力只看当前输入序列，没有跨序列的持久记忆",
+            "en": "Attention only looks at the current input sequence — there is no persistent memory across sequences"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个深刻的观察。RNN的隐藏状态可以看作一种压缩的长期记忆，理论上可以跨越任意长的上下文。Transformer在一个固定长度的窗口内工作——它看不到窗口之外的内容。这确实是一个限制。不过在实践中，我们发现对于大多数自然语言任务，足够长的窗口加上足够强的注意力，效果比RNN的理论上无限但实际上衰减的记忆要好。",
+              "en": "A deep observation. The hidden state of an RNN can be seen as a compressed long-term memory that, in theory, can carry context arbitrarily far. A Transformer works inside a fixed-length window; it cannot see anything outside it. This really is a limitation. In practice, though, we found that for most natural language tasks, a sufficiently long window plus strong attention works better than the RNN's theoretically unbounded but practically decaying memory."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "每一个架构选择都有取舍。Transformer选择了用O(n²)的计算量换取完全并行和直接的长距离连接。这是一个大胆的赌注——而事实证明，这个赌注押对了。在WMT翻译基准上，Transformer不仅超越了所有RNN模型，训练时间还缩短到了原来的几分之一。",
+        "en": "Every architectural choice involves tradeoffs. Transformer chose to trade O(n²) computation for full parallelism and direct long-range connections. It was a bold bet — and it turned out to be the right one. On the WMT translation benchmark, Transformer not only surpassed all RNN models but also reduced training time to a fraction of what it was."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "RNN的两大瓶颈：(1) 顺序处理无法并行化，训练速度受限；(2) 长距离信息传递中不可避免的衰减。Transformer的核心理念：完全去除循环，仅用注意力机制处理序列。每个位置同时关注所有其他位置，实现直接的长距离连接。代价是O(n²)的计算复杂度，但可完全并行。",
+        "en": "Two bottlenecks of RNNs: (1) sequential processing cannot be parallelized, limiting training speed; (2) inevitable information decay over long-distance transmission. Transformer's core idea: remove recurrence entirely, process sequences using only attention. Every position attends to all others simultaneously, enabling direct long-range connections. The cost is O(n²) complexity, but fully parallelizable."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "下节课，我会带你们深入自注意力的内部机制——它是如何具体工作的？一个词怎样「决定」去关注哪些其他词？答案涉及三个向量：查询、键和值。这是一个非常优美的数学框架。",
+        "en": "Next lesson, I'll take you inside the self-attention mechanism — how exactly does it work? How does a word 「decide」 which other words to attend to? The answer involves three vectors: query, key, and value. It is a very elegant mathematical framework."
+      },
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我想让你们记住一件事：最好的架构，是让信息自己找到它需要关注的地方。循环网络给信息画了一条单行道。而注意力打开了所有的路。",
+        "en": "Today I want you to remember one thing: the best architecture does not prescribe a fixed path for information — it lets information find where it needs to focus on its own. Recurrent networks draw a one-way road for information. Attention opens all the roads."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "瓦斯瓦尼教授轻轻点了一下讲台边缘，全息显示缓缓暗去。最后消失的是那张密集的连接网络——所有光点之间的连线同时闪了最后一下，像一片星空在眨眼。他朝你微微点头，转身走向门口。教室里留下柔和的金色余晖，和一个在你脑海中挥之不去的问题：如果不需要循环，那序列建模的一切规则都要改写了。",
+        "en": "Prof. Vaswani taps the edge of the lectern lightly, and the holographic display dims slowly. The last thing to fade is that dense connection network — all the lines between points of light flash one final time, like a field of stars blinking. He nods at you slightly and turns toward the door. The classroom is left with a soft golden afterglow, and a question that lingers in your mind: if recurrence is not needed, then all the rules of sequence modeling must be rewritten."
+      }
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "alignment-safety",
+  "name": {
+    "zh": "对齐与安全",
+    "en": "Alignment and Safety"
+  },
+  "description": {
+    "zh": "一个比你聪明的系统如果追求错误的目标，那它越聪明，你就越危险。AI教科书的作者罗素教授将带你直面这个时代最紧迫的问题：如何确保AI系统的行为符合人类价值观？RLHF是否足够？幻觉能否被消除？当AI变得越来越强大，我们是否还能保持控制？",
+    "en": "A system smarter than you pursuing the wrong objective — the smarter it is, the more dangerous you are. Prof. Russell — author of the AI textbook — will guide you to confront this era's most urgent question: how do we ensure AI systems behave in accordance with human values? Is RLHF sufficient? Can hallucination be eliminated? As AI grows ever more powerful, can we still maintain control?"
+  },
+  "grade": "grade-5",
+  "teacher": "prof-russell",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-alignment",
+      "description": {
+        "zh": "理解对齐问题的本质——为什么指定正确的目标如此困难",
+        "en": "Understand the essence of the alignment problem — why specifying correct objectives is so difficult"
+      }
+    },
+    {
+      "id": "obj-rlhf",
+      "description": {
+        "zh": "掌握RLHF的原理、流程和局限性",
+        "en": "Master the principles, process, and limitations of RLHF"
+      }
+    },
+    {
+      "id": "obj-safety-ethics",
+      "description": {
+        "zh": "理解AI安全与伦理的核心困境：偏见、公平、自主性",
+        "en": "Understand core dilemmas of AI safety and ethics: bias, fairness, autonomy"
+      }
+    },
+    {
+      "id": "obj-control",
+      "description": {
+        "zh": "思考控制问题——当AI超越人类能力时如何保持安全",
+        "en": "Consider the control problem — maintaining safety as AI surpasses human capabilities"
+      }
+    }
+  ]
+}

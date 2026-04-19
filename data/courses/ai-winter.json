@@ -1,0 +1,51 @@
+{
+  "id": "ai-winter",
+  "name": {
+    "zh": "AI寒冬：反思与重生",
+    "en": "The AI Winter: Reflection & Rebirth"
+  },
+  "description": {
+    "zh": "这是一堂历史反思课。明斯基教授，这位从达特茅斯走来的AI先驱，也是《感知机》的作者，将带你回顾那些未能兑现的承诺。他将审视早期AI的结构性局限，理解为什么繁荣走向了寒冬，以及寒冬中埋下了哪些通向未来的种子。",
+    "en": "This is not a technical course — it is a lesson in historical reflection. Prof. Minsky — an AI pioneer who was at Dartmouth and author of Perceptrons — will walk you through the unfulfilled promises, examine the structural limitations of early AI, explain why prosperity turned to winter, and reveal the seeds of the future hidden beneath the frost."
+  },
+  "grade": "grade-2",
+  "teacher": "prof-minsky",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-promises-vs-reality",
+      "description": {
+        "zh": "理解AI早期过高承诺与实际成果之间的落差",
+        "en": "Understand the gap between AI's early grand promises and actual achievements"
+      }
+    },
+    {
+      "id": "obj-lighthill-report",
+      "description": {
+        "zh": "了解莱特希尔报告的内容及其对英国AI研究的毁灭性影响",
+        "en": "Understand the Lighthill Report and its devastating impact on UK AI research"
+      }
+    },
+    {
+      "id": "obj-perceptron-controversy",
+      "description": {
+        "zh": "理解感知机争议及其对神经网络研究的深远影响",
+        "en": "Understand the Perceptron controversy and its lasting impact on neural network research"
+      }
+    },
+    {
+      "id": "obj-ai-winter-lessons",
+      "description": {
+        "zh": "从AI寒冬中提炼出关于技术发展、期望管理和科研生态的教训",
+        "en": "Extract lessons about technology development, expectation management, and research ecosystems from the AI winter"
+      }
+    }
+  ]
+}

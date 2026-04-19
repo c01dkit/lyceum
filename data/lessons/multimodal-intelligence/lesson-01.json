@@ -1,0 +1,365 @@
+{
+  "id": "lesson-01",
+  "course": "multimodal-intelligence",
+  "title": {
+    "zh": "超越文字",
+    "en": "Beyond Text"
+  },
+  "knowledgePoint": {
+    "zh": "为什么真正的智能需要多种感官模态——仅靠文字远远不够",
+    "en": "Why true intelligence requires multiple sensory modalities — text alone is far from enough"
+  },
+  "teacher": "prof-li",
+  "estimatedMinutes": 10,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，阳光的温度仿佛重新落在脸上。那间开阔的教室再次浮现——全息投影在空气中缓缓旋转，金色的光线从落地窗倾泻而入。李飞飞教授站在投影旁边，声音温暖而坚定，正在讲述一个关于婴儿如何认识世界的故事。",
+    "en": "You close your eyes, and the warmth of sunlight seems to fall on your face again. That open classroom reappears — holographic projections slowly rotate in the air, golden light pouring through floor-to-ceiling windows. Prof. Li stands beside the projection, her voice warm and firm, telling a story about how babies come to know the world."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那个问题仍然萦绕在心头——如果一个智能体从未看过日落、从未触碰过冰块、从未听过雷声，它真的能理解这些词语的含义吗？",
+    "en": "You return to the present. That question still lingers — if an intelligence has never seen a sunset, never touched ice, never heard thunder, can it truly understand the meaning of those words?"
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "你走进一间与以往截然不同的教室。这里没有传统的课桌和黑板——取而代之的是一个开阔的半圆形空间，中央悬浮着一组全息投影装置。金色的阳光从巨大的落地窗涌入，在地面上投下温暖的光斑。一位身材纤瘦、面容亲切的女教授站在全息投影旁，正轻轻地用手指在空气中划动，调整着投影画面。她注意到你走进来，露出了一个真诚的微笑。",
+        "en": "You walk into a classroom unlike any before. There are no traditional desks or blackboards — instead, an open semicircular space with a holographic projection system suspended in the center. Golden sunlight floods through enormous floor-to-ceiling windows, casting warm pools of light on the floor. A slender, kind-faced woman professor stands beside the holographic display, gently tracing her fingers through the air to adjust the projected images. She notices you entering and offers a genuine smile."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "欢迎！我是李飞飞，来自斯坦福大学。请随便坐——或者站着也行，这间教室的设计就是为了让大家自由走动。在我的课上，我们会用到很多视觉和互动元素。毕竟……（微笑）如果我只用文字来教你们什么是多模态智能，那岂不是自相矛盾？",
+        "en": "Welcome! I'm Fei-Fei Li, from Stanford University. Please sit anywhere — or stand if you prefer. This classroom is designed for free movement. In my class, we'll use many visual and interactive elements. After all... (smiles) if I only used text to teach you about multimodal intelligence, wouldn't that be contradictory?"
+      },
+      "leadsTo": "baby-story"
+    },
+    {
+      "id": "baby-story",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "让我先给你们讲一个故事。一个关于婴儿的故事。（全息投影中出现一个婴儿伸手抓积木的画面）一个六个月大的婴儿还不会说话，甚至听不太懂语言。但她已经在学习了——她用眼睛看到积木的颜色和形状，用手感受它的硬度和温度，用嘴巴尝试它的味道，把它丢在地上听到「啪」的一声。她用全部的感官来认识这个世界。",
+        "en": "Let me start with a story. A story about a baby. (A holographic image appears of a baby reaching for building blocks) A six-month-old baby can't speak yet, can barely understand language. But she is already learning — she sees the color and shape of the blocks with her eyes, feels their hardness and temperature with her hands, tries their taste with her mouth, drops them on the floor and hears a 「clack」. She uses all her senses to understand the world."
+      },
+      "leadsTo": "language-later"
+    },
+    {
+      "id": "language-later",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "语言是后来才加入的。大约一岁时，这个婴儿开始学习「积木」这个词。但请注意——当她听到「积木」两个字时，她的脑海里浮现的是什么？是积木的样子、触感、重量、掉在地上的声音……一整套感官记忆。语言只是一个标签，贴在已经丰富的感官经验之上。",
+        "en": "Language comes later. Around one year old, the baby begins learning the word 「block」. But notice — when she hears the word 「block, what comes to her mind? The look, the feel, the weight, the sound of it hitting the floor... a whole suite of sensory memories. Language is just a label, affixed atop already rich sensory experience."
+      },
+      "leadsTo": "grounding-intro"
+    },
+    {
+      "id": "grounding-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在想想今天的大型语言模型。它们从海量文本中学习，掌握了语法、推理、甚至幽默。但它们从未「看见」过积木，从未「触摸」过冰，从未「听到」过雷声。它们的知识完全来自文字符号。这就引出了一个根本性的问题——{符号接地问题}。",
+        "en": "Now think about today's large language models. They learn from massive amounts of text, mastering grammar, reasoning, even humor. But they have never 「seen」 a block, never 「touched」 ice, never 「heard」 thunder. Their knowledge comes entirely from text symbols. This leads to a fundamental question — the {grounding problem}."
+      },
+      "terms": {
+        "符号接地问题": "term-grounding-problem",
+        "grounding problem": "term-grounding-problem"
+      },
+      "leadsTo": "grounding-explain"
+    },
+    {
+      "id": "grounding-explain",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "符号接地问题是这样的：如果你从来没有任何感官经验，你真的能理解一个词的含义吗？想象你从小被关在一间密封的房间里，唯一的信息来源是一部百科全书。你可以读到关于「红色」的一切描述——波长620到750纳米、暖色调、交通信号灯的颜色。但如果你从未看见过红色，你真的「理解」红色吗？",
+        "en": "The grounding problem goes like this: if you have never had any sensory experience, can you truly understand the meaning of a word? Imagine being locked in a sealed room from birth, with an encyclopedia as your only source of information. You could read every description of 「red」 — wavelength 620 to 750 nanometers, warm tone, the color of traffic lights. But if you have never seen red, do you truly 「understand」 red?"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "如果一个AI系统只从文本中学习，从未有过任何感官体验，你认为它能真正「理解」它所处理的语言吗？",
+        "en": "If an AI system learns only from text and has never had any sensory experience, do you think it can truly 「understand」 the language it processes?"
+      },
+      "choices": [
+        {
+          "id": "can-understand",
+          "text": {
+            "zh": "可以——文本中包含了足够的信息来理解世界",
+            "en": "Yes — text contains enough information to understand the world"
+          },
+          "tag": "text-sufficient",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个合理的观点，很多优秀的语言学家也这样认为。文本确实编码了大量的世界知识。但让我问你一个问题：你能仅通过阅读文字学会骑自行车吗？有些知识天然存在于身体和感官中，文字无法完全传递。这正是纯文本AI的一个根本性盲区。",
+              "en": "That's a reasonable view, and many excellent linguists agree. Text does encode a vast amount of world knowledge. But let me ask you this: can you learn to ride a bicycle purely by reading about it? Some knowledge naturally resides in the body and senses, and text cannot fully convey it. This is precisely a fundamental blind spot of text-only AI."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "cannot-understand",
+          "text": {
+            "zh": "不能——没有感官经验的「理解」只是对符号模式的模仿",
+            "en": "No — 「understanding」 without sensory experience is just mimicking symbol patterns"
+          },
+          "tag": "grounding-essential",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你触及了问题的核心。人类的概念在感官体验中扎根——「甜」连接着味觉，「冷」连接着触觉，「美」连接着视觉和情感。一个纯文本系统也许能完美地使用这些词，但词语背后空空如也。这正是推动我们走向多模态AI的根本动力。",
+              "en": "You've touched the heart of the matter. Human concepts are rooted in sensory experience — 「sweet」 connects to taste, 「cold」 connects to touch, 「beauty」 connects to vision and emotion. A text-only system might use these words perfectly, but there is nothing behind the words. This is exactly what drives us toward multimodal AI."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "partial-understand",
+          "text": {
+            "zh": "也许能获得一种「不完整的理解」——知道词语之间的关系，但缺少感官层面的深度",
+            "en": "Perhaps it achieves an 「incomplete understanding」 — knowing relationships between words, but lacking sensory depth"
+          },
+          "tag": "nuanced-view",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（微微点头）这是一个很成熟的看法。也许「理解」本身就不是全有或全无的，它有层次。纯文本系统也许掌握了语义网络中词语之间的结构关系，但缺少了感知层面的厚度。就像一张地图和实地行走之间的区别。地图有用，但它无法替代真实的体验。",
+              "en": "(Nods gently) That's a very mature perspective. Perhaps 「understanding」 itself is not all-or-nothing — it has layers. A text-only system may have mastered the structural relationships between words in a semantic network, but lacks the thickness of perceptual grounding. Like the difference between a map and actually walking the terrain — the map is useful, but it cannot replace real experience."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们看一组数据。（全息投影中出现一张大脑功能分区图）人类大脑中，大约90%的信息处理与非文字模态有关——视觉、听觉、触觉、空间感知、运动控制。语言处理只占很小的一部分。我们人类是彻底的多模态生物。",
+        "en": "Let me show you some data. (A brain functional mapping appears in the holographic projection) In the human brain, roughly 90% of information processing involves non-textual modalities — vision, hearing, touch, spatial awareness, motor control. Language processing accounts for only a small fraction. We humans are thoroughly multimodal beings."
+      },
+      "leadsTo": "llm-limits"
+    },
+    {
+      "id": "llm-limits",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "所以当我们构建一个只处理文字的AI时，我们实际上是在试图用10%的信息通道去模拟100%的智能。这就像试图只通过电话描述来欣赏蒙娜丽莎——你可以了解很多细节，但你永远无法真正「看见」那个微笑。",
+        "en": "So when we build an AI that only processes text, we are essentially trying to simulate 100% of intelligence with 10% of the information channels. It's like trying to appreciate the Mona Lisa through a phone description — you can learn many details, but you can never truly 「see」 that smile."
+      },
+      "leadsTo": "imagenet-story"
+    },
+    {
+      "id": "imagenet-story",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这也是我当年为什么要做ImageNet的原因。2006年的时候，我开始了一个看起来有点疯狂的项目——收集1400万张标注过的图片，涵盖两万多个类别。很多人觉得这是浪费时间。但我坚信，如果我们想让机器学会「看」，就需要给它足够丰富的视觉世界。你们如果学过辛顿教授的课，应该知道后来发生了什么。",
+        "en": "This is also why I created ImageNet all those years ago. In 2006, I started what seemed like a crazy project — collecting 14 million labeled images across more than 20,000 categories. Many people thought it was a waste of time. But I was convinced that if we wanted machines to learn to 「see, we needed to give them a sufficiently rich visual world. If you've taken Prof. Hinton's course, you know what happened next."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "李飞飞教授在2006年开始创建ImageNet时，很多人认为这个项目不值得做。你觉得她坚持的原因是什么？",
+        "en": "When Prof. Li started creating ImageNet in 2006, many people thought the project wasn't worthwhile. What do you think motivated her persistence?"
+      },
+      "choices": [
+        {
+          "id": "data-conviction",
+          "text": {
+            "zh": "她相信数据的力量——机器学习的瓶颈在于数据，而非算法",
+            "en": "She believed in the power of data — the bottleneck of machine learning was data, not algorithms"
+          },
+          "tag": "data-driven",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "你说得对。当时整个领域都在追求更好的算法，很少有人关注数据本身的质量和规模。我看到了一个被忽视的真相：再好的算法，如果训练数据只有几千张图片，就像让一个孩子只看过十本书就参加高考。我们需要给机器一个完整的视觉世界来学习。",
+              "en": "You're right. At the time, the entire field was chasing better algorithms, and very few people paid attention to the quality and scale of data itself. I saw a neglected truth: the best algorithm in the world, trained on only a few thousand images, is like sending a child to college entrance exams after reading only ten books. We needed to give machines a complete visual world to learn from."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "vision-importance",
+          "text": {
+            "zh": "她深刻理解视觉对智能的重要性——这源于她对认知科学的跨学科思考",
+            "en": "She deeply understood the importance of vision to intelligence — rooted in her interdisciplinary thinking about cognitive science"
+          },
+          "tag": "interdisciplinary",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "（停顿片刻）你看得很准。我在普林斯顿读博的时候，不仅研究计算机视觉，还旁听了大量神经科学和认知心理学的课程。我从人类视觉系统中学到了一件事：视觉认知是分层的、丰富的、与其他感官深度交织的。这种跨学科的视角让我确信，AI的未来一定是多模态的。",
+              "en": "(Pauses for a moment) You see clearly. When I was doing my PhD at Princeton, I didn't just study computer vision — I also attended many courses in neuroscience and cognitive psychology. I learned something from the human visual system: visual cognition is layered, rich, and deeply interwoven with other senses. This interdisciplinary perspective convinced me that the future of AI must be multimodal."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "personal-experience",
+          "text": {
+            "zh": "也许和她的个人经历有关——作为移民的坚韧和对机会的珍惜",
+            "en": "Perhaps it relates to her personal experience — the resilience of an immigrant and appreciation for opportunity"
+          },
+          "tag": "empathetic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "（安静了一会儿）你很敏锐。我十六岁从中国来到美国，英语说得磕磕绊绊，在洗衣店和中餐馆打工来帮助家里。那段经历教会了我一件事：当你相信某件事值得做，外界的质疑就变得不那么重要了。科学研究和人生一样，有时候你需要的只是不放弃的勇气。",
+              "en": "(Quiet for a moment) You're perceptive. I came to America from China at sixteen, stumbling through English, working in dry cleaners and Chinese restaurants to help my family. That experience taught me one thing: when you believe something is worth doing, outside skepticism becomes less important. Scientific research, like life, sometimes just requires the courage to not give up."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "ImageNet最终催生了深度学习革命——2012年辛顿教授的学生用深度网络赢得了ImageNet挑战赛，一举改变了整个AI领域。但对我来说，ImageNet只是起点。给机器视觉能力只是第一步。真正的目标是让机器能够像人类一样，综合运用多种感官来理解世界。",
+        "en": "ImageNet eventually sparked the deep learning revolution — in 2012, Prof. Hinton's student won the ImageNet Challenge with a deep network, transforming the entire AI field overnight. But for me, ImageNet was just the beginning. Giving machines visual ability was only the first step. The real goal is enabling machines to understand the world by integrating multiple senses, just as humans do."
+      },
+      "leadsTo": "multimodal-vision"
+    },
+    {
+      "id": "multimodal-vision",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{多模态AI}的愿景。（全息投影展开一幅壮观的画面：文字、图像、声音、视频的数据流汇聚成一个旋转的光球）我们要构建的，是能同时处理和理解文字、图像、声音、视频乃至触觉和空间信息的智能系统。让AI不再是一个只会读书的学者，而是一个能看、能听、能感受世界的存在。",
+        "en": "This is the vision of {multimodal AI}. (The holographic projection unfolds a spectacular scene: streams of text, images, sound, and video converging into a rotating sphere of light) What we aim to build are intelligent systems that can simultaneously process and understand text, images, sound, video, and even tactile and spatial information. Making AI not just a scholar who only reads, but an entity that can see, hear, and feel the world."
+      },
+      "terms": {
+        "多模态AI": "term-multimodal-ai",
+        "multimodal AI": "term-multimodal-ai"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "符号接地问题：仅从文字学习的AI缺少感官经验的支撑，词语背后可能空无一物。人类90%的脑区处理非文字信息。多模态AI的目标是让机器像人类一样综合多种感官来理解世界。",
+        "en": "The grounding problem: AI that learns only from text lacks sensory grounding — there may be nothing behind the words. 90% of the human brain processes non-textual information. Multimodal AI aims to let machines understand the world through multiple senses, as humans do."
+      },
+      "category": "core-concept",
+      "leadsTo": "course-preview"
+    },
+    {
+      "id": "course-preview",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在接下来的课程中，我会带你们一步步走进多模态智能的世界。我们会看到视觉和语言如何被连接到同一个空间，会了解能「看图说话」的大模型是如何工作的，会探讨比识别物体更深层的空间智能，最后还会一起思考——感知和真正的理解之间，还有多远的距离。",
+        "en": "In the lessons ahead, I'll take you step by step into the world of multimodal intelligence. We'll see how vision and language can be connected in a shared space, learn how large models that can 「see and speak」 actually work, explore spatial intelligence that goes deeper than object recognition, and finally reflect together — how far is the distance between perception and true understanding."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "在你看来，实现真正的多模态智能最大的挑战是什么？",
+        "en": "In your view, what is the greatest challenge in achieving true multimodal intelligence?"
+      },
+      "choices": [
+        {
+          "id": "integration",
+          "text": {
+            "zh": "如何让不同模态的信息真正融合——而非简单拼接",
+            "en": "How to truly integrate information from different modalities — rather than simply concatenating them"
+          },
+          "tag": "technical-depth",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这是一个非常专业的洞察。目前很多所谓的「多模态」系统其实只是把图像特征和文本特征粗暴地拼在一起。真正的融合意味着不同模态之间要产生深层的交互——就像人类的视觉和语言在大脑中共享同一套概念表征一样。这正是我们下节课要讨论的内容。",
+              "en": "That's a very professional insight. Many so-called 「multimodal」 systems today actually just crudely concatenate image features and text features. True fusion means different modalities must interact at a deep level — just as human vision and language share the same conceptual representations in the brain. This is exactly what we'll discuss next lesson."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "common-sense",
+          "text": {
+            "zh": "常识和物理直觉——这些很难从数据中学到",
+            "en": "Common sense and physical intuition — these are hard to learn from data"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触及了一个深层的难题。一个三岁的孩子知道杯子从桌上掉下去会碎，知道推一扇门它会动。这些常识看似简单，却编码了对物理世界的深刻理解。当前的多模态模型在这方面仍然很薄弱。我们会在后面的课程中深入讨论这个问题。",
+              "en": "You've touched on a deep challenge. A three-year-old knows a cup will break if it falls off a table, knows a door will move if pushed. This common sense seems simple, yet it encodes profound understanding of the physical world. Current multimodal models are still very weak in this area. We'll discuss this in depth in later lessons."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "data-scale",
+          "text": {
+            "zh": "数据问题——我们需要海量的多模态配对数据来训练这样的系统",
+            "en": "The data challenge — we need massive paired multimodal data to train such systems"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "数据永远是关键——这一点我深有体会。ImageNet花了三年才建成。而多模态数据的采集更加复杂：你不仅要有图片，还要有准确的文字描述、声音标注、空间信息。好消息是，互联网本身就是一个巨大的多模态数据源。我们会看到，有些聪明的方法甚至不需要人工标注。",
+              "en": "Data is always key — I know this firsthand. ImageNet took three years to build. And collecting multimodal data is even more complex: you need not just images, but accurate text descriptions, sound annotations, spatial information. The good news is that the internet itself is an enormous multimodal data source. We'll see that some clever approaches don't even require manual labeling."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "记住今天的核心思想：智能不仅仅是识别——真正的理解需要看见、触摸、感受这个世界。纯文本AI再强大，也只是在一个没有窗户的房间里读百科全书。我们的使命，是为AI打开那扇窗。下节课见。",
+        "en": "Remember today's core idea: intelligence is more than recognition — true understanding requires seeing, touching, and feeling the world. No matter how powerful a text-only AI becomes, it is still reading an encyclopedia in a windowless room. Our mission is to open that window for AI. See you next lesson."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "人类婴儿通过视觉、触觉、听觉来认识世界，语言是后来才加入的标签。仅靠文字的AI面临符号接地问题。李飞飞创建ImageNet是迈向视觉智能的第一步，但多模态AI的愿景远不止于此。",
+        "en": "Human babies learn about the world through vision, touch, and hearing — language is a label added later. Text-only AI faces the grounding problem. Li's creation of ImageNet was the first step toward visual intelligence, but the vision of multimodal AI extends far beyond."
+      },
+      "category": "key-insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "李飞飞教授轻轻挥了挥手，全息投影缓缓消散。金色的阳光依然从窗外涌入，照亮了整个空间。她走出教室时，你忍不住看向窗外——天空、树木、远处的建筑，一个丰富多彩的世界铺展在眼前。你第一次真正思考：如果一个智能体从未「看见」过这一切，它读再多的书，又能理解多少呢？",
+        "en": "Prof. Li waves gently, and the holographic projection slowly fades. Golden sunlight still floods through the windows, illuminating the entire space. As she leaves the classroom, you can't help but look outside — the sky, the trees, buildings in the distance, a rich and colorful world spread before you. For the first time, you truly wonder: if an intelligence has never 「seen」 any of this, no matter how many books it reads, how much can it really understand?"
+      }
+    }
+  ]
+}

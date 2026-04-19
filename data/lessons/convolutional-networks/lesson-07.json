@@ -1,0 +1,370 @@
+{
+  "id": "lesson-07",
+  "course": "convolutional-networks",
+  "title": {
+    "zh": "残差革命",
+    "en": "The Residual Revolution"
+  },
+  "knowledgePoint": {
+    "zh": "ResNet的残差连接——如何让网络深达上百层而不退化",
+    "en": "ResNet's residual connections — how to make networks hundreds of layers deep without degradation"
+  },
+  "teacher": "prof-lecun",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-06",
+  "nextLesson": null,
+  "recallIntro": {
+    "zh": "你闭上眼，思绪回到那间充满科技感的教室。勒丘恩教授在白板上画了一个跨越多层的弯曲箭头，从输入直接连到了输出。他一拍白板说：「就是这么一个简单的想法，让我们把网络加到了152层。」他的语气里满是敬佩——即使这不是他自己的发明。",
+    "en": "You close your eyes, and your thoughts drift back to the tech-filled classroom. Prof. LeCun draws a curved arrow on the whiteboard that spans across several layers, connecting input directly to output. He taps the board and says: 「This one simple idea let us stack networks to 152 layers」. His tone is full of admiration — even though this wasn't his own invention."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。残差连接的核心思想如此简洁：与其让每一层学习完整的映射，不如让它学习与输入之间的「差异」。一条捷径，解决了深度网络最顽固的问题。有时候最深刻的突破来自最简单的直觉。",
+    "en": "You return to the present. The core idea of residual connections is so simple: instead of having each layer learn a complete mapping, let it learn the 「difference」 from the input. One shortcut solved deep networks' most stubborn problem. Sometimes the most profound breakthroughs come from the simplest intuitions."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的屏幕上显示着一组曲线图。左边是一个20层网络和一个56层网络的训练曲线对比，令人困惑的是，56层网络的错误率反而更高。右边是另一组对比，一个普通的56层网络和一个带有某种特殊连接的152层网络，这一次，152层网络遥遥领先。勒丘恩教授面带微笑地站在两张图之间。",
+        "en": "Today's screen shows a set of curve plots. On the left, a comparison of training curves between a 20-layer and a 56-layer network — puzzlingly, the 56-layer network has a higher error rate. On the right, another comparison — a plain 56-layer network and a 152-layer network with some special connections. This time, the 152-layer network leads by a wide margin. Prof. LeCun stands between the two plots with a smile."
+      },
+      "leadsTo": "lecun-opening"
+    },
+    {
+      "id": "lecun-opening",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们看到了一个清晰的趋势：网络越深，效果越好。VGGNet用19层，GoogLeNet用22层，每次加深都带来了提升。所以一个自然的问题就是——如果我们把网络做到50层、100层、甚至更深呢？",
+        "en": "Last lesson we saw a clear trend: deeper networks perform better. VGGNet used 19 layers, GoogLeNet used 22 layers, and each increase in depth brought improvements. So a natural question arises — what if we make networks 50 layers, 100 layers, or even deeper?"
+      },
+      "leadsTo": "degradation-problem"
+    },
+    {
+      "id": "degradation-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但实验结果让人意外。看左边这张图：当我们把普通的卷积网络从20层增加到56层时，训练误差和测试误差同时变差了。注意，这并非过拟合。如果是过拟合，训练误差应该很低而测试误差很高。可这里两个误差都升高了。这说明更深的网络连训练数据都拟合不好。",
+        "en": "But the experimental results were surprising. Look at the chart on the left — when we increase a plain convolutional network from 20 to 56 layers, both training error and test error get worse. Note, this isn't overfitting — if it were overfitting, training error should be low while test error is high. Here both errors increased. This means the deeper network can't even fit the training data well."
+      },
+      "leadsTo": "paradox"
+    },
+    {
+      "id": "paradox",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是所谓的「退化问题」。从理论上说，一个更深的网络至少不应该比浅层网络差——在最坏的情况下，额外的层可以只学习恒等映射，也就是输入什么就输出什么，这样就等同于浅层网络。但在实践中，让网络学会「什么都不做」反而出奇地困难。",
+        "en": "This is the so-called 「degradation problem」. In theory, a deeper network should be at least as good as a shallower one — in the worst case, the extra layers could simply learn identity mappings, passing input through unchanged, making it equivalent to the shallow network. But in practice, making a network learn to 「do nothing」 turns out to be surprisingly difficult."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "56层网络比20层网络表现更差。你觉得原因可能是什么？",
+        "en": "A 56-layer network performs worse than a 20-layer one. What do you think the reason might be?"
+      },
+      "choices": [
+        {
+          "id": "gradient-issue",
+          "text": {
+            "zh": "梯度在这么多层中传播时几乎消失了，底层的权重根本学不动",
+            "en": "Gradients nearly vanish when propagating through so many layers, weights at bottom layers barely learn"
+          },
+          "tag": "technical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "梯度消失确实是一部分原因。辛顿教授在他的课上讲过这个问题——梯度在每一层都会乘以权重矩阵，经过几十层后可能变得极小。虽然ReLU和批归一化缓解了这个问题，但在非常深的网络中，信号的衰减仍然是一个严重的障碍。",
+              "en": "Vanishing gradients are indeed part of the reason. Prof. Hinton discussed this in his course — gradients multiply by weight matrices at each layer, potentially becoming tiny after dozens of layers. While ReLU and batch normalization alleviate this, signal degradation remains a serious obstacle in very deep networks."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "optimization-landscape",
+          "text": {
+            "zh": "参数空间变得太复杂了，优化器很容易陷入糟糕的局部最小值",
+            "en": "The parameter space becomes too complex, and optimizers easily get trapped in poor local minima"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这个角度很有洞察力。更深的网络意味着更高维度的损失函数景观，这个景观可能充满了鞍点和平坦区域。优化器在这样的环境中可能找不到好的路径。有趣的是，随机梯度下降在浅层网络中工作得很好，但到了几十层的规模就力不从心了。",
+              "en": "That's a very insightful perspective. Deeper networks mean a higher-dimensional loss landscape that may be full of saddle points and flat regions. Optimizers might fail to find good paths in such terrain. Interestingly, stochastic gradient descent works well in shallow networks but struggles at the scale of dozens of layers."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "identity-hard",
+          "text": {
+            "zh": "额外的层很难学会「什么都不做」——恒等映射对网络来说并不自然",
+            "en": "Extra layers struggle to learn to 「do nothing」 — identity mapping isn't natural for networks"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你直接触及了问题的核心！理论上说，一个层要学会恒等映射很简单——只需要让权重等于单位矩阵就行了。但在实际训练中，网络从随机初始化开始，通过梯度下降来学习。让一个随机初始化的层「恰好」学到恒等映射，在优化的角度上其实很不容易。这个观察正是ResNet解决方案的关键线索。",
+              "en": "You've directly touched the heart of the problem! In theory, learning an identity mapping is simple — just set the weights to the identity matrix. But in practice, networks start from random initialization and learn via gradient descent. Getting a randomly initialized layer to 「happen to」 learn the identity mapping is actually quite difficult from an optimization perspective. This observation is the key clue to ResNet's solution."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2015年，微软亚洲研究院的何恺明和他的团队提出了一个极其优雅的解决方案。他们的想法非常简单——既然让一个层学习恒等映射很难，那何不从架构上让「什么都不做」变成默认行为？",
+        "en": "In 2015, Kaiming He and his team at Microsoft Research Asia proposed an extremely elegant solution. Their idea was beautifully simple — since learning an identity mapping is hard, why not make 「doing nothing」 the default behavior at the architectural level?"
+      },
+      "leadsTo": "residual-idea"
+    },
+    {
+      "id": "residual-idea",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "方法就是{残差连接}——也叫{跳跃连接}。在传统网络中，一个层要学习的是从输入x到输出H(x)的完整映射。残差网络换了一种思路：让这个层只学习残差F(x) = H(x) - x，也就是输出和输入之间的差异。然后把结果加回输入本身：输出 = F(x) + x。",
+        "en": "The method is the {residual connection} — also called a {skip connection}. In a traditional network, a layer needs to learn the full mapping from input x to output H(x). Residual networks take a different approach: let the layer learn only the residual F(x) = H(x) - x, the difference between output and input. Then add back the input itself: output = F(x) + x."
+      },
+      "terms": {
+        "残差连接": "term-residual-connection",
+        "跳跃连接": "term-skip-connection",
+        "residual connection": "term-residual-connection",
+        "skip connection": "term-skip-connection"
+      },
+      "leadsTo": "why-works"
+    },
+    {
+      "id": "why-works",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个设计的精妙之处在于：如果额外的层不需要做任何事情，它只需要让F(x)趋近于零——输出就自动等于输入。把权重推向零比推向恒等矩阵容易得多。所以{ResNet}让「什么都不做」变成了默认状态，让「做有用的事」变成了需要主动学习的部分。",
+        "en": "The brilliance of this design is: if an extra layer doesn't need to do anything, it just needs to push F(x) toward zero — the output automatically equals the input. Pushing weights toward zero is much easier than pushing them toward the identity matrix. So {ResNet} makes 「doing nothing」 the default, and 「doing something useful」 the part that requires active learning."
+      },
+      "terms": {
+        "ResNet": "term-resnet"
+      },
+      "leadsTo": "gradient-flow"
+    },
+    {
+      "id": "gradient-flow",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "还有一个关键的好处——梯度的流动。在传统网络中，梯度必须逐层向后传播，每一层都会对梯度进行变换。但有了跳跃连接，梯度有了一条「高速公路」可以直接回传到更早的层。即使中间某些层的梯度很小，信号仍然可以通过捷径畅通无阻地到达底层。",
+        "en": "There's another key benefit — gradient flow. In traditional networks, gradients must propagate backward layer by layer, each layer transforming them. But with skip connections, gradients have a 「highway」 to flow directly back to earlier layers. Even if gradients through some intermediate layers are small, the signal can still reach bottom layers unobstructed through the shortcut."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "残差连接让层学习「残差」而非完整映射。你觉得为什么学习残差比学习完整映射更容易？",
+        "en": "Residual connections have layers learn 「residuals」 instead of full mappings. Why do you think learning residuals is easier than learning full mappings?"
+      },
+      "choices": [
+        {
+          "id": "zero-easier",
+          "text": {
+            "zh": "学习「做很小的调整」比学习「从头构建完整输出」更简单",
+            "en": "Learning to 「make small adjustments」 is simpler than learning to 「build complete outputs from scratch」"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确。在深层网络中，低层已经提取了不错的特征表示。高层需要做的往往只是微调——加一点这个，减一点那个。残差框架恰好匹配了这种需求：如果只需要做微小的调整，那么F(x)只需要是一个很小的值，而学习接近零的函数远比学习一个复杂的恒等映射要容易得多。",
+              "en": "Exactly right. In deep networks, lower layers have already extracted decent feature representations. Higher layers often just need to fine-tune — add a bit here, subtract a bit there. The residual framework perfectly matches this need: if only small adjustments are needed, then F(x) just needs to be a small value, and learning a near-zero function is far easier than learning a complex identity mapping."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "optimization-surface",
+          "text": {
+            "zh": "残差改变了优化的起点——网络在一开始就接近恒等映射，优化路径更平坦",
+            "en": "Residuals change the optimization starting point — the network starts near identity, making the optimization path smoother"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常精确的分析。当权重初始化为接近零的值时，残差块的输出近似等于输入——网络的初始行为就像一个浅层网络。随着训练进行，每个块逐渐学到有用的调整。这意味着优化从一个合理的起点出发，而非从一个随机的、可能很糟糕的位置开始。损失函数的景观因此变得更加平滑，优化器更容易找到好的方向。",
+              "en": "A very precise analysis. When weights are initialized near zero, a residual block's output approximately equals its input — the network's initial behavior resembles a shallow network. As training proceeds, each block gradually learns useful adjustments. This means optimization starts from a reasonable point rather than a random, potentially bad position. The loss landscape becomes smoother as a result, making it easier for the optimizer to find good directions."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "information-preserved",
+          "text": {
+            "zh": "因为输入信息被直接保留了——层只需要决定要「添加」什么，而不用担心「丢失」什么",
+            "en": "Because input information is directly preserved — layers only need to decide what to 「add」, not worry about 「losing」 anything"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个很好的信息论视角。在传统网络中，每一层都可能丢失来自输入的信息——经过几十层之后，原始信号可能面目全非。但有了跳跃连接，原始信息通过捷径被完整保留。网络的任务从「重建信号」变成了「在已有信号上做增量改进」。这种信息保护机制是残差网络能够训练得如此之深的根本原因。",
+              "en": "That's an excellent information-theoretic perspective. In traditional networks, each layer might lose information from the input — after dozens of layers, the original signal could be unrecognizable. But with skip connections, original information is preserved intact through the shortcut. The network's task shifts from 「reconstructing the signal」 to 「making incremental improvements on the existing signal」. This information preservation mechanism is the fundamental reason residual networks can be trained so deep."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "ResNet在2015年的ImageNet竞赛中以3.57%的错误率夺冠——152层深。这个错误率首次低于人类在同一测试中的表现（约5.1%）。从LeNet的5层到AlexNet的8层，到VGGNet的19层，再到ResNet的152层。残差连接打破了深度的天花板。",
+        "en": "ResNet won the 2015 ImageNet competition with a 3.57% error rate — 152 layers deep. This error rate was for the first time lower than human performance on the same test (about 5.1%). From LeNet's 5 layers to AlexNet's 8, to VGGNet's 19, to ResNet's 152. Residual connections shattered the ceiling on depth."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "残差连接（ResNet）解决了深层网络的退化问题。核心思想：让每个层学习残差F(x)而非完整映射H(x)，输出=F(x)+x。好处：(1)学习接近零的函数比学习恒等映射更容易；(2)梯度通过跳跃连接直达底层；(3)原始信息被完整保留。ResNet用152层在ImageNet 2015上达到3.57%错误率，首次超越人类水平。",
+        "en": "Residual connections (ResNet) solved the degradation problem in deep networks. Core idea: have each layer learn residual F(x) instead of full mapping H(x), output = F(x) + x. Benefits: (1) learning a near-zero function is easier than learning identity; (2) gradients flow directly to bottom layers via skip connections; (3) original information is preserved intact. ResNet with 152 layers achieved 3.57% error on ImageNet 2015, surpassing human level for the first time."
+      },
+      "category": "core-concept",
+      "leadsTo": "broader-impact"
+    },
+    {
+      "id": "broader-impact",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "残差连接的影响远远超出了ImageNet竞赛。今天几乎所有的深层网络都在使用跳跃连接的某种形式。它不仅用在图像分类里，还用在目标检测、图像分割、超分辨率、自然语言处理——你能想到的所有深度学习应用中。它已经成为了深度学习架构的标准组件。",
+        "en": "The impact of residual connections extends far beyond the ImageNet competition. Today, virtually all deep networks use some form of skip connections. They're used not only in image classification but in object detection, image segmentation, super-resolution, natural language processing — every deep learning application you can think of. They've become a standard component of deep learning architectures."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "残差连接如此简单，但等到2015年才被提出。你觉得为什么这个想法没有更早出现？",
+        "en": "Residual connections are so simple, yet they weren't proposed until 2015. Why do you think this idea didn't appear earlier?"
+      },
+      "choices": [
+        {
+          "id": "no-need-before",
+          "text": {
+            "zh": "之前的网络没有深到需要它——退化问题只有在足够深时才明显",
+            "en": "Earlier networks weren't deep enough to need it — the degradation problem only becomes obvious at sufficient depth"
+          },
+          "tag": "historical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得对。在AlexNet的8层和VGGNet的19层时代，退化问题还不那么严重。是追求更深网络的趋势暴露了这个问题，而问题暴露后才催生了解决方案。科学研究有时候就是这样——你需要先走到一个障碍面前，才能看清它的轮廓，然后才能找到绕过它的路。",
+              "en": "That's right. In the era of AlexNet's 8 layers and VGGNet's 19, the degradation problem wasn't severe enough. It was the push toward deeper networks that exposed the issue, and only after exposure did the solution emerge. Scientific research sometimes works this way — you need to walk up to an obstacle before you can see its shape clearly, and only then can you find a way around it."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "simplicity-barrier",
+          "text": {
+            "zh": "太简单了反而容易被忽视——人们倾向于寻找复杂的解决方案",
+            "en": "It was too simple to notice — people tend to look for complex solutions"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了一下）你知道吗，很多时候最伟大的想法在回头看时都显得「显而易见」。但在当时，大多数研究者都在尝试更复杂的方案——更精巧的初始化策略、更复杂的归一化技术、更新的优化算法。很少有人想到，也许问题的答案就藏在一条简简单单的加法运算里。科学中有一个道理：简单的解决方案总是最后被发现的。",
+              "en": "(Laughs) You know, many of the greatest ideas seem 「obvious」 in hindsight. But at the time, most researchers were trying more complex approaches — more sophisticated initialization strategies, fancier normalization techniques, newer optimization algorithms. Few thought the answer might be hiding in a simple addition operation. There's a truth in science: the simple solution is always the last one found."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "conceptual-shift",
+          "text": {
+            "zh": "需要一个思维转变——从「让层学更好」转向「让层可以选择不学」",
+            "en": "It required a conceptual shift — from 「make layers learn better」 to 「let layers choose not to learn」"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是最深刻的回答。传统思维是「每一层都应该做有用的事」，所以研究者把精力放在让每一层学得更好上。何恺明的洞见是反过来思考：让「不做事」成为默认，让「做有用的事」成为可选。这种思维方式的翻转在科学史上不是第一次——很多突破都来自于重新定义问题本身，而非在旧框架里寻找更好的答案。",
+              "en": "That's the most profound answer. Traditional thinking was 「every layer should do something useful」, so researchers focused on making each layer learn better. Kaiming He's insight was to think in reverse: make 「doing nothing」 the default, and 「doing something useful」 optional. This kind of mental flip isn't the first in scientific history — many breakthroughs come from redefining the problem itself rather than seeking better answers within the old framework."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "残差连接还告诉我们一个更深层的道理：深度学习中最重要的创新往往是架构上的巧思——用简洁的结构让学习过程变得更自然。",
+        "en": "Residual connections also teach us a deeper lesson: the most important innovations in deep learning are often not bigger models or more data, but architectural ingenuity — using elegant structures to make the learning process more natural."
+      },
+      "leadsTo": "course-wrap-up"
+    },
+    {
+      "id": "course-wrap-up",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "好了，我们这门卷积神经网络的课程就到这里了。从生物视觉的启发到卷积运算，从池化到空间层级，从LeNet到AlexNet到VGGNet到ResNet——你们已经见证了计算机视觉三十年的进化。如果你想让机器理解世界，先教它用眼睛看。而卷积神经网络，就是我们给机器的那双眼睛。",
+        "en": "All right, this concludes our course on convolutional neural networks. From biological vision inspiration to convolution operations, from pooling to spatial hierarchies, from LeNet to AlexNet to VGGNet to ResNet — you've witnessed thirty years of computer vision evolution. If you want machines to understand the world, first teach them to see with their eyes. And convolutional neural networks are the eyes we've given machines."
+      },
+      "leadsTo": "future-speculation"
+    },
+    {
+      "id": "future-speculation",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "至于未来会怎样？我有一种直觉，{卷积}的思想不会局限在视觉领域。局部连接、权重共享、层级特征提取，这些原则可以推广到更多类型的数据。也许有一天，我们会找到一种更通用的架构，能同时处理图像、文字、声音。但那是后面的故事了。",
+        "en": "As for what the future holds? I have an intuition — the idea of {convolution} won't be limited to vision. Local connectivity, weight sharing, hierarchical feature extraction — these principles can generalize to more types of data. Perhaps someday we'll find a more universal architecture that handles images, text, and audio all at once. But that's a story for later."
+      },
+      "terms": {
+        "卷积": "term-convolution",
+        "convolution": "term-convolution"
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "CNN架构演进：LeNet(5层)→AlexNet(8层)→VGGNet(19层)→GoogLeNet(22层)→ResNet(152层)。残差连接是深度学习架构设计中最关键的突破之一——通过让层学习残差而非完整映射，使得训练超深网络成为可能。核心启示：最深刻的创新往往来自架构上的简洁巧思。",
+        "en": "CNN architecture evolution: LeNet(5) → AlexNet(8) → VGGNet(19) → GoogLeNet(22) → ResNet(152). Residual connections are among the most critical breakthroughs in deep learning architecture — by having layers learn residuals instead of full mappings, they made training ultra-deep networks possible. Key insight: the most profound innovations often come from simple architectural elegance."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "勒丘恩教授转身在白板上画了一条从1989到2015的时间线，从LeNet到ResNet。他在时间线的末尾画了一个问号，然后朝你们眨了眨眼：「我用了将近三十年让机器学会看世界。下一个三十年，谁知道呢？也许你们中的某个人会发明下一个改变一切的架构。」他收起马克笔，推开教室的门。走廊里传来远处的讨论声，大屏幕上的残差网络结构图仍在静静地发着蓝光。",
+        "en": "Prof. LeCun turns to draw a timeline on the whiteboard from 1989 to 2015 — from LeNet to ResNet. He draws a question mark at the end and winks at you: 「It took me nearly thirty years to teach machines to see. The next thirty years, who knows? Perhaps one of you will invent the next architecture that changes everything」. He caps his marker and pushes open the classroom door. Discussion echoes from down the corridor — the residual network diagram on the large screen continues to glow softly in blue."
+      }
+    }
+  ]
+}

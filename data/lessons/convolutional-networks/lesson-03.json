@@ -1,0 +1,377 @@
+{
+  "id": "lesson-03",
+  "course": "convolutional-networks",
+  "title": {
+    "zh": "卷积运算",
+    "en": "The Convolution Operation"
+  },
+  "knowledgePoint": {
+    "zh": "卷积的工作原理——滤波器、特征图与参数共享",
+    "en": "How convolution works — filters, feature maps, parameter sharing"
+  },
+  "teacher": "prof-lecun",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你走进教室，发现白板上画满了小方格。勒丘恩教授正用马克笔在方格上写数字，嘴里念叨着什么。他注意到你来了，放下笔，指着白板说：「今天我们来做一道最简单的数学题。」",
+    "en": "You walk into the classroom and find the whiteboard covered with small grid squares. Prof. LeCun is writing numbers in the grids with a marker, muttering something. He notices you arrive, puts down the pen, and points at the board: 「Today we'll do the simplest math problem」."
+  },
+  "recallOutro": {
+    "zh": "你看着笔记本上画的滤波器滑动示意图，突然觉得一切清晰了：一个小小的3乘3矩阵，在整张图片上滑动，用同样的参数在每个位置做同样的检测。如此简单，却如此强大。",
+    "en": "You look at the filter-sliding diagram in your notebook and suddenly everything clicks: a tiny 3-by-3 matrix sliding across the whole image, performing the same detection at every position with the same parameters. So simple, yet so powerful."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "白板被分成了两部分。左边画着一个5乘5的数字网格，模拟一小块图像的像素值。右边是空的，等待着被填充。勒丘恩教授手里拿着一块磁性小白板，上面写着一个3乘3的矩阵——他把它吸在大白板上，正好盖住左边网格的左上角。",
+        "en": "The whiteboard is divided in two. On the left is a 5-by-5 grid of numbers simulating pixel values of a small image patch. The right side is empty, waiting to be filled. Prof. LeCun holds a small magnetic whiteboard with a 3-by-3 matrix written on it — he sticks it on the big board, positioned right over the top-left corner of the grid."
+      },
+      "leadsTo": "convolution-intro"
+    },
+    {
+      "id": "convolution-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "今天我们进入核心操作——{卷积}。别被这个数学名词吓到，它的原理简单得不可思议。看这里：左边是一小块图像，5乘5像素。我手里这个3乘3的矩阵，就是一个{滤波器}，也叫卷积核。",
+        "en": "Today we enter the core operation — {convolution}. Don't be intimidated by the mathematical name; the principle is incredibly simple. Look here: on the left is a small image patch, 5-by-5 pixels. This 3-by-3 matrix in my hand is a {filter}, also called a convolution kernel."
+      },
+      "terms": {
+        "卷积": "term-convolution",
+        "滤波器": "term-filter-kernel",
+        "convolution": "term-convolution",
+        "filter": "term-filter-kernel"
+      },
+      "leadsTo": "sliding-window"
+    },
+    {
+      "id": "sliding-window",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "操作过程是这样的：我把滤波器放在图像的左上角，滤波器的每个数字跟它覆盖的像素值逐个相乘，然后把所有乘积加起来，得到一个数字。这个数字写在右边新网格的对应位置。然后，我把滤波器向右移动一格，再做同样的计算。一直滑到最右边，然后下移一行，继续从左到右滑动。就像一个窗户在图像上扫过去。",
+        "en": "Here's how it works: I place the filter at the top-left corner of the image, multiply each number in the filter with the pixel value it covers, then sum all the products to get a single number. That number goes in the corresponding position on the new grid on the right. Then I slide the filter one position to the right and do the same calculation. Keep sliding to the far right, then move down one row and continue from left to right. Like a window scanning across the image."
+      },
+      "leadsTo": "edge-detection-demo"
+    },
+    {
+      "id": "edge-detection-demo",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我给你们看一个具体的例子。（在白板上写出一个滤波器）这个3乘3的滤波器：左边一列是负1，中间一列是0，右边一列是正1。你们猜它在做什么？它在检测垂直边缘！当滤波器覆盖的区域左右像素值差异很大时，比如从暗到亮——输出值就会很大。如果区域内亮度均匀，输出接近零。",
+        "en": "Let me show you a concrete example. (Writes a filter on the whiteboard) This 3-by-3 filter: the left column is negative 1, the middle column is 0, the right column is positive 1. Can you guess what it does? It detects vertical edges! When the left and right pixel values in the covered area differ greatly — say, from dark to bright — the output is large. If the brightness is uniform across the area, the output is near zero."
+      },
+      "leadsTo": "edge-insight"
+    },
+    {
+      "id": "edge-insight",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这就像上节课说的简单细胞，每个滤波器检测一种特定的局部模式。垂直边缘检测器、水平边缘检测器、对角线检测器……在传统计算机视觉中，这些滤波器是人类手工设计的。但在卷积神经网络里，你们猜怎么着？这些滤波器里的数字是网络自己学出来的。",
+        "en": "This is just like the simple cells we discussed last lesson — each filter detects a specific local pattern. Vertical edge detector, horizontal edge detector, diagonal detector... In traditional computer vision, these filters are handcrafted by humans. But in convolutional neural networks — guess what — the numbers inside these filters are learned by the network itself."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "卷积操作用一个小滤波器在图像上滑动来提取特征。你觉得这种「滑动窗口」的设计有什么巧妙之处？",
+        "en": "The convolution operation slides a small filter across the image to extract features. What do you think is clever about this 「sliding window」 design?"
+      },
+      "choices": [
+        {
+          "id": "choice-local",
+          "text": {
+            "zh": "只看局部区域，不需要一次处理整张图片——效率高，也符合图像的局部相关性",
+            "en": "It only looks at local regions, no need to process the whole image at once — efficient and matches the local correlation in images"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得好。图像有一个重要的统计特性：相邻的像素之间有很强的相关性，远处的像素之间相关性很弱。一个3乘3或5乘5的小窗口就足以捕捉局部的结构信息。这比让每个输出节点连接到所有输入像素要高效得多——后者需要的参数量会爆炸。",
+              "en": "Well said. Images have an important statistical property: neighboring pixels are strongly correlated, while distant pixels are weakly correlated. A small 3-by-3 or 5-by-5 window is enough to capture local structural information. This is far more efficient than connecting every output node to all input pixels — which would cause the parameter count to explode."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-same-everywhere",
+          "text": {
+            "zh": "同一个滤波器在每个位置都用——不管边缘出现在哪里都能检测到",
+            "en": "The same filter is used at every position — it can detect edges no matter where they appear"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了卷积最核心的特性。一条垂直边缘，不管出现在图片左上角还是右下角，物理性质是一样的。所以用同一个滤波器去检测就够了——不需要为图像的每个位置训练不同的检测器。这就是所谓的「平移等变性」：滤波器对图像中所有位置一视同仁。",
+              "en": "You've grasped the most fundamental property of convolution. A vertical edge, whether it appears in the top-left or bottom-right of the image, has the same physical properties. So using the same filter to detect it is sufficient — no need to train a different detector for every position. This is called 「translation equivariance」: the filter treats all positions in the image equally."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-multiple-filters",
+          "text": {
+            "zh": "可以用很多不同的滤波器——每个检测不同类型的特征",
+            "en": "You can use many different filters — each detecting a different type of feature"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "对，这一点很重要。一个卷积层通常有几十甚至上百个不同的滤波器，每一个生成一张不同的特征图。有的检测水平边缘，有的检测垂直边缘，有的检测纹理，有的检测颜色梯度……整套滤波器组合在一起，就形成了对图像的一种多角度描述。",
+              "en": "Yes, this is very important. A convolutional layer typically has dozens or even hundreds of different filters, each generating a different feature map. Some detect horizontal edges, some vertical edges, some textures, some color gradients... The entire set of filters combined forms a multi-faceted description of the image."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我告诉你们卷积最精彩的部分——{参数共享}。这是让卷积神经网络在实践中可行的关键。",
+        "en": "Now let me tell you the most brilliant part of convolution — {parameter sharing}. This is the key that makes convolutional neural networks practically feasible."
+      },
+      "terms": {
+        "参数共享": "term-parameter-sharing",
+        "parameter sharing": "term-parameter-sharing"
+      },
+      "leadsTo": "parameter-sharing-explain"
+    },
+    {
+      "id": "parameter-sharing-explain",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "来做一道算术题。假设你有一张224乘224的输入图像，想输出一张同样大小的特征图。如果用全连接的方式，让每个输出像素都连接所有输入像素，你需要多少参数？224乘224是50176个输入，再乘以50176个输出，大概是25亿个参数。一层就要25亿！",
+        "en": "Let's do some arithmetic. Suppose you have a 224-by-224 input image and want to output a feature map of the same size. With a fully connected approach — each output pixel connected to all input pixels — how many parameters do you need? 224 times 224 is 50,176 inputs, times 50,176 outputs, roughly 2.5 billion parameters. 2.5 billion for just one layer!"
+      },
+      "leadsTo": "parameter-saving"
+    },
+    {
+      "id": "parameter-saving",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "现在换成卷积。一个3乘3的滤波器只有9个参数。这9个参数在整张图像上共享——不管滤波器滑到哪个位置，用的都是同一组权重。所以一个滤波器只需要9个参数，而不是25亿。加上偏置项，10个参数。从25亿到10。这就是参数共享的威力。",
+        "en": "Now switch to convolution. A 3-by-3 filter has only 9 parameters. These 9 parameters are shared across the entire image — no matter where the filter slides to, it uses the same set of weights. So one filter needs only 9 parameters, not 2.5 billion. Add a bias term, that's 10 parameters. From 2.5 billion to 10 — that's the power of parameter sharing."
+      },
+      "leadsTo": "why-it-works"
+    },
+    {
+      "id": "why-it-works",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么参数共享行得通？因为图像有一个统计特性叫「平稳性」——图像不同位置的统计特性大致相同。一条垂直边缘在图片左边长什么样，在右边也长什么样。所以用同一个检测器就够了。我们利用了图像本身的结构来大幅减少学习的难度。",
+        "en": "Why does parameter sharing work? Because images have a statistical property called 「stationarity」 — the statistical properties are roughly the same across different positions. A vertical edge looks the same on the left side of the image as on the right. So one detector is enough. We exploit the inherent structure of images to drastically reduce the difficulty of learning."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "参数共享把一层的参数从25亿减少到了10个。你觉得参数减少为什么对学习来说是好事？",
+        "en": "Parameter sharing reduced the parameters of one layer from 2.5 billion to 10. Why do you think having fewer parameters is good for learning?"
+      },
+      "choices": [
+        {
+          "id": "choice-overfit",
+          "text": {
+            "zh": "参数太多容易过拟合——模型会记住训练数据而不是学到规律",
+            "en": "Too many parameters lead to overfitting — the model memorizes training data instead of learning patterns"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "正确。25亿个参数意味着模型可以记住几乎任何数据集的每一个细节，但在新数据上就不行了。参数少的模型被迫学习更一般性的规律——它没有足够的「记忆空间」去记住具体的样本，只能去捕捉底层的模式。这就是为什么正则化如此重要，而参数共享是最优雅的正则化方式之一。",
+              "en": "Correct. 2.5 billion parameters means the model can memorize every detail of virtually any dataset, but it won't work on new data. A model with fewer parameters is forced to learn more general patterns — it doesn't have enough 「memory space」 to memorize specific samples, so it must capture underlying patterns. That's why regularization is so important, and parameter sharing is one of the most elegant forms of regularization."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-data",
+          "text": {
+            "zh": "需要的训练数据更少——不需要海量样本就能学出好的滤波器",
+            "en": "Needs less training data — you don't need massive amounts of samples to learn good filters"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这一点在实践中至关重要。参数越多，需要的训练数据就越多来避免过拟合。在1990年代，数据是稀缺资源。LeNet能在几千张手写数字样本上训练成功，很大程度上要归功于参数共享带来的低参数量。如果用全连接网络来做同样的事，你需要的数据量可能是它的几百倍。",
+              "en": "This is crucial in practice. More parameters mean more training data needed to avoid overfitting. In the 1990s, data was a scarce resource. LeNet's ability to train successfully on just a few thousand handwritten digit samples was largely thanks to the low parameter count from parameter sharing. If you tried to do the same with a fully connected network, you'd need perhaps hundreds of times more data."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-compute",
+          "text": {
+            "zh": "计算量更小——训练和运行都快得多",
+            "en": "Less computation — much faster to both train and run"
+          },
+          "tag": "engineering",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "从工程角度来说，完全正确。在1990年代的硬件上，25亿参数连存都存不下，更别说训练了。卷积的低参数量使得在当时有限的计算资源下训练深度网络成为可能。即使到了今天，计算效率仍然是一个重要的考量因素——你不会想在一个简单任务上浪费不必要的算力。",
+              "en": "From an engineering standpoint, absolutely correct. On 1990s hardware, you couldn't even store 2.5 billion parameters, let alone train them. Convolution's low parameter count made it possible to train deep networks with the limited computing resources of that era. Even today, computational efficiency remains an important consideration — you don't want to waste unnecessary compute on a simple task."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以，让我把今天的内容串起来。卷积操作有三个核心要素：第一，局部连接，滤波器只看一小块区域；第二，参数共享，同一个滤波器在所有位置使用相同的权重；第三，多通道输出，多个滤波器各自检测不同的特征，生成多张特征图。",
+        "en": "So let me tie today's content together. The convolution operation has three core elements: first, local connectivity — the filter sees only a small region; second, parameter sharing — the same filter uses identical weights at all positions; third, multi-channel output — multiple filters each detect different features, generating multiple feature maps."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "卷积操作有三要素：第一是局部连接，滤波器只看局部区域，这利用了图像的局部相关性；第二是参数共享，同一滤波器在所有位置使用同一组权重，从而将参数从25亿个降到10个；第三是多通道，多个滤波器能同时检测不同特征。参数共享之所以可行，是因为图像具有「平稳性」，即不同位置的统计特性大致相同。",
+        "en": "Three elements of convolution: (1) Local connectivity — filter sees only local area, exploiting spatial correlation; (2) Parameter sharing — same filter uses same weights at all positions, reducing 2.5 billion parameters to 10; (3) Multi-channel — multiple filters detect different features simultaneously. Parameter sharing works because of image 「stationarity」 — statistical properties are roughly the same across positions."
+      },
+      "category": "core-concept",
+      "leadsTo": "learned-filters"
+    },
+    {
+      "id": "learned-filters",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "最精彩的地方来了。我之前说过，传统计算机视觉中的滤波器是手工设计的。但在卷积神经网络里，滤波器里的每个数字，也就是每个权重，都是一个可学习的参数。反向传播算法会告诉每个权重应该怎么调整，才能让网络在识别任务上表现得更好。",
+        "en": "Here's the most exciting part. I mentioned earlier that in traditional computer vision, filters are handcrafted. But in convolutional neural networks, every number in the filter — every weight — is a learnable parameter. The backpropagation algorithm tells each weight how to adjust to make the network perform better on the recognition task."
+      },
+      "leadsTo": "what-network-learns"
+    },
+    {
+      "id": "what-network-learns",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "你知道网络学出来的第一层滤波器通常长什么样吗？几乎都是边缘检测器和颜色检测器——和人类设计的经典滤波器惊人地相似。但随着层数加深，网络学到的特征变得越来越抽象、越来越出人意料。这些特征有些连人类专家都没想到过，但它们确实有效。这就是让机器自己学习的美妙之处。",
+        "en": "Do you know what the first-layer filters learned by the network typically look like? Almost all are edge detectors and color detectors — strikingly similar to classic handcrafted filters. But as layers deepen, the features the network learns become increasingly abstract and surprising. Some of these features are things even human experts never thought of, yet they genuinely work. That's the beauty of letting machines learn on their own."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "卷积通过局部连接和参数共享大大减少了参数。但它也做了一个假设：图像不同位置的统计特性相同。你觉得这个假设什么时候可能不成立？",
+        "en": "Convolution drastically reduces parameters through local connectivity and parameter sharing. But it makes an assumption: the statistical properties of images are the same across positions. When might this assumption break down?"
+      },
+      "choices": [
+        {
+          "id": "choice-face",
+          "text": {
+            "zh": "人脸识别——眼睛总在上面，嘴巴总在下面，位置信息很重要",
+            "en": "Face recognition — eyes are always on top, mouth always on bottom, positional information matters"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "好例子！（笑了笑）人脸确实有固定的空间布局。眼睛长在额头上面就不正常了。对于这种任务，网络高层的神经元确实需要学会「眼睛应该在上方」这样的位置信息。好消息是，当你堆叠多层卷积之后，高层的感受野变得很大，自然就能捕捉到全局的空间布局。所以卷积网络在实践中依然能很好地处理人脸。",
+              "en": "Good example! (Laughs) Faces do have a fixed spatial layout. It would be weird if eyes were above the forehead. For such tasks, higher-level neurons in the network indeed need to learn positional information like 「eyes should be on top」. The good news is that when you stack multiple convolution layers, the receptive field of higher layers becomes very large, naturally capturing the global spatial layout. So convolutional networks can still handle faces well in practice."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-document",
+          "text": {
+            "zh": "文档图片——标题在上方、正文在中间、页码在底部，每个位置的内容类型不同",
+            "en": "Document images — title at top, body in middle, page number at bottom, content type differs by position"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "有意思的思考。文档确实有结构化的布局，不同位置的内容含义不同。这是卷积网络的平稳性假设面临的挑战之一。实际上，对于高度结构化的输入，有时候全连接层确实比卷积层更合适。但对于大多数自然图像任务，平稳性假设是一个非常好的近似。",
+              "en": "Interesting thinking. Documents indeed have structured layouts where content meaning varies by position. This is one of the challenges to the stationarity assumption of convolutional networks. Actually, for highly structured inputs, fully connected layers can sometimes be more appropriate than convolutional layers. But for most natural image tasks, the stationarity assumption is an excellent approximation."
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "choice-satellite",
+          "text": {
+            "zh": "卫星图像——地面不同区域的地形差异很大，统计特性不均匀",
+            "en": "Satellite images — different ground regions have very different terrain, non-uniform statistics"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这个例子很有想象力。大规模卫星图像确实可能在不同区域有完全不同的统计特性，城市和森林看起来就完全不同。不过在实践中，卷积网络依然是处理卫星图像最有效的工具之一。原因在于，虽然全局的统计特性不同，但那些「局部」的特征，比如边缘、纹理、形状，在哪里看起来都差不多。卷积捕捉的正是这些局部特征。",
+              "en": "That's a very imaginative example. Large-scale satellite images can indeed have completely different statistics in different regions — cities and forests look nothing alike. Yet in practice, convolutional networks are still one of the most effective tools for satellite imagery. Because although global statistics differ, 「local」 features — edges, textures, shapes — look roughly the same everywhere. Convolution captures precisely these local features."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "没有哪个假设是完美的。卷积假设平稳性，这在自然图像上效果极好，但在某些特殊场景下可能不够理想。好的工程师知道什么时候该用什么工具。但对于绝大多数视觉任务来说，卷积是一个极其高效、极其实用的选择。",
+        "en": "No assumption is perfect. Convolution assumes stationarity, which works extremely well on natural images but may not be ideal in certain special scenarios. Good engineers know when to use which tool. But for the vast majority of visual tasks, convolution is an extraordinarily efficient and practical choice."
+      },
+      "leadsTo": "preview-pooling"
+    },
+    {
+      "id": "preview-pooling",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "但光有卷积还不够。还记得生物视觉中的复杂细胞吗？它们不仅检测特征，还对位置变化有容忍度。下节课，我要给你们介绍卷积的搭档——池化操作。池化会帮助网络建立对位置偏移的不变性，让一只猫不管出现在图片哪个位置，都能被正确识别。",
+        "en": "But convolution alone isn't enough. Remember the complex cells from biological vision? They don't just detect features — they tolerate positional variation. Next lesson, I'll introduce convolution's partner — the pooling operation. Pooling helps the network build invariance to positional shifts, so a cat can be correctly recognized no matter where it appears in the image."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "卷积操作的本质：用一个小的可学习滤波器在图像上滑动，提取局部特征。网络自动学出的第一层滤波器与人类设计的经典边缘检测器惊人相似，但更深层会学出人类未曾想到的抽象特征。参数共享的前提是图像的平稳性假设。",
+        "en": "The essence of convolution: slide a small learnable filter across the image to extract local features. First-layer filters learned by the network are strikingly similar to classic handcrafted edge detectors, but deeper layers learn abstract features humans never thought of. Parameter sharing rests on the stationarity assumption of images."
+      },
+      "category": "key-insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "勒丘恩教授把磁性小白板从大白板上取下来，在手里掂了掂。「就是这么一个小小的矩阵，在图像上一路滑过去，改变了整个计算机视觉领域。有时候最好的想法看起来简单得不像话——但简单，往往就是优雅的同义词。」他把小白板收进包里，大步走出了教室。",
+        "en": "Prof. LeCun takes the small magnetic whiteboard off the big board and weighs it in his hand. 「Just this tiny matrix, sliding across an image, changed the entire field of computer vision. Sometimes the best ideas look absurdly simple — but simplicity is often a synonym for elegance」. He tucks the small board into his bag and strides out of the classroom."
+      }
+    }
+  ]
+}

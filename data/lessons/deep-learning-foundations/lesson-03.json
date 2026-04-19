@@ -1,0 +1,379 @@
+{
+  "id": "lesson-03",
+  "course": "deep-learning-foundations",
+  "title": {
+    "zh": "深度信念网络",
+    "en": "Deep Belief Networks"
+  },
+  "knowledgePoint": {
+    "zh": "通过叠加RBM实现逐层预训练——2006年的关键突破",
+    "en": "Stacking RBMs for layer-wise pretraining — the 2006 breakthrough"
+  },
+  "teacher": "prof-hinton",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你闭上眼，记忆把你拉回那间教室。辛顿教授站在一块写满公式的白板前，手里拿着一叠打印出来的论文。他正在讲述2006年那个改变一切的时刻——如何把一层层的RBM叠加起来，构建出真正的「深度」网络。",
+    "en": "You close your eyes, and memory pulls you back to that classroom. Prof. Hinton stands before a whiteboard covered in formulas, holding a stack of printed papers. He's recounting the moment in 2006 that changed everything — how to stack RBMs layer by layer to build truly 「deep」 networks."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。「贪心逐层训练」——这个方法看似简单，却解锁了深度网络训练的大门。每一层先学好自己，然后为下一层铺路。也许最深刻的突破，往往从最简单的直觉开始。",
+    "en": "You return to the present. 「Greedy layer-wise training」 — this method seems simple, yet it unlocked the door to training deep networks. Each layer learns its part first, then paves the way for the next. Perhaps the most profound breakthroughs often begin with the simplest intuitions."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室里的大屏幕上显示着一张论文截图——标题是「A Fast Learning Algorithm for Deep Belief Nets」，发表于2006年的《Neural Computation》。辛顿教授拿着一份打印版，纸角已经卷了起来。他把论文举到面前，像看老朋友一样端详了一会儿。",
+        "en": "The large screen displays a screenshot of a paper — titled 「A Fast Learning Algorithm for Deep Belief Nets, published in Neural Computation in 2006. Prof. Hinton holds a printed copy, its corners curling. He holds it up and studies it for a moment, like looking at an old friend."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这篇论文。（晃了晃手里的打印稿）六年前发表的。在那之前，我花了将近二十年试图训练深层网络，各种方法都试过了。这篇论文里的想法说起来其实很简单——简单到我后来有点恼火，心想为什么没有早十年想到。",
+        "en": "This paper. (Waves the printout) Published six years ago. Before it, I'd spent nearly twenty years trying to train deep networks, trying every method I could think of. The idea in this paper is actually quite simple when you explain it — so simple that I was a bit annoyed afterward, wondering why I hadn't thought of it ten years earlier."
+      },
+      "leadsTo": "the-problem"
+    },
+    {
+      "id": "the-problem",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "回忆一下我们上节课讲的：单个RBM能很好地学习一层特征。但我们想要的是深度——多层的、层次化的特征表示。问题是，如果你直接构建一个很深的网络然后用反向传播训练，梯度会在传播过程中消失或爆炸。浅层几乎学不到任何东西。",
+        "en": "Recall what we discussed last lesson: a single RBM can learn one layer of features very well. But what we want is depth — multi-layer, hierarchical feature representations. The problem is, if you directly build a very deep network and train it with backpropagation, gradients vanish or explode during propagation. Shallow layers learn almost nothing."
+      },
+      "leadsTo": "key-insight"
+    },
+    {
+      "id": "key-insight",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "突破的关键在于一个转换思路：既然我们不能一口气训练整个深层网络，为什么不一层一层来呢？先训练第一层RBM，让它学会数据的第一级特征。然后把第一层的隐藏层输出当作新的「数据」，再训练第二层RBM。以此类推。这就是{逐层训练}的核心思想。",
+        "en": "The key to the breakthrough was a shift in thinking: since we can't train the entire deep network at once, why not do it layer by layer? First train the first RBM layer, letting it learn the first level of features from the data. Then treat the first layer's hidden output as new 「data」 and train a second RBM. And so on. This is the core idea of {layer-wise training}."
+      },
+      "terms": {
+        "逐层训练": "term-layer-wise-training",
+        "layer-wise training": "term-layer-wise-training"
+      },
+      "leadsTo": "greedy-explain"
+    },
+    {
+      "id": "greedy-explain",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "为什么叫「贪心」逐层训练？因为每一层只关心自己——它不知道上面还有几层，也不关心最终的任务是什么。它只是尽力把当前的输入数据学好。这种「只看眼前」的策略在优化理论里叫贪心算法。听起来很短视，对吧？但它工作得出奇地好。",
+        "en": "Why is it called 「greedy」 layer-wise training? Because each layer only cares about itself — it doesn't know how many layers are above it, and it doesn't care about the final task. It just tries its best to learn the current input data well. This 「look only at what's in front of you」 strategy is called a greedy algorithm in optimization theory. Sounds shortsighted, right? But it works surprisingly well."
+      },
+      "leadsTo": "why-it-works"
+    },
+    {
+      "id": "why-it-works",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "为什么有效？我在论文里给出了一个理论证明：每叠加一层新的RBM并训练好，整个网络对数据的建模能力只会变好或持平，绝不会变差。换句话说，深度只会带来好处。这是第一次有人在理论上证明了「更深更好」。",
+        "en": "Why does it work? In the paper, I provided a theoretical proof: each time a new RBM layer is added and trained, the network's ability to model the data can only improve or stay the same — it never gets worse. In other words, depth only brings benefits. This was the first time anyone had theoretically proven that 「deeper is better」."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "贪心逐层训练中，每一层都是独立训练的。你觉得这种方法的优势和局限分别是什么？",
+        "en": "In greedy layer-wise training, each layer is trained independently. What do you think are the advantages and limitations of this approach?"
+      },
+      "choices": [
+        {
+          "id": "advantage-simplicity",
+          "text": {
+            "zh": "优势是把复杂问题简化了，局限是每一层不知道最终任务，可能学到不太相关的特征",
+            "en": "The advantage is simplifying a complex problem; the limitation is each layer doesn't know the final task and might learn less relevant features"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "非常平衡的分析。确实，贪心方法的每一层学到的是通用的数据特征，不是针对某个具体任务优化的特征。比如，对于图像分类任务，预训练可能学会了「这里有条边缘」，但不知道这条边缘对于区分猫和狗来说有多重要。这就是为什么预训练之后还需要微调——用有标签的数据来调整网络，让它学会「哪些特征对这个具体任务最重要」。",
+              "en": "A very balanced analysis. Indeed, each layer in the greedy approach learns general data features, not features optimized for a specific task. For image classification, pretraining might learn 「there's an edge here」, but not how important that edge is for distinguishing cats from dogs. That's why fine-tuning is needed after pretraining — using labeled data to adjust the network so it learns 「which features matter most for this specific task」."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "advantage-stability",
+          "text": {
+            "zh": "优势是避免了梯度消失——因为每层只有两层深度；局限是可能不是全局最优",
+            "en": "The advantage is avoiding vanishing gradients — since each layer is only two layers deep; the limitation is it might not be globally optimal"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说到点子上了。RBM只有两层，对比散度训练起来完全没有梯度消失的问题。我们巧妙地绕过了深层网络训练最大的障碍。至于全局最优——说实话，在深度学习里，我们几乎从来不追求全局最优。一个足够好的解就已经很了不起了。后续的微调可以在预训练的基础上继续优化。",
+              "en": "You've hit the nail on the head. An RBM only has two layers, and contrastive divergence training has absolutely no vanishing gradient problem. We cleverly sidestepped the biggest obstacle in deep network training. As for global optimality — honestly, in deep learning, we almost never pursue global optima. A good enough solution is already remarkable. Subsequent fine-tuning can continue optimizing on top of pretraining."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "advantage-unsupervised",
+          "text": {
+            "zh": "优势是不需要标签数据——无监督预训练可以利用海量未标注数据",
+            "en": "The advantage is not needing labeled data — unsupervised pretraining can leverage massive amounts of unlabeled data"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "这是一个非常有远见的观察！世界上的数据绝大多数是没有标签的。你的照片库里有几万张图片，但你不会给每张图片标注「这是猫」「这是桌子」。无监督预训练意味着我们可以利用这些海量的无标签数据来学习好的特征表示，然后只用少量有标签数据来做微调。这个思路未来可能会变得越来越重要。",
+              "en": "That's a remarkably forward-looking observation! The vast majority of data in the world is unlabeled. Your photo library has tens of thousands of images, but you don't annotate each one with 「this is a cat」 or 「this is a table」. Unsupervised pretraining means we can leverage this massive unlabeled data to learn good feature representations, then use only a small amount of labeled data for fine-tuning. This idea will likely become increasingly important in the future."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我用一个更具体的例子来说明{深度信念网络}是怎么工作的。假设我们要处理手写数字识别——每张图片是28乘28个像素。",
+        "en": "Let me use a more concrete example to illustrate how a {deep belief network} works. Suppose we're working on handwritten digit recognition — each image is 28 by 28 pixels."
+      },
+      "terms": {
+        "深度信念网络": "term-dbn",
+        "deep belief network": "term-dbn"
+      },
+      "leadsTo": "dbn-example-1"
+    },
+    {
+      "id": "dbn-example-1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第一层RBM：784个可见节点（对应784个像素），比如500个隐藏节点。训练之后，这500个隐藏节点学会了检测各种低级视觉特征——短线段、小弧线、角点。这些是构成数字的基本笔画。",
+        "en": "First RBM layer: 784 visible nodes (corresponding to 784 pixels), say 500 hidden nodes. After training, these 500 hidden nodes learn to detect various low-level visual features — short line segments, small arcs, corners. These are the basic strokes that make up digits."
+      },
+      "leadsTo": "dbn-example-2"
+    },
+    {
+      "id": "dbn-example-2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二层RBM：把第一层的500个隐藏节点当作新的可见层，设200个隐藏节点。这一层学到的是笔画之间的组合模式——哪些笔画经常一起出现，形成了什么样的结构。比如「一个竖线和一个横线在顶部交叉」可能对应数字7的一部分。",
+        "en": "Second RBM layer: treat the first layer's 500 hidden nodes as the new visible layer, with 200 hidden nodes. This layer learns combination patterns among strokes — which strokes frequently co-occur and what structures they form. For example, 「a vertical line crossing a horizontal line at the top」 might correspond to part of the digit 7."
+      },
+      "leadsTo": "dbn-example-3"
+    },
+    {
+      "id": "dbn-example-3",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第三层RBM：把第二层的200个隐藏节点当作可见层，设50个隐藏节点。到了这一层，网络开始学到更抽象的概念，也许某些隐藏节点已经开始对应特定的数字类别了。从像素到笔画，再到笔画组合，最后到数字概念，这个过程层层递进，每一步都在之前的基础上构建更高级的理解。",
+        "en": "Third RBM layer: treat the second layer's 200 hidden nodes as the visible layer, with 50 hidden nodes. At this level, the network starts learning more abstract concepts — perhaps some hidden nodes are already beginning to correspond to specific digit categories. From pixels to strokes, to stroke combinations, to digit concepts — layer by layer, each step building higher-level understanding on what came before."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "深度信念网络的每一层都学到了不同层次的特征。你觉得这种层次化学习和人类认知之间有什么联系？",
+        "en": "Each layer of a deep belief network learns features at a different level of abstraction. What connection do you see between this hierarchical learning and human cognition?"
+      },
+      "choices": [
+        {
+          "id": "visual-cortex-analogy",
+          "text": {
+            "zh": "很像视觉皮层的层级结构——V1检测边缘，V2检测轮廓，更高层识别物体",
+            "en": "It's like the hierarchical structure of the visual cortex — V1 detects edges, V2 detects contours, higher areas recognize objects"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个类比让我特别兴奋。Hubel和Wiesel在1960年代就发现了视觉皮层的层级结构——简单细胞检测边缘方向，复杂细胞组合简单细胞的输出来检测更复杂的模式。我们的深度信念网络在某种程度上重新发现了这种层级式的信息处理方式。大脑用了数亿年进化出来的结构，我们的算法也自然地趋向了类似的组织方式。",
+              "en": "This analogy particularly excites me. Hubel and Wiesel discovered the hierarchical structure of the visual cortex back in the 1960s — simple cells detect edge orientations, complex cells combine simple cell outputs to detect more complex patterns. Our deep belief networks have in some sense rediscovered this hierarchical information processing. The structure the brain evolved over hundreds of millions of years — our algorithms naturally gravitate toward a similar organization."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "abstraction-ladder",
+          "text": {
+            "zh": "人类学习也是从具体到抽象的——先学会认字，再学会读句子，最后理解文章的含义",
+            "en": "Human learning also goes from concrete to abstract — first learning to recognize characters, then reading sentences, finally understanding the meaning of articles"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常好的平行类比。语言学习的过程确实展示了层次化抽象的特征：音素组成音节，音节组成词，词组成句子，句子组成段落——每一层都建立在下一层的基础上。深度信念网络做的本质上是同样的事情，只是在更基础的数据层面。这让我相信，层次化的表示学习可能是智能的一个基本原则。",
+              "en": "That's an excellent parallel analogy. The process of language learning does exhibit hierarchical abstraction: phonemes form syllables, syllables form words, words form sentences, sentences form paragraphs — each layer builds on the one below. Deep belief networks do essentially the same thing, just at a more fundamental data level. This makes me believe that hierarchical representation learning may be a fundamental principle of intelligence."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "difference-focus",
+          "text": {
+            "zh": "也有区别——人类学习是有目的的，而预训练阶段完全没有目标导向",
+            "en": "There are differences too — human learning is purposeful, while the pretraining phase has no goal orientation at all"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了一下）说得好。婴儿虽然没有明确的「任务」，但他们确实有内在的好奇心驱动——他们会主动去看、去摸、去尝。我们的无监督预训练更像是被动地观察数据。这可能是一个重要的缺失。也许未来的模型需要某种内在动机来引导学习方向。但至少目前，这种被动的观察式学习已经展现出了惊人的效果。",
+              "en": "(Smiles) Good point. While infants don't have explicit 「tasks, they do have intrinsic curiosity driving them — they actively look, touch, taste. Our unsupervised pretraining is more like passively observing data. This might be an important gap. Perhaps future models need some kind of intrinsic motivation to guide learning direction. But for now, this passive observational learning has already shown remarkable results."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2006年这篇论文发表的时候，反应是戏剧性的。很多年没人关心神经网络了，突然之间我展示了一个真正能训练的深层网络，而且效果超过了当时最好的浅层方法。人们开始重新审视这个被遗忘的领域。",
+        "en": "When this paper was published in 2006, the reaction was dramatic. Nobody had cared about neural networks for years, and suddenly I demonstrated a deep network that could actually be trained, outperforming the best shallow methods of the time. People started reconsidering this forgotten field."
+      },
+      "leadsTo": "impact-story"
+    },
+    {
+      "id": "impact-story",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "我记得论文发表后不久，有个做支持向量机的同事来找我说：「Geoff，我看了你的论文。我不确定它是对的，但如果是对的，那意味着我最近十年的工作方向可能都要变了。」我当时不知道该说什么。",
+        "en": "I remember shortly after the paper was published, a colleague who worked on support vector machines came to me and said: 「Geoff, I read your paper. I'm not sure it's right, but if it is, it means the direction of my work for the past decade might have to change」. I didn't know what to say at the time."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "深度信念网络（DBN）的核心方法：贪心逐层预训练。每一层RBM独立训练，学习逐步抽象的特征。理论保证：每叠加一层，模型对数据的建模能力只会提升或持平。这种方法绕过了梯度消失问题，因为每层RBM只有两层深。2006年论文的发表重新点燃了学术界对神经网络的兴趣。",
+        "en": "Core method of Deep Belief Networks (DBN): greedy layer-wise pretraining. Each RBM layer is trained independently, learning progressively more abstract features. Theoretical guarantee: each added layer can only improve or maintain the model's data modeling ability. This method sidesteps the vanishing gradient problem since each RBM is only two layers deep. The 2006 paper reignited academic interest in neural networks."
+      },
+      "category": "core-concept",
+      "leadsTo": "pretraining-concept"
+    },
+    {
+      "id": "pretraining-concept",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这篇论文引入了一个后来影响深远的概念——{预训练}。思想很简单：在你知道具体任务之前，先让网络通过无监督学习来理解数据的结构。这个好的「初始化」会让后续的有监督训练容易得多。就好比一个人先打好文化基础，学习的时候效率才高。",
+        "en": "This paper introduced a concept that would have far-reaching influence — {pretraining}. The idea is simple: before you know the specific task, first let the network understand the structure of data through unsupervised learning. This good 「initialization」 makes subsequent supervised training much easier. It's like a person building a solid cultural foundation first — learning becomes much more efficient afterward."
+      },
+      "terms": {
+        "预训练": "term-pretraining",
+        "pretraining": "term-pretraining"
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "深度信念网络证明了深层网络可以被有效训练。你觉得这个发现最重要的意义是什么？",
+        "en": "Deep belief networks proved that deep networks can be effectively trained. What do you think is the most important significance of this discovery?"
+      },
+      "choices": [
+        {
+          "id": "practical-unlock",
+          "text": {
+            "zh": "它打开了深度学习的大门——证明了深层网络确实比浅层好，而且有办法训练",
+            "en": "It opened the door to deep learning — proving that deep networks are indeed better than shallow ones, and there's a way to train them"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "确实如此。在2006年之前，很多人质疑深层网络是否真的比浅层网络好。我们的工作给出了明确的答案：是的，更深更好，而且我们可以训练它。这打破了长期以来的心理障碍。从那以后，越来越多的研究者开始认真考虑深度方法。这就像打破了四分钟一英里的跑步记录——一旦有人证明可以做到，其他人很快就跟上来了。",
+              "en": "Indeed. Before 2006, many questioned whether deep networks were truly better than shallow ones. Our work gave a clear answer: yes, deeper is better, and we can train them. This broke a long-standing psychological barrier. From then on, more and more researchers began seriously considering deep methods. It's like breaking the four-minute mile — once someone proves it can be done, others quickly follow."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "paradigm-shift",
+          "text": {
+            "zh": "它改变了人们对特征工程的看法——从手工设计特征转向让网络自己学习",
+            "en": "It changed how people thought about feature engineering — from manually designing features to letting the network learn them itself"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你说到了也许最深远的影响。在深度学习之前，机器学习的大量工作都花在特征工程上——人类专家手动设计对特定任务有用的特征。这需要大量的领域知识，而且换一个任务就要重新来。深度信念网络展示了另一条路：让数据自己告诉你什么特征重要。这个思想在后来的发展中变得越来越核心。",
+              "en": "You've touched on perhaps the most far-reaching impact. Before deep learning, enormous effort in machine learning went into feature engineering — human experts manually designing features useful for specific tasks. This required extensive domain knowledge, and you'd have to start over for each new task. Deep belief networks showed another way: let the data tell you which features matter. This idea became increasingly central in later developments."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "theory-vindicated",
+          "text": {
+            "zh": "它证明了联结主义的核心直觉是对的——大脑风格的分层处理确实有效",
+            "en": "It vindicated the core intuition of connectionism — brain-style layered processing actually works"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（停顿了一下）你知道吗，这也许是对我个人来说最重要的意义。三十年来，我一直相信大脑给了我们正确的启示——智能来自分层的、分布式的处理。深度信念网络不只是一个技术成果，它验证了一个哲学立场。联结主义者们坚持了这么久，终于看到了一缕曙光。有时候在科学中，被证明是对的比发明一个新算法更让人感慨。",
+              "en": "(Pauses) You know, this is perhaps the most important significance to me personally. For thirty years, I believed the brain gave us the right clue — intelligence comes from layered, distributed processing. Deep belief networks weren't just a technical achievement; they validated a philosophical stance. The connectionists had held on for so long, and finally saw a ray of light. Sometimes in science, being proven right is more moving than inventing a new algorithm."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但在深度信念网络取得成功之后，我们又遇到了新的问题。虽然逐层预训练解决了初始化的问题，但训练过程中梯度消失的根本原因我们还没有真正理解。为什么网络一深，梯度就会消失？这背后的数学原理是什么？下节课我们来深入分析这个困扰了整个领域多年的难题。",
+        "en": "But after the success of deep belief networks, we encountered new questions. Although layer-wise pretraining solved the initialization problem, we hadn't truly understood the fundamental cause of vanishing gradients during training. Why do gradients vanish when networks get deep? What's the mathematics behind it? Next lesson, we'll dive into this problem that plagued the entire field for years."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "DBN的三重意义：(1) 技术层面：证明了深层网络可训练且优于浅层；(2) 方法论层面：开创了「先无监督预训练，再有监督微调」的两阶段范式；(3) 哲学层面：验证了联结主义关于分层分布式处理的核心直觉。预训练的思想后来成为深度学习最重要的范式之一。",
+        "en": "Three-fold significance of DBN: (1) Technical: proved deep networks are trainable and superior to shallow ones; (2) Methodological: pioneered the two-phase paradigm of 「unsupervised pretraining then supervised fine-tuning」; (3) Philosophical: validated connectionism's core intuition about layered distributed processing. The idea of pretraining later became one of deep learning's most important paradigms."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "辛顿教授把那份卷角的论文打印稿小心地放进背包里。他走向门口，经过大屏幕的时候停下来看了一眼。屏幕上正显示着深度信念网络生成的手写数字样本，笔画流畅，几乎可以以假乱真。他满意地点了点头，推门而出。走廊里传来他的声音：「下次我们来聊聊梯度消失，那可是折磨了我好多年的噩梦。」",
+        "en": "Prof. Hinton carefully places the dog-eared paper printout in his backpack. He walks toward the door, pausing by the large screen — it displays handwritten digit samples generated by the deep belief network, with smooth strokes, almost indistinguishable from real ones. He nods with satisfaction and pushes through the door. His voice carries from the corridor: 「Next time we'll talk about vanishing gradients — that nightmare tormented me for years」."
+      }
+    }
+  ]
+}

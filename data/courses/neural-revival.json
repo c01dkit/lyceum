@@ -1,0 +1,52 @@
+{
+  "id": "neural-revival",
+  "name": {
+    "zh": "神经网络的复兴",
+    "en": "The Neural Network Revival"
+  },
+  "description": {
+    "zh": "明斯基教授的《感知机》曾将神经网络研究推入冰封。十几年后，一群执着的研究者找到了训练多层网络的方法——反向传播。鲁梅尔哈特教授将带你重返那个激动人心的时刻：神经网络不再是死路一条。",
+    "en": "Minsky's Perceptrons once pushed neural network research into deep freeze. Over a decade later, a group of persistent researchers found a way to train multi-layer networks — backpropagation. Prof. Rumelhart will take you back to that electrifying moment: neural networks are no longer a dead end."
+  },
+  "grade": "grade-3",
+  "teacher": "prof-rumelhart",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05",
+    "lesson-06"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-backprop",
+      "description": {
+        "zh": "理解反向传播算法的核心思想和历史意义",
+        "en": "Understand the core idea and historical significance of backpropagation"
+      }
+    },
+    {
+      "id": "obj-multilayer",
+      "description": {
+        "zh": "理解多层网络为何能解决单层感知机无法解决的问题",
+        "en": "Understand why multi-layer networks can solve problems single-layer perceptrons cannot"
+      }
+    },
+    {
+      "id": "obj-gradient-descent",
+      "description": {
+        "zh": "掌握梯度下降和误差反向传播的基本原理",
+        "en": "Master the basic principles of gradient descent and error backpropagation"
+      }
+    },
+    {
+      "id": "obj-distributed-representation",
+      "description": {
+        "zh": "理解分布式表示与符号表示的根本区别",
+        "en": "Understand the fundamental difference between distributed and symbolic representations"
+      }
+    }
+  ]
+}

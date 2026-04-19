@@ -1,0 +1,311 @@
+{
+  "id": "lesson-04",
+  "course": "convolutional-networks",
+  "title": {
+    "zh": "池化与空间层级",
+    "en": "Pooling and Spatial Hierarchy"
+  },
+  "knowledgePoint": {
+    "zh": "池化操作如何实现平移不变性并构建空间层级结构",
+    "en": "Pooling for translation invariance and building spatial hierarchy"
+  },
+  "teacher": "prof-lecun",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你回到那间三面屏幕的教室。这次勒丘恩教授在白板上画了一棵倒着的树——树根是一张完整的图像，树枝逐渐分叉成越来越小的方块，每一层方块上标注着不同的名字：「边缘」「纹理」「部件」「物体」。",
+    "en": "You return to that three-screen classroom. This time Prof. LeCun has drawn an inverted tree on the whiteboard — the root is a complete image, branches gradually split into smaller and smaller blocks, each layer labeled with different names: 「Edges」, 「Textures」, 「Parts」, 「Objects」."
+  },
+  "recallOutro": {
+    "zh": "你脑中浮现出那幅空间层级图。从像素到边缘，从边缘到纹理，从纹理到部件，从部件到物体——每经过一层卷积加池化，视野变大，特征变抽象，细节被压缩。这就是「看见」的过程。",
+    "en": "The spatial hierarchy diagram floats in your mind. From pixels to edges, from edges to textures, from textures to parts, from parts to objects — after each layer of convolution plus pooling, the view expands, features become more abstract, details get compressed. This is the process of 「seeing」."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "白板上画着两张猫的图片——一张在左边，一张在右边。两只猫是同一只，只是位置不同。勒丘恩教授在两张图片下方分别写了一组数字，然后在中间画了一个大大的问号。屏幕上同时显示着一个色彩斑斓的热力图，像是某种网络内部的可视化。",
+        "en": "The whiteboard shows two pictures of a cat — one on the left, one on the right. It's the same cat, just in different positions. Prof. LeCun has written a set of numbers beneath each picture and drawn a large question mark in the middle. Meanwhile, the screens display a colorful heatmap, appearing to be some kind of network internal visualization."
+      },
+      "leadsTo": "position-problem"
+    },
+    {
+      "id": "position-problem",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们学了卷积。那是一个小滤波器在图像上滑动，用来提取局部特征。卷积有一个很好的性质：如果图像中的一条边缘向右移动了三个像素，那么特征图上的响应也会向右移动三个像素。这叫「平移等变性」，意思是特征会跟着输入一起移动。",
+        "en": "Last lesson we learned convolution — a small filter slides across the image, extracting local features. Convolution has a nice property: if an edge in the image shifts three pixels to the right, the response on the feature map also shifts three pixels right. This is called 「translation equivariance」 — features move with the input."
+      },
+      "leadsTo": "equivariance-vs-invariance"
+    },
+    {
+      "id": "equivariance-vs-invariance",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但等一下，我们最终想要的是什么？我们想让网络说「这是一只猫」，不管猫在图片的哪个位置。这意味着最终的输出不应该随位置变化而变化。等变性是中间层需要的，我们想追踪特征在哪里。但最终层需要的是{平移不变性}，不管在哪里，结果都一样。",
+        "en": "But wait — what do we ultimately want? We want the network to say 「this is a cat, regardless of where the cat is in the image. That means the final output shouldn't change with position. Equivariance is what intermediate layers need — we want to track where features are. But what the final layers need is {translation invariance} — the result is the same no matter where."
+      },
+      "terms": {
+        "平移不变性": "term-translation-invariance",
+        "translation invariance": "term-translation-invariance"
+      },
+      "leadsTo": "pooling-intro"
+    },
+    {
+      "id": "pooling-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是{池化}的用武之地。池化操作非常简单：把特征图分成不重叠的小块，比如2乘2的方格——然后对每个小块取一个代表值。最常用的是「最大池化」：取这4个值中最大的那个。",
+        "en": "This is where {pooling} comes in. The pooling operation is very simple: divide the feature map into non-overlapping blocks — say, 2-by-2 squares — and take one representative value from each block. The most common is 「max pooling」: take the largest of the 4 values."
+      },
+      "terms": {
+        "池化": "term-pooling",
+        "pooling": "term-pooling"
+      },
+      "leadsTo": "max-pooling-explain"
+    },
+    {
+      "id": "max-pooling-explain",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "最大池化在做什么？它在说：「我不关心这条边缘精确在2乘2区域的哪个像素上。我只关心这个区域里有没有这条边缘。」如果边缘从左边移到了右边一个像素，只要还在同一个2乘2区域内，池化的输出就不变。这就是池化引入位置容忍度的机制。",
+        "en": "What is max pooling doing? It's saying: 「I don't care exactly which pixel within this 2-by-2 region the edge is at. I only care whether this region contains the edge」. If the edge shifts one pixel from left to right but stays within the same 2-by-2 region, the pooling output doesn't change. This is how pooling introduces positional tolerance."
+      },
+      "leadsTo": "downsampling"
+    },
+    {
+      "id": "downsampling",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "池化还有一个重要的副作用：降采样。2乘2的池化把特征图的宽和高各减半，面积变为四分之一。这意味着下一层卷积面对的输入更小了——计算量减少，感受野相对变大。每经过一层池化，网络「看到」的范围就更大一些。",
+        "en": "Pooling has another important side effect: downsampling. A 2-by-2 pooling halves both the width and height of the feature map, reducing the area to a quarter. This means the next convolution layer faces a smaller input — less computation, and the receptive field becomes relatively larger. After each pooling layer, the network 「sees」 a wider area."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "池化操作会丢弃精确的位置信息。你觉得这种信息损失可以接受吗？",
+        "en": "Pooling discards precise positional information. Do you think this information loss is acceptable?"
+      },
+      "choices": [
+        {
+          "id": "choice-acceptable",
+          "text": {
+            "zh": "可以接受——识别一只猫不需要知道每根胡须的精确位置",
+            "en": "Acceptable — recognizing a cat doesn't require knowing the exact position of every whisker"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）胡须的例子很好。你说得对——对于分类任务，我们需要的是「有什么」而不是「在哪里」。池化帮我们扔掉了不需要的位置细节，保留了重要的特征存在信息。就像你告诉朋友「我在餐厅看到一只猫」，你不会说「猫在离左墙1.7米、离地面0.3米的位置」。",
+              "en": "(Laughs) The whisker example is great. You're right — for classification tasks, we need 「what's there」 rather than 「where exactly it is」. Pooling helps us discard unnecessary positional details while preserving important feature presence information. It's like telling your friend 「I saw a cat in the restaurant」 — you wouldn't say 「the cat was 1.7 meters from the left wall and 0.3 meters off the ground」."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-risky",
+          "text": {
+            "zh": "有风险——有些任务需要精确的位置信息，比如物体定位",
+            "en": "Risky — some tasks need precise positional information, like object localization"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常好的观察。对于分类任务，比如「图片里有猫还是狗」，池化带来的位置损失完全可以接受。但如果你想做物体检测，比如「猫在图片的什么位置」，过多的池化确实会带来麻烦。这就是为什么后来的检测网络在架构设计上做了很多调整，以保留更多的位置信息。任务不同，设计策略也不同。",
+              "en": "Very good observation. For classification tasks — 「is there a cat or dog in the image」 — pooling's positional loss is perfectly acceptable. But for object detection — 「where in the image is the cat」 — too much pooling does cause problems. That's why later detection networks made many architectural adjustments to preserve more positional information. Different tasks call for different design strategies."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-gradual",
+          "text": {
+            "zh": "关键是逐步丢弃——是一层一层地压缩",
+            "en": "The key is gradual discarding — not throwing away all position info at once, but compressing layer by layer"
+          },
+          "tag": "structural",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "你理解了设计的精髓。卷积神经网络不是在一步之内把图像变成一个标签。它是逐层递进的：每一层提取更高级的特征，同时逐渐降低空间分辨率。早期层保留丰富的空间细节，后期层拥有丰富的语义信息但空间精度较低。这种渐进式的抽象，正是分层结构的优美之处。",
+              "en": "You've grasped the essence of the design. A convolutional neural network doesn't transform an image into a label in one step. It progresses layer by layer: each layer extracts higher-level features while gradually reducing spatial resolution. Early layers preserve rich spatial detail, later layers have rich semantic information but lower spatial precision. This progressive abstraction is the beauty of the hierarchical structure."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我带你们看一个完整的画面——{空间层级}。",
+        "en": "Now let me show you the complete picture — the {spatial hierarchy}."
+      },
+      "terms": {
+        "空间层级": "term-spatial-hierarchy",
+        "spatial hierarchy": "term-spatial-hierarchy"
+      },
+      "leadsTo": "spatial-hierarchy-explain"
+    },
+    {
+      "id": "spatial-hierarchy-explain",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "想象一个典型的卷积神经网络。第一层卷积学到的是什么？边缘和颜色。池化之后，这些边缘信息被压缩。第二层卷积在这些压缩的边缘信息上工作，学到的是什么？边缘的组合，也就是纹理和简单的形状。再池化、再卷积，学到的是部件，比如眼睛、轮子。再往上，学到的就是完整的物体了。",
+        "en": "Imagine a typical convolutional neural network. What does the first convolution layer learn? Edges and colors. After pooling, this edge information is compressed. What does the second convolution layer learn from this compressed edge information? Combinations of edges — textures and simple shapes. Pool again, convolve again, and you learn parts — like eyes, wheels. Go higher, and you learn complete objects."
+      },
+      "leadsTo": "hierarchy-example"
+    },
+    {
+      "id": "hierarchy-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指着屏幕上的可视化图）看这个。第一层的滤波器响应看起来像各种方向的边缘。第二层开始出现角和交叉点。第三层能看到类似于「眼睛」「鼻子」这样的部件。第四层、第五层——完整的人脸、动物面孔开始出现。从像素到概念，就是这样一步一步建立起来的。",
+        "en": "(Points to the visualization on screen) Look at this. First-layer filter responses look like edges in various orientations. The second layer starts showing corners and intersections. The third layer reveals parts like 「eyes」 and 「noses」. Fourth and fifth layers — complete human faces and animal faces begin to emerge. From pixels to concepts, it's built step by step like this."
+      },
+      "leadsTo": "average-pooling"
+    },
+    {
+      "id": "average-pooling",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "顺便说一句，除了最大池化，还有一种叫「平均池化」——取区域内所有值的平均。最大池化更关注「最强的特征在哪里」，平均池化更关注「这个区域的整体特征强度」。在实践中，最大池化在卷积层之间更常用，而平均池化有时用在网络的最后，把整张特征图压缩成一个数字。",
+        "en": "By the way, besides max pooling, there's also 「average pooling」 — taking the average of all values in a region. Max pooling focuses more on 「where is the strongest feature」, while average pooling focuses on 「the overall feature intensity of this region」. In practice, max pooling is more commonly used between convolution layers, while average pooling is sometimes used at the end of the network to compress an entire feature map into a single number."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "卷积神经网络通过交替的卷积和池化层构建空间层级。你觉得这种层级结构最重要的优势是什么？",
+        "en": "Convolutional neural networks build spatial hierarchy through alternating convolution and pooling layers. What do you think is the most important advantage of this hierarchical structure?"
+      },
+      "choices": [
+        {
+          "id": "choice-reuse",
+          "text": {
+            "zh": "特征可以复用——同一条边缘可以是猫耳朵的一部分，也可以是桌子腿的一部分",
+            "en": "Features can be reused — the same edge can be part of a cat's ear or part of a table leg"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "精辟！这就是分层表示的强大之处。底层的边缘和纹理特征是通用的——它们可以被不同的高层特征组合复用。一个水平边缘检测器不需要知道它检测的边缘最终会属于猫还是汽车。这种模块化的特征构建方式让网络能用有限的基本特征组合出无限的高层概念。",
+              "en": "Brilliant! That's the power of hierarchical representation. Low-level edge and texture features are universal — they can be reused and combined by different high-level features. A horizontal edge detector doesn't need to know whether the edge it detects will ultimately belong to a cat or a car. This modular feature construction allows the network to compose unlimited high-level concepts from a finite set of basic features."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-efficiency",
+          "text": {
+            "zh": "计算效率——每层只需要处理越来越小的特征图",
+            "en": "Computational efficiency — each layer only processes progressively smaller feature maps"
+          },
+          "tag": "engineering",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这在工程上至关重要。每次池化把特征图缩小一半，计算量就减少到四分之一。同时，特征图变小了，我们就能增加通道数，用更多的滤波器来捕捉更丰富的特征，同时总计算量依然可控。这种「空间缩小、通道增加」的设计模式，几乎贯穿了所有成功的卷积架构。",
+              "en": "This is crucial in engineering. Each pooling halves the feature map, reducing computation to a quarter. At the same time, since the feature map is smaller, we can increase the number of channels — use more filters to capture richer features — without letting total computation spiral out of control. This 「shrink spatially, expand channels」 design pattern runs through virtually every successful convolutional architecture."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-abstraction",
+          "text": {
+            "zh": "逐步抽象——从像素级细节到语义级概念，跟人类理解图像的方式类似",
+            "en": "Gradual abstraction — from pixel-level details to semantic concepts, similar to how humans understand images"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "你触及了深度学习最核心的洞察之一。表示学习的力量在于它能自动发现从原始数据到高级概念之间的中间表示。每一层都是对前一层的抽象概括。而这种分层的渐进式抽象，恰恰与我们对生物视觉系统的理解不谋而合——从V1到V2到V4再到IT皮层，生物视觉也是逐层提高抽象水平的。",
+              "en": "You've touched on one of the deepest insights in deep learning. The power of representation learning lies in its ability to automatically discover intermediate representations between raw data and high-level concepts. Each layer is an abstraction of the previous one. And this hierarchical, progressive abstraction coincidentally aligns with our understanding of biological vision — from V1 to V2 to V4 to IT cortex, biological vision also increases abstraction level by level."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我总结今天的内容。卷积提取局部特征，池化压缩空间信息并引入位置不变性。两者交替堆叠，构成了从具体到抽象的空间层级。这就是卷积神经网络的基本骨架——卷积加池化，一层叠一层。",
+        "en": "Let me summarize today's content. Convolution extracts local features, pooling compresses spatial information and introduces positional invariance. Stacking them alternately builds a spatial hierarchy from concrete to abstract. This is the basic skeleton of a convolutional neural network — convolution plus pooling, layer upon layer."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "池化操作：将特征图分成小块取代表值（最大池化取最大值，平均池化取均值）。作用：(1) 引入位置容忍度，向平移不变性迈进；(2) 降采样，扩大后续层的有效感受野；(3) 减少计算量。卷积+池化交替堆叠构建空间层级：边缘→纹理→部件→物体。",
+        "en": "Pooling: divide feature maps into blocks and take representative values (max pooling takes max, average pooling takes mean). Functions: (1) introduce positional tolerance toward translation invariance; (2) downsample, expanding effective receptive fields of later layers; (3) reduce computation. Alternating convolution+pooling builds spatial hierarchy: edges → textures → parts → objects."
+      },
+      "category": "core-concept",
+      "leadsTo": "lenet-preview"
+    },
+    {
+      "id": "lenet-preview",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "好了，现在你们已经掌握了卷积神经网络的三个核心组件：卷积层、池化层、以及从生物视觉借鉴来的分层思想。下节课，我要把这些组件组装起来，给你们看一个完整的网络——我在贝尔实验室设计的LeNet。那个网络在1990年代读了美国百分之十以上的手写支票。",
+        "en": "Good, now you've mastered the three core components of convolutional neural networks: convolution layers, pooling layers, and the hierarchical philosophy borrowed from biological vision. Next lesson, I'll assemble these components and show you a complete network — LeNet, which I designed at Bell Labs. That network read over ten percent of handwritten checks in America in the 1990s."
+      },
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "（微微一笑）说实话，当年设计LeNet的时候，我就知道这个架构有潜力走得很远。卷积加池化的组合在数学上太优雅了——它完美地利用了图像的局部性、平稳性和层次结构。有些设计是需要工程直觉的，而好的直觉来自对问题本质的深刻理解。",
+        "en": "(Smiles slightly) To be honest, when I designed LeNet back then, I knew this architecture had the potential to go very far. The convolution-plus-pooling combination is mathematically so elegant — it perfectly exploits the locality, stationarity, and hierarchical structure of images. Some designs require engineering intuition, and good intuition comes from deep understanding of the problem's essence."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "等变性 vs 不变性：卷积层提供平移等变性（特征跟着输入移动），池化提供平移不变性（位置变化不影响输出）。中间层需要等变性来追踪特征位置，最终层需要不变性来做分类。两者配合实现「知道有什么」而非「知道精确在哪」。",
+        "en": "Equivariance vs invariance: convolution provides translation equivariance (features move with input), pooling provides translation invariance (position changes don't affect output). Middle layers need equivariance to track feature positions, final layers need invariance for classification. Together they achieve 「knowing what's there」 rather than 「knowing exactly where」."
+      },
+      "category": "key-insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "勒丘恩教授在白板上的层级图旁边画了一个箭头，写上了「LeNet」两个字。他退后一步看了看整幅图，然后转身对大家说：「零件都有了，下节课我们来组装。你们会看到，当这些简单的部件组合在一起时，整体远大于部分之和。」他拿起咖啡杯，在掌声中走出了教室。",
+        "en": "Prof. LeCun draws an arrow next to the hierarchy diagram on the whiteboard and writes 「LeNet」. He steps back to survey the complete picture, then turns to the class: 「We have all the parts. Next lesson we assemble them. You'll see that when these simple components come together, the whole is far greater than the sum of its parts」. He picks up his coffee cup and walks out to the sound of applause."
+      }
+    }
+  ]
+}

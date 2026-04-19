@@ -1,0 +1,399 @@
+{
+  "id": "lesson-01",
+  "course": "deep-learning-foundations",
+  "title": {
+    "zh": "坚持的代价",
+    "en": "The Cost of Persistence"
+  },
+  "knowledgePoint": {
+    "zh": "辛顿为何在数十年的怀疑中从未放弃神经网络——联结主义的孤独坚守",
+    "en": "Why Hinton never gave up on neural networks despite decades of skepticism — the lonely persistence of connectionism"
+  },
+  "teacher": "prof-hinton",
+  "estimatedMinutes": 10,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，记忆把你拉回那间深蓝色灯光笼罩的教室。辛顿教授靠在讲台边，双手插在口袋里，眼神温和却透着一股倔强。他在讲述一个关于坚持的故事——关于一个几乎被整个学术界遗忘的研究方向。",
+    "en": "You close your eyes, and memory pulls you back to that classroom bathed in deep blue light. Prof. Hinton leans against the lectern, hands in his pockets, his gaze gentle yet tinged with stubbornness. He was telling a story about persistence — about a research direction nearly forgotten by the entire academic world."
+  },
+  "recallOutro": {
+    "zh": "你回到现实。辛顿教授的话还在耳边回响——「如果大脑能做到，那一定存在某种算法。」也许坚持本身就是一种科学直觉的体现。",
+    "en": "You return to the present. Prof. Hinton's words still echo — 「If the brain can do it, there must be some algorithm」. Perhaps persistence itself is a manifestation of scientific intuition."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "你走进一间与众不同的教室。天花板上的LED灯带散发着深蓝色的光芒，墙壁上嵌着几块巨大的高清屏幕，正静静显示着一张大脑神经元网络的微观照片。教室前方，一位头发灰白的教授正弯着腰调试笔记本电脑，嘴里念念有词。他抬起头，看到你们走进来，脸上露出了一个有些不好意思的微笑。",
+        "en": "You walk into an unusual classroom. LED strips along the ceiling emit a deep blue glow, and several large high-definition screens embedded in the walls quietly display a microscopic photograph of the brain's neural network. At the front, a gray-haired professor is hunched over a laptop, muttering to himself. He looks up, sees you entering, and breaks into a slightly sheepish smile."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "啊，进来吧，进来吧。我是杰弗里·辛顿，来自多伦多大学。别介意这些设备——我一直跟技术过不去。你们知道吗，我本科学的是实验心理学，不是计算机科学。有时候我觉得这反而是我的优势。",
+        "en": "Ah, come in, come in. I'm Geoffrey Hinton, from the University of Toronto. Don't mind the equipment — I've always been at odds with technology. You know, my undergraduate degree was in experimental psychology, not computer science. Sometimes I think that's actually been my advantage."
+      },
+      "leadsTo": "self-intro"
+    },
+    {
+      "id": "self-intro",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "我在学术界有个绰号——「学术异端」。这可不是我自己起的。三十多年来，我一直在研究神经网络，而这个领域在大多数时候都被认为是死胡同。你们要是在1990年的AI会议上说自己研究神经网络，大概只能换来同情的眼神。",
+        "en": "I have a nickname in academia — 「academic heretic」. I didn't give myself that one. For over thirty years, I've been working on neural networks, and for most of that time, the field was considered a dead end. If you told people at an AI conference in 1990 that you worked on neural networks, you'd probably get nothing but sympathetic looks."
+      },
+      "leadsTo": "brain-analogy"
+    },
+    {
+      "id": "brain-analogy",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "大脑并不是这么工作的……但也许我们可以从它那里借点灵感。这句话我说了很多年了。人脑有大约一千亿个神经元，每个神经元与数千个其他神经元相连。这些连接的强度在学习过程中不断调整。没有人给大脑写程序，没有人给它一套规则——它自己学会了看、听、说、思考。",
+        "en": "The brain doesn't work quite like this... but maybe we can borrow some inspiration from it. I've been saying this for years. The human brain has roughly a hundred billion neurons, each connected to thousands of others. The strength of these connections adjusts constantly during learning. Nobody programs the brain, nobody gives it a set of rules — it learns to see, hear, speak, and think all on its own."
+      },
+      "leadsTo": "connectionism-intro"
+    },
+    {
+      "id": "connectionism-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这种思路叫做{联结主义}。核心思想很简单：智能来自于大量简单单元之间的连接模式，而不是来自显式编写的规则。每个人工神经元做的事情非常简单——接收输入，加权求和，通过一个函数输出。但当你把数百万个这样的单元连在一起，奇妙的事情就发生了。",
+        "en": "This line of thinking is called {connectionism}. The core idea is simple: intelligence emerges from patterns of connections between many simple units, not from explicitly written rules. Each artificial neuron does something very simple — receives inputs, computes a weighted sum, passes it through a function to produce output. But when you connect millions of these units together, something remarkable happens."
+      },
+      "terms": {
+        "联结主义": "term-connectionism",
+        "connectionism": "term-connectionism"
+      },
+      "leadsTo": "dark-ages"
+    },
+    {
+      "id": "dark-ages",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但在很长一段时间里，几乎没人愿意听这些。1969年，明斯基和佩珀特出版了那本关于感知机的书，证明了单层网络的根本局限性。整个领域的经费断了，论文发不出去，学生们纷纷转向了符号AI。我读研的时候，导师都不太乐意让我碰神经网络这个方向。",
+        "en": "But for a very long time, almost nobody wanted to hear this. In 1969, Minsky and Papert published their book on perceptrons, proving the fundamental limitations of single-layer networks. Funding for the entire field dried up, papers couldn't get published, and students flocked to symbolic AI. When I was in graduate school, my advisor wasn't exactly thrilled about me touching neural networks."
+      },
+      "leadsTo": "canada-refuge"
+    },
+    {
+      "id": "canada-refuge",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "后来我搬到了加拿大。说得直接点，加拿大成了我的避难所。多伦多大学给了我一个位置，让我可以安安静静地做研究，不用整天跟人争论神经网络到底有没有前途。你知道吗，这个决定对后来的一切都产生了深远的影响。加拿大成了{深度学习}研究的一个中心——虽然当时谁也没预料到。",
+        "en": "Eventually I moved to Canada. To put it bluntly, Canada became my refuge. The University of Toronto gave me a position where I could do my research in peace, without having to constantly argue about whether neural networks had a future. You know, that decision had a profound impact on everything that followed. Canada became a center for {deep learning} research — though nobody foresaw that at the time."
+      },
+      "terms": {
+        "深度学习": "term-deep-learning",
+        "deep learning": "term-deep-learning"
+      },
+      "leadsTo": "small-community"
+    },
+    {
+      "id": "small-community",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们这个圈子很小。约书亚·本吉奥在蒙特利尔，杨·勒昆后来去了纽约——我们三个人后来被人称为「深度学习三巨头」，但在当时，说我们是三个固执的人可能更准确。每年开会的时候，做神经网络的人凑一桌都坐不满。",
+        "en": "Our circle was tiny. Yoshua Bengio was in Montreal, Yann LeCun later went to New York — the three of us were eventually called the 「godfathers of deep learning, but at the time, calling us three stubborn people would have been more accurate. At the annual conferences, all the neural network researchers couldn't even fill a single table."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "面对整个学术界的怀疑，辛顿和他的同伴们选择坚持。你觉得是什么让他们没有放弃？",
+        "en": "Facing skepticism from the entire academic world, Hinton and his companions chose to persist. What do you think kept them from giving up?"
+      },
+      "choices": [
+        {
+          "id": "brain-evidence",
+          "text": {
+            "zh": "大脑就是活生生的证据——既然生物神经网络能产生智能，人工版本也应该有可能",
+            "en": "The brain is living proof — since biological neural networks can produce intelligence, artificial ones should be possible too"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这正是我一直以来最有力的论据！每次有人问我为什么还在做这个，我就指指自己的脑袋说：你觉得这个东西是靠符号推理运行的吗？一千亿个神经元，通过连接强度的调整来学习——大自然已经证明了这条路走得通。我们的任务只是搞清楚怎么在计算机上复现其中的关键原理。",
+              "en": "That's always been my most powerful argument! Every time someone asked why I was still doing this, I'd point to my head and say: do you think this thing runs on symbolic reasoning? A hundred billion neurons, learning through adjustment of connection strengths — nature has already proven this path works. Our job is just to figure out how to replicate the key principles on a computer."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "intellectual-curiosity",
+          "text": {
+            "zh": "纯粹的好奇心——他们想理解学习本身是如何发生的",
+            "en": "Pure curiosity — they wanted to understand how learning itself happens"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说到了一个很深层的动机。对我来说，问题从来都不只是「怎么让机器更聪明」——我真正想知道的是「学习」这件事到底是怎么回事。一个孩子怎么从一堆像素里学会认出猫？一个婴儿怎么从一串声波里学会语言？这些问题太迷人了，我没办法放手不管。",
+              "en": "You've touched on a very deep motivation. For me, the question was never just 「how to make machines smarter」 — what I really wanted to know was how learning itself works. How does a child learn to recognize a cat from a bunch of pixels? How does a baby learn language from a stream of sound waves? These questions were too fascinating for me to let go."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "sunk-cost",
+          "text": {
+            "zh": "也许有沉没成本的因素——投入了太多年，不甘心承认方向错了",
+            "en": "Maybe sunk cost played a role — having invested too many years, they couldn't admit the direction was wrong"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了起来）你这个问题很诚实，我喜欢。我不否认，有时候半夜醒来我也会怀疑自己是不是在浪费生命。但沉没成本能让你坚持五年，不能让你坚持三十年。支撑我走过来的是一个更深的信念——大脑告诉我们，学习可以从连接中涌现。如果这只是幻觉，那大自然的幻觉也太精巧了。",
+              "en": "(Laughs) That's a very honest question — I like it. I won't deny that sometimes I'd wake at 3 AM wondering if I was wasting my life. But sunk cost can keep you going for five years, not thirty. What carried me through was a deeper conviction — the brain tells us that learning can emerge from connections. If that's an illusion, it's an awfully elaborate one on nature's part."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管怎么说，我们确实坚持下来了。而且这种坚持并不是盲目的——我们一直在尝试新方法，不断失败，不断调整。科学里最重要的事情之一就是知道什么时候该坚持，什么时候该转弯。",
+        "en": "In any case, we did persist. And it wasn't blind persistence — we kept trying new approaches, failing constantly, adjusting constantly. One of the most important things in science is knowing when to persist and when to pivot."
+      },
+      "leadsTo": "early-struggles"
+    },
+    {
+      "id": "early-struggles",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "1980年代，我们有了反向传播算法——能训练多层网络了。这让我们兴奋了一阵子，但很快就撞到了墙。网络一深，训练就变得极其困难。梯度要么消失得无影无踪，要么爆炸到天际。两三层还行，更深的网络简直是噩梦。符号AI那边的人看着我们挣扎，觉得自己的判断被验证了。",
+        "en": "In the 1980s, we had the backpropagation algorithm — we could train multi-layer networks. That excited us for a while, but we quickly hit a wall. The deeper the network, the harder it was to train. Gradients would either vanish into nothing or explode to infinity. Two or three layers were fine; anything deeper was a nightmare. The symbolic AI crowd watched us struggle and felt their judgment had been vindicated."
+      },
+      "leadsTo": "not-giving-up"
+    },
+    {
+      "id": "not-giving-up",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但我一直觉得，问题在于我们的方法不够好，而不是方向不对。大脑有几十层处理——从视网膜到视觉皮层，信息经过层层抽象。如果大脑可以做到深层处理，我们一定也能找到办法。只是需要时间，需要正确的技巧。",
+        "en": "But I always felt the problem was that our methods weren't good enough, not that the direction was wrong. The brain has dozens of processing layers — from the retina to the visual cortex, information goes through layer after layer of abstraction. If the brain can do deep processing, we must be able to find a way too. It just takes time, and the right techniques."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "联结主义认为智能来自大量简单单元的连接模式。辛顿、本吉奥、勒昆组成了一个极小的研究圈子，在学术界的质疑中坚持了三十年。他们的核心信念是：大脑就是神经网络可行的活证据。",
+        "en": "Connectionism holds that intelligence emerges from connection patterns between many simple units. Hinton, Bengio, and LeCun formed a tiny research circle, persisting through thirty years of academic skepticism. Their core belief: the brain is living proof that neural networks can work."
+      },
+      "category": "core-concept",
+      "leadsTo": "turning-point-intro"
+    },
+    {
+      "id": "turning-point-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "转机出现在2006年。那一年，我发表了一篇论文，提出了一种叫做「深度信念网络」的方法。关键的突破在于——我们不再试图一口气训练整个深层网络，而是一层一层地来。先训练第一层，固定住，再训练第二层，以此类推。这叫做「逐层预训练」。",
+        "en": "The turning point came in 2006. That year, I published a paper proposing something called 「deep belief networks」. The key breakthrough was this — instead of trying to train the entire deep network all at once, we did it layer by layer. Train the first layer, freeze it, then train the second, and so on. This is called 「layer-wise pretraining」."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "辛顿在2006年的突破是「逐层预训练」。你觉得这个思路为什么有效？",
+        "en": "Hinton's 2006 breakthrough was 「layer-wise pretraining」. Why do you think this approach works?"
+      },
+      "choices": [
+        {
+          "id": "divide-conquer",
+          "text": {
+            "zh": "把一个大问题拆成小问题——每层只需要学好自己的表示",
+            "en": "Breaking a big problem into smaller ones — each layer only needs to learn its own representation"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "分而治之，完全正确。一次性训练十层网络，梯度信号几乎传不到底层。但如果每次只训练一层，每层都能得到足够强的学习信号。就像盖楼一样——你不会在地基没干的时候就急着盖第十层。每一层先打好基础，下一层才能稳稳地建在上面。",
+              "en": "Divide and conquer — exactly right. Training a ten-layer network all at once means the gradient signal barely reaches the bottom layers. But if you train one layer at a time, each layer gets a strong enough learning signal. It's like building a skyscraper — you don't rush to the tenth floor while the foundation is still wet. Each layer establishes its foundation first, so the next can be built solidly on top."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "good-initialization",
+          "text": {
+            "zh": "预训练给了网络一个好的起点——比随机初始化好得多",
+            "en": "Pretraining gives the network a good starting point — much better than random initialization"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你抓住了一个关键点。随机初始化就像把你扔到一个你从没去过的城市，蒙着眼睛让你找路。预训练相当于先给你一张大致的地图——也许不完全准确，但至少你知道该往哪个方向走。这个好的初始化让后续的微调训练变得容易得多。",
+              "en": "You've caught a key point. Random initialization is like being dropped into a city you've never visited, blindfolded, and told to find your way. Pretraining is like being given a rough map first — it may not be perfectly accurate, but at least you know which direction to go. This good initialization makes the subsequent fine-tuning much easier."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "brain-analogy-choice",
+          "text": {
+            "zh": "也许大脑也是这样发育的——先学低级特征，再学高级概念",
+            "en": "Maybe the brain develops this way too — learning low-level features first, then high-level concepts"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "噢，这是我最喜欢的类比！婴儿的视觉系统确实是逐步发育的——先学会感知边缘和颜色，然后是形状，然后是物体，最后才是复杂的场景理解。大脑的发育过程暗示了一种从简单到复杂的自然学习顺序。逐层预训练某种程度上模仿了这个过程。",
+              "en": "Oh, that's my favorite analogy! An infant's visual system does develop incrementally — first learning to perceive edges and colors, then shapes, then objects, and finally complex scene understanding. The brain's development hints at a natural learning order from simple to complex. Layer-wise pretraining mimics this process to some degree."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "2006年的论文发表后，事情开始慢慢变化了。越来越多的人开始重新审视神经网络。但真正的引爆点还要再等几年。",
+        "en": "After the 2006 paper was published, things started changing slowly. More and more people began to reconsider neural networks. But the real tipping point was still a few years away."
+      },
+      "leadsTo": "alexnet-preview"
+    },
+    {
+      "id": "alexnet-preview",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "然后就是今年——2012年。我的学生亚历克斯·克里热夫斯基用一个深度卷积神经网络参加了ImageNet图像识别比赛。结果呢？错误率比第二名低了整整十个百分点。十个百分点！在这种比赛里，通常改进零点几个百分点就算重大突破了。整个计算机视觉领域都震惊了。",
+        "en": "And then came this year — 2012. My student Alex Krizhevsky entered the ImageNet image recognition competition with a deep convolutional neural network. The result? The error rate was a full ten percentage points lower than the runner-up. Ten percentage points! In these competitions, an improvement of a fraction of a percent is usually considered a major breakthrough. The entire computer vision community was stunned."
+      },
+      "leadsTo": "vindication"
+    },
+    {
+      "id": "vindication",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "三十年。从一个被人嘲笑的方向，到让整个领域重新洗牌。我不是在炫耀——说实话，等这一天等得太久了，我都不确定该用什么表情来面对它。有的同事来恭喜我，我心里想的是：你们当年可不是这么说的。",
+        "en": "Thirty years. From a direction people mocked, to reshuffling the entire field. I'm not gloating — honestly, I waited so long for this day that I'm not sure what expression to wear. Some colleagues came to congratulate me, and what I was thinking was: that's not what you said back then."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "辛顿的故事跨越了三十年的坚持。你觉得从中可以学到什么关于科学研究的经验？",
+        "en": "Hinton's story spans thirty years of persistence. What lesson about scientific research do you think can be drawn from it?"
+      },
+      "choices": [
+        {
+          "id": "contrarian-value",
+          "text": {
+            "zh": "逆主流而行需要勇气，但有时候最大的突破就藏在被忽视的方向里",
+            "en": "Going against the mainstream takes courage, but sometimes the biggest breakthroughs hide in neglected directions"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "说得好。科学共识是重要的大多数时候，共识是对的。但科学史上最深刻的变革，往往来自那些敢于质疑共识的人。关键在于区分「有依据的质疑」和「无谓的固执」。我们并非毫无根据，毕竟大脑就在那里，每天都在运行着。",
+              "en": "Well said. Scientific consensus matters — most of the time, the consensus is right. But the most profound transformations in science often come from those who question it. The key is distinguishing 「well-grounded questioning」 from 「pointless stubbornness」. We weren't without reason — the brain is right there, running every single day."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "environment-matters",
+          "text": {
+            "zh": "研究环境很重要——加拿大给了辛顿自由探索的空间",
+            "en": "Research environment matters — Canada gave Hinton the freedom to explore"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这一点经常被忽视，但非常关键。如果我待在一个只看短期成果的地方，可能早就被迫转行了。多伦多大学和加拿大的研究资助体系给了我长期探索的自由。好的科学需要耐心的土壤。有时候，允许一个看似疯狂的想法存活下来，比资助一百个安全的项目更有价值。",
+              "en": "This point is often overlooked, but it's crucial. If I'd been at a place that only valued short-term results, I might have been forced to change fields long ago. The University of Toronto and Canada's research funding system gave me the freedom for long-term exploration. Good science needs patient soil. Sometimes, allowing a seemingly crazy idea to survive is more valuable than funding a hundred safe projects."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "method-evolution",
+          "text": {
+            "zh": "坚持方向的同时不断改进方法——辛顿并没有用同一种方法死磕三十年",
+            "en": "Maintaining the direction while constantly improving methods — Hinton didn't bang his head on the same approach for thirty years"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是非常精辟的观察。我坚持的是大方向——从连接和学习中涌现智能。但具体方法？我换了无数次。玻尔兹曼机、Helmholtz机器、深度信念网络、dropout……每一次碰壁都逼着我想出新的技巧。坚持方向和固守方法之间有天壤之别。",
+              "en": "That's a remarkably astute observation. What I persisted with was the general direction — intelligence emerging from connections and learning. But specific methods? I changed them countless times. Boltzmann machines, Helmholtz machines, deep belief networks, dropout... each dead end forced me to invent new tricks. There's a world of difference between persisting with a direction and clinging to a method."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "好了，今天的课只是一个开场白。我给你们讲了这些年的故事，是希望你们理解{深度学习}这个领域走到今天有多不容易。接下来的课程里，我会带你们深入了解具体的技术——受限玻尔兹曼机、深度信念网络、dropout……这些听起来很吓人的名字背后，其实都藏着非常优雅的想法。",
+        "en": "Alright, today's lesson is just a prologue. I've told you the story of these years because I want you to understand how hard-won the current state of {deep learning} is. In the upcoming lessons, I'll take you deep into the specific techniques — restricted Boltzmann machines, deep belief networks, dropout... behind these intimidating names are actually very elegant ideas."
+      },
+      "terms": {
+        "深度学习": "term-deep-learning",
+        "deep learning": "term-deep-learning"
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "辛顿坚持神经网络研究三十年：从被学术界边缘化，到2006年深度信念网络的突破，再到2012年AlexNet在ImageNet上的压倒性胜利。关键启示：坚持大方向的同时不断革新具体方法，研究环境的包容性也至关重要。",
+        "en": "Hinton persisted with neural network research for thirty years: from being marginalized by academia, to the 2006 deep belief network breakthrough, to AlexNet's overwhelming victory on ImageNet in 2012. Key insight: maintain the general direction while constantly innovating specific methods; the inclusiveness of the research environment is also crucial."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "辛顿教授合上笔记本电脑，从讲台后面走出来。他走到门口，停了一下，转身说：「下次课我们聊聊受限玻尔兹曼机——那是我最得意的发明之一。它的灵感来自统计物理学，但我向你们保证，不需要物理学博士学位也能理解。」他挥了挥手，消失在走廊的深蓝色灯光里。",
+        "en": "Prof. Hinton closes his laptop and steps out from behind the lectern. At the door, he pauses, turns around and says: 「Next time we'll talk about restricted Boltzmann machines — one of my proudest inventions. The inspiration came from statistical physics, but I promise you won't need a physics PhD to understand it」. He waves and disappears into the deep blue light of the corridor."
+      }
+    }
+  ]
+}

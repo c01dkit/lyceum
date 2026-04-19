@@ -1,0 +1,51 @@
+{
+  "id": "generative-adversarial",
+  "name": {
+    "zh": "生成对抗网络",
+    "en": "Generative Adversarial Networks"
+  },
+  "description": {
+    "zh": "如果AI不仅能识别世界，还能创造新的内容呢？古德费洛教授将讲述他在酒吧里灵感乍现的故事，带你理解对抗训练的博弈论本质、GAN的训练困难与解决之道，以及AI如何从模仿走向创造。",
+    "en": "What if AI could not only recognize the world but also create new content? Prof. Goodfellow will tell the story of his bar-inspired eureka moment, guide you through the game-theoretic essence of adversarial training, the training difficulties of GANs and their solutions, and how AI evolves from imitation to creation."
+  },
+  "grade": "grade-4",
+  "teacher": "prof-goodfellow",
+  "lessons": [
+    "lesson-01",
+    "lesson-02",
+    "lesson-03",
+    "lesson-04",
+    "lesson-05"
+  ],
+  "prerequisites": [],
+  "learningObjectives": [
+    {
+      "id": "obj-generative-vs-discriminative",
+      "description": {
+        "zh": "理解判别模型与生成模型的区别与联系",
+        "en": "Understand the difference and connection between discriminative and generative models"
+      }
+    },
+    {
+      "id": "obj-adversarial-training",
+      "description": {
+        "zh": "掌握对抗训练的博弈论框架和纳什均衡概念",
+        "en": "Master the game-theoretic framework of adversarial training and Nash equilibrium concept"
+      }
+    },
+    {
+      "id": "obj-gan-training",
+      "description": {
+        "zh": "理解GAN的训练困难（模式崩溃等）及应对策略",
+        "en": "Understand GAN training difficulties (mode collapse, etc.) and countermeasures"
+      }
+    },
+    {
+      "id": "obj-creative-ai",
+      "description": {
+        "zh": "理解GAN在图像生成、风格迁移等创造性任务中的应用",
+        "en": "Understand GAN applications in creative tasks like image generation and style transfer"
+      }
+    }
+  ]
+}

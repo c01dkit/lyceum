@@ -1,0 +1,347 @@
+{
+  "id": "lesson-04",
+  "course": "symbolic-logic",
+  "title": {
+    "zh": "搜索与问题求解",
+    "en": "Search and Problem Solving"
+  },
+  "knowledgePoint": {
+    "zh": "搜索算法——AI如何在可能性空间中寻找解决方案",
+    "en": "Search algorithms — how AI finds solutions in a space of possibilities"
+  },
+  "teacher": "prof-mccarthy",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "午后的光线、棋盘上清晰的影子、麦卡锡教授手中那枚骑士棋子——这些画面从记忆中依次浮现。你开始回忆那堂关于搜索与问题求解的课，仿佛又置身于那片由无穷可能性编织的迷宫之中。",
+    "en": "Afternoon light, sharp shadows on a chessboard, a knight piece turning in Professor McCarthy's fingers — these images surface one by one from memory. You begin to recall that lesson on search and problem solving, as though stepping once more into a labyrinth woven from infinite possibilities."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，心中隐隐感到那个天文数字般的搜索空间仍在远方延伸。有些答案，注定不能靠蛮力找到。",
+    "en": "You return to the present, sensing that astronomical search space still stretching somewhere in the distance. Some answers, it seems, were never meant to be found by brute force alone."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "麦卡锡教授今天带了一副国际象棋。他把棋盘摆在讲台上，快速地布好了一个中盘局面。几颗棋子在午后的光线里投下清晰的影子。他摆弄着一个骑士棋子，转身面向你们。",
+        "en": "Professor McCarthy has brought a chess set today. He places the board on the lectern and quickly sets up a mid-game position. A few pieces cast sharp shadows in the afternoon light. He fiddles with a knight piece, then turns to face you."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "符号用来表示知识，很好。但机器光有知识不够——它还得解决问题！怎么解？答案是两个字：搜索。",
+        "en": "Symbols represent knowledge — great. But knowledge alone isn't enough for machines — they also need to solve problems! How? The answer is one word: search."
+      },
+      "leadsTo": "state-space"
+    },
+    {
+      "id": "state-space",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们注意到，很多问题都可以被描述为在一个{状态空间}里搜索。什么意思？就是把问题的所有可能状态画出来，然后从起点出发，找一条路径走到终点。",
+        "en": "The key insight is that many problems can be described as searching through a {state space}. What does that mean? You lay out all possible states of a problem, then starting from the initial state, find a path to the goal."
+      },
+      "terms": {
+        "状态空间": "term-state-space",
+        "state space": "term-state-space"
+      },
+      "leadsTo": "chess-example"
+    },
+    {
+      "id": "chess-example",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "拿国际象棋来说（拿起一个棋子）。每一个棋盘局面就是一个「状态」。每一步合法的走子，就会把你带到一个新状态。找最优的一步棋，就等于在一棵巨大的可能性树上搜索最好的分支。",
+        "en": "Take chess, for example (picks up a piece). Every board position is a 「state」. Every legal move takes you to a new state. Finding the best move is equivalent to searching for the best branch in an enormous tree of possibilities."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "一盘国际象棋大约有10^120种可能的局面。我们能不能把它们全部检查一遍？",
+        "en": "A chess game has roughly 10^120 possible positions. Can we simply check all of them?"
+      },
+      "choices": [
+        {
+          "id": "yes-brute-force",
+          "text": {
+            "zh": "可以，计算机速度足够快",
+            "en": "Yes, computers are fast enough"
+          },
+          "tag": "optimistic-thinking",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "来算一笔账。10^120——这个数字比可观测宇宙中的原子总数（大约10^80）还要大上一万亿亿亿亿倍。就算全世界的计算机一起跑到宇宙终结，也算不完。暴力穷举这条路，走不通。",
+              "en": "Let's do the math. 10^120 — that's a number larger than the total number of atoms in the observable universe (about 10^80) by a factor of a trillion trillion trillion trillion. Even if every computer on Earth ran until the end of the universe, they couldn't check them all. Brute force is a dead end."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "no-too-many",
+          "text": {
+            "zh": "不可能，数量太天文了",
+            "en": "Impossible — the numbers are astronomical"
+          },
+          "tag": "realistic-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！10^120——宇宙中的原子都只有10^80个。这么多可能性，穷举是不可能的。那怎么办？我们需要聪明地搜索，而不是蛮力地搜索。这正是AI的核心挑战之一。",
+              "en": "Absolutely right! 10^120 — there are only about 10^80 atoms in the universe. Exhaustive search over this many possibilities is impossible. So what do we do? We need to search smartly, not by brute force. This is one of AI's core challenges."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "use-shortcuts",
+          "text": {
+            "zh": "不用全查——用某种捷径跳过大部分",
+            "en": "No need to check all — use shortcuts to skip most of them"
+          },
+          "tag": "heuristic-intuition",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你的直觉非常棒！「跳过大部分」——这恰恰是关键。人类棋手也不会真的去计算所有可能的走法。他们凭经验和直觉，一眼就锁定了几个「看起来不错」的选项。问题是：怎么教机器也这么做？",
+              "en": "Your instinct is spot on! 「Skip most of them」 — that's precisely the key. Human chess players don't actually calculate every possible move either. Through experience and intuition, they instantly zero in on a few options that 「look promising」. The question is: how do we teach machines to do the same?"
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以我们需要{启发式搜索}，也就是用聪明的「捷径」来引导搜索方向。什么是启发式呢？它是一种「有经验的猜测」，虽然不一定精确，却能帮你大大缩小搜索范围。",
+        "en": "So we need {heuristic search} — using smart 「shortcuts」 to guide the search direction. What is a heuristic? It's an 「educated guess」 — not necessarily exact, but it dramatically narrows the search space."
+      },
+      "terms": {
+        "启发式搜索": "term-heuristic-search",
+        "heuristic search": "term-heuristic-search"
+      },
+      "leadsTo": "algorithms"
+    },
+    {
+      "id": "algorithms",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "搜索有很多策略。最简单的两种：广度优先，像水面的波纹一样，一层一层向外扩展；深度优先，像打洞一样，一条路走到底再回头。但真正的突破是A*算法——它把「已走的距离」和「对剩余距离的估计」结合起来，每一步都选最有希望的方向。",
+        "en": "There are many search strategies. The two simplest: breadth-first — like ripples on water, expanding outward layer by layer; depth-first — like drilling a hole, going all the way down before backtracking. But the real breakthrough is the A* algorithm — it combines 「distance already traveled」 with 「estimated remaining distance, choosing the most promising direction at each step."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "搜索 = 在状态空间中探索路径。启发式搜索用「有经验的猜测」来缩小范围。关键算法：广度优先、深度优先、A*。",
+        "en": "Search = exploring paths in a state space. Heuristic search uses 「educated guesses」 to narrow the space. Key algorithms: BFS, DFS, A*."
+      },
+      "category": "core-concept",
+      "leadsTo": "hanoi-intro"
+    },
+    {
+      "id": "hanoi-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "看一个更简单的例子——汉诺塔。三根柱子，第一根柱子上有几个大小不同的圆盘，小盘在大盘上面。规则很简单：一次移一个盘，大盘不能放在小盘上面。我们的目标是，把所有盘从第一根柱子移到第三根。",
+        "en": "Here's a simpler example — the Towers of Hanoi. Three pegs, where the first peg has several discs of different sizes with smaller on the top. The rules are simple: move one disc at a time, a larger disc can never sit on a smaller one. Goal: move all discs from the first peg to the third."
+      },
+      "leadsTo": "hanoi-scale"
+    },
+    {
+      "id": "hanoi-scale",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "3个盘？只有27种状态，计算机眨眼就搜完了。7步就能解决。但是如果是64个盘呢……",
+        "en": "3 discs? Only 27 states — a computer searches them all in the blink of an eye. Solved in 7 moves. But what about 64 discs..."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "64个盘的汉诺塔需要2^64 - 1步——大约1845亿亿步。这告诉我们关于搜索的什么道理？",
+        "en": "The Towers of Hanoi with 64 discs requires 2^64 - 1 moves — roughly 18.4 quintillion steps. What does this tell us about search?"
+      },
+      "choices": [
+        {
+          "id": "need-smarter",
+          "text": {
+            "zh": "我们需要更聪明的搜索方法",
+            "en": "We need smarter search methods"
+          },
+          "tag": "optimization-thinking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "没错，但这里有一个残酷的事实：汉诺塔的最优解本身就需要2^64-1步。不是搜索不够聪明，是问题本身就需要这么多步骤。再聪明的搜索也没法把指数级的问题变成线性的。有些问题的复杂度是内在的。",
+              "en": "True, but here's a cruel fact: the optimal solution for the Towers of Hanoi itself requires 2^64-1 steps. It's not that the search isn't smart enough — the problem itself demands that many steps. No amount of clever searching can turn an exponential problem into a linear one. Some problems have intrinsic complexity."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "some-too-hard",
+          "text": {
+            "zh": "有些问题对计算机来说也太难了",
+            "en": "Some problems are simply too hard even for computers"
+          },
+          "tag": "limits-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "你说到了计算理论的核心！不是所有问题都能被高效解决。有些问题的解需要的步骤数随着问题规模指数增长。这叫「计算不可处理性」——问题太大，宇宙中的时间都不够用。认识到这个限制，本身就是一种智慧。",
+              "en": "You've struck at the core of computational theory! Not every problem can be solved efficiently. Some problems require steps that grow exponentially with the problem size. This is called 「computational intractability」 — the problem is so large that all the time in the universe isn't enough. Recognizing this limitation is itself a form of wisdom."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "different-approach",
+          "text": {
+            "zh": "也许需要换一种完全不同的方法",
+            "en": "Maybe we need an entirely different approach"
+          },
+          "tag": "paradigm-shift-thinking",
+          "response": {
+            "text": {
+              "zh": "有意思……你在暗示搜索本身可能不是唯一的出路。确实如此。当搜索空间大到不可能穷举的时候，也许我们应该「学习」：从经验中总结规律，而不是一个个状态去试。这个想法在也许未来会成为主流？",
+              "en": "Interesting... you're suggesting that search itself might not be the only way out. And you're right. When the search space is too vast to explore exhaustively, perhaps instead of searching, we should 「learn」 — extract patterns from experience rather than trying states one by one. This idea might become mainstream decades later?"
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个现象有一个名字——{组合爆炸}。当问题的规模增长时，可能性的数量是爆炸式增长。从3个盘到64个盘，步骤数从7跳到了18,446,744,073,709,551,615。这就是搜索的根本挑战。",
+        "en": "This phenomenon has a name — {combinatorial explosion}. As a problem grows in size, the number of possibilities doesn't grow linearly but explodes. From 3 discs to 64, the steps jump from 7 to 18,446,744,073,709,551,615. This is the fundamental challenge of search."
+      },
+      "terms": {
+        "组合爆炸": "term-combinatorial-explosion",
+        "combinatorial explosion": "term-combinatorial-explosion"
+      },
+      "leadsTo": "power-and-limit"
+    },
+    {
+      "id": "power-and-limit",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这就是符号方法的双刃剑。我们能精确地表示问题，每一个状态、每一步转换都清清楚楚。但要解决问题……",
+        "en": "This is the double-edged sword of the symbolic approach. We can represent problems precisely — every state, every transition, crystal clear. But solving them..."
+      },
+      "leadsTo": "universe-line"
+    },
+    {
+      "id": "universe-line",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "……有时候需要搜索的可能性比宇宙中的原子还多。光有精确的表示不够，你还需要在天文数字的可能性中找到那根针。",
+        "en": "...sometimes requires searching through more possibilities than there are atoms in the universe. Precise representation alone isn't enough — you still need to find the needle in an astronomically large haystack."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "既然暴力搜索不可行，还有什么替代方案？",
+        "en": "If brute-force search is impractical, what alternatives might exist?"
+      },
+      "choices": [
+        {
+          "id": "learn-patterns",
+          "text": {
+            "zh": "让机器从经验中学习规律，而不是逐个搜索",
+            "en": "Let machines learn patterns from experience instead of searching one by one"
+          },
+          "tag": "learning-intuition",
+          "response": {
+            "text": {
+              "zh": "你已经在预见未来了！从经验中学习。这正是后来「机器学习」和「神经网络」的核心思路：不再手动写规则，也不再蛮力搜索，而是让机器自己从大量数据中找到规律。这个方向会在几十年后彻底改变AI的面貌。",
+              "en": "You're already seeing the future! Learning from experience — that's exactly the core idea behind 「machine learning」 and 「neural networks」. Not manually writing rules, not brute-force searching, but letting machines discover patterns from vast amounts of data. This direction would completely transform AI decades later."
+            }
+          },
+          "leadsTo": "after-q3"
+        },
+        {
+          "id": "decompose",
+          "text": {
+            "zh": "把大问题分解成小问题，各个击破",
+            "en": "Break big problems into smaller ones and solve them individually"
+          },
+          "tag": "decomposition-thinking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "分治策略！这确实是一种强大的技巧。很多成功的AI系统就是这么做的——把一个巨大的搜索问题切成小块，每块的搜索空间都可以管理。但问题是：不是所有问题都能干净利落地分解。有些问题的各部分紧密纠缠，拆不开。",
+              "en": "Divide and conquer! This is indeed a powerful technique. Many successful AI systems work this way — slicing a huge search problem into manageable pieces. But the catch is: not all problems decompose neatly. Some problems have parts so tightly entangled they can't be separated."
+            }
+          },
+          "leadsTo": "after-q3"
+        },
+        {
+          "id": "approximate",
+          "text": {
+            "zh": "接受「足够好」的答案，不追求最优解",
+            "en": "Accept 「good enough」 answers instead of pursuing the optimal solution"
+          },
+          "tag": "satisficing-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常务实也非常深刻的观点。西蒙把这叫做「满意解」，不追求最优，只求足够好。人类实际上一直都是这么决策的。你选餐厅时，不会去考察全城每一家，通常只是在附近找一家「差不多」的就行了。也许，智能的本质就是能快速找到可以接受的方案。",
+              "en": "That's a very pragmatic and very profound observation. Simon called this 「satisficing」 — not pursuing the optimal, just seeking good enough. Humans actually make decisions this way all the time. You don't evaluate every restaurant in the city — you find a 「decent」 one nearby. Perhaps the essence of intelligence isn't finding the optimal solution, but quickly finding an acceptable one."
+            }
+          },
+          "leadsTo": "after-q3"
+        }
+      ]
+    },
+    {
+      "id": "after-q3",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "搜索的局限预示着AI的未来方向：从经验中学习、分解复杂问题、接受近似解……这些想法在后来的几十年里，一个个变成了现实。符号主义的搜索是起点，但绝不是终点。",
+        "en": "The limitations of search foreshadow future directions of AI: learning from experience, decomposing complex problems, accepting approximate solutions... These ideas became reality one by one over the following decades. Symbolic search is the starting point, but by no means the endpoint."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "麦卡锡教授拿起一个棋子，在手中沉思地转了转，然后缓缓放回棋盘。他望着那个中盘局面，仿佛看到了无穷的分支在棋盘上蔓延和消散。「下节课，我们来看看这一切加在一起，到底给世界留下了什么。」他拎起棋盘，若有所思地走了出去。",
+        "en": "Professor McCarthy picks up a chess piece, turning it thoughtfully in his hand, then slowly places it back on the board. He gazes at the mid-game position as if watching infinite branches spread and dissolve across the squares. 「Next time, let's see what all of this together has left the world」. He picks up the chess board and walks out, lost in thought."
+      }
+    }
+  ]
+}

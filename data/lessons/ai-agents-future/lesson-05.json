@@ -1,0 +1,271 @@
+{
+  "id": "lesson-05",
+  "course": "ai-agents-future",
+  "title": {
+    "zh": "通向AGI之路",
+    "en": "The Road to AGI"
+  },
+  "knowledgePoint": {
+    "zh": "通用人工智能需要什么？世界模型、因果理解与快思考/慢思考",
+    "en": "What would AGI require? World models, causal understanding, and fast/slow thinking"
+  },
+  "teacher": "prof-ng",
+  "estimatedMinutes": 16,
+  "previousLesson": "lesson-04",
+  "nextLesson": "lesson-06",
+  "recallIntro": {
+    "zh": "你想起那堂课上弥漫的思辨气氛。吴恩达教授难得地没有拿出具体的工程框架，他用了整堂课来讨论一个还没有答案的问题：什么是通用智能，我们离它还有多远？全息投影上那两个系统，快与慢，在金色光线中对峙，像两种截然不同的思考方式……",
+    "en": "You recall the speculative atmosphere of that lesson. For once, Professor Ng didn't pull out a concrete engineering framework — he spent the entire lesson discussing a question with no answer yet: what is general intelligence, and how far are we from it? The two systems on the holographic display — fast and slow — faced each other in the golden light, like two fundamentally different ways of thinking..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，脑海里留下了那些未解的问题：AI需要世界模型吗？因果理解能通过数据习得吗？快思考和慢思考的统一到底是什么样子？没有确定的答案，但你开始理解：正是这些未解的问题定义了这个领域的前沿。",
+    "en": "You close your notebook, the unresolved questions lingering: does AI need world models? Can causal understanding be learned from data? What does the unification of fast and slow thinking actually look like? No definitive answers, but you begin to understand: it's precisely these unresolved questions that define the frontier of this field."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "第五节课。今天的教室气氛不同，全息投影上没有图表或架构图，只有三个大字：「AGI」。金色的光线从窗外倾泻进来，照在这三个字母上，让它们看起来既庄严又遥远。吴恩达教授走进来，手里什么都没拿。今天似乎是一堂纯粹的对话课。",
+        "en": "Fifth lesson. The classroom atmosphere is different today — no charts or architecture diagrams on the holographic display, just three large letters: 「AGI」. Golden light pours in through the windows, illuminating these letters, making them look both solemn and distant. Professor Ng walks in empty-handed — today seems to be a lesson of pure conversation."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "今天我们来聊一个所有人都在谈论但没有人能定义清楚的概念：{通用人工智能}，也就是AGI。（停顿了一下）在开始之前，我想先承认一件事：关于AGI，我说的每一句话都可能是错的。这个领域的最大特点，就是我们甚至不知道自己不知道什么。但正因如此，这个话题才值得认真讨论。",
+        "en": "Today we'll talk about a concept everyone discusses but no one can clearly define: {Artificial General Intelligence} — AGI. (Pauses) Before we begin, I want to admit something: regarding AGI, everything I say could be wrong. The defining characteristic of this field is — we don't even know what we don't know. But precisely because of that, this topic is worth serious discussion."
+      },
+      "terms": {
+        "通用人工智能": "term-artificial-general-intelligence",
+        "Artificial General Intelligence": "term-artificial-general-intelligence"
+      },
+      "leadsTo": "definition-debate"
+    },
+    {
+      "id": "definition-debate",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "什么是通用智能？定义之争本身就是一场永远打不完的仗。有人说AGI是「能做任何人类能做的智力任务的AI」。有人说是「能在新领域自主学习的AI」。还有人说是「能理解世界并进行抽象推理的AI」。每一个定义都有漏洞：图灵测试够格吗？通过所有考试算不算？比所有人类都强才算吗？",
+        "en": "What is general intelligence? The definition debate itself is a war that never ends. Some say AGI is 「AI that can perform any intellectual task a human can do」. Others say it's 「AI that can learn autonomously in new domains」. Still others say it's 「AI that understands the world and performs abstract reasoning」. Every definition has holes: is passing the Turing test enough? Does passing all exams count? Must it be better than all humans?"
+      },
+      "leadsTo": "system-12-intro"
+    },
+    {
+      "id": "system-12-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我从一个具体的视角切入。心理学家丹尼尔·卡尼曼提出了一个著名的理论：人类思维有两个{系统}。系统1是快思考，它依赖直觉，自动运行，毫不费力。你看到「2+2」就知道答案是4，不需要推理。系统2是慢思考，它需要分析，刻意而为，相当费力。你算「17×24」就得一步一步来。",
+        "en": "Let me approach this from a specific angle. Psychologist Daniel Kahneman proposed a famous theory: human thinking has two {systems}. System 1 is fast thinking — intuitive, automatic, effortless. You see 「2+2」 and know the answer is 4 without reasoning. System 2 is slow thinking — analytical, deliberate, effortful. Calculating 「17×24」 requires working through it step by step."
+      },
+      "terms": {
+        "系统": "term-system-1-system-2",
+        "systems": "term-system-1-system-2"
+      },
+      "leadsTo": "llm-as-system1"
+    },
+    {
+      "id": "llm-as-system1",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "现在想一想：当前的大语言模型像哪个系统？（全息投影上出现两个对比的光圈）它们更像系统1。输入一段文字，模型瞬间生成回答——快速、流畅、自信。它看起来很聪明，就像一个反应极快的人。但它也有系统1的问题：有时候自信地说出错误的答案，因为它「凭直觉」而非「深思熟虑」。",
+        "en": "Now think: which system do current large language models resemble? (Two contrasting light rings appear on the holographic display) They're more like System 1. Input some text, the model instantly generates a response — fast, fluent, confident. It seems smart, like a person with extremely quick reflexes. But it also has System 1's problems: sometimes confidently stating wrong answers, because it's going on 「intuition」 rather than 「deliberation」."
+      },
+      "leadsTo": "system2-challenge"
+    },
+    {
+      "id": "system2-challenge",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "真正的通用智能可能需要系统1和系统2的结合。快速反应处理日常问题，深度推理处理复杂问题。2024年以来，我们已经看到一些进展——让模型在回答之前花更多时间「思考」，使用更长的推理链。但这种「慢思考」目前还是模拟出来的，模型并没有真正切换到一种不同的认知模式。它只是生成了更多的中间文字。",
+        "en": "True general intelligence may require combining System 1 and System 2. Fast responses for everyday problems, deep reasoning for complex ones. Since 2024, we've seen some progress — making models spend more time 「thinking」 before answering, using longer reasoning chains. But this 「slow thinking」 is currently simulated; the model hasn't truly switched to a different cognitive mode. It's just generating more intermediate text."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得大语言模型能通过「更多的思考步骤」来实现真正的深度推理吗？还是说它们在本质上受限于「系统1」式的快速模式匹配？",
+        "en": "Do you think large language models can achieve true deep reasoning through 「more thinking steps」? Or are they fundamentally limited to System 1-style fast pattern matching?"
+      },
+      "choices": [
+        {
+          "id": "can-emerge",
+          "text": {
+            "zh": "当模型足够大、推理链足够长时，真正的推理能力可以涌现出来",
+            "en": "When models are big enough and reasoning chains are long enough, genuine reasoning can emerge"
+          },
+          "tag": "optimistic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是缩放派最有力的论点之一。他们会指出：GPT-4已经能解决一些需要多步推理的数学题，而GPT-3做不到。随着模型变大和推理时间变长，推理能力确实在提升。但批评者会说：解决数学题可能只是「记住了解题模式」，而真正的推理需要能处理从未见过的全新问题类型。这个争论的核心在于：我们怎么区分「学会了模式」和「学会了推理」？这很难判定。",
+              "en": "This is one of the scaling camp's strongest arguments. They'd point out: GPT-4 can solve some multi-step math problems that GPT-3 couldn't. As models grow and reasoning time increases, reasoning ability does improve. But critics would say: solving math problems might just be 「memorizing solution patterns」, while real reasoning requires handling entirely novel problem types never seen before. The core of this debate is: how do we distinguish between 「learned patterns」 and 「learned to reason」? That's hard to determine."
+            }
+          },
+          "leadsTo": "world-models"
+        },
+        {
+          "id": "fundamental-limit",
+          "text": {
+            "zh": "有根本局限——「预测下一个词」的机制无法产生真正的推理",
+            "en": "There are fundamental limits — the 「predict the next token」 mechanism can't produce genuine reasoning"
+          },
+          "tag": "skeptical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这个立场与Yann LeCun的观点很接近。他认为纯粹的语言预测模型缺少对物理世界的直接经验。它没有「看过」苹果落地，只是「读过」关于重力的文字。文字描述和直接体验之间有一个鸿沟。但也有人反驳：人类的很多抽象推理，比如数学、逻辑、哲学，也是在纯语言层面进行的。我们不需要亲手摸到数字「7」就能做数学。这个争论暂时没有定论。",
+              "en": "This position is close to Yann LeCun's view. He argues that pure language prediction models lack direct physical world experience — they haven't 「seen」 an apple fall, only 「read」 about gravity. There's a gap between textual description and direct experience. But others counter: much of human abstract reasoning — mathematics, logic, philosophy — also happens at a purely linguistic level; we don't need to physically touch the number 「7」 to do math. This debate remains unresolved for now."
+            }
+          },
+          "leadsTo": "world-models"
+        },
+        {
+          "id": "different-reasoning",
+          "text": {
+            "zh": "也许AI的推理跟人类的推理不一样——但同样有效，只是原理不同",
+            "en": "Maybe AI's reasoning is different from human reasoning — but equally effective, just with different principles"
+          },
+          "tag": "open-minded",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个非常有意思的框架。我们一直用人类的认知模型作为标杆来衡量AI——但为什么AI必须用跟人一样的方式思考？飞机不是通过拍打翅膀来飞行的，但它飞得比鸟更高更快。也许AI会发展出一种我们无法用「系统1/系统2」框架来描述的推理方式。如果是这样，那我们评判AI智能的标准本身可能就需要更新。这是一个值得深思的哲学问题。",
+              "en": "That's a very interesting framework. We've been using human cognitive models as the benchmark for measuring AI — but why must AI think the same way humans do? Airplanes don't fly by flapping wings, yet they fly higher and faster than birds. Maybe AI will develop a form of reasoning we can't describe within the System 1/System 2 framework. If so, our very criteria for judging AI intelligence may need updating. That's a philosophical question worth deep reflection."
+            }
+          },
+          "leadsTo": "world-models"
+        }
+      ]
+    },
+    {
+      "id": "world-models",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "除了快慢思考的统一，通向AGI可能还需要另一个关键能力：{世界模型}。什么是世界模型？简单说，就是AI对现实世界如何运作的一个内在理解。你知道一个球从桌上掉下去会落地，因为你有一个关于重力的世界模型。你知道推倒第一张多米诺骨牌会引起连锁反应，因为你理解因果关系。",
+        "en": "Beyond unifying fast and slow thinking, the path to AGI may also require another key capability: {world models}. What is a world model? Simply put, it's AI's internal understanding of how the real world works. You know a ball falling off a table will hit the ground because you have a world model of gravity. You know pushing the first domino triggers a chain reaction because you understand causation."
+      },
+      "terms": {
+        "世界模型": "term-world-model",
+        "world models": "term-world-model"
+      },
+      "leadsTo": "lecun-position"
+    },
+    {
+      "id": "lecun-position",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "LeCun一直在主张：下一代AI需要通过观察和交互来建立世界模型，就像婴儿通过抓、摸、看来理解物理世界一样。仅靠阅读文本是不够的，你不能通过读一本关于骑自行车的书来学会骑车。这个观点很有影响力，但也有争议：语言本身是否已经包含了足够多的关于世界的信息？",
+        "en": "LeCun has been arguing: the next generation of AI needs to build world models through observation and interaction — just as babies understand the physical world through grasping, touching, and seeing. Reading text alone isn't enough — you can't learn to ride a bicycle by reading a book about it. This view is influential but controversial: does language itself already contain enough information about the world?"
+      },
+      "leadsTo": "causal-callback"
+    },
+    {
+      "id": "causal-callback",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这里还涉及到因果理解的问题。如果你们学过朱迪亚·珀尔教授的课程，应该还记得他关于因果推理的工作。珀尔教授指出，相关性和因果性是完全不同的。「冰淇淋销量和溺水事件正相关」不意味着冰淇淋导致溺水，因为两者都是由夏天这个共同原因驱动的。大语言模型非常擅长发现相关性，但它们能理解因果吗？这是一个深层的未解问题。",
+        "en": "This also touches on the question of causal understanding — if you've taken Professor Judea Pearl's course, you'll remember his work on causal reasoning. Professor Pearl showed that correlation and causation are entirely different. 「Ice cream sales and drowning incidents are correlated」 doesn't mean ice cream causes drowning — both are driven by the common cause of summer. Large language models are excellent at finding correlations, but can they understand causation? That's a deep unresolved question."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "在通向AGI的道路上，你觉得最大的「未知的未知」是什么——那些我们甚至还没有正确提出的问题？",
+        "en": "On the road to AGI, what do you think is the biggest 「unknown unknown」 — the questions we haven't even properly formulated yet?"
+      },
+      "choices": [
+        {
+          "id": "consciousness",
+          "text": {
+            "zh": "意识的本质——也许通用智能需要某种形式的主观体验，但我们不知道那是什么",
+            "en": "The nature of consciousness — perhaps general intelligence requires some form of subjective experience, but we don't know what that is"
+          },
+          "tag": "philosophical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你触碰了AI领域最深层的哲学问题。如果通用智能需要意识，需要一个「感受着」的主体，那我们面临的就不只是工程挑战。我们甚至不知道意识在生物大脑中是怎么产生的。你不能工程化地创造一个你还没理解的东西。不过，也存在另一种可能：通用智能或许不需要意识。也许一个系统可以非常智能，却完全没有主观体验。问题的关键在于，我们目前连判断的标准都没有。",
+              "en": "You've touched on the deepest philosophical question in AI. If general intelligence requires consciousness — a 「feeling」 subject — then we face not merely an engineering challenge, but one where we don't even understand how consciousness arises in biological brains. You can't engineer something you don't yet understand. But it's also possible that general intelligence doesn't require consciousness. Maybe a system can be highly intelligent with zero subjective experience. The key is — we don't even have criteria for judgment yet."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        },
+        {
+          "id": "evaluation",
+          "text": {
+            "zh": "评估标准——我们可能连「什么算真正的通用智能」都无法准确定义和测量",
+            "en": "Evaluation criteria — we may not be able to accurately define and measure 「what counts as true general intelligence」"
+          },
+          "tag": "rigorous",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个回答展现了科学的严谨性。你无法通向一个你不能定义的目的地。图灵测试在七十年前是一个好的起点，但现在ChatGPT可能已经在某种程度上通过了图灵测试，然而没有人会说它是AGI。我们需要更好的评估框架。也许答案是：不存在一个单一的测试，重点在于一组持续进化的评估维度，比如推理、泛化、常识、社会智能、创造力。这个评估框架本身可能比AGI更难设计。",
+              "en": "This answer shows scientific rigor. You can't reach a destination you can't define. The Turing test was a good starting point seventy years ago, but now ChatGPT may have already passed the Turing test in some sense — yet no one would call it AGI. We need better evaluation frameworks. Maybe the answer is: there's no single test, but a set of continuously evolving evaluation dimensions — reasoning, generalization, common sense, social intelligence, creativity. This evaluation framework itself may be harder to design than AGI."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        },
+        {
+          "id": "emergence",
+          "text": {
+            "zh": "涌现现象——也许通用智能会从一些我们没有预料到的简单规则中突然出现",
+            "en": "Emergence — perhaps general intelligence will suddenly appear from simple rules we didn't anticipate"
+          },
+          "tag": "imaginative",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "涌现是复杂系统中一个真实的现象。蚂蚁群体的智慧并不存在于任何单一蚂蚁身上，而是从大量简单交互中自发产生的。也许通用智能也是如此，在某个临界点上，量变会突然引发质变。这让人既兴奋又不安：兴奋是因为突破可能比我们预想的更近；不安则源于我们可能完全无法预测它何时发生、以何种方式发生。作为AI建设者，我们必须正视这种不可预测性。",
+              "en": "Emergence is a real phenomenon in complex systems — the intelligence of an ant colony doesn't exist in any single ant, but emerges from a large number of simple interactions. Maybe general intelligence works the same way — at some critical point, quantitative change suddenly produces qualitative change. This is both exciting and unsettling: exciting because the breakthrough might be closer than we think; unsettling because we may be completely unable to predict when it happens or how. As AI builders, this unpredictability is something we must face squarely."
+            }
+          },
+          "leadsTo": "note-prompt-1"
+        }
+      ]
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "通向AGI的关键难题，可以归纳为五点。第一，定义问题：什么是通用智能？目前学界尚未达成共识。第二，快与慢的思考：当前的大语言模型更像系统1，依赖快速直觉，而缺少系统2那种深度推理能力。第三，世界模型：AI需要对世界如何运作有内在理解，这是LeCun所强调的立场。第四，因果理解：相关性不等于因果性，这是Pearl研究的核心。第五，未知的未知：这其中涉及意识的角色、评估标准，以及涌现的可能性。我们面临的核心认知困境在于，我们甚至不清楚自己究竟忽略了什么。",
+        "en": "Key challenges on the road to AGI: (1) Definition problem — what is general intelligence? No consensus; (2) Fast/slow thinking — current LLMs resemble System 1 (fast intuition), lack System 2 (deep reasoning); (3) World models — AI needs internal understanding of how the world works (LeCun's position); (4) Causal understanding — correlation ≠ causation (Pearl's work); (5) Unknown unknowns — the role of consciousness, evaluation criteria, possibility of emergence. Core recognition: we don't even know what we don't know."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing-dialog"
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（站在「AGI」三个字母前）我讲了一堂充满问号的课。你们可能觉得这堂课没有给出明确的答案。你们说得对，因为明确的答案还不存在。但我希望你们记住这些问题本身。下节课，也就是我们的最后一堂课，我们会把目光从技术转向更根本的东西：当AI越来越强大的时候，真正重要的问题是什么？答案可能不在论文里，而在你们自己的思考里。",
+        "en": "(Standing before the letters 「AGI」) I've taught a lesson full of question marks. You might feel this lesson didn't provide clear answers. You're right — because clear answers don't exist yet. But I hope you remember these questions themselves, because next lesson — our final one — we'll shift our gaze from technology to something more fundamental: when AI becomes increasingly powerful, what are the questions that truly matter? The answers may not be in research papers, but in your own thinking."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "「AGI」三个字母在全息投影上慢慢褪色，但它们在空气中留下了淡淡的光痕，像一个尚未被书写的未来。吴恩达教授走出教室时的脚步比平时慢了一些。你看着笔记本上密密麻麻的问号，关于意识，关于理解，关于什么才算「真正的智能」。你突然觉得，也许提出正确的问题比找到答案更重要。窗外的地平线在最后一抹金光中显得格外遥远。还有最后一堂课。",
+        "en": "The letters 「AGI」 slowly fade on the holographic display, but leave faint traces of light in the air, like a future not yet written. Professor Ng's footsteps are slower than usual as he leaves the classroom. You look at the dense question marks in your notebook — about consciousness, about understanding, about what counts as 「real intelligence」 — and suddenly feel that perhaps asking the right questions matters more than finding the answers. The horizon outside looks especially distant in the last golden light. One more lesson — the final one."
+      }
+    }
+  ]
+}

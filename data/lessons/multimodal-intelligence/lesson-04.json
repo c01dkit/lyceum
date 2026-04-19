@@ -1,0 +1,359 @@
+{
+  "id": "lesson-04",
+  "course": "multimodal-intelligence",
+  "title": {
+    "zh": "空间智能",
+    "en": "Spatial Intelligence"
+  },
+  "knowledgePoint": {
+    "zh": "理解三维空间、物理规律与具身交互——多模态智能的下一前沿",
+    "en": "Understanding 3D space, physics, and embodied interaction — the next frontier of multimodal intelligence"
+  },
+  "teacher": "prof-li",
+  "estimatedMinutes": 12,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你闭上眼，那间洒满金色光线的教室又出现了。全息投影中不再是平面的图片和文字——而是一个完整的三维房间在空气中缓缓旋转。李飞飞教授手里拿着一只苹果，高高举起，然后松手。你记得她松手前说的那句话：「如果一个AI不能预测这只苹果会掉下去，它就不算真的理解了这个世界。」",
+    "en": "You close your eyes, and that classroom bathed in golden light appears again. The holographic projection no longer shows flat images and text — instead, a complete three-dimensional room slowly rotates in the air. Prof. Li holds an apple, raises it high, then lets go. You remember what she said before releasing it: 「If an AI cannot predict that this apple will fall, it doesn't truly understand the world」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。「空间智能」这个词在脑海中回响。认出一只猫的照片和理解一只真实的猫在三维空间中如何移动、如何跳上桌子、如何钻进箱子——这之间的鸿沟，可能就是感知和理解之间的距离。",
+    "en": "You return to the present. The words 「spatial intelligence」 echo in your mind. Recognizing a photo of a cat versus understanding how a real cat moves in three-dimensional space, jumps onto a table, squeezes into a box — the chasm between these may be the distance between perception and understanding."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室有些不同。全息投影系统被调到了全功率模式——整个教室被一个逼真的三维虚拟场景包围。你能看到一个虚拟的客厅：沙发、茶几、书架、窗户，阳光从窗外照进来，在地面上投下影子。一切看起来如此真实，你几乎伸手去碰那个虚拟的茶杯。李飞飞教授站在这个虚拟场景中央，手里拿着一只真实的苹果。",
+        "en": "Today's classroom is different. The holographic projection system is at full power — the entire room is surrounded by a lifelike three-dimensional virtual scene. You can see a virtual living room: a sofa, coffee table, bookshelf, windows with sunlight casting shadows on the floor. Everything looks so real that you almost reach out to touch the virtual teacup. Prof. Li stands in the center of this virtual scene, holding a real apple in her hand."
+      },
+      "leadsTo": "apple-demo"
+    },
+    {
+      "id": "apple-demo",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（举起苹果）我问你们一个简单的问题。如果我松手，这只苹果会怎样？",
+        "en": "(Holds up the apple) Let me ask you a simple question. If I let go, what will happen to this apple?"
+      },
+      "leadsTo": "apple-answer"
+    },
+    {
+      "id": "apple-answer",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "（松开手，苹果掉在地上）当然，它会掉下去。你不需要思考，不需要计算——你的身体和大脑在无数次经验之后，已经把重力内化成了一种直觉。一个两岁的孩子都知道东西会往下掉。但今天最先进的多模态模型呢？它可以精确地描述这只苹果的颜色、形状和品种，却经常无法可靠地预测它松手后的运动轨迹。",
+        "en": "(Releases hand, apple falls to the ground) Of course, it falls. You don't need to think, don't need to calculate — your body and brain, after countless experiences, have internalized gravity as intuition. Even a two-year-old knows things fall down. But what about today's most advanced multimodal models? They can precisely describe this apple's color, shape, and variety, yet they often cannot reliably predict its trajectory after being released."
+      },
+      "leadsTo": "beyond-recognition"
+    },
+    {
+      "id": "beyond-recognition",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是为什么我们需要{空间智能}。（全息虚拟场景开始变化，物体之间出现了表示距离、方向和关系的光线）空间智能是指AI理解三维空间结构、物体之间的空间关系、物理运动规律和环境交互方式的能力。它超越了「认出图片中有什么」，进入了「理解世界是怎么运作的」。",
+        "en": "This is why we need {spatial intelligence}. (The holographic virtual scene begins to change, with lines of light appearing between objects showing distance, direction, and relationships) Spatial intelligence is AI's ability to understand three-dimensional spatial structure, spatial relationships between objects, physical laws of motion, and environmental interaction. It goes beyond 「recognizing what's in a picture」 to 「understanding how the world works」."
+      },
+      "terms": {
+        "空间智能": "term-spatial-intelligence",
+        "spatial intelligence": "term-spatial-intelligence"
+      },
+      "leadsTo": "three-levels"
+    },
+    {
+      "id": "three-levels",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我把空间智能分成三个层次。第一层是三维感知，也就是从二维图像重建出三维场景，知道物体在空间中的位置和大小。第二层是物理直觉，能够预测物体的运动，理解支撑、碰撞、流体这些物理现象。第三层是交互规划，知道如何在空间中行动来达成目标，比如绕过障碍物、拿起一个杯子、或者打开一扇门。",
+        "en": "Let me break spatial intelligence into three levels. First: 3D perception — reconstructing three-dimensional scenes from 2D images, knowing where objects are in space and how large they are. Second: physical intuition — predicting how objects move, understanding support, collision, fluid dynamics and other physical phenomena. Third: interaction planning — knowing how to act in space to achieve a goal, like navigating around obstacles, picking up a cup, or opening a door."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "在空间智能的三个层次里，三维感知、物理直觉和交互规划，你觉得哪个对AI来说最难实现？",
+        "en": "Among the three levels of spatial intelligence — 3D perception, physical intuition, interaction planning — which do you think is the hardest for AI to achieve?"
+      },
+      "choices": [
+        {
+          "id": "perception-hardest",
+          "text": {
+            "zh": "三维感知——从平面图像恢复真实的三维结构本身就极其困难",
+            "en": "3D perception — recovering true 3D structure from flat images is inherently extremely difficult"
+          },
+          "tag": "perception-focused",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "三维重建确实是一个困难的问题——从数学上说，从二维到三维的映射是「病态」的，同一张图片可以对应无数种三维结构。但实际上，这个领域已经取得了显著进展。深度估计、NeRF（神经辐射场）、三维高斯泼溅等技术已经能从少量图片中重建出相当精确的三维场景。相比之下，后两个层次的困难更加根本性。",
+              "en": "3D reconstruction is indeed a difficult problem — mathematically, the mapping from 2D to 3D is 「ill-posed, meaning a single image can correspond to countless 3D structures. But in practice, this field has made remarkable progress. Depth estimation, NeRF (Neural Radiance Fields), 3D Gaussian splatting, and other techniques can already reconstruct fairly accurate 3D scenes from a few images. By comparison, the difficulties of the latter two levels are more fundamental."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "physics-hardest",
+          "text": {
+            "zh": "物理直觉——理解重力、碰撞、流体这些物理规律需要深层的因果理解",
+            "en": "Physical intuition — understanding gravity, collisions, fluids requires deep causal understanding"
+          },
+          "tag": "physics-focused",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你的直觉很准。物理直觉涉及因果推理——不仅要知道「现在是什么样」，还要知道「接下来会怎样」以及「为什么」。这需要一种对物理规律的内在理解，而不仅仅是从数据中学到的统计模式。一个孩子在几千次经验后就能建立可靠的物理直觉，但目前的AI即使看过几百万个视频，在物理推理上仍然不可靠。",
+              "en": "Your intuition is sharp. Physical intuition involves causal reasoning — not just knowing 「what is」 but 「what will happen next」 and 「why」. This requires an intrinsic understanding of physical laws, not merely statistical patterns learned from data. A child builds reliable physical intuition after a few thousand experiences, but current AI, even after watching millions of videos, remains unreliable at physical reasoning."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "planning-hardest",
+          "text": {
+            "zh": "交互规划——在复杂环境中做出连续的正确决策需要整合所有能力",
+            "en": "Interaction planning — making continuous correct decisions in complex environments requires integrating all capabilities"
+          },
+          "tag": "systems-thinking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个很有洞察力的选择。交互规划确实是最顶层的挑战，因为它要求同时具备三维感知、物理预测和目标导向的决策能力。一个机器人要从桌上拿起一个杯子，它需要知道杯子在哪里（三维感知）、杯子是否会倒（物理直觉）、用什么角度和力度去抓（运动规划）。任何一个环节出错，整个行动就会失败。这也是为什么机器人技术进步得如此缓慢。",
+              "en": "That's a very insightful choice. Interaction planning is indeed the highest-level challenge, because it requires simultaneously possessing 3D perception, physical prediction, and goal-directed decision-making. For a robot to pick up a cup from a table, it needs to know where the cup is (3D perception), whether it will topple (physical intuition), and at what angle and force to grasp (motion planning). One error in any step causes the entire action to fail. This is also why robotics progress has been so slow."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "空间智能的难度让我意识到一件事——仅仅从图片和文字中学习是不够的。要真正理解三维空间和物理世界，AI可能需要一种全新的学习方式。这就是我创立World Labs（世界实验室）的动力。",
+        "en": "The difficulty of spatial intelligence made me realize something — learning from images and text alone is not enough. To truly understand three-dimensional space and the physical world, AI may need an entirely new way of learning. This is what drove me to found World Labs."
+      },
+      "leadsTo": "world-labs"
+    },
+    {
+      "id": "world-labs",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我的愿景是构建{世界模型}，一种能够在内部模拟三维世界的AI系统。它能理解空间布局、预测物理运动、生成逼真的三维场景。这样做，不只是为了让AI「看懂」图片，更是为了让AI拥有一个关于世界如何运作的内在心理模型，就像人类大脑中那个帮助我们导航、规划、想象的三维模拟器。",
+        "en": "My vision is to build {world models} — AI systems that can internally simulate three-dimensional worlds. They would understand spatial layouts, predict physical motion, and generate realistic 3D scenes. This isn't just about making AI 「understand」 pictures — it's about giving AI an internal mental model of how the world works, like the 3D simulator in the human brain that helps us navigate, plan, and imagine."
+      },
+      "terms": {
+        "世界模型": "term-world-model",
+        "world models": "term-world-model"
+      },
+      "leadsTo": "embodied-intro"
+    },
+    {
+      "id": "embodied-intro",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "而另一条重要的路径是{具身AI}——让AI拥有身体，在物理世界中学习。（全息场景中出现一个机器人在厨房里移动的画面）想想我们人类是怎么学习的：婴儿不停地抓东西、丢东西、摔倒、站起来。每一次物理交互都在建立对世界的理解。如果AI永远只是一个「旁观者」，它也许永远无法建立真正的空间理解。",
+        "en": "And another important path is {embodied AI} — giving AI a body to learn in the physical world. (A scene of a robot moving in a kitchen appears in the holographic display) Think about how we humans learn: babies constantly grab things, drop things, fall down, get back up. Every physical interaction builds understanding of the world. If AI remains forever a 「spectator, it may never develop true spatial understanding."
+      },
+      "terms": {
+        "具身AI": "term-embodied-ai",
+        "embodied AI": "term-embodied-ai"
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "你觉得AI获得空间智能的最佳路径是什么？",
+        "en": "What do you think is the best path for AI to acquire spatial intelligence?"
+      },
+      "choices": [
+        {
+          "id": "simulation-path",
+          "text": {
+            "zh": "虚拟世界模拟——在逼真的3D模拟环境中大量训练",
+            "en": "Virtual world simulation — training extensively in realistic 3D simulated environments"
+          },
+          "tag": "simulation-oriented",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "模拟确实是一条很有前途的路径。在虚拟环境中，我们可以生成无限的训练数据，而且不用担心机器人摔坏或伤到人。很多机器人技术的突破，包括学习行走和操纵物体，都先在模拟中训练，然后迁移到真实世界。但模拟和现实之间总是存在差距，我们称之为「仿真到真实的鸿沟」。虚拟物理引擎无法完美还原现实世界的全部复杂性。",
+              "en": "Simulation is indeed a very promising path. In virtual environments, we can generate unlimited training data without worrying about robots breaking or hurting people. Many robotics breakthroughs — including learning to walk and manipulate objects — first train in simulation, then transfer to the real world. But there's always a gap between simulation and reality — what we call the 「sim-to-real gap」. Virtual physics engines cannot perfectly replicate the full complexity of the real world."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "embodiment-path",
+          "text": {
+            "zh": "真实世界交互——让机器人在真实环境中通过试错来学习",
+            "en": "Real-world interaction — letting robots learn through trial and error in real environments"
+          },
+          "tag": "embodiment-oriented",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "真实世界的交互是最直接的学习方式，但也是最昂贵和最缓慢的。一个机器人在真实环境中学习打开一扇门，可能需要几千次尝试，每次尝试需要几十秒。而且真实机器人会磨损、损坏，需要维护。我认为最终的答案，或许是两种路径的结合：在模拟中大量预训练，然后在真实环境中微调和验证。",
+              "en": "Real-world interaction is the most direct way to learn — but also the most expensive and slow. A robot learning to open a door in a real environment might need thousands of attempts, each taking tens of seconds. And real robots wear out, break down, need maintenance. I believe the ultimate answer may be a combination of both paths — extensive pretraining in simulation, then fine-tuning and validation in real environments."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "video-path",
+          "text": {
+            "zh": "从视频中学习——互联网上有海量的视频包含了物体运动和空间关系的信息",
+            "en": "Learning from video — the internet has massive amounts of video containing object motion and spatial relationship information"
+          },
+          "tag": "data-oriented",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是一个很有创意的想法，而且正在成为一个重要的研究方向！视频天然包含了时间维度，能展示物体如何移动、如何碰撞、如何变形。从视频中学习物理直觉，就像给AI看一部关于物理世界的超长纪录片。一些最新的研究已经证明，视频预训练可以让模型学到一定的物理常识。但视频只提供了「旁观者」视角，缺少交互和反馈。所以这可能是一个很好的起点，但最终仍然需要某种形式的主动交互。",
+              "en": "That's a very creative idea, and it's becoming an important research direction! Video naturally contains the temporal dimension — how objects move, collide, deform. Learning physical intuition from video is like giving AI an ultra-long documentary about the physical world. Some recent research has shown that video pretraining can help models learn certain physical common sense. But video only provides a 「spectator」 perspective — lacking interaction and feedback. So this might be an excellent starting point, but ultimately still requires some form of active interaction."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "空间智能是连接感知和理解的关键桥梁。当我们的AI不仅能认出照片里的椅子，还能理解那把椅子的三维结构、知道它能承受多少重量、明白从什么角度可以坐上去——那时候，我们才真正接近了「理解」。",
+        "en": "Spatial intelligence is the crucial bridge connecting perception and understanding. When our AI can not only recognize a chair in a photo, but also understand its three-dimensional structure, know how much weight it can bear, and figure out from what angle you can sit on it — that's when we truly approach 「understanding」."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "空间智能的三个层次：三维感知（从图像重建3D场景）、物理直觉（预测运动和物理现象）、交互规划（在空间中行动达成目标）。实现路径包括世界模型（在内部模拟3D世界）和具身AI（让AI拥有身体在物理世界中学习）。",
+        "en": "Three levels of spatial intelligence: 3D perception (reconstructing 3D scenes from images), physical intuition (predicting motion and physical phenomena), interaction planning (acting in space to achieve goals). Approaches include world models (internally simulating 3D worlds) and embodied AI (giving AI a body to learn in the physical world)."
+      },
+      "category": "core-concept",
+      "leadsTo": "human-centered"
+    },
+    {
+      "id": "human-centered",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "在结束之前，我想说一点更深层的思考。空间智能的目标不仅仅是让机器变得更聪明。我创立World Labs，做空间智能研究，最终的驱动力是一个关于人的问题：AI如何帮助人类更好地理解和与物理世界互动？",
+        "en": "Before we wrap up, I want to share a deeper thought. The goal of spatial intelligence isn't merely making machines smarter. My ultimate motivation in founding World Labs and pursuing spatial intelligence research is a question about people: how can AI help humans better understand and interact with the physical world?"
+      },
+      "leadsTo": "applications"
+    },
+    {
+      "id": "applications",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "想想可能的应用：一个具备空间智能的AI可以帮助外科医生在手术中实时理解三维解剖结构；可以帮助视障人士「看到」并安全地导航复杂的城市环境；可以帮助建筑师在虚拟空间中直觉性地设计建筑。技术本身是中性的——但当它服务于人的需求时，它就有了温度。",
+        "en": "Think about the possibilities: an AI with spatial intelligence could help surgeons understand 3D anatomy in real-time during operations; help visually impaired people 「see」 and safely navigate complex urban environments; help architects intuitively design buildings in virtual space. Technology itself is neutral — but when it serves human needs, it gains warmth."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "如果具有空间智能的AI机器人未来能走入日常生活，你最期待它帮助解决什么问题？",
+        "en": "If AI robots with spatial intelligence could enter everyday life in the future, what problem would you most want them to help solve?"
+      },
+      "choices": [
+        {
+          "id": "elderly-care",
+          "text": {
+            "zh": "照顾老人——帮助行动不便的老人安全地在家中生活",
+            "en": "Elderly care — helping mobility-impaired seniors live safely at home"
+          },
+          "tag": "empathetic",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（眼中泛起一丝温暖的光）这个选择让我非常感动。我自己的母亲年事已高，我深知照顾老人的辛劳和情感负担。一个具备空间智能的机器人，能够理解家中的布局、预测跌倒风险、帮助取放物品——这不是科幻，这是我们这一代人有望实现的目标。AI最伟大的应用，是帮助那些最需要帮助的人。",
+              "en": "(A warm light touches her eyes) This choice moves me deeply. My own mother is elderly, and I know firsthand the labor and emotional burden of caring for aging parents. A robot with spatial intelligence that understands a home's layout, predicts fall risks, helps retrieve and place objects — this isn't science fiction, it's a goal our generation can hope to achieve. AI's greatest application is helping those who need help most."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "disaster-response",
+          "text": {
+            "zh": "灾难救援——在危险环境中搜寻和帮助被困者",
+            "en": "Disaster response — searching for and helping trapped people in dangerous environments"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常重要的应用场景。地震后的废墟、火灾中的建筑、洪水中的城镇——这些环境对人类救援者来说极其危险。一个具备空间智能的机器人可以在倒塌的建筑中导航、定位被困者、甚至进行初步的救援操作。关键在于空间智能让机器人能够在从未见过的、混乱无序的环境中自主行动。这正是传统机器人做不到的。",
+              "en": "That's an extremely important application. Earthquake rubble, burning buildings, flooded towns — these environments are incredibly dangerous for human rescuers. A robot with spatial intelligence could navigate collapsed structures, locate trapped people, even perform initial rescue operations. The key is that spatial intelligence enables robots to act autonomously in never-before-seen, chaotic environments — exactly what traditional robots cannot do."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        },
+        {
+          "id": "education-access",
+          "text": {
+            "zh": "教育普及——让偏远地区的孩子也能获得动手实验和空间学习的机会",
+            "en": "Educational access — giving children in remote areas opportunities for hands-on experiments and spatial learning"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这个想法太棒了！教育资源的不平等是一个全球性问题。很多偏远地区的孩子从未进过实验室、从未操作过科学仪器。一个具备空间智能的AI导师，能够通过增强现实创建虚拟实验环境，引导学生「动手」探索三维的科学世界。这正是AI人文关怀的最好体现——用技术打破地理和经济的壁垒。",
+              "en": "What a wonderful idea! Educational inequality is a global problem. Many children in remote areas have never been in a laboratory, never operated scientific instruments. An AI tutor with spatial intelligence could create virtual experiment environments through augmented reality, guiding students to 「hands-on」 explore the three-dimensional world of science. This is the finest expression of AI's humanistic purpose — using technology to break down geographic and economic barriers."
+            }
+          },
+          "leadsTo": "closing-dialog"
+        }
+      ]
+    },
+    {
+      "id": "closing-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我常说：AI研究的最终目的，是创造一个能帮助人类的工具。空间智能让这个工具能够走出屏幕，走进真实的世界，真正触及人们的生活。下节课是我们这门课的最后一堂，我们要一起面对一个困难的问题：感知到了，识别到了，甚至能在空间中行动了，但AI真的「理解」了吗？",
+        "en": "I often say: the ultimate purpose of AI research is not to create a superintelligence, but to create a tool that helps humanity. Spatial intelligence allows that tool to step out of the screen, into the real world, and truly touch people's lives. Next lesson is the final class in this course — we'll face a difficult question together: AI can perceive, recognize, even act in space — but does it truly 「understand」?"
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "李飞飞的World Labs致力于建构世界模型，这是一种能在内部模拟三维世界运作的AI系统。具身AI则通过让机器人在物理世界中试错来获得空间理解。空间智能的终极价值在于服务人类，覆盖从老年护理、灾难救援到教育公平的广泛领域。",
+        "en": "Li's World Labs aims to build world models — AI systems that can internally simulate how the 3D world works. Embodied AI gains spatial understanding by letting robots learn through trial and error in the physical world. The ultimate value of spatial intelligence lies in serving humanity — from elderly care to disaster response to educational equity."
+      },
+      "category": "key-insight",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "李飞飞教授弯腰捡起地上的苹果，在手中转了转，然后放在了讲台上。全息虚拟场景缓缓消退，金色的阳光重新成为教室的主角。她站在窗前，望向远方，轻声说了一句：「我们教机器识别图片花了十年。教它理解空间也许需要更久。但这条路值得走。」你看着那只苹果静静地躺在桌上，突然觉得——「理解」一只苹果会掉下去，也许比「识别」一千张苹果的照片更接近智能的本质。",
+        "en": "Prof. Li bends to pick up the apple from the floor, turns it in her hand, then places it on the lectern. The holographic virtual scene gradually fades, and golden sunlight reclaims its role as the classroom's protagonist. She stands by the window, gazing into the distance, and says softly: 「It took us ten years to teach machines to recognize images. Teaching them to understand space may take longer. But this road is worth walking」. You watch the apple resting quietly on the desk and suddenly feel — 「understanding」 that an apple will fall may be closer to the essence of intelligence than 「recognizing」 a thousand photographs of apples."
+      }
+    }
+  ]
+}

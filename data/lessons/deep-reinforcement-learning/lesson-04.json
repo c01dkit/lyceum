@@ -1,0 +1,379 @@
+{
+  "id": "lesson-04",
+  "course": "deep-reinforcement-learning",
+  "title": {
+    "zh": "策略梯度",
+    "en": "Policy Gradient Methods"
+  },
+  "knowledgePoint": {
+    "zh": "策略梯度方法——直接优化策略而非价值函数",
+    "en": "Policy gradient methods — directly optimizing the policy instead of value functions"
+  },
+  "teacher": "prof-silver",
+  "estimatedMinutes": 8,
+  "previousLesson": "lesson-03",
+  "nextLesson": "lesson-05",
+  "recallIntro": {
+    "zh": "你闭上眼，回忆起那天的课堂。西尔弗教授站在白板前，画了两条通往同一个目标的路线。一条绕了很远的弯，得先学价值，再推导策略。另一条直接指向目标，学习策略本身。「有时候，」他说，「最直接的路才是最好的路。」",
+    "en": "You close your eyes, recalling that day's lesson. Prof. Silver stood at the whiteboard, drawing two paths to the same goal. One took a long detour — learn values first, then derive the policy. The other pointed straight at the goal — learn the policy itself directly. 「Sometimes」, he said, 「the most direct path is the best one」."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。「演员-评论家」的画面还在脑海中——一个负责表演，一个负责打分，两者互相促进。你意识到，最好的学习方式也许就是这样：既要勇于行动，也要善于反思。",
+    "en": "You return to the present. The 「actor-critic」 image lingers in your mind — one performs, one scores, each improving the other. You realize that perhaps the best way to learn is exactly this: be brave enough to act, and wise enough to reflect."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的大屏幕今天分成了两半。左边是一段机械臂抓取物体的模拟视频，手臂动作流畅，像人的手一样灵活。右边是一段早期版本的视频，同一个机械臂笨拙地挥来挥去，完全碰不到目标。西尔弗教授站在两段视频中间，等待大家的目光从屏幕上收回来。",
+        "en": "Today the classroom's large screen is split in two. On the left, a simulation video of a robotic arm grasping objects — its movements fluid, as dexterous as a human hand. On the right, an early version — the same arm flailing clumsily, completely missing the target. Prof. Silver stands between the two videos, waiting for everyone's eyes to drift back from the screen."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上节课我们留了一个问题：DQN只能处理离散动作，但真实世界中很多问题是连续的。（指向左边的视频）这个机械臂的每个关节可以旋转任意角度。你无法枚举所有可能的动作然后查Q表。今天我们来学习一种完全不同的方法。",
+        "en": "Last lesson we left an open question: DQN only handles discrete actions, but many real-world problems are continuous. (Points to the left video) Each joint of this robotic arm can rotate to any angle. You can't enumerate all possible actions and look up a Q-table. Today we'll learn an entirely different approach."
+      },
+      "leadsTo": "two-approaches"
+    },
+    {
+      "id": "two-approaches",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（在白板上画了两条路径）到目前为止，我们学的都是「基于价值」的方法：先学Q函数，然后从Q函数推导出策略——选Q值最高的动作。但还有一条路：跳过Q函数，直接学习策略本身。策略是什么？就是从「我看到了什么」到「我应该做什么」的映射。",
+        "en": "(Draws two paths on the whiteboard) So far, everything we've learned has been 「value-based」: learn the Q-function first, then derive the policy from it — pick the action with the highest Q-value. But there's another path: skip the Q-function entirely and learn the policy directly. What is a policy? Simply a mapping from 「what I see」 to 「what I should do」."
+      },
+      "leadsTo": "policy-network-idea"
+    },
+    {
+      "id": "policy-network-idea",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我们用一个神经网络来表示策略——输入是当前状态，输出是每个动作的概率。对于连续动作，输出可以是一个概率分布的参数，比如均值和方差。网络不告诉你「每个动作值多少分」，而是直接告诉你「你应该做什么」。",
+        "en": "We use a neural network to represent the policy — input is the current state, output is the probability of each action. For continuous actions, the output can be parameters of a probability distribution, like mean and variance. The network doesn't tell you 「how many points each action is worth」, but directly tells you 「what you should do」."
+      },
+      "leadsTo": "how-to-train"
+    },
+    {
+      "id": "how-to-train",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "但这里有一个关键的问题：怎么训练这个策略网络？在DQN中，我们有贝尔曼方程告诉我们Q值应该是多少。但策略网络没有这样一个现成的标签。没有人告诉你「在这个状态下，最优动作是什么」。",
+        "en": "But here's a key question: how do we train this policy network? With DQN, we had the Bellman equation telling us what the Q-value should be. But the policy network has no such ready-made label. Nobody tells you 「in this state, the optimal action is this」."
+      },
+      "leadsTo": "pg-intuition"
+    },
+    {
+      "id": "pg-intuition",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "{策略梯度}的核心思想非常直觉化。让我用一个比喻：想象你在练习投篮。你闭着眼投了一百次球。有些球进了，有些没进。你不知道完美的投篮姿势是什么——但你知道一件事：进球的那些投篮，它们的姿势应该被「强化」；没进的那些，它们的姿势应该被「弱化」。",
+        "en": "The core idea of {policy gradient} is very intuitive. Let me use an analogy: imagine you're practicing basketball shots. You throw a hundred shots with your eyes closed. Some go in, some don't. You don't know what the perfect shooting form is — but you know one thing: the form from shots that went in should be 「reinforced」; the form from missed shots should be 「weakened」."
+      },
+      "terms": {
+        "策略梯度": "term-policy-gradient",
+        "policy gradient": "term-policy-gradient"
+      },
+      "leadsTo": "pg-formal"
+    },
+    {
+      "id": "pg-formal",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "翻译成数学语言：如果一个动作带来了高奖励，就增加策略在那个状态选择那个动作的概率；如果一个动作带来了低奖励，就减少那个概率。这就是{REINFORCE算法}的基本思想——它是最简单的策略梯度方法。",
+        "en": "Translated into mathematics: if an action led to high reward, increase the probability the policy selects that action in that state; if an action led to low reward, decrease that probability. This is the basic idea of the {REINFORCE algorithm} — the simplest policy gradient method."
+      },
+      "terms": {
+        "REINFORCE算法": "term-reinforce-algorithm",
+        "REINFORCE algorithm": "term-reinforce-algorithm"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "策略梯度的基本思路是「好的动作增加概率，坏的动作减少概率」。你觉得这种方法可能有什么问题？",
+        "en": "The basic idea of policy gradient is 「increase probability of good actions, decrease probability of bad ones」. What problems might this approach have?"
+      },
+      "choices": [
+        {
+          "id": "high-variance",
+          "text": {
+            "zh": "奖励有很大的随机性——同一个动作有时候得高分有时候得低分，学习信号很嘈杂",
+            "en": "Rewards are highly random — the same action sometimes gets high scores, sometimes low, making the learning signal noisy"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "这是REINFORCE最大的弱点——高方差。因为策略梯度的估计基于采样，而环境通常有大量随机性。想象你在围棋中走了一步好棋，但因为对手后来走了一步绝妙的反击，你还是输了。单纯看最终结果，你会错误地认为那步好棋是坏的。你需要大量的样本来平均掉这种噪声。这在实践中意味着训练非常慢。",
+              "en": "This is REINFORCE's biggest weakness — high variance. Because policy gradient estimates are based on sampling, and environments typically have lots of randomness. Imagine you make a great move in Go, but your opponent later makes a brilliant counter, and you still lose. Looking purely at the final result, you'd wrongly conclude your good move was bad. You need many samples to average out this noise. In practice, this means extremely slow training."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "credit-assignment",
+          "text": {
+            "zh": "不知道奖励应该归功于哪个动作——一局游戏有很多步，不确定哪步是关键",
+            "en": "Can't tell which action deserves the credit — a game has many steps, unclear which one was key"
+          },
+          "tag": "systems-thinking",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "你提到了强化学习中一个根本性的难题——「信用分配问题」。一局游戏可能有上千步，最终的胜负应该归功于哪一步？REINFORCE的做法比较粗暴：用最终的总回报来更新所有动作的概率。但这意味着一步早期的好棋可能因为后期的失误而受到惩罚。更精细的方法会尝试分离每一步对结果的贡献。",
+              "en": "You've touched on a fundamental challenge in RL — the 「credit assignment problem」. A game might have thousands of steps; which step deserves the credit for the final win or loss? REINFORCE's approach is crude: it uses the total return to update all actions' probabilities. But this means an early good move might be punished because of a later mistake. More refined methods try to isolate each step's contribution to the outcome."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "local-optimum",
+          "text": {
+            "zh": "可能陷入局部最优——一旦找到一个还不错的策略就不再探索",
+            "en": "Might get stuck in local optima — once it finds a decent strategy, it stops exploring"
+          },
+          "tag": "critical",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "局部最优确实是一个风险。策略梯度做的是沿着梯度方向的小步更新，这意味着它可能滑入某个局部最优策略就出不来了。而且一旦策略偏向某个动作，它就会更频繁地选择那个动作，得到更多关于它的数据，形成一个正反馈循环。保持足够的探索，比如在策略中维持一定的随机性——是缓解这个问题的方法之一。",
+              "en": "Local optima are indeed a risk. Policy gradient makes small gradient-direction updates, meaning it might slide into a local optimum and get stuck. Moreover, once the policy favors a certain action, it selects that action more frequently, gets more data about it, forming a positive feedback loop. Maintaining sufficient exploration — like keeping some randomness in the policy — is one way to mitigate this."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "你们提到的这些问题，高方差、信用分配、局部最优，都是纯策略梯度方法最大的挑战。不过，有一种方法可以大幅缓解其中最严重的方差问题。这就引出了我最想讲的一个架构。",
+        "en": "The issues you've raised — high variance, credit assignment, local optima — are the biggest challenges of pure policy gradient methods. But there's an approach that significantly mitigates the most severe variance problem. This brings me to the architecture I most want to discuss."
+      },
+      "leadsTo": "actor-critic-intro"
+    },
+    {
+      "id": "actor-critic-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "让我引入{演员-评论家}架构。想象一个戏剧排练。舞台上有一个演员，他负责表演，也就是选择动作。台下有一个评论家，他负责评价表演的好坏。演员根据评论家的反馈来调整自己的表演；评论家通过观察演员的表演来提升自己的判断力。两者互相促进。",
+        "en": "Let me introduce the {actor-critic} architecture. Imagine a theater rehearsal. On stage there's an actor — responsible for performing, that is, choosing actions. In the audience sits a critic — responsible for judging how good the performance is. The actor adjusts based on the critic's feedback; the critic improves judgment by watching the actor's performances. They improve each other."
+      },
+      "terms": {
+        "演员-评论家": "term-actor-critic",
+        "actor-critic": "term-actor-critic"
+      },
+      "leadsTo": "actor-critic-detail"
+    },
+    {
+      "id": "actor-critic-detail",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "在技术层面，「演员」是一个策略网络，负责输出动作。「评论家」则是一个价值网络，用来估计当前状态的价值。关键在于，策略梯度的更新不再依赖粗暴的「最终总回报」，而是改用评论家的价值估计来评价每一步的好坏。这大幅降低了方差，因为评论家给出的是一个平滑的、经过学习的估计，而不是一次嘈杂的采样结果。",
+        "en": "Technically, the 「actor」 is a policy network — it outputs actions. The 「critic」 is a value network — it outputs a value estimate for the current state. The key: policy gradient updates no longer use the crude 「total return」 but use the critic's value estimate to judge each step's quality. This drastically reduces variance, because the critic provides a smooth, learned estimate rather than a noisy single-sample result."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "演员-评论家架构把策略方法和价值方法结合在了一起。你觉得这种组合的最大优势是什么？",
+        "en": "The actor-critic architecture combines policy methods with value methods. What do you think is the biggest advantage of this combination?"
+      },
+      "choices": [
+        {
+          "id": "best-of-both",
+          "text": {
+            "zh": "兼具两者的优点——策略方法能处理连续动作，价值方法能减少方差",
+            "en": "It has the best of both — policy methods handle continuous actions, value methods reduce variance"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确。演员（策略网络）可以直接输出连续动作，解决了DQN的局限。评论家（价值网络）提供低方差的梯度估计，解决了纯策略梯度的噪声问题。这种互补让演员-评论家成为了深度强化学习中最实用的架构之一。我们在AlphaGo里也用了类似的思想——策略网络和价值网络各司其职、互相配合。",
+              "en": "Exactly right. The actor (policy network) can directly output continuous actions, solving DQN's limitation. The critic (value network) provides low-variance gradient estimates, solving pure policy gradient's noise problem. This complementarity makes actor-critic one of the most practical architectures in deep RL. We used a similar idea in AlphaGo too — policy network and value network each with their own role, working in concert."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "step-by-step-feedback",
+          "text": {
+            "zh": "评论家可以在每一步给出反馈，不用等到整个回合结束",
+            "en": "The critic can provide feedback at every step, no need to wait until the entire episode ends"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这是一个非常重要的实际优势。REINFORCE必须等到整个回合结束才能更新，因为它需要知道最终的总回报。但演员-评论家可以在每一步之后就更新——评论家估计当前步的价值，和实际获得的奖励做比较，差距就是学习信号。这意味着学习速度快得多，尤其是在回合很长的环境中。",
+              "en": "This is a very important practical advantage. REINFORCE must wait until the entire episode ends to update, because it needs the final total return. But actor-critic can update after every step — the critic estimates the current step's value, compares it with the actual reward received, and the gap becomes the learning signal. This means learning is much faster, especially in environments with long episodes."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "mutual-improvement",
+          "text": {
+            "zh": "两者互相促进——更好的策略产生更好的数据，更好的数据训练更好的评论家",
+            "en": "They improve each other — a better policy generates better data, better data trains a better critic"
+          },
+          "tag": "systems-thinking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你看到了这个架构中优美的循环。更好的评论家→更准确的反馈→更好的演员→更高质量的经验数据→更好的评论家。这种良性循环是深度强化学习能够持续进步的核心机制。当然，这个循环也可能出问题——如果评论家给出了错误的评价，演员就会被误导。所以两者的训练必须仔细平衡。",
+              "en": "You've seen the elegant cycle in this architecture. Better critic → more accurate feedback → better actor → higher quality experience data → better critic. This virtuous cycle is the core mechanism enabling continuous improvement in deep RL. Of course, the cycle can also go wrong — if the critic gives incorrect evaluations, the actor gets misled. So training both must be carefully balanced."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "演员-评论家架构在过去几年里催生了一系列强大的算法——A3C、PPO、DDPG。这些算法已经在机器人控制、游戏AI、资源调度等领域展示了惊人的能力。",
+        "en": "The actor-critic architecture has spawned a series of powerful algorithms in recent years — A3C, PPO, DDPG. These algorithms have already demonstrated remarkable capabilities in robotics, game AI, resource scheduling, and more."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "两大强化学习方法路线：基于价值（如DQN，学Q函数推导策略）和基于策略（如策略梯度，直接学习策略）。策略梯度的核心：好动作增加概率，坏动作减少概率。REINFORCE是最简单的策略梯度算法，但存在高方差问题。演员-评论家架构融合两种方法：演员（策略网络）选择动作，评论家（价值网络）评估动作好坏，大幅降低方差。",
+        "en": "Two major RL approaches: value-based (e.g., DQN, learn Q-function to derive policy) and policy-based (e.g., policy gradient, learn policy directly). Policy gradient core: increase probability of good actions, decrease probability of bad ones. REINFORCE is the simplest policy gradient algorithm but suffers high variance. Actor-critic architecture merges both: actor (policy network) selects actions, critic (value network) evaluates them, greatly reducing variance."
+      },
+      "category": "core-concept",
+      "leadsTo": "comparison-summary"
+    },
+    {
+      "id": "comparison-summary",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我做一个简单的对比。（在白板上画了一张表格）DQN：学习Q函数，选最大Q值的动作。优势是稳定，样本效率高；局限是只能处理离散动作。策略梯度：直接学习策略。优势是能处理连续动作和随机策略；局限是高方差，训练慢。演员-评论家：结合两者。策略网络选动作，价值网络评价好坏。它是目前最主流的深度强化学习框架。",
+        "en": "Let me make a simple comparison. (Draws a table on the whiteboard) DQN: learns Q-function, picks the action with maximum Q-value. Advantage: stable, sample-efficient; limitation: discrete actions only. Policy gradient: learns policy directly. Advantage: handles continuous actions and stochastic policies; limitation: high variance, slow training. Actor-critic: combines both. Policy network picks actions, value network evaluates them. It's currently the most mainstream deep RL framework."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "现在我们有了DQN（基于价值）和策略梯度（基于策略）两大工具。如果你要构建一个下围棋的AI系统，你会选择哪种方法？",
+        "en": "Now we have two major tools: DQN (value-based) and policy gradient (policy-based). If you were building an AI system to play Go, which approach would you choose?"
+      },
+      "choices": [
+        {
+          "id": "value-based",
+          "text": {
+            "zh": "基于价值——用网络评估每个局面的价值，然后选择通向最高价值局面的落子",
+            "en": "Value-based — use a network to evaluate each position's value, then pick the move leading to the highest-value position"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "价值网络确实是围棋AI的核心组件之一。如果你能准确评估每个局面的价值，那么选择最佳落子就变得容易了。但围棋的动作空间非常大，棋盘上有361个交叉点，而且你还需要搜索未来多步。单纯靠价值网络，你需要评估太多的局面。也许……我们可以两种方法都用上？",
+              "en": "A value network is indeed one of the core components of a Go AI. If you can accurately evaluate each position's value, choosing the best move becomes easy. But Go's action space is very large — 361 intersections on the board — and you need to search multiple steps ahead. Relying solely on a value network, you'd need to evaluate too many positions. Perhaps... we could use both approaches?"
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "policy-based",
+          "text": {
+            "zh": "基于策略——直接用网络输出每个位置的落子概率",
+            "en": "Policy-based — directly use a network to output the move probability for each position"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "策略网络可以像人类棋手的「直觉」一样工作——看到一个局面，直接判断应该下在哪里。这大幅缩小了搜索空间。但纯粹的策略网络不做搜索，它可能会犯一些深层的战术错误。人类棋手不仅有直觉，还会往前推演几步。也许……我们需要把直觉和推演结合起来？",
+              "en": "A policy network can work like a human player's 「intuition」 — see a position, immediately judge where to play. This dramatically narrows the search space. But a pure policy network without search might make deep tactical errors. Human players don't just have intuition; they also calculate several moves ahead. Perhaps... we need to combine intuition with calculation?"
+            }
+          },
+          "leadsTo": "after-third-question"
+        },
+        {
+          "id": "combine-both",
+          "text": {
+            "zh": "两者结合——策略网络指导搜索方向，价值网络评估搜索结果",
+            "en": "Combine both — policy network guides search direction, value network evaluates search outcomes"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "proud",
+            "text": {
+              "zh": "（微笑）你刚才描述的，正是AlphaGo的核心架构。策略网络负责「直觉」，在海量的落子选择中快速缩小范围。价值网络负责「判断」，评估一个局面到底有多好。两者配合一种叫做蒙特卡洛树搜索的算法，就能在围棋这样复杂的游戏中做出超人的决策。但这是下节课的内容了。",
+              "en": "(Smiles) What you just described is precisely the core architecture of AlphaGo. The policy network handles 「intuition」 — quickly narrowing down the vast space of move choices. The value network handles 「judgment」 — evaluating how good a position really is. Combined with an algorithm called Monte Carlo tree search, they can make superhuman decisions in a game as complex as Go. But that's next lesson's content."
+            }
+          },
+          "leadsTo": "after-third-question"
+        }
+      ]
+    },
+    {
+      "id": "after-third-question",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "我可以告诉你们的是——在我们的围棋项目中，策略网络和价值网络确实是缺一不可的。策略网络像是棋手的直觉，价值网络像是棋手的大局观。把它们与搜索算法结合在一起，就诞生了一个让整个世界震惊的系统。",
+        "en": "What I can tell you is — in our Go project, the policy network and value network are truly indispensable. The policy network is like a player's intuition; the value network is like a player's sense of the big picture. Combining them with a search algorithm gave birth to a system that stunned the entire world."
+      },
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "proud",
+      "text": {
+        "zh": "（停顿了一下，目光变得更加专注）下节课，我要讲一个我等了很久才能讲的故事。2016年3月，在首尔，一个叫AlphaGo的程序与世界冠军李世石对弈。在那之前，所有人都认为，计算机想在围棋上击败顶尖人类棋手，至少还需要十年。但那个星期发生的事情，彻底改变了整个AI领域的轨迹。",
+        "en": "(Pauses, eyes growing more focused) Next lesson, I want to tell a story I've been waiting a long time to tell. March 2016, Seoul — a program called AlphaGo sat across from world champion Lee Sedol. Before that, everyone — everyone — believed computers needed at least ten more years to beat top human players at Go. What happened that week changed the trajectory of the entire AI field."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "策略梯度方法总结：直接优化策略（动作概率），不经过Q函数。REINFORCE算法简单但高方差。演员-评论家架构融合策略与价值方法：演员（策略网络）负责选择动作，评论家（价值网络）负责评估动作好坏，互相促进。三种方法对比：DQN（离散动作、稳定）、策略梯度（连续动作、高方差）、演员-评论家（兼具两者优点，当前最主流）。预告：AlphaGo正是策略网络+价值网络+搜索算法的组合。",
+        "en": "Policy gradient summary: directly optimize the policy (action probabilities), bypassing the Q-function. REINFORCE is simple but high-variance. Actor-critic architecture merges policy and value methods: actor (policy network) selects actions, critic (value network) evaluates them, improving each other. Three approaches compared: DQN (discrete, stable), policy gradient (continuous, high-variance), actor-critic (combines both, currently mainstream). Preview: AlphaGo is precisely the combination of policy network + value network + search algorithm."
+      },
+      "category": "core-concept",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "西尔弗教授擦掉了白板上的对比表格，在空白处画了一个简单的示意图：一个策略网络和一个价值网络，中间用箭头连接着一棵搜索树。他退后一步看着这张图，像是在看一件他非常骄傲的作品。「下节课，」他说，声音里带着一种难以掩饰的期待，「我来告诉你们这张图是怎么击败世界冠军的。」他走出了教室，左边屏幕上那个流畅的机械臂仍在不知疲倦地抓取着物体——它的每一个动作，都来自一个看不见的策略网络的指令。",
+        "en": "Prof. Silver erases the comparison table from the whiteboard and in the blank space draws a simple diagram: a policy network and a value network, connected by arrows to a search tree between them. He steps back to look at the diagram, as if admiring a work he's deeply proud of. 「Next lesson,」  he says, voice carrying an anticipation he can barely contain, 「I'll tell you how this diagram beat the world champion」. He walks out of the classroom; on the left screen, the fluid robotic arm still tirelessly grasps objects — each of its movements coming from the commands of an unseen policy network."
+      }
+    }
+  ]
+}

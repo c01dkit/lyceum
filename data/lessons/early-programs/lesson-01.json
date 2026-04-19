@@ -1,0 +1,355 @@
+{
+  "id": "lesson-01",
+  "course": "early-programs",
+  "title": {
+    "zh": "达特茅斯之夏",
+    "en": "The Dartmouth Summer"
+  },
+  "knowledgePoint": {
+    "zh": "1956年达特茅斯会议——AI作为一门学科的诞生",
+    "en": "The 1956 Dartmouth Conference — the birth of AI as a discipline"
+  },
+  "teacher": "prof-simon",
+  "estimatedMinutes": 12,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你的目光落在课本上那张泛黄的合影，思绪不由自主地飘回了那间灯光温暖的教室。司马贺教授正缓缓展开一个关于1956年夏天的故事……",
+    "en": "Your gaze lands on the yellowed group photo in your textbook, and your mind drifts back to that warmly lit classroom. Prof. Simon is slowly unfolding the story of a summer in 1956..."
+  },
+  "recallOutro": {
+    "zh": "你回过神来，仿佛还能感受到那个夏天的热烈与期许——一群年轻人围坐在一起，梦想着让机器思考。",
+    "en": "You come back to the present, as if you can still feel the fervor and hope of that summer — a group of young minds gathered together, dreaming of making machines think."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的灯光柔和而温暖。门开了，一位头发花白、面带笑容的长者走了进来。他手里拿着一张泛黄的老照片，目光中带着一种远方的温柔。他没有急着开口，而是把照片轻轻放在投影仪上，让大家先看。",
+        "en": "The classroom lights are soft and warm. The door opens, and a silver-haired gentleman with a kind smile walks in. He holds a yellowed old photograph, his eyes carrying a gentle faraway look. He doesn't rush to speak. Instead, he places the photo on the projector and lets everyone look."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "（指着照片上一群年轻人的合影）看到这张照片了吗？这些年轻人，包括当年的我，改变了整个世界。让我来告诉你们那个改变一切的夏天。我是西蒙，你们也可以叫我司马贺。",
+        "en": "(Pointing at a group photo of young men)See this photograph? These young men — including a younger version of myself — changed the entire world. Let me tell you about the summer that changed everything. I'm Simon — Herbert Simon."
+      },
+      "leadsTo": "setting-the-scene"
+    },
+    {
+      "id": "setting-the-scene",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "1956年夏天，美国新罕布什尔州，达特茅斯学院。一个叫约翰·麦卡锡的年轻数学家发出了一份提案，邀请了大约十位研究者，来讨论一个大胆的想法：让机器思考。",
+        "en": "Summer of 1956, Dartmouth College, New Hampshire, USA. A young mathematician named John McCarthy sent out a proposal, inviting about ten researchers to discuss an audacious idea — making machines think."
+      },
+      "leadsTo": "the-gathering"
+    },
+    {
+      "id": "the-gathering",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "来的人都是谁呢？麦卡锡自己，明斯基（他后来成了MIT人工智能实验室的创始人），香农（信息论之父），还有我和纽厄尔。每个人都是不同领域的天才，但我们有一个共同的直觉：机器可以做到远比计算更多的事情。",
+        "en": "Who came? McCarthy himself, Minsky — who later founded the MIT AI Lab, Shannon — the father of information theory, and Newell and myself. Each of us was a genius in a different field, but we shared a common intuition: machines could do far more than just calculate."
+      },
+      "leadsTo": "the-proposal"
+    },
+    {
+      "id": "the-proposal",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "麦卡锡在提案里写了一句话，我到现在都记得清清楚楚。他说：「学习的每一个方面，或者智能的任何其他特征，原则上都可以被精确地描述，使得机器可以模拟它」。这句话，就是一切的起点。",
+        "en": "McCarthy wrote a sentence in the proposal that I remember to this day, word for word. He said: 「Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it」. That sentence was the starting point of everything."
+      },
+      "leadsTo": "naming-ai"
+    },
+    {
+      "id": "naming-ai",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "而在那份提案里，麦卡锡还做了另一件意义深远的事。他给这个全新的领域起了一个名字：{人工智能}，Artificial Intelligence。从此，我们有了一面旗帜，有了一个共同的身份。",
+        "en": "And in that proposal, McCarthy did something else of profound significance — he gave this entirely new field a name: {Artificial Intelligence}. From that moment on, we had a banner, a shared identity."
+      },
+      "terms": {
+        "人工智能": "term-artificial-intelligence",
+        "Artificial Intelligence": "term-artificial-intelligence"
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "麦卡锡的提案说「智能的每一个方面都可以被精确描述并由机器模拟」。你觉得这个说法怎么样？",
+        "en": "McCarthy's proposal stated that 「every aspect of intelligence can be precisely described and simulated by a machine」. What do you think of this claim?"
+      },
+      "choices": [
+        {
+          "id": "too-optimistic",
+          "text": {
+            "zh": "太乐观了——智能远比我们想象的复杂",
+            "en": "Too optimistic — intelligence is far more complex than we imagine"
+          },
+          "tag": "cautious",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了）你说得没错。我们当年确实太乐观了。我曾经预言十年内机器就能下赢国际象棋冠军。结果呢？花了四十年。不过话说回来，机器最终还是做到了，对吧？",
+              "en": "(Laughs) You're not wrong. We were indeed too optimistic back then. I once predicted that within ten years a machine would beat the world chess champion. The result? It took forty years. But then again — the machine did get there in the end, didn't it?"
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "inspiring",
+          "text": {
+            "zh": "非常鼓舞人心——正是这种大胆才能推动进步",
+            "en": "Very inspiring — it takes exactly this kind of boldness to drive progress"
+          },
+          "tag": "enthusiast",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "说得好！科学的进步始于好奇心，而非答案。如果我们当年不敢大胆设想，也许今天就不会有这个学科。有时候，年轻的天真恰恰是最强大的力量。",
+              "en": "Well said! Scientific progress begins with curiosity, not answers. If we hadn't dared to dream boldly back then, perhaps this discipline wouldn't exist today. Sometimes, youthful audacity is the most powerful force of all."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "partly-right",
+          "text": {
+            "zh": "部分正确——有些智能可以模拟，有些也许不能",
+            "en": "Partly right — some aspects of intelligence can be simulated, others perhaps cannot"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是一个非常成熟的看法。确实，逻辑推理、下棋这些，机器后来做得很好。但创造力、情感、常识推理……到今天依然是巨大的挑战。也许你比我们当年更清醒。",
+              "en": "That's a very mature perspective. Indeed, logical reasoning, playing chess — machines eventually excelled at those. But creativity, emotion, common sense reasoning... these remain enormous challenges even today. Perhaps you're more clear-eyed than we were back then."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "那个夏天其实很安静。没有轰动的新闻，没有铺天盖地的报道。只有一群年轻人在黑板前热烈地争论。但就在那些争论中，一个全新的学科悄然诞生了。",
+        "en": "That summer was actually quite quiet. No big news, no overwhelming media coverage. Just a group of young men arguing passionately in front of blackboards. But in those arguments, an entirely new discipline was quietly born."
+      },
+      "leadsTo": "dartmouth-note"
+    },
+    {
+      "id": "dartmouth-note",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "1956年达特茅斯会议：麦卡锡、明斯基、香农、西蒙、纽厄尔等人齐聚一堂，正式提出「人工智能」这一术语，标志着AI作为独立学科的诞生。",
+        "en": "The 1956 Dartmouth Conference: McCarthy, Minsky, Shannon, Simon, Newell and others gathered to formally propose the term 「Artificial Intelligence, marking the birth of AI as an independent discipline."
+      },
+      "category": "historical-fact",
+      "leadsTo": "conference-details"
+    },
+    {
+      "id": "conference-details",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "说来有趣，{达特茅斯会议}持续了整整六个星期，但大家并不是一直在一起的。人们来来去去，有时候只有两三个人在讨论。有些人带来了自己的研究成果演示，有些人只是来交流想法。",
+        "en": "Interestingly enough, the {Dartmouth Conference} lasted a full six weeks, but we weren't together the whole time. People came and went; sometimes only two or three of us were discussing. Some brought demonstrations of their research, others just came to exchange ideas."
+      },
+      "terms": {
+        "达特茅斯会议": "term-dartmouth-conference",
+        "Dartmouth Conference": "term-dartmouth-conference"
+      },
+      "leadsTo": "simon-contribution"
+    },
+    {
+      "id": "simon-contribution",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "纽厄尔和我带去了我们的宝贝，一个能够证明数学定理的程序。当我们演示它的时候，房间里安静了好几秒。然后麦卡锡说了一句话：「这才是我说的人工智能。」",
+        "en": "Newell and I brought our pride and joy — a program that could prove mathematical theorems. When we demonstrated it, the room went silent for several seconds. Then McCarthy said: 「Now that is what I mean by artificial intelligence」."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么给这个领域命名为「人工智能」如此重要？",
+        "en": "Why was it so important to name this field 「Artificial Intelligence」?"
+      },
+      "choices": [
+        {
+          "id": "unify-field",
+          "text": {
+            "zh": "一个名字把分散的研究统一到了一面旗帜下",
+            "en": "A name unified scattered research under one banner"
+          },
+          "tag": "organizational",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "没错。在此之前，有人叫它「机器思维」，有人叫它「自动推理」，有人叫它「复杂信息处理」。各说各话，互不相识。一个统一的名字，创造了一个社区、一个学科、一种共同的使命感。",
+              "en": "Exactly. Before this, some called it 「machine thinking」, others 「automatic reasoning」, others 「complex information processing」. Everyone spoke their own language, strangers to one another. A unified name created a community, a discipline, a shared sense of mission."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "attract-funding",
+          "text": {
+            "zh": "一个响亮的名字能吸引关注和资金",
+            "en": "A catchy name could attract attention and funding"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（会心一笑）你很务实！你说得对——「人工智能」这四个字确实比「复杂信息处理」更容易争取到经费。但这把双刃剑也带来了问题：名字太响亮，公众的期望也被抬高了。后来的「AI寒冬」，多少跟这个有关。",
+              "en": "(Knowing smile) You're pragmatic! You're right — 「Artificial Intelligence」 was certainly easier to get funding for than 「Complex Information Processing」. But this double-edged sword also caused problems: the name was so grand that public expectations were inflated. The later 「AI winter」 was partly related to this."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "set-ambition",
+          "text": {
+            "zh": "「智能」这个词设定了一个终极目标",
+            "en": "The word 「intelligence」 set an ultimate goal"
+          },
+          "tag": "aspirational",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "说得深刻。这个名字不只是标签，它是一个承诺——我们要创造的绝非普通的工具，而应当是真正的智能。这个目标至今仍在引领我们。尽管七十年过去了，「什么是智能」这个问题依然没有完全回答。",
+              "en": "Profoundly put. This name wasn't just a label — it was a promise. What we aimed to create wasn't an ordinary tool, but genuine intelligence. This goal still guides us today. Even after seventy years, the question 「what is intelligence」 remains incompletely answered."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "我有时候会想，如果当年麦卡锡选了一个更谦虚的名字，比如「高级自动化」或者「机器推理」，这个领域的命运会不会不同？也许不会有那么高的期望，也不会有那么深的失望。但也许，也不会有那么多年轻人被这个梦想所吸引。",
+        "en": "Sometimes I wonder — if McCarthy had chosen a humbler name back then, like 「Advanced Automation」 or 「Machine Reasoning, would the field's fate have been different? Perhaps there wouldn't have been such high expectations, nor such deep disappointments. But perhaps, there also wouldn't have been so many young people drawn to this dream."
+      },
+      "leadsTo": "spirit-of-era"
+    },
+    {
+      "id": "spirit-of-era",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "你们要知道，那个年代的精神是什么？是无限的乐观。我们真心相信，二十年之内，机器就能做到人类能做的一切智力工作。下棋、翻译、证明定理、写诗——全部。我们错了吗？错了。但那种乐观，让我们敢于迈出第一步。",
+        "en": "You need to understand the spirit of that era — boundless optimism. We genuinely believed that within twenty years, machines would be able to do everything humans could do intellectually. Chess, translation, proving theorems, writing poetry — all of it. Were we wrong? Yes. But that optimism gave us the courage to take the first step."
+      },
+      "leadsTo": "third-question"
+    },
+    {
+      "id": "third-question",
+      "type": "question",
+      "text": {
+        "zh": "回顾这段历史，你觉得当年先驱们的乐观态度对AI发展来说……",
+        "en": "Looking back at this history, do you think the pioneers' optimism was, for AI's development..."
+      },
+      "choices": [
+        {
+          "id": "mostly-good",
+          "text": {
+            "zh": "利大于弊——没有乐观就没有起步",
+            "en": "More beneficial than harmful — without optimism there would be no beginning"
+          },
+          "tag": "optimist",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "我同意你的看法。每一次科学革命，都始于一群人相信不可能的事情是可能的。哥伦布出发时也不知道美洲在那里，但他出发了。",
+              "en": "I agree with you. Every scientific revolution begins with a group of people believing the impossible is possible. Columbus didn't know America was there when he set sail, but he set sail anyway."
+            }
+          },
+          "leadsTo": "closing-reflection"
+        },
+        {
+          "id": "mixed-bag",
+          "text": {
+            "zh": "有利有弊——乐观推动了研究，但也埋下了失望的种子",
+            "en": "A double-edged sword — optimism drove research but also sowed seeds of disappointment"
+          },
+          "tag": "realist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "非常平衡的看法，你说得对。后来的AI寒冬，很大程度上就是因为承诺太多、交付太少。但如果没有那些大胆的承诺，也许根本不会有人投入资源去研究。历史总是这样矛盾的。",
+              "en": "A very balanced perspective. You're right — the later AI winter was largely because we promised too much and delivered too little. But without those bold promises, perhaps no one would have invested resources in the research at all. History is always full of such contradictions."
+            }
+          },
+          "leadsTo": "closing-reflection"
+        },
+        {
+          "id": "mostly-harmful",
+          "text": {
+            "zh": "弊大于利——过高的期望最终伤害了这个领域",
+            "en": "More harmful than beneficial — inflated expectations ultimately hurt the field"
+          },
+          "tag": "skeptic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "这也是一种站得住脚的观点。过高的期望确实导致了政府削减经费，许多优秀的研究者离开了这个领域。但我想问你，如果大家都很谨慎，都说「这太难了，别做了」，未来还会有AI吗？",
+              "en": "That's also a defensible view. Inflated expectations did lead governments to cut funding, and many excellent researchers left the field. But let me ask you — if everyone is cautious, if they all said 「this is too hard, let's not bother, would we have AI in the future?"
+            }
+          },
+          "leadsTo": "closing-reflection"
+        }
+      ]
+    },
+    {
+      "id": "closing-reflection",
+      "type": "dialog",
+      "mood": "nostalgic",
+      "text": {
+        "zh": "那个夏天，我们种下了一颗种子。我期待这颗种子在未来能够长成一片森林。下一节课，我会告诉你们——在达特茅斯之前的那个圣诞节，纽厄尔和我做了一件从没有人做过的事情。",
+        "en": "That summer, we planted a seed. I hope this seed will grow into a forest in the future. Next class, I'll tell you about something Newell and I did the Christmas before Dartmouth — something no one had ever done before."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "达特茅斯会议的精神：无限的乐观主义。先驱们相信机器智能在二十年内即可实现。这种乐观推动了研究的起步，但也为后来的失望埋下了伏笔。",
+        "en": "The spirit of Dartmouth: boundless optimism. The pioneers believed machine intelligence could be achieved within twenty years. This optimism kickstarted research but also laid the groundwork for later disappointments."
+      },
+      "category": "historical-fact",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "司马贺教授小心地收起那张泛黄的照片，像对待一件珍贵的文物。他走出教室时，你忍不住回头看了一眼投影幕上还残留的光影——那群年轻人的面孔，充满了改变世界的信念。1956年的夏天，就这样在你心中留下了印记。",
+        "en": "Professor Simon carefully puts away the yellowed photograph, handling it like a precious artifact. As he leaves the classroom, you can't help glancing back at the fading image on the projector screen — those young faces, filled with the conviction that they could change the world. The summer of 1956 has left its mark on your mind."
+      }
+    }
+  ]
+}

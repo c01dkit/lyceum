@@ -1,0 +1,300 @@
+{
+  "id": "lesson-02",
+  "course": "sequence-attention",
+  "title": {
+    "zh": "循环神经网络",
+    "en": "Recurrent Neural Networks"
+  },
+  "knowledgePoint": {
+    "zh": "循环神经网络的核心机制——通过隐藏状态逐步处理序列",
+    "en": "The core mechanism of RNNs — processing sequences step by step with hidden state"
+  },
+  "teacher": "prof-bengio",
+  "estimatedMinutes": 9,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回了那间深蓝色的教室。本吉奥教授走进来时，手里拿着一支马克笔，白板上已经画好了一个简单的方框图——一个方框，一条弯曲的箭头从它的输出端绕回到输入端。他看着那个循环，嘴角带着一丝满意的微笑。",
+    "en": "You close your eyes, and your thoughts drift back to that deep blue classroom. When Prof. Bengio walks in, he's holding a marker, and a simple diagram is already drawn on the whiteboard — a box with a curved arrow looping from its output back to its input. He looks at the loop with a faint, satisfied smile."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。循环神经网络的核心想法如此简洁——同一组权重，反复应用于序列的每一步，隐藏状态像一条河流般把信息从过去传递到现在。但你也记得本吉奥教授最后的提示：这条河流并非永不枯竭。",
+    "en": "You return to the present. The core idea of recurrent neural networks is so clean — the same set of weights, applied repeatedly at each step of the sequence, with hidden state flowing like a river carrying information from the past to the present. But you also remember Prof. Bengio's final hint: this river does not flow forever without fading."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "教室的大屏幕上显示着上节课的最后一张图——那些交错的连线。本吉奥教授走到白板前，拿起一支蓝色马克笔，画了一个简单的方框。然后他从方框的右侧引出一条线，弯弯地绕回到左侧。他退后一步，端详着这个简单的图形。",
+        "en": "The classroom's large screen displays the last image from the previous lesson — those crisscrossing lines. Prof. Bengio walks to the whiteboard, picks up a blue marker, and draws a simple box. Then he draws a line from the right side of the box, curving it back to the left side. He steps back and studies this simple figure."
+      },
+      "leadsTo": "loop-intro"
+    },
+    {
+      "id": "loop-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "上次我们说，处理序列需要「记忆」。今天我要介绍实现这种记忆的最简洁的方式——{循环神经网络}，简称RNN。它的核心思想就是白板上这个图形：一个循环。",
+        "en": "Last time we said that processing sequences requires 「memory」. Today I'll introduce the cleanest way to achieve this memory — the {recurrent neural network}, or RNN. Its core idea is this figure on the whiteboard: a loop."
+      },
+      "terms": {
+        "循环神经网络": "term-rnn",
+        "recurrent neural network": "term-rnn"
+      },
+      "leadsTo": "unfolding-explain"
+    },
+    {
+      "id": "unfolding-explain",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "让我把这个循环「展开」给你们看。假设我们要处理一个三个词的句子。RNN在第一个时间步接收第一个词，产生一个输出和一个{隐藏状态}。这个隐藏状态，你可以把它想象成一张压缩的笔记，然后被传递到第二个时间步。第二个时间步接收第二个词和这张笔记，产生新的输出和更新后的笔记。第三步也是如此。",
+        "en": "Let me 「unfold」 this loop for you. Suppose we're processing a three-word sentence. The RNN receives the first word at the first time step and produces an output and a {hidden state}. This hidden state — think of it as a compressed note — is then passed to the second time step. The second step receives the second word plus this note, producing a new output and an updated note. The third step works the same way."
+      },
+      "terms": {
+        "隐藏状态": "term-hidden-state",
+        "hidden state": "term-hidden-state"
+      },
+      "leadsTo": "whiteboard-unfold"
+    },
+    {
+      "id": "whiteboard-unfold",
+      "type": "narration",
+      "text": {
+        "zh": "本吉奥教授在白板上画出了三个并排的方框，每个方框之间用箭头连接。方框上方各有一个向上的箭头（输出），下方各有一个向下的箭头（输入）。他在方框之间的箭头旁标注了一个字母「h」，在每个方框里写了同样的字母「W」。",
+        "en": "Prof. Bengio draws three boxes side by side on the whiteboard, connected by arrows. Each box has an upward arrow above (output) and a downward arrow below (input). He labels the arrows between boxes with the letter 「h」 and writes the same letter 「W」 inside each box."
+      },
+      "leadsTo": "weight-sharing"
+    },
+    {
+      "id": "weight-sharing",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "注意一个关键细节：每个方框里的「W」是同一组权重。无论序列有3个词还是300个词，RNN在每个时间步都使用完全相同的参数。这叫做「权重共享」。就好像你在不同的时间点重复使用同一台机器来处理数据，机器是同一台，但每次处理时它还记得上一次的结果。",
+        "en": "Notice a key detail — the 「W」 in every box is the same set of weights. Whether the sequence has 3 words or 300, the RNN uses exactly the same parameters at every time step. This is called 「weight sharing」. It's as if you're reusing the same machine at different points in time to process data — the machine is the same, but each time it still remembers the result from last time."
+      },
+      "leadsTo": "hidden-state-metaphor"
+    },
+    {
+      "id": "hidden-state-metaphor",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "隐藏状态「h」是这个架构最精妙的部分。它是一个固定大小的向量，比如说256个数字。无论句子多长，这256个数字就是网络对「到目前为止所有信息」的全部记忆。每一步，这个记忆都会被更新——旧的信息和新的输入混合在一起，形成新的记忆。",
+        "en": "The hidden state 「h」 is the most ingenious part of this architecture. It's a fixed-size vector — say, 256 numbers. No matter how long the sentence, these 256 numbers are the network's entire memory of 「everything so far」. At each step, this memory is updated — old information mixes with the new input to form a new memory."
+      },
+      "leadsTo": "reading-analogy"
+    },
+    {
+      "id": "reading-analogy",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "让我打一个生活中的比方。想象你在给朋友转述一本小说的内容。你不会背诵每一个字——你的大脑会维持一个「当前理解」：主角是谁，发生了什么，现在的情节走向是什么。每读一页，这个「当前理解」就会更新。RNN的隐藏状态就像这个不断更新的理解。",
+        "en": "Let me give you an everyday analogy. Imagine you're retelling the plot of a novel to a friend. You wouldn't recite every word — your brain maintains a 「current understanding」: who the protagonist is, what happened, where the plot is heading. With each page, this 「current understanding」 updates. The RNN's hidden state is like this constantly updating understanding."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "RNN在每个时间步都使用同一组权重。你觉得这样做有什么好处？",
+        "en": "RNNs use the same set of weights at every time step. What do you think is the advantage of this?"
+      },
+      "choices": [
+        {
+          "id": "choice-any-length",
+          "text": {
+            "zh": "这意味着网络可以处理任意长度的序列——参数数量不随序列长度变化",
+            "en": "It means the network can handle sequences of any length — the number of parameters doesn't change with sequence length"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "正是如此。这是RNN最关键的优势之一。不管输入是一个词还是一千个词，网络的参数量是恒定的。对比之下，前馈网络处理更长的输入就需要更多的参数。权重共享让RNN天然地适配可变长度的输入。",
+              "en": "Exactly right. This is one of RNN's most critical advantages. Whether the input is one word or a thousand, the number of parameters stays constant. By contrast, a feedforward network would need more parameters for longer inputs. Weight sharing makes RNNs naturally suited for variable-length input."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-generalize",
+          "text": {
+            "zh": "同一组权重意味着网络在每个位置学到的模式可以迁移到其他位置",
+            "en": "The same weights mean patterns learned at one position can transfer to other positions"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "非常好的洞察。如果网络在句子开头学会了识别否定词的模式，这个模式在句子的任何位置都同样适用。权重共享让网络的知识具有位置无关性——一种强大的归纳偏置，它告诉网络：语言的规则在句子的任何地方都是一样的。",
+              "en": "A very good insight. If the network learns to recognize negation patterns at the beginning of a sentence, that pattern applies equally at any position. Weight sharing gives the network position-invariant knowledge — a powerful inductive bias that tells the network: the rules of language work the same way everywhere in a sentence."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-efficient",
+          "text": {
+            "zh": "参数少，训练起来更高效，不容易过拟合",
+            "en": "Fewer parameters means more efficient training and less risk of overfitting"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "从实践角度来说你完全正确。如果每个时间步都有独立的参数，一个100步的序列就需要100倍的参数量——这在数据有限的情况下很容易导致过拟合。权重共享大幅减少了参数量，让我们即使用有限的数据也能训练出有用的模型。",
+              "en": "From a practical standpoint, you're absolutely right. If each time step had independent parameters, a 100-step sequence would need 100 times the parameters — which would easily lead to overfitting with limited data. Weight sharing dramatically reduces the parameter count, allowing us to train useful models even with limited data."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "现在让我们来看看RNN是如何训练的。我们使用的方法叫做{时间反向传播}——BPTT。我的同事辛顿在前馈网络中使用的反向传播算法，在这里有一个时间维度上的扩展。",
+        "en": "Now let's look at how RNNs are trained. The method we use is called {backpropagation through time} — BPTT. The backpropagation algorithm my colleague Hinton uses in feedforward networks has an extension in the time dimension here."
+      },
+      "terms": {
+        "时间反向传播": "term-bptt",
+        "backpropagation through time": "term-bptt"
+      },
+      "leadsTo": "bptt-explain"
+    },
+    {
+      "id": "bptt-explain",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "想法是这样的——我们把RNN在时间上展开之后，它看起来就像一个非常深的前馈网络，只不过每一「层」实际上是同一个网络在不同时间步的副本。然后我们从最后一个时间步的误差开始，沿着时间一路往回传播梯度。每个时间步都会接收到来自未来的误差信号，然后把自己的份额继续向更早的时间步传递。",
+        "en": "Here's the idea — after unfolding the RNN through time, it looks like a very deep feedforward network, except each 「layer」 is actually a copy of the same network at a different time step. Then we start from the error at the last time step and propagate gradients backward through time. Each time step receives an error signal from the future, then passes its share onward to even earlier time steps."
+      },
+      "leadsTo": "bptt-warning"
+    },
+    {
+      "id": "bptt-warning",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这个方法在原理上很优美，但在实践中有一个我们正在研究的严重问题——当序列很长的时候，梯度需要经过很多个时间步。每经过一步，梯度就会被乘以一次权重矩阵。如果这些值大多小于1，梯度就会越来越小，最终几乎消失。如果大多大于1，梯度就会越来越大，直到爆炸。",
+        "en": "This method is elegant in principle, but in practice there's a serious problem we're currently researching — when sequences are long, the gradient must pass through many time steps. At each step, the gradient is multiplied by the weight matrix. If those values are mostly less than 1, the gradient shrinks until it nearly vanishes. If mostly greater than 1, the gradient grows until it explodes."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "梯度在沿时间传播时会逐渐缩小或爆炸。这会导致什么实际后果？",
+        "en": "Gradients shrink or explode as they propagate through time. What practical consequence would this have?"
+      },
+      "choices": [
+        {
+          "id": "choice-forget-past",
+          "text": {
+            "zh": "网络会「忘记」序列开头的信息——它只能记住最近的几个时间步",
+            "en": "The network would 「forget」 information from the beginning of the sequence — it can only remember the last few time steps"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "准确。当梯度消失时，早期时间步对训练信号的贡献几乎为零——网络无法学习到开头的信息和结尾之间的关联。如果一个句子的主语在第2个词，而动词在第20个词，RNN很可能无法学会让它们匹配。这是一个深刻的困境。",
+              "en": "Precise. When gradients vanish, earlier time steps contribute almost nothing to the training signal — the network cannot learn connections between information at the beginning and the end. If a sentence's subject is the 2nd word and the verb is the 20th, an RNN likely can't learn to match them. This is a profound dilemma."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-training-unstable",
+          "text": {
+            "zh": "训练过程会变得不稳定——损失值忽高忽低，难以收敛",
+            "en": "Training would become unstable — loss values fluctuating wildly, hard to converge"
+          },
+          "tag": "practical",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "是的，尤其是梯度爆炸的情况。当梯度突然变得非常大时，权重更新也会非常剧烈，可能直接把网络的参数推向极端值。不过梯度爆炸有一些简单的应对手段，比如裁剪梯度。真正棘手的是梯度消失——因为你根本察觉不到网络「没有学到」某些远距离的关联。",
+              "en": "Yes, especially with gradient explosion. When gradients suddenly become very large, weight updates become violent, potentially pushing the network's parameters to extreme values. However, gradient explosion has some simple countermeasures, like gradient clipping. The truly tricky issue is vanishing gradients — because you can't even tell that the network 「failed to learn」 certain long-distance associations."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-shallow-learning",
+          "text": {
+            "zh": "网络只能学到浅层的、局部的模式，无法理解整体结构",
+            "en": "The network can only learn shallow, local patterns and cannot understand overall structure"
+          },
+          "tag": "forward-looking",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "你说到了一个更深层的问题。语言的很多结构，比如长距离的主谓一致、跨段落的指代关系，都依赖于远距离的信息传递。如果RNN只能有效地「记住」最近几个词，它对语言的理解就会局限在局部片段，无法把握全局的语义。这对于翻译和理解都是致命的限制。",
+              "en": "You've touched on a deeper issue. Many structures in language — like long-distance subject-verb agreement, cross-paragraph references — depend on long-range information transfer. If an RNN can only effectively 「remember」 the last few words, its understanding of language is limited to local fragments, unable to grasp global semantics. This is a critical limitation for both translation and understanding."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是标准RNN最根本的弱点。它有记忆，但这个记忆是脆弱的，像一条河流，上游倒入的墨水到下游时已经被稀释得几乎看不见了。",
+        "en": "This is the standard RNN's most fundamental weakness. It has memory, but that memory is fragile — like a river where ink poured upstream becomes so diluted downstream that it's almost invisible."
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "RNN的核心机制：在每个时间步使用同一组权重处理当前输入和上一步的隐藏状态，产生新的隐藏状态和输出。权重共享使RNN能处理任意长度序列。训练使用时间反向传播（BPTT），但存在梯度消失/爆炸问题，导致RNN难以学习长距离依赖。",
+        "en": "RNN core mechanism: at each time step, the same weights process the current input and previous hidden state, producing a new hidden state and output. Weight sharing allows RNNs to handle sequences of any length. Training uses backpropagation through time (BPTT), but suffers from vanishing/exploding gradients, making it hard to learn long-range dependencies."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-lstm"
+    },
+    {
+      "id": "preview-lstm",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "但我不想让你们感到悲观。这个「遗忘」的问题确实存在——我自己1994年发表的论文详细分析了这个问题。但这正是推动我们前进的动力。如果我们能找到一种方法，让网络「选择性地」记住重要的信息，而忘掉不重要的信息呢？下节课，我会介绍一种精妙的解决方案。",
+        "en": "But I don't want you to feel pessimistic. This 「forgetting」 problem is real — my own 1994 paper analyzed it in detail. But that's precisely what drives us forward. What if we could find a way for the network to 「selectively」 remember important information while forgetting the unimportant? Next lesson, I'll introduce an elegant solution."
+      },
+      "leadsTo": "closing-thought"
+    },
+    {
+      "id": "closing-thought",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "循环神经网络的美在于它的简洁。一个循环，一组共享的权重，一个不断更新的记忆。它教会了我们一件事：让信息在时间中流动，比把所有信息一次性塞进网络要自然得多。但这条时间之河需要变得更强壮，它需要学会什么该记住，什么可以遗忘。",
+        "en": "The beauty of recurrent neural networks lies in their simplicity — one loop, one set of shared weights, one constantly updating memory. It teaches us something: letting information flow through time is far more natural than forcing all information into the network at once. But this river of time needs to become stronger — it needs to learn what to remember and what to forget."
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "本吉奥教授放下马克笔，最后看了一眼白板上那三个展开的方框。他轻声说：「记忆是一种力量，也是一种负担。关键在于如何选择。」他拿起笔记本，安静地走出了教室。白板上的蓝色墨迹在深蓝灯光下泛着微光。",
+        "en": "Prof. Bengio sets down the marker and takes one last look at the three unfolded boxes on the whiteboard. He says softly: 「Memory is both a power and a burden. The key is in choosing」. He picks up his notebook and walks quietly out of the classroom. The blue ink on the whiteboard glimmers faintly in the deep blue light."
+      }
+    }
+  ]
+}

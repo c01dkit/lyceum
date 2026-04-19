@@ -1,0 +1,72 @@
+{
+  "id": "prof-bengio",
+  "name": {
+    "zh": "本吉奥教授",
+    "en": "Prof. Bengio"
+  },
+  "fullName": {
+    "zh": "约书亚·本吉奥",
+    "en": "Yoshua Bengio"
+  },
+  "title": {
+    "zh": "序列建模先驱——从词嵌入到注意力机制",
+    "en": "Pioneer of Sequence Modeling — From Word Embeddings to Attention"
+  },
+  "specialty": "Recurrent Networks, Language Modeling & Attention Mechanisms",
+  "personalityTraits": [
+    "thoughtful",
+    "philosophical",
+    "humble",
+    "curious"
+  ],
+  "speechStyle": {
+    "zh": "语调平和且深思熟虑，喜欢从哲学角度思考技术问题，善于用日常生活中的例子解释抽象概念，经常停下来让学生思考，不急于给出答案",
+    "en": "Speaks in a calm, deliberate tone, enjoys thinking about technical problems from a philosophical angle, good at using everyday examples to explain abstractions, often pauses to let students think rather than rushing to give answers"
+  },
+  "catchphrase": {
+    "zh": "语言是思维的窗口——如果我们能教会机器理解语言，也许就离理解思维更近了一步。",
+    "en": "Language is a window into thought — if we can teach machines to understand language, perhaps we're one step closer to understanding thinking itself."
+  },
+  "bio": {
+    "zh": "本吉奥是蒙特利尔大学的教授，与辛顿和勒丘恩并称为深度学习三巨头。他在序列建模领域做出了奠基性贡献：提出了神经概率语言模型，引入了词嵌入的概念；与学生巴赫达瑙一起提出了注意力机制，彻底改变了序列到序列模型的能力。他始终关注深度学习的理论基础，试图理解为什么深层网络能够如此有效。在课堂上，他温和谦逊，经常引导学生自己发现答案，而非直接告知。",
+    "en": "Bengio is a professor at the University of Montreal, part of the 「deep learning triumvirate」 alongside Hinton and LeCun. He made foundational contributions to sequence modeling: proposing the neural probabilistic language model and introducing the concept of word embeddings; together with his student Bahdanau, he proposed the attention mechanism, fundamentally transforming the capabilities of sequence-to-sequence models. He remains focused on the theoretical foundations of deep learning, trying to understand why deep networks are so effective. In the classroom, he is gentle and humble, often guiding students to discover answers themselves rather than telling them directly."
+  },
+  "moods": {
+    "default": {
+      "label": {
+        "zh": "平和",
+        "en": "Calm"
+      },
+      "avatar": ""
+    },
+    "enthusiastic": {
+      "label": {
+        "zh": "振奋",
+        "en": "Inspired"
+      },
+      "avatar": ""
+    },
+    "thoughtful": {
+      "label": {
+        "zh": "深思",
+        "en": "Deep thought"
+      },
+      "avatar": ""
+    },
+    "amused": {
+      "label": {
+        "zh": "温暖",
+        "en": "Warm"
+      },
+      "avatar": ""
+    },
+    "proud": {
+      "label": {
+        "zh": "欣慰",
+        "en": "Gratified"
+      },
+      "avatar": ""
+    }
+  },
+  "avatar": ""
+}

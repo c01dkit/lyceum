@@ -1,0 +1,285 @@
+{
+  "id": "lesson-02",
+  "course": "ai-winter",
+  "title": {
+    "zh": "莱特希尔报告",
+    "en": "The Lighthill Report"
+  },
+  "knowledgePoint": {
+    "zh": "1973年莱特希尔报告及其对英国AI研究的毁灭性影响",
+    "en": "The 1973 Lighthill Report and its devastating impact on UK AI research"
+  },
+  "teacher": "prof-minsky",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-01",
+  "nextLesson": "lesson-03",
+  "recallIntro": {
+    "zh": "你翻到笔记本上一页画着英国国旗的草图旁边写的笔记，思绪飘回那间昏暗的教室。明斯基教授正用一种罕见的沉重语气，讲述一份来自大西洋彼岸的报告……",
+    "en": "You flip to a page in your notebook next to a rough sketch of a British flag, and your mind drifts back to that dim classroom. Professor Minsky is speaking with an unusually somber tone about a report from across the Atlantic..."
+  },
+  "recallOutro": {
+    "zh": "你合上笔记本，意识到一份报告竟然能改变整个国家的科研走向。知识和权力之间的关系，比你想象的要复杂得多。",
+    "en": "You close your notebook, realizing that a single report could redirect an entire nation's research trajectory. The relationship between knowledge and power is far more complex than you imagined."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "你再次走进那间灯光偏暗的教室。明斯基教授已经在了，他手里拿着一份文件的复印件，纸张已经泛黄。他把它放在桌上，用手指轻轻敲了敲封面。",
+        "en": "You walk into the dimly lit classroom again. Professor Minsky is already there, holding a photocopy of a document, the pages yellowed with age. He sets it on the desk and taps the cover lightly with his finger."
+      },
+      "leadsTo": "intro-dialog"
+    },
+    {
+      "id": "intro-dialog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（拿起那份文件）\n\n1973年。英国科学研究委员会委托一位叫詹姆斯·莱特希尔的数学家，对AI研究进行全面评估。注意——他是应用数学家，不是AI研究者。政府找了一个局外人来评判我们。",
+        "en": "(Picks up the document)\n\n1973. The British Science Research Council commissioned a mathematician named James Lighthill to conduct a comprehensive evaluation of AI research. Note — he was an applied mathematician, not an AI researcher. The government brought in an outsider to judge us."
+      },
+      "leadsTo": "lighthill-background"
+    },
+    {
+      "id": "lighthill-background",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "莱特希尔是个聪明人，这一点我必须承认。他不是那种什么都不懂就来指手画脚的外行。他是剑桥大学卢卡斯数学教授——牛顿和霍金都坐过的那把椅子。他用严谨的数学眼光审视了AI领域十五年的成果。",
+        "en": "Lighthill was a smart man, I'll give him that. He wasn't some ignorant outsider waving his finger. He was the Lucasian Professor of Mathematics at Cambridge — the same chair held by Newton and Hawking. He examined fifteen years of AI achievements through the lens of rigorous mathematics."
+      },
+      "leadsTo": "lighthill-conclusion"
+    },
+    {
+      "id": "lighthill-conclusion",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "他的结论？（读文件）「在该领域的任何部分，迄今为止的发现都没有产生当初承诺的那种重大影响。」一句话，把我们十五年的工作判了死刑。但最致命的一击，是他提出的{组合爆炸}论证。",
+        "en": "His conclusion? (Reading the document) 「In no part of the field have the discoveries made so far produced the major impact that was then promised」. One sentence, and fifteen years of our work received a death sentence. But the most lethal blow was his {combinatorial explosion} argument."
+      },
+      "terms": {
+        "组合爆炸": "term-combinatorial-explosion",
+        "combinatorial explosion": "term-combinatorial-explosion"
+      },
+      "leadsTo": "combinatorial-explosion"
+    },
+    {
+      "id": "combinatorial-explosion",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "莱特希尔的核心论点是这样的：AI的方法在玩具问题上表现不错，但当问题规模扩大时，可能的组合数量呈指数级增长。搜索三步棋和搜索三十步棋完全是两回事。一个简单的积木世界和真实世界之间的复杂度差距，大到几乎无法跨越。",
+        "en": "Lighthill's core argument went like this: AI methods performed well on toy problems, but when problem scale increased, the number of possible combinations grew exponentially. Searching three moves ahead in chess versus thirty moves ahead are entirely different things. The complexity gap between a simple blocks world and the real world was so vast it was nearly impossible to bridge."
+      },
+      "leadsTo": "honest-assessment"
+    },
+    {
+      "id": "honest-assessment",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "最让人难以接受的部分是——他说得有道理。我们在实验室里搭的那些演示系统，确实只能处理非常有限的情况。我们的程序能理解关于积木的对话，但你换个话题谈天气，它就完全崩溃了。莱特希尔看穿了这一点。",
+        "en": "The hardest part to accept was — he had a point. The demonstration systems we built in our labs really could only handle very limited scenarios. Our program could understand conversations about building blocks, but switch the topic to weather and it collapsed entirely. Lighthill saw right through that."
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "{莱特希尔报告}指出AI方法无法从玩具问题扩展到真实世界。你觉得他的批评公正吗？",
+        "en": "The {Lighthill Report} argued that AI methods couldn't scale from toy problems to the real world. Do you think his critique was fair?"
+      },
+      "terms": {
+        "莱特希尔报告": "term-lighthill-report",
+        "Lighthill Report": "term-lighthill-report"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "公正——AI确实没有兑现承诺，需要有人说出真相",
+            "en": "Fair — AI really hadn't delivered on its promises, and someone needed to say so"
+          },
+          "tag": "realist",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "我恨承认这一点，但你说得对。如果我们自己更早、更诚实地面对这些问题，也许就不需要一个外人来替我们做这件事。科学界有一种倾向——自己人不批评自己人。但这种团结有时候恰恰是最危险的。",
+              "en": "I hate admitting it, but you're right. If we had faced these problems ourselves, earlier and more honestly, perhaps we wouldn't have needed an outsider to do it for us. There's a tendency in the scientific community — insiders don't critique insiders. But that kind of solidarity is sometimes the most dangerous thing of all."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "不完全公正——他忽视了AI已经取得的实际进展",
+            "en": "Not entirely fair — he ignored the real progress AI had made"
+          },
+          "tag": "defender",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "确实有进展。自然语言处理、机器视觉、定理证明——每个方向都有真实的成果。莱特希尔的问题在于，他用「是否达到了最初的承诺」作为唯一的衡量标准。按照这个标准，大多数科学领域都会被判定为失败。但他选择性地忽视了这些进展，这让我们很愤怒。",
+              "en": "There was indeed progress. Natural language processing, machine vision, theorem proving — each direction had genuine achievements. Lighthill's problem was that he used 「whether the original promises were met」 as the sole criterion. By that standard, most scientific fields would be judged as failures. But he selectively ignored these advances, and that infuriated us."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "他的批评在技术上是对的，但作为政策建议来说太极端了",
+            "en": "His critique was technically correct, but far too extreme as a policy recommendation"
+          },
+          "tag": "nuanced",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "这恰好是我的看法。指出问题是一回事，建议砍掉几乎所有经费是另一回事。科学研究需要时间。你不能因为十五年没出成果就宣布整个方向是死路。但政治家不这么想——他们要的是看得见的回报。莱特希尔给了他们一个完美的理由来关上钱袋子。",
+              "en": "That happens to be my view as well. Pointing out problems is one thing; recommending the elimination of nearly all funding is another. Scientific research takes time. You can't declare an entire direction a dead end because fifteen years haven't produced results. But politicians don't think that way — they want visible returns. Lighthill gave them a perfect excuse to close the purse strings."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "报告发布后，后果立竿见影。英国政府几乎砍掉了所有AI研究经费。爱丁堡大学的AI研究组，当时欧洲最强的之一，被迫大幅缩减。研究生找不到导师，导师找不到经费。一夜之间，英国的AI研究进入了冰河期。",
+        "en": "After the report was published, the consequences were immediate. The British government cut virtually all AI research funding. The AI research group at Edinburgh University — one of the strongest in Europe at the time — was forced to drastically downsize. Graduate students couldn't find advisors, advisors couldn't find funding. Overnight, British AI research entered an ice age."
+      },
+      "leadsTo": "bbc-debate"
+    },
+    {
+      "id": "bbc-debate",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "最戏剧化的时刻是BBC组织的一场电视辩论——莱特希尔对阵几位AI研究者。我看了录像。莱特希尔很冷静，很有逻辑。而我们的同行们……说实话，表现得不太好。他们显得更像是在为自己的饭碗辩护，而不是在做科学论证。这场辩论在公众眼中，基本宣告了AI的失败。",
+        "en": "The most dramatic moment was a televised debate organized by the BBC — Lighthill versus several AI researchers. I watched the recording. Lighthill was calm, logical. Our colleagues... honestly, they didn't perform well. They came across as defending their livelihoods rather than making scientific arguments. In the public eye, that debate was essentially a declaration of AI's failure."
+      },
+      "leadsTo": "ripple-effect"
+    },
+    {
+      "id": "ripple-effect",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "更糟糕的是涟漪效应。英国的决定给了其他国家一个信号。美国国防部已经在怀疑AI研究的价值了——莱特希尔报告给了他们现成的弹药。如果连英国人都放弃了，为什么我们还要继续投入？大西洋两岸的{AI寒冬}就这样开始了。",
+        "en": "What made it worse was the ripple effect. Britain's decision sent a signal to other nations. The U.S. Department of Defense was already questioning the value of AI research — the Lighthill Report gave them ready-made ammunition. If even the British had given up, why should we keep investing? The {AI winter} on both sides of the Atlantic began like this."
+      },
+      "terms": {
+        "AI寒冬": "term-ai-winter",
+        "AI winter": "term-ai-winter"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "面对莱特希尔这样严厉的外部批评，你认为AI研究社区应该如何回应？",
+        "en": "Facing such harsh external criticism like Lighthill's, how do you think the AI research community should have responded?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "承认问题，调整预期，用更务实的方式推进研究",
+            "en": "Acknowledge the problems, adjust expectations, and push forward more pragmatically"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "这是最成熟的做法。如果当时我们站出来说：「是的，我们过于乐观了。但这些问题值得继续研究，这是我们新的、更现实的路线图」——也许结果会好得多。但科学家的骄傲让我们选择了对抗。承认错误比坚持辩护需要更大的勇气。",
+              "en": "That's the most mature approach. If we had stood up and said: 「Yes, we were overly optimistic. But these problems are worth continuing to study, and here is our new, more realistic roadmap」 — perhaps the outcome would have been much better. But scientific pride drove us to confrontation. Admitting error takes more courage than doubling down on defense."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "用具体的技术成果来反驳——事实比争论更有力",
+            "en": "Respond with concrete technical achievements — facts speak louder than arguments"
+          },
+          "tag": "evidence-based",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了一声）\n\n好主意——如果我们手上有的话。这恰好是问题所在：到1973年，我们拿不出一个真正令人信服的、可以在实际应用中工作的AI系统。我们有的是原型、演示、概念验证。但没有一个是莱特希尔口中的「重大影响」。有时候，最好的回应就是承认你还没有答案。",
+              "en": "(Lets out a laugh)\n\nGreat idea — if we'd had any. That was precisely the problem: by 1973, we couldn't produce a single truly convincing AI system that worked in practical applications. We had prototypes, demos, proofs of concept. But none of them constituted the 「major impact」 Lighthill spoke of. Sometimes the best response is admitting you don't have an answer yet."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "开展自我批评，在莱特希尔之前自己先指出问题",
+            "en": "Engage in self-criticism — identify the problems before an outsider does"
+          },
+          "tag": "proactive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "理想的做法，但很少有人能做到。在一个争夺经费的竞争环境里，公开承认自己的研究方向可能走错了——这几乎等于学术自杀。但你说得对，如果我们建立了一种更健康的自我批评文化，也许就不会这么被动。科学需要批评，最好的批评应该来自内部。",
+              "en": "The ideal approach, but very few people can actually do it. In a competitive environment fighting for funding, publicly admitting your research direction might be wrong is essentially academic suicide. But you're right — if we had cultivated a healthier culture of self-criticism, we might not have been so caught off guard. Science needs criticism, and the best criticism should come from within."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "莱特希尔报告教给我们的一课，远比AI技术本身更重要：科学不存在于真空中。你可以做世界上最前沿的研究，但如果你无法向外行解释它的价值，无法证明它的实际意义——总有一天，有人会拿走你的经费。",
+        "en": "The lesson the Lighthill Report taught us is far more important than any AI technology: science doesn't exist in a vacuum. You can do the most cutting-edge research in the world, but if you can't explain its value to a layperson, if you can't demonstrate its practical significance — someday, someone will take away your funding."
+      },
+      "leadsTo": "note1"
+    },
+    {
+      "id": "note1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "莱特希尔报告（1973年）的核心论点：组合爆炸。AI方法在小规模「玩具问题」上有效，但当问题扩展到真实世界的复杂度时，搜索空间呈指数级增长，方法就会失败。这份报告直接导致英国几乎全面停止AI研究资助，并引发了跨大西洋的连锁反应。",
+        "en": "The Lighthill Report's (1973) core argument: combinatorial explosion. AI methods worked on small-scale 「toy problems, but when problems scaled to real-world complexity, the search space grew exponentially and the methods broke down. This report directly caused Britain to virtually cease all AI research funding and triggered a chain reaction across the Atlantic."
+      },
+      "category": "historical-fact",
+      "leadsTo": "looking-ahead"
+    },
+    {
+      "id": "looking-ahead",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "莱特希尔攻击的是我们方法的局限性。但接下来我要讲的故事，更加切肤之痛——因为那是我自己造成的。下节课，我们谈谈{感知机}，谈谈我写的那本书，以及它如何毁掉了一整个研究方向。",
+        "en": "Lighthill attacked the limitations of our methods. But the story I'll tell next cuts much closer to the bone — because I caused it myself. Next class, we'll talk about {perceptrons}, about a book I wrote, and how it devastated an entire research direction."
+      },
+      "terms": {
+        "感知机": "term-perceptron",
+        "perceptrons": "term-perceptron"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "明斯基教授把那份泛黄的报告复印件折好，塞回口袋。他的表情很平静，像是一个早已接受了判决的人。但在他走出门之前，你注意到他回头看了一眼那份文件，眼中闪过一丝复杂的情绪——那究竟是遗憾，还是某种奇怪的敬意？",
+        "en": "Professor Minsky folds the yellowed copy of the report and tucks it back into his pocket. His expression is calm, like someone who accepted the verdict long ago. But before he walks through the door, you notice him glance back at the document, a complex emotion flickering in his eyes — is it regret, or some strange form of respect?"
+      }
+    }
+  ]
+}

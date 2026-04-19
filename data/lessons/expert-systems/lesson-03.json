@@ -1,0 +1,323 @@
+{
+  "id": "lesson-03",
+  "course": "expert-systems",
+  "title": {
+    "zh": "规则与推理引擎",
+    "en": "Rules and the Inference Engine"
+  },
+  "knowledgePoint": {
+    "zh": "专家系统如何使用产生式规则和推理引擎来模拟专家决策",
+    "en": "How expert systems use production rules and inference engines to simulate expert decision-making"
+  },
+  "teacher": "prof-feigenbaum",
+  "estimatedMinutes": 10,
+  "previousLesson": "lesson-02",
+  "nextLesson": "lesson-04",
+  "recallIntro": {
+    "zh": "你走进教室，发现黑板上已经画好了一幅结构图——三个方框，几条箭头，清晰而简洁。费根鲍姆教授正站在旁边，手里还握着粉笔。",
+    "en": "You walk into the classroom and find a diagram already drawn on the blackboard — three boxes, a few arrows, clean and concise. Professor Feigenbaum stands beside it, chalk still in hand."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。「如果……那么……」——这个简单的句式，竟然就是专家系统的知识表示基础。简单的结构，承载着复杂的智慧。",
+    "en": "You return to the present. 「If... then..」. — this simple sentence pattern is the foundation of knowledge representation in expert systems. A simple structure, carrying complex wisdom."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "今天的教室有些不同。黑板上画着一幅清晰的结构图：左边一个标注着「知识库」的大方框，右边一个标注着「推理引擎」的方框，下方还有一个较小的方框写着「解释机制」。三者之间用箭头相连。费根鲍姆教授站在图旁，像一位建筑师在展示自己的蓝图。",
+        "en": "Today's classroom looks a little different. On the blackboard is a clear diagram: a large box on the left labeled 「Knowledge Base」, another on the right labeled 「Inference Engine」, and a smaller box below labeled 「Explanation Facility」. Arrows connect the three. Professor Feigenbaum stands beside the diagram like an architect presenting his blueprint."
+      },
+      "leadsTo": "architecture-intro"
+    },
+    {
+      "id": "architecture-intro",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指着黑板）上两节课我们知道了为什么知识如此重要，也看到了DENDRAL是怎么用化学知识工作的。今天，我要拆开{专家系统}的内部，给你们看看它的架构。每一个专家系统，不管是分析化学的还是诊断疾病的，核心结构都是一样的。",
+        "en": "(Pointing at the blackboard) In the last two lessons we learned why knowledge matters so much, and we saw how DENDRAL worked with chemistry knowledge. Today, I'm going to open up an {expert system} and show you its architecture. Every expert system, whether it analyzes chemistry or diagnoses diseases, shares the same core structure."
+      },
+      "terms": {
+        "专家系统": "term-expert-system",
+        "expert system": "term-expert-system"
+      },
+      "leadsTo": "knowledge-base"
+    },
+    {
+      "id": "knowledge-base",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（指向左边的大方框）首先是{知识库}。这是专家系统的心脏，所有领域知识都存放在这里。在DENDRAL中，知识库装的是化学家的判断规则。那么，知识库里的知识用什么形式表示呢？我们用的是{产生式规则}，这是一种非常直观的格式。",
+        "en": "(Points to the large box on the left) First, the {knowledge base}. This is the heart of an expert system — all domain knowledge resides here. In DENDRAL, the knowledge base held the chemist's judgment rules. In what form is the knowledge represented? We use {production rules} — an extremely intuitive format."
+      },
+      "terms": {
+        "知识库": "term-knowledge-base",
+        "knowledge base": "term-knowledge-base",
+        "产生式规则": "term-production-rule",
+        "production rules": "term-production-rule"
+      },
+      "leadsTo": "rule-example"
+    },
+    {
+      "id": "rule-example",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "产生式规则长这样：「如果 病人发烧 并且 病人咳嗽 并且 病人喉咙红肿，那么 可能患有流感。」就是这么简单——如果条件满足，就得出结论。一条一条规则，像积木一样组合在一起，就构成了整个知识库。化学领域可能有上百条这样的规则，医学领域可能有上千条。",
+        "en": "A production rule looks like this: 「IF patient has fever AND patient has cough AND patient has swollen throat, THEN possibly influenza」. It's that simple — if conditions are met, draw a conclusion. Rules stacked together like building blocks form the entire knowledge base. A chemistry domain might have hundreds of such rules; a medical domain, thousands."
+      },
+      "leadsTo": "inference-engine"
+    },
+    {
+      "id": "inference-engine",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "（手指移向右边的方框）然后是{推理引擎}。知识库存放知识，推理引擎负责使用知识。它的工作方式是：拿到一组事实，去知识库里找匹配的规则，触发规则，得出新的结论，然后重复这个过程。注意——推理引擎本身不包含任何领域知识，它只是一台通用的规则执行机器。",
+        "en": "(Finger moves to the right box) Then comes the {inference engine}. The knowledge base stores knowledge; the inference engine uses it. It works like this: take a set of facts, search the knowledge base for matching rules, fire those rules, derive new conclusions, and repeat. Note — the inference engine itself contains no domain knowledge at all. It is simply a general-purpose rule execution machine."
+      },
+      "terms": {
+        "推理引擎": "term-inference-engine",
+        "inference engine": "term-inference-engine"
+      },
+      "leadsTo": "separation-benefit"
+    },
+    {
+      "id": "separation-benefit",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "这个分离设计非常精妙。因为推理引擎和知识库是独立的，所以同一个推理引擎可以配上不同的知识库——换一套规则，它就变成了另一个领域的专家。今天诊断疾病，明天分析矿石，只需要更换知识库。",
+        "en": "This separation is elegantly designed. Because the inference engine and knowledge base are independent, the same inference engine can work with different knowledge bases — swap out the rules, and it becomes an expert in another domain. Diagnosing diseases today, analyzing minerals tomorrow — just change the knowledge base."
+      },
+      "leadsTo": "chaining-intro"
+    },
+    {
+      "id": "chaining-intro",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "推理引擎执行规则有两种基本策略。让我用一个简单的例子来说明。假设你是一位医生，面前坐着一位病人。",
+        "en": "The inference engine has two basic strategies for executing rules. Let me illustrate with a simple example. Suppose you are a doctor, and a patient is sitting in front of you."
+      },
+      "leadsTo": "forward-chaining"
+    },
+    {
+      "id": "forward-chaining",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "第一种策略叫{前向推理}。你先收集病人的所有症状，比如发烧、咳嗽、头痛。然后你在规则库里寻找，看看哪些规则的条件和这些症状匹配。找到一条「如果发烧并且咳嗽，那么可能是呼吸道感染」，好，现在你多了一个新事实。接着继续找下去，直到得出最终诊断。这是从已知数据出发，一步步推向结论，所以叫「数据驱动」。",
+        "en": "The first strategy is called {forward chaining}. You start by collecting all the patient's symptoms — fever, cough, headache. Then you search the rule base: which rules have conditions matching these symptoms? You find one: 「IF fever AND cough, THEN possibly respiratory infection」 — good, now you have a new fact. Keep going until you reach a final diagnosis. This starts from known data and works step by step toward a conclusion — that's why it's called 「data-driven」."
+      },
+      "terms": {
+        "前向推理": "term-forward-chaining",
+        "forward chaining": "term-forward-chaining"
+      },
+      "leadsTo": "backward-chaining"
+    },
+    {
+      "id": "backward-chaining",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "第二种策略叫{后向推理}。反过来——你先提出一个假设：「这个病人是不是得了流感？」然后你去规则库里找：要确认流感，需要满足什么条件？发烧、咳嗽、肌肉酸痛。病人有发烧吗？有。有咳嗽吗？有。肌肉酸痛呢？去问病人。这是从目标出发，反向追溯需要什么证据，所以叫「目标驱动」。",
+        "en": "The second strategy is called {backward chaining}. It works in reverse — you start with a hypothesis: 「Does this patient have the flu?」 Then you search the rule base: what conditions must be met to confirm influenza? Fever, cough, muscle aches. Does the patient have fever? Yes. Cough? Yes. Muscle aches? Go ask the patient. This starts from a goal and traces backward to find what evidence is needed — that's why it's called 「goal-driven」."
+      },
+      "terms": {
+        "后向推理": "term-backward-chaining",
+        "backward chaining": "term-backward-chaining"
+      },
+      "leadsTo": "q1"
+    },
+    {
+      "id": "q1",
+      "type": "question",
+      "text": {
+        "zh": "假设你正在维修一台机器，它突然停止运转了。你需要找出故障原因。你会用哪种推理策略？",
+        "en": "Suppose you're repairing a machine that has suddenly stopped working. You need to find the cause of the failure. Which reasoning strategy would you use?"
+      },
+      "choices": [
+        {
+          "id": "q1-a",
+          "text": {
+            "zh": "前向推理——先收集所有观察到的异常现象，看能推出什么",
+            "en": "Forward chaining — first collect all observed anomalies, see what they lead to"
+          },
+          "tag": "data-driven",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "可以。你观察到电机不转、指示灯灭了、风扇也停了——然后一条条规则推导下去，最终可能推出「电源故障」。前向推理适合你有大量初始数据、但不确定结论是什么的时候。不过在维修场景中，有时候你可能已经有了一个猜测……",
+              "en": "That works. You observe the motor isn't spinning, the indicator light is off, the fan has stopped — then trace through rules step by step, eventually arriving at 「power supply failure」. Forward chaining works well when you have lots of initial data but aren't sure what the conclusion is. Though in a repair scenario, you may already have a hunch..."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-b",
+          "text": {
+            "zh": "后向推理——先假设可能是电源问题，然后逐一验证",
+            "en": "Backward chaining — first hypothesize it might be a power issue, then verify step by step"
+          },
+          "tag": "goal-driven",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "很好的选择。有经验的维修工程师通常都会这么做：先凭直觉提出最可能的假设，然后有针对性地检查。「会不会是电源？检查保险丝，没烧。那会不会是控制板？」后向推理在你拥有合理假设时效率更高，它只检查与假设相关的证据，不会浪费时间。",
+              "en": "Great choice. Experienced repair engineers usually work exactly this way — form the most likely hypothesis based on intuition, then check systematically. 「Could it be the power supply? Check the fuse — not blown. Could it be the control board?」 Backward chaining is more efficient when you have a reasonable hypothesis, because it only checks evidence relevant to that hypothesis, wasting no time."
+            }
+          },
+          "leadsTo": "after-q1"
+        },
+        {
+          "id": "q1-c",
+          "text": {
+            "zh": "两种结合——先用经验猜测，再用数据验证",
+            "en": "Combine both — first guess based on experience, then verify with data"
+          },
+          "tag": "hybrid-view",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "（笑了笑）你说到点子上了。在实践中，两种策略经常混合使用。先用后向推理缩小范围，再用前向推理从观察到的证据中确认。很多实际的专家系统也是这样设计的——灵活切换策略。你有做工程师的潜质。",
+              "en": "(Smiles) You've hit the nail on the head. In practice, the two strategies are often mixed. Use backward chaining to narrow the scope, then forward chaining to confirm from observed evidence. Many real expert systems are designed this way too — flexibly switching strategies. You have an engineer's instinct."
+            }
+          },
+          "leadsTo": "after-q1"
+        }
+      ]
+    },
+    {
+      "id": "after-q1",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "不管用哪种策略，推理引擎的核心工作就是在知识库中匹配规则、触发规则、产生新结论。整个过程是透明的、可追溯的——每一步推理都有据可查。",
+        "en": "Regardless of which strategy you use, the inference engine's core job is to match rules in the knowledge base, fire those rules, and produce new conclusions. The entire process is transparent and traceable — every step of reasoning has a clear basis."
+      },
+      "leadsTo": "explanation-facility"
+    },
+    {
+      "id": "explanation-facility",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "（指向黑板下方的小方框）这就引出了第三个组件——{解释机制}。因为每一步推理都是基于明确的规则，所以系统可以告诉你：「我认为这是流感，因为规则47说发烧加咳嗽加肌肉酸痛指向流感，而你的病人满足了所有三个条件。」它能给出理由，就像一个好老师不仅给你答案，还告诉你为什么。",
+        "en": "(Points to the small box at the bottom) This brings us to the third component — the {explanation facility}. Because every reasoning step is based on explicit rules, the system can tell you: 「I believe this is influenza because Rule 47 states that fever plus cough plus muscle aches points to influenza, and your patient satisfies all three conditions」. It can give reasons — like a good teacher who gives you the answer and explains why."
+      },
+      "terms": {
+        "解释机制": "term-explanation-facility",
+        "explanation facility": "term-explanation-facility"
+      },
+      "leadsTo": "q2"
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": {
+        "zh": "为什么我们要把知识库和推理引擎分开设计，而不是把所有东西写进一个大程序？",
+        "en": "Why should we design the knowledge base and inference engine as separate components, rather than writing everything into one big program?"
+      },
+      "choices": [
+        {
+          "id": "q2-a",
+          "text": {
+            "zh": "方便更新——可以只修改知识，不动推理逻辑",
+            "en": "Easier to update — you can modify knowledge without touching the reasoning logic"
+          },
+          "tag": "maintainability",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确。领域知识是不断发展的——医学每年都有新发现，化学每天都有新数据。如果知识和推理纠缠在一起，每次更新都要改整个程序，风险很高。分离之后，添加一条新规则就像在卡片盒里插入一张新卡片，简洁又安全。",
+              "en": "Exactly right. Domain knowledge keeps evolving — medicine has new discoveries every year, chemistry generates new data every day. If knowledge and reasoning are tangled together, every update means modifying the whole program — very risky. With separation, adding a new rule is like inserting a new card into a file box: clean and safe."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-b",
+          "text": {
+            "zh": "可以复用——同一个推理引擎换套规则就能做不同的事",
+            "en": "Enables reuse — the same inference engine with different rules can do different things"
+          },
+          "tag": "reusability",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得好。这正是我们追求的设计目标之一。一个好的推理引擎是通用的——今天配上化学规则它就是化学专家，明天配上医学规则它就是诊断助手。我们只需要专注于收集和整理不同领域的知识，而不必每次都从头建造整个系统。",
+              "en": "Well said. That's exactly one of our design goals. A good inference engine is general-purpose — pair it with chemistry rules and it's a chemistry expert, pair it with medical rules and it's a diagnostic assistant. We only need to focus on collecting and organizing knowledge from different domains, instead of building the whole system from scratch each time."
+            }
+          },
+          "leadsTo": "after-q2"
+        },
+        {
+          "id": "q2-c",
+          "text": {
+            "zh": "方便解释——可以清楚追溯每个结论是怎么得出的",
+            "en": "Better explainability — you can clearly trace how each conclusion was reached"
+          },
+          "tag": "transparency",
+          "response": {
+            "mood": "thoughtful",
+            "text": {
+              "zh": "很好的角度。当知识以明确的规则形式存在时，系统的每一步推理都有迹可循。这在医学这样的高风险领域至关重要——一个医生不会接受一个黑盒给出的诊断。他需要知道为什么。分离设计让解释成为可能。",
+              "en": "An excellent perspective. When knowledge exists as explicit rules, every reasoning step can be traced. This is crucial in high-stakes fields like medicine — a doctor won't accept a diagnosis from a black box. They need to know why. The separation design makes explanation possible."
+            }
+          },
+          "leadsTo": "after-q2"
+        }
+      ]
+    },
+    {
+      "id": "after-q2",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "知识库、推理引擎、解释机制。这就是{专家系统}的三大核心组件。一个存储知识，一个运用知识，一个解释知识的使用过程。简洁、模块化、可维护。",
+        "en": "Knowledge base, inference engine, explanation facility — these are the three core components of an {expert system}. One stores knowledge, one applies knowledge, one explains how knowledge was applied. Clean, modular, maintainable."
+      },
+      "terms": {
+        "专家系统": "term-expert-system",
+        "expert system": "term-expert-system"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "专家系统的三层架构如下：第一是知识库，用产生式规则存储领域知识；第二是推理引擎，用前向推理（数据驱动）或后向推理（目标驱动）来执行规则；第三是解释机制，负责追溯推理过程，说明结论依据。三者分离的设计，方便了系统的更新和复用。",
+        "en": "Three-layer architecture of expert systems: (1) Knowledge base — stores domain knowledge as production rules; (2) Inference engine — executes rules via forward chaining (data-driven) or backward chaining (goal-driven); (3) Explanation facility — traces the reasoning process and justifies conclusions. The separation design enables easy updates and reuse."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview"
+    },
+    {
+      "id": "preview",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "架构看起来很漂亮，对吧？但有一个环节我故意还没有展开——那就是{知识获取}。知识库里的规则从哪来？它们不会凭空出现。下一节课，我们来聊聊这个最让我头疼的问题。",
+        "en": "The architecture looks elegant, doesn't it? But there's one part I've deliberately left unexplored — {knowledge acquisition}. Where do the rules in the knowledge base come from? They don't appear out of thin air. Next lesson, let's talk about the problem that gives me the biggest headaches."
+      },
+      "terms": {
+        "知识获取": "term-knowledge-acquisition",
+        "knowledge acquisition": "term-knowledge-acquisition"
+      },
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "你抄下了黑板上的架构图，三个方框和它们之间的箭头。看起来如此简洁优雅——知识库、推理引擎、解释机制。但费根鲍姆教授最后那句话在你耳边回荡：规则从哪里来？你隐约感觉到，最漂亮的架构背后，可能藏着最棘手的问题。",
+        "en": "You copy the architecture diagram from the blackboard — three boxes and the arrows between them. It looks so clean and elegant — knowledge base, inference engine, explanation facility. But Professor Feigenbaum's final words echo in your mind: where do the rules come from? You have a faint feeling that behind the most elegant architecture may lurk the thorniest problem."
+      }
+    }
+  ]
+}

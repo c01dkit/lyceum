@@ -1,0 +1,313 @@
+{
+  "id": "lesson-01",
+  "course": "generative-adversarial",
+  "title": {
+    "zh": "判别与生成",
+    "en": "Discrimination vs. Generation"
+  },
+  "knowledgePoint": {
+    "zh": "判别模型与生成模型的根本区别——为什么生成数据比分类数据更难",
+    "en": "The fundamental difference between discriminative and generative models — why generating data is harder than classifying it"
+  },
+  "teacher": "prof-goodfellow",
+  "estimatedMinutes": 8,
+  "previousLesson": null,
+  "nextLesson": "lesson-02",
+  "recallIntro": {
+    "zh": "你闭上眼，思绪飘回那间充满蓝色光晕的教室。大屏幕上依然闪烁着那些半真半假的图像，年轻的古德费洛教授正靠在讲台上，手里还转着一支马克笔。他的声音轻快而自信，像是随时准备讲一个让你大吃一惊的故事。",
+    "en": "You close your eyes, and your thoughts drift back to that classroom bathed in blue light. The big screen still flickers with those half-real, half-fake images, and the young Prof. Goodfellow leans against the podium, spinning a marker in his hand. His voice is quick and confident, as if always ready to tell a story that will blow your mind."
+  },
+  "recallOutro": {
+    "zh": "你回过神来。那个问题依然在脑海中盘旋——如果判别只需要画一条线，那生成意味着什么？意味着理解整个世界的样子。而古德费洛说，他在一间酒吧里找到了答案。",
+    "en": "You return to the present. That question still swirls in your mind — if discrimination only requires drawing a line, then what does generation mean? It means understanding what the entire world looks like. And Goodfellow said he found the answer in a bar."
+  },
+  "sequence": [
+    {
+      "id": "opening-narration",
+      "type": "narration",
+      "text": {
+        "zh": "这间教室和你之前见过的都不一样。天花板上的灯光压得很低，散发着深蓝色的微光，像是走进了某个未来实验室。教室正前方有一面巨大的屏幕，上面循环播放着一组人脸照片——有些看起来完全真实，有些却有说不出的违和感。一个年轻人大步走上讲台，牛仔裤配连帽衫，看起来更像一个研究生而非教授。他随手把背包丢在椅子上，拿起马克笔转了一圈，咧嘴一笑。",
+        "en": "This classroom is unlike any you've seen before. The ceiling lights are dimmed low, casting a deep blue glow, as if you've stepped into some futuristic lab. A massive screen dominates the front wall, cycling through a set of face photos — some look completely real, while others have an indescribable uncanniness. A young man strides up to the podium in jeans and a hoodie, looking more like a grad student than a professor. He tosses his backpack onto a chair, picks up a marker and spins it once, flashing a wide grin."
+      },
+      "leadsTo": "greeting"
+    },
+    {
+      "id": "greeting",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "嘿，欢迎来到生成模型的世界！我是Ian Goodfellow，蒙特利尔大学Bengio教授的学生——嗯，严格来说是刚毕业不久。你们可以叫我Ian。今天我们不从公式开始，我们从一个简单的问题开始。",
+        "en": "Hey, welcome to the world of generative models! I'm Ian Goodfellow, a student of Prof. Bengio at the University of Montreal — well, technically I graduated not long ago. You can call me Ian. Today we're not starting with formulas — we're starting with a simple question."
+      },
+      "leadsTo": "cat-or-dog"
+    },
+    {
+      "id": "cat-or-dog",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "给你一张照片，让你判断这是猫还是狗——难吗？对大多数人来说，一眼就能搞定。那再换一个任务：请你画一只猫。不是简笔画，是画一只逼真到能骗过别人眼睛的猫。突然就难了，对吧？",
+        "en": "Given a photo, tell me whether it's a cat or a dog — hard? For most people, one glance is enough. Now try a different task: draw a cat. Not a stick figure — draw a cat realistic enough to fool someone's eyes. Suddenly it's much harder, right?"
+      },
+      "leadsTo": "disc-vs-gen"
+    },
+    {
+      "id": "disc-vs-gen",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "这就是{判别模型}和{生成模型}最根本的区别。判别模型的任务是分类，给定输入，输出一个标签。它只需要学会在数据之间画一条边界线。但生成模型的任务是创造，它需要学会整个数据的分布，理解「一只猫长什么样」的全部细节。",
+        "en": "This is the most fundamental difference between {discriminative models} and {generative models}. A discriminative model's job is classification — given an input, output a label. It only needs to learn to draw a boundary between data points. But a generative model's job is creation — it needs to learn the entire distribution of data, understanding every detail of 「what a cat looks like」."
+      },
+      "terms": {
+        "判别模型": "term-discriminative-model",
+        "生成模型": "term-generative-model",
+        "discriminative models": "term-discriminative-model",
+        "generative models": "term-generative-model"
+      },
+      "leadsTo": "boundary-vs-landscape"
+    },
+    {
+      "id": "boundary-vs-landscape",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "打个比方吧。判别模型像一个海关官员，只需要看护照决定放行还是拒绝。他不需要知道怎么制造护照。但生成模型像一个画家，你得理解光影、色彩、结构、比例——你得理解世界本身的样子，才能创造出看起来属于这个世界的东西。",
+        "en": "Let me put it this way. A discriminative model is like a customs officer — just check the passport and decide: approve or deny. They don't need to know how to make a passport. But a generative model is like a painter — you need to understand light, color, structure, proportion. You need to understand what the world itself looks like before you can create something that looks like it belongs."
+      },
+      "leadsTo": "first-question"
+    },
+    {
+      "id": "first-question",
+      "type": "question",
+      "text": {
+        "zh": "为什么生成任务比判别任务更难？你觉得核心原因是什么？",
+        "en": "Why is the generation task harder than discrimination? What do you think the core reason is?"
+      },
+      "choices": [
+        {
+          "id": "choice-dimension",
+          "text": {
+            "zh": "生成需要输出整张图像的每个像素，信息维度远高于一个分类标签",
+            "en": "Generation requires outputting every pixel of an entire image — the information dimension is far higher than a single classification label"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "Bingo！一个分类标签就是一个数字——「猫」或「狗」。但生成一张64x64的图片？那是4096个像素，每个像素三个颜色通道，总共12288个数字，而且它们之间还得保持一致性。维度的爆炸让生成问题的难度呈指数级增长。",
+              "en": "Bingo! A classification label is just one number — 「cat」 or 「dog」. But generating a 64x64 image? That's 4,096 pixels, three color channels each, 12,288 numbers total, and they all need to be consistent with each other. The explosion in dimensionality makes the difficulty of generation grow exponentially."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-understanding",
+          "text": {
+            "zh": "判别只需要找差异，而生成需要真正理解数据的全貌",
+            "en": "Discrimination only needs to find differences, while generation requires truly understanding the full picture of the data"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "说得太好了。判别模型可以走捷径——也许它只需要看耳朵的形状就能区分猫和狗，根本不需要理解尾巴或者毛色。但生成模型不能遗漏任何细节，少了尾巴的猫一眼就会被发现是假的。生成要求的是完整的理解。",
+              "en": "Beautifully put. A discriminative model can take shortcuts — maybe it only needs to look at ear shape to tell cats from dogs, without ever understanding tails or fur color. But a generative model can't miss any detail — a cat without a tail would be instantly spotted as fake. Generation demands complete understanding."
+            }
+          },
+          "leadsTo": "after-first-question"
+        },
+        {
+          "id": "choice-answer",
+          "text": {
+            "zh": "因为生成没有标准答案——合理的猫有无穷多种，但分类答案只有两个",
+            "en": "Because generation has no single right answer — there are infinitely many valid cats, but only two classification answers"
+          },
+          "tag": "creative",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "太棒了，这是一个很深刻的观察！分类是一道选择题，答案就那么几个。但生成是一道开放题——世界上可能存在的猫的图像几乎是无限的。模型必须学会的不只是一个答案，而是一个巨大的可能性空间。这就是概率分布的概念。",
+              "en": "Awesome — that's a really deep observation! Classification is a multiple-choice question with just a few answers. But generation is an open-ended question — the possible cat images in the world are virtually infinite. The model must learn not just one answer, but an enormous space of possibilities. That's the concept of probability distributions."
+            }
+          },
+          "leadsTo": "after-first-question"
+        }
+      ]
+    },
+    {
+      "id": "after-first-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "所以几十年来，大家都知道生成模型是AI最难啃的骨头之一。那在我之前，人们是怎么尝试的呢？",
+        "en": "So for decades, everyone knew generative models were one of the toughest nuts to crack in AI. So how did people try to tackle this before me?"
+      },
+      "leadsTo": "maximum-likelihood"
+    },
+    {
+      "id": "maximum-likelihood",
+      "type": "dialog",
+      "mood": "thoughtful",
+      "text": {
+        "zh": "传统方法是{极大似然估计}。思路很直接：你手上有一堆真实数据，然后你建立一个参数化的概率模型，调整参数让你的模型生成这些真实数据的概率尽可能大。听起来合理对吧？但问题来了——对于图像这种高维数据，直接计算这个概率几乎是不可能的。维度太高了，概率空间大到无法想象。",
+        "en": "The traditional approach is {maximum likelihood estimation}. The idea is straightforward: you have a pile of real data, you build a parameterized probability model, and you adjust the parameters to maximize the probability your model assigns to that real data. Sounds reasonable, right? But here's the problem — for high-dimensional data like images, directly computing this probability is nearly impossible. The dimensions are too high, and the probability space is unimaginably vast."
+      },
+      "terms": {
+        "极大似然估计": "term-maximum-likelihood",
+        "maximum likelihood estimation": "term-maximum-likelihood"
+      },
+      "leadsTo": "mle-limits"
+    },
+    {
+      "id": "mle-limits",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "有人用了各种近似方法——变分推断、马尔可夫链蒙特卡洛采样。这些方法有效，但要么太慢，要么生成的图像模糊得像隔着毛玻璃在看世界。到2014年的时候，大家都在想：有没有一种全新的思路来做生成？",
+        "en": "People used all sorts of approximation methods — variational inference, Markov chain Monte Carlo sampling. These methods worked, but they were either too slow or generated images so blurry it was like looking at the world through frosted glass. By 2014, everyone was wondering: is there a completely new way to approach generation?"
+      },
+      "leadsTo": "bar-story-setup"
+    },
+    {
+      "id": "bar-story-setup",
+      "type": "dialog",
+      "mood": "amused",
+      "text": {
+        "zh": "好，现在是讲故事的时间。2014年的一个晚上，我和几个同学去蒙特利尔的一间酒吧庆祝朋友毕业。大家喝着酒，自然就聊到了研究。有人说起生成模型的困境——怎么做都绕不开似然函数的计算。大家各有各的想法，但都卡在同一个地方。",
+        "en": "Alright, storytime. One evening in 2014, I went to a bar in Montreal with some classmates to celebrate a friend's graduation. Over drinks, the conversation naturally drifted to research. Someone brought up the dilemma of generative models — no matter what you do, you can't get around computing the likelihood function. Everyone had ideas, but they were all stuck at the same point."
+      },
+      "leadsTo": "bar-eureka"
+    },
+    {
+      "id": "bar-eureka",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "然后我突然想到一件事。如果我们根本不去计算似然函数呢？如果我们换一种方式来定义「好」和「坏」呢？不用数学公式去衡量概率，而是训练另一个神经网络来当裁判！让两个网络互相博弈，一个负责生成，一个负责鉴别真假。这个想法一下子击中了我。",
+        "en": "Then something hit me — what if we don't compute the likelihood function at all? What if we define 「good」 and 「bad」 in a completely different way? Instead of mathematical formulas measuring probability, train another neural network to be the judge! Have two networks play against each other — one generates, one discriminates real from fake. The idea struck me like lightning."
+      },
+      "leadsTo": "went-home"
+    },
+    {
+      "id": "went-home",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "我跟朋友们说了这个想法，他们都觉得不靠谱——两个网络互相训练，怎么可能收敛？但我太兴奋了，当晚回家就开始写代码。你知道吗？第一版代码，一次就跑通了。生成的图像很粗糙，但它确实在生成从未见过的新数据。那一刻我知道，这条路是对的。",
+        "en": "I told my friends about this idea, and they all thought it was unreliable — two networks training each other, how could that possibly converge? But I was too excited. I went home that night and started coding. You know what? The first version of the code worked on the very first run. The generated images were rough, but it was genuinely generating new data it had never seen. At that moment, I knew this was the right path."
+      },
+      "leadsTo": "second-question"
+    },
+    {
+      "id": "second-question",
+      "type": "question",
+      "text": {
+        "zh": "古德费洛的核心突破在于不再直接计算似然函数，而是用另一种方式训练生成模型。你觉得这个想法为什么能奏效？",
+        "en": "Goodfellow's core breakthrough was abandoning direct likelihood computation and training the generative model a different way. Why do you think this idea could work?"
+      },
+      "choices": [
+        {
+          "id": "choice-judge",
+          "text": {
+            "zh": "因为用另一个网络当裁判，把「衡量好坏」的任务也变成了可学习的",
+            "en": "Because using another network as a judge makes the 「measuring quality」 task learnable too"
+          },
+          "tag": "analytical",
+          "response": {
+            "mood": "enthusiastic",
+            "text": {
+              "zh": "完全正确！传统方法需要你手动设计一个评估标准，而这个标准本身就极其难以定义。但如果评估标准也是一个神经网络，它可以自动学习什么是「真实」什么是「虚假」。评判者和创造者一起进化。这就是对抗训练的精髓。",
+              "en": "Exactly right! Traditional methods require you to manually design an evaluation criterion, and that criterion itself is extremely hard to define. But if the evaluation criterion is also a neural network, it can automatically learn what's 「real」 and what's 「fake」. The judge and the creator evolve together — that's the essence of adversarial training."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-competition",
+          "text": {
+            "zh": "因为竞争会推动双方进步——就像在体育比赛中对手让你变得更强",
+            "en": "Because competition drives both sides to improve — like how an opponent makes you stronger in sports"
+          },
+          "tag": "intuitive",
+          "response": {
+            "mood": "amused",
+            "text": {
+              "zh": "哈，这正是我最喜欢的类比！最好的学习方式是什么？找一个对手，让你们互相逼着变强。生成器想骗过判别器，判别器想看穿生成器——双方在对抗中螺旋上升。没有对手，就没有进步。",
+              "en": "Ha, that's exactly my favorite analogy! What's the best way to learn? Find an opponent, and push each other to get better. The generator wants to fool the discriminator, the discriminator wants to see through the generator — both spiral upward through competition. No opponent, no progress."
+            }
+          },
+          "leadsTo": "after-second-question"
+        },
+        {
+          "id": "choice-sidestep",
+          "text": {
+            "zh": "因为它绕开了最难的部分——不需要计算精确的概率，只需要比较真假",
+            "en": "Because it sidesteps the hardest part — no need to compute exact probabilities, just compare real vs. fake"
+          },
+          "tag": "pragmatic",
+          "response": {
+            "mood": "default",
+            "text": {
+              "zh": "一针见血。有时候解决问题的关键是换一个角度。极大似然要求你精确计算概率，这在高维空间几乎做不到。但如果你只需要一个判别器说「这看起来像不像真的」，问题就简单多了。从精确计算变成相对比较，这是思维方式的转变。",
+              "en": "Right on the money. Sometimes the key to solving a problem isn't a frontal assault but a change of angle. Maximum likelihood requires computing exact probabilities — nearly impossible in high-dimensional spaces. But if you only need a discriminator to say 「does this look real or not, the problem becomes much simpler. From exact computation to relative comparison — that's a shift in thinking."
+            }
+          },
+          "leadsTo": "after-second-question"
+        }
+      ]
+    },
+    {
+      "id": "after-second-question",
+      "type": "dialog",
+      "mood": "default",
+      "text": {
+        "zh": "这就是{生成对抗网络}的基本直觉——两个网络，一个造假，一个验真，在对抗中共同进化。2014年我和Bengio教授他们一起把这篇论文发表在了NIPS会议上。说实话，当时谁也没想到它会发展成今天这个规模。",
+        "en": "That's the basic intuition behind {generative adversarial networks} — two networks, one forging, one verifying, co-evolving through competition. In 2014, Prof. Bengio and I published this paper together at NIPS. Honestly, nobody expected it would grow to the scale it has today."
+      },
+      "terms": {
+        "生成对抗网络": "term-gan",
+        "generative adversarial networks": "term-gan"
+      },
+      "leadsTo": "note-prompt-1"
+    },
+    {
+      "id": "note-prompt-1",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "判别模型学习分类边界（输入->标签），生成模型学习数据分布（噪声->数据）。传统生成方法依赖极大似然估计，在高维数据上计算困难。GAN的突破在于：不直接计算概率，而是用一个判别网络来评估生成质量，通过对抗训练让两个网络共同进化。",
+        "en": "Discriminative models learn classification boundaries (input -> label); generative models learn data distributions (noise -> data). Traditional generation relied on maximum likelihood estimation, which is computationally intractable for high-dimensional data. GAN's breakthrough: instead of computing probabilities directly, use a discriminator network to evaluate generation quality, and co-evolve both networks through adversarial training."
+      },
+      "category": "core-concept",
+      "leadsTo": "preview-next"
+    },
+    {
+      "id": "preview-next",
+      "type": "dialog",
+      "mood": "enthusiastic",
+      "text": {
+        "zh": "今天我们理解了为什么生成比判别更难，以及GAN的核心思路是如何诞生的。下节课，我会带你们深入这场博弈的细节——生成器和判别器各自在优化什么，它们是怎样一步步「逼」对方变强的。准备好了吗？这场对抗赛才刚刚开始。",
+        "en": "Today we understood why generation is harder than discrimination, and how the core idea of GANs was born. Next lesson, I'll take you deep into the details of this game — what exactly the generator and discriminator are each optimizing, and how they 「push」 each other to improve step by step. Ready? This adversarial match is just getting started."
+      },
+      "leadsTo": "note-prompt-2"
+    },
+    {
+      "id": "note-prompt-2",
+      "type": "note-prompt",
+      "suggestedContent": {
+        "zh": "GAN的酒吧诞生故事：2014年古德费洛在蒙特利尔酒吧灵感迸发，想到不用似然函数，用两个网络对抗来训练生成模型。第一版代码一次跑通。与Bengio教授等人合作发表在NIPS 2014。",
+        "en": "GAN's bar origin story: In 2014, Goodfellow had a eureka moment at a Montreal bar — skip the likelihood function and train a generative model through two competing networks. The first code version worked on the first try. Published at NIPS 2014 with Prof. Bengio and others."
+      },
+      "category": "historical-context",
+      "leadsTo": "closing"
+    },
+    {
+      "id": "closing",
+      "type": "transition",
+      "text": {
+        "zh": "古德费洛教授把马克笔往桌上一抛，双手插兜，朝你点了点头。屏幕上的人脸还在循环播放——有些模糊，有些却已经接近真实。你忍不住多看了几眼，试图分辨哪些是真的、哪些是机器生成的。当你回过头时，他已经拎起背包走了出去，教室里只剩下蓝色的光和那些似真似假的面孔。",
+        "en": "Prof. Goodfellow tosses the marker onto the desk, shoves his hands in his pockets, and nods at you. The faces on the screen keep cycling — some blurry, some startlingly close to real. You can't help but stare, trying to tell which are real and which are machine-generated. When you look back, he's already grabbed his backpack and walked out, leaving only the blue light and those faces that hover between real and fake."
+      }
+    }
+  ]
+}
